@@ -434,7 +434,7 @@ sub load_tournament_files
 
     my $failure_comp = compare_names(\%tou_names, \%st_names);
 
-    if (compare_names(\%tou_names, \%st_names))
+    if ($failure_comp)
     {
       my $not_in_tou = $failure_comp->[0];
       my $not_in_st  = $failure_comp->[1];
