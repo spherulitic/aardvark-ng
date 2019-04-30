@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
+use Pod::Usage qw(pod2usage);
 use DBI;
 use Data::Dumper;
 
@@ -40,39 +41,116 @@ my $working_directory      = Constants::DEFAULT_WORKING_DIR;
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
-
-GetOptions (
-             'directory:s' => \$working_directory,
-             'year:s'      => \$year_regex,
-             'country:s'   => \$country_trigraph_regex,
-             'file:s'      => \$file_regex,
-           ); 
+my $initialize             = '';
+my $add_tournament         = '';
+my $help                   = '';
 
 my %deceased_players = ();
 
-my $deceased_players_filename = Constants::INPUT_DIR . "/" . Constants::DECEASED_PLAYERS;
-
-open(DECEASED, "<", $deceased_players_filename);
-while(<DECEASED>)
-{
-  chomp $_;
-  $_ =~ s/^\s+|\s+$//g;
-  $deceased_players{$_} = 1;
-}
-
 my $photo_dir = $working_directory . "/" . Constants::PHOTO_DIR;
 
-my $dbh = initialize_database($database_name, $host_name, $user_name, $password, $tables, $creation_order);
+my %alt_names_hash = ();
 
-my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons, "name");
+unless (caller)
+{
+  main();
+}
 
-my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
 
-printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
+sub main
+{
+  
+  GetOptions (
+               'directory:s' => \$working_directory,
+               'year:s'      => \$year_regex,
+               'country:s'   => \$country_trigraph_regex,
+               'file:s'      => \$file_regex,
+               'initialize'  => \$initialize,
+               'add'         => \$add_tournament,
+               'help|?'      => \$help,
+             ); 
 
-print Dumper($filenames_array_ref) . "\n\n";
+  pod2usage(1) if $help;  
+  
 
-load_tournament_files($dbh, $filenames_array_ref);
+  my $dbh = initialize_database($database_name, $host_name, $user_name, $password, $tables, $creation_order, $add_tournament);
+  
+  if ($initialize){return;}
+  
+  my $deceased_players_filename = Constants::INPUT_DIR . "/" . Constants::DECEASED_PLAYERS;
+  
+  open(DECEASED, "<", $deceased_players_filename);
+  while(<DECEASED>)
+  {
+    chomp $_;
+    $_ =~ s/^\s+|\s+$//g;
+    $deceased_players{$_} = 1;
+  }
+  
+  my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons, "name");
+  
+  my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
+  
+  printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
+  
+  print Dumper($filenames_array_ref) . "\n\n";
+ 
+  populate_alt_names_hash();
+
+  # print Dumper(\%alt_names_hash);
+
+  load_tournament_files($dbh, $filenames_array_ref);
+}
+
+sub populate_alt_names_hash
+{
+  my $dup_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
+
+  open(DUP, "<", $dup_filename);
+
+  while(<DUP>)
+  {
+    chomp $_;
+
+    $_ =~ s/^\s+|\s+$//g;
+
+    if ($_ =~ /^#/ || !$_){next;}
+
+    my @names = split /,/, $_;
+
+    @names = map { $_ =~ s/^\s+|\s+$//gr  } @names;
+
+    if (!@names){next;}
+    
+    my $true_name = shift @names;
+
+    foreach my $alt_name (@names)
+    {
+      if ($alt_names_hash{$alt_name})
+      {
+        print "ERROR:    alt name already mapped\n";
+        print "Alt name: $alt_name\n";
+        die;
+      }
+      $alt_names_hash{$alt_name} = $true_name;
+    }
+  }
+}
+
+sub convert_name
+{
+  my $name = shift;
+
+  $name =~ s/^\s+|\s+$//g;
+
+  my $true_name = $alt_names_hash{$name};
+
+  if ($true_name)
+  {
+    return $true_name;
+  }
+  return $name;
+}
 
 sub initialize_database
 {
@@ -84,6 +162,8 @@ sub initialize_database
   my $tables_ref         = shift;
   my $creation_order_ref = shift;
 
+  my $add_tournament     = shift;
+
   my %tables = %{$tables_ref};
   my @creation_order = @{$creation_order_ref};
 
@@ -92,17 +172,22 @@ sub initialize_database
                          $user_name, $password,
                          {'RaiseError' => 1});
   
-  for(my $i = 0; $i < scalar @creation_order; $i++)
+
+  if (!$add_tournament)
   {
-    my $key = $creation_order[$i];
-    my @columns = @{$tables{$key}};
-  
-    my $columns_string = join ", ", @columns;
-  
-    my $statement = "CREATE TABLE $key ($columns_string)";
-  
-    $dbh->do($statement);
+    for(my $i = 0; $i < scalar @creation_order; $i++)
+    {
+      my $key = $creation_order[$i];
+      my @columns = @{$tables{$key}};
+    
+      my $columns_string = join ", ", @columns;
+    
+      my $statement = "CREATE TABLE $key ($columns_string)";
+    
+      $dbh->do($statement);
+    }
   }
+
   return $dbh;
 }
 
@@ -231,7 +316,9 @@ sub load_tournament_files
         next;
       }
 
-      # $player_name = sanitize($player_name);
+      # Convert possible alt name to correct name
+
+      $player_name = convert_name($player_name);
 
       $st_names{$player_name} = 1;
 
@@ -272,9 +359,13 @@ sub load_tournament_files
           }
         );
       }
-    
+      else
+      {
+        my $player_id = shift @player_query_result;
+        $player_names_to_ids->{$player_name} = $player_id;
+      } 
  
-      $player_id = ${player_names_to_ids}->{$player_name};
+      $player_id = $player_names_to_ids->{$player_name};
 
       if (!$player_id)
       {
@@ -315,7 +406,7 @@ sub load_tournament_files
     while(<TOU_FILE>)
     {
       chomp $_;
-      if ($_ =~ /^\*M(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
+      if ($_ =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
       {
         my $date = $3 . $2 . $1;
         $tournament->{'start_date'} = $date;
@@ -359,9 +450,10 @@ sub load_tournament_files
         elsif ($current_div_hash->{'length'} != $games_played)
         {
              format_error( [
-                           ["ERROR: ", "inconsistent number of tournament games"],
-                           ["File:  ", $tou_file],
-                           ["Line:  ", $_]
+                           ["ERROR:    ", "inconsistent number of tournament games"],
+                           ["File:     ", $tou_file],
+                           ["Division: ", $current_division_name],
+                           ["Line:     ", $_]
                          ]);
             next filename;         
         }
@@ -402,7 +494,9 @@ sub load_tournament_files
         my $player_name = join " ", @player_game_data;
         $player_name =~ s/^\s+|\s+$//g;
 
-        # $player_name = sanitize($player_name);
+        # Convert possible alt name to real name
+
+        $player_name = convert_name($player_name);
 
         $tou_names{$player_name} = 1;
 
@@ -464,7 +558,6 @@ sub load_tournament_files
 
       if (player_name_is_bye($player_name))
       {
-        print "Skipping the bye: $player_name\n\n";
         $tournament_results->{$player_name}->{'is_bye'} = 1;
         next;
       }
@@ -619,9 +712,32 @@ sub load_tournament_files
     
     my $event_id      = insert_hash_into_table($dbh, $events_tn, $event);
 
+    if (!$event_id)
+    {
+      format_error([
+                       ["ERROR: ", "hash insert failed"],
+                       ["File:  ", $filename],
+                       ["Table: ", $events_tn],
+                       ["Hash:  ", Dumper($event)],
+                   ]);
+      next filename;  
+    }
+
     $tournament->{"event_id"} = $event_id;
 
     my $tournament_id = insert_hash_into_table($dbh, $tournaments_tn, $tournament);
+
+    if (!$tournament_id)
+    {
+      format_error([
+                       ["ERROR: ", "hash insert failed"],
+                       ["File:  ", $filename],
+                       ["Table: ", $tournaments_tn],
+                       ["Hash:  ", Dumper($tournament)],
+                   ]);
+      next filename;  
+    }
+
 
     foreach my $div (@divisions)
     {
@@ -920,6 +1036,13 @@ sub insert_hash_into_table
 
   chop($keys_string);
   chop($values_string);
+
+  if (!$keys_string || !$values_string)
+  {
+
+    return undef;
+  }
+
   $keys_string   .= ")";
   $values_string .= ")";
 
@@ -979,4 +1102,29 @@ sub format_error
   }
   print "\n";
 }
+
+1;
+
+__END__
+
+=head1 SYNOPSIS
+
+
+
+ ./scripts/migrate.pl [-h] [-i] [-a] [-d=<dir>] [-y=<year_regex>] [-c=<country_trigraph_regex>] [-f=<file_regex>] 
+
+ Options:
+   -h, --help       brief help message
+   -d, --directory  specifies the working directory where the year directories are stored 
+   -y, --year       specifies the year regex for which tournament files to migrate
+                    (for example -y 2... would migrate all tournament data from years starting with 2
+   -c, --country    specifies the country regex for which tournament files to migrate
+                    (for example -c ..A would migrate all tournament data from country trigraphs that end in A
+   -f, --file       specifies the filename regex for which tournament files to migrate
+                    (for example -f atlanta16.tou would migrate tournament data from files
+                    with "atlant16.tou" in the filename and their corresponding .STS/.STA files)
+   -i, --initialize flag to initialize the database with empty tables
+   -a, --add        flag to add tournaments to an initialized database
+=cut
+
 

@@ -10,6 +10,13 @@ use constant LOG_DIR     => 'logs';
 use constant MODULES_DIR => 'modules';
 use constant SCRIPTS_DIR => 'scripts';
 
+use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
+use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
+use constant DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
+use constant DEFAULT_FILE_REGEX             => '.tou';
+
+use constant DEFAULT_BACKUP_DIR             => "/home/jcastellano/aardvark-ng/backups";
+
 use constant DATABASE_NAME      => 'wespa';
 use constant DATABASE_HOST_NAME => 'localhost';
 use constant DATABASE_USER_NAME => 'wespa';
@@ -32,7 +39,7 @@ use constant LEXICONS_TABLE_NAME           => 'lexicons';
 use constant MASTER_RATINGS_LIST        => 'rating.dat';
 use constant NOT_IN_MASTER_RATINGS_LIST => 'not_in_ratings_list.log';
 
-use constant INPUT_MERGE_FILE           => 'names_to_merge.txt';
+use constant INPUT_MERGE_FILE           => 'duplicates.txt';
 use constant DECEASED_PLAYERS           => 'removed_people.txt';
 
 use constant PROVISIONAL_GAMES_MAX      => 50;
@@ -161,12 +168,5 @@ use constant LEXICONS => [
                  {"name" => "CSW12"},
                  {"name" => "CSW15"},
                ];
-
-use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
-use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
-use constant DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
-use constant DEFAULT_FILE_REGEX             => '.tou';
-
-
 1;
 
