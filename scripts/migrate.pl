@@ -93,8 +93,6 @@ sub main
   
   printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
   
-  print Dumper($filenames_array_ref) . "\n\n";
- 
   populate_alt_names_hash();
 
   # print Dumper(\%alt_names_hash);
@@ -574,27 +572,34 @@ sub load_tournament_files
         my $opp_key  = $division . "-" . $opp_number;
         my $opp_item = $tou_game_data_hashref->{$opp_key};
 
+        my $opp_score;
+        my $opp_name;
+
+
         if (!(defined $opp_item))
         {
-          format_error([
-                         ["ERROR:        ", "Undefined opponent item"],
-                         ["Files:        ", $filename],
-                         ["Division:     ", $division],
-                         ["Round:        ", $i + 1],
-                         ["Num p games   ", $num_player_games],
-                         ["Round:        ", $i + 1],
-                         ["Player name:  ", $player_name],
-                         ["Player score: ", $player_score],
-                         ["Opp key:      ", $opp_key],
-                       ]);
-          next filename;
+#          This assumes invalid player numbers are errors
+#          and is commented so that invalid numbers are treated as byes
+#          format_error([
+#                         ["ERROR:        ", "Undefined opponent item"],
+#                         ["Files:        ", $filename],
+#                         ["Division:     ", $division],
+#                         ["Round:        ", $i + 1],
+#                         ["Num p games   ", $num_player_games],
+#                         ["Round:        ", $i + 1],
+#                         ["Player name:  ", $player_name],
+#                         ["Player score: ", $player_score],
+#                         ["Opp key:      ", $opp_key],
+#                       ]);
+#          next filename;
+          $opp_score = 0;
+          $opp_name = "BYE";
         } 
-
-
-        my $num_opp_games = scalar @{$opp_item->{'games'}};
-
-        my $opp_score = $opp_item->{'games'}->[$i]->[0];
-        my $opp_name  = $opp_item->{'name'};
+        else
+        {
+          $opp_score = $opp_item->{'games'}->[$i]->[0];
+          $opp_name  = $opp_item->{'name'};
+        }
 
         if (!(defined $opp_score) || !(defined $opp_name))
         {
@@ -606,7 +611,7 @@ sub load_tournament_files
                          ["Num p games   ", $num_player_games],
                          ["Player name:  ", $player_name],
                          ["Player score: ", $player_score],
-                         ["Num opp games:", $num_opp_games],
+                         ["Num opp games:", scalar @{$opp_item->{'games'}}],
                          ["Opp name:     ", $opp_name],
                          ["Opp score:    ", $opp_score],
                          ["Opp key:      ", $opp_key],
