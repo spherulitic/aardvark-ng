@@ -45,11 +45,11 @@ my $initialize             = '';
 my $add_tournament         = '';
 my $help                   = '';
 
-my %deceased_players = ();
-
-my $photo_dir = $working_directory . "/" . Constants::PHOTO_DIR;
+my %deceased_players_hash = ();
 
 my %alt_names_hash = ();
+
+my $photo_dir = $working_directory . "/" . Constants::PHOTO_DIR;
 
 unless (caller)
 {
@@ -77,6 +77,26 @@ sub main
   
   if ($initialize){return;}
   
+ 
+  my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons, "name");
+  
+  my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
+  
+  printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
+
+  # print Dumper($filenames_array_ref);
+  
+  populate_alt_names_hash();
+
+  # print Dumper(\%alt_names_hash);
+
+  populate_deceased_players_hash();
+
+  load_tournament_files($dbh, $filenames_array_ref);
+}
+
+sub populate_deceased_players_hash
+{
   my $deceased_players_filename = Constants::INPUT_DIR . "/" . Constants::DECEASED_PLAYERS;
   
   open(DECEASED, "<", $deceased_players_filename);
@@ -84,22 +104,18 @@ sub main
   {
     chomp $_;
     $_ =~ s/^\s+|\s+$//g;
-    $deceased_players{$_} = 1;
+
+    my $true_name = $_;
+    my $alt_name  = $alt_names_hash{$_};
+
+    if ($alt_name)
+    {
+      $true_name = $alt_name;
+    }
+
+    $deceased_players_hash{$_} = 1;
   }
-  
-  my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons, "name");
-  
-  my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
-  
-  printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
-  
-  populate_alt_names_hash();
-
-  # print Dumper(\%alt_names_hash);
-
-  load_tournament_files($dbh, $filenames_array_ref);
 }
-
 sub populate_alt_names_hash
 {
   my $dup_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
@@ -235,13 +251,32 @@ sub load_tournament_files
     }
 
 
+    # Read the .tou file for the date only
+    my $date;
+    open(my $tou_read, "<", $tou_file) or die "Cannot open .tou file $tou_file: $!";
+    my $first_line = <$tou_read>;
+    close $tou_read;
+    chomp $first_line;
+    if ($first_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) .*$/)
+    {
+      $date = $3 . $2 . $1;
+    }
+    else
+    {
+      format_error([
+                     ["ERROR:", "malformed .tou header"],
+                     ["File: ", $tou_file],
+                   ]);
+      next filename;
+    }
+
     my %st_names  = ();
     my %tou_names = ();
 
     my $event = 
     {
-      # "start_date" => "19000101",
-      # "end_date"   => "19000101",
+      "start_date" => $date,
+      "end_date"   => $date,
       # "link"       => "link to event",
       # "sponsor"    => "sponsor of event",
       # "country"    => "AAA",
@@ -249,8 +284,8 @@ sub load_tournament_files
     };
     my $tournament = 
     {
-      "start_date" => "19000101", # This is changed later
-      "end_date"   => "19000101", # This is changed later
+      "start_date" => $date, # This is changed later
+      "end_date"   => $date, # This is changed later
       # "td"         => "director of tournament",
     };
     my @divisions = ();
@@ -314,13 +349,18 @@ sub load_tournament_files
         next;
       }
 
+      if ($player_country !~ /[A-Z][A-Z][A-Z]/)
+      {
+        $player_country = undef;
+      }
+
       # Convert possible alt name to correct name
 
       $player_name = convert_name($player_name);
 
       $st_names{$player_name} = 1;
 
-      my $player_query = "SELECT id FROM $players_tn WHERE BINARY name=\"$player_name\"";
+      my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$player_name\"";
 
       my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
 
@@ -338,10 +378,10 @@ sub load_tournament_files
             "country"     => $player_country,
             "photo"       => get_player_photo($player_name),
             "suspended"   => 0,  # Updated later
-            "deceased"    => !!$deceased_players{$player_name},
-            # "current"     => -1, # Updated later
+            "deceased"    => !!$deceased_players_hash{$player_name},
             "provisional" => -1, # Updated laster
-            "total_games" => 0   # Updated later
+            "total_games" => 0,   # Updated later
+            "last_played" => $date
           }
         );
         $player_names_to_ids->{$player_name} = $player_id;
@@ -360,7 +400,47 @@ sub load_tournament_files
       else
       {
         my $player_id = shift @player_query_result;
+        my $existing_country = shift @player_query_result;
+        my $player_last_played = shift @player_query_result;
+
+        $player_last_played =~ s/\D//g;
+
         $player_names_to_ids->{$player_name} = $player_id;
+
+        my $newer_tourney_cond = $player_last_played < $date;
+
+        my $no_country_cond = !$existing_country &&
+                               $player_country;
+
+        my $changed_to_newer_country_cond = $existing_country &&
+                                            $player_country &&
+                                            $existing_country ne $player_country &&
+                                            $player_last_played < $date;
+
+        my $changed_country_cond = $existing_country &&
+                                   $player_country &&
+                                   $existing_country ne $player_country;
+
+        if ($newer_tourney_cond)
+        {
+          update_record_by_id($dbh, $players_tn, $player_id, {'last_played' => $date}); 
+        }
+
+        if ($no_country_cond || $changed_to_newer_country_cond)
+        {
+          update_record_by_id($dbh, $players_tn, $player_id, {'country' => $player_country}); 
+        }
+#       Warning if someone switches countries
+#       if ($changed_country_cond)
+#       {
+#         format_error([
+#                        ["WARNING:         ", "player switched countries"],
+#                        ["File:            ", $filename],
+#                        ["Player:          ", $player_name],
+#                        ["Current country: ", $existing_country],
+#                        ["New country:     ", $player_country],
+#                      ]);
+#       }
       } 
  
       $player_id = $player_names_to_ids->{$player_name};
@@ -404,15 +484,7 @@ sub load_tournament_files
     while(<TOU_FILE>)
     {
       chomp $_;
-      if ($_ =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
-      {
-        my $date = $3 . $2 . $1;
-        $tournament->{'start_date'} = $date;
-        $tournament->{'end_date'}   = $date;
-        $event->{'start_date'}      = $date;
-        $event->{'end_date'}        = $date;
-      }
-      elsif ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/)
+      if ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/)
       {
         my $div_name = $1;
         $div_name =~ s/^\s+|\s+$//g;
@@ -654,8 +726,8 @@ sub load_tournament_files
           if ($player_score == $opp_score)
           {
             # if ($is_bye){print "$player_score - $opp_score - $player_name - $opp_name\n\n";}
-            $player_result = 0.5;
-            $opp_result    = 0.5;
+            $player_result = 0;
+            $opp_result    = 0;
             $tournament_results->{$player_name}->{'wins'}   += 0.5;
             $tournament_results->{$player_name}->{'losses'} += 0.5;
             if (!$is_bye)
@@ -761,7 +833,18 @@ sub load_tournament_files
         next;
       }
 
-      add_games_to_existing_player($dbh, $tr->{'player_id'}, $tr->{'wins'} + $tr->{'losses'});
+      my $total_games = $tr->{'wins'} + $tr->{'losses'};
+
+      if ($total_games == 0)
+      {
+        format_error([
+                       ["WARNING:   ", "player played zero games for the tournament"],
+                       ["File:      ", $filename],
+                       ["Player ID: ", $tr->{'player_id'}]
+                     ]);
+      }
+
+      add_games_to_existing_player($dbh, $tr->{'player_id'}, $total_games);
 
       my $division_name = $tr->{"division_id"};
       my $division_id = $division_id_hash->{$division_name};
@@ -822,18 +905,18 @@ sub load_tournament_files
   }
 
   # Update last played date for all players
-
-  my $update_last_played =
-  "
-  UPDATE $players_tn AS p
-  SET p.last_played =
-  (
-    SELECT MAX(end_date)
-    FROM tournaments AS t, divisions AS d, tournament_results AS tr
-    WHERE p.id = tr.player_id AND tr.division_id = d.id AND d.tournament_id = t.id
-  )
-  "; 
-  $dbh->do($update_last_played, {"RaiseError" => 1});
+  # Legacy code, last played is now updated on the fly
+#  my $update_last_played =
+#  "
+#  UPDATE $players_tn AS p
+#  SET p.last_played =
+#  (
+#    SELECT MAX(end_date)
+#    FROM tournaments AS t, divisions AS d, tournament_results AS tr
+#    WHERE p.id = tr.player_id AND tr.division_id = d.id AND d.tournament_id = t.id
+#  )
+#  "; 
+#  $dbh->do($update_last_played, {"RaiseError" => 1});
 
 
   # Update provisional status for all players
@@ -936,6 +1019,21 @@ sub add_games_to_existing_player
   my $total_games_update = "UPDATE $players_tn SET total_games = total_games + $games_played WHERE id=$player_id";
   $dbh->do($total_games_update, {"RaiseError" => 1});
   return $dbh->last_insert_id(undef, undef, undef, undef);
+}
+
+sub update_record_by_id
+{
+  my $dbh             = shift;
+  my $table_name      = shift;
+  my $id              = shift;
+  my $fields_hash_ref = shift;
+
+  foreach my $key (keys %{$fields_hash_ref})
+  {
+    my $value = $fields_hash_ref->{$key};
+    my $update = "UPDATE $table_name SET $key = '$value' WHERE id=$id";
+    $dbh->do($update, {"RaiseError" => 1});
+  }
 }
 
 sub rank_tournament_results

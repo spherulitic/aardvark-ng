@@ -43,6 +43,7 @@ use constant INPUT_MERGE_FILE           => 'duplicates.txt';
 use constant DECEASED_PLAYERS           => 'removed_people.txt';
 
 use constant PROVISIONAL_GAMES_MAX      => 50;
+use constant CURRENT_GAMES_MIN          => 40;
 use constant PHOTO_DIR                  => 'icons';
 
 use constant TABLES =>
