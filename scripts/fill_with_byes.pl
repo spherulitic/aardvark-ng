@@ -23,10 +23,49 @@ unless (caller)
                'output=s' => \$output_filename,
              ); 
 
-  fill_and_check($input_filename, $output_filename);
+  my $reports_string = parse_reports(fill_and_check_tournament($input_filename, $output_filename), $input_filename, $output_filename);
+  print $reports_string;
 }
 
-sub fill_and_check
+sub parse_reports
+{
+  my $reports_ref = shift;
+  my $input_filename = shift;
+  my $output_filename = shift;
+
+  my $stmt = "";
+
+  my @reports_array = @{$reports_ref};
+
+  for (my $i = 0; $i < scalar @reports_array; $i++)
+  {
+    my $div_report = $reports_array[$i];
+    my $fill_info  = $div_report->[0];
+    my $no_success = $div_report->[1];
+    my $div_name   = $div_report->[2];
+
+    if (($fill_info || $no_success) && !$stmt)
+    {
+      $stmt .= "WARNING:       missing or invalid games found in .tou\nFile:          $input_filename\n";
+    }
+    if ($fill_info || $no_success)
+    {
+      $stmt .= "Division:      $div_name\n";
+    }
+    if ($fill_info)
+    {
+      $stmt .= "Byes added:    $fill_info\n\n";
+    }
+    elsif ($no_success)
+    {
+      $stmt .= "Errors:\n$no_success\n\n";
+    }
+  }
+
+  return $stmt;
+}
+
+sub fill_and_check_tournament
 {
     my $input_filename = shift;
     my $output_filename = shift;
@@ -35,31 +74,35 @@ sub fill_and_check
 
     my $line_number = 1;
     my $div_name;
-    my @tourney_data_array = ();
-    my @file_contents = ();
+    my @division_data_array = ();
+    my %file_contents = ();
     my $new_lines_hashref = {};
     my $tourney_length = 0;
+
+    my @division_reports = ();
 
     open(INPUT_FILE, "<", $input_filename) or die "Cannot open .tou file $input_filename: $!";
     while(<INPUT_FILE>)
     {
-      push @file_contents, $_;
+      $file_contents{$line_number} = $_;
       chomp $_;
       my $at_end = $_ =~ /END OF FILE/;
       if ($_ =~ /^\*(.*)/ || $at_end)
       {
         # Send it if a division ended
-        if (@tourney_data_array)
+        if (@division_data_array)
         {
-          # print Dumper(\@tourney_data_array);
-          fill(\@tourney_data_array, $tourney_length, $new_lines_hashref);
+          # print Dumper(\@division_data_array);
+          my $div_report = fill_and_check_division(\@division_data_array, $tourney_length, $new_lines_hashref);
+          $div_report->[2] = $div_name;
+          push @division_reports, $div_report;
         }
         # Restart it
         if (!$at_end)
         {
           $div_name = $1;
           $div_name =~ s/^\s+|\s+$//g;
-          @tourney_data_array = ();
+          @division_data_array = ();
           $tourney_length = 0;
         }
       }
@@ -80,6 +123,9 @@ sub fill_and_check
           my $opp_number  = pop @player_game_data;
           my $score       = pop @player_game_data;
 
+          $opp_number =~ s/\D//g;
+          $score      =~ s/\D//g;
+
           unshift @games, [$score, $opp_number];
         }
 
@@ -88,29 +134,54 @@ sub fill_and_check
 
         unshift @games, $player_name;
 
-        if (!@tourney_data_array)
+        if (!@division_data_array)
         {
-          unshift @tourney_data_array, $line_number;
+          unshift @division_data_array, $line_number;
         }
 
-        push @tourney_data_array, \@games;
+        push @division_data_array, \@games;
       }
       $line_number++; 
     }
+
+    my $new_file = 0;
+
+    foreach my $report (@division_reports)
+    {
+      if ($report->[0] && !$report->[1])
+      {
+        open(my $fh, ">", $output_filename);
+        for (my $i = 1; $i < $line_number; $i++)
+        {
+          my $maybe_new_line = $new_lines_hashref->{$i};
+          if ($maybe_new_line)
+          {
+            print $fh $maybe_new_line;
+          }
+          else
+          {
+            print $fh $file_contents{$i};
+          }
+        }
+        close $fh;
+      }
+    }
+
+    return \@division_reports;
 }
 
-sub fill
+sub fill_and_check_division
 {
 
-  my $tourney_data_arrayref = shift;
+  my $division_data_arrayref = shift;
   my $tourney_length        = shift;
   my $new_lines_hashref     = shift;
 
-  my @tourney_data_array    = @{$tourney_data_arrayref};
+  my @division_data_array    = @{$division_data_arrayref};
 
-  my $start_line = shift @tourney_data_array;
+  my $start_line = shift @division_data_array;
 
-  my $num_players = scalar @tourney_data_array;
+  my $num_players = scalar @division_data_array;
 
   my @player_names = ();
 
@@ -120,7 +191,7 @@ sub fill
 
   for (my $i = 0; $i < $num_players; $i++)
   {
-    my @player_data_array = @{$tourney_data_array[$i]};
+    my @player_data_array = @{$division_data_array[$i]};
 
     push @player_names, (shift @player_data_array);
     
@@ -138,9 +209,14 @@ sub fill
     }
   }
 
-  print "Missing Games: $num_missing_games\n";
 
-  print division_matrix_to_string(\@player_names, \@division_matrix, $tourney_length);
+  my $fill_report = "";
+
+  if ($num_missing_games > 0)
+  {
+    $fill_report .= "$num_missing_games";
+  }
+   # print division_matrix_to_string(\@player_names, \@division_matrix, $tourney_length);
   # Crunch time
 
   while($num_missing_games > 0)
@@ -165,24 +241,65 @@ sub fill
       }
     }
 
-    # Insert Bye is available bye is found
+    # Insert Bye if available bye is found
     if ($min_col < $tourney_length)
     {
-      insert_bye(\@division_matrix, $num_players, $tourney_length, $min_col, $min_row, [0, $min_row+1]);
+      $fill_report .= insert_bye(\@division_matrix, $num_players, $tourney_length, $min_col, $min_row, [1350, $min_row+1]);
       $num_missing_games--;
-      print "Missing games: $num_missing_games\n";
-      print division_matrix_to_string(\@player_names, \@division_matrix, $tourney_length, $min_col, $min_row);
-      matrix_is_valid(\@division_matrix, $num_players, $tourney_length, 0, 1);
+      # print division_matrix_to_string(\@player_names, \@division_matrix, $tourney_length, $min_col, $min_row);
+      # matrix_is_valid(\@division_matrix, $num_players, $tourney_length, 0, 1);
     }
     else
     {
-      print "Cannot fill, not enough info\n";
-      return;
+      $fill_report .= "cannot fill the division, not enough info\n";
     }
   }
 
-  print division_matrix_to_string(\@player_names, \@division_matrix, $tourney_length);
-  matrix_is_valid(\@division_matrix, $num_players, $tourney_length, 1, 0);
+  # print division_matrix_to_string(\@player_names, \@division_matrix, $tourney_length);
+  my $valid_report = matrix_is_valid(\@division_matrix, $num_players, $tourney_length, 1, 0);
+  if (!$valid_report)
+  {
+    populate_new_lines_hashref(\@division_matrix, \@player_names, $tourney_length, $new_lines_hashref, $start_line);
+  }
+  return [$fill_report, $valid_report];
+}
+
+sub populate_new_lines_hashref
+{
+  my $matrix_ref = shift;
+  my $player_names_ref   = shift;
+  my $num_cols   = shift;
+  my $hashref    = shift;
+  my $start_line = shift;
+
+  my @player_names_array = @{$player_names_ref};
+  
+  my $num_rows = scalar @player_names_array;
+  
+  for (my $i = 0; $i < $num_rows; $i++)
+  {
+    $hashref->{$start_line} = (sprintf "%-30s", (shift @player_names_array)) . " ";
+    $hashref->{$start_line} .= matrix_row_to_file_string($matrix_ref, $num_cols, $i);
+    $start_line++;
+  }
+}
+
+sub matrix_row_to_file_string
+{
+  my $matrix_ref = shift;
+  my $num_cols   = shift;
+  my $row        = shift;
+
+  my $s = "";
+
+  for (my $i = 0; $i < $num_cols; $i++)
+  {
+    my $item = $matrix_ref->[$row * $num_cols + $i];
+    my $score = $item->[0];
+    my $opp   = $item->[1];
+    $s .= (sprintf "%4s", $score ) . (sprintf "%4s", $opp) . " ";
+  }
+  return $s . "\n";
 }
 
 sub matrix_is_valid
@@ -196,6 +313,8 @@ sub matrix_is_valid
 
   my %column_hash = ();
 
+  my $report_string = "";
+
   for (my $i = 0; $i < $num_rows; $i++)
   {
     $column_hash{$i+1} = 0;
@@ -208,48 +327,30 @@ sub matrix_is_valid
       my $item = $matrix_ref->[$k * $num_cols + $i];
       if ($completion_check && !(defined $item))
       {
-        my $error = "Matrix incomplete: undefined item at ($k, $i)\n";
-        format_matrix_error($error, $warn);
+        $report_string .= sprintf "   undefined item at (%s, %s)\n", $k, $i;
       }
       if (defined $item && $column_hash{$item->[1]})
       {
-        my $error = sprintf "Matrix invalid: two players play player %s in round %s\n", $item->[1], $i+1;
-        format_matrix_error($error, $warn);
+        $report_string .= sprintf "   two players play player %s in round %s\n", $item->[1], $i+1;
       }
       if (defined $item)
       {
-        $column_hash{$item->[1]} = 1;
+        $column_hash{$item->[1]} += 1;
       }
     }
-
     foreach my $key (keys %column_hash)
     {
       if ($completion_check && !$column_hash{$key})
       {
-        my $error =  sprintf "Matrix invalid: missing player number %s in round %s\n", $key, $i+1;
-        format_matrix_error($error, $warn);
+        $report_string .=  sprintf "   missing player number %s in round %s\n", $key, $i+1;
       }
     }
-    for (my $i = 0; $i < $num_rows; $i++)
+    foreach my $key (keys %column_hash)
     {
-      $column_hash{$i+1} = 0;
+      $column_hash{$key} = 0;
     }
   }
-
-}
-
-sub format_matrix_error
-{
-  my $error = shift;
-  my $warn  = shift;
-  if ($warn)
-  {
-    print $error;
-  }
-  else
-  {
-    die $error;
-  }
+  return $report_string;
 }
 
 sub insert_bye
@@ -261,7 +362,7 @@ sub insert_bye
   my $row        = shift;
   my $item       = shift;
 
-  printf "No possible pairings, inserting a bye\n\nPlayer: %s\nRound: %s\n", $row+1, $col+1;
+  # printf "No possible pairings, inserting a bye\n\nPlayer: %s\nRound: %s\n", $row+1, $col+1;
   for (my $i = $col; $i < $num_cols; $i++)
   {
     my $replaced_value = $matrix_ref->[$row * $num_cols + $i];
@@ -275,9 +376,10 @@ sub insert_bye
     }
     if ($i == $num_cols - 1 && defined $item)
     {
-      die "Bye insert failed, attempted to erase a valid value\n";
+      return sprintf "Bye insert failed at (%s, %s), attempted to erase a valid value\n", $col, $row;
     }
   }
+  return "";
 }
 
 sub potential_pairing

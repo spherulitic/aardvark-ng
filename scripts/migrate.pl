@@ -10,6 +10,8 @@ use Data::Dumper;
 use lib './modules';
 use Constants;
 
+require './scripts/fill_with_byes.pl';
+
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
 my $sta_file_extension = Constants::STA_FILE_EXTENSION;
@@ -85,7 +87,9 @@ sub main
   printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
 
   # print Dumper($filenames_array_ref);
-  
+ 
+  check_for_duplicate_files($filenames_array_ref);
+
   populate_alt_names_hash();
 
   # print Dumper(\%alt_names_hash);
@@ -93,6 +97,51 @@ sub main
   populate_deceased_players_hash();
 
   load_tournament_files($dbh, $filenames_array_ref);
+}
+
+sub check_for_duplicate_files
+{
+  my $files_ref = shift;
+  
+  my @files = @{$files_ref};
+
+  my @dups = ();
+
+  for (my $i = 0; $i < scalar @files; $i++)
+  {
+    for (my $k = $i + 1; $k < scalar @files; $k++)
+    {
+      
+      my $file1 = $files[$i];
+      my $file2 = $files[$k];
+
+      my $file1_shortname = $file1 =~ s/.*\///gr;
+      my $file2_shortname = $file2 =~ s/.*\///gr;
+
+      if ($file1_shortname eq $file2_shortname)
+      {
+        push @dups, [$file1, $file2];
+        next;
+
+        #my $cmd = "diff \"$file1\" \"$file2\" |";
+        #open(CMD, $cmd);
+
+        #my $diffs = "";
+        #while(<CMD>)
+        #{
+        #  $diffs .= $_;
+        #}
+        #if ($diffs)
+        #{
+        #  push @dups, [$file1, $file2];
+        #}
+      }
+    }
+  }
+  if (@dups)
+  {
+    print "Duplicate .tou files:\n\n" . Dumper(\@dups) . "\n";
+  }
 }
 
 sub populate_deceased_players_hash
@@ -233,6 +282,12 @@ sub load_tournament_files
       next filename;
     }
 
+    my $reports = fill_and_check_tournament($tou_file, $tou_file);
+
+    my $parse  = parse_reports($reports, $tou_file, $tou_file);  
+ 
+    print $parse;
+ 
     if (!( -e $sts_file || -e $sta_file))
     {
       format_error([
@@ -639,6 +694,23 @@ sub load_tournament_files
       {
         my $player_score = $player_games[$i]->[0];
         my $opp_number   = $player_games[$i]->[1];
+
+        my $opp_opp_number = $tou_game_data_hashref->{$division . "-" . $opp_number}->{'games'}->[$i]->[1];
+
+        if (!$opp_opp_number || $opp_opp_number != $player_number)
+        {
+          format_error([
+                         ["ERROR:             ", "opponent of opponent is not player"],
+                         ["Files:             ", $filename],
+                         ["Division:          ", $division],
+                         ["Round:             ", $i + 1],
+                         ["Player name:       ", $player_name],
+                         ["Player number:     ", $player_number],
+                         ["Opp number:        ", $opp_number],
+                         ["Opp of opp number: ", $opp_opp_number]
+                       ]);
+          next filename;
+        }
 
 
         my $opp_key  = $division . "-" . $opp_number;
