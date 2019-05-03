@@ -17,9 +17,11 @@ my $file_regex             = "(.tou)|(.STS)|(.STA)|(.TOU)";
 
 my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
 
-my $backups_directory = Constants::DEFAULT_BACKUP_DIR . "/years/";
+my $backups_directory = Constants::DEFAULT_BACKUP_DIR;
 
 my @filenames_array = @{$filenames_array_ref};
+
+my $num_corrections = 0;
 
 foreach my $filename (@filenames_array)
 {
@@ -52,6 +54,10 @@ foreach my $filename (@filenames_array)
   if ($output)
   {
     print "$cmd\n$output\n";
+    $num_corrections++;
   }
 }
+
+print "\n\n\n\n$num_corrections files altered\n";
+
 

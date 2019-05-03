@@ -11,6 +11,7 @@ use lib './modules';
 use Constants;
 
 require './scripts/fill_with_byes.pl';
+require './scripts/get_tournament_data_filenames.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
@@ -87,8 +88,8 @@ sub main
   printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
 
   # print Dumper($filenames_array_ref);
- 
-  check_for_duplicate_files($filenames_array_ref);
+
+  # check_for_duplicate_files($filenames_array_ref);
 
   populate_alt_names_hash();
 
@@ -97,51 +98,6 @@ sub main
   populate_deceased_players_hash();
 
   load_tournament_files($dbh, $filenames_array_ref);
-}
-
-sub check_for_duplicate_files
-{
-  my $files_ref = shift;
-  
-  my @files = @{$files_ref};
-
-  my @dups = ();
-
-  for (my $i = 0; $i < scalar @files; $i++)
-  {
-    for (my $k = $i + 1; $k < scalar @files; $k++)
-    {
-      
-      my $file1 = $files[$i];
-      my $file2 = $files[$k];
-
-      my $file1_shortname = $file1 =~ s/.*\///gr;
-      my $file2_shortname = $file2 =~ s/.*\///gr;
-
-      if ($file1_shortname eq $file2_shortname)
-      {
-        push @dups, [$file1, $file2];
-        next;
-
-        #my $cmd = "diff \"$file1\" \"$file2\" |";
-        #open(CMD, $cmd);
-
-        #my $diffs = "";
-        #while(<CMD>)
-        #{
-        #  $diffs .= $_;
-        #}
-        #if ($diffs)
-        #{
-        #  push @dups, [$file1, $file2];
-        #}
-      }
-    }
-  }
-  if (@dups)
-  {
-    print "Duplicate .tou files:\n\n" . Dumper(\@dups) . "\n";
-  }
 }
 
 sub populate_deceased_players_hash
@@ -1223,40 +1179,6 @@ sub insert_hash_into_table
 
   $dbh->do("INSERT INTO $table $keys_string VALUE $values_string;", {"RaiseError" => 1}  );
   return $dbh->last_insert_id(undef, undef, undef, undef);
-}
-
-sub get_tournament_data_filenames
-{
-  my $base_directory_name    = shift;
-  my $year_regex             = shift;
-  my $country_trigraph_regex = shift;
-  my $file_regex             = shift;
-
-  $base_directory_name .= "/";
-
-  my @tournament_data_filenames = ();
-
-  opendir my $base_directory, $base_directory_name or die "Cannot open $base_directory_name: $!";
-  my @year_directory_names = grep(/$year_regex/, readdir($base_directory));
-
-  foreach my $year_directory_name (@year_directory_names)
-  {
-    my $year_directory_full_path_name = $base_directory_name . $year_directory_name;
-    opendir my $year_directory, $year_directory_full_path_name or die "Cannot open $year_directory_full_path_name: $!";
-    my @country_trigraphs = grep(/$country_trigraph_regex/, readdir($year_directory));
-
-    foreach my $country_trigraph (@country_trigraphs)
-    {
-      my $trigraph_directory_full_path_name = $year_directory_full_path_name . "/" .  $country_trigraph;
-      opendir my $trigraph_directory, $trigraph_directory_full_path_name or die "Cannot open $trigraph_directory_full_path_name: $!";
-      my @filenames = grep(/$file_regex/i, readdir($trigraph_directory));
-
-      my @full_filenames = map { $trigraph_directory_full_path_name . "/"  . $_} @filenames;
-
-      push @tournament_data_filenames, @full_filenames;
-    }
-  }
-  return \@tournament_data_filenames;
 }
 
 sub format_error
