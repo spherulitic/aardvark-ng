@@ -46,6 +46,8 @@ use constant PROVISIONAL_GAMES_MAX      => 50;
 use constant CURRENT_GAMES_MIN          => 40;
 use constant PHOTO_DIR                  => 'icons';
 
+use constant DEFAULT_BYE_SCORE          => 1350;
+
 use constant TABLES =>
 {
   Constants::PLAYERS_TABLE_NAME   => [

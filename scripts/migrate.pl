@@ -10,7 +10,7 @@ use Data::Dumper;
 use lib './modules';
 use Constants;
 
-require './scripts/fill_with_byes.pl';
+require './scripts/correct_and_verify.pl';
 require './scripts/get_tournament_data_filenames.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
@@ -96,7 +96,6 @@ sub main
   # print Dumper(\%alt_names_hash);
 
   populate_deceased_players_hash();
-
   load_tournament_files($dbh, $filenames_array_ref);
 }
 
@@ -238,12 +237,14 @@ sub load_tournament_files
       next filename;
     }
 
-    my $reports = fill_and_check_tournament($tou_file, $tou_file);
+    my $reports = correct_and_verify_tournament($tou_file, $tou_file);
 
     my $parse  = parse_reports($reports, $tou_file, $tou_file);  
- 
-    print $parse;
- 
+    if ($parse)
+    { 
+      print $parse."\n";
+    }
+
     if (!( -e $sts_file || -e $sta_file))
     {
       format_error([
@@ -368,7 +369,17 @@ sub load_tournament_files
       # Convert possible alt name to correct name
 
       $player_name = convert_name($player_name);
-
+      # Error with name appears twice, can happen if a player switches divisions midtournament
+#      if ($st_names{$player_name})
+#      {
+#        format_error([
+#                       ["ERROR:  ", "player name appears more than once"],
+#                       ["File:   ", $sts_or_sta_file],
+#                       ["Player: ", $player_name]
+#                     ]);
+#        next filename;
+#      }
+ 
       $st_names{$player_name} = 1;
 
       my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$player_name\"";
@@ -488,8 +499,8 @@ sub load_tournament_files
 
     my $tou_game_data_hashref = {};
 
+    my %tou_div_names = ();
     my $player_spreads = {};
-
     # Read the .tou file
     open(TOU_FILE, "<", $tou_file) or die "Cannot open .tou file $tou_file: $!";
     while(<TOU_FILE>)
@@ -579,15 +590,57 @@ sub load_tournament_files
 
         $player_name = convert_name($player_name);
 
-        $tou_names{$player_name} = 1;
+        my $og_player_name = $player_name;
 
+        my $div_player_name = $current_division_name . "-" . $player_name;
+
+        if ($tou_div_names{$div_player_name})
+        {
+          format_error([
+                         ["ERROR:    ", "player name appears more than once"],
+                         ["File:     ", $tou_file],
+                         ["Division: ", $current_division_name],
+                         ["Player:   ", $player_name]
+                       ]);
+          next filename;
+        }
+
+        if ($tou_names{$player_name})
+        {
+          # A player has switched divisions mid tournament which is a massive pain in the ass
+          format_error([
+                         ["WARNING:  ", "player has switched divisions mid-tournament"],
+                         ["File:     ", $tou_file],
+                         ["Division: ", $current_division_name],
+                         ["Player:   ", $player_name]
+                       ]);
+          $player_names_to_ids->{$div_player_name} = $player_names_to_ids->{$player_name};
+          $player_name = $div_player_name;
+          $tournament_results->{$player_name} = 
+          {
+            "player_id"      => $player_names_to_ids->{$div_player_name},
+            "division_id"    => -1, # This will be replaced with the actual id later
+            # Calculations done later because byes are annoying
+            "wins"           => 0,
+            "losses"         => 0,
+            "byes"           => 0,
+            # "prize_money"    => 0,
+            # "prize_currency" => "AAA",
+            # "prize_ech_rate" => 1,
+            "start_rating"   => $tournament_results->{$og_player_name}->{'start_rating'},
+            "end_rating"     => $tournament_results->{$og_player_name}->{'end_rating'},
+          };
+        }
+ 
+        $tou_names{$og_player_name} = 1;
+        $tou_div_names{$div_player_name} = 1;
 
         $tournament_results->{$player_name}->{'division_id'} = $current_division_name; # Will be changed later
 
         if (!player_name_is_bye($player_name) && !$tournament_results->{$player_name})
         {
           format_error([
-                         ["ERROR:", "Player names does not appear in corresponding .STS file"], 
+                         ["ERROR:", "Player name does not appear in corresponding .STS file"], 
                          ["Name: ", $player_name], 
                          ["File: ", $tou_file], 
                          ["Line: ", $_],
@@ -625,7 +678,6 @@ sub load_tournament_files
 
 
     my $game_and_player_results_hashref = {};
-
 
     foreach my $key (keys %{$tou_game_data_hashref})
     {
@@ -814,7 +866,6 @@ sub load_tournament_files
       }
     }
     # Add to database top down so we can link up the foreign keys
-    
     my $event_id      = insert_hash_into_table($dbh, $events_tn, $event);
 
     if (!$event_id)
