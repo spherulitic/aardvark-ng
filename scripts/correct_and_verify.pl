@@ -100,6 +100,7 @@ sub correct_and_verify_tournament
     my @division_reports = ();
 
     my $file_has_changed = 0;
+    my $format_correction = 0;
 
     open(INPUT_FILE, "<", $input_filename) or die "Cannot open .tou file $input_filename: $!";
     while(<INPUT_FILE>)
@@ -113,7 +114,7 @@ sub correct_and_verify_tournament
         if (@division_data_array)
         {
           # print Dumper(\@division_data_array);
-          my $div_report = correct_and_verify_division(\@division_data_array, $tourney_length, $new_lines_hashref);
+          my $div_report = correct_and_verify_division(\@division_data_array, $tourney_length, $new_lines_hashref, $format_correction);
           $file_has_changed = $file_has_changed || $div_report->[0];
           unshift @{$div_report}, $div_name;
           push @division_reports, $div_report;
@@ -125,10 +126,25 @@ sub correct_and_verify_tournament
           $div_name =~ s/^\s+|\s+$//g;
           @division_data_array = ();
           $tourney_length = 0;
+          $format_correction = 0;
         }
       }
       elsif ($_ =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/)
       {
+
+        if ($_ =~ /2\s?(\-\d+)/)
+        {    
+        format_error([
+                       ["WARNING:      ", "converting negative winning score"],
+                       ["File:         ", $input_filename],
+                       ["Line:         ", $_."\n"],
+                       ["Rewritten to: ", $output_filename]
+                     ]);
+          my $neg_score = $1 + 2000;
+          $_ =~ s/2\s?\-\d+/$neg_score/g;
+          $format_correction = 1;
+        }
+
         my @player_game_data = split/\s+/, $_;
     
         my @games = ();
@@ -142,10 +158,17 @@ sub correct_and_verify_tournament
           my $opp_number  = pop @player_game_data;
           my $score       = pop @player_game_data;
 
+          my $first_string = '';
+       
+          if ($opp_number =~ /\+/)
+          {
+            $first_string = '+';
+          }
+
           $opp_number =~ s/\D//g;
           $score      =~ s/\D//g;
 
-          unshift @games, [$score, $opp_number];
+          unshift @games, [$score, $opp_number, $first_string];
         }
 
         my $player_name = join " ", @player_game_data;
@@ -187,8 +210,9 @@ sub correct_and_verify_tournament
 sub correct_and_verify_division
 {
   my $division_data_arrayref = shift;
-  my $tourney_length        = shift;
-  my $new_lines_hashref     = shift;
+  my $tourney_length         = shift;
+  my $new_lines_hashref      = shift;
+  my $format_correction      = shift;
 
   my @division_data_array    = @{$division_data_arrayref};
 
@@ -221,7 +245,7 @@ sub correct_and_verify_division
   
   my $pop_report = "";
 
-  my $rewrite_needed = ($num_missing_games || $correction_needed) && !$valid_report;
+  my $rewrite_needed = ($num_missing_games || $correction_needed) && !$valid_report || $format_correction;
 
   if ($rewrite_needed)
   {
@@ -355,8 +379,8 @@ sub matrix_row_to_file_string
   {
     my $item = $matrix_ref->[$row * $num_cols + $i];
     my $score = $item->[0];
-    my $opp   = $item->[1];
-    $s .= (sprintf "%4s", $score ) . (sprintf "%4s", $opp) . " ";
+    my $opp   = $item->[2] . $item->[1];
+    $s .= (sprintf "%6s", $score ) . (sprintf "%6s", $opp) . " ";
   }
   return $s . "\n";
 }
@@ -704,9 +728,7 @@ sub division_matrix_to_string
   return "Number of Players: $num_names\nNumber of Games: $tourney_length\n\n$s\n";
 }
 
-
-
-
+1;
 
 
 

@@ -561,18 +561,19 @@ sub load_tournament_files
             format_error( [
                            ["ERROR:        ", "Malformed opponent number or player score"],
                            ["File:         ", $tou_file],
-                           ["Opp number :  ", $opp_number],
+                           ["Opp number:   ", $opp_number],
                            ["Player score: ", $score],
                            ["Games played: ", $games_played],
                            ["Line:         ", $_]
                          ]);
             next filename;
           }
-          if ($opp_number == $current_player_number)
+          if ($opp_number == $current_player_number || $score == 1350)
           {
             $score = 50;
           }
-          elsif ($score > 2000)
+          # Allow down to -100 in winning score
+          elsif ($score > 1900)
           {
             $score -= 2000;
           }
