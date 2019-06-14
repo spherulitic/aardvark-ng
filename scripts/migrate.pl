@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# This script uses tournament files to build a database of tournament data.
+
 use strict;
 use warnings;
 use Getopt::Long;
@@ -76,14 +78,18 @@ sub main
   pod2usage(1) if $help;  
   
 
-  my $dbh = initialize_database($database_name, $host_name, $user_name, $password, $tables, $creation_order, $add_tournament);
+  my $dbh = initialize_database($database_name, $host_name, $user_name,
+                                $password, $tables, $creation_order,
+                                $add_tournament);
   
   if ($initialize){return;}
   
  
-  my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons, "name");
+  my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
+                                                "name");
   
-  my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
+  my $filenames_array_ref = get_tournament_data_filenames($working_directory,
+                            $year_regex, $country_trigraph_regex, $file_regex);
   
   printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
 
@@ -101,7 +107,8 @@ sub main
 
 sub populate_deceased_players_hash
 {
-  my $deceased_players_filename = Constants::INPUT_DIR . "/" . Constants::DECEASED_PLAYERS;
+  my $deceased_players_filename = Constants::INPUT_DIR . "/" .
+                                  Constants::DECEASED_PLAYERS;
   
   open(DECEASED, "<", $deceased_players_filename);
   while(<DECEASED>)
@@ -191,6 +198,7 @@ sub initialize_database
                          {'RaiseError' => 1});
   
 
+  # If a tournament is being added, don't recreate each table
   if (!$add_tournament)
   {
     for(my $i = 0; $i < scalar @creation_order; $i++)
@@ -237,6 +245,8 @@ sub load_tournament_files
       next filename;
     }
 
+
+    # First validate the .tou file
     my $reports = correct_and_verify_tournament($tou_file, $tou_file);
 
     my $parse  = parse_reports($reports, $tou_file, $tou_file);  
@@ -323,6 +333,8 @@ sub load_tournament_files
       my $start_rating;
       my $end_rating;
 
+      # Player info must be extracted differently if the file is .STS as
+      # opposed to .STA
       if ($is_sts)
       {
         my @player_items = split /,/, $_;
@@ -382,6 +394,7 @@ sub load_tournament_files
  
       $st_names{$player_name} = 1;
 
+      # Search for this player in the players table
       my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$player_name\"";
 
       my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
@@ -421,6 +434,9 @@ sub load_tournament_files
       }
       else
       {
+        # If the player already exists, the last_played and country fields
+        # may need to be updated
+
         my $player_id = shift @player_query_result;
         my $existing_country = shift @player_query_result;
         my $player_last_played = shift @player_query_result;
@@ -493,6 +509,8 @@ sub load_tournament_files
       };
     }
 
+    # Now parse the .tou file for game data
+
     my $current_division_number = 0;
     my $current_division_name   = "";
     my $current_player_number   = 1;
@@ -508,6 +526,7 @@ sub load_tournament_files
       chomp $_;
       if ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/)
       {
+        # Prepare the loop for a new division
         my $div_name = $1;
         $div_name =~ s/^\s+|\s+$//g;
         $current_division_number++;

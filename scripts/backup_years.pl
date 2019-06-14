@@ -1,5 +1,11 @@
 #!/usr/bin/perl
 
+# This script copies all of the tournament data from /srv/dev/aardvark
+# (unless the --input argument is specified) into a new backup directory
+# (which is a required argument specified with the --backup flag)
+# in aardvark-ng/backups. Tournament data refers to all directories
+# that match the DEFAULT_YEAR_REGEX found in modules/Constants.pm
+
 use strict;
 use warnings;
 use Getopt::Long;

@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# FOR TESTING PURPOSES ONLY
+
 use strict;
 use warnings;
 use DBI;

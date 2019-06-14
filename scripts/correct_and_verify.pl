@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# This script validates .tou files and corrects and rewrites them if possible
+
 use strict;
 use warnings;
 use Getopt::Long;
@@ -29,6 +31,10 @@ unless (caller)
 
 sub parse_reports
 {
+
+  # A report is returned from the correct_and_verify_tournament subroutine
+  # This subroutine is basically a toString method for the report
+
   my $reports_ref     = shift;
   my $input_filename  = shift;
   my $output_filename = shift;
@@ -44,6 +50,9 @@ sub parse_reports
 
   for (my $i = 0; $i < scalar @reports_array; $i++)
   {
+    # The reports_array contains a report for each division in the .tou file
+    # If no errors were found the content of the report will be the empty
+    # string
     my $warning_string = '';
     my @div_report = @{$reports_array[$i]};
     my $div_name = shift @div_report;
@@ -59,7 +68,9 @@ sub parse_reports
       {
         if (!$stmt)
         {
-          $stmt .= (sprintf "%-" . $pad  ."s", "WARNING:") . "possibly attempted to correct invalid file\n";
+          $stmt .= (sprintf "%-" . $pad  ."s", "WARNING:") .
+                   "possibly attempted to correct invalid file\n";
+
           $stmt .= (sprintf "%-" . $pad  ."s", "File:") . "$input_filename\n";
         }
         if (!$div_added)
@@ -85,6 +96,11 @@ sub parse_reports
 
 sub correct_and_verify_tournament
 {
+
+    # This subroutine attempts to correct and verify the input .tou specified
+    # by $input_filename. If at least one correction is made, a new .tou file
+    # is written to $output_filename
+
     my $input_filename = shift;
     my $output_filename = shift;
 
@@ -102,7 +118,9 @@ sub correct_and_verify_tournament
     my $file_has_changed = 0;
     my $format_correction = 0;
 
-    open(INPUT_FILE, "<", $input_filename) or die "Cannot open .tou file $input_filename: $!";
+    open(INPUT_FILE, "<", $input_filename)
+      or die "Cannot open .tou file $input_filename: $!";
+
     while(<INPUT_FILE>)
     {
       $file_contents{$line_number} = $_;
@@ -110,16 +128,15 @@ sub correct_and_verify_tournament
       my $at_end = $_ =~ /END OF FILE/;
       if ($_ =~ /^\*(.*)/ || $at_end)
       {
-        # Send it if a division ended
+        # If this is the end of the division, verify the division
         if (@division_data_array)
         {
-          # print Dumper(\@division_data_array);
           my $div_report = correct_and_verify_division(\@division_data_array, $tourney_length, $new_lines_hashref, $format_correction);
           $file_has_changed = $file_has_changed || $div_report->[0];
           unshift @{$div_report}, $div_name;
           push @division_reports, $div_report;
         }
-        # Restart it
+        # Prepare loop for a new division
         if (!$at_end)
         {
           $div_name = $1;
@@ -132,6 +149,8 @@ sub correct_and_verify_tournament
       elsif ($_ =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/)
       {
 
+        # If a winning negative score is listed, correct it by adding 2000
+        # to ensure compliance with the .tou format
         if ($_ =~ /2\s?(\-\d+)/)
         {    
         format_error([
@@ -176,16 +195,22 @@ sub correct_and_verify_tournament
 
         unshift @games, $player_name;
 
+        # If this is the first division listed in this .tou file, prepend the
+        # current line number of the file to the division data. The line
+        # number will be needed if a correction is made and the file needs
+        # to be rewritten
+
         if (!@division_data_array)
         {
           unshift @division_data_array, $line_number;
         }
-
+        
         push @division_data_array, \@games;
       }
       $line_number++; 
     }
 
+    # If the file has changed, rewrite it using the new_lines_hashref
     if ($file_has_changed)
     {
       open(my $fh, ">", $output_filename);
@@ -220,14 +245,26 @@ sub correct_and_verify_division
 
   my $num_players = scalar @division_data_array;
 
+  # Create a matrix representation of the division. With the matrix
+  # abstraction the division becomes easier to verify, correct, and
+  # rewrite.
+
   my ($division_matrix_ref, $player_names_ref, $num_missing_games) = @{create_division_matrix($division_data_arrayref, $tourney_length)};
 
   my $bye_report = "";
+
+  # If players are missing games, the matrix will be jagged.
+  # Before verification, the matrix must be square, so byes are put in place
+  # of missing games.
 
   if ($num_missing_games > 0)
   {
     $bye_report = fill_division_with_byes($division_matrix_ref, $num_players, $tourney_length, $num_missing_games);
   }
+
+  # If the division matrix is valid, the validate_division subroutine will
+  # return the empty string. If not, the subroutine will return the errors
+  # it found.
 
   my $valid_report      = validate_division($division_matrix_ref, $num_players, $tourney_length);
 
@@ -235,17 +272,27 @@ sub correct_and_verify_division
 
   my $correction_needed = 0;
 
+  # If the $valid_report is not the empty string, errors were found, so the
+  # correct_division_pairings subroutine is called to attempt to correct the
+  # errors.
+
   if ($valid_report)
   {
     $correction_needed = 1;
     $correction_report = correct_division_pairings($division_matrix_ref, $num_players, $tourney_length, $player_names_ref);
   }
   
+  # After correction, revalidate, as the correction may have failed or further
+  # corrupted the division data.
+
   $valid_report      = validate_division($division_matrix_ref, $num_players, $tourney_length);
   
   my $pop_report = "";
 
   my $rewrite_needed = ($num_missing_games || $correction_needed) && !$valid_report || $format_correction;
+
+  # If a rewrite is needed, populate the $new_lines_hashref which will be used
+  # to rewrite the .tou file.
 
   if ($rewrite_needed)
   {
@@ -272,6 +319,9 @@ sub create_division_matrix
 
   my $num_missing_games = 0;
 
+  # The division matrix is a 1-d array modeling a 2-d array.
+  # To get the element [a, b], use division_matrix[(tourney_length * a) + b]
+
   for (my $i = 0; $i < $num_players; $i++)
   {
     my @player_data_array = @{$division_data_array[$i]};
@@ -297,7 +347,7 @@ sub create_division_matrix
 
 sub fill_division_with_byes
 {
-  # Crunch time
+  # This subroutine replaces missing games with byes
 
   my $division_matrix_ref = shift;
   my $num_players         = shift;
@@ -310,16 +360,31 @@ sub fill_division_with_byes
 
   while($num_missing_games > 0)
   {
+    # In this loop, find the earliest missing game that must be a bye
+    # If arbitrary missing games are replaced with byes, valid pairing
+    # data could be lost.
+
     my $min_col = $tourney_length;
     my $min_row = -1;
     row: for (my $row = 0; $row < $num_players; $row++)
     {
-      my $num_missing = num_missing_games_in_row($division_matrix_ref, $tourney_length, $row);
+      my $num_missing = num_missing_games_in_row($division_matrix_ref,
+                                                 $tourney_length, $row);
       if ($num_missing > 0)
       {
         for (my $col = 0; $col < $tourney_length; $col++)
         {
-          my $pp = potential_pairing($division_matrix_ref, $num_players, $tourney_length, $col, $row);
+          # Here we are iterating over every missing game.
+          # If a player was a missing game in a round where
+          # they could be potentially playing someone else,
+          # a bye should not be added. 
+          my $pp = potential_pairing($division_matrix_ref, $num_players,
+                                     $tourney_length, $col, $row);
+
+          # If there is no potential pairing and the bye is before
+          # the current minimum round bye, update the minimum round bye
+          # with this bye.
+
           if (!$pp && $col < $min_col)
           {
             $min_col = $col;
@@ -361,6 +426,10 @@ sub populate_new_lines_hashref
   
   for (my $i = 0; $i < $num_rows; $i++)
   {
+    # Create a new line for the .tou
+    # First the player name is listed, followed by the game data
+    # as per the .tou format
+
     $hashref->{$start_line} = (sprintf "%-30s", (shift @player_names_array)) . " ";
     $hashref->{$start_line} .= matrix_row_to_file_string($matrix_ref, $num_cols, $i);
     $start_line++;
@@ -377,6 +446,7 @@ sub matrix_row_to_file_string
 
   for (my $i = 0; $i < $num_cols; $i++)
   {
+    # The item is [score, opponent number, '+' is player went first else '']
     my $item = $matrix_ref->[$row * $num_cols + $i];
     my $score = $item->[0];
     my $opp   = $item->[2] . $item->[1];
@@ -387,6 +457,9 @@ sub matrix_row_to_file_string
 
 sub correct_division_pairings
 {
+
+  # Attempt to correct an invalid division matrix
+
   my $matrix_ref = shift;
   my $num_rows   = shift;
   my $num_cols   = shift;
@@ -395,28 +468,34 @@ sub correct_division_pairings
   my $corrections     = "";
   my $num_corrections = 0;
 
+  # Start correcting from round 1 to the last round
+
   for (my $i = 0; $i < $num_cols; $i++)
   {
+    # Get the invalid pairings for this round
     my @badpairings = find_bad_pairings($matrix_ref, $num_rows, $num_cols, $i);
-    # Corrections go here probably
-    # print division_matrix_to_string($player_names_ref, $matrix_ref, $num_cols);
-    # First correct bad pairings
     while(1)
     {
       @badpairings = find_bad_pairings($matrix_ref, $num_rows, $num_cols, $i);
       my $old_num_badpairings = scalar @badpairings;
       while(@badpairings)
       {
-        # print "The bad pairings:\n";
-        # print Dumper(\@badpairings);
+        # Here, $ip is the 1-indexed player number which is invalidly paired.
+        # We have to use $ip-1 because the division matrix is 0-indexed while
+        # the .tou file is 1-indexed.
+
         my $ip = shift @badpairings;
         my $old_pairing =  $matrix_ref->[($ip-1) * $num_cols + $i]->[1];
         my $pairing_found = 0;
   
         my @missing = find_missing($matrix_ref, $num_rows, $num_cols, $i);
   
-        # print "The missing:\n";
-        # print Dumper(\@missing);
+        # Iterate through all of the players whose numbers do not appear.
+        # These players are listed in the @missing array. If a missing
+        # player has $ip as an opponent. Unpair $ip with the old bad
+        # pairing and pair them with the player who is missing from the
+        # division.
+
         while(@missing)
         {
           my $m = shift @missing;
@@ -434,8 +513,13 @@ sub correct_division_pairings
           }
         }
       }
+      # Update the invalid pairings array
       @badpairings = find_bad_pairings($matrix_ref, $num_rows, $num_cols, $i);
       my $new_num_badpairings = scalar @badpairings;
+      
+      # If the number of invalid pairings pairings did not change after the
+      # attempted corrections, abort this phase of the corrections
+      # as there is not enough information to correct in this phase.
       if ($old_num_badpairings == $new_num_badpairings)
       {
         last;
@@ -464,22 +548,16 @@ sub correct_division_pairings
     @badpairings = find_bad_pairings($matrix_ref, $num_rows, $num_cols, $i);
     while(@badpairings)
     {
-      # print "The bad pairings for the byes:\n";
-      # print Dumper(\@badpairings);
       my $ip = shift @badpairings;
       my $old_pairing =  $matrix_ref->[($ip-1) * $num_cols + $i]->[1];
 
       # If no opp plays this player, assume they have a bye
-      # print "Giving $ip a bye in round " . ($i+1) . "\n";
       $matrix_ref->[($ip - 1) * $num_cols + $i]->[1] = $ip;
       $matrix_ref->[($ip - 1) * $num_cols + $i]->[0] = Constants::DEFAULT_BYE_SCORE;
 
       my $cor.= sprintf "   Round %3s: [%3s, %3s] -> [%3s, %3s] (bye, no valid opponent)\n", $i+1, $ip, $old_pairing, $ip, $ip;
       $corrections .= $cor;
-      # print $cor;
-      # print division_matrix_to_string($player_names_ref, $matrix_ref, $num_cols, $i, $ip);
       $num_corrections++;
-      # $correct_string .= sprintf "   unable to find an opponent for player %s in round %s\n", $ip, $i+1;
     }
   }
   if ($num_corrections)
@@ -496,7 +574,9 @@ sub find_missing
   my $num_cols   = shift;
   my $i          = shift;
 
-  # Create missing array
+  # This subroutine returns an array of players whose player numbers do not
+  # appear in the column for round $i + 1
+
   my %missing_hash = ();
   for (my $b = 0; $b < $num_rows; $b++)
   {
@@ -521,6 +601,10 @@ sub find_bad_pairings
   my $num_cols   = shift;
   my $i          = shift;
 
+  # This subroutine returns an array of invalid pairings for round $i + 1.
+  # A pairing is invalid if the opponent of the opponent of the player is
+  # not the player themself.
+
   my @badpairings = ();
   for (my $k = 0; $k < $num_rows; $k++)
   {
@@ -540,6 +624,12 @@ sub find_bad_pairings
 
 sub validate_division
 {
+
+  # This subroutine validates a division matrix by ensuring the following:
+  #   - There is data for every player in every round
+  #   - For every round, every player number appear exactly once
+  #   - The opponent of the opponent of the player is the player themself
+
   my $matrix_ref = shift;
   my $num_rows   = shift;
   my $num_cols   = shift;
@@ -563,13 +653,17 @@ sub validate_division
       my $item = $matrix_ref->[$k * $num_cols + $i];
       if ($completion_check && !(defined $item))
       {
+        # Check that each matrix entry has data.
         $report_string .= sprintf "   undefined item at (%s, %s)\n", $k, $i;
       }
       if (defined $item)
       {
         if ($column_hash{$item->[1]})
         {
-          $report_string .= sprintf "   more than one player plays player %s in round %s\n", $item->[1], $i+1;
+          # Check that a player isn't paired against more than one person.
+          $report_string .= 
+            sprintf "   more than one player plays player %s in round %s\n",
+                    $item->[1], $i+1;
         }
         $column_hash{$item->[1]} += 1;
         my $opp = $item->[1];
@@ -580,7 +674,12 @@ sub validate_division
           {
             $opp_opp = "undef";
           }
-          $report_string .= sprintf "   opponent of opponent is not player (player, opp, opp of opp) = (%s, %s, %s) in round %s\n", $k+1, $opp, $opp_opp, $i+1;
+          # Check that the opponent of the opponent of the player is the
+          # player.
+          $report_string .=
+            sprintf "   opponent of opponent is not player
+                        (player, opp, opp of opp) = (%s, %s, %s)
+                        in round %s\n", $k+1, $opp, $opp_opp, $i+1;
         }
       }
     }
@@ -588,7 +687,10 @@ sub validate_division
     {
       if ($completion_check && !$column_hash{$key})
       {
-        $report_string .=  sprintf "   missing player number             %s in round %s\n", $key, $i+1;
+        # Check that the player is paired against someone as opposed to no one.
+        $report_string .=
+          sprintf "   missing player number             %s in round %s\n",
+                  $key, $i+1;
       }
     }
     foreach my $key (keys %column_hash)
@@ -612,7 +714,8 @@ sub insert_bye
   my $row        = shift;
   my $item       = shift;
 
-  # printf "No possible pairings, inserting a bye\n\nPlayer: %s\nRound: %s\n", $row+1, $col+1;
+  # Insert a bye in the division matrix at column $col and row $row.
+  # Shift the succeeding (by round) player data by one round.
   for (my $i = $col; $i < $num_cols; $i++)
   {
     my $replaced_value = $matrix_ref->[$row * $num_cols + $i];
@@ -640,6 +743,11 @@ sub potential_pairing
   my $num_cols   = shift;
   my $column     = shift;
   my $row        = shift;
+
+  # Find a potential pairing for the player in row $row and the round
+  # corresponding to column $col. Depending on how many missing
+  # games each player has, the potential game data that makes the
+  # valid pairing could be separated by more than one column.
 
   for (my $i = 0; $i < $num_rows; $i++)
   {

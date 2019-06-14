@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+# Combines two players in the database schema.
+# Now useless as duplicate names are consolidated
+# on the fly in the migration phase.
+
 use strict;
 use warnings;
 use Getopt::Long;

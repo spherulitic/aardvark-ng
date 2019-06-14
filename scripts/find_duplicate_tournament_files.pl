@@ -1,5 +1,10 @@
 #!/usr/bin/perl
 
+# This scripts searches for duplicate tournament files.
+# To compare by content, set the content flag. If the
+# content flag is not set, it will compare files
+# by name only.
+
 use strict;
 use warnings;
 use Getopt::Long;
@@ -27,7 +32,8 @@ unless (caller)
                'content'     => \$content_check
              );
 
-  my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
+  my $filenames_array_ref = get_tournament_data_filenames($working_directory,
+                            $year_regex, $country_trigraph_regex, $file_regex);
 
   check_for_duplicate_files($filenames_array_ref, $content_check);
 }
@@ -90,7 +96,8 @@ sub check_for_duplicate_files
   if (@dups)
   {
     print "Found ". scalar @dups . " duplicates\n\n";
-    print "Duplicate .tou files:\n\n" . Dumper(\@dups) . "\n\nMade $num_checks comparisons\n";
+    print "Duplicate .tou files:\n\n" .
+           Dumper(\@dups) . "\n\nMade $num_checks comparisons\n";
   }
 }
 

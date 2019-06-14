@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# This script returns an array ref of tournament data filenames.
+
 use strict;
 use warnings;
 use Getopt::Long;
@@ -23,7 +25,8 @@ unless (caller)
                'file:s'      => \$file_regex,
              );  
 
-  my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
+  my $filenames_array_ref = get_tournament_data_filenames($working_directory,
+                            $year_regex, $country_trigraph_regex, $file_regex);
 
   print Dumper($filenames_array_ref);
 }
@@ -39,22 +42,33 @@ sub get_tournament_data_filenames
 
   my @tournament_data_filenames = ();
 
-  opendir my $base_directory, $base_directory_name or die "Cannot open $base_directory_name: $!";
+  opendir my $base_directory, $base_directory_name
+    or die "Cannot open $base_directory_name: $!";
   my @year_directory_names = grep(/$year_regex/, readdir($base_directory));
 
   foreach my $year_directory_name (@year_directory_names)
   {
-    my $year_directory_full_path_name = $base_directory_name . $year_directory_name;
-    opendir my $year_directory, $year_directory_full_path_name or die "Cannot open $year_directory_full_path_name: $!";
-    my @country_trigraphs = grep(/$country_trigraph_regex/, readdir($year_directory));
+    my $year_directory_full_path_name =
+      $base_directory_name . $year_directory_name;
+
+    opendir my $year_directory, $year_directory_full_path_name
+      or die "Cannot open $year_directory_full_path_name: $!";
+
+    my @country_trigraphs =
+      grep(/$country_trigraph_regex/, readdir($year_directory));
 
     foreach my $country_trigraph (@country_trigraphs)
     {
-      my $trigraph_directory_full_path_name = $year_directory_full_path_name . "/" .  $country_trigraph;
-      opendir my $trigraph_directory, $trigraph_directory_full_path_name or die "Cannot open $trigraph_directory_full_path_name: $!";
+      my $trigraph_directory_full_path_name =
+        $year_directory_full_path_name . "/" .  $country_trigraph;
+
+      opendir my $trigraph_directory, $trigraph_directory_full_path_name
+        or die "Cannot open $trigraph_directory_full_path_name: $!";
+
       my @filenames = grep(/$file_regex/i, readdir($trigraph_directory));
 
-      my @full_filenames = map { $trigraph_directory_full_path_name . "/"  . $_} @filenames;
+      my @full_filenames =
+        map { $trigraph_directory_full_path_name . "/"  . $_} @filenames;
 
       push @tournament_data_filenames, @full_filenames;
     }

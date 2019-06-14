@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+# This scripts checks the master ratings list for duplicate names
+# and checks that the duplicate names input file uses the correct preferred
+# name.
+
 use strict;
 use warnings;
 use Data::Dumper;
@@ -7,13 +11,17 @@ use Data::Dumper;
 use lib "./modules";
 use Constants;
 
-my $master_ratings_list_filename = Constants::DEFAULT_WORKING_DIR . "/" . Constants::MASTER_RATINGS_LIST;
-my $duplicates_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
+my $master_ratings_list_filename = Constants::DEFAULT_WORKING_DIR . "/" .
+                                   Constants::MASTER_RATINGS_LIST;
+
+my $duplicates_filename = Constants::INPUT_DIR . "/" .
+                          Constants::INPUT_MERGE_FILE;
 
 my %master_list_names_hash = ();
 my %dup_names_hash         = ();
 
-open(MASTER_RATINGS_LIST, "<", $master_ratings_list_filename) or die "Cannot open $master_ratings_list_filename: $!";
+open(MASTER_RATINGS_LIST, "<", $master_ratings_list_filename)
+  or die "Cannot open $master_ratings_list_filename: $!";
 
 my $master_ratings_list_header = <MASTER_RATINGS_LIST>;
 
@@ -32,7 +40,8 @@ while(<MASTER_RATINGS_LIST>)
   $master_list_names_hash{$ratings_list_name} = 1;
 }
 
-open(DUP, "<", $duplicates_filename) or die "Cannot open $duplicates_filename: $!";
+open(DUP, "<", $duplicates_filename)
+  or die "Cannot open $duplicates_filename: $!";
 
 while(<DUP>)
 {
@@ -69,7 +78,8 @@ foreach my $n (keys %master_list_names_hash)
   }
 }
 
-print "Duplicate names in $master_ratings_list_filename:\n\n" . Dumper(\@master_dup);
+print "Duplicate names in $master_ratings_list_filename:\n\n" .
+      Dumper(\@master_dup);
 
 my @incorrect_mapping = ();
 
@@ -81,7 +91,8 @@ foreach my $n (keys %master_list_names_hash)
   }
 }
 
-print "\n\nIncorrect true name mappings:\n\n" . Dumper(\@incorrect_mapping);
+print "\n\nIncorrect true name mappings:\n\n" .
+      Dumper(\@incorrect_mapping);
 
 
 

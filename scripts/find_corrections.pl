@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+# This script compares every tournament file between directories
+# and writes the diffs to a log file.
+
 use strict;
 use warnings;
 use Getopt::Long;
@@ -15,7 +18,8 @@ my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = "(.tou)|(.STS)|(.STA)|(.TOU)";
 
-my $filenames_array_ref = get_tournament_data_filenames($working_directory, $year_regex, $country_trigraph_regex, $file_regex);
+my $filenames_array_ref = get_tournament_data_filenames($working_directory,
+                          $year_regex, $country_trigraph_regex, $file_regex);
 
 my $backups_directory = Constants::DEFAULT_BACKUP_DIR;
 
