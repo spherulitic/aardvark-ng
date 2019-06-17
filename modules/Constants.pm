@@ -39,8 +39,11 @@ use constant LEXICONS_TABLE_NAME           => 'lexicons';
 use constant MASTER_RATINGS_LIST        => 'rating.dat';
 use constant NOT_IN_MASTER_RATINGS_LIST => 'not_in_ratings_list.log';
 
-use constant INPUT_MERGE_FILE           => 'duplicates.txt';
-use constant DECEASED_PLAYERS           => 'removed_people.txt';
+use constant REMOVED_NAMES_FILE           => 'removed_names.log';
+use constant DUPLICATE_NAMES_FILE         => 'duplicate_names.log';
+use constant INCORRECT_NAME_MAPPINGS_FILE => 'incorrect_name_mappings.log';
+use constant INPUT_MERGE_FILE             => 'duplicates.txt';
+use constant DECEASED_PLAYERS             => 'removed_people.txt';
 
 use constant PROVISIONAL_GAMES_MAX      => 50;
 use constant CURRENT_GAMES_MIN          => 40;

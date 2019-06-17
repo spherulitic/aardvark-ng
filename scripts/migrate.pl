@@ -97,11 +97,13 @@ sub main
 
   # check_for_duplicate_files($filenames_array_ref);
 
+  # This hash is used to consolidate the names that are considered duplciates
   populate_alt_names_hash();
 
   # print Dumper(\%alt_names_hash);
 
   populate_deceased_players_hash();
+
   load_tournament_files($dbh, $filenames_array_ref);
 }
 
@@ -187,6 +189,7 @@ sub initialize_database
   my $tables_ref         = shift;
   my $creation_order_ref = shift;
 
+  # This should be true if you are adding a tournament to an existing database
   my $add_tournament     = shift;
 
   my %tables = %{$tables_ref};
@@ -246,7 +249,7 @@ sub load_tournament_files
     }
 
 
-    # First validate the .tou file
+    # First validate and maybe correct the .tou file
     my $reports = correct_and_verify_tournament($tou_file, $tou_file);
 
     my $parse  = parse_reports($reports, $tou_file, $tou_file);  
@@ -263,6 +266,8 @@ sub load_tournament_files
                    ]);
       next filename;
     }
+
+    # This code prefers to use the .STS file
 
     my $sts_or_sta_file = $sts_file;
     my $is_sts = 1;
@@ -292,8 +297,13 @@ sub load_tournament_files
       next filename;
     }
 
+    # These hashes of .STS/.STA names and .tou names will be used to check
+    # for discrepancies between the two
+
     my %st_names  = ();
     my %tou_names = ();
+
+    # The commented entries are fields that we want to fill in eventually
 
     my $event = 
     {
@@ -313,9 +323,6 @@ sub load_tournament_files
     my @divisions = ();
     my $tournament_results = {};
 
-    # my $games;
-    # my $player_results;
-
     # Read the .STS file
     open(STS_OR_STA_FILE, "<", $sts_or_sta_file) or die "Cannot open .STS or .STA file $sts_or_sta_file: $!";
     while(<STS_OR_STA_FILE>)
@@ -327,7 +334,7 @@ sub load_tournament_files
 
       if (!$_){next;}
 
-      # Must defined these
+      # These are common between both .STS and .STA files
       my $player_country;
       my $player_name;
       my $start_rating;
@@ -349,6 +356,8 @@ sub load_tournament_files
       }
       else
       {
+        # Agonizing pattern match for .STA file
+        # which is why .STS is preferred
         if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|.*\|.*\|.*\|\s+(\d+)\D.* (\d+) \|/)
         {
           my $is_new_player = $1; # Unused for now
@@ -368,11 +377,16 @@ sub load_tournament_files
         }
       }
 
+      # Sometimes byes are represented by players named something like
+      # Bye A. If this is the case, we do not need to record the info
+      # for this 'player'
       if (player_name_is_bye($player_name))
       {
         next;
       }
 
+      # Many players have a country code of OS in the tournament data.
+      # This ensures that the country code is valid.
       if ($player_country !~ /[A-Z][A-Z][A-Z]/)
       {
         $player_country = undef;
@@ -395,6 +409,9 @@ sub load_tournament_files
       $st_names{$player_name} = 1;
 
       # Search for this player in the players table
+      # If this player already exists in the database, we will need their
+      # id for the table to add them properly
+
       my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$player_name\"";
 
       my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
@@ -480,7 +497,9 @@ sub load_tournament_files
 #                      ]);
 #       }
       } 
- 
+
+      # Keep an mapping of the names to ids in memory
+      # so we don't have to query the database more than necessary 
       $player_id = $player_names_to_ids->{$player_name};
 
       if (!$player_id)
@@ -536,7 +555,6 @@ sub load_tournament_files
       }
       elsif ($_ =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/)
       {
-
         if (!$current_division_number || !$current_division_name)
         {
           format_error([
@@ -549,7 +567,9 @@ sub load_tournament_files
         my @player_game_data = split/\s+/, $_;
     
         my @games = ();
-
+        
+        # The games in the .tou are represented by score/opp_number pairs
+        # This detects how many of those pairs there are
         my $games_played = () = $_ =~ /(\d+\s+\+?\d+(?:\s+|$))/g;
 
         my $current_div_hash = $divisions[-1];

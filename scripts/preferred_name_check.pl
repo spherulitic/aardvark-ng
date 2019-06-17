@@ -67,32 +67,36 @@ while(<DUP>)
 
 # Check master ratings list for duplicates
 
-my @master_dup = ();
+open(my $dupnames_fh, ">", Constants::LOG_DIR . "/" . Constants::DUPLICATE_NAMES_FILE);
+
+print "Duplicate names:\n";
 
 foreach my $n (keys %master_list_names_hash)
 {
   my $true_name = $dup_names_hash{$n}; 
   if ($true_name && $master_list_names_hash{$true_name})
   {
-    push @master_dup, [$true_name, $n];
+    my $line = "$true_name, $n\n";
+    print $dupnames_fh $line;
+    print $line;
   }
 }
 
-print "Duplicate names in $master_ratings_list_filename:\n\n" .
-      Dumper(\@master_dup);
+close $dupnames_fh;
 
-my @incorrect_mapping = ();
+open(my $prefnames_fh, ">", Constants::LOG_DIR . "/" . Constants::INCORRECT_NAME_MAPPINGS_FILE);
+
+print "\n\nIncorrect preferred names:\n";
 
 foreach my $n (keys %master_list_names_hash)
 {
   if ($dup_names_hash{$n})
   {
-    push @incorrect_mapping, $n;
+    print $prefnames_fh "$n\n";
+    print "$n\n";
   }
 }
 
-print "\n\nIncorrect true name mappings:\n\n" .
-      Dumper(\@incorrect_mapping);
-
+close $prefnames_fh;
 
 
