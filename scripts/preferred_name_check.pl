@@ -7,12 +7,24 @@
 use strict;
 use warnings;
 use Data::Dumper;
-
+use Getopt::Long;
 use lib "./modules";
 use Constants;
 
 my $master_ratings_list_filename = Constants::DEFAULT_WORKING_DIR . "/" .
                                    Constants::MASTER_RATINGS_LIST;
+
+my $input_filename = ''; 
+
+GetOptions (
+             'inputfile=s' => \$input_filename,
+           );
+
+if ($input_filename)
+{
+  $master_ratings_list_filename = $input_filename;
+}
+
 
 my $duplicates_filename = Constants::INPUT_DIR . "/" .
                           Constants::INPUT_MERGE_FILE;

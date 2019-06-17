@@ -7,17 +7,33 @@
 use strict;
 use warnings;
 use Data::Dumper;
-
+use Getopt::Long;
 use lib "./modules";
 use Constants;
 
 my $master_ratings_list_filename = Constants::DEFAULT_WORKING_DIR . "/" .
                                    Constants::MASTER_RATINGS_LIST;
-
 my $duplicates_filename = Constants::LOG_DIR . "/" .
                           Constants::DUPLICATE_NAMES_FILE;
 
 my $new_ratings_list_filename = Constants::LOG_DIR . "/" . Constants::MASTER_RATINGS_LIST;
+
+my $input_filename = '';
+my $output_filename = '';
+
+GetOptions (
+             'inputfile=s' =>  \$input_filename,
+             'outputfile=s' => \$output_filename
+           );
+
+if ($input_filename)
+{
+  $master_ratings_list_filename = $input_filename;
+}
+if ($output_filename)
+{
+  $new_ratings_list_filename = $output_filename;
+}
 
 my %master_list_names_hash = ();
 my %dup_names_hash         = ();
