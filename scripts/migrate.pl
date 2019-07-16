@@ -14,6 +14,7 @@ use Constants;
 
 require './scripts/correct_and_verify.pl';
 require './scripts/get_tournament_data_filenames.pl';
+require './scripts/update_html.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
@@ -48,6 +49,7 @@ my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
 my $initialize             = '';
 my $add_tournament         = '';
+my $create_html            = '';
 my $help                   = '';
 
 my %deceased_players_hash = ();
@@ -72,6 +74,7 @@ sub main
                'file:s'      => \$file_regex,
                'initialize'  => \$initialize,
                'add'         => \$add_tournament,
+               'html'        => \$create_html,
                'help|?'      => \$help,
              ); 
 
@@ -104,7 +107,13 @@ sub main
 
   populate_deceased_players_hash();
 
-  load_tournament_files($dbh, $filenames_array_ref);
+  my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
+
+
+  if ($create_html)
+  {
+    update_player_and_tournament_html($tournament_ids_to_create);
+  }
 }
 
 sub populate_deceased_players_hash
@@ -229,6 +238,8 @@ sub load_tournament_files
   my @filenames_array = @{$filenames_array_ref};
 
   my $player_names_to_ids = {};
+
+  my @tournament_ids_to_convert_to_html = ();
 
   filename: foreach my $filename (@filenames_array)
   {
@@ -509,12 +520,14 @@ sub load_tournament_files
                        ["File:  ", $sts_or_sta_file], 
                        ["Name:  ", $player_name] 
                      ]);
+        next filename;
       }
- 
+
       # Still need spread and position
       $tournament_results->{$player_name} = 
       {
         "player_id"      => $player_id,
+        "player_name"    => $player_name,
         "division_id"    => -1, # This will be replaced with the actual id later
         # Calculations done later because byes are annoying
         "wins"           => 0,
@@ -525,6 +538,7 @@ sub load_tournament_files
         # "prize_ech_rate" => 1,
         "start_rating"   => $start_rating,
         "end_rating"     => $end_rating,
+        "date"           => $date,
       };
     }
 
@@ -538,12 +552,13 @@ sub load_tournament_files
 
     my %tou_div_names = ();
     my $player_spreads = {};
+    my $is_header = 1;
     # Read the .tou file
     open(TOU_FILE, "<", $tou_file) or die "Cannot open .tou file $tou_file: $!";
     while(<TOU_FILE>)
     {
       chomp $_;
-      if ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/)
+      if ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/ && !$is_header)
       {
         # Prepare the loop for a new division
         my $div_name = $1;
@@ -659,6 +674,7 @@ sub load_tournament_files
           $tournament_results->{$player_name} = 
           {
             "player_id"      => $player_names_to_ids->{$div_player_name},
+            "player_name"    => $player_name,
             "division_id"    => -1, # This will be replaced with the actual id later
             # Calculations done later because byes are annoying
             "wins"           => 0,
@@ -669,6 +685,7 @@ sub load_tournament_files
             # "prize_ech_rate" => 1,
             "start_rating"   => $tournament_results->{$og_player_name}->{'start_rating'},
             "end_rating"     => $tournament_results->{$og_player_name}->{'end_rating'},
+            "date"           => $date
           };
         }
  
@@ -698,6 +715,7 @@ sub load_tournament_files
 
         $current_player_number++;
       }
+      $is_header = 0;
     }
 
     my $failure_comp = compare_names(\%tou_names, \%st_names);
@@ -935,6 +953,8 @@ sub load_tournament_files
     }
 
 
+    push @tournament_ids_to_convert_to_html, $tournament_id;
+
     foreach my $div (@divisions)
     {
       $div->{"tournament_id"} = $tournament_id;
@@ -1053,6 +1073,8 @@ sub load_tournament_files
   )
   "; 
   $dbh->do($update_provisional, {"RaiseError" => 1});
+
+  return \@tournament_ids_to_convert_to_html;
 }
 
 sub get_player_photo

@@ -5,10 +5,13 @@ package Constants;
 use warnings;
 use strict;
 
-use constant INPUT_DIR   => 'inputs';
-use constant LOG_DIR     => 'logs';
-use constant MODULES_DIR => 'modules';
-use constant SCRIPTS_DIR => 'scripts';
+use constant INPUT_DIR           => 'inputs';
+use constant LOG_DIR             => 'logs';
+use constant MODULES_DIR         => 'modules';
+use constant SCRIPTS_DIR         => 'scripts';
+use constant HTML_DIR            => 'html';
+use constant PLAYER_HTML_DIR     => 'players';
+use constant TOURNAMENT_HTML_DIR => 'tournaments';
 
 use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
@@ -121,6 +124,7 @@ use constant TABLES =>
                             "id             INT NOT NULL AUTO_INCREMENT",
                             "division_id    INT NOT NULL",
                             "player_id      INT NOT NULL",
+                            "player_name    VARCHAR(255)",
                             "position       INT",
                             "wins           FLOAT",
                             "losses         FLOAT",
@@ -131,6 +135,7 @@ use constant TABLES =>
                             "prize_ech_rate VARCHAR(255)",
                             "start_rating   INT",
                             "end_rating     INT",
+                            "date           DATE",
 
                             "PRIMARY KEY (id)",
                             "FOREIGN KEY (division_id) REFERENCES divisions(id)",
