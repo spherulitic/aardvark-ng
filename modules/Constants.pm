@@ -12,6 +12,8 @@ use constant SCRIPTS_DIR         => 'scripts';
 use constant HTML_DIR            => 'html';
 use constant PLAYER_HTML_DIR     => 'players';
 use constant TOURNAMENT_HTML_DIR => 'tournaments';
+use constant RANKINGS_HTML_DIR   => 'rankings';
+use constant FULL_RANKINGS_NAME  => 'full_rankings';
 
 use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
@@ -67,6 +69,7 @@ use constant TABLES =>
                             "provisional        BOOLEAN",
                             "total_games        INT",
                             "last_played        DATE",
+                            "rating             INT",
 
                             "PRIMARY KEY (id)"
                           ],

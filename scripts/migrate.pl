@@ -112,7 +112,7 @@ sub main
 
   if ($create_html)
   {
-    update_player_and_tournament_html($tournament_ids_to_create);
+    update_html($tournament_ids_to_create);
   }
 }
 
@@ -444,7 +444,8 @@ sub load_tournament_files
             "deceased"    => !!$deceased_players_hash{$player_name},
             "provisional" => -1, # Updated laster
             "total_games" => 0,   # Updated later
-            "last_played" => $date
+            "last_played" => $date, 
+            "rating"      => $end_rating
           }
         );
         $player_names_to_ids->{$player_name} = $player_id;
@@ -489,7 +490,7 @@ sub load_tournament_files
 
         if ($newer_tourney_cond)
         {
-          update_record_by_id($dbh, $players_tn, $player_id, {'last_played' => $date}); 
+          update_record_by_id($dbh, $players_tn, $player_id, {'last_played' => $date, 'rating' => $end_rating}); 
         }
 
         if ($no_country_cond || $changed_to_newer_country_cond)
@@ -1043,7 +1044,7 @@ sub load_tournament_files
     }
   }
 
-  # Update last played date for all players
+  # Update ratings for all players
   # Legacy code, last played is now updated on the fly
 #  my $update_last_played =
 #  "
