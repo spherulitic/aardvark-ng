@@ -15,6 +15,8 @@ use constant TOURNAMENT_HTML_DIR => 'tournaments';
 use constant RANKINGS_HTML_DIR   => 'rankings';
 use constant FULL_RANKINGS_NAME  => 'full_rankings';
 
+use constant HTML_HEADER => "Content-type: text/html\n\n";
+
 use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
 use constant DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
