@@ -58,6 +58,8 @@ use constant PHOTO_DIR                  => 'icons';
 
 use constant DEFAULT_BYE_SCORE          => 1350;
 
+use constant ROUNDING_PLACE             => 2;
+
 use constant TABLES =>
 {
   Constants::PLAYERS_TABLE_NAME   => [
