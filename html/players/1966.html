@@ -1,43 +1,340 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
-  </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Name        </th><th>Country</th> <th>Rating         </th><th>Lifetime Record</th></tr>
-        <tr><td>Gina Jordan</td><td>AUS</td><td>681</td><td>8 - 15</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Date</th><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>2017-03-12</td><td>32</td><td>Gina Jordan</td><td>6</td><td>10</td><td>0</td><td>-538</td><td>572</td><td>681</td></tr>
-        <tr><td>2016-03-13</td><td>48</td><td>Gina Jordan</td><td>2</td><td>5</td><td>9</td><td>82</td><td>572</td><td>572</td></tr>
-      </table>
+    
+    <title>Gina Jordan</title>
+    
+    
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <table>
-        <tr><th>#</th><th>Opponent</th><th>Played</th><th>Wins</th><th>Win Percentage</th></tr>
-        <tr><td>1</td><td>Janet Prider</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>2</td><td>Karyn Crease</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>3</td><td>Wendy Taylor</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>4</td><td>Paula Brown</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>5</td><td>Larrie Strautmanis</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>6</td><td>Susan Roberts</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>7</td><td>Joyce Browett</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>8</td><td>Rob Marotta</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>9</td><td>Rowena Vnuk</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>10</td><td>Louisa Atsas</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>11</td><td>Wendi Symes</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>12</td><td>Helen Jones</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>13</td><td>Michael Vnuk</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>14</td><td>Tracey Kneebone</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>15</td><td>Francoise Finlayson</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>16</td><td>Emanuel Atsas</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>17</td><td>Fiona Braendler</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>18</td><td>Margaret Gibson</td><td>1</td><td>0</td><td>0.0000</td></tr>
-      </table>
+
+
+    
+    
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+      
+    <script >
+
+      
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+    
+      function show_tournament_entry(id)
+      {
+        showContent(event, 'results');
+        $('#' + id).collapse('show');
+      } 
+
+      function show_head_to_head_entry(id)
+      {
+        showContent(event, 'head_to_head');
+        $('#' + id).collapse('show');
+      }
+
+      window.onload = function() { document.getElementById('button_results').click();}
+    </script>
+  </head>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <div class="row">
+          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+            <h2>Gina Jordan</h2>
+            <div>
+              <IMG SRC="../../flags/AUS.png" alt="AUS">
+              <p>AUS</p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4" style="padding-top:20px;">
+            <img src='../../icons/noimage.gif' title='Gina Jordan' alt='Gina Jordan'>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <b>Games Played:</b> 23<br>
+              <b>Wins:</b> 8 (34.78%)<br>
+              <b>Losses: </b>15 (65.22%)<br>
+              <b>Draws:</b> 0 (0.00%)<br><br>
+              <b>Average Score:</b> 337.17<br>
+              <b>Average Against:</b> 376.57<br><br>
+              <b>300 Games:</b> 16 (69.57%)<br>
+              <b>400 Games:</b> 4 (17.39%)<br>
+              <b>500 Games:</b> 0 (0.00%)<br>
+              <b>600 Games:</b> 0 (0.00%)<br><br>
+              
+              
+              <b>High Game:</b> <a href="#entry_0_17825" onclick="show_tournament_entry('entry_0_17825')">448</a> (<a href="#entry_2_2014" onclick="show_head_to_head_entry('entry_2_2014')">vs</a> <a href="/aardvark/html/players/2014.html">Fiona Braendler</a>)<br><b>Low Game:</b> <a href="#entry_0_17825" onclick="show_tournament_entry('entry_0_17825')">263</a> (<a href="#entry_2_1964" onclick="show_head_to_head_entry('entry_2_1964')">vs</a> <a href="/aardvark/html/players/1964.html">Francoise Finlayson</a>)<br><b>Biggest Win:</b> <a href="#entry_0_17825" onclick="show_tournament_entry('entry_0_17825')">138</a> (<a href="#entry_2_4001" onclick="show_head_to_head_entry('entry_2_4001')">vs</a> <a href="/aardvark/html/players/4001.html">Janet Prider</a>)<br><b>Biggest Loss:</b> <a href="#entry_0_4487" onclick="show_tournament_entry('entry_0_4487')">207</a> (<a href="#entry_2_1970" onclick="show_head_to_head_entry('entry_2_1970')">vs</a> <a href="/aardvark/html/players/1970.html">Larrie Strautmanis</a>)<br><b>High Loss:</b> <a href="#entry_0_17825" onclick="show_tournament_entry('entry_0_17825')">353</a> (<a href="#entry_2_1986" onclick="show_head_to_head_entry('entry_2_1986')">vs</a> <a href="/aardvark/html/players/1986.html">Susan Roberts</a>)<br><b>Low Win:</b> <a href="#entry_0_4487" onclick="show_tournament_entry('entry_0_4487')">366</a> (<a href="#entry_2_1983" onclick="show_head_to_head_entry('entry_2_1983')">vs</a> <a href="/aardvark/html/players/1983.html">Rob Marotta</a>)<br>          
+            </div>
+            <div>
+              <br><div class='tab'>
+<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+            </div>   
+            <div id="results" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_0_17825'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_17825'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>6</td><td>10</td><td>0</td><td>-538</td><td>32</td><td>572</td><td>681</td><td>109</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_17825'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1977.html'>Michael Vnuk</a></td><td>1394</td><td>L</td><td>352</td><td>380</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1991.html'>Wendi Symes</a></td><td>300</td><td>W</td><td>368</td><td>306</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1990.html'>Tracey Kneebone</a></td><td>1537</td><td>L</td><td>279</td><td>427</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2014.html'>Fiona Braendler</a></td><td>937</td><td>W</td><td>448</td><td>381</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1984.html'>Rowena Vnuk</a></td><td>601</td><td>W</td><td>401</td><td>319</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1964.html'>Francoise Finlayson</a></td><td>1084</td><td>L</td><td>263</td><td>425</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1963.html'>Emanuel Atsas</a></td><td>714</td><td>L</td><td>294</td><td>334</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4003.html'>Wendy Taylor</a></td><td>892</td><td>L</td><td>314</td><td>356</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4001.html'>Janet Prider</a></td><td>746</td><td>W</td><td>380</td><td>242</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1967.html'>Helen Jones</a></td><td>1089</td><td>W</td><td>416</td><td>398</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1970.html'>Larrie Strautmanis</a></td><td>1075</td><td>W</td><td>388</td><td>333</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1986.html'>Susan Roberts</a></td><td>957</td><td>L</td><td>353</td><td>433</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1969.html'>Karyn Crease</a></td><td>930</td><td>L</td><td>287</td><td>431</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4001.html'>Janet Prider</a></td><td>746</td><td>L</td><td>309</td><td>411</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1982.html'>Paula Brown</a></td><td>526</td><td>L</td><td>317</td><td>371</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/4003.html'>Wendy Taylor</a></td><td>892</td><td>L</td><td>298</td><td>458</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_0_4487'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4487'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>2</td><td>5</td><td>9</td><td>82</td><td>48</td><td>572</td><td>572</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_4487'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/1968.html'>Joyce Browett</a></td><td>1134</td><td>L</td><td>310</td><td>340</td></tr>
+        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/1975.html'>Margaret Gibson</a></td><td>1120</td><td>L</td><td>278</td><td>433</td></tr>
+        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/1972.html'>Louisa Atsas</a></td><td>560</td><td>L</td><td>286</td><td>384</td></tr>
+        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/1983.html'>Rob Marotta</a></td><td>815</td><td>W</td><td>366</td><td>346</td></tr>
+        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/1982.html'>Paula Brown</a></td><td>570</td><td>L</td><td>312</td><td>331</td></tr>
+        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/1969.html'>Karyn Crease</a></td><td>991</td><td>W</td><td>420</td><td>299</td></tr>
+        <tr  class='roweven'  ><td>16</td><td><a href='/aardvark/html/players/1970.html'>Larrie Strautmanis</a></td><td>851</td><td>L</td><td>316</td><td>523</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>
+            <div id="head_to_head" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1970'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1970'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1970.html'>Larrie Strautmanis</a></td><td>1011</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>352.00</td><td>428.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1970'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>16</td><td>L</td><td>572</td><td>851</td><td>316</td><td>523</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>11</td><td>W</td><td>572</td><td>1075</td><td>388</td><td>333</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1982'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1982'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1982.html'>Paula Brown</a></td><td>532</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>314.50</td><td>351.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1982'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>14</td><td>L</td><td>572</td><td>570</td><td>312</td><td>331</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>15</td><td>L</td><td>572</td><td>526</td><td>317</td><td>371</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1969'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1969'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1969.html'>Karyn Crease</a></td><td>887</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>353.50</td><td>365.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1969'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>15</td><td>W</td><td>572</td><td>991</td><td>420</td><td>299</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>13</td><td>L</td><td>572</td><td>930</td><td>287</td><td>431</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_4001'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4001'>+</button></td><td>4</td><td><a href='/aardvark/html/players/4001.html'>Janet Prider</a></td><td>701</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>344.50</td><td>326.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4001'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>9</td><td>W</td><td>572</td><td>746</td><td>380</td><td>242</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>14</td><td>L</td><td>572</td><td>746</td><td>309</td><td>411</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4003'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4003'>+</button></td><td>5</td><td><a href='/aardvark/html/players/4003.html'>Wendy Taylor</a></td><td>892</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>306.00</td><td>407.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4003'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>8</td><td>L</td><td>572</td><td>892</td><td>314</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>16</td><td>L</td><td>572</td><td>892</td><td>298</td><td>458</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1984'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1984'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1984.html'>Rowena Vnuk</a></td><td>847</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>401.00</td><td>319.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1984'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>5</td><td>W</td><td>572</td><td>601</td><td>401</td><td>319</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1963'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1963'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1963.html'>Emanuel Atsas</a></td><td>574</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>294.00</td><td>334.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1963'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>7</td><td>L</td><td>572</td><td>714</td><td>294</td><td>334</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1975'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1975'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1975.html'>Margaret Gibson</a></td><td>1108</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>278.00</td><td>433.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1975'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>11</td><td>L</td><td>572</td><td>1120</td><td>278</td><td>433</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1964'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1964'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1964.html'>Francoise Finlayson</a></td><td>1108</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>263.00</td><td>425.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1964'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>6</td><td>L</td><td>572</td><td>1084</td><td>263</td><td>425</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1990'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1990'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1990.html'>Tracey Kneebone</a></td><td>1332</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>279.00</td><td>427.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1990'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>3</td><td>L</td><td>572</td><td>1537</td><td>279</td><td>427</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2014'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2014'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2014.html'>Fiona Braendler</a></td><td>872</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>448.00</td><td>381.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2014'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>4</td><td>W</td><td>572</td><td>937</td><td>448</td><td>381</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1991'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1991'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1991.html'>Wendi Symes</a></td><td>662</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>368.00</td><td>306.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1991'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>2</td><td>W</td><td>572</td><td>300</td><td>368</td><td>306</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1968'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1968'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1968.html'>Joyce Browett</a></td><td>1093</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>310.00</td><td>340.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1968'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>10</td><td>L</td><td>572</td><td>1134</td><td>310</td><td>340</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1967'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1967'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1967.html'>Helen Jones</a></td><td>994</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>416.00</td><td>398.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1967'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>10</td><td>W</td><td>572</td><td>1089</td><td>416</td><td>398</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1983'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1983'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1983.html'>Rob Marotta</a></td><td>894</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>366.00</td><td>346.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1983'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>13</td><td>W</td><td>572</td><td>815</td><td>366</td><td>346</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1977'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1977'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1977.html'>Michael Vnuk</a></td><td>1237</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>352.00</td><td>380.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1977'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>1</td><td>L</td><td>572</td><td>1394</td><td>352</td><td>380</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1972'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1972'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1972.html'>Louisa Atsas</a></td><td>826</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>286.00</td><td>384.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1972'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/110.html'>South Australian Championship</a></td><td>2016-03-13</td><td>12</td><td>L</td><td>572</td><td>560</td><td>286</td><td>384</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1986'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1986.html'>Susan Roberts</a></td><td>1063</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>353.00</td><td>433.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1986'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/453.html'>South Australian Championship</a></td><td>2017-03-12</td><td>12</td><td>L</td><td>572</td><td>957</td><td>353</td><td>433</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
 
     </div>
   </body>
 </html>
+

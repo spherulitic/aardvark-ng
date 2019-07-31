@@ -1,34 +1,38 @@
 #!/usr/bin/perl
 
-# This script returns an array ref of tournament data filenames.
+# This script contains generic utilities for migration and webpage building
 
 use strict;
 use warnings;
-use Getopt::Long;
-use DBI;
-use Data::Dumper;
-
-use lib "./modules";
+use lib './modules';
 use Constants;
+use DBI;
 
-unless (caller)
+sub uniq
 {
-  my $working_directory      = Constants::DEFAULT_WORKING_DIR;
-  my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
-  my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
-  my $file_regex             = Constants::DEFAULT_FILE_REGEX;
+  [ keys { map { $_ => 1 } @{$_[0]} } ]
+}
 
-  GetOptions (
-               'directory:s' => \$working_directory,
-               'year:s'      => \$year_regex,
-               'country:s'   => \$country_trigraph_regex,
-               'file:s'      => \$file_regex,
-             );  
+sub create_html_id
+{
+  my $html_element = shift;
+  my $type         = shift;
+  my $id           = shift;
 
-  my $filenames_array_ref = get_tournament_data_filenames($working_directory,
-                            $year_regex, $country_trigraph_regex, $file_regex);
+  return (join "_", ($html_element, $type, $id));
+}
 
-  print Dumper($filenames_array_ref);
+sub connect_to_database
+{
+  my $database_name = Constants::DATABASE_NAME;
+  my $host_name     = Constants::DATABASE_HOST_NAME;
+  my $user_name     = Constants::DATABASE_USER_NAME;
+  my $password      = Constants::DATABASE_PASSWORD;
+
+  my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
+                         $user_name, $password,
+                         {'RaiseError' => 1}); 
+  return $dbh;
 }
 
 sub get_tournament_data_filenames
@@ -40,7 +44,7 @@ sub get_tournament_data_filenames
 
   $base_directory_name .= "/";
 
-  my @tournament_data_filenames = ();
+  my @tournament_data_filenames = (); 
 
   opendir my $base_directory, $base_directory_name
     or die "Cannot open $base_directory_name: $!";
@@ -76,9 +80,7 @@ sub get_tournament_data_filenames
   return \@tournament_data_filenames;
 }
 
+
 1;
-
-
-
 
 

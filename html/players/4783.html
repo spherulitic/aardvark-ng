@@ -1,40 +1,328 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
-  </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Name        </th><th>Country</th> <th>Rating         </th><th>Lifetime Record</th></tr>
-        <tr><td>Franky Sit</td><td>HKG</td><td>687</td><td>8 - 15</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Date</th><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>2018-08-27</td><td>16</td><td>Franky Sit</td><td>3</td><td>5</td><td>0</td><td>-60</td><td>723</td><td>687</td></tr>
-        <tr><td>2018-08-26</td><td>22</td><td>Franky Sit</td><td>5</td><td>10</td><td>0</td><td>-715</td><td>723</td><td>723</td></tr>
-      </table>
+    
+    <title>Franky Sit</title>
+    
+    
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <table>
-        <tr><th>#</th><th>Opponent</th><th>Played</th><th>Wins</th><th>Win Percentage</th></tr>
-        <tr><td>1</td><td>Paul Christensen</td><td>4</td><td>1</td><td>0.2500</td></tr>
-        <tr><td>2</td><td>Ho Cheuk Yiu</td><td>3</td><td>1</td><td>0.3333</td></tr>
-        <tr><td>3</td><td>Michael Edesess</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>4</td><td>Hong Hoi Ting</td><td>2</td><td>2</td><td>1.0000</td></tr>
-        <tr><td>5</td><td>Boris Chung</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>6</td><td>James Ng Tsz Kit</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>7</td><td>Fung Tsz Hin</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>8</td><td>Andy Yiu</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>9</td><td>Warodom Geamsakul</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>10</td><td>Douglas Tsang</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>11</td><td>Kelvin Lam</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>12</td><td>Shaun Donnelly</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>13</td><td>Lau Kwun Shing</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>14</td><td>Wesley Choy Wing Chi</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>15</td><td>Thomson Law Long Yin</td><td>1</td><td>0</td><td>0.0000</td></tr>
-      </table>
+
+
+    
+    
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+      
+    <script >
+
+      
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+    
+      function show_tournament_entry(id)
+      {
+        showContent(event, 'results');
+        $('#' + id).collapse('show');
+      } 
+
+      function show_head_to_head_entry(id)
+      {
+        showContent(event, 'head_to_head');
+        $('#' + id).collapse('show');
+      }
+
+      window.onload = function() { document.getElementById('button_results').click();}
+    </script>
+  </head>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <div class="row">
+          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+            <h2>Franky Sit</h2>
+            <div>
+              <IMG SRC="../../flags/HKG.png" alt="HKG">
+              <p>HKG</p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4" style="padding-top:20px;">
+            <img src='../../icons/noimage.gif' title='Franky Sit' alt='Franky Sit'>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <b>Games Played:</b> 23<br>
+              <b>Wins:</b> 8 (34.78%)<br>
+              <b>Losses: </b>15 (65.22%)<br>
+              <b>Draws:</b> 0 (0.00%)<br><br>
+              <b>Average Score:</b> 372.09<br>
+              <b>Average Against:</b> 405.78<br><br>
+              <b>300 Games:</b> 20 (86.96%)<br>
+              <b>400 Games:</b> 7 (30.43%)<br>
+              <b>500 Games:</b> 0 (0.00%)<br>
+              <b>600 Games:</b> 0 (0.00%)<br><br>
+              
+              
+              <b>High Game:</b> <a href="#entry_0_26534" onclick="show_tournament_entry('entry_0_26534')">478</a> (<a href="#entry_2_1420" onclick="show_head_to_head_entry('entry_2_1420')">vs</a> <a href="/aardvark/html/players/1420.html">Paul Christensen</a>)<br><b>Low Game:</b> <a href="#entry_0_26534" onclick="show_tournament_entry('entry_0_26534')">257</a> (<a href="#entry_2_3517" onclick="show_head_to_head_entry('entry_2_3517')">vs</a> <a href="/aardvark/html/players/3517.html">Michael Edesess</a>)<br><b>Biggest Win:</b> <a href="#entry_0_26574" onclick="show_tournament_entry('entry_0_26574')">107</a> (<a href="#entry_2_1441" onclick="show_head_to_head_entry('entry_2_1441')">vs</a> <a href="/aardvark/html/players/1441.html">James Ng Tsz Kit</a>)<br><b>Biggest Loss:</b> <a href="#entry_0_26534" onclick="show_tournament_entry('entry_0_26534')">201</a> (<a href="#entry_2_3517" onclick="show_head_to_head_entry('entry_2_3517')">vs</a> <a href="/aardvark/html/players/3517.html">Michael Edesess</a>)<br><b>High Loss:</b> <a href="#entry_0_26534" onclick="show_tournament_entry('entry_0_26534')">437</a> (<a href="#entry_2_1093" onclick="show_head_to_head_entry('entry_2_1093')">vs</a> <a href="/aardvark/html/players/1093.html">Boris Chung</a>)<br><b>Low Win:</b> <a href="#entry_0_26534" onclick="show_tournament_entry('entry_0_26534')">362</a> (<a href="#entry_2_4784" onclick="show_head_to_head_entry('entry_2_4784')">vs</a> <a href="/aardvark/html/players/4784.html">Hong Hoi Ting</a>)<br>          
+            </div>
+            <div>
+              <br><div class='tab'>
+<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+            </div>   
+            <div id="results" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_0_26574'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_26574'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>3</td><td>5</td><td>0</td><td>-60</td><td>16</td><td>723</td><td>687</td><td>-36</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_26574'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>408</td><td>301</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1109</td><td>L</td><td>398</td><td>414</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>943</td><td>L</td><td>398</td><td>424</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>848</td><td>W</td><td>458</td><td>356</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1481.html'>Ho Cheuk Yiu</a></td><td>818</td><td>L</td><td>365</td><td>367</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>685</td><td>L</td><td>351</td><td>443</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>956</td><td>L</td><td>330</td><td>478</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1419.html'>Lau Kwun Shing</a></td><td>729</td><td>W</td><td>368</td><td>353</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_0_26534'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_26534'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>5</td><td>10</td><td>0</td><td>-715</td><td>22</td><td>723</td><td>723</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_26534'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1108</td><td>L</td><td>437</td><td>461</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1071</td><td>L</td><td>318</td><td>485</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1187.html'>Wesley Choy Wing Chi</a></td><td>917</td><td>W</td><td>433</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1418.html'>Kelvin Lam</a></td><td>1179</td><td>L</td><td>286</td><td>461</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3517.html'>Michael Edesess</a></td><td>1058</td><td>L</td><td>383</td><td>459</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1481.html'>Ho Cheuk Yiu</a></td><td>832</td><td>W</td><td>411</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4786.html'>Shaun Donnelly</a></td><td>1225</td><td>L</td><td>357</td><td>397</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4784.html'>Hong Hoi Ting</a></td><td>738</td><td>W</td><td>375</td><td>363</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>987</td><td>W</td><td>478</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1481.html'>Ho Cheuk Yiu</a></td><td>832</td><td>L</td><td>311</td><td>384</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>1019</td><td>L</td><td>296</td><td>401</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4784.html'>Hong Hoi Ting</a></td><td>738</td><td>W</td><td>362</td><td>351</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>987</td><td>L</td><td>409</td><td>411</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3517.html'>Michael Edesess</a></td><td>1058</td><td>L</td><td>257</td><td>458</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>987</td><td>L</td><td>369</td><td>380</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>
+            <div id="head_to_head" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1420'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1420'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>943</td><td>4</td><td>1</td><td>3</td><td>0</td><td>0.25</td><td>396.50</td><td>421.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1420'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>9</td><td>W</td><td>723</td><td>987</td><td>478</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>13</td><td>L</td><td>723</td><td>987</td><td>409</td><td>411</td></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>15</td><td>L</td><td>723</td><td>987</td><td>369</td><td>380</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>7</td><td>L</td><td>723</td><td>956</td><td>330</td><td>478</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1481'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1481'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1481.html'>Ho Cheuk Yiu</a></td><td>853</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>362.33</td><td>376.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1481'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>6</td><td>W</td><td>723</td><td>832</td><td>411</td><td>377</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>10</td><td>L</td><td>723</td><td>832</td><td>311</td><td>384</td></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>5</td><td>L</td><td>723</td><td>818</td><td>365</td><td>367</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_3517'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3517'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3517.html'>Michael Edesess</a></td><td>1005</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>320.00</td><td>458.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3517'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>5</td><td>L</td><td>723</td><td>1058</td><td>383</td><td>459</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>14</td><td>L</td><td>723</td><td>1058</td><td>257</td><td>458</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1093'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1093'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1085</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>417.50</td><td>437.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1093'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>1</td><td>L</td><td>723</td><td>1108</td><td>437</td><td>461</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>2</td><td>L</td><td>723</td><td>1109</td><td>398</td><td>414</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4784'>+</button></td><td>5</td><td><a href='/aardvark/html/players/4784.html'>Hong Hoi Ting</a></td><td>656</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>368.50</td><td>357.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4784'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>8</td><td>W</td><td>723</td><td>738</td><td>375</td><td>363</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>12</td><td>W</td><td>723</td><td>738</td><td>362</td><td>351</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1030'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1030'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>1031</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>398.00</td><td>424.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1030'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>3</td><td>L</td><td>723</td><td>943</td><td>398</td><td>424</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4786'>+</button></td><td>7</td><td><a href='/aardvark/html/players/4786.html'>Shaun Donnelly</a></td><td>1135</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>357.00</td><td>397.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4786'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>7</td><td>L</td><td>723</td><td>1225</td><td>357</td><td>397</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1418'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1418'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1418.html'>Kelvin Lam</a></td><td>1186</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>286.00</td><td>461.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1418'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>4</td><td>L</td><td>723</td><td>1179</td><td>286</td><td>461</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1419'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1419'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1419.html'>Lau Kwun Shing</a></td><td>681</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>368.00</td><td>353.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1419'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>8</td><td>W</td><td>723</td><td>729</td><td>368</td><td>353</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1434'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>738</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>351.00</td><td>443.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1434'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>6</td><td>L</td><td>723</td><td>685</td><td>351</td><td>443</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1460'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1460'>+</button></td><td>11</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>1198</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>296.00</td><td>401.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1460'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>11</td><td>L</td><td>723</td><td>1019</td><td>296</td><td>401</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1423'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>803</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>458.00</td><td>356.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1423'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>4</td><td>W</td><td>723</td><td>848</td><td>458</td><td>356</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1441'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1441'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>408.00</td><td>301.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1441'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/681.html'>Scrabble Seventy Years Hong Kong Challenge - Extra</a></td><td>2018-08-27</td><td>1</td><td>W</td><td>723</td><td>300</td><td>408</td><td>301</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1187'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1187'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1187.html'>Wesley Choy Wing Chi</a></td><td>973</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>433.00</td><td>394.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1187'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>3</td><td>W</td><td>723</td><td>917</td><td>433</td><td>394</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_195'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_195'>+</button></td><td>15</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1121</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>318.00</td><td>485.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_195'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/679.html'>Scrabble Seventy Years Hong Kong Challenge - Main Event</a></td><td>2018-08-26</td><td>2</td><td>L</td><td>723</td><td>1071</td><td>318</td><td>485</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
 
     </div>
   </body>
 </html>
+

@@ -1,79 +1,968 @@
+<!DOCTYPE html>
 
 <html>
   <head>
+  
+  <title>Hong Kong Scrabble Challenge - Main</title>
+  
+  
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+  
+  
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+  
+  <script type="text/javascript">
+ 
+    
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+
+    window.onload = function() { document.getElementById('button_division_0').click();}
+  </script>
+
   </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>1</td><td>Johnson Tsang</td><td>8</td><td>0</td><td>0</td><td>689</td><td>1320</td><td>1360</td></tr>
-        <tr><td>2</td><td>Carson Ip</td><td>7</td><td>1</td><td>0</td><td>1268</td><td>1276</td><td>1280</td></tr>
-        <tr><td>3</td><td>Ng Ka Wing</td><td>7</td><td>1</td><td>0</td><td>289</td><td>435</td><td>517</td></tr>
-        <tr><td>4</td><td>Edwin Chan</td><td>6</td><td>2</td><td>0</td><td>911</td><td>1103</td><td>1103</td></tr>
-        <tr><td>5</td><td>Warodom Geamsakul</td><td>6</td><td>2</td><td>0</td><td>857</td><td>1220</td><td>1208</td></tr>
-        <tr><td>6</td><td>Benny Lai Ka Shing</td><td>6</td><td>2</td><td>0</td><td>643</td><td>1182</td><td>1182</td></tr>
-        <tr><td>7</td><td>Boris Chung</td><td>6</td><td>2</td><td>0</td><td>554</td><td>1318</td><td>1236</td></tr>
-        <tr><td>8</td><td>Lau Siu Man</td><td>6</td><td>2</td><td>0</td><td>554</td><td>523</td><td>610</td></tr>
-        <tr><td>9</td><td>Chan Long Kei</td><td>6</td><td>2</td><td>0</td><td>461</td><td>562</td><td>763</td></tr>
-        <tr><td>10</td><td>Amelia Tse</td><td>6</td><td>2</td><td>0</td><td>263</td><td>953</td><td>1076</td></tr>
-        <tr><td>11</td><td>Calvin Ma</td><td>6</td><td>2</td><td>0</td><td>203</td><td>657</td><td>719</td></tr>
-        <tr><td>12</td><td>Kwok Chun Hin</td><td>6</td><td>2</td><td>0</td><td>194</td><td>636</td><td>758</td></tr>
-        <tr><td>13</td><td>Douglas Tsang</td><td>5</td><td>3</td><td>0</td><td>711</td><td>873</td><td>874</td></tr>
-        <tr><td>14</td><td>Paul Christensen</td><td>5</td><td>3</td><td>0</td><td>679</td><td>1039</td><td>953</td></tr>
-        <tr><td>15</td><td>Tam Pok Hin</td><td>5</td><td>3</td><td>0</td><td>638</td><td>756</td><td>807</td></tr>
-        <tr><td>16</td><td>Lam Chi Ho Anson</td><td>5</td><td>3</td><td>0</td><td>558</td><td>891</td><td>897</td></tr>
-        <tr><td>17</td><td>Ho Chun Hung</td><td>5</td><td>3</td><td>0</td><td>396</td><td>885</td><td>888</td></tr>
-        <tr><td>18</td><td>Shine Chan</td><td>5</td><td>3</td><td>0</td><td>184</td><td>840</td><td>840</td></tr>
-        <tr><td>19</td><td>Li Pun Wang</td><td>5</td><td>3</td><td>0</td><td>130</td><td>485</td><td>696</td></tr>
-        <tr><td>20</td><td>Jason Tsang Wai Yin</td><td>5</td><td>3</td><td>0</td><td>108</td><td>1046</td><td>1055</td></tr>
-        <tr><td>21</td><td>Cheung Wing Lam</td><td>5</td><td>3</td><td>0</td><td>72</td><td>649</td><td>686</td></tr>
-        <tr><td>22</td><td>Andy Yiu</td><td>5</td><td>3</td><td>0</td><td>71</td><td>940</td><td>940</td></tr>
-        <tr><td>23</td><td>Ip Tsz Fung</td><td>5</td><td>3</td><td>0</td><td>13</td><td>743</td><td>743</td></tr>
-        <tr><td>24</td><td>Tsang Pak Shing</td><td>5</td><td>3</td><td>0</td><td>12</td><td>532</td><td>643</td></tr>
-        <tr><td>25</td><td>Kelvin Ng Man Ho</td><td>5</td><td>3</td><td>0</td><td>-37</td><td>523</td><td>633</td></tr>
-        <tr><td>26</td><td>Kiki Chung Wing Sze</td><td>4.5</td><td>3.5</td><td>0</td><td>484</td><td>578</td><td>593</td></tr>
-        <tr><td>27</td><td>Herbert Ma</td><td>4.5</td><td>3.5</td><td>0</td><td>262</td><td>719</td><td>719</td></tr>
-        <tr><td>28</td><td>Thomson Law Long Yin</td><td>4</td><td>4</td><td>0</td><td>628</td><td>612</td><td>623</td></tr>
-        <tr><td>29</td><td>Wynter Hau</td><td>4</td><td>4</td><td>0</td><td>592</td><td>646</td><td>653</td></tr>
-        <tr><td>30</td><td>Brian Po</td><td>4</td><td>4</td><td>0</td><td>483</td><td>1029</td><td>879</td></tr>
-        <tr><td>31</td><td>Julian Wong Tsz Yu</td><td>4</td><td>4</td><td>0</td><td>443</td><td>664</td><td>607</td></tr>
-        <tr><td>32</td><td>Ngan Fu Ting</td><td>4</td><td>4</td><td>0</td><td>421</td><td>725</td><td>670</td></tr>
-        <tr><td>33</td><td>Heung Tsz Fung</td><td>4</td><td>4</td><td>0</td><td>182</td><td>563</td><td>563</td></tr>
-        <tr><td>34</td><td>Wong Shu Ting</td><td>4</td><td>4</td><td>0</td><td>125</td><td>447</td><td>476</td></tr>
-        <tr><td>35</td><td>Tai Yat Yin</td><td>4</td><td>4</td><td>0</td><td>41</td><td>589</td><td>566</td></tr>
-        <tr><td>36</td><td>Rebecca Lew</td><td>4</td><td>4</td><td>0</td><td>36</td><td>756</td><td>762</td></tr>
-        <tr><td>37</td><td>Chow Ka Yue</td><td>4</td><td>4</td><td>0</td><td>2</td><td>704</td><td>692</td></tr>
-        <tr><td>38</td><td>Yu Sin Yi</td><td>4</td><td>4</td><td>0</td><td>-47</td><td>625</td><td>625</td></tr>
-        <tr><td>39</td><td>Zachary Tong</td><td>4</td><td>4</td><td>0</td><td>-97</td><td>551</td><td>551</td></tr>
-        <tr><td>40</td><td>Ting Tsz Hin</td><td>4</td><td>4</td><td>0</td><td>-134</td><td>590</td><td>596</td></tr>
-        <tr><td>41</td><td>Lim Chi Sang</td><td>4</td><td>4</td><td>0</td><td>-185</td><td>721</td><td>721</td></tr>
-        <tr><td>42</td><td>Chan Yin Hei</td><td>4</td><td>4</td><td>0</td><td>-365</td><td>572</td><td>572</td></tr>
-        <tr><td>46</td><td>Henry Lee Chor Chi</td><td>3</td><td>4</td><td>1</td><td>-143</td><td>524</td><td>524</td></tr>
-        <tr><td>43</td><td>Heung Tsz Kit</td><td>3</td><td>5</td><td>0</td><td>65</td><td>309</td><td>309</td></tr>
-        <tr><td>44</td><td>Hody Lee</td><td>3</td><td>5</td><td>0</td><td>35</td><td>314</td><td>314</td></tr>
-        <tr><td>45</td><td>Hong Yik Shing</td><td>3</td><td>5</td><td>0</td><td>-79</td><td>308</td><td>308</td></tr>
-        <tr><td>47</td><td>Cheung Cheuk Yin</td><td>3</td><td>5</td><td>0</td><td>-212</td><td>430</td><td>430</td></tr>
-        <tr><td>48</td><td>Kwok Ka Yee</td><td>3</td><td>5</td><td>0</td><td>-217</td><td>676</td><td>676</td></tr>
-        <tr><td>49</td><td>Ng Cheuk Wing</td><td>3</td><td>5</td><td>0</td><td>-363</td><td>590</td><td>519</td></tr>
-        <tr><td>50</td><td>Ernest So Yat Long</td><td>3</td><td>5</td><td>0</td><td>-414</td><td>300</td><td>300</td></tr>
-        <tr><td>51</td><td>Lam Ki Hang</td><td>3</td><td>5</td><td>0</td><td>-460</td><td>425</td><td>425</td></tr>
-        <tr><td>52</td><td>Cho Si Yui</td><td>3</td><td>5</td><td>0</td><td>-517</td><td>587</td><td>456</td></tr>
-        <tr><td>53</td><td>Wai Hoi Ching</td><td>3</td><td>5</td><td>0</td><td>-613</td><td>438</td><td>438</td></tr>
-        <tr><td>54</td><td>Leung Chun Hei</td><td>2.5</td><td>5.5</td><td>0</td><td>-612</td><td>490</td><td>418</td></tr>
-        <tr><td>56</td><td>Fung Tsz Hin</td><td>2</td><td>5</td><td>1</td><td>-391</td><td>529</td><td>501</td></tr>
-        <tr><td>57</td><td>Calvin Pang Chi Kong</td><td>2</td><td>5</td><td>1</td><td>-516</td><td>300</td><td>300</td></tr>
-        <tr><td>55</td><td>Cheng Tsz Ching</td><td>2</td><td>6</td><td>0</td><td>-324</td><td>300</td><td>300</td></tr>
-        <tr><td>58</td><td>Sophie Yau</td><td>2</td><td>6</td><td>0</td><td>-529</td><td>356</td><td>300</td></tr>
-        <tr><td>59</td><td>Yu Sin Sin</td><td>2</td><td>6</td><td>0</td><td>-556</td><td>300</td><td>300</td></tr>
-        <tr><td>60</td><td>Cheung Ho Yin</td><td>2</td><td>6</td><td>0</td><td>-568</td><td>300</td><td>300</td></tr>
-        <tr><td>61</td><td>Pang Yui Ming</td><td>2</td><td>6</td><td>0</td><td>-601</td><td>300</td><td>300</td></tr>
-        <tr><td>62</td><td>Kwok Sheung Kai</td><td>1.5</td><td>6.5</td><td>0</td><td>-863</td><td>300</td><td>300</td></tr>
-        <tr><td>63</td><td>Fung Pak Man</td><td>1</td><td>6</td><td>1</td><td>-621</td><td>300</td><td>300</td></tr>
-        <tr><td>64</td><td>Kelly Lam Yui Ching</td><td>1</td><td>6</td><td>1</td><td>-1045</td><td>300</td><td>300</td></tr>
-        <tr><td>65</td><td>James Ng Tsz Kit</td><td>1</td><td>6</td><td>1</td><td>-1486</td><td>300</td><td>300</td></tr>
-        <tr><td>66</td><td>Jillian Bau Yin Lam</td><td>0</td><td>7</td><td>1</td><td>-467</td><td>300</td><td>300</td></tr>
-        <tr><td>67</td><td>Wong Yat Chai</td><td>0</td><td>7</td><td>1</td><td>-1395</td><td>300</td><td>300</td></tr>
-      </table>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
     </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <h2>Hong Kong Scrabble Challenge - Main</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <br>
+              <br><div class='tab'>
+<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+              <br>    
+            </div>
+            <div id='division_0' class='tabcontent'><table class='table'>
+        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2910'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2910'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>8</td><td>0</td><td>0</td><td>689</td><td>1320</td><td>1360</td><td>40</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2910'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>W</td><td>433</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>W</td><td>427</td><td>379</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>W</td><td>516</td><td>213</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>W</td><td>355</td><td>332</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>W</td><td>440</td><td>401</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>W</td><td>401</td><td>369</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>W</td><td>427</td><td>324</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>W</td><td>435</td><td>354</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2932'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2932'>+</button></td><td>2</td><td>3</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>7</td><td>1</td><td>0</td><td>1268</td><td>1276</td><td>1280</td><td>4</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2932'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>W</td><td>624</td><td>305</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>W</td><td>496</td><td>191</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>W</td><td>461</td><td>238</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>L</td><td>324</td><td>386</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>W</td><td>567</td><td>285</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>W</td><td>386</td><td>378</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>W</td><td>410</td><td>335</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>W</td><td>483</td><td>365</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2940'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2940'>+</button></td><td>3</td><td>49</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>7</td><td>1</td><td>0</td><td>289</td><td>435</td><td>517</td><td>82</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2940'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>W</td><td>460</td><td>199</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>L</td><td>259</td><td>393</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>W</td><td>368</td><td>331</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>W</td><td>363</td><td>313</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>W</td><td>409</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>W</td><td>404</td><td>403</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>W</td><td>373</td><td>364</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>W</td><td>385</td><td>330</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2902'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2902'>+</button></td><td>4</td><td>6</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>6</td><td>2</td><td>0</td><td>911</td><td>1103</td><td>1103</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2902'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>W</td><td>424</td><td>370</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>W</td><td>474</td><td>205</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>W</td><td>546</td><td>289</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>L</td><td>404</td><td>423</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>401</td><td>440</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>W</td><td>461</td><td>333</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>W</td><td>373</td><td>371</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>W</td><td>543</td><td>284</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2912'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2912'>+</button></td><td>5</td><td>4</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>6</td><td>2</td><td>0</td><td>857</td><td>1220</td><td>1208</td><td>-12</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2912'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>L</td><td>312</td><td>377</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>W</td><td>562</td><td>238</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>W</td><td>447</td><td>303</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>W</td><td>453</td><td>316</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>W</td><td>399</td><td>347</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>403</td><td>404</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>W</td><td>524</td><td>304</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>W</td><td>425</td><td>379</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2931'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2931'>+</button></td><td>6</td><td>5</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>6</td><td>2</td><td>0</td><td>643</td><td>1182</td><td>1182</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2931'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>W</td><td>404</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>W</td><td>352</td><td>332</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>L</td><td>388</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>W</td><td>490</td><td>283</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>W</td><td>435</td><td>381</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>W</td><td>553</td><td>292</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>W</td><td>550</td><td>377</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>354</td><td>435</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2909'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2909'>+</button></td><td>7</td><td>2</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>6</td><td>2</td><td>0</td><td>554</td><td>1318</td><td>1236</td><td>-82</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2909'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>L</td><td>366</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>W</td><td>420</td><td>274</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>W</td><td>469</td><td>281</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>W</td><td>384</td><td>289</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>W</td><td>455</td><td>313</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>W</td><td>378</td><td>354</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>324</td><td>427</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>W</td><td>449</td><td>349</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2948'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2948'>+</button></td><td>8</td><td>44</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>6</td><td>2</td><td>0</td><td>554</td><td>523</td><td>610</td><td>87</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2948'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>L</td><td>315</td><td>372</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>W</td><td>363</td><td>316</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>428</td><td>239</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>W</td><td>380</td><td>373</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>W</td><td>499</td><td>254</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>W</td><td>400</td><td>349</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>364</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>W</td><td>432</td><td>351</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2934'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2934'>+</button></td><td>9</td><td>38</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>6</td><td>2</td><td>0</td><td>461</td><td>562</td><td>763</td><td>201</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2934'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>W</td><td>405</td><td>340</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>W</td><td>436</td><td>265</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>331</td><td>368</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>W</td><td>438</td><td>332</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>L</td><td>278</td><td>420</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>W</td><td>408</td><td>392</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>W</td><td>487</td><td>251</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>W</td><td>389</td><td>343</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2945'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2945'>+</button></td><td>10</td><td>10</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>6</td><td>2</td><td>0</td><td>263</td><td>953</td><td>1076</td><td>123</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2945'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>W</td><td>437</td><td>277</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>W</td><td>318</td><td>305</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>W</td><td>433</td><td>388</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>W</td><td>423</td><td>404</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>W</td><td>377</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>378</td><td>386</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>W</td><td>393</td><td>325</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>330</td><td>385</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2937'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2937'>+</button></td><td>11</td><td>25</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>6</td><td>2</td><td>0</td><td>203</td><td>657</td><td>719</td><td>62</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2937'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>W</td><td>404</td><td>366</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>W</td><td>344</td><td>328</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>L</td><td>362</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>W</td><td>413</td><td>312</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>W</td><td>420</td><td>278</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>W</td><td>366</td><td>361</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>W</td><td>426</td><td>336</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>365</td><td>483</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2941'>+</button></td><td>12</td><td>28</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>6</td><td>2</td><td>0</td><td>194</td><td>636</td><td>758</td><td>122</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2941'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>W</td><td>446</td><td>311</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>W</td><td>359</td><td>335</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>W</td><td>433</td><td>362</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>W</td><td>386</td><td>324</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>W</td><td>326</td><td>306</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>L</td><td>393</td><td>475</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>L</td><td>325</td><td>393</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>W</td><td>411</td><td>379</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2914'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2914'>+</button></td><td>13</td><td>14</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>5</td><td>3</td><td>0</td><td>711</td><td>873</td><td>874</td><td>1</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2914'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>W</td><td>406</td><td>263</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>W</td><td>510</td><td>162</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>L</td><td>342</td><td>363</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>W</td><td>453</td><td>287</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>W</td><td>424</td><td>295</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>W</td><td>414</td><td>293</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>335</td><td>410</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>L</td><td>349</td><td>449</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2918'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2918'>+</button></td><td>14</td><td>8</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>5</td><td>3</td><td>0</td><td>679</td><td>1039</td><td>953</td><td>-86</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2918'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>W</td><td>564</td><td>286</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>L</td><td>354</td><td>408</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>L</td><td>325</td><td>327</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>W</td><td>476</td><td>342</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>W</td><td>421</td><td>201</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>W</td><td>434</td><td>302</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>L</td><td>377</td><td>550</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>W</td><td>462</td><td>318</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2959'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2959'>+</button></td><td>15</td><td>17</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>5</td><td>3</td><td>0</td><td>638</td><td>756</td><td>807</td><td>51</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2959'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>W</td><td>507</td><td>267</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>379</td><td>427</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>W</td><td>393</td><td>323</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>L</td><td>312</td><td>413</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>W</td><td>612</td><td>215</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>L</td><td>317</td><td>327</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>W</td><td>423</td><td>336</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>W</td><td>403</td><td>400</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2911'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2911'>+</button></td><td>16</td><td>12</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>5</td><td>3</td><td>0</td><td>558</td><td>891</td><td>897</td><td>6</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2911'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>W</td><td>410</td><td>330</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>W</td><td>408</td><td>354</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>W</td><td>356</td><td>307</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>L</td><td>317</td><td>345</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>W</td><td>365</td><td>264</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>L</td><td>354</td><td>378</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>W</td><td>553</td><td>195</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>L</td><td>379</td><td>411</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2904'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2904'>+</button></td><td>17</td><td>13</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>5</td><td>3</td><td>0</td><td>396</td><td>885</td><td>888</td><td>3</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2904'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>W</td><td>464</td><td>167</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>W</td><td>404</td><td>302</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>W</td><td>400</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>W</td><td>345</td><td>317</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>L</td><td>356</td><td>377</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>W</td><td>475</td><td>393</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>L</td><td>336</td><td>426</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>L</td><td>379</td><td>425</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2917'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2917'>+</button></td><td>18</td><td>15</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>5</td><td>3</td><td>0</td><td>184</td><td>840</td><td>840</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2917'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>W</td><td>339</td><td>336</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>L</td><td>335</td><td>359</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>L</td><td>306</td><td>412</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>L</td><td>342</td><td>476</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>W</td><td>383</td><td>286</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>W</td><td>506</td><td>254</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>W</td><td>378</td><td>328</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>W</td><td>400</td><td>354</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2944'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2944'>+</button></td><td>19</td><td>46</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>5</td><td>3</td><td>0</td><td>130</td><td>485</td><td>696</td><td>211</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2944'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>L</td><td>350</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>W</td><td>432</td><td>290</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>W</td><td>356</td><td>289</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>L</td><td>345</td><td>376</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>L</td><td>295</td><td>424</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>W</td><td>316</td><td>235</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>W</td><td>317</td><td>313</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>W</td><td>384</td><td>334</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2923'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2923'>+</button></td><td>20</td><td>7</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>5</td><td>3</td><td>0</td><td>108</td><td>1046</td><td>1055</td><td>9</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2923'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>W</td><td>377</td><td>312</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>W</td><td>406</td><td>325</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>W</td><td>425</td><td>314</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>W</td><td>433</td><td>262</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>285</td><td>567</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>369</td><td>401</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>W</td><td>373</td><td>333</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>L</td><td>343</td><td>389</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2921'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2921'>+</button></td><td>21</td><td>26</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>5</td><td>3</td><td>0</td><td>72</td><td>649</td><td>686</td><td>37</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2921'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>W</td><td>357</td><td>309</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>W</td><td>349</td><td>302</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>W</td><td>363</td><td>342</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>332</td><td>355</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>L</td><td>264</td><td>365</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>L</td><td>315</td><td>355</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>W</td><td>384</td><td>323</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>W</td><td>352</td><td>293</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2961'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2961'>+</button></td><td>22</td><td>11</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>5</td><td>3</td><td>0</td><td>71</td><td>940</td><td>940</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2961'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>373</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>W</td><td>393</td><td>251</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>W</td><td>411</td><td>283</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>W</td><td>376</td><td>345</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>L</td><td>296</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>W</td><td>355</td><td>315</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>L</td><td>304</td><td>524</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>W</td><td>393</td><td>246</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2925'>+</button></td><td>23</td><td>18</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>5</td><td>3</td><td>0</td><td>13</td><td>743</td><td>743</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2925'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>W</td><td>515</td><td>241</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>L</td><td>265</td><td>436</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>L</td><td>314</td><td>425</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>W</td><td>319</td><td>313</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>W</td><td>399</td><td>351</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>W</td><td>326</td><td>309</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>W</td><td>356</td><td>325</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>L</td><td>351</td><td>432</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2960'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2960'>+</button></td><td>24</td><td>40</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>5</td><td>3</td><td>0</td><td>12</td><td>532</td><td>643</td><td>111</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2960'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>L</td><td>267</td><td>507</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>L</td><td>251</td><td>393</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>L</td><td>303</td><td>447</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>W</td><td>367</td><td>243</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>W</td><td>442</td><td>241</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>W</td><td>361</td><td>335</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>W</td><td>416</td><td>302</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>W</td><td>442</td><td>369</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2919'>+</button></td><td>25</td><td>43</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>5</td><td>3</td><td>0</td><td>-37</td><td>523</td><td>633</td><td>110</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2919'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>L</td><td>263</td><td>406</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>L</td><td>263</td><td>438</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>W</td><td>470</td><td>302</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>464</td><td>255</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>W</td><td>381</td><td>316</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>W</td><td>360</td><td>345</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>W</td><td>447</td><td>364</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>L</td><td>284</td><td>543</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2906'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2906'>+</button></td><td>26</td><td>35</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>4.5</td><td>3.5</td><td>0</td><td>484</td><td>578</td><td>593</td><td>15</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2906'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>L</td><td>320</td><td>368</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>W</td><td>438</td><td>263</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>W</td><td>402</td><td>190</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>L</td><td>354</td><td>399</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>W</td><td>433</td><td>296</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>L</td><td>307</td><td>341</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>W</td><td>449</td><td>362</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>T</td><td>393</td><td>393</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2933'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2933'>+</button></td><td>27</td><td>21</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>4.5</td><td>3.5</td><td>0</td><td>262</td><td>719</td><td>719</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2933'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>W</td><td>409</td><td>264</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>L</td><td>302</td><td>349</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>W</td><td>346</td><td>330</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>L</td><td>357</td><td>385</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>W</td><td>403</td><td>349</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>W</td><td>428</td><td>304</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>L</td><td>371</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>T</td><td>393</td><td>393</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2947'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2947'>+</button></td><td>28</td><td>30</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>4</td><td>4</td><td>0</td><td>628</td><td>612</td><td>623</td><td>11</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2947'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>L</td><td>336</td><td>339</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>L</td><td>324</td><td>366</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>523</td><td>159</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>L</td><td>316</td><td>453</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>W</td><td>410</td><td>390</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>W</td><td>379</td><td>235</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>L</td><td>323</td><td>384</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>W</td><td>562</td><td>219</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2963'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2963'>+</button></td><td>29</td><td>27</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>4</td><td>4</td><td>0</td><td>592</td><td>646</td><td>653</td><td>7</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2963'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>W</td><td>368</td><td>320</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>L</td><td>305</td><td>318</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>L</td><td>330</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>W</td><td>438</td><td>193</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>W</td><td>513</td><td>204</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>L</td><td>309</td><td>326</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>W</td><td>417</td><td>335</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>L</td><td>354</td><td>400</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2908'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2908'>+</button></td><td>30</td><td>9</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>4</td><td>4</td><td>0</td><td>483</td><td>1029</td><td>879</td><td>-150</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2908'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>W</td><td>495</td><td>285</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>L</td><td>332</td><td>352</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>W</td><td>399</td><td>314</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>W</td><td>351</td><td>272</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>W</td><td>423</td><td>199</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>L</td><td>361</td><td>366</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>L</td><td>333</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>L</td><td>334</td><td>384</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2954'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2954'>+</button></td><td>31</td><td>24</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>4</td><td>4</td><td>0</td><td>443</td><td>664</td><td>607</td><td>-57</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2954'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>481</td><td>158</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>W</td><td>456</td><td>275</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>L</td><td>331</td><td>364</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>L</td><td>262</td><td>433</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>L</td><td>306</td><td>326</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>L</td><td>345</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>W</td><td>400</td><td>296</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>W</td><td>465</td><td>391</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2900'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2900'>+</button></td><td>32</td><td>19</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>4</td><td>4</td><td>0</td><td>421</td><td>725</td><td>670</td><td>-55</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2900'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>L</td><td>370</td><td>424</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>504</td><td>131</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>W</td><td>396</td><td>232</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>W</td><td>398</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>L</td><td>349</td><td>403</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>L</td><td>293</td><td>414</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>W</td><td>397</td><td>263</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>L</td><td>293</td><td>352</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2916'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2916'>+</button></td><td>33</td><td>37</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>4</td><td>4</td><td>0</td><td>182</td><td>563</td><td>563</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2916'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>L</td><td>294</td><td>390</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>W</td><td>366</td><td>324</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>L</td><td>349</td><td>385</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>W</td><td>488</td><td>290</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>W</td><td>399</td><td>260</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>W</td><td>378</td><td>357</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>L</td><td>364</td><td>447</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>L</td><td>400</td><td>403</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2938'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2938'>+</button></td><td>34</td><td>47</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>4</td><td>4</td><td>0</td><td>125</td><td>447</td><td>476</td><td>29</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2938'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>L</td><td>366</td><td>418</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>W</td><td>419</td><td>286</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>W</td><td>412</td><td>320</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>L</td><td>287</td><td>453</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>L</td><td>381</td><td>435</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>L</td><td>349</td><td>400</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>W</td><td>433</td><td>288</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>676</td><td>W</td><td>385</td><td>307</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2930'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2930'>+</button></td><td>35</td><td>33</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>4</td><td>4</td><td>0</td><td>41</td><td>589</td><td>566</td><td>-23</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2930'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>L</td><td>285</td><td>495</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>L</td><td>290</td><td>432</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>L</td><td>320</td><td>412</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>W</td><td>404</td><td>307</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>W</td><td>414</td><td>321</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>454</td><td>164</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>L</td><td>325</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>W</td><td>381</td><td>345</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2928'>+</button></td><td>36</td><td>16</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>4</td><td>4</td><td>0</td><td>36</td><td>756</td><td>762</td><td>6</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2928'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>W</td><td>412</td><td>324</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>L</td><td>302</td><td>404</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>W</td><td>412</td><td>306</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>W</td><td>385</td><td>357</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>L</td><td>313</td><td>455</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>L</td><td>302</td><td>434</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>L</td><td>313</td><td>317</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>W</td><td>466</td><td>272</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2920'>+</button></td><td>37</td><td>22</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>4</td><td>4</td><td>0</td><td>2</td><td>704</td><td>692</td><td>-12</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2920'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>W</td><td>372</td><td>315</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>W</td><td>393</td><td>259</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>L</td><td>323</td><td>393</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>W</td><td>399</td><td>354</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>L</td><td>390</td><td>410</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>L</td><td>333</td><td>461</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>L</td><td>335</td><td>417</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>W</td><td>371</td><td>305</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2922'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2922'>+</button></td><td>38</td><td>29</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>4</td><td>4</td><td>0</td><td>-47</td><td>625</td><td>625</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2922'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>W</td><td>458</td><td>238</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>W</td><td>405</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>L</td><td>289</td><td>546</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>L</td><td>373</td><td>380</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>L</td><td>199</td><td>423</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>L</td><td>392</td><td>408</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>W</td><td>398</td><td>306</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>W</td><td>358</td><td>271</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2898'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2898'>+</button></td><td>39</td><td>39</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>4</td><td>4</td><td>0</td><td>-97</td><td>551</td><td>551</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2898'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1422.html'>Amelia Tse</a></td><td>953</td><td>L</td><td>277</td><td>437</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>L</td><td>286</td><td>419</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>L</td><td>289</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>W</td><td>308</td><td>246</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>W</td><td>356</td><td>295</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>416</td><td>203</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>W</td><td>360</td><td>289</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>L</td><td>318</td><td>462</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2939'>+</button></td><td>40</td><td>32</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>4</td><td>4</td><td>0</td><td>-134</td><td>590</td><td>596</td><td>6</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2939'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>W</td><td>418</td><td>366</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>L</td><td>347</td><td>405</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>L</td><td>314</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>W</td><td>404</td><td>280</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>L</td><td>286</td><td>383</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>W</td><td>341</td><td>307</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>L</td><td>263</td><td>397</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>W</td><td>391</td><td>361</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2951'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2951'>+</button></td><td>41</td><td>20</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>4</td><td>4</td><td>0</td><td>-185</td><td>721</td><td>721</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2951'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>W</td><td>525</td><td>242</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>W</td><td>379</td><td>324</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>L</td><td>307</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>L</td><td>283</td><td>490</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>W</td><td>348</td><td>344</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>W</td><td>400</td><td>288</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>L</td><td>251</td><td>487</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>L</td><td>246</td><td>393</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2955'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2955'>+</button></td><td>42</td><td>36</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>4</td><td>4</td><td>0</td><td>-365</td><td>572</td><td>572</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2955'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>L</td><td>324</td><td>412</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>W</td><td>452</td><td>203</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>W</td><td>385</td><td>349</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>L</td><td>213</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>W</td><td>331</td><td>329</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>W</td><td>377</td><td>376</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>L</td><td>195</td><td>553</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>L</td><td>369</td><td>442</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2897'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2897'>+</button></td><td>43</td><td>54</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>3</td><td>5</td><td>0</td><td>65</td><td>309</td><td>309</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2897'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1101.html'>Lam Chi Ho Anson</a></td><td>891</td><td>L</td><td>330</td><td>410</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>L</td><td>347</td><td>357</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>L</td><td>322</td><td>325</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>L</td><td>307</td><td>404</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>400</td><td>222</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>356</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>W</td><td>387</td><td>279</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>L</td><td>271</td><td>358</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2935'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2935'>+</button></td><td>44</td><td>53</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>3</td><td>5</td><td>0</td><td>35</td><td>314</td><td>314</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2935'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>L</td><td>340</td><td>405</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>W</td><td>432</td><td>228</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>L</td><td>350</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>W</td><td>372</td><td>281</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>L</td><td>316</td><td>381</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>W</td><td>506</td><td>340</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>L</td><td>302</td><td>416</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>L</td><td>347</td><td>446</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2946'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2946'>+</button></td><td>45</td><td>55</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>3</td><td>5</td><td>0</td><td>-79</td><td>308</td><td>308</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2946'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>W</td><td>365</td><td>277</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>L</td><td>275</td><td>456</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>L</td><td>356</td><td>400</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>L</td><td>281</td><td>372</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>431</td><td>205</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>W</td><td>306</td><td>282</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>L</td><td>289</td><td>360</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>L</td><td>361</td><td>391</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2950'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2950'>+</button></td><td>46</td><td>42</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>3</td><td>4</td><td>1</td><td>-143</td><td>524</td><td>524</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2950'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>2</td><td><a href='/aardvark/html/players/1125.html'>Calvin Ma</a></td><td>657</td><td>L</td><td>328</td><td>344</td></tr>
+        <tr  class='rowodd'  ><td>3</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>238</td><td>461</td></tr>
+        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>L</td><td>391</td><td>421</td></tr>
+        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>W</td><td>348</td><td>308</td></tr>
+        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>W</td><td>331</td><td>307</td></tr>
+        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>L</td><td>336</td><td>423</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>W</td><td>446</td><td>347</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2926'>+</button></td><td>47</td><td>50</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>3</td><td>5</td><td>0</td><td>-212</td><td>430</td><td>430</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2926'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>W</td><td>431</td><td>330</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>191</td><td>496</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>W</td><td>490</td><td>361</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1094.html'>Chan Long Kei</a></td><td>562</td><td>L</td><td>332</td><td>438</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>L</td><td>329</td><td>331</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>L</td><td>288</td><td>400</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>W</td><td>416</td><td>259</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>L</td><td>391</td><td>465</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2903'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2903'>+</button></td><td>48</td><td>23</td><td><a href='/aardvark/html/players/1374.html'>Kwok Ka Yee</a></td><td>3</td><td>5</td><td>0</td><td>-217</td><td>676</td><td>676</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2903'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>W</td><td>390</td><td>294</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1053.html'>Jason Tsang Wai Yin</a></td><td>1046</td><td>L</td><td>325</td><td>406</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>W</td><td>364</td><td>331</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>L</td><td>289</td><td>384</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>L</td><td>347</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>W</td><td>327</td><td>317</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>L</td><td>328</td><td>378</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>L</td><td>307</td><td>385</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2949'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2949'>+</button></td><td>49</td><td>31</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>3</td><td>5</td><td>0</td><td>-363</td><td>590</td><td>519</td><td>-71</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2949'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1447.html'>Kwok Chun Hin</a></td><td>636</td><td>L</td><td>311</td><td>446</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>377</td><td>250</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>L</td><td>281</td><td>469</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>W</td><td>421</td><td>391</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>L</td><td>204</td><td>513</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>L</td><td>357</td><td>378</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>W</td><td>409</td><td>240</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>L</td><td>345</td><td>381</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2905'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2905'>+</button></td><td>50</td><td>59</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>3</td><td>5</td><td>0</td><td>-414</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2905'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>L</td><td>217</td><td>296</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>L</td><td>294</td><td>403</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>W</td><td>420</td><td>299</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>W</td><td>261</td><td>258</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>L</td><td>259</td><td>376</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1453.html'>Li Pun Wang</a></td><td>485</td><td>L</td><td>235</td><td>316</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>W</td><td>377</td><td>186</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>L</td><td>219</td><td>562</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2956'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2956'>+</button></td><td>51</td><td>51</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>3</td><td>5</td><td>0</td><td>-460</td><td>425</td><td>425</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2956'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>432</td><td>209</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1103</td><td>L</td><td>205</td><td>474</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1443.html'>Johnson Tsang</a></td><td>1320</td><td>L</td><td>213</td><td>516</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1461.html'>Ting Tsz Hin</a></td><td>590</td><td>L</td><td>280</td><td>404</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>W</td><td>376</td><td>259</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>L</td><td>307</td><td>331</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>L</td><td>279</td><td>387</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>W</td><td>338</td><td>310</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2924'>+</button></td><td>52</td><td>34</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>3</td><td>5</td><td>0</td><td>-517</td><td>587</td><td>456</td><td>-131</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2924'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>L</td><td>242</td><td>525</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>W</td><td>403</td><td>294</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>W</td><td>325</td><td>322</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>313</td><td>363</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>L</td><td>254</td><td>499</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>L</td><td>376</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1464.html'>Wong Shu Ting</a></td><td>447</td><td>L</td><td>288</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>W</td><td>427</td><td>332</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2943'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2943'>+</button></td><td>53</td><td>48</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>3</td><td>5</td><td>0</td><td>-613</td><td>438</td><td>438</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2943'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>W</td><td>296</td><td>217</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>L</td><td>324</td><td>379</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>W</td><td>327</td><td>325</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1124.html'>Brian Po</a></td><td>1029</td><td>L</td><td>272</td><td>351</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1171.html'>Tam Pok Hin</a></td><td>756</td><td>L</td><td>215</td><td>612</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>L</td><td>340</td><td>506</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>L</td><td>306</td><td>398</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>W</td><td>342</td><td>247</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2927'>+</button></td><td>54</td><td>45</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>2.5</td><td>5.5</td><td>0</td><td>-612</td><td>490</td><td>418</td><td>-72</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2927'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>L</td><td>330</td><td>431</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1318</td><td>L</td><td>274</td><td>420</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>343</td><td>194</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1466.html'>Wynter Hau</a></td><td>646</td><td>L</td><td>193</td><td>438</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>L</td><td>201</td><td>421</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>L</td><td>235</td><td>379</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>T</td><td>340</td><td>340</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>300</td><td>W</td><td>401</td><td>306</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2962'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2962'>+</button></td><td>55</td><td>57</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>2</td><td>6</td><td>0</td><td>-324</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2962'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>L</td><td>277</td><td>365</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>529</td><td>L</td><td>273</td><td>435</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>W</td><td>342</td><td>245</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>L</td><td>313</td><td>319</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1435.html'>Henry Lee Chor Chi</a></td><td>524</td><td>L</td><td>308</td><td>348</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>L</td><td>335</td><td>361</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>L</td><td>259</td><td>416</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>317</td><td>259</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2942'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2942'>+</button></td><td>56</td><td>41</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>2</td><td>5</td><td>1</td><td>-391</td><td>529</td><td>501</td><td>-28</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2942'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1414.html'>Carson Ip</a></td><td>1276</td><td>L</td><td>305</td><td>624</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>W</td><td>435</td><td>273</td></tr>
+        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>W</td><td>347</td><td>213</td></tr>
+        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/1452.html'>Lim Chi Sang</a></td><td>721</td><td>L</td><td>344</td><td>348</td></tr>
+        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1424.html'>Benny Lai Ka Shing</a></td><td>1182</td><td>L</td><td>292</td><td>553</td></tr>
+        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>L</td><td>362</td><td>449</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1431.html'>Chow Ka Yue</a></td><td>704</td><td>L</td><td>305</td><td>371</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2899'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2899'>+</button></td><td>57</td><td>56</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>2</td><td>5</td><td>1</td><td>-516</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2899'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1468.html'>Yu Sin Yi</a></td><td>625</td><td>L</td><td>238</td><td>458</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1220</td><td>L</td><td>238</td><td>562</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>L</td><td>232</td><td>396</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>L</td><td>243</td><td>367</td></tr>
+        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>L</td><td>365</td><td>379</td></tr>
+        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>W</td><td>354</td><td>277</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>W</td><td>417</td><td>214</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2958'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2958'>+</button></td><td>58</td><td>52</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>2</td><td>6</td><td>0</td><td>-529</td><td>356</td><td>300</td><td>-56</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2958'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>199</td><td>460</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>L</td><td>316</td><td>363</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1423.html'>Andy Yiu</a></td><td>940</td><td>L</td><td>283</td><td>411</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>L</td><td>280</td><td>385</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>L</td><td>321</td><td>414</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>W</td><td>379</td><td>365</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>437</td><td>251</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1430.html'>Cho Si Yui</a></td><td>587</td><td>L</td><td>332</td><td>427</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2936'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2936'>+</button></td><td>59</td><td>67</td><td><a href='/aardvark/html/players/1467.html'>Yu Sin Sin</a></td><td>2</td><td>6</td><td>0</td><td>-556</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2936'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1420.html'>Paul Christensen</a></td><td>1039</td><td>L</td><td>286</td><td>564</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>W</td><td>357</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>W</td><td>433</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>L</td><td>360</td><td>398</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1456.html'>Ng Ka Wing</a></td><td>435</td><td>L</td><td>399</td><td>409</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>L</td><td>304</td><td>428</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>L</td><td>296</td><td>400</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>L</td><td>306</td><td>401</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2929'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2929'>+</button></td><td>60</td><td>58</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>2</td><td>6</td><td>0</td><td>-568</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2929'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1371.html'>Cheung Wing Lam</a></td><td>649</td><td>L</td><td>309</td><td>357</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>300</td><td>L</td><td>313</td><td>333</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>L</td><td>302</td><td>470</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>W</td><td>385</td><td>280</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1462.html'>Tsang Pak Shing</a></td><td>532</td><td>L</td><td>241</td><td>442</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>W</td><td>349</td><td>222</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>L</td><td>240</td><td>409</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1111.html'>Rebecca Lew</a></td><td>756</td><td>L</td><td>272</td><td>466</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2952'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2952'>+</button></td><td>61</td><td>65</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>2</td><td>6</td><td>0</td><td>-601</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2952'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>330</td><td>297</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1030.html'>Douglas Tsang</a></td><td>873</td><td>L</td><td>162</td><td>510</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1428.html'>Cheung Cheuk Yin</a></td><td>430</td><td>L</td><td>361</td><td>490</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>L</td><td>258</td><td>261</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>L</td><td>260</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>L</td><td>222</td><td>349</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>W</td><td>402</td><td>195</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1463.html'>Wai Hoi Ching</a></td><td>438</td><td>L</td><td>247</td><td>342</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2913'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2913'>+</button></td><td>62</td><td>64</td><td><a href='/aardvark/html/players/1448.html'>Kwok Sheung Kai</a></td><td>1.5</td><td>6.5</td><td>0</td><td>-863</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2913'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1417.html'>Herbert Ma</a></td><td>719</td><td>L</td><td>264</td><td>409</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1429.html'>Cheung Ho Yin</a></td><td>300</td><td>W</td><td>333</td><td>313</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>578</td><td>L</td><td>190</td><td>402</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1436.html'>Heung Tsz Fung</a></td><td>563</td><td>L</td><td>290</td><td>488</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>L</td><td>351</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1421.html'>Shine Chan</a></td><td>840</td><td>L</td><td>254</td><td>506</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>T</td><td>340</td><td>340</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>L</td><td>310</td><td>338</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2915'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2915'>+</button></td><td>63</td><td>60</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>1</td><td>6</td><td>1</td><td>-621</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2915'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1440.html'>Ip Tsz Fung</a></td><td>743</td><td>L</td><td>241</td><td>515</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1438.html'>Hody Lee</a></td><td>314</td><td>L</td><td>228</td><td>432</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>L</td><td>299</td><td>420</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>377</td><td>287</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>L</td><td>295</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>L</td><td>282</td><td>306</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>L</td><td>277</td><td>354</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2953'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2953'>+</button></td><td>64</td><td>63</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>1</td><td>6</td><td>1</td><td>-1045</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2953'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>885</td><td>L</td><td>167</td><td>464</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1426.html'>Chan Yin Hei</a></td><td>572</td><td>L</td><td>203</td><td>452</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>L</td><td>245</td><td>342</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>L</td><td>246</td><td>308</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>300</td><td>W</td><td>220</td><td>216</td></tr>
+        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>L</td><td>186</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>300</td><td>L</td><td>214</td><td>417</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2907'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2907'>+</button></td><td>65</td><td>61</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>1</td><td>6</td><td>1</td><td>-1486</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2907'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1444.html'>Julian Wong Tsz Yu</a></td><td>664</td><td>L</td><td>158</td><td>481</td></tr>
+        <tr  class='rowodd'  ><td>3</td><td><a href='/aardvark/html/players/1460.html'>Thomson Law Long Yin</a></td><td>612</td><td>L</td><td>159</td><td>523</td></tr>
+        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/1446.html'>Kelvin Ng Man Ho</a></td><td>523</td><td>L</td><td>255</td><td>464</td></tr>
+        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/1439.html'>Hong Yik Shing</a></td><td>308</td><td>L</td><td>205</td><td>431</td></tr>
+        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1469.html'>Zachary Tong</a></td><td>551</td><td>L</td><td>203</td><td>416</td></tr>
+        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>L</td><td>195</td><td>402</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>300</td><td>W</td><td>315</td><td>309</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_2957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2957'>+</button></td><td>66</td><td>62</td><td><a href='/aardvark/html/players/1442.html'>Jillian Bau Yin Lam</a></td><td>0</td><td>7</td><td>1</td><td>-467</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2957'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1457.html'>Pang Yui Ming</a></td><td>300</td><td>L</td><td>297</td><td>330</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1455.html'>Ng Cheuk Wing</a></td><td>590</td><td>L</td><td>250</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1451.html'>Leung Chun Hei</a></td><td>490</td><td>L</td><td>194</td><td>343</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>300</td><td>L</td><td>287</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1445.html'>Kelly Lam Yui Ching</a></td><td>300</td><td>L</td><td>216</td><td>220</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>L</td><td>300</td><td>356</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1427.html'>Cheng Tsz Ching</a></td><td>300</td><td>L</td><td>259</td><td>317</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_2901'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_2901'>+</button></td><td>67</td><td>66</td><td><a href='/aardvark/html/players/1465.html'>Wong Yat Chai</a></td><td>0</td><td>7</td><td>1</td><td>-1395</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_2901'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1449.html'>Lam Ki Hang</a></td><td>425</td><td>L</td><td>209</td><td>432</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1454.html'>Ngan Fu Ting</a></td><td>725</td><td>L</td><td>131</td><td>504</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1450.html'>Lau Siu Man</a></td><td>523</td><td>L</td><td>239</td><td>428</td></tr>
+        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/1437.html'>Heung Tsz Kit</a></td><td>309</td><td>L</td><td>222</td><td>400</td></tr>
+        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1459.html'>Tai Yat Yin</a></td><td>589</td><td>L</td><td>164</td><td>454</td></tr>
+        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1458.html'>Sophie Yau</a></td><td>356</td><td>L</td><td>251</td><td>437</td></tr>
+        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1441.html'>James Ng Tsz Kit</a></td><td>300</td><td>L</td><td>309</td><td>315</td></tr>
+</table></div></td></tr>
+
+</table>
+</div>
+
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
+
+    </div>
+  </div>
   </body>
 </html>
+

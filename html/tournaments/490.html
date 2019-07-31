@@ -1,28 +1,428 @@
+<!DOCTYPE html>
 
 <html>
   <head>
+  
+  <title>4 Nations</title>
+  
+  
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+  
+  
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+  
+  <script type="text/javascript">
+ 
+    
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+
+    window.onload = function() { document.getElementById('button_division_0').click();}
+  </script>
+
   </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>1</td><td>Lewis Mackay</td><td>12</td><td>0</td><td>0</td><td>1037</td><td>2413</td><td>2413</td></tr>
-        <tr><td>2</td><td>Wayne Kelly</td><td>10</td><td>2</td><td>0</td><td>1120</td><td>1896</td><td>1946</td></tr>
-        <tr><td>3</td><td>Helen Gipson</td><td>9</td><td>3</td><td>0</td><td>873</td><td>2043</td><td>2056</td></tr>
-        <tr><td>4</td><td>Kevin McMahon</td><td>9</td><td>3</td><td>0</td><td>543</td><td>1922</td><td>2054</td></tr>
-        <tr><td>5</td><td>Elie Dangoor</td><td>8</td><td>4</td><td>0</td><td>765</td><td>1854</td><td>1877</td></tr>
-        <tr><td>6</td><td>Feargal Weatherhead</td><td>8</td><td>4</td><td>0</td><td>73</td><td>2070</td><td>2070</td></tr>
-        <tr><td>7</td><td>Terry Kirk</td><td>6</td><td>6</td><td>0</td><td>215</td><td>1905</td><td>1889</td></tr>
-        <tr><td>8</td><td>Wilma Warwick</td><td>6</td><td>6</td><td>0</td><td>55</td><td>1850</td><td>1847</td></tr>
-        <tr><td>9</td><td>Neil Scott</td><td>5</td><td>7</td><td>0</td><td>170</td><td>1998</td><td>1960</td></tr>
-        <tr><td>10</td><td>Ross Mackenzie</td><td>5</td><td>7</td><td>0</td><td>-200</td><td>1713</td><td>1713</td></tr>
-        <tr><td>11</td><td>Rik Kennedy</td><td>5</td><td>7</td><td>0</td><td>-280</td><td>1721</td><td>1721</td></tr>
-        <tr><td>12</td><td>Gareth Williams</td><td>4</td><td>8</td><td>0</td><td>-513</td><td>2028</td><td>1998</td></tr>
-        <tr><td>13</td><td>Alex Gboye Balogun</td><td>4</td><td>8</td><td>0</td><td>-784</td><td>1604</td><td>1604</td></tr>
-        <tr><td>14</td><td>Bryn Packer</td><td>3</td><td>9</td><td>0</td><td>-1176</td><td>1580</td><td>1580</td></tr>
-        <tr><td>15</td><td>David Williams</td><td>2</td><td>10</td><td>0</td><td>-786</td><td>1464</td><td>1464</td></tr>
-        <tr><td>16</td><td>Martin Sheehan</td><td>0</td><td>12</td><td>0</td><td>-1112</td><td>1301</td><td>1301</td></tr>
-      </table>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
     </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <h2>4 Nations</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <br>
+              <br><div class='tab'>
+<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+              <br>    
+            </div>
+            <div id='division_0' class='tabcontent'><table class='table'>
+        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19079'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19079'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>12</td><td>0</td><td>0</td><td>1037</td><td>2413</td><td>2413</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19079'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>W</td><td>533</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>373</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>309</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>W</td><td>340</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>W</td><td>326</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>W</td><td>310</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>348</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>458</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>354</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>357</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>344</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>585</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19086'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19086'>+</button></td><td>2</td><td>8</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>10</td><td>2</td><td>0</td><td>1120</td><td>1896</td><td>1946</td><td>50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19086'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>515</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>311</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>W</td><td>349</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>467</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>470</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>485</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>385</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>W</td><td>313</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>370</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>326</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>460</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>461</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19090'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19090'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>9</td><td>3</td><td>0</td><td>873</td><td>2043</td><td>2056</td><td>13</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19090'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>W</td><td>417</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>W</td><td>311</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>330</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>340</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>464</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>373</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>501</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>416</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>363</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>W</td><td>405</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>309</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>402</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19082'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19082'>+</button></td><td>4</td><td>6</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>9</td><td>3</td><td>0</td><td>543</td><td>1922</td><td>2054</td><td>132</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19082'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>324</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>397</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>352</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>613</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>W</td><td>324</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>310</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>W</td><td>313</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>313</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>372</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>369</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>W</td><td>309</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>331</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19085'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19085'>+</button></td><td>5</td><td>9</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>8</td><td>4</td><td>0</td><td>765</td><td>1854</td><td>1877</td><td>23</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19085'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>417</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>331</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>349</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>343</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>442</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>W</td><td>424</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>313</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>378</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>460</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>440</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>L</td><td>300</td><td>301</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>491</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19078'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19078'>+</button></td><td>6</td><td>2</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>8</td><td>4</td><td>0</td><td>73</td><td>2070</td><td>2070</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19078'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>L</td><td>300</td><td>387</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>310</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>409</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>358</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>326</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>424</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>W</td><td>385</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>W</td><td>337</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>W</td><td>311</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>405</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>341</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>364</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19092'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19092'>+</button></td><td>7</td><td>7</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>6</td><td>6</td><td>0</td><td>215</td><td>1905</td><td>1889</td><td>-16</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19092'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>L</td><td>300</td><td>388</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>409</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>W</td><td>330</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>383</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>324</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>537</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>342</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>337</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>487</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>306</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>L</td><td>300</td><td>308</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>362</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19077'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19077'>+</button></td><td>8</td><td>10</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>6</td><td>6</td><td>0</td><td>55</td><td>1850</td><td>1847</td><td>-3</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19077'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>533</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>W</td><td>331</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>349</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>W</td><td>383</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>L</td><td>300</td><td>362</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>323</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>356</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>507</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>311</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>W</td><td>369</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>L</td><td>300</td><td>309</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19089'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19089'>+</button></td><td>9</td><td>5</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>5</td><td>7</td><td>0</td><td>170</td><td>1998</td><td>1960</td><td>-38</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19089'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>W</td><td>388</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>373</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>349</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>467</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>L</td><td>300</td><td>418</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>389</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>583</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>386</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>372</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>L</td><td>300</td><td>344</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>511</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>364</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19088'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19088'>+</button></td><td>10</td><td>12</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>5</td><td>7</td><td>0</td><td>-200</td><td>1713</td><td>1713</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19088'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>515</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>W</td><td>409</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>309</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>343</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>319</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>W</td><td>393</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>L</td><td>300</td><td>374</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>322</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>317</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>L</td><td>300</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>341</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>331</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19091'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19091'>+</button></td><td>11</td><td>11</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>5</td><td>7</td><td>0</td><td>-280</td><td>1721</td><td>1721</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19091'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>381</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>409</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>W</td><td>422</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>L</td><td>300</td><td>334</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>470</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>537</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>348</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>378</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>317</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>344</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>402</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19084'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19084'>+</button></td><td>12</td><td>4</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>4</td><td>8</td><td>0</td><td>-513</td><td>2028</td><td>1998</td><td>-30</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19084'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>W</td><td>387</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>397</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>L</td><td>300</td><td>422</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>358</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>W</td><td>362</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>373</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>374</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>L</td><td>300</td><td>386</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>354</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>440</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>460</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>362</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19080'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19080'>+</button></td><td>13</td><td>13</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>4</td><td>8</td><td>0</td><td>-784</td><td>1604</td><td>1604</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19080'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>1580</td><td>L</td><td>300</td><td>362</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>1301</td><td>W</td><td>318</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>1464</td><td>W</td><td>363</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/858.html'>Gareth Williams</a></td><td>2028</td><td>L</td><td>300</td><td>358</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>442</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>485</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>342</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>458</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>363</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>W</td><td>347</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>L</td><td>300</td><td>511</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>W</td><td>309</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19081'>+</button></td><td>14</td><td>14</td><td><a href='/aardvark/html/players/4198.html'>Bryn Packer</a></td><td>3</td><td>9</td><td>0</td><td>-1176</td><td>1580</td><td>1580</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19081'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>W</td><td>362</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>310</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>352</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>W</td><td>334</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>464</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>393</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>L</td><td>300</td><td>583</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>507</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>460</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>326</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>W</td><td>308</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>585</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_19083'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19083'>+</button></td><td>15</td><td>15</td><td><a href='/aardvark/html/players/4199.html'>David Williams</a></td><td>2</td><td>10</td><td>0</td><td>-786</td><td>1464</td><td>1464</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19083'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>324</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>L</td><td>300</td><td>409</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>L</td><td>300</td><td>363</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>358</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>418</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>323</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>501</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>322</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>487</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>357</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>W</td><td>301</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>461</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_19087'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_19087'>+</button></td><td>16</td><td>16</td><td><a href='/aardvark/html/players/4200.html'>Martin Sheehan</a></td><td>0</td><td>12</td><td>0</td><td>-1112</td><td>1301</td><td>1301</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_19087'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>L</td><td>300</td><td>381</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>L</td><td>300</td><td>318</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>409</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>613</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>319</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>L</td><td>300</td><td>389</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>416</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>370</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>306</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>344</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>L</td><td>300</td><td>491</td></tr>
+</table></div></td></tr>
+
+</table>
+</div>
+
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
+
+    </div>
+  </div>
   </body>
 </html>
+

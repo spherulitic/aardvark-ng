@@ -1,46 +1,354 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
-  </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Name        </th><th>Country</th> <th>Rating         </th><th>Lifetime Record</th></tr>
-        <tr><td>Lainie Mercieca</td><td>AUS</td><td>1195</td><td>9 - 15</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Date</th><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>2013-04-01</td><td>85</td><td>Lainie Mercieca</td><td>9</td><td>15</td><td>0</td><td>-611</td><td>1195</td><td>1195</td></tr>
-      </table>
+    
+    <title>Lainie Mercieca</title>
+    
+    
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <table>
-        <tr><th>#</th><th>Opponent</th><th>Played</th><th>Wins</th><th>Win Percentage</th></tr>
-        <tr><td>1</td><td>Sheryl Davidson</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>2</td><td>Jan Serisier</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>3</td><td>Patricia Mitchell</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>4</td><td>Martin Waterworth</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>5</td><td>Owen Randall</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>6</td><td>Martin Rose</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>7</td><td>Angie Pearse</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>8</td><td>Carmel Doney</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>9</td><td>Trevor Tao</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>10</td><td>Glenys Logan</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>11</td><td>Julie Gardiner</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>12</td><td>John Rider</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>13</td><td>Lexie Neale</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>14</td><td>Jenny Brysha</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>15</td><td>Chris May</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>16</td><td>Tony Williams</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>17</td><td>Trish Brighton</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>18</td><td>Karrin Henderson</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>19</td><td>Yvonne Edwards</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>20</td><td>Ram Mohe</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>21</td><td>Jane Taylor</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>22</td><td>Noel Barrett</td><td>1</td><td>1</td><td>1.0000</td></tr>
-      </table>
+
+
+    
+    
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+      
+    <script >
+
+      
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+    
+      function show_tournament_entry(id)
+      {
+        showContent(event, 'results');
+        $('#' + id).collapse('show');
+      } 
+
+      function show_head_to_head_entry(id)
+      {
+        showContent(event, 'head_to_head');
+        $('#' + id).collapse('show');
+      }
+
+      window.onload = function() { document.getElementById('button_results').click();}
+    </script>
+  </head>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <div class="row">
+          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+            <h2>Lainie Mercieca</h2>
+            <div>
+              <IMG SRC="../../flags/AUS.png" alt="AUS">
+              <p>AUS</p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4" style="padding-top:20px;">
+            <img src='../../icons/noimage.gif' title='Lainie Mercieca' alt='Lainie Mercieca'>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <b>Games Played:</b> 24<br>
+              <b>Wins:</b> 9 (37.50%)<br>
+              <b>Losses: </b>15 (62.50%)<br>
+              <b>Draws:</b> 0 (0.00%)<br><br>
+              <b>Average Score:</b> 354.54<br>
+              <b>Average Against:</b> 380.00<br><br>
+              <b>300 Games:</b> 21 (87.50%)<br>
+              <b>400 Games:</b> 5 (20.83%)<br>
+              <b>500 Games:</b> 0 (0.00%)<br>
+              <b>600 Games:</b> 0 (0.00%)<br><br>
+              
+              
+              <b>High Game:</b> <a href="#entry_0_13661" onclick="show_tournament_entry('entry_0_13661')">442</a> (<a href="#entry_2_3190" onclick="show_head_to_head_entry('entry_2_3190')">vs</a> <a href="/aardvark/html/players/3190.html">Patricia Mitchell</a>)<br><b>Low Game:</b> <a href="#entry_0_13661" onclick="show_tournament_entry('entry_0_13661')">278</a> (<a href="#entry_2_1861" onclick="show_head_to_head_entry('entry_2_1861')">vs</a> <a href="/aardvark/html/players/1861.html">Trevor Tao</a>)<br><b>Biggest Win:</b> <a href="#entry_0_13661" onclick="show_tournament_entry('entry_0_13661')">148</a> (<a href="#entry_2_3190" onclick="show_head_to_head_entry('entry_2_3190')">vs</a> <a href="/aardvark/html/players/3190.html">Patricia Mitchell</a>)<br><b>Biggest Loss:</b> <a href="#entry_0_13661" onclick="show_tournament_entry('entry_0_13661')">229</a> (<a href="#entry_2_167" onclick="show_head_to_head_entry('entry_2_167')">vs</a> <a href="/aardvark/html/players/167.html">Chris May</a>)<br><b>High Loss:</b> <a href="#entry_0_13661" onclick="show_tournament_entry('entry_0_13661')">372</a> (<a href="#entry_2_1850" onclick="show_head_to_head_entry('entry_2_1850')">vs</a> <a href="/aardvark/html/players/1850.html">Martin Rose</a>)<br><b>Low Win:</b> <a href="#entry_0_13661" onclick="show_tournament_entry('entry_0_13661')">351</a> (<a href="#entry_2_1940" onclick="show_head_to_head_entry('entry_2_1940')">vs</a> <a href="/aardvark/html/players/1940.html">Karrin Henderson</a>)<br>          
+            </div>
+            <div>
+              <br><div class='tab'>
+<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+            </div>   
+            <div id="results" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_0_13661'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13661'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>9</td><td>15</td><td>0</td><td>-611</td><td>85</td><td>1195</td><td>1195</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_13661'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1821.html'>Angie Pearse</a></td><td>1312</td><td>L</td><td>349</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3190.html'>Patricia Mitchell</a></td><td>1125</td><td>W</td><td>442</td><td>294</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2133</td><td>L</td><td>317</td><td>546</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1829.html'>Jane Taylor</a></td><td>1362</td><td>W</td><td>416</td><td>406</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1998.html'>Lexie Neale</a></td><td>1147</td><td>W</td><td>427</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1952.html'>Sheryl Davidson</a></td><td>1688</td><td>L</td><td>368</td><td>419</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1830.html'>John Rider</a></td><td>1105</td><td>W</td><td>404</td><td>323</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2134.html'>Carmel Doney</a></td><td>1332</td><td>L</td><td>282</td><td>395</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1940.html'>Karrin Henderson</a></td><td>1397</td><td>W</td><td>351</td><td>289</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3187.html'>Julie Gardiner</a></td><td>1475</td><td>W</td><td>362</td><td>349</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2417.html'>Jan Serisier</a></td><td>1349</td><td>W</td><td>397</td><td>339</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1861.html'>Trevor Tao</a></td><td>1562</td><td>L</td><td>278</td><td>426</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1952.html'>Sheryl Davidson</a></td><td>1688</td><td>L</td><td>308</td><td>446</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2006.html'>Trish Brighton</a></td><td>1600</td><td>L</td><td>339</td><td>386</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1934.html'>Glenys Logan</a></td><td>1233</td><td>L</td><td>332</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2417.html'>Jan Serisier</a></td><td>1349</td><td>L</td><td>319</td><td>395</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/410.html'>Jenny Brysha</a></td><td>1041</td><td>L</td><td>317</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/3191.html'>Ram Mohe</a></td><td>1178</td><td>L</td><td>336</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2005.html'>Tony Williams</a></td><td>1148</td><td>L</td><td>332</td><td>337</td></tr>
+        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/1850.html'>Martin Rose</a></td><td>1349</td><td>L</td><td>372</td><td>412</td></tr>
+        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td>1187</td><td>L</td><td>343</td><td>372</td></tr>
+        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/1677.html'>Noel Barrett</a></td><td>1439</td><td>W</td><td>386</td><td>313</td></tr>
+        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/2002.html'>Owen Randall</a></td><td>1165</td><td>L</td><td>291</td><td>385</td></tr>
+        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/1945.html'>Martin Waterworth</a></td><td>1318</td><td>W</td><td>441</td><td>363</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>
+            <div id="head_to_head" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1952'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1952'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1952.html'>Sheryl Davidson</a></td><td>1487</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>338.00</td><td>432.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1952'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>6</td><td>L</td><td>1195</td><td>1688</td><td>368</td><td>419</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>13</td><td>L</td><td>1195</td><td>1688</td><td>308</td><td>446</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2417'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2417'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2417.html'>Jan Serisier</a></td><td>1267</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>358.00</td><td>367.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2417'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>11</td><td>W</td><td>1195</td><td>1349</td><td>397</td><td>339</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>16</td><td>L</td><td>1195</td><td>1349</td><td>319</td><td>395</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2005'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2005'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2005.html'>Tony Williams</a></td><td>1197</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>332.00</td><td>337.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2005'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>19</td><td>L</td><td>1195</td><td>1148</td><td>332</td><td>337</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1677'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1677'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1677.html'>Noel Barrett</a></td><td>1526</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>386.00</td><td>313.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1677'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>22</td><td>W</td><td>1195</td><td>1439</td><td>386</td><td>313</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1850'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1850'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1850.html'>Martin Rose</a></td><td>1274</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>372.00</td><td>412.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1850'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>20</td><td>L</td><td>1195</td><td>1349</td><td>372</td><td>412</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1861'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1861'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1861.html'>Trevor Tao</a></td><td>1738</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>278.00</td><td>426.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1861'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>12</td><td>L</td><td>1195</td><td>1562</td><td>278</td><td>426</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_167'>+</button></td><td>7</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2084</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>317.00</td><td>546.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_167'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>3</td><td>L</td><td>1195</td><td>2133</td><td>317</td><td>546</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1934'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1934'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1934.html'>Glenys Logan</a></td><td>1247</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>332.00</td><td>373.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1934'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>15</td><td>L</td><td>1195</td><td>1233</td><td>332</td><td>373</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_3187'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3187'>+</button></td><td>9</td><td><a href='/aardvark/html/players/3187.html'>Julie Gardiner</a></td><td>1475</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>362.00</td><td>349.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3187'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>10</td><td>W</td><td>1195</td><td>1475</td><td>362</td><td>349</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1940'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1940'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1940.html'>Karrin Henderson</a></td><td>1310</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>351.00</td><td>289.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1940'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>9</td><td>W</td><td>1195</td><td>1397</td><td>351</td><td>289</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2002'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2002'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2002.html'>Owen Randall</a></td><td>1084</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>291.00</td><td>385.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2002'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>23</td><td>L</td><td>1195</td><td>1165</td><td>291</td><td>385</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_410'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_410'>+</button></td><td>12</td><td><a href='/aardvark/html/players/410.html'>Jenny Brysha</a></td><td>1228</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>317.00</td><td>356.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_410'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>17</td><td>L</td><td>1195</td><td>1041</td><td>317</td><td>356</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1945'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1945'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1945.html'>Martin Waterworth</a></td><td>1264</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>441.00</td><td>363.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1945'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>24</td><td>W</td><td>1195</td><td>1318</td><td>441</td><td>363</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2134'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2134'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2134.html'>Carmel Doney</a></td><td>1401</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>282.00</td><td>395.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2134'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>8</td><td>L</td><td>1195</td><td>1332</td><td>282</td><td>395</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1829'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1829'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1829.html'>Jane Taylor</a></td><td>1480</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>416.00</td><td>406.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1829'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>4</td><td>W</td><td>1195</td><td>1362</td><td>416</td><td>406</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_3190'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3190'>+</button></td><td>16</td><td><a href='/aardvark/html/players/3190.html'>Patricia Mitchell</a></td><td>1125</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>442.00</td><td>294.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3190'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>2</td><td>W</td><td>1195</td><td>1125</td><td>442</td><td>294</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_3191'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3191'>+</button></td><td>17</td><td><a href='/aardvark/html/players/3191.html'>Ram Mohe</a></td><td>1178</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>336.00</td><td>377.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3191'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>18</td><td>L</td><td>1195</td><td>1178</td><td>336</td><td>377</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1998'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1998'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1998.html'>Lexie Neale</a></td><td>1221</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>427.00</td><td>404.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1998'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>5</td><td>W</td><td>1195</td><td>1147</td><td>427</td><td>404</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1821'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1821'>+</button></td><td>19</td><td><a href='/aardvark/html/players/1821.html'>Angie Pearse</a></td><td>1369</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>349.00</td><td>415.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1821'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>1</td><td>L</td><td>1195</td><td>1312</td><td>349</td><td>415</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1870'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1870'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td>1070</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>343.00</td><td>372.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1870'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>21</td><td>L</td><td>1195</td><td>1187</td><td>343</td><td>372</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2006'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2006'>+</button></td><td>21</td><td><a href='/aardvark/html/players/2006.html'>Trish Brighton</a></td><td>1209</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>339.00</td><td>386.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2006'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>14</td><td>L</td><td>1195</td><td>1600</td><td>339</td><td>386</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1830'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1830'>+</button></td><td>22</td><td><a href='/aardvark/html/players/1830.html'>John Rider</a></td><td>1221</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>404.00</td><td>323.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1830'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/353.html'>Australian Championship</a></td><td>2013-04-01</td><td>7</td><td>W</td><td>1195</td><td>1105</td><td>404</td><td>323</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
 
     </div>
   </body>
 </html>
+

@@ -1,38 +1,314 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
-  </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Name        </th><th>Country</th> <th>Rating         </th><th>Lifetime Record</th></tr>
-        <tr><td>Ahmad Suhaib Bin M</td><td>MYS</td><td>300</td><td>8 - 12</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Date</th><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>2019-02-15</td><td>46</td><td>Ahmad Suhaib Bin M</td><td>8</td><td>12</td><td>0</td><td>-391</td><td>300</td><td>300</td></tr>
-      </table>
+    
+    <title>Ahmad Suhaib Bin M</title>
+    
+    
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <table>
-        <tr><th>#</th><th>Opponent</th><th>Played</th><th>Wins</th><th>Win Percentage</th></tr>
-        <tr><td>1</td><td>M. Danish Asyrani</td><td>3</td><td>1</td><td>0.3333</td></tr>
-        <tr><td>2</td><td>Fandi</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>3</td><td>Nelson Fang</td><td>2</td><td>2</td><td>1.0000</td></tr>
-        <tr><td>4</td><td>Natalia Felliany A</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>5</td><td>Nurdin Muhtarov</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>6</td><td>Maria Victoria O</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>7</td><td>Rolaine Nicole Co</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>8</td><td>Krys Jane Piojo</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>9</td><td>M. Haziq Bin Mohd</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>10</td><td>Ayra Najma R</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>11</td><td>Kuban Adylbek U</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>12</td><td>Su Ding Yong</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>13</td><td>M. Fahrin Alfajri</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>14</td><td>Rachmad Janatul P</td><td>1</td><td>1</td><td>1.0000</td></tr>
-      </table>
+
+
+    
+    
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+      
+    <script >
+
+      
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+    
+      function show_tournament_entry(id)
+      {
+        showContent(event, 'results');
+        $('#' + id).collapse('show');
+      } 
+
+      function show_head_to_head_entry(id)
+      {
+        showContent(event, 'head_to_head');
+        $('#' + id).collapse('show');
+      }
+
+      window.onload = function() { document.getElementById('button_results').click();}
+    </script>
+  </head>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <div class="row">
+          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+            <h2>Ahmad Suhaib Bin M</h2>
+            <div>
+              <IMG SRC="../../flags/MYS.png" alt="MYS">
+              <p>MYS</p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4" style="padding-top:20px;">
+            <img src='../../icons/noimage.gif' title='Ahmad Suhaib Bin M' alt='Ahmad Suhaib Bin M'>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <b>Games Played:</b> 20<br>
+              <b>Wins:</b> 8 (40.00%)<br>
+              <b>Losses: </b>12 (60.00%)<br>
+              <b>Draws:</b> 0 (0.00%)<br><br>
+              <b>Average Score:</b> 233.35<br>
+              <b>Average Against:</b> 252.90<br><br>
+              <b>300 Games:</b> 2 (10.00%)<br>
+              <b>400 Games:</b> 0 (0.00%)<br>
+              <b>500 Games:</b> 0 (0.00%)<br>
+              <b>600 Games:</b> 0 (0.00%)<br><br>
+              
+              
+              <b>High Game:</b> <a href="#entry_0_11030" onclick="show_tournament_entry('entry_0_11030')">326</a> (<a href="#entry_2_2833" onclick="show_head_to_head_entry('entry_2_2833')">vs</a> <a href="/aardvark/html/players/2833.html">Rachmad Janatul P</a>)<br><b>Low Game:</b> <a href="#entry_0_11030" onclick="show_tournament_entry('entry_0_11030')">142</a> (<a href="#entry_2_2823" onclick="show_head_to_head_entry('entry_2_2823')">vs</a> <a href="/aardvark/html/players/2823.html">M. Haziq Bin Mohd</a>)<br><b>Biggest Win:</b> <a href="#entry_0_11030" onclick="show_tournament_entry('entry_0_11030')">97</a> (<a href="#entry_2_2803" onclick="show_head_to_head_entry('entry_2_2803')">vs</a> <a href="/aardvark/html/players/2803.html">Fandi</a>)<br><b>Biggest Loss:</b> <a href="#entry_0_11030" onclick="show_tournament_entry('entry_0_11030')">158</a> (<a href="#entry_2_2823" onclick="show_head_to_head_entry('entry_2_2823')">vs</a> <a href="/aardvark/html/players/2823.html">M. Haziq Bin Mohd</a>)<br><b>High Loss:</b> <a href="#entry_0_11030" onclick="show_tournament_entry('entry_0_11030')">285</a> (<a href="#entry_2_2821" onclick="show_head_to_head_entry('entry_2_2821')">vs</a> <a href="/aardvark/html/players/2821.html">M. Fahrin Alfajri</a>)<br><b>Low Win:</b> <a href="#entry_0_11030" onclick="show_tournament_entry('entry_0_11030')">225</a> (<a href="#entry_2_2820" onclick="show_head_to_head_entry('entry_2_2820')">vs</a> <a href="/aardvark/html/players/2820.html">M. Danish Asyrani</a>)<br>          
+            </div>
+            <div>
+              <br><div class='tab'>
+<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+            </div>   
+            <div id="results" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_0_11030'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11030'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>8</td><td>12</td><td>0</td><td>-391</td><td>46</td><td>300</td><td>300</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_11030'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2829.html'>Natalia Felliany A</a></td><td>447</td><td>L</td><td>213</td><td>224</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2803.html'>Fandi</a></td><td>331</td><td>W</td><td>279</td><td>182</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2841.html'>Su Ding Yong</a></td><td>727</td><td>L</td><td>221</td><td>307</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2821.html'>M. Fahrin Alfajri</a></td><td>443</td><td>L</td><td>285</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2823.html'>M. Haziq Bin Mohd</a></td><td>719</td><td>L</td><td>142</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2820.html'>M. Danish Asyrani</a></td><td>300</td><td>L</td><td>152</td><td>247</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2820.html'>M. Danish Asyrani</a></td><td>300</td><td>L</td><td>167</td><td>186</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2803.html'>Fandi</a></td><td>331</td><td>L</td><td>221</td><td>224</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2814.html'>Krys Jane Piojo</a></td><td>300</td><td>W</td><td>270</td><td>223</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2832.html'>Nurdin Muhtarov</a></td><td>300</td><td>L</td><td>176</td><td>214</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td>633</td><td>L</td><td>215</td><td>327</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2837.html'>Rolaine Nicole Co</a></td><td>403</td><td>L</td><td>220</td><td>304</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2829.html'>Natalia Felliany A</a></td><td>447</td><td>L</td><td>241</td><td>260</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2833.html'>Rachmad Janatul P</a></td><td>300</td><td>W</td><td>326</td><td>240</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2820.html'>M. Danish Asyrani</a></td><td>300</td><td>W</td><td>225</td><td>222</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2794.html'>Ayra Najma R</a></td><td>446</td><td>L</td><td>210</td><td>298</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2830.html'>Nelson Fang</a></td><td>300</td><td>W</td><td>319</td><td>311</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2830.html'>Nelson Fang</a></td><td>300</td><td>W</td><td>250</td><td>245</td></tr>
+        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2832.html'>Nurdin Muhtarov</a></td><td>300</td><td>W</td><td>246</td><td>232</td></tr>
+        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2815.html'>Kuban Adylbek U</a></td><td>310</td><td>W</td><td>289</td><td>212</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>
+            <div id="head_to_head" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2820'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2820.html'>M. Danish Asyrani</a></td><td>300</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>181.33</td><td>218.33</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2820'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>6</td><td>L</td><td>300</td><td>300</td><td>152</td><td>247</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>7</td><td>L</td><td>300</td><td>300</td><td>167</td><td>186</td></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>15</td><td>W</td><td>300</td><td>300</td><td>225</td><td>222</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2803'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2803'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2803.html'>Fandi</a></td><td>331</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>250.00</td><td>203.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2803'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>2</td><td>W</td><td>300</td><td>331</td><td>279</td><td>182</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>8</td><td>L</td><td>300</td><td>331</td><td>221</td><td>224</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2832'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2832'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2832.html'>Nurdin Muhtarov</a></td><td>300</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>211.00</td><td>223.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2832'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>10</td><td>L</td><td>300</td><td>300</td><td>176</td><td>214</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>19</td><td>W</td><td>300</td><td>300</td><td>246</td><td>232</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2830'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2830'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2830.html'>Nelson Fang</a></td><td>300</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>284.50</td><td>278.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2830'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>17</td><td>W</td><td>300</td><td>300</td><td>319</td><td>311</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>18</td><td>W</td><td>300</td><td>300</td><td>250</td><td>245</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2829'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2829'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2829.html'>Natalia Felliany A</a></td><td>447</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>227.00</td><td>242.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2829'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>1</td><td>L</td><td>300</td><td>447</td><td>213</td><td>224</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>13</td><td>L</td><td>300</td><td>447</td><td>241</td><td>260</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2823'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2823'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2823.html'>M. Haziq Bin Mohd</a></td><td>719</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>142.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2823'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>5</td><td>L</td><td>300</td><td>719</td><td>142</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2814'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2814'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2814.html'>Krys Jane Piojo</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>270.00</td><td>223.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2814'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>9</td><td>W</td><td>300</td><td>300</td><td>270</td><td>223</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2815'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2815'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2815.html'>Kuban Adylbek U</a></td><td>310</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>289.00</td><td>212.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2815'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>20</td><td>W</td><td>300</td><td>310</td><td>289</td><td>212</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2794'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2794'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2794.html'>Ayra Najma R</a></td><td>446</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>210.00</td><td>298.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2794'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>16</td><td>L</td><td>300</td><td>446</td><td>210</td><td>298</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2841'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2841'>+</button></td><td>10</td><td><a href='/aardvark/html/players/2841.html'>Su Ding Yong</a></td><td>727</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>221.00</td><td>307.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2841'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>3</td><td>L</td><td>300</td><td>727</td><td>221</td><td>307</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2821'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2821'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2821.html'>M. Fahrin Alfajri</a></td><td>443</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>285.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2821'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>4</td><td>L</td><td>300</td><td>443</td><td>285</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2837'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2837'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2837.html'>Rolaine Nicole Co</a></td><td>403</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>220.00</td><td>304.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2837'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>12</td><td>L</td><td>300</td><td>403</td><td>220</td><td>304</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2833'>+</button></td><td>13</td><td><a href='/aardvark/html/players/2833.html'>Rachmad Janatul P</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>326.00</td><td>240.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2833'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>14</td><td>W</td><td>300</td><td>300</td><td>326</td><td>240</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_2819'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2819'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td>633</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>215.00</td><td>327.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2819'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>11</td><td>L</td><td>300</td><td>633</td><td>215</td><td>327</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
 
     </div>
   </body>
 </html>
+

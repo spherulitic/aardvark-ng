@@ -11,7 +11,7 @@ use Data::Dumper;
 use lib "./modules";
 use Constants;
 
-require "./scripts/migrate.pl";
+require "./scripts/utils.pl";
 
 my $working_directory      = Constants::DEFAULT_WORKING_DIR;
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;

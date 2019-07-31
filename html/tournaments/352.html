@@ -1,23 +1,394 @@
+<!DOCTYPE html>
 
 <html>
   <head>
+  
+  <title>Flight and Fight</title>
+  
+  
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+  
+  
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+  
+  <script type="text/javascript">
+ 
+    
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+
+    window.onload = function() { document.getElementById('button_division_0').click();}
+  </script>
+
   </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>1</td><td>Alastair Richards</td><td>14</td><td>4</td><td>0</td><td>1110</td><td>2122</td><td>2146</td></tr>
-        <tr><td>2</td><td>Andrew Fisher</td><td>12</td><td>5</td><td>1</td><td>589</td><td>2087</td><td>2102</td></tr>
-        <tr><td>3</td><td>Naween Fernando</td><td>12</td><td>6</td><td>0</td><td>509</td><td>2008</td><td>2030</td></tr>
-        <tr><td>4</td><td>Trevor Halsall</td><td>9</td><td>9</td><td>0</td><td>-151</td><td>1846</td><td>1877</td></tr>
-        <tr><td>5</td><td>Joanne Craig</td><td>8</td><td>10</td><td>0</td><td>-256</td><td>1830</td><td>1848</td></tr>
-        <tr><td>6</td><td>Michael McKenna</td><td>7</td><td>11</td><td>0</td><td>-245</td><td>1867</td><td>1859</td></tr>
-        <tr><td>7</td><td>Esther Perrins</td><td>7</td><td>11</td><td>0</td><td>-263</td><td>1945</td><td>1917</td></tr>
-        <tr><td>8</td><td>Howard Warner</td><td>7</td><td>11</td><td>0</td><td>-731</td><td>2001</td><td>1961</td></tr>
-        <tr><td>9</td><td>Edward Okulicz</td><td>5</td><td>7</td><td>6</td><td>340</td><td>2074</td><td>2052</td></tr>
-        <tr><td>10</td><td>Peter Kougi</td><td>4</td><td>1</td><td>13</td><td>724</td><td>2025</td><td>2036</td></tr>
-        <tr><td>11</td><td>Russell Honeybun</td><td>4</td><td>14</td><td>0</td><td>-626</td><td>1884</td><td>1825</td></tr>
-      </table>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
     </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <h2>Flight and Fight</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <br>
+              <br><div class='tab'>
+<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+              <br>    
+            </div>
+            <div id='division_0' class='tabcontent'><table class='table'>
+        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_13609'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13609'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>14</td><td>4</td><td>0</td><td>1110</td><td>2122</td><td>2146</td><td>24</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13609'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>427</td><td>434</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>W</td><td>493</td><td>392</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>479</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>421</td><td>364</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>540</td><td>302</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>408</td><td>320</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>441</td><td>434</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>332</td><td>447</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>436</td><td>440</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>392</td><td>424</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>394</td><td>320</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>501</td><td>348</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>424</td><td>353</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>453</td><td>436</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>377</td><td>322</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>436</td><td>286</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>526</td><td>374</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>433</td><td>392</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_13613'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13613'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>12</td><td>5</td><td>1</td><td>589</td><td>2087</td><td>2102</td><td>15</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13613'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>419</td><td>358</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>386</td><td>439</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>431</td><td>447</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>478</td><td>444</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>494</td><td>360</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>488</td><td>417</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>434</td><td>443</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>518</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>W</td><td>440</td><td>436</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>W</td><td>424</td><td>392</td></tr>
+        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/345.html'>Peter Kougi</a></td><td>2025</td><td>L</td><td>416</td><td>481</td></tr>
+        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>451</td><td>418</td></tr>
+        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>473</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>392</td><td>521</td></tr>
+        <tr  class='roweven'  ><td>16</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>W</td><td>450</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>481</td><td>419</td></tr>
+        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>476</td><td>389</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_13605'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13605'>+</button></td><td>3</td><td>5</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>12</td><td>6</td><td>0</td><td>509</td><td>2008</td><td>2030</td><td>22</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13605'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>W</td><td>434</td><td>427</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>392</td><td>493</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>357</td><td>322</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>480</td><td>392</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>494</td><td>329</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>L</td><td>402</td><td>477</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>372</td><td>400</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>484</td><td>379</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>414</td><td>409</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>671</td><td>343</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>470</td><td>466</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>452</td><td>412</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>383</td><td>380</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>L</td><td>360</td><td>520</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>W</td><td>521</td><td>392</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>415</td><td>450</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>421</td><td>436</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>459</td><td>445</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_13612'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13612'>+</button></td><td>4</td><td>10</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>9</td><td>9</td><td>0</td><td>-151</td><td>1846</td><td>1877</td><td>31</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13612'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>342</td><td>334</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>L</td><td>375</td><td>500</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>W</td><td>447</td><td>431</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>444</td><td>478</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>532</td><td>418</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>481</td><td>419</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>434</td><td>441</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>W</td><td>447</td><td>332</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>409</td><td>414</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>343</td><td>671</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>547</td><td>498</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>335</td><td>445</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>388</td><td>440</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>464</td><td>378</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>386</td><td>328</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>461</td><td>383</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>380</td><td>436</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>394</td><td>414</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_13606'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13606'>+</button></td><td>5</td><td>11</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>8</td><td>10</td><td>0</td><td>-256</td><td>1830</td><td>1848</td><td>18</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13606'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>312</td><td>369</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>441</td><td>295</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>L</td><td>382</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>436</td><td>403</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>302</td><td>540</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>320</td><td>408</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>471</td><td>375</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>452</td><td>414</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>419</td><td>425</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>450</td><td>434</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>498</td><td>547</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>445</td><td>335</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>418</td><td>451</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>356</td><td>473</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>418</td><td>337</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>319</td><td>496</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>W</td><td>436</td><td>421</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>445</td><td>459</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_13608'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13608'>+</button></td><td>6</td><td>9</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>7</td><td>11</td><td>0</td><td>-245</td><td>1867</td><td>1859</td><td>-8</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13608'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>460</td><td>364</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>407</td><td>364</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>322</td><td>357</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>392</td><td>480</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>363</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>402</td><td>446</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>W</td><td>443</td><td>434</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>377</td><td>518</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>L</td><td>359</td><td>452</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>W</td><td>422</td><td>354</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>483</td><td>313</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>385</td><td>453</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>440</td><td>388</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>378</td><td>464</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>337</td><td>418</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>496</td><td>319</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>374</td><td>526</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>392</td><td>433</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_13607'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13607'>+</button></td><td>7</td><td>7</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>7</td><td>11</td><td>0</td><td>-263</td><td>1945</td><td>1917</td><td>-28</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13607'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>358</td><td>419</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>W</td><td>439</td><td>386</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>415</td><td>479</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>364</td><td>421</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>394</td><td>363</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>446</td><td>402</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>L</td><td>432</td><td>465</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>466</td><td>430</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>425</td><td>419</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>434</td><td>450</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>466</td><td>470</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>412</td><td>452</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/345.html'>Peter Kougi</a></td><td>2025</td><td>L</td><td>368</td><td>435</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/345.html'>Peter Kougi</a></td><td>2025</td><td>L</td><td>394</td><td>442</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>438</td><td>512</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>436</td><td>481</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>436</td><td>380</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>414</td><td>394</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_13603'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13603'>+</button></td><td>8</td><td>6</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>7</td><td>11</td><td>0</td><td>-731</td><td>2001</td><td>1961</td><td>-40</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13603'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>369</td><td>312</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>295</td><td>441</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>L</td><td>319</td><td>456</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2074</td><td>L</td><td>271</td><td>461</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>418</td><td>532</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>419</td><td>481</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>W</td><td>400</td><td>372</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>379</td><td>484</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>432</td><td>427</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>534</td><td>381</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>313</td><td>483</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>453</td><td>385</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>353</td><td>424</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>436</td><td>453</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>512</td><td>438</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>481</td><td>436</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>419</td><td>481</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>389</td><td>476</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_13610'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13610'>+</button></td><td>9</td><td>3</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>5</td><td>7</td><td>6</td><td>340</td><td>2074</td><td>2052</td><td>-22</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13610'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>334</td><td>342</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>W</td><td>500</td><td>375</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>456</td><td>319</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>W</td><td>461</td><td>271</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>329</td><td>494</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>W</td><td>477</td><td>402</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>375</td><td>471</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>414</td><td>452</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>W</td><td>452</td><td>359</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>354</td><td>422</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>322</td><td>377</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>286</td><td>436</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_13611'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13611'>+</button></td><td>10</td><td>4</td><td><a href='/aardvark/html/players/345.html'>Peter Kougi</a></td><td>4</td><td>1</td><td>13</td><td>724</td><td>2025</td><td>2036</td><td>11</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13611'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>W</td><td>481</td><td>416</td></tr>
+        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>435</td><td>368</td></tr>
+        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>442</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>W</td><td>422</td><td>351</td></tr>
+        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1884</td><td>L</td><td>320</td><td>497</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_13604'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13604'>+</button></td><td>11</td><td>8</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>4</td><td>14</td><td>0</td><td>-626</td><td>1884</td><td>1825</td><td>-59</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13604'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>364</td><td>460</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1867</td><td>L</td><td>364</td><td>407</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>W</td><td>394</td><td>382</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1830</td><td>L</td><td>403</td><td>436</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>360</td><td>494</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2087</td><td>L</td><td>417</td><td>488</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>W</td><td>465</td><td>432</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1945</td><td>L</td><td>430</td><td>466</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>427</td><td>432</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/236.html'>Howard Warner</a></td><td>2001</td><td>L</td><td>381</td><td>534</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>320</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2122</td><td>L</td><td>348</td><td>501</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>L</td><td>380</td><td>383</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2008</td><td>W</td><td>520</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>328</td><td>386</td></tr>
+        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1846</td><td>L</td><td>383</td><td>461</td></tr>
+        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/345.html'>Peter Kougi</a></td><td>2025</td><td>L</td><td>351</td><td>422</td></tr>
+        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/345.html'>Peter Kougi</a></td><td>2025</td><td>W</td><td>497</td><td>320</td></tr>
+</table></div></td></tr>
+
+</table>
+</div>
+
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
+
+    </div>
+  </div>
   </body>
 </html>
+

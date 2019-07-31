@@ -1,73 +1,955 @@
+<!DOCTYPE html>
 
 <html>
   <head>
+  
+  <title>Warm-up Beta</title>
+  
+  
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+  
+  
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+  
+  <script type="text/javascript">
+ 
+    
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+
+    window.onload = function() { document.getElementById('button_division_0').click();}
+  </script>
+
   </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>1</td><td>Edward Okulicz</td><td>10</td><td>1</td><td>0</td><td>1362</td><td>2024</td><td>2056</td></tr>
-        <tr><td>2</td><td>David Eldar</td><td>8</td><td>3</td><td>0</td><td>567</td><td>2022</td><td>2034</td></tr>
-        <tr><td>3</td><td>Chris May</td><td>8</td><td>3</td><td>0</td><td>438</td><td>2214</td><td>2209</td></tr>
-        <tr><td>4</td><td>Will Nediger</td><td>7</td><td>4</td><td>0</td><td>552</td><td>1952</td><td>1989</td></tr>
-        <tr><td>5</td><td>Sherwin Rodrigues</td><td>6</td><td>5</td><td>0</td><td>142</td><td>1791</td><td>1809</td></tr>
-        <tr><td>6</td><td>Liew Kian Boon</td><td>6</td><td>5</td><td>0</td><td>58</td><td>1788</td><td>1810</td></tr>
-        <tr><td>7</td><td>Cheah Siu Hean</td><td>5</td><td>6</td><td>0</td><td>273</td><td>2063</td><td>2042</td></tr>
-        <tr><td>8</td><td>Trevor Halsall</td><td>5</td><td>6</td><td>0</td><td>-214</td><td>1978</td><td>1953</td></tr>
-        <tr><td>9</td><td>Pat Schuberg</td><td>3</td><td>8</td><td>0</td><td>-671</td><td>2026</td><td>1741</td></tr>
-        <tr><td>10</td><td>Mohammed Zafar</td><td>3</td><td>8</td><td>0</td><td>-778</td><td>1334</td><td>1360</td></tr>
-        <tr><td>11</td><td>Sonny Hemachandra</td><td>3</td><td>8</td><td>0</td><td>-802</td><td>1406</td><td>1423</td></tr>
-        <tr><td>12</td><td>Paul Richards AUS</td><td>2</td><td>9</td><td>0</td><td>-927</td><td>1750</td><td>1697</td></tr>
-      </table>
-      <table>
-        <tr><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>1</td><td>Ong Suanne</td><td>9</td><td>0</td><td>0</td><td>815</td><td>1749</td><td>1807</td></tr>
-        <tr><td>2</td><td>Graeme Lock Lee</td><td>7.5</td><td>1.5</td><td>0</td><td>582</td><td>1737</td><td>1767</td></tr>
-        <tr><td>3</td><td>Ivan Imperial</td><td>7</td><td>2</td><td>0</td><td>12</td><td>1146</td><td>1430</td></tr>
-        <tr><td>4</td><td>Alastair Richards</td><td>6.5</td><td>2.5</td><td>0</td><td>598</td><td>1705</td><td>1735</td></tr>
-        <tr><td>5</td><td>Lahiru Elvitigala</td><td>6</td><td>3</td><td>0</td><td>672</td><td>1045</td><td>1117</td></tr>
-        <tr><td>6</td><td>Jason Stockdale</td><td>6</td><td>3</td><td>0</td><td>339</td><td>1069</td><td>1443</td></tr>
-        <tr><td>7</td><td>Khoo Beng Way</td><td>6</td><td>3</td><td>0</td><td>231</td><td>1214</td><td>1385</td></tr>
-        <tr><td>8</td><td>Michael Loo</td><td>6</td><td>3</td><td>0</td><td>184</td><td>1526</td><td>1526</td></tr>
-        <tr><td>9</td><td>Greg Pinchbeck</td><td>6</td><td>3</td><td>0</td><td>179</td><td>1462</td><td>1467</td></tr>
-        <tr><td>10</td><td>Peter Shaw</td><td>5.5</td><td>3.5</td><td>0</td><td>637</td><td>1895</td><td>1770</td></tr>
-        <tr><td>11</td><td>Barry Harridge</td><td>5</td><td>4</td><td>0</td><td>340</td><td>1849</td><td>1806</td></tr>
-        <tr><td>12</td><td>Malinda Gunawardane</td><td>5</td><td>4</td><td>0</td><td>324</td><td>1560</td><td>1560</td></tr>
-        <tr><td>13</td><td>Rosario Lambino</td><td>5</td><td>4</td><td>0</td><td>287</td><td>1527</td><td>1527</td></tr>
-        <tr><td>14</td><td>Jessica Bacani</td><td>5</td><td>4</td><td>0</td><td>281</td><td>1313</td><td>1300</td></tr>
-        <tr><td>15</td><td>John Barker</td><td>5</td><td>4</td><td>0</td><td>173</td><td>1718</td><td>1660</td></tr>
-        <tr><td>16</td><td>Wilfredo Padua</td><td>5</td><td>4</td><td>0</td><td>141</td><td>1355</td><td>1371</td></tr>
-        <tr><td>17</td><td>Betty Eriksen</td><td>5</td><td>4</td><td>0</td><td>46</td><td>1474</td><td>1468</td></tr>
-        <tr><td>18</td><td>Andree Prentice</td><td>5</td><td>4</td><td>0</td><td>28</td><td>1183</td><td>1203</td></tr>
-        <tr><td>19</td><td>Mary Morgan</td><td>5</td><td>4</td><td>0</td><td>-7</td><td>1366</td><td>1336</td></tr>
-        <tr><td>20</td><td>Mal Ramsdale</td><td>5</td><td>4</td><td>0</td><td>-31</td><td>1532</td><td>1547</td></tr>
-        <tr><td>21</td><td>Don Hadley</td><td>5</td><td>4</td><td>0</td><td>-37</td><td>1152</td><td>1302</td></tr>
-        <tr><td>22</td><td>David More</td><td>5</td><td>4</td><td>0</td><td>-42</td><td>1299</td><td>1328</td></tr>
-        <tr><td>23</td><td>Charles Cue</td><td>5</td><td>4</td><td>0</td><td>-144</td><td>1390</td><td>1426</td></tr>
-        <tr><td>24</td><td>Louie De Guzman</td><td>4.5</td><td>4.5</td><td>0</td><td>149</td><td>1596</td><td>1564</td></tr>
-        <tr><td>25</td><td>Lorenzo Bacani</td><td>4</td><td>5</td><td>0</td><td>330</td><td>1660</td><td>1484</td></tr>
-        <tr><td>26</td><td>Jean Balmer</td><td>4</td><td>5</td><td>0</td><td>106</td><td>1268</td><td>1162</td></tr>
-        <tr><td>27</td><td>Loh Vern Sern</td><td>4</td><td>5</td><td>0</td><td>74</td><td>1459</td><td>1249</td></tr>
-        <tr><td>28</td><td>Michael Wong</td><td>4</td><td>5</td><td>0</td><td>-16</td><td>1415</td><td>1390</td></tr>
-        <tr><td>29</td><td>Adele Tan</td><td>4</td><td>5</td><td>0</td><td>-75</td><td>1203</td><td>1192</td></tr>
-        <tr><td>30</td><td>Colleen Walker</td><td>4</td><td>5</td><td>0</td><td>-114</td><td>938</td><td>1046</td></tr>
-        <tr><td>31</td><td>David Breadsell</td><td>4</td><td>5</td><td>0</td><td>-182</td><td>1147</td><td>1029</td></tr>
-        <tr><td>32</td><td>Kaveri Raviraj</td><td>4</td><td>5</td><td>0</td><td>-195</td><td>912</td><td>981</td></tr>
-        <tr><td>33</td><td>Grant Breadsell</td><td>4</td><td>5</td><td>0</td><td>-246</td><td>1312</td><td>1186</td></tr>
-        <tr><td>34</td><td>Ruth Groffman</td><td>4</td><td>5</td><td>0</td><td>-296</td><td>1553</td><td>1341</td></tr>
-        <tr><td>35</td><td>Nilusha Hemachandra</td><td>4</td><td>5</td><td>0</td><td>-479</td><td>1081</td><td>1102</td></tr>
-        <tr><td>36</td><td>Samitha Amarasinghe</td><td>3</td><td>6</td><td>0</td><td>51</td><td>1538</td><td>1427</td></tr>
-        <tr><td>37</td><td>Karen Richards</td><td>3</td><td>6</td><td>0</td><td>14</td><td>1662</td><td>1598</td></tr>
-        <tr><td>38</td><td>Nadeesha Hemachandra</td><td>3</td><td>6</td><td>0</td><td>-1</td><td>659</td><td>691</td></tr>
-        <tr><td>39</td><td>Jonasil Kotico</td><td>3</td><td>6</td><td>0</td><td>-157</td><td>1189</td><td>1002</td></tr>
-        <tr><td>40</td><td>Lindy Lawson</td><td>3</td><td>6</td><td>0</td><td>-179</td><td>491</td><td>827</td></tr>
-        <tr><td>41</td><td>George Khamis</td><td>3</td><td>6</td><td>0</td><td>-275</td><td>907</td><td>882</td></tr>
-        <tr><td>42</td><td>Nishi Shah</td><td>3</td><td>6</td><td>0</td><td>-385</td><td>573</td><td>699</td></tr>
-        <tr><td>43</td><td>Aldwin Gonzales</td><td>2</td><td>7</td><td>0</td><td>-443</td><td>610</td><td>655</td></tr>
-        <tr><td>44</td><td>Chaliza Gutlay</td><td>2</td><td>7</td><td>0</td><td>-727</td><td>770</td><td>650</td></tr>
-        <tr><td>45</td><td>Joseph Kotico</td><td>2</td><td>7</td><td>0</td><td>-1457</td><td>350</td><td>435</td></tr>
-        <tr><td>46</td><td>Vimalan Raviraj</td><td>1</td><td>8</td><td>0</td><td>-1105</td><td>476</td><td>407</td></tr>
-      </table>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
     </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <h2>Warm-up Beta</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <br>
+              <br><div class='tab'>
+<button id='button_division_0' style='width: 50%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button><button id='button_division_1' style='width: 50%' class='tablinks' onclick="showContent(event, 'division_1')">Division 2</button></div><br>
+              <br>    
+            </div>
+            <div id='division_0' class='tabcontent'><table class='table'>
+        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24003'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24003'>+</button></td><td>1</td><td>4</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>10</td><td>1</td><td>0</td><td>1362</td><td>2024</td><td>2056</td><td>32</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24003'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>W</td><td>503</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>W</td><td>448</td><td>354</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>373</td><td>297</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>W</td><td>376</td><td>338</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>674</td><td>326</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>W</td><td>548</td><td>311</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>454</td><td>270</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>482</td><td>311</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>L</td><td>357</td><td>461</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>W</td><td>455</td><td>432</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>W</td><td>468</td><td>330</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24020'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24020'>+</button></td><td>2</td><td>5</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>8</td><td>3</td><td>0</td><td>567</td><td>2022</td><td>2034</td><td>12</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24020'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>W</td><td>464</td><td>391</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>W</td><td>391</td><td>329</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>W</td><td>402</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>475</td><td>333</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>273</td><td>525</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>633</td><td>248</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>341</td><td>448</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>465</td><td>341</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>360</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>432</td><td>455</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>W</td><td>471</td><td>325</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23983'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23983'>+</button></td><td>3</td><td>1</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>8</td><td>3</td><td>0</td><td>438</td><td>2214</td><td>2209</td><td>-5</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23983'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>431</td><td>265</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>406</td><td>385</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>W</td><td>414</td><td>383</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>364</td><td>344</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>L</td><td>355</td><td>370</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>311</td><td>548</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>W</td><td>448</td><td>341</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>W</td><td>463</td><td>301</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>W</td><td>543</td><td>329</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>L</td><td>358</td><td>421</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>W</td><td>448</td><td>416</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24008'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24008'>+</button></td><td>4</td><td>7</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>7</td><td>4</td><td>0</td><td>552</td><td>1952</td><td>1989</td><td>37</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24008'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>378</td><td>371</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>L</td><td>331</td><td>358</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>464</td><td>437</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>338</td><td>376</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>W</td><td>525</td><td>273</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>L</td><td>360</td><td>402</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>W</td><td>460</td><td>338</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>W</td><td>405</td><td>396</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>502</td><td>264</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>W</td><td>457</td><td>421</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>416</td><td>448</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23972'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23972'>+</button></td><td>5</td><td>8</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>6</td><td>5</td><td>0</td><td>142</td><td>1791</td><td>1809</td><td>18</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23972'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>391</td><td>464</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>W</td><td>396</td><td>368</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>383</td><td>414</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>W</td><td>471</td><td>395</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>518</td><td>353</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>L</td><td>391</td><td>446</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>398</td><td>349</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>L</td><td>304</td><td>410</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>W</td><td>461</td><td>357</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>421</td><td>457</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>452</td><td>431</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23996'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23996'>+</button></td><td>6</td><td>9</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>6</td><td>5</td><td>0</td><td>58</td><td>1788</td><td>1810</td><td>22</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23996'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>346</td><td>503</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>L</td><td>368</td><td>396</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>L</td><td>358</td><td>400</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>W</td><td>383</td><td>378</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>436</td><td>328</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>W</td><td>402</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>433</td><td>364</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>301</td><td>463</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>526</td><td>275</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>452</td><td>334</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>325</td><td>471</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24016'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24016'>+</button></td><td>7</td><td>2</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>5</td><td>6</td><td>0</td><td>273</td><td>2063</td><td>2042</td><td>-21</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24016'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>577</td><td>282</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>329</td><td>391</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>W</td><td>400</td><td>358</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>L</td><td>395</td><td>471</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>W</td><td>527</td><td>268</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>440</td><td>371</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>338</td><td>460</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>L</td><td>426</td><td>430</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>329</td><td>543</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>487</td><td>263</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>330</td><td>468</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24022'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24022'>+</button></td><td>8</td><td>6</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>5</td><td>6</td><td>0</td><td>-214</td><td>1978</td><td>1953</td><td>-25</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24022'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>403</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>354</td><td>448</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>399</td><td>402</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>L</td><td>378</td><td>383</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>L</td><td>268</td><td>527</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>W</td><td>446</td><td>391</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>385</td><td>367</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>396</td><td>405</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>469</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>W</td><td>421</td><td>358</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>L</td><td>367</td><td>475</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23997'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23997'>+</button></td><td>9</td><td>3</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>3</td><td>8</td><td>0</td><td>-671</td><td>2026</td><td>1741</td><td>-285</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23997'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>L</td><td>282</td><td>577</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>W</td><td>488</td><td>339</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>437</td><td>464</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>L</td><td>348</td><td>480</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>W</td><td>370</td><td>355</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>L</td><td>294</td><td>431</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>L</td><td>349</td><td>398</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>311</td><td>482</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>346</td><td>360</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>L</td><td>334</td><td>452</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>W</td><td>475</td><td>367</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23988'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23988'>+</button></td><td>10</td><td>12</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>3</td><td>8</td><td>0</td><td>-778</td><td>1334</td><td>1360</td><td>26</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23988'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>371</td><td>378</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>385</td><td>406</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>419</td><td>353</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>480</td><td>348</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>326</td><td>674</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>248</td><td>633</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>L</td><td>364</td><td>433</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>W</td><td>430</td><td>426</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>L</td><td>394</td><td>469</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>L</td><td>353</td><td>407</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>L</td><td>431</td><td>452</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24015'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24015'>+</button></td><td>11</td><td>11</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>3</td><td>8</td><td>0</td><td>-802</td><td>1406</td><td>1423</td><td>17</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24015'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>265</td><td>431</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>L</td><td>339</td><td>488</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>297</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>333</td><td>475</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>L</td><td>328</td><td>436</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>L</td><td>371</td><td>440</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>L</td><td>367</td><td>385</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>W</td><td>410</td><td>304</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>L</td><td>264</td><td>502</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>W</td><td>407</td><td>353</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1750</td><td>W</td><td>381</td><td>377</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24013'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24013'>+</button></td><td>12</td><td>10</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>2</td><td>9</td><td>0</td><td>-927</td><td>1750</td><td>1697</td><td>-53</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24013'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1978</td><td>L</td><td>350</td><td>403</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4538.html'>Will Nediger</a></td><td>1952</td><td>W</td><td>358</td><td>331</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1334</td><td>L</td><td>353</td><td>419</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2214</td><td>L</td><td>344</td><td>364</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1791</td><td>L</td><td>353</td><td>518</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1689.html'>Pat Schuberg</a></td><td>2026</td><td>W</td><td>431</td><td>294</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2024</td><td>L</td><td>270</td><td>454</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2022</td><td>L</td><td>341</td><td>465</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/178.html'>Liew Kian Boon</a></td><td>1788</td><td>L</td><td>275</td><td>526</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/166.html'>Cheah Siu Hean</a></td><td>2063</td><td>L</td><td>263</td><td>487</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1406</td><td>L</td><td>377</td><td>381</td></tr>
+</table></div></td></tr>
+
+</table>
+</div>
+<div id='division_1' class='tabcontent'><table class='table'>
+        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24011'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24011'>+</button></td><td>1</td><td>3</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>9</td><td>0</td><td>0</td><td>815</td><td>1749</td><td>1807</td><td>58</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24011'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>619</td><td>167</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>W</td><td>404</td><td>326</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>W</td><td>413</td><td>314</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>W</td><td>423</td><td>416</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>W</td><td>384</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>W</td><td>417</td><td>357</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>W</td><td>439</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>W</td><td>344</td><td>304</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>W</td><td>479</td><td>462</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24014'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24014'>+</button></td><td>2</td><td>4</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>7.5</td><td>1.5</td><td>0</td><td>582</td><td>1737</td><td>1767</td><td>30</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24014'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>W</td><td>477</td><td>275</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>W</td><td>457</td><td>247</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>314</td><td>413</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>W</td><td>371</td><td>370</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>T</td><td>368</td><td>368</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>W</td><td>502</td><td>284</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>W</td><td>399</td><td>398</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>W</td><td>415</td><td>403</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>W</td><td>384</td><td>347</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23977'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23977'>+</button></td><td>3</td><td>33</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>7</td><td>2</td><td>0</td><td>12</td><td>1146</td><td>1430</td><td>284</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23977'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>275</td><td>477</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>374</td><td>308</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>370</td><td>281</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>W</td><td>384</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>W</td><td>321</td><td>298</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>L</td><td>306</td><td>516</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>W</td><td>365</td><td>353</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>W</td><td>413</td><td>334</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>W</td><td>443</td><td>312</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24001'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24001'>+</button></td><td>4</td><td>6</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>6.5</td><td>2.5</td><td>0</td><td>598</td><td>1705</td><td>1735</td><td>30</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24001'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>W</td><td>465</td><td>301</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>W</td><td>369</td><td>366</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>W</td><td>447</td><td>317</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>416</td><td>423</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>T</td><td>368</td><td>368</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>W</td><td>461</td><td>311</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>L</td><td>340</td><td>435</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>W</td><td>410</td><td>306</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>W</td><td>483</td><td>334</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23994'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23994'>+</button></td><td>5</td><td>36</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>6</td><td>3</td><td>0</td><td>672</td><td>1045</td><td>1117</td><td>72</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23994'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>529</td><td>215</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>326</td><td>404</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>W</td><td>372</td><td>272</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>W</td><td>398</td><td>369</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>W</td><td>539</td><td>281</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>W</td><td>460</td><td>369</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>398</td><td>399</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>W</td><td>366</td><td>276</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>312</td><td>443</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23993'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23993'>+</button></td><td>6</td><td>35</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>6</td><td>3</td><td>0</td><td>339</td><td>1069</td><td>1443</td><td>374</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23993'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>W</td><td>371</td><td>263</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>L</td><td>334</td><td>384</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>W</td><td>395</td><td>335</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>W</td><td>365</td><td>353</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>L</td><td>356</td><td>425</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>W</td><td>419</td><td>345</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>W</td><td>346</td><td>303</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>W</td><td>439</td><td>261</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>462</td><td>479</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23991'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23991'>+</button></td><td>7</td><td>27</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>6</td><td>3</td><td>0</td><td>231</td><td>1214</td><td>1385</td><td>171</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23991'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>L</td><td>333</td><td>395</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>W</td><td>460</td><td>242</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>W</td><td>491</td><td>316</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>W</td><td>363</td><td>357</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>L</td><td>281</td><td>539</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>L</td><td>345</td><td>419</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>W</td><td>467</td><td>371</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>W</td><td>489</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>W</td><td>405</td><td>404</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23976'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23976'>+</button></td><td>8</td><td>15</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>6</td><td>3</td><td>0</td><td>184</td><td>1526</td><td>1526</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23976'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>W</td><td>403</td><td>352</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>W</td><td>364</td><td>266</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>L</td><td>317</td><td>447</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>W</td><td>393</td><td>379</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>298</td><td>321</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>W</td><td>413</td><td>385</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>W</td><td>498</td><td>353</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>L</td><td>276</td><td>366</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>W</td><td>400</td><td>309</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24009'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24009'>+</button></td><td>9</td><td>17</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>6</td><td>3</td><td>0</td><td>179</td><td>1462</td><td>1467</td><td>5</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24009'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>W</td><td>381</td><td>359</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>W</td><td>433</td><td>367</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>W</td><td>471</td><td>380</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>L</td><td>352</td><td>381</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>W</td><td>430</td><td>281</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>L</td><td>369</td><td>460</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>W</td><td>404</td><td>378</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>L</td><td>261</td><td>439</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>W</td><td>499</td><td>376</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23968'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23968'>+</button></td><td>10</td><td>1</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>5.5</td><td>3.5</td><td>0</td><td>637</td><td>1895</td><td>1770</td><td>-125</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23968'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>W</td><td>445</td><td>282</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>T</td><td>353</td><td>353</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>L</td><td>272</td><td>372</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>W</td><td>512</td><td>303</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>W</td><td>484</td><td>347</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>W</td><td>516</td><td>306</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>W</td><td>435</td><td>340</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>304</td><td>344</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>347</td><td>384</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24023'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24023'>+</button></td><td>11</td><td>2</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>5</td><td>4</td><td>0</td><td>340</td><td>1849</td><td>1806</td><td>-43</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24023'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>L</td><td>337</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>L</td><td>381</td><td>392</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>W</td><td>417</td><td>331</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>W</td><td>361</td><td>353</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>W</td><td>453</td><td>386</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>W</td><td>395</td><td>308</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>L</td><td>303</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>L</td><td>359</td><td>416</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>W</td><td>522</td><td>252</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23989'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23989'>+</button></td><td>12</td><td>10</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>5</td><td>4</td><td>0</td><td>324</td><td>1560</td><td>1560</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23989'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>W</td><td>475</td><td>288</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>L</td><td>366</td><td>369</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>W</td><td>465</td><td>326</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>370</td><td>371</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>W</td><td>404</td><td>378</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>L</td><td>308</td><td>395</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>W</td><td>463</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>L</td><td>360</td><td>489</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>W</td><td>388</td><td>359</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24004'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24004'>+</button></td><td>13</td><td>14</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>5</td><td>4</td><td>0</td><td>287</td><td>1527</td><td>1527</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24004'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>L</td><td>263</td><td>371</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>W</td><td>410</td><td>283</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>W</td><td>370</td><td>281</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>W</td><td>488</td><td>330</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>W</td><td>415</td><td>294</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>357</td><td>417</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>L</td><td>378</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>L</td><td>306</td><td>410</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>W</td><td>434</td><td>344</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23985'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23985'>+</button></td><td>14</td><td>23</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>5</td><td>4</td><td>0</td><td>281</td><td>1313</td><td>1300</td><td>-13</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23985'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>L</td><td>394</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>L</td><td>392</td><td>456</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>455</td><td>267</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>L</td><td>303</td><td>512</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>W</td><td>387</td><td>239</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>W</td><td>534</td><td>295</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>L</td><td>300</td><td>463</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>W</td><td>428</td><td>384</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>W</td><td>428</td><td>320</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24019'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24019'>+</button></td><td>15</td><td>5</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>5</td><td>4</td><td>0</td><td>173</td><td>1718</td><td>1660</td><td>-58</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24019'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>W</td><td>404</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>W</td><td>399</td><td>308</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>L</td><td>380</td><td>471</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>W</td><td>432</td><td>272</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>W</td><td>425</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>W</td><td>410</td><td>291</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>415</td><td>439</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>403</td><td>415</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>L</td><td>334</td><td>483</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23969'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23969'>+</button></td><td>16</td><td>22</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>5</td><td>4</td><td>0</td><td>141</td><td>1355</td><td>1371</td><td>16</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23969'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>W</td><td>360</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>L</td><td>308</td><td>399</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>W</td><td>383</td><td>327</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>360</td><td>384</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>L</td><td>290</td><td>384</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>W</td><td>430</td><td>289</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>W</td><td>407</td><td>320</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>W</td><td>416</td><td>359</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>L</td><td>404</td><td>405</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23975'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23975'>+</button></td><td>17</td><td>16</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>5</td><td>4</td><td>0</td><td>46</td><td>1474</td><td>1468</td><td>-6</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23975'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>L</td><td>311</td><td>432</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>L</td><td>283</td><td>410</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>474</td><td>299</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>W</td><td>397</td><td>312</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>W</td><td>467</td><td>354</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>L</td><td>311</td><td>461</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>W</td><td>385</td><td>327</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>L</td><td>345</td><td>360</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>W</td><td>360</td><td>332</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24005'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24005'>+</button></td><td>18</td><td>30</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>5</td><td>4</td><td>0</td><td>28</td><td>1183</td><td>1203</td><td>20</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24005'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>W</td><td>365</td><td>357</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>L</td><td>320</td><td>380</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>L</td><td>359</td><td>386</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>W</td><td>397</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>L</td><td>354</td><td>467</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>W</td><td>421</td><td>346</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>W</td><td>361</td><td>315</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>W</td><td>438</td><td>298</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>L</td><td>309</td><td>400</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24012'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24012'>+</button></td><td>19</td><td>21</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>5</td><td>4</td><td>0</td><td>-7</td><td>1366</td><td>1336</td><td>-30</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24012'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>W</td><td>395</td><td>359</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>L</td><td>346</td><td>416</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>L</td><td>328</td><td>427</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>W</td><td>408</td><td>395</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>W</td><td>363</td><td>272</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>L</td><td>299</td><td>337</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>W</td><td>450</td><td>376</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>W</td><td>360</td><td>345</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>L</td><td>359</td><td>388</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23984'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23984'>+</button></td><td>20</td><td>13</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>5</td><td>4</td><td>0</td><td>-31</td><td>1532</td><td>1547</td><td>15</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23984'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>W</td><td>432</td><td>311</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>W</td><td>384</td><td>334</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>W</td><td>364</td><td>344</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>W</td><td>381</td><td>352</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>346</td><td>384</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>L</td><td>291</td><td>410</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>L</td><td>345</td><td>388</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>L</td><td>298</td><td>438</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>W</td><td>418</td><td>329</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24007'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24007'>+</button></td><td>21</td><td>31</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>5</td><td>4</td><td>0</td><td>-37</td><td>1152</td><td>1302</td><td>150</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24007'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>L</td><td>350</td><td>360</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>W</td><td>380</td><td>320</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>W</td><td>465</td><td>314</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>W</td><td>429</td><td>354</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>L</td><td>294</td><td>415</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>284</td><td>502</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>L</td><td>376</td><td>450</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>W</td><td>377</td><td>305</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>W</td><td>340</td><td>312</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23987'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23987'>+</button></td><td>22</td><td>25</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>5</td><td>4</td><td>0</td><td>-42</td><td>1299</td><td>1328</td><td>29</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23987'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>W</td><td>395</td><td>333</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>W</td><td>376</td><td>322</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>L</td><td>315</td><td>356</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>L</td><td>353</td><td>365</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>W</td><td>378</td><td>365</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>W</td><td>385</td><td>344</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>W</td><td>388</td><td>345</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>334</td><td>413</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>L</td><td>376</td><td>499</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24018'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24018'>+</button></td><td>23</td><td>20</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>5</td><td>4</td><td>0</td><td>-144</td><td>1390</td><td>1426</td><td>36</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24018'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>W</td><td>360</td><td>319</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>L</td><td>266</td><td>364</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>W</td><td>386</td><td>359</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1718</td><td>L</td><td>272</td><td>432</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>W</td><td>354</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>W</td><td>337</td><td>299</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>353</td><td>365</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>W</td><td>471</td><td>369</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>L</td><td>344</td><td>434</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24006'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24006'>+</button></td><td>24</td><td>9</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>4.5</td><td>4.5</td><td>0</td><td>149</td><td>1596</td><td>1564</td><td>-32</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24006'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>W</td><td>401</td><td>262</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>T</td><td>353</td><td>353</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>L</td><td>326</td><td>465</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>L</td><td>374</td><td>452</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>L</td><td>346</td><td>354</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>L</td><td>318</td><td>389</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>416</td><td>281</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>W</td><td>367</td><td>364</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>W</td><td>512</td><td>344</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23971'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23971'>+</button></td><td>25</td><td>8</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>4</td><td>5</td><td>0</td><td>330</td><td>1660</td><td>1484</td><td>-176</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23971'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>W</td><td>404</td><td>337</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>530</td><td>241</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>L</td><td>344</td><td>364</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>L</td><td>357</td><td>363</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>L</td><td>347</td><td>484</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>W</td><td>473</td><td>264</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>L</td><td>353</td><td>498</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>L</td><td>349</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>W</td><td>475</td><td>374</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23981'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23981'>+</button></td><td>26</td><td>26</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>4</td><td>5</td><td>0</td><td>106</td><td>1268</td><td>1162</td><td>-106</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23981'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>L</td><td>319</td><td>360</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>L</td><td>255</td><td>395</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>L</td><td>375</td><td>397</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>L</td><td>285</td><td>336</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>494</td><td>214</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>W</td><td>389</td><td>318</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>W</td><td>376</td><td>287</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>W</td><td>377</td><td>349</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>L</td><td>320</td><td>428</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23980'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23980'>+</button></td><td>27</td><td>18</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>4</td><td>5</td><td>0</td><td>74</td><td>1459</td><td>1249</td><td>-210</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23980'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>L</td><td>333</td><td>428</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>W</td><td>392</td><td>381</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>L</td><td>327</td><td>383</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>L</td><td>395</td><td>408</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>L</td><td>299</td><td>410</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>471</td><td>247</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>W</td><td>391</td><td>352</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>L</td><td>327</td><td>375</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>W</td><td>467</td><td>344</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24010'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24010'>+</button></td><td>28</td><td>19</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>4</td><td>5</td><td>0</td><td>-16</td><td>1415</td><td>1390</td><td>-25</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24010'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1869.html'>Peter Shaw</a></td><td>1895</td><td>L</td><td>282</td><td>445</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>L</td><td>257</td><td>411</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>W</td><td>479</td><td>347</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>W</td><td>422</td><td>295</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>W</td><td>384</td><td>290</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>L</td><td>344</td><td>385</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>L</td><td>327</td><td>385</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>W</td><td>401</td><td>326</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>L</td><td>312</td><td>340</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23998'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23998'>+</button></td><td>29</td><td>28</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>4</td><td>5</td><td>0</td><td>-75</td><td>1203</td><td>1192</td><td>-11</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23998'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>426</td><td>229</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1737</td><td>L</td><td>247</td><td>457</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>L</td><td>315</td><td>407</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>L</td><td>347</td><td>397</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>W</td><td>418</td><td>358</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>W</td><td>326</td><td>315</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>L</td><td>379</td><td>413</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>W</td><td>410</td><td>339</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>L</td><td>332</td><td>360</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24021'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24021'>+</button></td><td>30</td><td>37</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>4</td><td>5</td><td>0</td><td>-114</td><td>938</td><td>1046</td><td>108</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24021'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>L</td><td>357</td><td>365</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>W</td><td>456</td><td>392</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>L</td><td>314</td><td>465</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>W</td><td>383</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>W</td><td>406</td><td>316</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>L</td><td>385</td><td>413</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>L</td><td>320</td><td>407</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>L</td><td>339</td><td>410</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>W</td><td>393</td><td>352</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23992'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23992'>+</button></td><td>31</td><td>32</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>4</td><td>5</td><td>0</td><td>-182</td><td>1147</td><td>1029</td><td>-118</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23992'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>W</td><td>330</td><td>271</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>L</td><td>322</td><td>376</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>L</td><td>312</td><td>503</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>370</td><td>363</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>L</td><td>272</td><td>363</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>L</td><td>286</td><td>414</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>324</td><td>323</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>L</td><td>314</td><td>322</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>404</td><td>181</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23982'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23982'>+</button></td><td>32</td><td>38</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>4</td><td>5</td><td>0</td><td>-195</td><td>912</td><td>981</td><td>69</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23982'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>L</td><td>288</td><td>475</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>L</td><td>300</td><td>440</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>388</td><td>233</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>L</td><td>295</td><td>422</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>W</td><td>412</td><td>319</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>W</td><td>414</td><td>286</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>L</td><td>315</td><td>361</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>L</td><td>305</td><td>377</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>W</td><td>317</td><td>316</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23967'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23967'>+</button></td><td>33</td><td>24</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>4</td><td>5</td><td>0</td><td>-246</td><td>1312</td><td>1186</td><td>-126</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23967'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>L</td><td>355</td><td>387</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>W</td><td>442</td><td>310</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>L</td><td>316</td><td>491</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>L</td><td>312</td><td>397</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>L</td><td>358</td><td>418</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>W</td><td>398</td><td>285</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>W</td><td>412</td><td>329</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>W</td><td>375</td><td>327</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>L</td><td>252</td><td>522</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23995'>+</button></td><td>34</td><td>11</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>4</td><td>5</td><td>0</td><td>-296</td><td>1553</td><td>1341</td><td>-212</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23995'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1705</td><td>L</td><td>301</td><td>465</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>W</td><td>440</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>W</td><td>407</td><td>315</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>L</td><td>330</td><td>488</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>L</td><td>316</td><td>406</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1355</td><td>L</td><td>289</td><td>430</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>373</td><td>267</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>W</td><td>322</td><td>314</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4542.html'>Mal Ramsdale</a></td><td>1532</td><td>L</td><td>329</td><td>418</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24000'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24000'>+</button></td><td>35</td><td>34</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>4</td><td>5</td><td>0</td><td>-479</td><td>1081</td><td>1102</td><td>21</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24000'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>W</td><td>368</td><td>335</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>W</td><td>416</td><td>346</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>W</td><td>356</td><td>315</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>L</td><td>369</td><td>398</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>L</td><td>281</td><td>430</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>L</td><td>264</td><td>473</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>W</td><td>413</td><td>379</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4192.html'>Charles Cue</a></td><td>1390</td><td>L</td><td>369</td><td>471</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>L</td><td>344</td><td>512</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24017'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24017'>+</button></td><td>36</td><td>12</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>3</td><td>6</td><td>0</td><td>51</td><td>1538</td><td>1427</td><td>-111</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24017'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>L</td><td>352</td><td>403</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>W</td><td>395</td><td>255</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4208.html'>Jason Stockdale</a></td><td>1069</td><td>L</td><td>335</td><td>395</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>W</td><td>452</td><td>374</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2415.html'>David More</a></td><td>1299</td><td>L</td><td>365</td><td>378</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1662</td><td>L</td><td>310</td><td>460</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>L</td><td>352</td><td>391</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>L</td><td>423</td><td>435</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>W</td><td>432</td><td>274</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23973'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23973'>+</button></td><td>37</td><td>7</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>3</td><td>6</td><td>0</td><td>14</td><td>1662</td><td>1598</td><td>-64</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23973'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>L</td><td>262</td><td>401</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>W</td><td>411</td><td>257</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>W</td><td>503</td><td>312</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1874.html'>Don Hadley</a></td><td>1152</td><td>L</td><td>354</td><td>429</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4363.html'>Malinda Gunawardane</a></td><td>1560</td><td>L</td><td>378</td><td>404</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>W</td><td>460</td><td>310</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>L</td><td>371</td><td>467</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>L</td><td>384</td><td>428</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>L</td><td>374</td><td>475</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23986'>+</button></td><td>38</td><td>41</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>3</td><td>6</td><td>0</td><td>-1</td><td>659</td><td>691</td><td>32</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23986'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>W</td><td>387</td><td>355</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>L</td><td>367</td><td>433</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>W</td><td>427</td><td>328</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4534.html'>Michael Loo</a></td><td>1526</td><td>L</td><td>379</td><td>393</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>L</td><td>386</td><td>453</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>L</td><td>315</td><td>326</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>L</td><td>287</td><td>376</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>L</td><td>364</td><td>367</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>458</td><td>340</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23974'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23974'>+</button></td><td>39</td><td>29</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>3</td><td>6</td><td>0</td><td>-157</td><td>1189</td><td>1002</td><td>-187</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23974'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/404.html'>Greg Pinchbeck</a></td><td>1462</td><td>L</td><td>359</td><td>381</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>L</td><td>310</td><td>442</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>W</td><td>397</td><td>375</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>L</td><td>347</td><td>383</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>353</td><td>323</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3182.html'>Andree Prentice</a></td><td>1183</td><td>L</td><td>346</td><td>421</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>W</td><td>418</td><td>286</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>L</td><td>326</td><td>401</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>L</td><td>316</td><td>317</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23970'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23970'>+</button></td><td>40</td><td>44</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>3</td><td>6</td><td>0</td><td>-179</td><td>491</td><td>827</td><td>336</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23970'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1366</td><td>L</td><td>359</td><td>395</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>W</td><td>371</td><td>316</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1659.html'>Rosario Lambino</a></td><td>1527</td><td>L</td><td>281</td><td>370</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>L</td><td>353</td><td>361</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>W</td><td>410</td><td>299</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>L</td><td>295</td><td>534</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>L</td><td>329</td><td>412</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>433</td><td>282</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/398.html'>Colleen Walker</a></td><td>938</td><td>L</td><td>352</td><td>393</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_24024'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24024'>+</button></td><td>41</td><td>39</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>3</td><td>6</td><td>0</td><td>-275</td><td>907</td><td>882</td><td>-25</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24024'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/16.html'>Nilusha Hemachandra</a></td><td>1081</td><td>L</td><td>335</td><td>368</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>L</td><td>316</td><td>371</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2120.html'>Barry Harridge</a></td><td>1849</td><td>L</td><td>331</td><td>417</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>485</td><td>347</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>L</td><td>239</td><td>387</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4531.html'>Grant Breadsell</a></td><td>1312</td><td>L</td><td>285</td><td>398</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>410</td><td>277</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>W</td><td>435</td><td>423</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>L</td><td>344</td><td>467</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23979'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23979'>+</button></td><td>42</td><td>43</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>3</td><td>6</td><td>0</td><td>-385</td><td>573</td><td>699</td><td>126</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23979'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>L</td><td>271</td><td>330</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1669.html'>Khoo Beng Way</a></td><td>1214</td><td>L</td><td>242</td><td>460</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2203.html'>Michael Wong</a></td><td>1415</td><td>L</td><td>347</td><td>479</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>W</td><td>336</td><td>285</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>L</td><td>319</td><td>412</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>447</td><td>213</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>L</td><td>286</td><td>418</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>417</td><td>295</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2532.html'>Samitha Amarasinghe</a></td><td>1538</td><td>L</td><td>274</td><td>432</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23990'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23990'>+</button></td><td>43</td><td>42</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>2</td><td>7</td><td>0</td><td>-443</td><td>610</td><td>655</td><td>45</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23990'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>W</td><td>428</td><td>333</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1660</td><td>L</td><td>241</td><td>530</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>281</td><td>370</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>L</td><td>363</td><td>370</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3101.html'>Jonasil Kotico</a></td><td>1189</td><td>L</td><td>323</td><td>353</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>326</td><td>296</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1553</td><td>L</td><td>267</td><td>373</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>L</td><td>318</td><td>321</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>L</td><td>277</td><td>321</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_24002'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_24002'>+</button></td><td>44</td><td>40</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>2</td><td>7</td><td>0</td><td>-727</td><td>770</td><td>650</td><td>-120</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_24002'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/305.html'>Adele Tan</a></td><td>1203</td><td>L</td><td>229</td><td>426</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4532.html'>Ivan Imperial</a></td><td>1146</td><td>L</td><td>308</td><td>374</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1474</td><td>L</td><td>299</td><td>474</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>L</td><td>308</td><td>368</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>W</td><td>394</td><td>291</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4520.html'>Loh Vern Sern</a></td><td>1459</td><td>L</td><td>247</td><td>471</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>L</td><td>323</td><td>324</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4541.html'>Lindy Lawson</a></td><td>491</td><td>L</td><td>282</td><td>433</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>321</td><td>277</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_1_23999'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23999'>+</button></td><td>45</td><td>46</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>2</td><td>7</td><td>0</td><td>-1457</td><td>350</td><td>435</td><td>85</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23999'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/836.html'>Ong Suanne</a></td><td>1749</td><td>L</td><td>167</td><td>619</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>476</td><td>L</td><td>285</td><td>328</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1278.html'>Kaveri Raviraj</a></td><td>912</td><td>L</td><td>233</td><td>388</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>W</td><td>368</td><td>308</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4540.html'>Jean Balmer</a></td><td>1268</td><td>L</td><td>214</td><td>494</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>L</td><td>213</td><td>447</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>L</td><td>277</td><td>410</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>W</td><td>321</td><td>318</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4530.html'>David Breadsell</a></td><td>1147</td><td>L</td><td>181</td><td>404</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_1_23978'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_23978'>+</button></td><td>46</td><td>45</td><td><a href='/aardvark/html/players/4536.html'>Vimalan Raviraj</a></td><td>1</td><td>8</td><td>0</td><td>-1105</td><td>476</td><td>407</td><td>-69</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_23978'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/800.html'>Lahiru Elvitigala</a></td><td>1045</td><td>L</td><td>215</td><td>529</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4533.html'>Joseph Kotico</a></td><td>350</td><td>W</td><td>328</td><td>285</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4387.html'>Jessica Bacani</a></td><td>1313</td><td>L</td><td>267</td><td>455</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>907</td><td>L</td><td>347</td><td>485</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4382.html'>Chaliza Gutlay</a></td><td>770</td><td>L</td><td>291</td><td>394</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4381.html'>Aldwin Gonzales</a></td><td>610</td><td>L</td><td>296</td><td>326</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4193.html'>Louie De Guzman</a></td><td>1596</td><td>L</td><td>281</td><td>416</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4535.html'>Nishi Shah</a></td><td>573</td><td>L</td><td>295</td><td>417</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/14.html'>Nadeesha Hemachandra</a></td><td>659</td><td>L</td><td>340</td><td>458</td></tr>
+</table></div></td></tr>
+
+</table>
+</div>
+
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
+
+    </div>
+  </div>
   </body>
 </html>
+

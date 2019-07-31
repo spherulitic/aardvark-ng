@@ -14,7 +14,7 @@ use Data::Dumper;
 use lib "./modules";
 use Constants;
 
-require "./scripts/get_tournament_data_filenames.pl";
+require "./scripts/utils.pl";
 
 unless (caller)
 {

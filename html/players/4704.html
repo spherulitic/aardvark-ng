@@ -1,40 +1,328 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
-  </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Name        </th><th>Country</th> <th>Rating         </th><th>Lifetime Record</th></tr>
-        <tr><td>Anuradha Chagti</td><td>IND</td><td>321</td><td>8 - 15</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Date</th><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>2018-09-03</td><td>56</td><td>Anuradha Chagti</td><td>8</td><td>15</td><td>1</td><td>-1184</td><td>321</td><td>321</td></tr>
-      </table>
+    
+    <title>Anuradha Chagti</title>
+    
+    
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <table>
-        <tr><th>#</th><th>Opponent</th><th>Played</th><th>Wins</th><th>Win Percentage</th></tr>
-        <tr><td>1</td><td>Sheela Iyer</td><td>3</td><td>3</td><td>1.0000</td></tr>
-        <tr><td>2</td><td>Mudit G</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>3</td><td>Somnath Pai</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>4</td><td>Nischal Anand</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>5</td><td>Anupan Sharan</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>6</td><td>Ritika Jain</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>7</td><td>Ekansh Arora</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>8</td><td>Pallavi Navin</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>9</td><td>Vandana Grover</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>10</td><td>Akshay Hiremath</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>11</td><td>Vimisha Patel</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>12</td><td>Arvind Lath</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>13</td><td>Mangala Bhandarkar</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>14</td><td>Shankar Prasad</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>15</td><td>Neel Navin</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>16</td><td>Vidya Goggi</td><td>1</td><td>0</td><td>0.0000</td></tr>
-      </table>
+
+
+    
+    
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+      
+    <script >
+
+      
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+    
+      function show_tournament_entry(id)
+      {
+        showContent(event, 'results');
+        $('#' + id).collapse('show');
+      } 
+
+      function show_head_to_head_entry(id)
+      {
+        showContent(event, 'head_to_head');
+        $('#' + id).collapse('show');
+      }
+
+      window.onload = function() { document.getElementById('button_results').click();}
+    </script>
+  </head>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <div class="row">
+          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+            <h2>Anuradha Chagti</h2>
+            <div>
+              <IMG SRC="../../flags/IND.png" alt="IND">
+              <p>IND</p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4" style="padding-top:20px;">
+            <img src='../../icons/noimage.gif' title='Anuradha Chagti' alt='Anuradha Chagti'>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <b>Games Played:</b> 23<br>
+              <b>Wins:</b> 8 (34.78%)<br>
+              <b>Losses: </b>15 (65.22%)<br>
+              <b>Draws:</b> 0 (0.00%)<br><br>
+              <b>Average Score:</b> 306.70<br>
+              <b>Average Against:</b> 360.35<br><br>
+              <b>300 Games:</b> 13 (56.52%)<br>
+              <b>400 Games:</b> 1 (4.35%)<br>
+              <b>500 Games:</b> 0 (0.00%)<br>
+              <b>600 Games:</b> 0 (0.00%)<br><br>
+              
+              
+              <b>High Game:</b> <a href="#entry_0_25787" onclick="show_tournament_entry('entry_0_25787')">417</a> (<a href="#entry_2_4712" onclick="show_head_to_head_entry('entry_2_4712')">vs</a> <a href="/aardvark/html/players/4712.html">Sheela Iyer</a>)<br><b>Low Game:</b> <a href="#entry_0_25787" onclick="show_tournament_entry('entry_0_25787')">201</a> (<a href="#entry_2_1360" onclick="show_head_to_head_entry('entry_2_1360')">vs</a> <a href="/aardvark/html/players/1360.html">Shankar Prasad</a>)<br><b>Biggest Win:</b> <a href="#entry_0_25787" onclick="show_tournament_entry('entry_0_25787')">146</a> (<a href="#entry_2_4712" onclick="show_head_to_head_entry('entry_2_4712')">vs</a> <a href="/aardvark/html/players/4712.html">Sheela Iyer</a>)<br><b>Biggest Loss:</b> <a href="#entry_0_25787" onclick="show_tournament_entry('entry_0_25787')">344</a> (<a href="#entry_2_1360" onclick="show_head_to_head_entry('entry_2_1360')">vs</a> <a href="/aardvark/html/players/1360.html">Shankar Prasad</a>)<br><b>High Loss:</b> <a href="#entry_0_25787" onclick="show_tournament_entry('entry_0_25787')">351</a> (<a href="#entry_2_4702" onclick="show_head_to_head_entry('entry_2_4702')">vs</a> <a href="/aardvark/html/players/4702.html">Vandana Grover</a>)<br><b>Low Win:</b> <a href="#entry_0_25787" onclick="show_tournament_entry('entry_0_25787')">299</a> (<a href="#entry_2_4711" onclick="show_head_to_head_entry('entry_2_4711')">vs</a> <a href="/aardvark/html/players/4711.html">Pallavi Navin</a>)<br>          
+            </div>
+            <div>
+              <br><div class='tab'>
+<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+            </div>   
+            <div id="results" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_0_25787'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25787'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>8</td><td>15</td><td>1</td><td>-1184</td><td>56</td><td>321</td><td>321</td><td>0</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_25787'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4702.html'>Vandana Grover</a></td><td>844</td><td>L</td><td>351</td><td>372</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4708.html'>Mudit G</a></td><td>300</td><td>W</td><td>347</td><td>276</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/82.html'>Mangala Bhandarkar</a></td><td>1239</td><td>L</td><td>266</td><td>381</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td>817</td><td>L</td><td>296</td><td>401</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4714.html'>Vimisha Patel</a></td><td>391</td><td>L</td><td>300</td><td>375</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4703.html'>Anupan Sharan</a></td><td>569</td><td>L</td><td>258</td><td>382</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1360.html'>Shankar Prasad</a></td><td>861</td><td>L</td><td>201</td><td>545</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4713.html'>Somnath Pai</a></td><td>478</td><td>W</td><td>342</td><td>267</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4712.html'>Sheela Iyer</a></td><td>366</td><td>W</td><td>417</td><td>271</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4708.html'>Mudit G</a></td><td>300</td><td>L</td><td>307</td><td>310</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4710.html'>Nischal Anand</a></td><td>386</td><td>W</td><td>364</td><td>337</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3369.html'>Akshay Hiremath</a></td><td>593</td><td>L</td><td>267</td><td>425</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2888.html'>Ekansh Arora</a></td><td>655</td><td>L</td><td>243</td><td>390</td></tr>
+        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/4711.html'>Pallavi Navin</a></td><td>300</td><td>W</td><td>299</td><td>289</td></tr>
+        <tr  class='roweven'  ><td>16</td><td><a href='/aardvark/html/players/4709.html'>Neel Navin</a></td><td>300</td><td>W</td><td>318</td><td>305</td></tr>
+        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/4703.html'>Anupan Sharan</a></td><td>569</td><td>L</td><td>291</td><td>435</td></tr>
+        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/3373.html'>Ritika Jain</a></td><td>373</td><td>L</td><td>342</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td>19</td><td><a href='/aardvark/html/players/4712.html'>Sheela Iyer</a></td><td>366</td><td>W</td><td>332</td><td>288</td></tr>
+        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/1351.html'>Arvind Lath</a></td><td>944</td><td>L</td><td>278</td><td>477</td></tr>
+        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/4713.html'>Somnath Pai</a></td><td>478</td><td>L</td><td>311</td><td>336</td></tr>
+        <tr  class='roweven'  ><td>22</td><td><a href='/aardvark/html/players/4712.html'>Sheela Iyer</a></td><td>366</td><td>W</td><td>319</td><td>305</td></tr>
+        <tr  class='rowodd'  ><td>23</td><td><a href='/aardvark/html/players/4710.html'>Nischal Anand</a></td><td>386</td><td>L</td><td>319</td><td>386</td></tr>
+        <tr  class='roweven'  ><td>24</td><td><a href='/aardvark/html/players/3373.html'>Ritika Jain</a></td><td>373</td><td>L</td><td>286</td><td>389</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>
+            <div id="head_to_head" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4712'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4712'>+</button></td><td>1</td><td><a href='/aardvark/html/players/4712.html'>Sheela Iyer</a></td><td>366</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1.00</td><td>356.00</td><td>288.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4712'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>9</td><td>W</td><td>321</td><td>366</td><td>417</td><td>271</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>19</td><td>W</td><td>321</td><td>366</td><td>332</td><td>288</td></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>22</td><td>W</td><td>321</td><td>366</td><td>319</td><td>305</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_4710'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4710'>+</button></td><td>2</td><td><a href='/aardvark/html/players/4710.html'>Nischal Anand</a></td><td>386</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>341.50</td><td>361.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4710'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>11</td><td>W</td><td>321</td><td>386</td><td>364</td><td>337</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>23</td><td>L</td><td>321</td><td>386</td><td>319</td><td>386</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4708'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4708'>+</button></td><td>3</td><td><a href='/aardvark/html/players/4708.html'>Mudit G</a></td><td>300</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>327.00</td><td>293.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4708'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>2</td><td>W</td><td>321</td><td>300</td><td>347</td><td>276</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>10</td><td>L</td><td>321</td><td>300</td><td>307</td><td>310</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_3373'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3373'>+</button></td><td>4</td><td><a href='/aardvark/html/players/3373.html'>Ritika Jain</a></td><td>423</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>314.00</td><td>367.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3373'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>18</td><td>L</td><td>321</td><td>373</td><td>342</td><td>346</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>24</td><td>L</td><td>321</td><td>373</td><td>286</td><td>389</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4713'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4713'>+</button></td><td>5</td><td><a href='/aardvark/html/players/4713.html'>Somnath Pai</a></td><td>478</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>326.50</td><td>301.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4713'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>8</td><td>W</td><td>321</td><td>478</td><td>342</td><td>267</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>21</td><td>L</td><td>321</td><td>478</td><td>311</td><td>336</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_4703'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4703'>+</button></td><td>6</td><td><a href='/aardvark/html/players/4703.html'>Anupan Sharan</a></td><td>569</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>274.50</td><td>408.50</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4703'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>6</td><td>L</td><td>321</td><td>569</td><td>258</td><td>382</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>17</td><td>L</td><td>321</td><td>569</td><td>291</td><td>435</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2888'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2888'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2888.html'>Ekansh Arora</a></td><td>762</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>243.00</td><td>390.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2888'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>13</td><td>L</td><td>321</td><td>655</td><td>243</td><td>390</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_3369'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3369'>+</button></td><td>8</td><td><a href='/aardvark/html/players/3369.html'>Akshay Hiremath</a></td><td>599</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>267.00</td><td>425.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3369'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>12</td><td>L</td><td>321</td><td>593</td><td>267</td><td>425</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4711'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4711'>+</button></td><td>9</td><td><a href='/aardvark/html/players/4711.html'>Pallavi Navin</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>299.00</td><td>289.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4711'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>15</td><td>W</td><td>321</td><td>300</td><td>299</td><td>289</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1348'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td>844</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>296.00</td><td>401.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1348'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>4</td><td>L</td><td>321</td><td>817</td><td>296</td><td>401</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4709'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4709'>+</button></td><td>11</td><td><a href='/aardvark/html/players/4709.html'>Neel Navin</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>318.00</td><td>305.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4709'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>16</td><td>W</td><td>321</td><td>300</td><td>318</td><td>305</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_82'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_82'>+</button></td><td>12</td><td><a href='/aardvark/html/players/82.html'>Mangala Bhandarkar</a></td><td>1320</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>266.00</td><td>381.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_82'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>3</td><td>L</td><td>321</td><td>1239</td><td>266</td><td>381</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1360'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1360'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1360.html'>Shankar Prasad</a></td><td>875</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>201.00</td><td>545.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1360'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>7</td><td>L</td><td>321</td><td>861</td><td>201</td><td>545</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_1351'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1351'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1351.html'>Arvind Lath</a></td><td>859</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>278.00</td><td>477.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1351'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>20</td><td>L</td><td>321</td><td>944</td><td>278</td><td>477</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4714'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4714'>+</button></td><td>15</td><td><a href='/aardvark/html/players/4714.html'>Vimisha Patel</a></td><td>391</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>375.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4714'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>5</td><td>L</td><td>321</td><td>391</td><td>300</td><td>375</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_4702'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4702'>+</button></td><td>16</td><td><a href='/aardvark/html/players/4702.html'>Vandana Grover</a></td><td>765</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>351.00</td><td>372.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4702'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/664.html'>Gail Cup, Delhi</a></td><td>2018-09-03</td><td>1</td><td>L</td><td>321</td><td>844</td><td>351</td><td>372</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
 
     </div>
   </body>
 </html>
+

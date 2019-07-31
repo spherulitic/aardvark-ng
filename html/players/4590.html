@@ -1,39 +1,314 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
-  </head>
-  <body>
-    <div>
-      <table>
-        <tr><th>Name        </th><th>Country</th> <th>Rating         </th><th>Lifetime Record</th></tr>
-        <tr><td>Jim Neuberger</td><td></td><td>1888</td><td>7 - 11</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Date</th><th>Place</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Old Rating</th><th>New Rating</th></tr>
-        <tr><td>1993-08-31</td><td>40</td><td>Jim Neuberger</td><td>7</td><td>8</td><td>0</td><td>-50</td><td>1900</td><td>1888</td></tr>
-        <tr><td>1993-08-31</td><td>55</td><td>Jim Neuberger</td><td>0</td><td>3</td><td>0</td><td>-150</td><td>1888</td><td>1851</td></tr>
-      </table>
+    
+    <title>Jim Neuberger</title>
+    
+    
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <table>
-        <tr><th>#</th><th>Opponent</th><th>Played</th><th>Wins</th><th>Win Percentage</th></tr>
-        <tr><td>1</td><td>John Catto</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>2</td><td>Joe Edley</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>3</td><td>Karl Khoshnaw</td><td>2</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>4</td><td>Matt Graham</td><td>2</td><td>1</td><td>0.5000</td></tr>
-        <tr><td>5</td><td>Winnie Yeh</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>6</td><td>Mark Nyman</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>7</td><td>Lynne Butler</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>8</td><td>Darrel Day</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>9</td><td>Gitonga Nderitu</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>10</td><td>Onani Magwanga</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>11</td><td>John Holgate</td><td>1</td><td>1</td><td>1.0000</td></tr>
-        <tr><td>12</td><td>Joel Sherman</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>13</td><td>Joan Rosenthal</td><td>1</td><td>0</td><td>0.0000</td></tr>
-        <tr><td>14</td><td>M Warusawitharana</td><td>1</td><td>1</td><td>1.0000</td></tr>
-      </table>
+
+
+    
+    
+<style >
+
+	.navbar {margin-bottom: 0px;}
+	.federation-row { padding-top:10px;
+					  padding-bottom:10px;
+					 
+	}
+	.navbar-nav>li>a {
+		color: black ;
+	}
+	td
+	{
+		padding: 0px;
+	}
+
+</style>  
+
+      
+    <script >
+
+      
+      $(document).ready(function () {
+      
+        $('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        $('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+
+    
+      function show_tournament_entry(id)
+      {
+        showContent(event, 'results');
+        $('#' + id).collapse('show');
+      } 
+
+      function show_head_to_head_entry(id)
+      {
+        showContent(event, 'head_to_head');
+        $('#' + id).collapse('show');
+      }
+
+      window.onload = function() { document.getElementById('button_results').click();}
+    </script>
+  </head>
+  
+  <body id='override'>
+        <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+
+    <div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   		
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <div class="row">
+          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+            <h2>Jim Neuberger</h2>
+            <div>
+              <IMG SRC="../../flags/.png" alt="">
+              <p></p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4" style="padding-top:20px;">
+            <img src='../../icons/noimage.gif' title='Jim Neuberger' alt='Jim Neuberger'>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <b>Games Played:</b> 18<br>
+              <b>Wins:</b> 7 (38.89%)<br>
+              <b>Losses: </b>11 (61.11%)<br>
+              <b>Draws:</b> 0 (0.00%)<br><br>
+              <b>Average Score:</b> 319.44<br>
+              <b>Average Against:</b> 330.56<br><br>
+              <b>300 Games:</b> 18 (100.00%)<br>
+              <b>400 Games:</b> 0 (0.00%)<br>
+              <b>500 Games:</b> 0 (0.00%)<br>
+              <b>600 Games:</b> 0 (0.00%)<br><br>
+              
+              
+              <b>High Game:</b> <a href="#entry_0_25067" onclick="show_tournament_entry('entry_0_25067')">350</a> (<a href="#entry_2_1007" onclick="show_head_to_head_entry('entry_2_1007')">vs</a> <a href="/aardvark/html/players/1007.html">Winnie Yeh</a>)<br><b>Low Game:</b> <a href="#entry_0_25097" onclick="show_tournament_entry('entry_0_25097')">300</a> (<a href="#entry_2_4591" onclick="show_head_to_head_entry('entry_2_4591')">vs</a> <a href="/aardvark/html/players/4591.html">John Catto</a>)<br><b>Biggest Win:</b> <a href="#entry_0_25067" onclick="show_tournament_entry('entry_0_25067')">50</a> (<a href="#entry_2_1007" onclick="show_head_to_head_entry('entry_2_1007')">vs</a> <a href="/aardvark/html/players/1007.html">Winnie Yeh</a>)<br><b>Biggest Loss:</b> <a href="#entry_0_25097" onclick="show_tournament_entry('entry_0_25097')">50</a> (<a href="#entry_2_4591" onclick="show_head_to_head_entry('entry_2_4591')">vs</a> <a href="/aardvark/html/players/4591.html">John Catto</a>)<br><b>High Loss:</b> <a href="#entry_0_25097" onclick="show_tournament_entry('entry_0_25097')">300</a> (<a href="#entry_2_4591" onclick="show_head_to_head_entry('entry_2_4591')">vs</a> <a href="/aardvark/html/players/4591.html">John Catto</a>)<br><b>Low Win:</b> <a href="#entry_0_25067" onclick="show_tournament_entry('entry_0_25067')">350</a> (<a href="#entry_2_1007" onclick="show_head_to_head_entry('entry_2_1007')">vs</a> <a href="/aardvark/html/players/1007.html">Winnie Yeh</a>)<br>          
+            </div>
+            <div>
+              <br><div class='tab'>
+<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+            </div>   
+            <div id="results" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_0_25097'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25097'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/650.html'>2nd World Championships [Last rounds]</a></td><td>1993-08-31</td><td>0</td><td>3</td><td>0</td><td>-150</td><td>55</td><td>1888</td><td>1851</td><td>-37</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_25097'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4591.html'>John Catto</a></td><td>1888</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/803.html'>Karl Khoshnaw</a></td><td>1864</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1864</td><td>L</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_0_25067'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25067'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>7</td><td>8</td><td>0</td><td>-50</td><td>40</td><td>1900</td><td>1888</td><td>-12</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_25067'><table class='table'>
+        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
+        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/803.html'>Karl Khoshnaw</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1007.html'>Winnie Yeh</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2211.html'>Lynne Butler</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/330.html'>Mark Nyman</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1810.html'>Onani Magwanga</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/938.html'>Joe Edley</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/610.html'>Gitonga Nderitu</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/949.html'>Matt Graham</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4584.html'>Darrel Day</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/951.html'>Joel Sherman</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4591.html'>John Catto</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/949.html'>Matt Graham</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/984.html'>M Warusawitharana</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td>1900</td><td>W</td><td>350</td><td>300</td></tr>
+        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/938.html'>Joe Edley</a></td><td>1900</td><td>L</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>
+            <div id="head_to_head" class="tabcontent">
+              <table class='table'>
+        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_949'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_949'>+</button></td><td>1</td><td><a href='/aardvark/html/players/949.html'>Matt Graham</a></td><td>1969</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>325.00</td><td>325.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_949'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>8</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>12</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_938'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_938'>+</button></td><td>2</td><td><a href='/aardvark/html/players/938.html'>Joe Edley</a></td><td>2017</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_938'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>6</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>15</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_4591'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4591'>+</button></td><td>3</td><td><a href='/aardvark/html/players/4591.html'>John Catto</a></td><td>1888</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4591'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/650.html'>2nd World Championships [Last rounds]</a></td><td>1993-08-31</td><td>1</td><td>L</td><td>1888</td><td>1888</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>11</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_803'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_803'>+</button></td><td>4</td><td><a href='/aardvark/html/players/803.html'>Karl Khoshnaw</a></td><td>1869</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_803'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>1</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/650.html'>2nd World Championships [Last rounds]</a></td><td>1993-08-31</td><td>2</td><td>L</td><td>1888</td><td>1864</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1007'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1007'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1007.html'>Winnie Yeh</a></td><td>1792</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1007'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>2</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_951'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_951'>+</button></td><td>6</td><td><a href='/aardvark/html/players/951.html'>Joel Sherman</a></td><td>2009</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_951'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>10</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_330'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_330'>+</button></td><td>7</td><td><a href='/aardvark/html/players/330.html'>Mark Nyman</a></td><td>1999</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_330'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>4</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_4584'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4584'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4584.html'>Darrel Day</a></td><td>1936</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4584'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>9</td><td>L</td><td>1900</td><td>1900</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_1810'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1810'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1810.html'>Onani Magwanga</a></td><td>1750</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1810'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>5</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_610'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_610'>+</button></td><td>10</td><td><a href='/aardvark/html/players/610.html'>Gitonga Nderitu</a></td><td>1812</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_610'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>7</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_894'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_894'>+</button></td><td>11</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1855</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_894'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/650.html'>2nd World Championships [Last rounds]</a></td><td>1993-08-31</td><td>3</td><td>L</td><td>1888</td><td>1864</td><td>300</td><td>350</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_984'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_984'>+</button></td><td>12</td><td><a href='/aardvark/html/players/984.html'>M Warusawitharana</a></td><td>1917</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_984'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>13</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='roweven'  ><td><button type='button' id='button_2_2211'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2211'>+</button></td><td>13</td><td><a href='/aardvark/html/players/2211.html'>Lynne Butler</a></td><td>1603</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2211'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>3</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+</table></div></td></tr>
+        <tr  class='rowodd'  ><td><button type='button' id='button_2_948'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_948'>+</button></td><td>14</td><td><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td>1715</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_948'><table class='table'>
+        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
+        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/649.html'>2nd World Championships</a></td><td>1993-08-31</td><td>14</td><td>W</td><td>1900</td><td>1900</td><td>350</td><td>300</td></tr>
+</table></div></td></tr>
+
+</table>
+
+            </div>        
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
 
     </div>
   </body>
 </html>
+

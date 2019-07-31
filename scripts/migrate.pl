@@ -13,19 +13,14 @@ use lib './modules';
 use Constants;
 
 require './scripts/correct_and_verify.pl';
-require './scripts/get_tournament_data_filenames.pl';
 require './scripts/update_html.pl';
+require './scripts/utils.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
 my $sta_file_extension = Constants::STA_FILE_EXTENSION;
 
 my $provisional_games_max = Constants::PROVISIONAL_GAMES_MAX;
-
-my $database_name = Constants::DATABASE_NAME;
-my $host_name     = Constants::DATABASE_HOST_NAME;
-my $user_name     = Constants::DATABASE_USER_NAME;
-my $password      = Constants::DATABASE_PASSWORD;
 
 my $tables = Constants::TABLES;
 
@@ -81,9 +76,7 @@ sub main
   pod2usage(1) if $help;  
   
 
-  my $dbh = initialize_database($database_name, $host_name, $user_name,
-                                $password, $tables, $creation_order,
-                                $add_tournament);
+  my $dbh = initialize_database($tables, $creation_order, $add_tournament);
   
   if ($initialize){return;}
   
@@ -108,7 +101,6 @@ sub main
   populate_deceased_players_hash();
 
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
-
 
   if ($create_html)
   {
@@ -190,11 +182,6 @@ sub convert_name
 
 sub initialize_database
 {
-  my $database_name = shift;
-  my $host_name     = shift;
-  my $user_name     = shift;
-  my $password      = shift;
-
   my $tables_ref         = shift;
   my $creation_order_ref = shift;
 
@@ -205,10 +192,8 @@ sub initialize_database
   my @creation_order = @{$creation_order_ref};
 
   # Connect to the database
-  my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         $user_name, $password,
-                         {'RaiseError' => 1});
-  
+  my $dbh = connect_to_database();
+ 
 
   # If a tournament is being added, don't recreate each table
   if (!$add_tournament)
@@ -290,14 +275,17 @@ sub load_tournament_files
 
 
     # Read the .tou file for the date only
-    my $date;
+    my $date = "";
+    my $tournament_name = "";
     open(my $tou_read, "<", $tou_file) or die "Cannot open .tou file $tou_file: $!";
     my $first_line = <$tou_read>;
     close $tou_read;
     chomp $first_line;
-    if ($first_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) .*$/)
+    $first_line =~ s/\r//g;
+    if ($first_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
     {
       $date = $3 . $2 . $1;
+      $tournament_name = $4;
     }
     else
     {
@@ -329,6 +317,7 @@ sub load_tournament_files
     {
       "start_date" => $date, # This is changed later
       "end_date"   => $date, # This is changed later
+      "name"       => $tournament_name, 
       # "td"         => "director of tournament",
     };
     my @divisions = ();
@@ -527,19 +516,20 @@ sub load_tournament_files
       # Still need spread and position
       $tournament_results->{$player_name} = 
       {
-        "player_id"      => $player_id,
-        "player_name"    => $player_name,
-        "division_id"    => -1, # This will be replaced with the actual id later
+        "player_id"       => $player_id,
+        "player_name"     => $player_name,
+        "division_id"     => -1, # This will be replaced with the actual id later
         # Calculations done later because byes are annoying
-        "wins"           => 0,
-        "losses"         => 0,
-        "byes"           => 0,
+        "wins"            => 0,
+        "losses"          => 0,
+        "byes"            => 0,
         # "prize_money"    => 0,
         # "prize_currency" => "AAA",
         # "prize_ech_rate" => 1,
-        "start_rating"   => $start_rating,
-        "end_rating"     => $end_rating,
-        "date"           => $date,
+        "start_rating"    => $start_rating,
+        "end_rating"      => $end_rating,
+        "date"            => $date,
+        "tournament_name" => $tournament_name
       };
     }
 
@@ -674,19 +664,20 @@ sub load_tournament_files
           $player_name = $div_player_name;
           $tournament_results->{$player_name} = 
           {
-            "player_id"      => $player_names_to_ids->{$div_player_name},
-            "player_name"    => $player_name,
-            "division_id"    => -1, # This will be replaced with the actual id later
+            "player_id"       => $player_names_to_ids->{$div_player_name},
+            "player_name"     => $player_name,
+            "division_id"     => -1, # This will be replaced with the actual id later
             # Calculations done later because byes are annoying
-            "wins"           => 0,
-            "losses"         => 0,
-            "byes"           => 0,
+            "wins"            => 0,
+            "losses"          => 0,
+            "byes"            => 0,
             # "prize_money"    => 0,
             # "prize_currency" => "AAA",
             # "prize_ech_rate" => 1,
-            "start_rating"   => $tournament_results->{$og_player_name}->{'start_rating'},
-            "end_rating"     => $tournament_results->{$og_player_name}->{'end_rating'},
-            "date"           => $date
+            "start_rating"    => $tournament_results->{$og_player_name}->{'start_rating'},
+            "end_rating"      => $tournament_results->{$og_player_name}->{'end_rating'},
+            "date"            => $date,
+            "tournament_name" => $tournament_name
           };
         }
  
