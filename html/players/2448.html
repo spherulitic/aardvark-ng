@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Muhd Fari Husada</h2>
             <div>
               <IMG SRC="../../flags/IDN.png" alt="IDN">
-              <p>IDN</p>
+              <p><a href='/aardvark/html/rankings/IDN.html'>Indonesia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 713<br>
               <b>Games Played:</b> 14<br>
               <b>Wins:</b> 3 (21.43%)<br>
               <b>Losses: </b>11 (78.57%)<br>
@@ -183,97 +184,97 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_7372'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7372'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>3</td><td>11</td><td>2</td><td>-835</td><td>38</td><td>713</td><td>713</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_7372'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7372'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >3</td><td   >11</td><td   >2</td><td   >-835</td><td   >38</td><td   >713</td><td   >713</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_7372'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td>1307</td><td>L</td><td>372</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1341.html'>Leon Tan Zheng Han</a></td><td>1130</td><td>L</td><td>361</td><td>494</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1695.html'>Tan Mun Ri</a></td><td>1402</td><td>L</td><td>366</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>961</td><td>L</td><td>263</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1723.html'>Sharon Chia</a></td><td>686</td><td>W</td><td>419</td><td>306</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/387.html'>Arul Inthirarajah</a></td><td>1425</td><td>L</td><td>335</td><td>416</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1698.html'>Andri Prasetyo</a></td><td>802</td><td>W</td><td>449</td><td>314</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/358.html'>Goh Jiang Pern</a></td><td>1815</td><td>L</td><td>320</td><td>508</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/1656.html'>Yi En Gan</a></td><td>1822</td><td>L</td><td>208</td><td>604</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/1662.html'>Ananto Widodo</a></td><td>645</td><td>L</td><td>408</td><td>411</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/979.html'>Theng Wai Mun</a></td><td>1371</td><td>L</td><td>319</td><td>387</td></tr>
-        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/1662.html'>Ananto Widodo</a></td><td>645</td><td>W</td><td>376</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/1394.html'>Nicholas Hong</a></td><td>1124</td><td>L</td><td>345</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/1723.html'>Sharon Chia</a></td><td>686</td><td>L</td><td>361</td><td>379</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td   >1307</td><td   >L</td><td   >372</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1341.html'>Leon Tan Zheng Han</a></td><td   >1130</td><td   >L</td><td   >361</td><td   >494</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1695.html'>Tan Mun Ri</a></td><td   >1402</td><td   >L</td><td   >366</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td   >961</td><td   >L</td><td   >263</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1723.html'>Sharon Chia</a></td><td   >686</td><td   >W</td><td   >419</td><td   >306</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/387.html'>Arul Inthirarajah</a></td><td   >1425</td><td   >L</td><td   >335</td><td   >416</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1698.html'>Andri Prasetyo</a></td><td   >802</td><td   >W</td><td   >449</td><td   >314</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/358.html'>Goh Jiang Pern</a></td><td   >1815</td><td   >L</td><td   >320</td><td   >508</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/1656.html'>Yi En Gan</a></td><td   >1822</td><td   >L</td><td   >208</td><td   >604</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/1662.html'>Ananto Widodo</a></td><td   >645</td><td   >L</td><td   >408</td><td   >411</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/979.html'>Theng Wai Mun</a></td><td   >1371</td><td   >L</td><td   >319</td><td   >387</td></tr>
+        <tr  class='rowodd'  ><td   >13</td><td   ><a href='/aardvark/html/players/1662.html'>Ananto Widodo</a></td><td   >645</td><td   >W</td><td   >376</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >14</td><td   ><a href='/aardvark/html/players/1394.html'>Nicholas Hong</a></td><td   >1124</td><td   >L</td><td   >345</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >15</td><td   ><a href='/aardvark/html/players/1723.html'>Sharon Chia</a></td><td   >686</td><td   >L</td><td   >361</td><td   >379</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1723'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1723'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1723.html'>Sharon Chia</a></td><td>591</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>390.00</td><td>342.50</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1723'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1723'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/1723.html'>Sharon Chia</a></td><td   >591</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >390.00</td><td   >342.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1723'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>5</td><td>W</td><td>713</td><td>686</td><td>419</td><td>306</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>15</td><td>L</td><td>713</td><td>686</td><td>361</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >5</td><td   >W</td><td   >713</td><td   >686</td><td   >419</td><td   >306</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >15</td><td   >L</td><td   >713</td><td   >686</td><td   >361</td><td   >379</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1662'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1662'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1662.html'>Ananto Widodo</a></td><td>1045</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>392.00</td><td>383.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1662'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1662'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1662.html'>Ananto Widodo</a></td><td   >1045</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >392.00</td><td   >383.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1662'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>11</td><td>L</td><td>713</td><td>645</td><td>408</td><td>411</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>13</td><td>W</td><td>713</td><td>645</td><td>376</td><td>356</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >11</td><td   >L</td><td   >713</td><td   >645</td><td   >408</td><td   >411</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >13</td><td   >W</td><td   >713</td><td   >645</td><td   >376</td><td   >356</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1020'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1020'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1039</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>263.00</td><td>393.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1020'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1020'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td   >1039</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >263.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1020'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>4</td><td>L</td><td>713</td><td>961</td><td>263</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >4</td><td   >L</td><td   >713</td><td   >961</td><td   >263</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1377'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1377'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td>1513</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>372.00</td><td>439.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1377'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1377'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td   >1513</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >372.00</td><td   >439.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1377'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>1</td><td>L</td><td>713</td><td>1307</td><td>372</td><td>439</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >1</td><td   >L</td><td   >713</td><td   >1307</td><td   >372</td><td   >439</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1695'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1695'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1695.html'>Tan Mun Ri</a></td><td>1099</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>366.00</td><td>395.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1695'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1695'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1695.html'>Tan Mun Ri</a></td><td   >1099</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >366.00</td><td   >395.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1695'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>3</td><td>L</td><td>713</td><td>1402</td><td>366</td><td>395</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >3</td><td   >L</td><td   >713</td><td   >1402</td><td   >366</td><td   >395</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1394'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1394'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1394.html'>Nicholas Hong</a></td><td>1460</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>345.00</td><td>435.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1394'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1394'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1394.html'>Nicholas Hong</a></td><td   >1460</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >345.00</td><td   >435.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1394'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>14</td><td>L</td><td>713</td><td>1124</td><td>345</td><td>435</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >14</td><td   >L</td><td   >713</td><td   >1124</td><td   >345</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1341'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1341'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1341.html'>Leon Tan Zheng Han</a></td><td>1534</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>361.00</td><td>494.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1341'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1341'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1341.html'>Leon Tan Zheng Han</a></td><td   >1534</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >361.00</td><td   >494.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1341'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>2</td><td>L</td><td>713</td><td>1130</td><td>361</td><td>494</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >2</td><td   >L</td><td   >713</td><td   >1130</td><td   >361</td><td   >494</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_387'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_387'>+</button></td><td>8</td><td><a href='/aardvark/html/players/387.html'>Arul Inthirarajah</a></td><td>1290</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>335.00</td><td>416.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_387'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_387'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/387.html'>Arul Inthirarajah</a></td><td   >1290</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >335.00</td><td   >416.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_387'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>6</td><td>L</td><td>713</td><td>1425</td><td>335</td><td>416</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >6</td><td   >L</td><td   >713</td><td   >1425</td><td   >335</td><td   >416</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1656'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1656'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1656.html'>Yi En Gan</a></td><td>1652</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>208.00</td><td>604.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1656'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1656'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1656.html'>Yi En Gan</a></td><td   >1652</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >208.00</td><td   >604.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1656'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>10</td><td>L</td><td>713</td><td>1822</td><td>208</td><td>604</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >10</td><td   >L</td><td   >713</td><td   >1822</td><td   >208</td><td   >604</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1698'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1698'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1698.html'>Andri Prasetyo</a></td><td>822</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>449.00</td><td>314.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1698'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1698'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1698.html'>Andri Prasetyo</a></td><td   >822</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >449.00</td><td   >314.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1698'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>7</td><td>W</td><td>713</td><td>802</td><td>449</td><td>314</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >7</td><td   >W</td><td   >713</td><td   >802</td><td   >449</td><td   >314</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_358'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_358'>+</button></td><td>11</td><td><a href='/aardvark/html/players/358.html'>Goh Jiang Pern</a></td><td>1694</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>320.00</td><td>508.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_358'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_358'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/358.html'>Goh Jiang Pern</a></td><td   >1694</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >320.00</td><td   >508.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_358'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>8</td><td>L</td><td>713</td><td>1815</td><td>320</td><td>508</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >8</td><td   >L</td><td   >713</td><td   >1815</td><td   >320</td><td   >508</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_979'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_979'>+</button></td><td>12</td><td><a href='/aardvark/html/players/979.html'>Theng Wai Mun</a></td><td>1206</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>319.00</td><td>387.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_979'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_979'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/979.html'>Theng Wai Mun</a></td><td   >1206</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >319.00</td><td   >387.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_979'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td>2014-12-07</td><td>12</td><td>L</td><td>713</td><td>1371</td><td>319</td><td>387</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/187.html'>Singapore Open</a></td><td   >2014-12-07</td><td   >12</td><td   >L</td><td   >713</td><td   >1371</td><td   >319</td><td   >387</td></tr>
 </table></div></td></tr>
 
 </table>

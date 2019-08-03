@@ -16,7 +16,10 @@ use constant TOURNAMENT_HTML_DIR => 'tournaments';
 use constant RANKINGS_HTML_DIR   => 'rankings';
 use constant FULL_RANKINGS_NAME  => 'full_rankings';
 
-use constant PLAYER_SEARCH_DATA_FILENAME => 'player_search_data.html';
+use constant PLAYER_SEARCH_DATA_FILENAME      => 'player_search_data.html';
+use constant COUNTRY_SEARCH_DATA_FILENAME     => 'country_search_data.html';
+use constant FRONT_PAGE_RATINGS_DATA_FILENAME => 'front_page_ratings_data.html';
+use constant FRONT_PAGE_RATINGS_CUTOFF        => 10;
 
 use constant HTML_HEADER => "Content-type: text/html\n\n";
 
@@ -28,6 +31,8 @@ use constant HTML_ID_ENTRY_TAG         => 'entry';
 
 use constant HTML_PATH_TO_WORKING_DIR  => "../..";
 
+use constant NO_COUNTRY_FILENAME       => "CAN.png";
+
 use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
 use constant DEFAULT_SHORT_NAME_WORKING_DIR => "aardvark";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
@@ -36,10 +41,14 @@ use constant DEFAULT_FILE_REGEX             => '.tou';
 
 use constant DEFAULT_BACKUP_DIR             => "/home/jcastellano/aardvark-ng/backups/backup_original";
 
+use constant COUNTRY_FLAGS_DIR              => "flags";
+
 use constant DATABASE_NAME      => 'wespa';
 use constant DATABASE_HOST_NAME => 'localhost';
 use constant DATABASE_USER_NAME => 'wespa';
 use constant DATABASE_PASSWORD  => 'nigeltheking';
+
+use constant TEXT_FILES_BACKUP_PREFIX => 'tournament_files';
 
 use constant TOU_FILE_EXTENSION => '.tou';
 use constant STS_FILE_EXTENSION => '.STS';
@@ -63,6 +72,7 @@ use constant DUPLICATE_NAMES_FILE         => 'duplicate_names.log';
 use constant INCORRECT_NAME_MAPPINGS_FILE => 'incorrect_name_mappings.log';
 use constant INPUT_MERGE_FILE             => 'duplicates.txt';
 use constant DECEASED_PLAYERS             => 'removed_people.txt';
+
 
 use constant PROVISIONAL_GAMES_MAX      => 50;
 use constant CURRENT_GAMES_MIN          => 40;
@@ -141,22 +151,28 @@ use constant TABLES =>
                             "FOREIGN KEY (lexicon_id)  REFERENCES lexicons(id)"
                           ],
   Constants::TOURNAMENT_RESULTS_TABLE_NAME => [
-                            "id              INT NOT NULL AUTO_INCREMENT",
-                            "division_id     INT NOT NULL",
-                            "player_id       INT NOT NULL",
-                            "player_name     VARCHAR(255)",
-                            "position        INT",
-                            "wins            FLOAT",
-                            "losses          FLOAT",
-                            "byes            INT",
-                            "spread          INT",
-                            "prize_money     INT",
-                            "prize_currency  VARCHAR(255)",
-                            "prize_ech_rate  VARCHAR(255)",
-                            "start_rating    INT",
-                            "end_rating      INT",
-                            "date            DATE",
-                            "tournament_name VARCHAR(255)",
+                            "id                INT NOT NULL AUTO_INCREMENT",
+                            "division_id       INT NOT NULL",
+                            "player_id         INT NOT NULL",
+                            "player_name       VARCHAR(255)",
+                            "position          INT",
+                            "wins              FLOAT",
+                            "losses            FLOAT",
+                            "byes              INT",
+                            "spread            INT",
+                            "prize_money       INT",
+                            "prize_currency    VARCHAR(255)",
+                            "prize_ech_rate    VARCHAR(255)",
+                            "start_rating      INT",
+                            "end_rating        INT",
+                            "date              DATE",
+                            "tournament_name   VARCHAR(255)",
+
+                            "expected_wins     FLOAT",
+                            "old_world_rank    INT",
+                            "new_world_rank    INT",
+                            "old_national_rank INT",
+                            "new_national_rank INT",
 
                             "PRIMARY KEY (id)",
                             "FOREIGN KEY (division_id) REFERENCES divisions(id)",
@@ -465,11 +481,53 @@ use constant COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF =>
   'YUG' => 'Yugoslavia',
   'ZMB' => 'Zambia',
   'ZWE' => 'Zimbabwe',
+
+  # Not actually country codes but
+  # we wanted each country in the UK
+  # to be distinct
+
+  'SCO' => 'Scotland',
+  'ENG' => 'England',
+  'WAL' => 'Wales',
+  'NIR' => 'Northern Ireland'
 };
 
 use constant COUNTRY_TRIGRAPH_CONVERSION =>
 {
+  # IRE is incorrectly assumed to be Ireland
+  # in the old system. The country code for
+  # Ireland is IRL.
 
+  'IRE' => 'IRL',
+
+  # There are no codes for Wales, Scotland, 
+  # England, or Northern Ireland as they
+  # all share the code for the United Kingdom
+  # (GBR)
+  #
+  # Comment the following lines to treat
+  # each country of the United Kingdom
+  # distinctly in the HTML. Note that
+  # the codes for each country of the
+  # United Kingdom are made up by the developers
+  # and are not part of ISO 3166.
+
+  # 'NIR' => 'GBR',
+  # 'ENG' => 'GBR',
+  # 'SCO' => 'GBR',
+  # 'WAL' => 'GBR',
+
+
+  'KUW' => 'KWT',
+  'BAR' => 'BRB',
+  'ZIM' => 'ZWE',
+  'MLE' => 'MDV',
+  'SWI' => 'CHE',
+  'NIG' => 'NER',
+  'KYR' => 'KGZ',
+  'ROK' => 'KOR',
+  'MYM' => 'MMR',
+  'SRI' => 'LKA'
 };
 
 

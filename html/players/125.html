@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Kunchokwanit Natthan</h2>
             <div>
               <IMG SRC="../../flags/THA.png" alt="THA">
-              <p>THA</p>
+              <p><a href='/aardvark/html/rankings/THA.html'>Thailand</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 381<br>
               <b>Games Played:</b> 14<br>
               <b>Wins:</b> 4 (28.57%)<br>
               <b>Losses: </b>10 (71.43%)<br>
@@ -183,93 +184,93 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_120'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_120'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>4</td><td>10</td><td>1</td><td>-423</td><td>25</td><td>381</td><td>381</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_120'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_120'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >4</td><td   >10</td><td   >1</td><td   >-423</td><td   >25</td><td   >381</td><td   >381</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_120'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/123.html'>Krirkchai Sarsrisak</a></td><td>465</td><td>L</td><td>346</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/131.html'>Phatsakorn Panyawatc</a></td><td>1277</td><td>L</td><td>332</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/140.html'>Tsholofelo Modise</a></td><td>371</td><td>W</td><td>335</td><td>312</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td>386</td><td>W</td><td>323</td><td>271</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/129.html'>Natthapath Chanka</a></td><td>454</td><td>L</td><td>258</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/138.html'>Tawan Paepholsiri</a></td><td>1444</td><td>L</td><td>293</td><td>533</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td>1323</td><td>L</td><td>289</td><td>322</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/136.html'>Sittipan Phantong</a></td><td>905</td><td>L</td><td>366</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/137.html'>Somphong Phosai</a></td><td>923</td><td>L</td><td>310</td><td>449</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td>386</td><td>L</td><td>328</td><td>389</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td>300</td><td>W</td><td>419</td><td>325</td></tr>
-        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td>408</td><td>W</td><td>450</td><td>264</td></tr>
-        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td>408</td><td>L</td><td>289</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td>408</td><td>L</td><td>383</td><td>407</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/123.html'>Krirkchai Sarsrisak</a></td><td   >465</td><td   >L</td><td   >346</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/131.html'>Phatsakorn Panyawatc</a></td><td   >1277</td><td   >L</td><td   >332</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/140.html'>Tsholofelo Modise</a></td><td   >371</td><td   >W</td><td   >335</td><td   >312</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td   >386</td><td   >W</td><td   >323</td><td   >271</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/129.html'>Natthapath Chanka</a></td><td   >454</td><td   >L</td><td   >258</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/138.html'>Tawan Paepholsiri</a></td><td   >1444</td><td   >L</td><td   >293</td><td   >533</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td   >1323</td><td   >L</td><td   >289</td><td   >322</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/136.html'>Sittipan Phantong</a></td><td   >905</td><td   >L</td><td   >366</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/137.html'>Somphong Phosai</a></td><td   >923</td><td   >L</td><td   >310</td><td   >449</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td   >386</td><td   >L</td><td   >328</td><td   >389</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td   >300</td><td   >W</td><td   >419</td><td   >325</td></tr>
+        <tr  class='rowodd'  ><td   >13</td><td   ><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td   >408</td><td   >W</td><td   >450</td><td   >264</td></tr>
+        <tr  class='roweven'  ><td   >14</td><td   ><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td   >408</td><td   >L</td><td   >289</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >15</td><td   ><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td   >408</td><td   >L</td><td   >383</td><td   >407</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_124'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_124'>+</button></td><td>1</td><td><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td>408</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>374.00</td><td>329.67</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_124'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_124'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/124.html'>Kunchokwanit Kittina</a></td><td   >408</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >374.00</td><td   >329.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_124'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>13</td><td>W</td><td>381</td><td>408</td><td>450</td><td>264</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>14</td><td>L</td><td>381</td><td>408</td><td>289</td><td>318</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>15</td><td>L</td><td>381</td><td>408</td><td>383</td><td>407</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >13</td><td   >W</td><td   >381</td><td   >408</td><td   >450</td><td   >264</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >14</td><td   >L</td><td   >381</td><td   >408</td><td   >289</td><td   >318</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >15</td><td   >L</td><td   >381</td><td   >408</td><td   >383</td><td   >407</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_116'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_116'>+</button></td><td>2</td><td><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td>577</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>325.50</td><td>330.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_116'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_116'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td   >577</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >325.50</td><td   >330.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_116'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>4</td><td>W</td><td>381</td><td>386</td><td>323</td><td>271</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>11</td><td>L</td><td>381</td><td>386</td><td>328</td><td>389</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >4</td><td   >W</td><td   >381</td><td   >386</td><td   >323</td><td   >271</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >11</td><td   >L</td><td   >381</td><td   >386</td><td   >328</td><td   >389</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_123'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_123'>+</button></td><td>3</td><td><a href='/aardvark/html/players/123.html'>Krirkchai Sarsrisak</a></td><td>465</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>346.00</td><td>393.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_123'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_123'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/123.html'>Krirkchai Sarsrisak</a></td><td   >465</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >346.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_123'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>1</td><td>L</td><td>381</td><td>465</td><td>346</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >1</td><td   >L</td><td   >381</td><td   >465</td><td   >346</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_131'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_131'>+</button></td><td>4</td><td><a href='/aardvark/html/players/131.html'>Phatsakorn Panyawatc</a></td><td>1258</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>332.00</td><td>374.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_131'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_131'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/131.html'>Phatsakorn Panyawatc</a></td><td   >1258</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >332.00</td><td   >374.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_131'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>2</td><td>L</td><td>381</td><td>1277</td><td>332</td><td>374</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >2</td><td   >L</td><td   >381</td><td   >1277</td><td   >332</td><td   >374</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_118'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_118'>+</button></td><td>5</td><td><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td>1130</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>289.00</td><td>322.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_118'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_118'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td   >1130</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >289.00</td><td   >322.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_118'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>7</td><td>L</td><td>381</td><td>1323</td><td>289</td><td>322</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >7</td><td   >L</td><td   >381</td><td   >1323</td><td   >289</td><td   >322</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_138'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_138'>+</button></td><td>6</td><td><a href='/aardvark/html/players/138.html'>Tawan Paepholsiri</a></td><td>1579</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>293.00</td><td>533.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_138'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_138'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/138.html'>Tawan Paepholsiri</a></td><td   >1579</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >293.00</td><td   >533.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_138'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>6</td><td>L</td><td>381</td><td>1444</td><td>293</td><td>533</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >6</td><td   >L</td><td   >381</td><td   >1444</td><td   >293</td><td   >533</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_129'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_129'>+</button></td><td>7</td><td><a href='/aardvark/html/players/129.html'>Natthapath Chanka</a></td><td>488</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>258.00</td><td>417.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_129'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_129'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/129.html'>Natthapath Chanka</a></td><td   >488</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >258.00</td><td   >417.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_129'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>5</td><td>L</td><td>381</td><td>454</td><td>258</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >5</td><td   >L</td><td   >381</td><td   >454</td><td   >258</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_137'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_137'>+</button></td><td>8</td><td><a href='/aardvark/html/players/137.html'>Somphong Phosai</a></td><td>1470</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>310.00</td><td>449.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_137'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_137'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/137.html'>Somphong Phosai</a></td><td   >1470</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >449.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_137'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>10</td><td>L</td><td>381</td><td>923</td><td>310</td><td>449</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >10</td><td   >L</td><td   >381</td><td   >923</td><td   >310</td><td   >449</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_119'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_119'>+</button></td><td>9</td><td><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td>903</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>419.00</td><td>325.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_119'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_119'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td   >903</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >419.00</td><td   >325.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_119'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>12</td><td>W</td><td>381</td><td>300</td><td>419</td><td>325</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >12</td><td   >W</td><td   >381</td><td   >300</td><td   >419</td><td   >325</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_136'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_136'>+</button></td><td>10</td><td><a href='/aardvark/html/players/136.html'>Sittipan Phantong</a></td><td>926</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>366.00</td><td>420.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_136'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_136'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/136.html'>Sittipan Phantong</a></td><td   >926</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >366.00</td><td   >420.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_136'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>9</td><td>L</td><td>381</td><td>905</td><td>366</td><td>420</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >9</td><td   >L</td><td   >381</td><td   >905</td><td   >366</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_140'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_140'>+</button></td><td>11</td><td><a href='/aardvark/html/players/140.html'>Tsholofelo Modise</a></td><td>643</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>335.00</td><td>312.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_140'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_140'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/140.html'>Tsholofelo Modise</a></td><td   >643</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >335.00</td><td   >312.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_140'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td>2010-11-28</td><td>3</td><td>W</td><td>381</td><td>371</td><td>335</td><td>312</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/6.html'>Thai International Youth Princess Cup</a></td><td   >2010-11-28</td><td   >3</td><td   >W</td><td   >381</td><td   >371</td><td   >335</td><td   >312</td></tr>
 </table></div></td></tr>
 
 </table>

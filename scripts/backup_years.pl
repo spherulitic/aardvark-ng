@@ -26,10 +26,10 @@ unless (caller)
                'input:s'  => \$working_directory,
                'backup=s' => \$backup_dir
              );
-  backup($working_directory, $backup_dir);
+  backup_years($working_directory, $backup_dir);
 }
 
-sub backup
+sub backup_years
 {
   my $base_directory_name = shift;
   my $backup_dir          = shift;

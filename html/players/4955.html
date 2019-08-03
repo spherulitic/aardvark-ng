@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Ling Joan Lucille</h2>
             <div>
               <IMG SRC="../../flags/MYS.png" alt="MYS">
-              <p>MYS</p>
+              <p><a href='/aardvark/html/rankings/MYS.html'>Malaysia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 768<br>
               <b>Games Played:</b> 15<br>
               <b>Wins:</b> 7 (46.67%)<br>
               <b>Losses: </b>6 (40.00%)<br>
@@ -183,107 +184,107 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_27689'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_27689'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>8</td><td>7</td><td>0</td><td>-425</td><td>64</td><td>768</td><td>768</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_27689'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_27689'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >8</td><td   >7</td><td   >0</td><td   >-425</td><td   >64</td><td   >768</td><td   >768</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_27689'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3870.html'>Wan Ain Zulaikha</a></td><td>547</td><td>W</td><td>290</td><td>286</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4932.html'>Chen Zhi Han</a></td><td>869</td><td>W</td><td>285</td><td>244</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4986.html'>Rohenn Vilet</a></td><td>587</td><td>W</td><td>233</td><td>218</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4919.html'>Adrieel Seet</a></td><td>679</td><td>W</td><td>291</td><td>186</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3833.html'>Nurul Amalia A.kamal</a></td><td>392</td><td>L</td><td>203</td><td>262</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3738.html'>Alfred Allan M. Chan</a></td><td>762</td><td>L</td><td>251</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4936.html'>Daniel Hakim Azman</a></td><td>409</td><td>W</td><td>285</td><td>215</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4949.html'>Jefri Azrin Tan</a></td><td>519</td><td>T</td><td>269</td><td>269</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3779.html'>Komathi Sivaraman</a></td><td>607</td><td>L</td><td>220</td><td>345</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/5001.html'>Waranga Mokshavi G</a></td><td>1003</td><td>L</td><td>247</td><td>405</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3794.html'>Muhd Aiman Azmi</a></td><td>1138</td><td>L</td><td>227</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4995.html'>Teh Kah Ho</a></td><td>870</td><td>W</td><td>308</td><td>214</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/4950.html'>Jordy Irawan Saputra</a></td><td>746</td><td>W</td><td>312</td><td>251</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4925.html'>Akshey Vilet</a></td><td>841</td><td>L</td><td>327</td><td>339</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/4986.html'>Rohenn Vilet</a></td><td>587</td><td>T</td><td>212</td><td>212</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3870.html'>Wan Ain Zulaikha</a></td><td   >547</td><td   >W</td><td   >290</td><td   >286</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4932.html'>Chen Zhi Han</a></td><td   >869</td><td   >W</td><td   >285</td><td   >244</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4986.html'>Rohenn Vilet</a></td><td   >587</td><td   >W</td><td   >233</td><td   >218</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4919.html'>Adrieel Seet</a></td><td   >679</td><td   >W</td><td   >291</td><td   >186</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3833.html'>Nurul Amalia A.kamal</a></td><td   >392</td><td   >L</td><td   >203</td><td   >262</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3738.html'>Alfred Allan M. Chan</a></td><td   >762</td><td   >L</td><td   >251</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4936.html'>Daniel Hakim Azman</a></td><td   >409</td><td   >W</td><td   >285</td><td   >215</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4949.html'>Jefri Azrin Tan</a></td><td   >519</td><td   >T</td><td   >269</td><td   >269</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3779.html'>Komathi Sivaraman</a></td><td   >607</td><td   >L</td><td   >220</td><td   >345</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/5001.html'>Waranga Mokshavi G</a></td><td   >1003</td><td   >L</td><td   >247</td><td   >405</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3794.html'>Muhd Aiman Azmi</a></td><td   >1138</td><td   >L</td><td   >227</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/4995.html'>Teh Kah Ho</a></td><td   >870</td><td   >W</td><td   >308</td><td   >214</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4950.html'>Jordy Irawan Saputra</a></td><td   >746</td><td   >W</td><td   >312</td><td   >251</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4925.html'>Akshey Vilet</a></td><td   >841</td><td   >L</td><td   >327</td><td   >339</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/4986.html'>Rohenn Vilet</a></td><td   >587</td><td   >T</td><td   >212</td><td   >212</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4986'>+</button></td><td>1</td><td><a href='/aardvark/html/players/4986.html'>Rohenn Vilet</a></td><td>587</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0.75</td><td>222.50</td><td>215.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4986'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/4986.html'>Rohenn Vilet</a></td><td   >587</td><td   >2</td><td   >1</td><td   >0</td><td   >1</td><td   >0.75</td><td   >222.50</td><td   >215.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4986'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>3</td><td>W</td><td>768</td><td>587</td><td>233</td><td>218</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>15</td><td>T</td><td>768</td><td>587</td><td>212</td><td>212</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >3</td><td   >W</td><td   >768</td><td   >587</td><td   >233</td><td   >218</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >15</td><td   >T</td><td   >768</td><td   >587</td><td   >212</td><td   >212</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3833'>+</button></td><td>2</td><td><a href='/aardvark/html/players/3833.html'>Nurul Amalia A.kamal</a></td><td>590</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>203.00</td><td>262.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3833'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/3833.html'>Nurul Amalia A.kamal</a></td><td   >590</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >203.00</td><td   >262.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3833'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>5</td><td>L</td><td>768</td><td>392</td><td>203</td><td>262</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >5</td><td   >L</td><td   >768</td><td   >392</td><td   >203</td><td   >262</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3779'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3779'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3779.html'>Komathi Sivaraman</a></td><td>771</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>220.00</td><td>345.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3779'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3779'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3779.html'>Komathi Sivaraman</a></td><td   >771</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >220.00</td><td   >345.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3779'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>9</td><td>L</td><td>768</td><td>607</td><td>220</td><td>345</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >9</td><td   >L</td><td   >768</td><td   >607</td><td   >220</td><td   >345</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4932'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4932'>+</button></td><td>4</td><td><a href='/aardvark/html/players/4932.html'>Chen Zhi Han</a></td><td>869</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>285.00</td><td>244.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4932'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4932'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/4932.html'>Chen Zhi Han</a></td><td   >869</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >285.00</td><td   >244.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4932'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>2</td><td>W</td><td>768</td><td>869</td><td>285</td><td>244</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >2</td><td   >W</td><td   >768</td><td   >869</td><td   >285</td><td   >244</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_5001'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5001'>+</button></td><td>5</td><td><a href='/aardvark/html/players/5001.html'>Waranga Mokshavi G</a></td><td>1003</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>247.00</td><td>405.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_5001'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5001'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/5001.html'>Waranga Mokshavi G</a></td><td   >1003</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >247.00</td><td   >405.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5001'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>10</td><td>L</td><td>768</td><td>1003</td><td>247</td><td>405</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >10</td><td   >L</td><td   >768</td><td   >1003</td><td   >247</td><td   >405</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4995'>+</button></td><td>6</td><td><a href='/aardvark/html/players/4995.html'>Teh Kah Ho</a></td><td>870</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>308.00</td><td>214.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4995'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/4995.html'>Teh Kah Ho</a></td><td   >870</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >308.00</td><td   >214.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4995'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>12</td><td>W</td><td>768</td><td>870</td><td>308</td><td>214</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >12</td><td   >W</td><td   >768</td><td   >870</td><td   >308</td><td   >214</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4950'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4950'>+</button></td><td>7</td><td><a href='/aardvark/html/players/4950.html'>Jordy Irawan Saputra</a></td><td>746</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>312.00</td><td>251.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4950'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4950'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/4950.html'>Jordy Irawan Saputra</a></td><td   >746</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >312.00</td><td   >251.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4950'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>13</td><td>W</td><td>768</td><td>746</td><td>312</td><td>251</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >13</td><td   >W</td><td   >768</td><td   >746</td><td   >312</td><td   >251</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4919'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4919.html'>Adrieel Seet</a></td><td>679</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>291.00</td><td>186.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4919'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/4919.html'>Adrieel Seet</a></td><td   >679</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >291.00</td><td   >186.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4919'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>4</td><td>W</td><td>768</td><td>679</td><td>291</td><td>186</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >4</td><td   >W</td><td   >768</td><td   >679</td><td   >291</td><td   >186</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4936'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4936'>+</button></td><td>9</td><td><a href='/aardvark/html/players/4936.html'>Daniel Hakim Azman</a></td><td>409</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>285.00</td><td>215.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4936'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4936'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/4936.html'>Daniel Hakim Azman</a></td><td   >409</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >285.00</td><td   >215.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4936'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>7</td><td>W</td><td>768</td><td>409</td><td>285</td><td>215</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >7</td><td   >W</td><td   >768</td><td   >409</td><td   >285</td><td   >215</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4949'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4949'>+</button></td><td>10</td><td><a href='/aardvark/html/players/4949.html'>Jefri Azrin Tan</a></td><td>519</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>269.00</td><td>269.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4949'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4949'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/4949.html'>Jefri Azrin Tan</a></td><td   >519</td><td   >1</td><td   >0</td><td   >0</td><td   >1</td><td   >0.50</td><td   >269.00</td><td   >269.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4949'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>8</td><td>T</td><td>768</td><td>519</td><td>269</td><td>269</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >8</td><td   >T</td><td   >768</td><td   >519</td><td   >269</td><td   >269</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4925'>+</button></td><td>11</td><td><a href='/aardvark/html/players/4925.html'>Akshey Vilet</a></td><td>841</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>327.00</td><td>339.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4925'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/4925.html'>Akshey Vilet</a></td><td   >841</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >339.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4925'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>14</td><td>L</td><td>768</td><td>841</td><td>327</td><td>339</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >14</td><td   >L</td><td   >768</td><td   >841</td><td   >327</td><td   >339</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3738'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3738'>+</button></td><td>12</td><td><a href='/aardvark/html/players/3738.html'>Alfred Allan M. Chan</a></td><td>872</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>251.00</td><td>451.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3738'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3738'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/3738.html'>Alfred Allan M. Chan</a></td><td   >872</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >251.00</td><td   >451.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3738'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>6</td><td>L</td><td>768</td><td>762</td><td>251</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >6</td><td   >L</td><td   >768</td><td   >762</td><td   >251</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3870'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3870'>+</button></td><td>13</td><td><a href='/aardvark/html/players/3870.html'>Wan Ain Zulaikha</a></td><td>597</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>290.00</td><td>286.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3870'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3870'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/3870.html'>Wan Ain Zulaikha</a></td><td   >597</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >290.00</td><td   >286.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3870'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>1</td><td>W</td><td>768</td><td>547</td><td>290</td><td>286</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >1</td><td   >W</td><td   >768</td><td   >547</td><td   >290</td><td   >286</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3794'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3794'>+</button></td><td>14</td><td><a href='/aardvark/html/players/3794.html'>Muhd Aiman Azmi</a></td><td>1060</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>227.00</td><td>488.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3794'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3794'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/3794.html'>Muhd Aiman Azmi</a></td><td   >1060</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >227.00</td><td   >488.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3794'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td>2018-04-01</td><td>11</td><td>L</td><td>768</td><td>1138</td><td>227</td><td>488</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/705.html'>ASTAR Scrabble International - Under 18</a></td><td   >2018-04-01</td><td   >11</td><td   >L</td><td   >768</td><td   >1138</td><td   >227</td><td   >488</td></tr>
 </table></div></td></tr>
 
 </table>

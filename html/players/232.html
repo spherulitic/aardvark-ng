@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Debbie Caldwell</h2>
             <div>
               <IMG SRC="../../flags/NZL.png" alt="NZL">
-              <p>NZL</p>
+              <p><a href='/aardvark/html/rankings/NZL.html'>New Zealand</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1807<br>
               <b>Games Played:</b> 96<br>
               <b>Wins:</b> 40 (41.67%)<br>
               <b>Losses: </b>55 (57.29%)<br>
@@ -183,337 +184,337 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_298'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_298'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>14</td><td>10</td><td>0</td><td>-178</td><td>8</td><td>1760</td><td>1807</td><td>47</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_298'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_298'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >14</td><td   >10</td><td   >0</td><td   >-178</td><td   >8</td><td   >1760</td><td   >1807</td><td   >47</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_298'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/233.html'>Edie Mueller</a></td><td>1674</td><td>W</td><td>428</td><td>336</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1832</td><td>W</td><td>410</td><td>404</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1833</td><td>L</td><td>337</td><td>508</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1674</td><td>W</td><td>407</td><td>381</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1805</td><td>W</td><td>527</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1698</td><td>L</td><td>328</td><td>469</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1966</td><td>L</td><td>418</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/242.html'>Norma Fisher</a></td><td>1758</td><td>L</td><td>424</td><td>520</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1777</td><td>L</td><td>372</td><td>518</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/240.html'>Lois Binnie</a></td><td>1802</td><td>W</td><td>471</td><td>375</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1852</td><td>W</td><td>481</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1548</td><td>W</td><td>421</td><td>319</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/233.html'>Edie Mueller</a></td><td>1674</td><td>W</td><td>430</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1832</td><td>L</td><td>376</td><td>427</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1833</td><td>L</td><td>445</td><td>446</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1674</td><td>L</td><td>410</td><td>440</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1805</td><td>W</td><td>323</td><td>269</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1698</td><td>W</td><td>423</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1966</td><td>L</td><td>328</td><td>517</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/242.html'>Norma Fisher</a></td><td>1758</td><td>W</td><td>429</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1777</td><td>W</td><td>425</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/240.html'>Lois Binnie</a></td><td>1802</td><td>L</td><td>337</td><td>436</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1852</td><td>W</td><td>441</td><td>369</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1548</td><td>W</td><td>436</td><td>357</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/233.html'>Edie Mueller</a></td><td   >1674</td><td   >W</td><td   >428</td><td   >336</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1832</td><td   >W</td><td   >410</td><td   >404</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1833</td><td   >L</td><td   >337</td><td   >508</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1674</td><td   >W</td><td   >407</td><td   >381</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td   >1805</td><td   >W</td><td   >527</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td   >1698</td><td   >L</td><td   >328</td><td   >469</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1966</td><td   >L</td><td   >418</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/242.html'>Norma Fisher</a></td><td   >1758</td><td   >L</td><td   >424</td><td   >520</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1777</td><td   >L</td><td   >372</td><td   >518</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/240.html'>Lois Binnie</a></td><td   >1802</td><td   >W</td><td   >471</td><td   >375</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1852</td><td   >W</td><td   >481</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td   >1548</td><td   >W</td><td   >421</td><td   >319</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/233.html'>Edie Mueller</a></td><td   >1674</td><td   >W</td><td   >430</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1832</td><td   >L</td><td   >376</td><td   >427</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1833</td><td   >L</td><td   >445</td><td   >446</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1674</td><td   >L</td><td   >410</td><td   >440</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td   >1805</td><td   >W</td><td   >323</td><td   >269</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td   >1698</td><td   >W</td><td   >423</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1966</td><td   >L</td><td   >328</td><td   >517</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/242.html'>Norma Fisher</a></td><td   >1758</td><td   >W</td><td   >429</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1777</td><td   >W</td><td   >425</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/240.html'>Lois Binnie</a></td><td   >1802</td><td   >L</td><td   >337</td><td   >436</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1852</td><td   >W</td><td   >441</td><td   >369</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td   >1548</td><td   >W</td><td   >436</td><td   >357</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_24812'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24812'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>11.5</td><td>12.5</td><td>0</td><td>-214</td><td>16</td><td>1701</td><td>1760</td><td>59</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_24812'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24812'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >11.5</td><td   >12.5</td><td   >0</td><td   >-214</td><td   >16</td><td   >1701</td><td   >1760</td><td   >59</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24812'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td>1898</td><td>W</td><td>402</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td>1856</td><td>W</td><td>455</td><td>346</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1890</td><td>L</td><td>354</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1757</td><td>L</td><td>284</td><td>415</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2043</td><td>W</td><td>470</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1841</td><td>W</td><td>443</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1913</td><td>L</td><td>367</td><td>387</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1914</td><td>T</td><td>385</td><td>385</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1878</td><td>L</td><td>397</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1817</td><td>W</td><td>437</td><td>381</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1873</td><td>W</td><td>413</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1908</td><td>L</td><td>369</td><td>413</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td>1898</td><td>W</td><td>420</td><td>388</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td>1856</td><td>L</td><td>459</td><td>468</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1890</td><td>W</td><td>404</td><td>354</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>1757</td><td>W</td><td>381</td><td>352</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2043</td><td>L</td><td>358</td><td>468</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1841</td><td>L</td><td>325</td><td>462</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1913</td><td>L</td><td>375</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1914</td><td>L</td><td>359</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1878</td><td>W</td><td>474</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1817</td><td>L</td><td>348</td><td>492</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1873</td><td>L</td><td>319</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1908</td><td>W</td><td>508</td><td>324</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td   >1898</td><td   >W</td><td   >402</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td   >1856</td><td   >W</td><td   >455</td><td   >346</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1890</td><td   >L</td><td   >354</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td   >1757</td><td   >L</td><td   >284</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td   >2043</td><td   >W</td><td   >470</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1841</td><td   >W</td><td   >443</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1913</td><td   >L</td><td   >367</td><td   >387</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1914</td><td   >T</td><td   >385</td><td   >385</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1878</td><td   >L</td><td   >397</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1817</td><td   >W</td><td   >437</td><td   >381</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td   >1873</td><td   >W</td><td   >413</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td   >1908</td><td   >L</td><td   >369</td><td   >413</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td   >1898</td><td   >W</td><td   >420</td><td   >388</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td   >1856</td><td   >L</td><td   >459</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1890</td><td   >W</td><td   >404</td><td   >354</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td   >1757</td><td   >W</td><td   >381</td><td   >352</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td   >2043</td><td   >L</td><td   >358</td><td   >468</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1841</td><td   >L</td><td   >325</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1913</td><td   >L</td><td   >375</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1914</td><td   >L</td><td   >359</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1878</td><td   >W</td><td   >474</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1817</td><td   >L</td><td   >348</td><td   >492</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td   >1873</td><td   >L</td><td   >319</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td   >1908</td><td   >W</td><td   >508</td><td   >324</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_23668'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_23668'>+</button></td><td>3</td><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>9</td><td>15</td><td>0</td><td>-725</td><td>22</td><td>1639</td><td>1701</td><td>62</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_23668'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_23668'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >9</td><td   >15</td><td   >0</td><td   >-725</td><td   >22</td><td   >1639</td><td   >1701</td><td   >62</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_23668'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2131.html'>Alistair Kane</a></td><td>1862</td><td>L</td><td>404</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2112</td><td>W</td><td>351</td><td>346</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2090</td><td>L</td><td>367</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1908</td><td>L</td><td>388</td><td>547</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1841</td><td>W</td><td>431</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1984</td><td>L</td><td>329</td><td>505</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1778</td><td>W</td><td>459</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1960</td><td>L</td><td>366</td><td>457</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td>1897</td><td>W</td><td>395</td><td>361</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4514.html'>David Lowden</a></td><td>1912</td><td>L</td><td>357</td><td>413</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2363</td><td>W</td><td>508</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td>2067</td><td>W</td><td>435</td><td>322</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2131.html'>Alistair Kane</a></td><td>1862</td><td>L</td><td>358</td><td>454</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2112</td><td>L</td><td>325</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2090</td><td>L</td><td>418</td><td>459</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1908</td><td>W</td><td>532</td><td>353</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1841</td><td>W</td><td>421</td><td>307</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1984</td><td>L</td><td>368</td><td>382</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1778</td><td>L</td><td>271</td><td>515</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1960</td><td>L</td><td>297</td><td>495</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td>1897</td><td>L</td><td>382</td><td>468</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/4514.html'>David Lowden</a></td><td>1912</td><td>L</td><td>341</td><td>407</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2363</td><td>W</td><td>514</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td>2067</td><td>L</td><td>367</td><td>398</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2131.html'>Alistair Kane</a></td><td   >1862</td><td   >L</td><td   >404</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td   >2112</td><td   >W</td><td   >351</td><td   >346</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td   >2090</td><td   >L</td><td   >367</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td   >1908</td><td   >L</td><td   >388</td><td   >547</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1841</td><td   >W</td><td   >431</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td   >1984</td><td   >L</td><td   >329</td><td   >505</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1778</td><td   >W</td><td   >459</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1960</td><td   >L</td><td   >366</td><td   >457</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td   >1897</td><td   >W</td><td   >395</td><td   >361</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/4514.html'>David Lowden</a></td><td   >1912</td><td   >L</td><td   >357</td><td   >413</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2363</td><td   >W</td><td   >508</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td   >2067</td><td   >W</td><td   >435</td><td   >322</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2131.html'>Alistair Kane</a></td><td   >1862</td><td   >L</td><td   >358</td><td   >454</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td   >2112</td><td   >L</td><td   >325</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td   >2090</td><td   >L</td><td   >418</td><td   >459</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td   >1908</td><td   >W</td><td   >532</td><td   >353</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1841</td><td   >W</td><td   >421</td><td   >307</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td   >1984</td><td   >L</td><td   >368</td><td   >382</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1778</td><td   >L</td><td   >271</td><td   >515</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1960</td><td   >L</td><td   >297</td><td   >495</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td   >1897</td><td   >L</td><td   >382</td><td   >468</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/4514.html'>David Lowden</a></td><td   >1912</td><td   >L</td><td   >341</td><td   >407</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2363</td><td   >W</td><td   >514</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td   >2067</td><td   >L</td><td   >367</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_12017'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_12017'>+</button></td><td>4</td><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>6</td><td>18</td><td>0</td><td>-1303</td><td>20</td><td>1639</td><td>1639</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_12017'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_12017'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >6</td><td   >18</td><td   >0</td><td   >-1303</td><td   >20</td><td   >1639</td><td   >1639</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_12017'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1857.html'>Michael Cameron</a></td><td>1829</td><td>L</td><td>416</td><td>452</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1896</td><td>L</td><td>342</td><td>404</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/855.html'>Paul Cleary</a></td><td>2023</td><td>L</td><td>405</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>1860</td><td>L</td><td>397</td><td>462</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1866</td><td>W</td><td>474</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2363</td><td>L</td><td>404</td><td>474</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2049</td><td>L</td><td>307</td><td>627</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td>2067</td><td>W</td><td>481</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1879</td><td>L</td><td>380</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2075</td><td>L</td><td>435</td><td>447</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1881</td><td>W</td><td>478</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>1940</td><td>L</td><td>329</td><td>609</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1857.html'>Michael Cameron</a></td><td>1829</td><td>L</td><td>318</td><td>549</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1896</td><td>W</td><td>358</td><td>307</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/855.html'>Paul Cleary</a></td><td>2023</td><td>L</td><td>334</td><td>532</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>1860</td><td>L</td><td>301</td><td>309</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1866</td><td>L</td><td>385</td><td>472</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2363</td><td>L</td><td>350</td><td>480</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>2049</td><td>L</td><td>353</td><td>460</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td>2067</td><td>L</td><td>295</td><td>445</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1879</td><td>W</td><td>402</td><td>389</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2075</td><td>L</td><td>414</td><td>462</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1881</td><td>L</td><td>358</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>1940</td><td>W</td><td>525</td><td>338</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1857.html'>Michael Cameron</a></td><td   >1829</td><td   >L</td><td   >416</td><td   >452</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1896</td><td   >L</td><td   >342</td><td   >404</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/855.html'>Paul Cleary</a></td><td   >2023</td><td   >L</td><td   >405</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td   >1860</td><td   >L</td><td   >397</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1866</td><td   >W</td><td   >474</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2363</td><td   >L</td><td   >404</td><td   >474</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td   >2049</td><td   >L</td><td   >307</td><td   >627</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td   >2067</td><td   >W</td><td   >481</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td   >1879</td><td   >L</td><td   >380</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td   >2075</td><td   >L</td><td   >435</td><td   >447</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1881</td><td   >W</td><td   >478</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td   >1940</td><td   >L</td><td   >329</td><td   >609</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1857.html'>Michael Cameron</a></td><td   >1829</td><td   >L</td><td   >318</td><td   >549</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1896</td><td   >W</td><td   >358</td><td   >307</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/855.html'>Paul Cleary</a></td><td   >2023</td><td   >L</td><td   >334</td><td   >532</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td   >1860</td><td   >L</td><td   >301</td><td   >309</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1866</td><td   >L</td><td   >385</td><td   >472</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2363</td><td   >L</td><td   >350</td><td   >480</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td   >2049</td><td   >L</td><td   >353</td><td   >460</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td   >2067</td><td   >L</td><td   >295</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td   >1879</td><td   >W</td><td   >402</td><td   >389</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td   >2075</td><td   >L</td><td   >414</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1881</td><td   >L</td><td   >358</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td   >1940</td><td   >W</td><td   >525</td><td   >338</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_162'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_162'>+</button></td><td>1</td><td><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td>1710</td><td>8</td><td>1</td><td>6</td><td>1</td><td>0.19</td><td>361.12</td><td>427.75</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_162'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_162'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/162.html'>Bob Jackman</a></td><td   >1710</td><td   >8</td><td   >1</td><td   >6</td><td   >1</td><td   >0.19</td><td   >361.12</td><td   >427.75</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_162'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>2</td><td>L</td><td>1639</td><td>1896</td><td>342</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>14</td><td>W</td><td>1639</td><td>1896</td><td>358</td><td>307</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>8</td><td>L</td><td>1639</td><td>1960</td><td>366</td><td>457</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>20</td><td>L</td><td>1639</td><td>1960</td><td>297</td><td>495</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>8</td><td>T</td><td>1701</td><td>1914</td><td>385</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>20</td><td>L</td><td>1701</td><td>1914</td><td>359</td><td>420</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>3</td><td>L</td><td>1760</td><td>1833</td><td>337</td><td>508</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>15</td><td>L</td><td>1760</td><td>1833</td><td>445</td><td>446</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >2</td><td   >L</td><td   >1639</td><td   >1896</td><td   >342</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >14</td><td   >W</td><td   >1639</td><td   >1896</td><td   >358</td><td   >307</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >8</td><td   >L</td><td   >1639</td><td   >1960</td><td   >366</td><td   >457</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >20</td><td   >L</td><td   >1639</td><td   >1960</td><td   >297</td><td   >495</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >8</td><td   >T</td><td   >1701</td><td   >1914</td><td   >385</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >20</td><td   >L</td><td   >1701</td><td   >1914</td><td   >359</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >3</td><td   >L</td><td   >1760</td><td   >1833</td><td   >337</td><td   >508</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >15</td><td   >L</td><td   >1760</td><td   >1833</td><td   >445</td><td   >446</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_234'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_234'>+</button></td><td>2</td><td><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td>1862</td><td>6</td><td>3</td><td>3</td><td>0</td><td>0.50</td><td>421.17</td><td>438.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_234'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_234'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/234.html'>Esther Perrins</a></td><td   >1862</td><td   >6</td><td   >3</td><td   >3</td><td   >0</td><td   >0.50</td><td   >421.17</td><td   >438.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_234'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>5</td><td>W</td><td>1639</td><td>1866</td><td>474</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>17</td><td>L</td><td>1639</td><td>1866</td><td>385</td><td>472</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>9</td><td>L</td><td>1701</td><td>1878</td><td>397</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>21</td><td>W</td><td>1701</td><td>1878</td><td>474</td><td>444</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>9</td><td>L</td><td>1760</td><td>1777</td><td>372</td><td>518</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>21</td><td>W</td><td>1760</td><td>1777</td><td>425</td><td>395</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >5</td><td   >W</td><td   >1639</td><td   >1866</td><td   >474</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >17</td><td   >L</td><td   >1639</td><td   >1866</td><td   >385</td><td   >472</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >9</td><td   >L</td><td   >1701</td><td   >1878</td><td   >397</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >21</td><td   >W</td><td   >1701</td><td   >1878</td><td   >474</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >9</td><td   >L</td><td   >1760</td><td   >1777</td><td   >372</td><td   >518</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >21</td><td   >W</td><td   >1760</td><td   >1777</td><td   >425</td><td   >395</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_245'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_245'>+</button></td><td>3</td><td><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td>1953</td><td>6</td><td>5</td><td>1</td><td>0</td><td>0.83</td><td>423.67</td><td>382.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_245'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_245'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/245.html'>Richard Jeremy</a></td><td   >1953</td><td   >6</td><td   >5</td><td   >1</td><td   >0</td><td   >0.83</td><td   >423.67</td><td   >382.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_245'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>5</td><td>W</td><td>1639</td><td>1841</td><td>431</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>17</td><td>W</td><td>1639</td><td>1841</td><td>421</td><td>307</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>6</td><td>W</td><td>1701</td><td>1841</td><td>443</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>18</td><td>L</td><td>1701</td><td>1841</td><td>325</td><td>462</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>11</td><td>W</td><td>1760</td><td>1852</td><td>481</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>23</td><td>W</td><td>1760</td><td>1852</td><td>441</td><td>369</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >5</td><td   >W</td><td   >1639</td><td   >1841</td><td   >431</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >17</td><td   >W</td><td   >1639</td><td   >1841</td><td   >421</td><td   >307</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >6</td><td   >W</td><td   >1701</td><td   >1841</td><td   >443</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >18</td><td   >L</td><td   >1701</td><td   >1841</td><td   >325</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >11</td><td   >W</td><td   >1760</td><td   >1852</td><td   >481</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >23</td><td   >W</td><td   >1760</td><td   >1852</td><td   >441</td><td   >369</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_246'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_246'>+</button></td><td>4</td><td><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td>1665</td><td>6</td><td>1</td><td>5</td><td>0</td><td>0.17</td><td>387.33</td><td>429.83</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_246'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_246'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/246.html'>Rod Talbot</a></td><td   >1665</td><td   >6</td><td   >1</td><td   >5</td><td   >0</td><td   >0.17</td><td   >387.33</td><td   >429.83</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_246'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>11</td><td>W</td><td>1639</td><td>1881</td><td>478</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>23</td><td>L</td><td>1639</td><td>1881</td><td>358</td><td>386</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>7</td><td>L</td><td>1701</td><td>1913</td><td>367</td><td>387</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>19</td><td>L</td><td>1701</td><td>1913</td><td>375</td><td>434</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>7</td><td>L</td><td>1760</td><td>1966</td><td>418</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>19</td><td>L</td><td>1760</td><td>1966</td><td>328</td><td>517</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >11</td><td   >W</td><td   >1639</td><td   >1881</td><td   >478</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >23</td><td   >L</td><td   >1639</td><td   >1881</td><td   >358</td><td   >386</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >7</td><td   >L</td><td   >1701</td><td   >1913</td><td   >367</td><td   >387</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >19</td><td   >L</td><td   >1701</td><td   >1913</td><td   >375</td><td   >434</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >7</td><td   >L</td><td   >1760</td><td   >1966</td><td   >418</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >19</td><td   >L</td><td   >1760</td><td   >1966</td><td   >328</td><td   >517</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_230'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_230'>+</button></td><td>5</td><td><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td>1741</td><td>6</td><td>3</td><td>3</td><td>0</td><td>0.50</td><td>383.50</td><td>437.17</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_230'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_230'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/230.html'>Anne Drew</a></td><td   >1741</td><td   >6</td><td   >3</td><td   >3</td><td   >0</td><td   >0.50</td><td   >383.50</td><td   >437.17</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_230'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>7</td><td>W</td><td>1639</td><td>1778</td><td>459</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>19</td><td>L</td><td>1639</td><td>1778</td><td>271</td><td>515</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>10</td><td>W</td><td>1701</td><td>1817</td><td>437</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>22</td><td>L</td><td>1701</td><td>1817</td><td>348</td><td>492</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>2</td><td>W</td><td>1760</td><td>1832</td><td>410</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>14</td><td>L</td><td>1760</td><td>1832</td><td>376</td><td>427</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >7</td><td   >W</td><td   >1639</td><td   >1778</td><td   >459</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >19</td><td   >L</td><td   >1639</td><td   >1778</td><td   >271</td><td   >515</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >10</td><td   >W</td><td   >1701</td><td   >1817</td><td   >437</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >22</td><td   >L</td><td   >1701</td><td   >1817</td><td   >348</td><td   >492</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >2</td><td   >W</td><td   >1760</td><td   >1832</td><td   >410</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >14</td><td   >L</td><td   >1760</td><td   >1832</td><td   >376</td><td   >427</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_167'>+</button></td><td>6</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2084</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>444.00</td><td>435.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_167'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2084</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >444.00</td><td   >435.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_167'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>6</td><td>L</td><td>1639</td><td>2363</td><td>404</td><td>474</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>18</td><td>L</td><td>1639</td><td>2363</td><td>350</td><td>480</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>11</td><td>W</td><td>1639</td><td>2363</td><td>508</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>23</td><td>W</td><td>1639</td><td>2363</td><td>514</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >6</td><td   >L</td><td   >1639</td><td   >2363</td><td   >404</td><td   >474</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >18</td><td   >L</td><td   >1639</td><td   >2363</td><td   >350</td><td   >480</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >11</td><td   >W</td><td   >1639</td><td   >2363</td><td   >508</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >23</td><td   >W</td><td   >1639</td><td   >2363</td><td   >514</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_375'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_375'>+</button></td><td>7</td><td><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td>1781</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>449.25</td><td>409.25</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_375'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_375'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/375.html'>Russell Honeybun</a></td><td   >1781</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >449.25</td><td   >409.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_375'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>4</td><td>L</td><td>1639</td><td>1908</td><td>388</td><td>547</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>16</td><td>W</td><td>1639</td><td>1908</td><td>532</td><td>353</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>12</td><td>L</td><td>1701</td><td>1908</td><td>369</td><td>413</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>24</td><td>W</td><td>1701</td><td>1908</td><td>508</td><td>324</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >4</td><td   >L</td><td   >1639</td><td   >1908</td><td   >388</td><td   >547</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >16</td><td   >W</td><td   >1639</td><td   >1908</td><td   >532</td><td   >353</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >12</td><td   >L</td><td   >1701</td><td   >1908</td><td   >369</td><td   >413</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >24</td><td   >W</td><td   >1701</td><td   >1908</td><td   >508</td><td   >324</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4223'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4223'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td>1873</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>422.75</td><td>410.75</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4223'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4223'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/4223.html'>Michael Hornung</a></td><td   >1873</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >422.75</td><td   >410.75</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4223'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>9</td><td>W</td><td>1639</td><td>1897</td><td>395</td><td>361</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>21</td><td>L</td><td>1639</td><td>1897</td><td>382</td><td>468</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>2</td><td>W</td><td>1701</td><td>1856</td><td>455</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>14</td><td>L</td><td>1701</td><td>1856</td><td>459</td><td>468</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >9</td><td   >W</td><td   >1639</td><td   >1897</td><td   >395</td><td   >361</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >21</td><td   >L</td><td   >1639</td><td   >1897</td><td   >382</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >2</td><td   >W</td><td   >1701</td><td   >1856</td><td   >455</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >14</td><td   >L</td><td   >1701</td><td   >1856</td><td   >459</td><td   >468</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_332'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_332'>+</button></td><td>9</td><td><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td>2000</td><td>4</td><td>0</td><td>4</td><td>0</td><td>0.00</td><td>408.50</td><td>461.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_332'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_332'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/332.html'>Andrew Fisher</a></td><td   >2000</td><td   >4</td><td   >0</td><td   >4</td><td   >0</td><td   >0.00</td><td   >408.50</td><td   >461.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_332'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>10</td><td>L</td><td>1639</td><td>2075</td><td>435</td><td>447</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>22</td><td>L</td><td>1639</td><td>2075</td><td>414</td><td>462</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>3</td><td>L</td><td>1639</td><td>2090</td><td>367</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>15</td><td>L</td><td>1639</td><td>2090</td><td>418</td><td>459</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >10</td><td   >L</td><td   >1639</td><td   >2075</td><td   >435</td><td   >447</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >22</td><td   >L</td><td   >1639</td><td   >2075</td><td   >414</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >3</td><td   >L</td><td   >1639</td><td   >2090</td><td   >367</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >15</td><td   >L</td><td   >1639</td><td   >2090</td><td   >418</td><td   >459</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3000'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3000'>+</button></td><td>10</td><td><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td>1870</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>394.50</td><td>380.25</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3000'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3000'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/3000.html'>Julian McKail</a></td><td   >1870</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >394.50</td><td   >380.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3000'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>8</td><td>W</td><td>1639</td><td>2067</td><td>481</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>20</td><td>L</td><td>1639</td><td>2067</td><td>295</td><td>445</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>12</td><td>W</td><td>1639</td><td>2067</td><td>435</td><td>322</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>24</td><td>L</td><td>1639</td><td>2067</td><td>367</td><td>398</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >8</td><td   >W</td><td   >1639</td><td   >2067</td><td   >481</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >20</td><td   >L</td><td   >1639</td><td   >2067</td><td   >295</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >12</td><td   >W</td><td   >1639</td><td   >2067</td><td   >435</td><td   >322</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >24</td><td   >L</td><td   >1639</td><td   >2067</td><td   >367</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_894'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_894'>+</button></td><td>11</td><td><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td>1855</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>378.50</td><td>407.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_894'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_894'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/894.html'>Joan Rosenthal</a></td><td   >1855</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >378.50</td><td   >407.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_894'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>9</td><td>L</td><td>1639</td><td>1879</td><td>380</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>21</td><td>W</td><td>1639</td><td>1879</td><td>402</td><td>389</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>11</td><td>W</td><td>1701</td><td>1873</td><td>413</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>23</td><td>L</td><td>1701</td><td>1873</td><td>319</td><td>488</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >9</td><td   >L</td><td   >1639</td><td   >1879</td><td   >380</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >21</td><td   >W</td><td   >1639</td><td   >1879</td><td   >402</td><td   >389</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >11</td><td   >W</td><td   >1701</td><td   >1873</td><td   >413</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >23</td><td   >L</td><td   >1701</td><td   >1873</td><td   >319</td><td   >488</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_940'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_940'>+</button></td><td>12</td><td><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td>2015</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>420.50</td><td>454.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_940'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_940'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/940.html'>Edward Okulicz</a></td><td   >2015</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >420.50</td><td   >454.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_940'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>12</td><td>L</td><td>1639</td><td>1940</td><td>329</td><td>609</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>24</td><td>W</td><td>1639</td><td>1940</td><td>525</td><td>338</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>5</td><td>W</td><td>1701</td><td>2043</td><td>470</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>17</td><td>L</td><td>1701</td><td>2043</td><td>358</td><td>468</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >12</td><td   >L</td><td   >1639</td><td   >1940</td><td   >329</td><td   >609</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >24</td><td   >W</td><td   >1639</td><td   >1940</td><td   >525</td><td   >338</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >5</td><td   >W</td><td   >1701</td><td   >2043</td><td   >470</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >17</td><td   >L</td><td   >1701</td><td   >2043</td><td   >358</td><td   >468</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_343'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_343'>+</button></td><td>13</td><td><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td>1998</td><td>4</td><td>1</td><td>3</td><td>0</td><td>0.25</td><td>334.00</td><td>457.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_343'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_343'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/343.html'>Naween Fernando</a></td><td   >1998</td><td   >4</td><td   >1</td><td   >3</td><td   >0</td><td   >0.25</td><td   >334.00</td><td   >457.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_343'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>7</td><td>L</td><td>1639</td><td>2049</td><td>307</td><td>627</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>19</td><td>L</td><td>1639</td><td>2049</td><td>353</td><td>460</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>2</td><td>W</td><td>1639</td><td>2112</td><td>351</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>14</td><td>L</td><td>1639</td><td>2112</td><td>325</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >7</td><td   >L</td><td   >1639</td><td   >2049</td><td   >307</td><td   >627</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >19</td><td   >L</td><td   >1639</td><td   >2049</td><td   >353</td><td   >460</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >2</td><td   >W</td><td   >1639</td><td   >2112</td><td   >351</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >14</td><td   >L</td><td   >1639</td><td   >2112</td><td   >325</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_54'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_54'>+</button></td><td>14</td><td><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td>2075</td><td>4</td><td>3</td><td>1</td><td>0</td><td>0.75</td><td>378.75</td><td>362.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_54'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_54'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/54.html'>Alastair Richards</a></td><td   >2075</td><td   >4</td><td   >3</td><td   >1</td><td   >0</td><td   >0.75</td><td   >378.75</td><td   >362.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_54'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>4</td><td>L</td><td>1701</td><td>1757</td><td>284</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>16</td><td>W</td><td>1701</td><td>1757</td><td>381</td><td>352</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>5</td><td>W</td><td>1760</td><td>1805</td><td>527</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>17</td><td>W</td><td>1760</td><td>1805</td><td>323</td><td>269</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >4</td><td   >L</td><td   >1701</td><td   >1757</td><td   >284</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >16</td><td   >W</td><td   >1701</td><td   >1757</td><td   >381</td><td   >352</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >5</td><td   >W</td><td   >1760</td><td   >1805</td><td   >527</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >17</td><td   >W</td><td   >1760</td><td   >1805</td><td   >323</td><td   >269</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4514'>+</button></td><td>15</td><td><a href='/aardvark/html/players/4514.html'>David Lowden</a></td><td>1912</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>349.00</td><td>410.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4514'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/4514.html'>David Lowden</a></td><td   >1912</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >349.00</td><td   >410.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4514'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>10</td><td>L</td><td>1639</td><td>1912</td><td>357</td><td>413</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>22</td><td>L</td><td>1639</td><td>1912</td><td>341</td><td>407</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >10</td><td   >L</td><td   >1639</td><td   >1912</td><td   >357</td><td   >413</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >22</td><td   >L</td><td   >1639</td><td   >1912</td><td   >341</td><td   >407</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_353'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_353'>+</button></td><td>16</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1647</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>379.00</td><td>365.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_353'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_353'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1647</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >379.00</td><td   >365.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_353'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>3</td><td>L</td><td>1701</td><td>1890</td><td>354</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>15</td><td>W</td><td>1701</td><td>1890</td><td>404</td><td>354</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >3</td><td   >L</td><td   >1701</td><td   >1890</td><td   >354</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >15</td><td   >W</td><td   >1701</td><td   >1890</td><td   >404</td><td   >354</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1857'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1857'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1857.html'>Michael Cameron</a></td><td>1710</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>367.00</td><td>500.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1857'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1857'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1857.html'>Michael Cameron</a></td><td   >1710</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >367.00</td><td   >500.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1857'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>1</td><td>L</td><td>1639</td><td>1829</td><td>416</td><td>452</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>13</td><td>L</td><td>1639</td><td>1829</td><td>318</td><td>549</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >1</td><td   >L</td><td   >1639</td><td   >1829</td><td   >416</td><td   >452</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >13</td><td   >L</td><td   >1639</td><td   >1829</td><td   >318</td><td   >549</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2131'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2131'>+</button></td><td>18</td><td><a href='/aardvark/html/players/2131.html'>Alistair Kane</a></td><td>1804</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>381.00</td><td>465.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2131'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2131'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/2131.html'>Alistair Kane</a></td><td   >1804</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >381.00</td><td   >465.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2131'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>1</td><td>L</td><td>1639</td><td>1862</td><td>404</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>13</td><td>L</td><td>1639</td><td>1862</td><td>358</td><td>454</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >1</td><td   >L</td><td   >1639</td><td   >1862</td><td   >404</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >13</td><td   >L</td><td   >1639</td><td   >1862</td><td   >358</td><td   >454</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_948'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_948'>+</button></td><td>19</td><td><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td>1715</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>411.00</td><td>372.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_948'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_948'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/948.html'>John Holgate</a></td><td   >1715</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >411.00</td><td   >372.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_948'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>1</td><td>W</td><td>1701</td><td>1898</td><td>402</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td>2008-11-30</td><td>13</td><td>W</td><td>1701</td><td>1898</td><td>420</td><td>388</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >1</td><td   >W</td><td   >1701</td><td   >1898</td><td   >402</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/641.html'>7th Trans-Tasman Challenge</a></td><td   >2008-11-30</td><td   >13</td><td   >W</td><td   >1701</td><td   >1898</td><td   >420</td><td   >388</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_235'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_235'>+</button></td><td>20</td><td><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td>1454</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>375.50</td><td>444.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_235'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_235'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/235.html'>Graeme Lock Lee</a></td><td   >1454</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >375.50</td><td   >444.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_235'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>6</td><td>L</td><td>1760</td><td>1698</td><td>328</td><td>469</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>18</td><td>W</td><td>1760</td><td>1698</td><td>423</td><td>420</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >6</td><td   >L</td><td   >1760</td><td   >1698</td><td   >328</td><td   >469</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >18</td><td   >W</td><td   >1760</td><td   >1698</td><td   >423</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_126'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_126'>+</button></td><td>21</td><td><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td>1827</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>428.50</td><td>338.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_126'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_126'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/126.html'>Michael McKenna</a></td><td   >1827</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >428.50</td><td   >338.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_126'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>12</td><td>W</td><td>1760</td><td>1548</td><td>421</td><td>319</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>24</td><td>W</td><td>1760</td><td>1548</td><td>436</td><td>357</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >12</td><td   >W</td><td   >1760</td><td   >1548</td><td   >421</td><td   >319</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >24</td><td   >W</td><td   >1760</td><td   >1548</td><td   >436</td><td   >357</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_240'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_240'>+</button></td><td>22</td><td><a href='/aardvark/html/players/240.html'>Lois Binnie</a></td><td>1462</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>404.00</td><td>405.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_240'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_240'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/240.html'>Lois Binnie</a></td><td   >1462</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >404.00</td><td   >405.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_240'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>10</td><td>W</td><td>1760</td><td>1802</td><td>471</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>22</td><td>L</td><td>1760</td><td>1802</td><td>337</td><td>436</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >10</td><td   >W</td><td   >1760</td><td   >1802</td><td   >471</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >22</td><td   >L</td><td   >1760</td><td   >1802</td><td   >337</td><td   >436</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_233'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_233'>+</button></td><td>23</td><td><a href='/aardvark/html/players/233.html'>Edie Mueller</a></td><td>1380</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>429.00</td><td>376.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_233'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_233'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/233.html'>Edie Mueller</a></td><td   >1380</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >429.00</td><td   >376.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_233'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>1</td><td>W</td><td>1760</td><td>1674</td><td>428</td><td>336</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>13</td><td>W</td><td>1760</td><td>1674</td><td>430</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >1</td><td   >W</td><td   >1760</td><td   >1674</td><td   >428</td><td   >336</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >13</td><td   >W</td><td   >1760</td><td   >1674</td><td   >430</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td>24</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1578</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>408.50</td><td>410.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1578</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >408.50</td><td   >410.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_75'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>4</td><td>W</td><td>1760</td><td>1674</td><td>407</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>16</td><td>L</td><td>1760</td><td>1674</td><td>410</td><td>440</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >4</td><td   >W</td><td   >1760</td><td   >1674</td><td   >407</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >16</td><td   >L</td><td   >1760</td><td   >1674</td><td   >410</td><td   >440</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_168'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_168'>+</button></td><td>25</td><td><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td>2119</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>349.00</td><td>385.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_168'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_168'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/168.html'>David Eldar</a></td><td   >2119</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >349.00</td><td   >385.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_168'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>4</td><td>L</td><td>1639</td><td>1860</td><td>397</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>16</td><td>L</td><td>1639</td><td>1860</td><td>301</td><td>309</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >4</td><td   >L</td><td   >1639</td><td   >1860</td><td   >397</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >16</td><td   >L</td><td   >1639</td><td   >1860</td><td   >301</td><td   >309</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_348'>+</button></td><td>26</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1913</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>348.50</td><td>443.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_348'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td   >1913</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >348.50</td><td   >443.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_348'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>6</td><td>L</td><td>1639</td><td>1984</td><td>329</td><td>505</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td>2006-11-06</td><td>18</td><td>L</td><td>1639</td><td>1984</td><td>368</td><td>382</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >6</td><td   >L</td><td   >1639</td><td   >1984</td><td   >329</td><td   >505</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/614.html'>6th Trans-Tasman Challenge</a></td><td   >2006-11-06</td><td   >18</td><td   >L</td><td   >1639</td><td   >1984</td><td   >368</td><td   >382</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_855'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_855'>+</button></td><td>27</td><td><a href='/aardvark/html/players/855.html'>Paul Cleary</a></td><td>2022</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>369.50</td><td>483.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_855'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_855'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/855.html'>Paul Cleary</a></td><td   >2022</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >369.50</td><td   >483.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_855'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>3</td><td>L</td><td>1639</td><td>2023</td><td>405</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td>2004-11-26</td><td>15</td><td>L</td><td>1639</td><td>2023</td><td>334</td><td>532</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >3</td><td   >L</td><td   >1639</td><td   >2023</td><td   >405</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/313.html'>Trans-Tasman Challenge</a></td><td   >2004-11-26</td><td   >15</td><td   >L</td><td   >1639</td><td   >2023</td><td   >334</td><td   >532</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_242'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_242'>+</button></td><td>28</td><td><a href='/aardvark/html/players/242.html'>Norma Fisher</a></td><td>1424</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>426.50</td><td>459.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_242'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_242'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/242.html'>Norma Fisher</a></td><td   >1424</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >426.50</td><td   >459.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_242'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>8</td><td>L</td><td>1760</td><td>1758</td><td>424</td><td>520</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td>2010-08-16</td><td>20</td><td>W</td><td>1760</td><td>1758</td><td>429</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >8</td><td   >L</td><td   >1760</td><td   >1758</td><td   >424</td><td   >520</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/10.html'>Trans-Tasman 2010</a></td><td   >2010-08-16</td><td   >20</td><td   >W</td><td   >1760</td><td   >1758</td><td   >429</td><td   >399</td></tr>
 </table></div></td></tr>
 
 </table>

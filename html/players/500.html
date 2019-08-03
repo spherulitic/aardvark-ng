@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Nishan Perera</h2>
             <div>
               <IMG SRC="../../flags/LKA.png" alt="LKA">
-              <p>LKA</p>
+              <p><a href='/aardvark/html/rankings/LKA.html'>Sri Lanka</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 961<br>
               <b>Games Played:</b> 48<br>
               <b>Wins:</b> 25 (52.08%)<br>
               <b>Losses: </b>23 (47.92%)<br>
@@ -183,277 +184,277 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_20550'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_20550'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>11</td><td>13</td><td>0</td><td>-100</td><td>56</td><td>1041</td><td>961</td><td>-80</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_20550'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_20550'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >11</td><td   >13</td><td   >0</td><td   >-100</td><td   >56</td><td   >1041</td><td   >961</td><td   >-80</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_20550'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td>764</td><td>W</td><td>358</td><td>317</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4300.html'>Premkumar Nimalan</a></td><td>1220</td><td>L</td><td>413</td><td>475</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4333.html'>Nathallie Cabaluna</a></td><td>1242</td><td>L</td><td>371</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4330.html'>Clarence Tew</a></td><td>813</td><td>W</td><td>423</td><td>293</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2449.html'>Neo Wei Sheng</a></td><td>852</td><td>L</td><td>330</td><td>382</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/308.html'>Cheong Yi Hua</a></td><td>1307</td><td>L</td><td>374</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1335</td><td>L</td><td>310</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4336.html'>Timothy Tan</a></td><td>1028</td><td>L</td><td>350</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/510.html'>Tim Butcher</a></td><td>1181</td><td>W</td><td>425</td><td>384</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4335.html'>Prema Maniam</a></td><td>756</td><td>L</td><td>316</td><td>462</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2380.html'>Arunan Sethu</a></td><td>575</td><td>W</td><td>350</td><td>341</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4291.html'>Norathep Sripasit</a></td><td>476</td><td>W</td><td>423</td><td>296</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/4338.html'>Wan Mohd Azril</a></td><td>790</td><td>W</td><td>397</td><td>374</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/490.html'>Kim Rubina</a></td><td>477</td><td>L</td><td>315</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3165.html'>Shiidheswar Ravich</a></td><td>749</td><td>L</td><td>401</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td>1204</td><td>L</td><td>282</td><td>411</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td>809</td><td>W</td><td>405</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/4328.html'>Calvin Kong</a></td><td>403</td><td>W</td><td>423</td><td>259</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/1164.html'>Sanchit Kapoor</a></td><td>911</td><td>W</td><td>392</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/127.html'>Naravit Nathapukdi</a></td><td>1097</td><td>L</td><td>339</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/3117.html'>Joe Knapper</a></td><td>702</td><td>W</td><td>368</td><td>353</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2344.html'>Natasha Pratesi</a></td><td>920</td><td>L</td><td>370</td><td>380</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/4330.html'>Clarence Tew</a></td><td>813</td><td>W</td><td>407</td><td>319</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td>809</td><td>L</td><td>319</td><td>343</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td   >764</td><td   >W</td><td   >358</td><td   >317</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4300.html'>Premkumar Nimalan</a></td><td   >1220</td><td   >L</td><td   >413</td><td   >475</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4333.html'>Nathallie Cabaluna</a></td><td   >1242</td><td   >L</td><td   >371</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4330.html'>Clarence Tew</a></td><td   >813</td><td   >W</td><td   >423</td><td   >293</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2449.html'>Neo Wei Sheng</a></td><td   >852</td><td   >L</td><td   >330</td><td   >382</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/308.html'>Cheong Yi Hua</a></td><td   >1307</td><td   >L</td><td   >374</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1335</td><td   >L</td><td   >310</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4336.html'>Timothy Tan</a></td><td   >1028</td><td   >L</td><td   >350</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/510.html'>Tim Butcher</a></td><td   >1181</td><td   >W</td><td   >425</td><td   >384</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/4335.html'>Prema Maniam</a></td><td   >756</td><td   >L</td><td   >316</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2380.html'>Arunan Sethu</a></td><td   >575</td><td   >W</td><td   >350</td><td   >341</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/4291.html'>Norathep Sripasit</a></td><td   >476</td><td   >W</td><td   >423</td><td   >296</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4338.html'>Wan Mohd Azril</a></td><td   >790</td><td   >W</td><td   >397</td><td   >374</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/490.html'>Kim Rubina</a></td><td   >477</td><td   >L</td><td   >315</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3165.html'>Shiidheswar Ravich</a></td><td   >749</td><td   >L</td><td   >401</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td   >1204</td><td   >L</td><td   >282</td><td   >411</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td   >809</td><td   >W</td><td   >405</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4328.html'>Calvin Kong</a></td><td   >403</td><td   >W</td><td   >423</td><td   >259</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1164.html'>Sanchit Kapoor</a></td><td   >911</td><td   >W</td><td   >392</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/127.html'>Naravit Nathapukdi</a></td><td   >1097</td><td   >L</td><td   >339</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3117.html'>Joe Knapper</a></td><td   >702</td><td   >W</td><td   >368</td><td   >353</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2344.html'>Natasha Pratesi</a></td><td   >920</td><td   >L</td><td   >370</td><td   >380</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/4330.html'>Clarence Tew</a></td><td   >813</td><td   >W</td><td   >407</td><td   >319</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td   >809</td><td   >L</td><td   >319</td><td   >343</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_696'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_696'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>14</td><td>10</td><td>0</td><td>186</td><td>21</td><td>1041</td><td>1041</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_696'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_696'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >14</td><td   >10</td><td   >0</td><td   >186</td><td   >21</td><td   >1041</td><td   >1041</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_696'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/437.html'>Sharsindra Pratheen</a></td><td>543</td><td>W</td><td>424</td><td>299</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/477.html'>Balaji Sreevatsan</a></td><td>742</td><td>W</td><td>389</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td>828</td><td>L</td><td>300</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/498.html'>Ng Li Ki</a></td><td>1373</td><td>L</td><td>336</td><td>406</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/491.html'>Looi Yih Feng</a></td><td>1184</td><td>L</td><td>311</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/142.html'>Worawut Thamrongwara</a></td><td>1269</td><td>L</td><td>348</td><td>461</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/503.html'>Pranav Kaarthik</a></td><td>646</td><td>L</td><td>362</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/477.html'>Balaji Sreevatsan</a></td><td>742</td><td>W</td><td>389</td><td>369</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/517.html'>Wilson Hioe</a></td><td>300</td><td>W</td><td>386</td><td>359</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/505.html'>Richmon Geminiano</a></td><td>584</td><td>W</td><td>439</td><td>335</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td>936</td><td>L</td><td>244</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/509.html'>Tanvi Binani</a></td><td>696</td><td>W</td><td>399</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/476.html'>Angelica Frogosa</a></td><td>750</td><td>W</td><td>471</td><td>250</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/420.html'>Lim Mao Fong</a></td><td>751</td><td>W</td><td>430</td><td>391</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td>453</td><td>W</td><td>435</td><td>284</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/424.html'>Marvi Delfin</a></td><td>815</td><td>W</td><td>416</td><td>376</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/409.html'>Jayden Kuhne</a></td><td>1341</td><td>L</td><td>300</td><td>483</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/503.html'>Pranav Kaarthik</a></td><td>646</td><td>W</td><td>537</td><td>321</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1184</td><td>W</td><td>425</td><td>233</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/491.html'>Looi Yih Feng</a></td><td>1184</td><td>W</td><td>368</td><td>345</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/498.html'>Ng Li Ki</a></td><td>1373</td><td>L</td><td>307</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/424.html'>Marvi Delfin</a></td><td>815</td><td>W</td><td>431</td><td>375</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td>1373</td><td>L</td><td>321</td><td>492</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/218.html'>Ransi Weerasooriya</a></td><td>1302</td><td>L</td><td>400</td><td>450</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/437.html'>Sharsindra Pratheen</a></td><td   >543</td><td   >W</td><td   >424</td><td   >299</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/477.html'>Balaji Sreevatsan</a></td><td   >742</td><td   >W</td><td   >389</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td   >828</td><td   >L</td><td   >300</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/498.html'>Ng Li Ki</a></td><td   >1373</td><td   >L</td><td   >336</td><td   >406</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/491.html'>Looi Yih Feng</a></td><td   >1184</td><td   >L</td><td   >311</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/142.html'>Worawut Thamrongwara</a></td><td   >1269</td><td   >L</td><td   >348</td><td   >461</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/503.html'>Pranav Kaarthik</a></td><td   >646</td><td   >L</td><td   >362</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/477.html'>Balaji Sreevatsan</a></td><td   >742</td><td   >W</td><td   >389</td><td   >369</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/517.html'>Wilson Hioe</a></td><td   >300</td><td   >W</td><td   >386</td><td   >359</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/505.html'>Richmon Geminiano</a></td><td   >584</td><td   >W</td><td   >439</td><td   >335</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td   >936</td><td   >L</td><td   >244</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/509.html'>Tanvi Binani</a></td><td   >696</td><td   >W</td><td   >399</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/476.html'>Angelica Frogosa</a></td><td   >750</td><td   >W</td><td   >471</td><td   >250</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/420.html'>Lim Mao Fong</a></td><td   >751</td><td   >W</td><td   >430</td><td   >391</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td   >453</td><td   >W</td><td   >435</td><td   >284</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/424.html'>Marvi Delfin</a></td><td   >815</td><td   >W</td><td   >416</td><td   >376</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/409.html'>Jayden Kuhne</a></td><td   >1341</td><td   >L</td><td   >300</td><td   >483</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/503.html'>Pranav Kaarthik</a></td><td   >646</td><td   >W</td><td   >537</td><td   >321</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1184</td><td   >W</td><td   >425</td><td   >233</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/491.html'>Looi Yih Feng</a></td><td   >1184</td><td   >W</td><td   >368</td><td   >345</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/498.html'>Ng Li Ki</a></td><td   >1373</td><td   >L</td><td   >307</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/424.html'>Marvi Delfin</a></td><td   >815</td><td   >W</td><td   >431</td><td   >375</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td   >1373</td><td   >L</td><td   >321</td><td   >492</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/218.html'>Ransi Weerasooriya</a></td><td   >1302</td><td   >L</td><td   >400</td><td   >450</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_503'>+</button></td><td>1</td><td><a href='/aardvark/html/players/503.html'>Pranav Kaarthik</a></td><td>797</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>449.50</td><td>369.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_503'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/503.html'>Pranav Kaarthik</a></td><td   >797</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >449.50</td><td   >369.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_503'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>7</td><td>L</td><td>1041</td><td>646</td><td>362</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>18</td><td>W</td><td>1041</td><td>646</td><td>537</td><td>321</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >7</td><td   >L</td><td   >1041</td><td   >646</td><td   >362</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >18</td><td   >W</td><td   >1041</td><td   >646</td><td   >537</td><td   >321</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_119'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_119'>+</button></td><td>2</td><td><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td>903</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>396.50</td><td>300.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_119'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_119'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/119.html'>Joe Leqoalane</a></td><td   >903</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >396.50</td><td   >300.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_119'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>15</td><td>W</td><td>1041</td><td>453</td><td>435</td><td>284</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>1</td><td>W</td><td>1041</td><td>764</td><td>358</td><td>317</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >15</td><td   >W</td><td   >1041</td><td   >453</td><td   >435</td><td   >284</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >1</td><td   >W</td><td   >1041</td><td   >764</td><td   >358</td><td   >317</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3037'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3037'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td>881</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>362.00</td><td>344.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3037'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3037'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td   >881</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >362.00</td><td   >344.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3037'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>17</td><td>W</td><td>1041</td><td>809</td><td>405</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>24</td><td>L</td><td>1041</td><td>809</td><td>319</td><td>343</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >17</td><td   >W</td><td   >1041</td><td   >809</td><td   >405</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >24</td><td   >L</td><td   >1041</td><td   >809</td><td   >319</td><td   >343</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_424'>+</button></td><td>4</td><td><a href='/aardvark/html/players/424.html'>Marvi Delfin</a></td><td>1144</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>423.50</td><td>375.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_424'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/424.html'>Marvi Delfin</a></td><td   >1144</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >423.50</td><td   >375.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_424'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>16</td><td>W</td><td>1041</td><td>815</td><td>416</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>22</td><td>W</td><td>1041</td><td>815</td><td>431</td><td>375</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >16</td><td   >W</td><td   >1041</td><td   >815</td><td   >416</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >22</td><td   >W</td><td   >1041</td><td   >815</td><td   >431</td><td   >375</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_477'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_477'>+</button></td><td>5</td><td><a href='/aardvark/html/players/477.html'>Balaji Sreevatsan</a></td><td>742</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>389.00</td><td>362.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_477'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_477'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/477.html'>Balaji Sreevatsan</a></td><td   >742</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >389.00</td><td   >362.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_477'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>2</td><td>W</td><td>1041</td><td>742</td><td>389</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>8</td><td>W</td><td>1041</td><td>742</td><td>389</td><td>369</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >2</td><td   >W</td><td   >1041</td><td   >742</td><td   >389</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >8</td><td   >W</td><td   >1041</td><td   >742</td><td   >389</td><td   >369</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4330'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4330'>+</button></td><td>6</td><td><a href='/aardvark/html/players/4330.html'>Clarence Tew</a></td><td>813</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>415.00</td><td>306.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4330'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4330'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/4330.html'>Clarence Tew</a></td><td   >813</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >415.00</td><td   >306.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4330'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>4</td><td>W</td><td>1041</td><td>813</td><td>423</td><td>293</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>23</td><td>W</td><td>1041</td><td>813</td><td>407</td><td>319</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >4</td><td   >W</td><td   >1041</td><td   >813</td><td   >423</td><td   >293</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >23</td><td   >W</td><td   >1041</td><td   >813</td><td   >407</td><td   >319</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_491'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_491'>+</button></td><td>7</td><td><a href='/aardvark/html/players/491.html'>Looi Yih Feng</a></td><td>1223</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>339.50</td><td>403.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_491'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_491'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/491.html'>Looi Yih Feng</a></td><td   >1223</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >339.50</td><td   >403.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_491'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>5</td><td>L</td><td>1041</td><td>1184</td><td>311</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>20</td><td>W</td><td>1041</td><td>1184</td><td>368</td><td>345</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >5</td><td   >L</td><td   >1041</td><td   >1184</td><td   >311</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >20</td><td   >W</td><td   >1041</td><td   >1184</td><td   >368</td><td   >345</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_498'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_498'>+</button></td><td>8</td><td><a href='/aardvark/html/players/498.html'>Ng Li Ki</a></td><td>1373</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>321.50</td><td>376.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_498'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_498'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/498.html'>Ng Li Ki</a></td><td   >1373</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >321.50</td><td   >376.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_498'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>4</td><td>L</td><td>1041</td><td>1373</td><td>336</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>21</td><td>L</td><td>1041</td><td>1373</td><td>307</td><td>347</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >4</td><td   >L</td><td   >1041</td><td   >1373</td><td   >336</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >21</td><td   >L</td><td   >1041</td><td   >1373</td><td   >307</td><td   >347</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_507'>+</button></td><td>9</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1174</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>367.50</td><td>338.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_507'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1174</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >367.50</td><td   >338.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_507'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>19</td><td>W</td><td>1041</td><td>1184</td><td>425</td><td>233</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>7</td><td>L</td><td>1041</td><td>1335</td><td>310</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >19</td><td   >W</td><td   >1041</td><td   >1184</td><td   >425</td><td   >233</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >7</td><td   >L</td><td   >1041</td><td   >1335</td><td   >310</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_127'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_127'>+</button></td><td>10</td><td><a href='/aardvark/html/players/127.html'>Naravit Nathapukdi</a></td><td>1135</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>339.00</td><td>425.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_127'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_127'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/127.html'>Naravit Nathapukdi</a></td><td   >1135</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >339.00</td><td   >425.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_127'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>20</td><td>L</td><td>1041</td><td>1097</td><td>339</td><td>425</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >20</td><td   >L</td><td   >1041</td><td   >1097</td><td   >339</td><td   >425</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4335'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4335'>+</button></td><td>11</td><td><a href='/aardvark/html/players/4335.html'>Prema Maniam</a></td><td>756</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>316.00</td><td>462.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4335'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4335'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/4335.html'>Prema Maniam</a></td><td   >756</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >316.00</td><td   >462.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4335'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>10</td><td>L</td><td>1041</td><td>756</td><td>316</td><td>462</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >10</td><td   >L</td><td   >1041</td><td   >756</td><td   >316</td><td   >462</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_118'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_118'>+</button></td><td>12</td><td><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td>1130</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>282.00</td><td>411.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_118'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_118'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/118.html'>Jamin Dispanya</a></td><td   >1130</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >282.00</td><td   >411.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_118'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>16</td><td>L</td><td>1041</td><td>1204</td><td>282</td><td>411</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >16</td><td   >L</td><td   >1041</td><td   >1204</td><td   >282</td><td   >411</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4291'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4291'>+</button></td><td>13</td><td><a href='/aardvark/html/players/4291.html'>Norathep Sripasit</a></td><td>566</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>423.00</td><td>296.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4291'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4291'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/4291.html'>Norathep Sripasit</a></td><td   >566</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >423.00</td><td   >296.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4291'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>12</td><td>W</td><td>1041</td><td>476</td><td>423</td><td>296</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >12</td><td   >W</td><td   >1041</td><td   >476</td><td   >423</td><td   >296</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2449'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2449'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2449.html'>Neo Wei Sheng</a></td><td>948</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>330.00</td><td>382.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2449'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2449'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/2449.html'>Neo Wei Sheng</a></td><td   >948</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >330.00</td><td   >382.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2449'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>5</td><td>L</td><td>1041</td><td>852</td><td>330</td><td>382</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >5</td><td   >L</td><td   >1041</td><td   >852</td><td   >330</td><td   >382</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4338'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4338'>+</button></td><td>15</td><td><a href='/aardvark/html/players/4338.html'>Wan Mohd Azril</a></td><td>790</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>397.00</td><td>374.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4338'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4338'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/4338.html'>Wan Mohd Azril</a></td><td   >790</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >397.00</td><td   >374.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4338'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>13</td><td>W</td><td>1041</td><td>790</td><td>397</td><td>374</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >13</td><td   >W</td><td   >1041</td><td   >790</td><td   >397</td><td   >374</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_437'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_437'>+</button></td><td>16</td><td><a href='/aardvark/html/players/437.html'>Sharsindra Pratheen</a></td><td>577</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>424.00</td><td>299.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_437'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_437'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/437.html'>Sharsindra Pratheen</a></td><td   >577</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >424.00</td><td   >299.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_437'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>1</td><td>W</td><td>1041</td><td>543</td><td>424</td><td>299</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >1</td><td   >W</td><td   >1041</td><td   >543</td><td   >424</td><td   >299</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_517'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_517'>+</button></td><td>17</td><td><a href='/aardvark/html/players/517.html'>Wilson Hioe</a></td><td>346</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>386.00</td><td>359.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_517'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_517'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/517.html'>Wilson Hioe</a></td><td   >346</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >386.00</td><td   >359.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_517'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>9</td><td>W</td><td>1041</td><td>300</td><td>386</td><td>359</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >9</td><td   >W</td><td   >1041</td><td   >300</td><td   >386</td><td   >359</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4336'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4336'>+</button></td><td>18</td><td><a href='/aardvark/html/players/4336.html'>Timothy Tan</a></td><td>1028</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>350.00</td><td>372.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4336'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4336'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/4336.html'>Timothy Tan</a></td><td   >1028</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >350.00</td><td   >372.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4336'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>8</td><td>L</td><td>1041</td><td>1028</td><td>350</td><td>372</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >8</td><td   >L</td><td   >1041</td><td   >1028</td><td   >350</td><td   >372</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_218'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_218'>+</button></td><td>19</td><td><a href='/aardvark/html/players/218.html'>Ransi Weerasooriya</a></td><td>1293</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>400.00</td><td>450.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_218'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_218'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/218.html'>Ransi Weerasooriya</a></td><td   >1293</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >400.00</td><td   >450.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_218'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>24</td><td>L</td><td>1041</td><td>1302</td><td>400</td><td>450</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >24</td><td   >L</td><td   >1041</td><td   >1302</td><td   >400</td><td   >450</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_308'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_308'>+</button></td><td>20</td><td><a href='/aardvark/html/players/308.html'>Cheong Yi Hua</a></td><td>1228</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>374.00</td><td>409.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_308'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_308'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/308.html'>Cheong Yi Hua</a></td><td   >1228</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >374.00</td><td   >409.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_308'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>6</td><td>L</td><td>1041</td><td>1307</td><td>374</td><td>409</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >6</td><td   >L</td><td   >1041</td><td   >1307</td><td   >374</td><td   >409</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_490'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_490'>+</button></td><td>21</td><td><a href='/aardvark/html/players/490.html'>Kim Rubina</a></td><td>509</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>409.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_490'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_490'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/490.html'>Kim Rubina</a></td><td   >509</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >409.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_490'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>14</td><td>L</td><td>1041</td><td>477</td><td>315</td><td>409</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >14</td><td   >L</td><td   >1041</td><td   >477</td><td   >315</td><td   >409</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4328'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4328'>+</button></td><td>22</td><td><a href='/aardvark/html/players/4328.html'>Calvin Kong</a></td><td>403</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>423.00</td><td>259.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4328'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4328'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/4328.html'>Calvin Kong</a></td><td   >403</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >423.00</td><td   >259.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4328'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>18</td><td>W</td><td>1041</td><td>403</td><td>423</td><td>259</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >18</td><td   >W</td><td   >1041</td><td   >403</td><td   >423</td><td   >259</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1164'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1164'>+</button></td><td>23</td><td><a href='/aardvark/html/players/1164.html'>Sanchit Kapoor</a></td><td>1461</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>392.00</td><td>327.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1164'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1164'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/1164.html'>Sanchit Kapoor</a></td><td   >1461</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >392.00</td><td   >327.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1164'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>19</td><td>W</td><td>1041</td><td>911</td><td>392</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >19</td><td   >W</td><td   >1041</td><td   >911</td><td   >392</td><td   >327</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_225'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_225'>+</button></td><td>24</td><td><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td>1115</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>244.00</td><td>455.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_225'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_225'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td   >1115</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >244.00</td><td   >455.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_225'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>11</td><td>L</td><td>1041</td><td>936</td><td>244</td><td>455</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >11</td><td   >L</td><td   >1041</td><td   >936</td><td   >244</td><td   >455</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_142'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_142'>+</button></td><td>25</td><td><a href='/aardvark/html/players/142.html'>Worawut Thamrongwara</a></td><td>1321</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>348.00</td><td>461.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_142'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_142'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/142.html'>Worawut Thamrongwara</a></td><td   >1321</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >348.00</td><td   >461.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_142'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>6</td><td>L</td><td>1041</td><td>1269</td><td>348</td><td>461</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >6</td><td   >L</td><td   >1041</td><td   >1269</td><td   >348</td><td   >461</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3117'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3117'>+</button></td><td>26</td><td><a href='/aardvark/html/players/3117.html'>Joe Knapper</a></td><td>946</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>368.00</td><td>353.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3117'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3117'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/3117.html'>Joe Knapper</a></td><td   >946</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >368.00</td><td   >353.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3117'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>21</td><td>W</td><td>1041</td><td>702</td><td>368</td><td>353</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >21</td><td   >W</td><td   >1041</td><td   >702</td><td   >368</td><td   >353</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_420'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_420'>+</button></td><td>27</td><td><a href='/aardvark/html/players/420.html'>Lim Mao Fong</a></td><td>736</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>430.00</td><td>391.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_420'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_420'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/420.html'>Lim Mao Fong</a></td><td   >736</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >430.00</td><td   >391.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_420'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>14</td><td>W</td><td>1041</td><td>751</td><td>430</td><td>391</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >14</td><td   >W</td><td   >1041</td><td   >751</td><td   >430</td><td   >391</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_505'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_505'>+</button></td><td>28</td><td><a href='/aardvark/html/players/505.html'>Richmon Geminiano</a></td><td>584</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>439.00</td><td>335.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_505'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_505'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/505.html'>Richmon Geminiano</a></td><td   >584</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >439.00</td><td   >335.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_505'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>10</td><td>W</td><td>1041</td><td>584</td><td>439</td><td>335</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >10</td><td   >W</td><td   >1041</td><td   >584</td><td   >439</td><td   >335</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_514'>+</button></td><td>29</td><td><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td>1645</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>321.00</td><td>492.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_514'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td   >1645</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >321.00</td><td   >492.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_514'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>23</td><td>L</td><td>1041</td><td>1373</td><td>321</td><td>492</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >23</td><td   >L</td><td   >1041</td><td   >1373</td><td   >321</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3165'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3165'>+</button></td><td>30</td><td><a href='/aardvark/html/players/3165.html'>Shiidheswar Ravich</a></td><td>813</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>401.00</td><td>445.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3165'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3165'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/3165.html'>Shiidheswar Ravich</a></td><td   >813</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >401.00</td><td   >445.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3165'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>15</td><td>L</td><td>1041</td><td>749</td><td>401</td><td>445</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >15</td><td   >L</td><td   >1041</td><td   >749</td><td   >401</td><td   >445</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_476'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_476'>+</button></td><td>31</td><td><a href='/aardvark/html/players/476.html'>Angelica Frogosa</a></td><td>751</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>471.00</td><td>250.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_476'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_476'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/476.html'>Angelica Frogosa</a></td><td   >751</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >471.00</td><td   >250.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_476'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>13</td><td>W</td><td>1041</td><td>750</td><td>471</td><td>250</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >13</td><td   >W</td><td   >1041</td><td   >750</td><td   >471</td><td   >250</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_497'>+</button></td><td>32</td><td><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td>1239</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>366.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_497'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td   >1239</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >366.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_497'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>3</td><td>L</td><td>1041</td><td>828</td><td>300</td><td>366</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >3</td><td   >L</td><td   >1041</td><td   >828</td><td   >300</td><td   >366</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2380'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2380'>+</button></td><td>33</td><td><a href='/aardvark/html/players/2380.html'>Arunan Sethu</a></td><td>803</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>341.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2380'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2380'>+</button></td><td   >33</td><td   ><a href='/aardvark/html/players/2380.html'>Arunan Sethu</a></td><td   >803</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >350.00</td><td   >341.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2380'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>11</td><td>W</td><td>1041</td><td>575</td><td>350</td><td>341</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >11</td><td   >W</td><td   >1041</td><td   >575</td><td   >350</td><td   >341</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_509'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_509'>+</button></td><td>34</td><td><a href='/aardvark/html/players/509.html'>Tanvi Binani</a></td><td>716</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>399.00</td><td>350.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_509'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_509'>+</button></td><td   >34</td><td   ><a href='/aardvark/html/players/509.html'>Tanvi Binani</a></td><td   >716</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >399.00</td><td   >350.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_509'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>12</td><td>W</td><td>1041</td><td>696</td><td>399</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >12</td><td   >W</td><td   >1041</td><td   >696</td><td   >399</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4333'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4333'>+</button></td><td>35</td><td><a href='/aardvark/html/players/4333.html'>Nathallie Cabaluna</a></td><td>1242</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>371.00</td><td>395.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4333'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4333'>+</button></td><td   >35</td><td   ><a href='/aardvark/html/players/4333.html'>Nathallie Cabaluna</a></td><td   >1242</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >371.00</td><td   >395.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4333'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>3</td><td>L</td><td>1041</td><td>1242</td><td>371</td><td>395</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >3</td><td   >L</td><td   >1041</td><td   >1242</td><td   >371</td><td   >395</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2344'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2344'>+</button></td><td>36</td><td><a href='/aardvark/html/players/2344.html'>Natasha Pratesi</a></td><td>1066</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>370.00</td><td>380.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2344'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2344'>+</button></td><td   >36</td><td   ><a href='/aardvark/html/players/2344.html'>Natasha Pratesi</a></td><td   >1066</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >370.00</td><td   >380.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2344'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>22</td><td>L</td><td>1041</td><td>920</td><td>370</td><td>380</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >22</td><td   >L</td><td   >1041</td><td   >920</td><td   >370</td><td   >380</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_510'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_510'>+</button></td><td>37</td><td><a href='/aardvark/html/players/510.html'>Tim Butcher</a></td><td>1098</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>425.00</td><td>384.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_510'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_510'>+</button></td><td   >37</td><td   ><a href='/aardvark/html/players/510.html'>Tim Butcher</a></td><td   >1098</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >425.00</td><td   >384.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_510'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>9</td><td>W</td><td>1041</td><td>1181</td><td>425</td><td>384</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >9</td><td   >W</td><td   >1041</td><td   >1181</td><td   >425</td><td   >384</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_409'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_409'>+</button></td><td>38</td><td><a href='/aardvark/html/players/409.html'>Jayden Kuhne</a></td><td>1424</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>483.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_409'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_409'>+</button></td><td   >38</td><td   ><a href='/aardvark/html/players/409.html'>Jayden Kuhne</a></td><td   >1424</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >483.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_409'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td>2010-12-10</td><td>17</td><td>L</td><td>1041</td><td>1341</td><td>300</td><td>483</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/17.html'>2010 World Youth Scrabble Championship</a></td><td   >2010-12-10</td><td   >17</td><td   >L</td><td   >1041</td><td   >1341</td><td   >300</td><td   >483</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4300'>+</button></td><td>39</td><td><a href='/aardvark/html/players/4300.html'>Premkumar Nimalan</a></td><td>1330</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>413.00</td><td>475.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4300'>+</button></td><td   >39</td><td   ><a href='/aardvark/html/players/4300.html'>Premkumar Nimalan</a></td><td   >1330</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >413.00</td><td   >475.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4300'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td>2011-12-08</td><td>2</td><td>L</td><td>1041</td><td>1220</td><td>413</td><td>475</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/523.html'>2011 World Youth Championships</a></td><td   >2011-12-08</td><td   >2</td><td   >L</td><td   >1041</td><td   >1220</td><td   >413</td><td   >475</td></tr>
 </table></div></td></tr>
 
 </table>

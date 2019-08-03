@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,46 +156,123 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_27866'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27866'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>4</td><td>0</td><td>0</td><td>480</td><td>1819</td><td>1838</td><td>19</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_27866'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27866'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >4</td><td   >0</td><td   >0</td><td   >480</td><td   >1819</td><td   >1838</td><td   >19</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27866'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1415</td><td>W</td><td>515</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1346</td><td>W</td><td>470</td><td>305</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1715</td><td>W</td><td>457</td><td>423</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1715</td><td>W</td><td>489</td><td>361</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   >W</td><td   >515</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   >W</td><td   >470</td><td   >305</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   >W</td><td   >457</td><td   >423</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   >W</td><td   >489</td><td   >361</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_27869'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27869'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>2</td><td>2</td><td>0</td><td>239</td><td>1715</td><td>1709</td><td>-6</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_27869'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27869'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >2</td><td   >2</td><td   >0</td><td   >239</td><td   >1715</td><td   >1709</td><td   >-6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27869'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1346</td><td>W</td><td>552</td><td>338</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1415</td><td>W</td><td>600</td><td>413</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1819</td><td>L</td><td>423</td><td>457</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1819</td><td>L</td><td>361</td><td>489</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   >W</td><td   >552</td><td   >338</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   >W</td><td   >600</td><td   >413</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >L</td><td   >423</td><td   >457</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >L</td><td   >361</td><td   >489</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_27868'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27868'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>2</td><td>2</td><td>0</td><td>-57</td><td>1415</td><td>1422</td><td>7</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_27868'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27868'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >2</td><td   >2</td><td   >0</td><td   >-57</td><td   >1415</td><td   >1422</td><td   >7</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27868'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1819</td><td>L</td><td>362</td><td>515</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1715</td><td>L</td><td>413</td><td>600</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1346</td><td>W</td><td>472</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1346</td><td>W</td><td>560</td><td>278</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >L</td><td   >362</td><td   >515</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   >L</td><td   >413</td><td   >600</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   >W</td><td   >472</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   >W</td><td   >560</td><td   >278</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_27867'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27867'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>0</td><td>4</td><td>0</td><td>-662</td><td>1346</td><td>1320</td><td>-26</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_27867'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27867'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >0</td><td   >4</td><td   >0</td><td   >-662</td><td   >1346</td><td   >1320</td><td   >-26</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27867'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1715</td><td>L</td><td>338</td><td>552</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1819</td><td>L</td><td>305</td><td>470</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1415</td><td>L</td><td>471</td><td>472</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1415</td><td>L</td><td>278</td><td>560</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   >L</td><td   >338</td><td   >552</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >L</td><td   >305</td><td   >470</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   >L</td><td   >471</td><td   >472</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   >L</td><td   >278</td><td   >560</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >600</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >560</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >552</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >515</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >489</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >472</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >470</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >457</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >471</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >423</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >413</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >362</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >361</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >338</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >305</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >278</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >560</td><td   >278</td><td   >282</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >552</td><td   >338</td><td   >214</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >600</td><td   >413</td><td   >187</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >470</td><td   >305</td><td   >165</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >515</td><td   >362</td><td   >153</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >489</td><td   >361</td><td   >128</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >457</td><td   >423</td><td   >34</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >472</td><td   >471</td><td   >1</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1013</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >943</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >890</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >880</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >877</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >850</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >838</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >775</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >775</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >838</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >850</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >877</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >880</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >890</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >943</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1013</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >473</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >404</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   >369</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   >300</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >104</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1715</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1819</td><td   >104</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   >69</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1346</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1415</td><td   >69</td><td   >4</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >2.794</td><td   >4</td><td   >142</td><td   >129</td><td   >6</td><td   >6</td><td   >1819</td><td   >19</td><td   >1838</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >2.302</td><td   >2</td><td   >256</td><td   >262</td><td   >40</td><td   >40</td><td   >1715</td><td   >-6</td><td   >1709</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1.625</td><td   >2</td><td   >622</td><td   >611</td><td   >22</td><td   >22</td><td   >1415</td><td   >7</td><td   >1422</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1.278</td><td   >0</td><td   >709</td><td   >739</td><td   >25</td><td   >26</td><td   >1346</td><td   >-26</td><td   >1320</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

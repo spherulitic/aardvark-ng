@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -155,7 +155,7 @@
           <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
             <h2>Aurelio Cagahastian</h2>
             <div>
-              <IMG SRC="../../flags/.png" alt="">
+              <IMG SRC="../../flags/CAN.png" alt="">
               <p></p>
             </div>
           </div>
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1528<br>
               <b>Games Played:</b> 14<br>
               <b>Wins:</b> 8 (57.14%)<br>
               <b>Losses: </b>6 (42.86%)<br>
@@ -183,105 +184,105 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_7772'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7772'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>8</td><td>6</td><td>0</td><td>134</td><td>11</td><td>1528</td><td>1528</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_7772'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7772'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >8</td><td   >6</td><td   >0</td><td   >134</td><td   >11</td><td   >1528</td><td   >1528</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_7772'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/924.html'>Ramon Organo</a></td><td>1277</td><td>W</td><td>351</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2166.html'>Amirali Alimohamed</a></td><td>1680</td><td>L</td><td>315</td><td>464</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2167.html'>Sarwar Hussain</a></td><td>1171</td><td>W</td><td>465</td><td>290</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2164.html'>Orly Cabanting</a></td><td>1341</td><td>W</td><td>395</td><td>326</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/15.html'>Nikhil Soneja</a></td><td>1457</td><td>L</td><td>365</td><td>547</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1479</td><td>W</td><td>386</td><td>331</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/956.html'>Roland Filio</a></td><td>1907</td><td>L</td><td>362</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/882.html'>Marcello Lualhati</a></td><td>1260</td><td>W</td><td>372</td><td>271</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td>1648</td><td>L</td><td>365</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/878.html'>Mujeeb Rahman</a></td><td>1577</td><td>L</td><td>353</td><td>383</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2481.html'>Tony Kaje</a></td><td>1480</td><td>L</td><td>351</td><td>465</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3.html'>Cecil Fernandes</a></td><td>1344</td><td>W</td><td>383</td><td>338</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/906.html'>Vivian Penaflor</a></td><td>1623</td><td>W</td><td>400</td><td>333</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/909.html'>Louis Fernandes</a></td><td>1374</td><td>W</td><td>390</td><td>272</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/924.html'>Ramon Organo</a></td><td   >1277</td><td   >W</td><td   >351</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2166.html'>Amirali Alimohamed</a></td><td   >1680</td><td   >L</td><td   >315</td><td   >464</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2167.html'>Sarwar Hussain</a></td><td   >1171</td><td   >W</td><td   >465</td><td   >290</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2164.html'>Orly Cabanting</a></td><td   >1341</td><td   >W</td><td   >395</td><td   >326</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/15.html'>Nikhil Soneja</a></td><td   >1457</td><td   >L</td><td   >365</td><td   >547</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td   >1479</td><td   >W</td><td   >386</td><td   >331</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/956.html'>Roland Filio</a></td><td   >1907</td><td   >L</td><td   >362</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/882.html'>Marcello Lualhati</a></td><td   >1260</td><td   >W</td><td   >372</td><td   >271</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td   >1648</td><td   >L</td><td   >365</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/878.html'>Mujeeb Rahman</a></td><td   >1577</td><td   >L</td><td   >353</td><td   >383</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2481.html'>Tony Kaje</a></td><td   >1480</td><td   >L</td><td   >351</td><td   >465</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3.html'>Cecil Fernandes</a></td><td   >1344</td><td   >W</td><td   >383</td><td   >338</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/906.html'>Vivian Penaflor</a></td><td   >1623</td><td   >W</td><td   >400</td><td   >333</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/909.html'>Louis Fernandes</a></td><td   >1374</td><td   >W</td><td   >390</td><td   >272</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_25'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_25'>+</button></td><td>1</td><td><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td>1241</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>386.00</td><td>331.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_25'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_25'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/25.html'>Sonny Hemachandra</a></td><td   >1241</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >386.00</td><td   >331.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_25'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>6</td><td>W</td><td>1528</td><td>1479</td><td>386</td><td>331</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >6</td><td   >W</td><td   >1528</td><td   >1479</td><td   >386</td><td   >331</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2164'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2164'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2164.html'>Orly Cabanting</a></td><td>1544</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>395.00</td><td>326.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2164'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2164'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2164.html'>Orly Cabanting</a></td><td   >1544</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >395.00</td><td   >326.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2164'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>4</td><td>W</td><td>1528</td><td>1341</td><td>395</td><td>326</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >4</td><td   >W</td><td   >1528</td><td   >1341</td><td   >395</td><td   >326</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3.html'>Cecil Fernandes</a></td><td>1177</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>383.00</td><td>338.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3.html'>Cecil Fernandes</a></td><td   >1177</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >383.00</td><td   >338.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>12</td><td>W</td><td>1528</td><td>1344</td><td>383</td><td>338</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >12</td><td   >W</td><td   >1528</td><td   >1344</td><td   >383</td><td   >338</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2166'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2166'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2166.html'>Amirali Alimohamed</a></td><td>1605</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>464.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2166'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2166'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2166.html'>Amirali Alimohamed</a></td><td   >1605</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >464.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2166'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>2</td><td>L</td><td>1528</td><td>1680</td><td>315</td><td>464</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >2</td><td   >L</td><td   >1528</td><td   >1680</td><td   >315</td><td   >464</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2481'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2481'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2481.html'>Tony Kaje</a></td><td>1480</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>351.00</td><td>465.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2481'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2481'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2481.html'>Tony Kaje</a></td><td   >1480</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >351.00</td><td   >465.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2481'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>11</td><td>L</td><td>1528</td><td>1480</td><td>351</td><td>465</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >11</td><td   >L</td><td   >1528</td><td   >1480</td><td   >351</td><td   >465</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_882'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_882'>+</button></td><td>6</td><td><a href='/aardvark/html/players/882.html'>Marcello Lualhati</a></td><td>1228</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>372.00</td><td>271.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_882'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_882'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/882.html'>Marcello Lualhati</a></td><td   >1228</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >372.00</td><td   >271.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_882'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>8</td><td>W</td><td>1528</td><td>1260</td><td>372</td><td>271</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >8</td><td   >W</td><td   >1528</td><td   >1260</td><td   >372</td><td   >271</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_15'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_15'>+</button></td><td>7</td><td><a href='/aardvark/html/players/15.html'>Nikhil Soneja</a></td><td>1460</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>365.00</td><td>547.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_15'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_15'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/15.html'>Nikhil Soneja</a></td><td   >1460</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >365.00</td><td   >547.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_15'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>5</td><td>L</td><td>1528</td><td>1457</td><td>365</td><td>547</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >5</td><td   >L</td><td   >1528</td><td   >1457</td><td   >365</td><td   >547</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_878'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_878'>+</button></td><td>8</td><td><a href='/aardvark/html/players/878.html'>Mujeeb Rahman</a></td><td>1354</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>353.00</td><td>383.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_878'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_878'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/878.html'>Mujeeb Rahman</a></td><td   >1354</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >353.00</td><td   >383.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_878'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>10</td><td>L</td><td>1528</td><td>1577</td><td>353</td><td>383</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >10</td><td   >L</td><td   >1528</td><td   >1577</td><td   >353</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_956'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_956'>+</button></td><td>9</td><td><a href='/aardvark/html/players/956.html'>Roland Filio</a></td><td>1702</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>362.00</td><td>383.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_956'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_956'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/956.html'>Roland Filio</a></td><td   >1702</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >362.00</td><td   >383.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_956'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>7</td><td>L</td><td>1528</td><td>1907</td><td>362</td><td>383</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >7</td><td   >L</td><td   >1528</td><td   >1907</td><td   >362</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_906'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_906'>+</button></td><td>10</td><td><a href='/aardvark/html/players/906.html'>Vivian Penaflor</a></td><td>1582</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>400.00</td><td>333.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_906'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_906'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/906.html'>Vivian Penaflor</a></td><td   >1582</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >400.00</td><td   >333.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_906'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>13</td><td>W</td><td>1528</td><td>1623</td><td>400</td><td>333</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >13</td><td   >W</td><td   >1528</td><td   >1623</td><td   >400</td><td   >333</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_879'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_879'>+</button></td><td>11</td><td><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td>841</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>365.00</td><td>368.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_879'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_879'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td   >841</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >365.00</td><td   >368.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_879'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>9</td><td>L</td><td>1528</td><td>1648</td><td>365</td><td>368</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >9</td><td   >L</td><td   >1528</td><td   >1648</td><td   >365</td><td   >368</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_924'>+</button></td><td>12</td><td><a href='/aardvark/html/players/924.html'>Ramon Organo</a></td><td>1467</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>351.00</td><td>348.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_924'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/924.html'>Ramon Organo</a></td><td   >1467</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >351.00</td><td   >348.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_924'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>1</td><td>W</td><td>1528</td><td>1277</td><td>351</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >1</td><td   >W</td><td   >1528</td><td   >1277</td><td   >351</td><td   >348</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_909'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_909'>+</button></td><td>13</td><td><a href='/aardvark/html/players/909.html'>Louis Fernandes</a></td><td>1393</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>390.00</td><td>272.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_909'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_909'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/909.html'>Louis Fernandes</a></td><td   >1393</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >390.00</td><td   >272.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_909'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>14</td><td>W</td><td>1528</td><td>1374</td><td>390</td><td>272</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >14</td><td   >W</td><td   >1528</td><td   >1374</td><td   >390</td><td   >272</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2167'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2167.html'>Sarwar Hussain</a></td><td>1249</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>465.00</td><td>290.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2167'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/2167.html'>Sarwar Hussain</a></td><td   >1249</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >465.00</td><td   >290.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2167'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td>2000-05-26</td><td>3</td><td>W</td><td>1528</td><td>1171</td><td>465</td><td>290</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/197.html'>10th Gulf Championships</a></td><td   >2000-05-26</td><td   >3</td><td   >W</td><td   >1528</td><td   >1171</td><td   >465</td><td   >290</td></tr>
 </table></div></td></tr>
 
 </table>

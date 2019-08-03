@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Soh Ke Lun</h2>
             <div>
               <IMG SRC="../../flags/SGP.png" alt="SGP">
-              <p>SGP</p>
+              <p><a href='/aardvark/html/rankings/SGP.html'>Singapore</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 975<br>
               <b>Games Played:</b> 15<br>
               <b>Wins:</b> 8 (53.33%)<br>
               <b>Losses: </b>7 (46.67%)<br>
@@ -183,99 +184,99 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_6850'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_6850'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>8</td><td>7</td><td>0</td><td>379</td><td>17</td><td>975</td><td>975</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_6850'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_6850'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >8</td><td   >7</td><td   >0</td><td   >379</td><td   >17</td><td   >975</td><td   >975</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_6850'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2386.html'>Jivan Subramaniam</a></td><td>935</td><td>L</td><td>353</td><td>359</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2405.html'>Tiara Dwi Lintang</a></td><td>738</td><td>W</td><td>548</td><td>274</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td>1145</td><td>L</td><td>363</td><td>519</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1651.html'>Silverius Daniel</a></td><td>923</td><td>W</td><td>457</td><td>315</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1645.html'>Muhd Adham Abdullah</a></td><td>1151</td><td>L</td><td>366</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2391.html'>Leong Hui Chen</a></td><td>879</td><td>W</td><td>468</td><td>254</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1668.html'>Gabriel Cheang</a></td><td>1655</td><td>L</td><td>301</td><td>526</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2385.html'>Jeihiin Subramaniam</a></td><td>701</td><td>L</td><td>367</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2381.html'>Chong Kel Vin</a></td><td>773</td><td>W</td><td>406</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td>1145</td><td>L</td><td>324</td><td>455</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td>717</td><td>L</td><td>362</td><td>520</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2404.html'>Tham Jun-li</a></td><td>555</td><td>W</td><td>451</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2386.html'>Jivan Subramaniam</a></td><td>935</td><td>W</td><td>490</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2388.html'>Jonathan Kevin</a></td><td>977</td><td>W</td><td>561</td><td>363</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2381.html'>Chong Kel Vin</a></td><td>773</td><td>W</td><td>437</td><td>394</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2386.html'>Jivan Subramaniam</a></td><td   >935</td><td   >L</td><td   >353</td><td   >359</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2405.html'>Tiara Dwi Lintang</a></td><td   >738</td><td   >W</td><td   >548</td><td   >274</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td   >1145</td><td   >L</td><td   >363</td><td   >519</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1651.html'>Silverius Daniel</a></td><td   >923</td><td   >W</td><td   >457</td><td   >315</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1645.html'>Muhd Adham Abdullah</a></td><td   >1151</td><td   >L</td><td   >366</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2391.html'>Leong Hui Chen</a></td><td   >879</td><td   >W</td><td   >468</td><td   >254</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1668.html'>Gabriel Cheang</a></td><td   >1655</td><td   >L</td><td   >301</td><td   >526</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2385.html'>Jeihiin Subramaniam</a></td><td   >701</td><td   >L</td><td   >367</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2381.html'>Chong Kel Vin</a></td><td   >773</td><td   >W</td><td   >406</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td   >1145</td><td   >L</td><td   >324</td><td   >455</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td   >717</td><td   >L</td><td   >362</td><td   >520</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2404.html'>Tham Jun-li</a></td><td   >555</td><td   >W</td><td   >451</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2386.html'>Jivan Subramaniam</a></td><td   >935</td><td   >W</td><td   >490</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2388.html'>Jonathan Kevin</a></td><td   >977</td><td   >W</td><td   >561</td><td   >363</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2381.html'>Chong Kel Vin</a></td><td   >773</td><td   >W</td><td   >437</td><td   >394</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1377'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1377'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td>1513</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>343.50</td><td>487.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1377'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1377'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/1377.html'>Ying Ming Poh</a></td><td   >1513</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >343.50</td><td   >487.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1377'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>3</td><td>L</td><td>975</td><td>1145</td><td>363</td><td>519</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>10</td><td>L</td><td>975</td><td>1145</td><td>324</td><td>455</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >3</td><td   >L</td><td   >975</td><td   >1145</td><td   >363</td><td   >519</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >10</td><td   >L</td><td   >975</td><td   >1145</td><td   >324</td><td   >455</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2386'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2386'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2386.html'>Jivan Subramaniam</a></td><td>833</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>421.50</td><td>338.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2386'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2386'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2386.html'>Jivan Subramaniam</a></td><td   >833</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >421.50</td><td   >338.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2386'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>1</td><td>L</td><td>975</td><td>935</td><td>353</td><td>359</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>13</td><td>W</td><td>975</td><td>935</td><td>490</td><td>318</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >1</td><td   >L</td><td   >975</td><td   >935</td><td   >353</td><td   >359</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >13</td><td   >W</td><td   >975</td><td   >935</td><td   >490</td><td   >318</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2381'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2381'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2381.html'>Chong Kel Vin</a></td><td>773</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>421.50</td><td>394.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2381'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2381'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2381.html'>Chong Kel Vin</a></td><td   >773</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >421.50</td><td   >394.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2381'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>9</td><td>W</td><td>975</td><td>773</td><td>406</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>15</td><td>W</td><td>975</td><td>773</td><td>437</td><td>394</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >9</td><td   >W</td><td   >975</td><td   >773</td><td   >406</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >15</td><td   >W</td><td   >975</td><td   >773</td><td   >437</td><td   >394</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2405'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2405'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2405.html'>Tiara Dwi Lintang</a></td><td>738</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>548.00</td><td>274.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2405'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2405'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2405.html'>Tiara Dwi Lintang</a></td><td   >738</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >548.00</td><td   >274.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2405'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>2</td><td>W</td><td>975</td><td>738</td><td>548</td><td>274</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >2</td><td   >W</td><td   >975</td><td   >738</td><td   >548</td><td   >274</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1651'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1651'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1651.html'>Silverius Daniel</a></td><td>1066</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>457.00</td><td>315.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1651'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1651'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1651.html'>Silverius Daniel</a></td><td   >1066</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >457.00</td><td   >315.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1651'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>4</td><td>W</td><td>975</td><td>923</td><td>457</td><td>315</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >4</td><td   >W</td><td   >975</td><td   >923</td><td   >457</td><td   >315</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2404'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2404'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2404.html'>Tham Jun-li</a></td><td>555</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>451.00</td><td>399.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2404'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2404'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2404.html'>Tham Jun-li</a></td><td   >555</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >451.00</td><td   >399.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2404'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>12</td><td>W</td><td>975</td><td>555</td><td>451</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >12</td><td   >W</td><td   >975</td><td   >555</td><td   >451</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1645'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1645'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1645.html'>Muhd Adham Abdullah</a></td><td>1389</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>366.00</td><td>367.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1645'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1645'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1645.html'>Muhd Adham Abdullah</a></td><td   >1389</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >366.00</td><td   >367.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1645'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>5</td><td>L</td><td>975</td><td>1151</td><td>366</td><td>367</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >5</td><td   >L</td><td   >975</td><td   >1151</td><td   >366</td><td   >367</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2385'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2385'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2385.html'>Jeihiin Subramaniam</a></td><td>849</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>367.00</td><td>418.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2385'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2385'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/2385.html'>Jeihiin Subramaniam</a></td><td   >849</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >367.00</td><td   >418.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2385'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>8</td><td>L</td><td>975</td><td>701</td><td>367</td><td>418</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >8</td><td   >L</td><td   >975</td><td   >701</td><td   >367</td><td   >418</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2391'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2391'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2391.html'>Leong Hui Chen</a></td><td>879</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>468.00</td><td>254.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2391'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2391'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2391.html'>Leong Hui Chen</a></td><td   >879</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >468.00</td><td   >254.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2391'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>6</td><td>W</td><td>975</td><td>879</td><td>468</td><td>254</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >6</td><td   >W</td><td   >975</td><td   >879</td><td   >468</td><td   >254</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1668'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1668'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1668.html'>Gabriel Cheang</a></td><td>1562</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>301.00</td><td>526.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1668'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1668'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1668.html'>Gabriel Cheang</a></td><td   >1562</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >301.00</td><td   >526.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1668'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>7</td><td>L</td><td>975</td><td>1655</td><td>301</td><td>526</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >7</td><td   >L</td><td   >975</td><td   >1655</td><td   >301</td><td   >526</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1691'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1691'>+</button></td><td>11</td><td><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td>1367</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>362.00</td><td>520.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1691'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1691'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td   >1367</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >362.00</td><td   >520.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1691'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>11</td><td>L</td><td>975</td><td>717</td><td>362</td><td>520</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >11</td><td   >L</td><td   >975</td><td   >717</td><td   >362</td><td   >520</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2388'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2388'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2388.html'>Jonathan Kevin</a></td><td>981</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>561.00</td><td>363.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2388'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2388'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2388.html'>Jonathan Kevin</a></td><td   >981</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >561.00</td><td   >363.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2388'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td>2014-04-13</td><td>14</td><td>W</td><td>975</td><td>977</td><td>561</td><td>363</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/166.html'>ASTAR 2014</a></td><td   >2014-04-13</td><td   >14</td><td   >W</td><td   >975</td><td   >977</td><td   >561</td><td   >363</td></tr>
 </table></div></td></tr>
 
 </table>

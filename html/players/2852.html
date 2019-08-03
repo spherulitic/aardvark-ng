@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Pam Page</h2>
             <div>
               <IMG SRC="../../flags/ZAF.png" alt="ZAF">
-              <p>ZAF</p>
+              <p><a href='/aardvark/html/rankings/ZAF.html'>South Africa</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 984<br>
               <b>Games Played:</b> 16<br>
               <b>Wins:</b> 7 (43.75%)<br>
               <b>Losses: </b>9 (56.25%)<br>
@@ -183,113 +184,113 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_11052'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11052'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>7</td><td>9</td><td>0</td><td>-214</td><td>25</td><td>984</td><td>984</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_11052'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11052'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >7</td><td   >9</td><td   >0</td><td   >-214</td><td   >25</td><td   >984</td><td   >984</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_11052'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1033.html'>Howard Rayner</a></td><td>1491</td><td>L</td><td>345</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2859.html'>Sue Grinker</a></td><td>704</td><td>W</td><td>445</td><td>320</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1260.html'>Solomon Lephoto</a></td><td>1559</td><td>L</td><td>364</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2848.html'>Frank Chitambala</a></td><td>1239</td><td>W</td><td>430</td><td>410</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/26.html'>Susan Rayner</a></td><td>1192</td><td>W</td><td>429</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1246.html'>Fern Wheelwright</a></td><td>1325</td><td>L</td><td>320</td><td>457</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1251.html'>Kathy Cameron</a></td><td>1057</td><td>W</td><td>420</td><td>320</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1256.html'>Pam Field</a></td><td>1300</td><td>L</td><td>317</td><td>504</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/900.html'>Debbe Hossy</a></td><td>1438</td><td>L</td><td>255</td><td>507</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2857.html'>Seena Yacoob</a></td><td>1027</td><td>L</td><td>310</td><td>386</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2846.html'>Beryl Armitage</a></td><td>463</td><td>W</td><td>502</td><td>270</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2855.html'>Rob Liesker</a></td><td>741</td><td>L</td><td>311</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2849.html'>Hymie Jocum</a></td><td>540</td><td>L</td><td>363</td><td>433</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2855.html'>Rob Liesker</a></td><td>741</td><td>W</td><td>390</td><td>298</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2847.html'>Denise Le Bron</a></td><td>1458</td><td>L</td><td>402</td><td>457</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2854.html'>Raquel Lightley</a></td><td>926</td><td>W</td><td>394</td><td>277</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1033.html'>Howard Rayner</a></td><td   >1491</td><td   >L</td><td   >345</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2859.html'>Sue Grinker</a></td><td   >704</td><td   >W</td><td   >445</td><td   >320</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1260.html'>Solomon Lephoto</a></td><td   >1559</td><td   >L</td><td   >364</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2848.html'>Frank Chitambala</a></td><td   >1239</td><td   >W</td><td   >430</td><td   >410</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/26.html'>Susan Rayner</a></td><td   >1192</td><td   >W</td><td   >429</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1246.html'>Fern Wheelwright</a></td><td   >1325</td><td   >L</td><td   >320</td><td   >457</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1251.html'>Kathy Cameron</a></td><td   >1057</td><td   >W</td><td   >420</td><td   >320</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1256.html'>Pam Field</a></td><td   >1300</td><td   >L</td><td   >317</td><td   >504</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/900.html'>Debbe Hossy</a></td><td   >1438</td><td   >L</td><td   >255</td><td   >507</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2857.html'>Seena Yacoob</a></td><td   >1027</td><td   >L</td><td   >310</td><td   >386</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2846.html'>Beryl Armitage</a></td><td   >463</td><td   >W</td><td   >502</td><td   >270</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2855.html'>Rob Liesker</a></td><td   >741</td><td   >L</td><td   >311</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2849.html'>Hymie Jocum</a></td><td   >540</td><td   >L</td><td   >363</td><td   >433</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2855.html'>Rob Liesker</a></td><td   >741</td><td   >W</td><td   >390</td><td   >298</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2847.html'>Denise Le Bron</a></td><td   >1458</td><td   >L</td><td   >402</td><td   >457</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2854.html'>Raquel Lightley</a></td><td   >926</td><td   >W</td><td   >394</td><td   >277</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2855'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2855'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2855.html'>Rob Liesker</a></td><td>741</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>350.50</td><td>358.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2855'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2855'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2855.html'>Rob Liesker</a></td><td   >741</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >350.50</td><td   >358.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2855'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>12</td><td>L</td><td>984</td><td>741</td><td>311</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>14</td><td>W</td><td>984</td><td>741</td><td>390</td><td>298</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >12</td><td   >L</td><td   >984</td><td   >741</td><td   >311</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >14</td><td   >W</td><td   >984</td><td   >741</td><td   >390</td><td   >298</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1256'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1256'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1256.html'>Pam Field</a></td><td>1273</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>317.00</td><td>504.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1256'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1256'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1256.html'>Pam Field</a></td><td   >1273</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >317.00</td><td   >504.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1256'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>8</td><td>L</td><td>984</td><td>1300</td><td>317</td><td>504</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >8</td><td   >L</td><td   >984</td><td   >1300</td><td   >317</td><td   >504</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2848'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2848'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2848.html'>Frank Chitambala</a></td><td>1229</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>430.00</td><td>410.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2848'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2848'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2848.html'>Frank Chitambala</a></td><td   >1229</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >430.00</td><td   >410.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2848'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>4</td><td>W</td><td>984</td><td>1239</td><td>430</td><td>410</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >4</td><td   >W</td><td   >984</td><td   >1239</td><td   >430</td><td   >410</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2849'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2849'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2849.html'>Hymie Jocum</a></td><td>540</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>363.00</td><td>433.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2849'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2849'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2849.html'>Hymie Jocum</a></td><td   >540</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >363.00</td><td   >433.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2849'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>13</td><td>L</td><td>984</td><td>540</td><td>363</td><td>433</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >13</td><td   >L</td><td   >984</td><td   >540</td><td   >363</td><td   >433</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_26'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_26'>+</button></td><td>5</td><td><a href='/aardvark/html/players/26.html'>Susan Rayner</a></td><td>1178</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>429.00</td><td>368.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_26'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_26'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/26.html'>Susan Rayner</a></td><td   >1178</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >429.00</td><td   >368.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_26'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>5</td><td>W</td><td>984</td><td>1192</td><td>429</td><td>368</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >5</td><td   >W</td><td   >984</td><td   >1192</td><td   >429</td><td   >368</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1251'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1251'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1251.html'>Kathy Cameron</a></td><td>1075</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>420.00</td><td>320.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1251'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1251'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1251.html'>Kathy Cameron</a></td><td   >1075</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >420.00</td><td   >320.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1251'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>7</td><td>W</td><td>984</td><td>1057</td><td>420</td><td>320</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >7</td><td   >W</td><td   >984</td><td   >1057</td><td   >420</td><td   >320</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1260'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1260.html'>Solomon Lephoto</a></td><td>1536</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>364.00</td><td>409.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1260'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1260.html'>Solomon Lephoto</a></td><td   >1536</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >364.00</td><td   >409.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1260'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>3</td><td>L</td><td>984</td><td>1559</td><td>364</td><td>409</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >3</td><td   >L</td><td   >984</td><td   >1559</td><td   >364</td><td   >409</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_900'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_900'>+</button></td><td>8</td><td><a href='/aardvark/html/players/900.html'>Debbe Hossy</a></td><td>1425</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>255.00</td><td>507.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_900'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_900'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/900.html'>Debbe Hossy</a></td><td   >1425</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >255.00</td><td   >507.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_900'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>9</td><td>L</td><td>984</td><td>1438</td><td>255</td><td>507</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >9</td><td   >L</td><td   >984</td><td   >1438</td><td   >255</td><td   >507</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1246'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1246'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1246.html'>Fern Wheelwright</a></td><td>1336</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>320.00</td><td>457.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1246'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1246'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1246.html'>Fern Wheelwright</a></td><td   >1336</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >320.00</td><td   >457.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1246'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>6</td><td>L</td><td>984</td><td>1325</td><td>320</td><td>457</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >6</td><td   >L</td><td   >984</td><td   >1325</td><td   >320</td><td   >457</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2857'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2857'>+</button></td><td>10</td><td><a href='/aardvark/html/players/2857.html'>Seena Yacoob</a></td><td>1027</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>310.00</td><td>386.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2857'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2857'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/2857.html'>Seena Yacoob</a></td><td   >1027</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >386.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2857'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>10</td><td>L</td><td>984</td><td>1027</td><td>310</td><td>386</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >10</td><td   >L</td><td   >984</td><td   >1027</td><td   >310</td><td   >386</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2846'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2846'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2846.html'>Beryl Armitage</a></td><td>463</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>502.00</td><td>270.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2846'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2846'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/2846.html'>Beryl Armitage</a></td><td   >463</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >502.00</td><td   >270.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2846'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>11</td><td>W</td><td>984</td><td>463</td><td>502</td><td>270</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >11</td><td   >W</td><td   >984</td><td   >463</td><td   >502</td><td   >270</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2854'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2854'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2854.html'>Raquel Lightley</a></td><td>913</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>394.00</td><td>277.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2854'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2854'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2854.html'>Raquel Lightley</a></td><td   >913</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >394.00</td><td   >277.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2854'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>16</td><td>W</td><td>984</td><td>926</td><td>394</td><td>277</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >16</td><td   >W</td><td   >984</td><td   >926</td><td   >394</td><td   >277</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2859'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2859'>+</button></td><td>13</td><td><a href='/aardvark/html/players/2859.html'>Sue Grinker</a></td><td>704</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>445.00</td><td>320.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2859'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2859'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/2859.html'>Sue Grinker</a></td><td   >704</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >445.00</td><td   >320.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2859'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>2</td><td>W</td><td>984</td><td>704</td><td>445</td><td>320</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >2</td><td   >W</td><td   >984</td><td   >704</td><td   >445</td><td   >320</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1033'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1033'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1033.html'>Howard Rayner</a></td><td>1478</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>345.00</td><td>377.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1033'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1033'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1033.html'>Howard Rayner</a></td><td   >1478</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >345.00</td><td   >377.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1033'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>1</td><td>L</td><td>984</td><td>1491</td><td>345</td><td>377</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >1</td><td   >L</td><td   >984</td><td   >1491</td><td   >345</td><td   >377</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2847'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2847'>+</button></td><td>15</td><td><a href='/aardvark/html/players/2847.html'>Denise Le Bron</a></td><td>1436</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>402.00</td><td>457.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2847'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2847'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/2847.html'>Denise Le Bron</a></td><td   >1436</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >402.00</td><td   >457.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2847'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td>2019-03-24</td><td>15</td><td>L</td><td>984</td><td>1458</td><td>402</td><td>457</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/285.html'>South Africa National Championship</a></td><td   >2019-03-24</td><td   >15</td><td   >L</td><td   >984</td><td   >1458</td><td   >402</td><td   >457</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,80 +156,237 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_10792'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10792'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>6</td><td>1</td><td>0</td><td>706</td><td>1808</td><td>1816</td><td>8</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_10792'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10792'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >6</td><td   >1</td><td   >0</td><td   >706</td><td   >1808</td><td   >1816</td><td   >8</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10792'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>W</td><td>406</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>W</td><td>434</td><td>392</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>W</td><td>502</td><td>281</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>W</td><td>473</td><td>335</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>W</td><td>404</td><td>343</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>W</td><td>551</td><td>286</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>L</td><td>416</td><td>440</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >W</td><td   >406</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >W</td><td   >434</td><td   >392</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >W</td><td   >502</td><td   >281</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >W</td><td   >473</td><td   >335</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >W</td><td   >404</td><td   >343</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >W</td><td   >551</td><td   >286</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >L</td><td   >416</td><td   >440</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_10791'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10791'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>5</td><td>2</td><td>0</td><td>132</td><td>1659</td><td>1659</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_10791'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10791'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >5</td><td   >2</td><td   >0</td><td   >132</td><td   >1659</td><td   >1659</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10791'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>L</td><td>403</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>W</td><td>466</td><td>415</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>W</td><td>417</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>W</td><td>368</td><td>306</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>W</td><td>512</td><td>270</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>L</td><td>286</td><td>551</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>W</td><td>440</td><td>416</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >L</td><td   >403</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >W</td><td   >466</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >W</td><td   >417</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >W</td><td   >368</td><td   >306</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >W</td><td   >512</td><td   >270</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >L</td><td   >286</td><td   >551</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >W</td><td   >440</td><td   >416</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_10794'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10794'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>5</td><td>2</td><td>0</td><td>-111</td><td>1387</td><td>1397</td><td>10</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_10794'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10794'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >5</td><td   >2</td><td   >0</td><td   >-111</td><td   >1387</td><td   >1397</td><td   >10</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10794'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>W</td><td>371</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>L</td><td>415</td><td>466</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>L</td><td>281</td><td>502</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>W</td><td>379</td><td>363</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>W</td><td>412</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>W</td><td>382</td><td>297</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>W</td><td>387</td><td>355</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >W</td><td   >371</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >L</td><td   >415</td><td   >466</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >L</td><td   >281</td><td   >502</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >W</td><td   >379</td><td   >363</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >W</td><td   >412</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >W</td><td   >382</td><td   >297</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >W</td><td   >387</td><td   >355</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_10793'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10793'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>2</td><td>5</td><td>0</td><td>-90</td><td>1010</td><td>1008</td><td>-2</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_10793'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10793'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >2</td><td   >5</td><td   >0</td><td   >-90</td><td   >1010</td><td   >1008</td><td   >-2</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10793'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>W</td><td>401</td><td>337</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>W</td><td>422</td><td>361</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>L</td><td>396</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>L</td><td>363</td><td>379</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>L</td><td>343</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>L</td><td>297</td><td>382</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>L</td><td>355</td><td>387</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >W</td><td   >401</td><td   >337</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >W</td><td   >422</td><td   >361</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >L</td><td   >396</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >L</td><td   >363</td><td   >379</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >L</td><td   >343</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >L</td><td   >297</td><td   >382</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >L</td><td   >355</td><td   >387</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_10796'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10796'>+</button></td><td>5</td><td>5</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>2</td><td>5</td><td>0</td><td>-339</td><td>970</td><td>909</td><td>-61</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_10796'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10796'>+</button></td><td   >5</td><td   >5</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >2</td><td   >5</td><td   >0</td><td   >-339</td><td   >970</td><td   >909</td><td   >-61</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10796'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>L</td><td>362</td><td>371</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>L</td><td>361</td><td>422</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>W</td><td>397</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>L</td><td>335</td><td>473</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>L</td><td>270</td><td>512</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>W</td><td>445</td><td>353</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>756</td><td>L</td><td>380</td><td>391</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >L</td><td   >362</td><td   >371</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >L</td><td   >361</td><td   >422</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >W</td><td   >397</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >L</td><td   >335</td><td   >473</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >L</td><td   >270</td><td   >512</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >W</td><td   >445</td><td   >353</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   >L</td><td   >380</td><td   >391</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_10795'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10795'>+</button></td><td>6</td><td>6</td><td><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td>1</td><td>6</td><td>0</td><td>-298</td><td>756</td><td>756</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_10795'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10795'>+</button></td><td   >6</td><td   >6</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >1</td><td   >6</td><td   >0</td><td   >-298</td><td   >756</td><td   >756</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10795'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td>1010</td><td>L</td><td>337</td><td>401</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td>1808</td><td>L</td><td>392</td><td>434</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>L</td><td>367</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td>1659</td><td>L</td><td>306</td><td>368</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td>1387</td><td>L</td><td>393</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>L</td><td>353</td><td>445</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td>970</td><td>W</td><td>391</td><td>380</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >L</td><td   >337</td><td   >401</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >L</td><td   >392</td><td   >434</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >L</td><td   >367</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >L</td><td   >306</td><td   >368</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >L</td><td   >393</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >L</td><td   >353</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >W</td><td   >391</td><td   >380</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >551</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >512</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >502</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >473</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >466</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >445</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >440</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >434</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >422</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >417</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >412</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >406</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >404</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >401</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >397</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >391</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >387</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >382</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >379</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >371</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >368</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >416</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >415</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >403</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >396</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >393</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >392</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >380</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >367</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >363</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >362</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >361</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >355</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >353</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >343</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >337</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >335</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >306</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >297</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >286</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >281</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >270</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >551</td><td   >286</td><td   >265</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >512</td><td   >270</td><td   >242</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >502</td><td   >281</td><td   >221</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >473</td><td   >335</td><td   >138</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >445</td><td   >353</td><td   >92</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >382</td><td   >297</td><td   >85</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >401</td><td   >337</td><td   >64</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >368</td><td   >306</td><td   >62</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >404</td><td   >343</td><td   >61</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >422</td><td   >361</td><td   >61</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >466</td><td   >415</td><td   >51</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >434</td><td   >392</td><td   >42</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >387</td><td   >355</td><td   >32</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >397</td><td   >367</td><td   >30</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >440</td><td   >416</td><td   >24</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >417</td><td   >396</td><td   >21</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >412</td><td   >393</td><td   >19</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >379</td><td   >363</td><td   >16</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >391</td><td   >380</td><td   >11</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >371</td><td   >362</td><td   >9</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >406</td><td   >403</td><td   >3</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >881</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >856</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >837</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >826</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >813</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >809</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >808</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >805</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >798</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >783</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >783</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >782</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >771</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >764</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >747</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >742</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >742</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >738</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >733</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >679</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >674</td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >674</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >679</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >733</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >738</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >742</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >742</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >747</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >764</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >771</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >782</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >783</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >783</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >798</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >805</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >808</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >809</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >813</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >826</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >837</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >856</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >881</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >1052</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >903</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >838</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >798</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >689</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >649</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >631</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >421</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >417</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >377</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >377</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   >377</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >1387</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   >272</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >254</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >214</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >214</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >756</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   >214</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >149</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >149</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >1659</td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >1808</td><td   >149</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >970</td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >1010</td><td   >40</td><td   >2</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/SGP.html'>Singapore</a></td><td   ><a href='/aardvark/html/players/2105.html'>Lee Guan Hui</a></td><td   >5.518</td><td   >6</td><td   >191</td><td   >183</td><td   >10</td><td   >10</td><td   >1808</td><td   >8</td><td   >1816</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2773.html'>Tajammul Shah</a></td><td   >4.593</td><td   >5</td><td   ></td><td   >324</td><td   ></td><td   >44</td><td   >1659</td><td   >0</td><td   >1659</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2104.html'>Scott Kitchen</a></td><td   >4.509</td><td   >5</td><td   >566</td><td   >557</td><td   >64</td><td   >64</td><td   >1387</td><td   >10</td><td   >1397</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2102.html'>Lynda Woods Cleary</a></td><td   >2.098</td><td   >2</td><td   >865</td><td   >867</td><td   >74</td><td   >74</td><td   >1010</td><td   >-2</td><td   >1008</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2760.html'>Ed Horch</a></td><td   >2.822</td><td   >2</td><td   >899</td><td   >946</td><td   >74</td><td   >75</td><td   >970</td><td   >-61</td><td   >909</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2772.html'>David Lieberfarb</a></td><td   >1.471</td><td   >1</td><td   ></td><td   >1030</td><td   ></td><td   >78</td><td   >756</td><td   >0</td><td   >756</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

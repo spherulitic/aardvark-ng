@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,158 +156,450 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28823'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28823'>+</button></td><td>1</td><td>2</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>5</td><td>1</td><td>0</td><td>730</td><td>1617</td><td>1637</td><td>20</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28823'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28823'>+</button></td><td   >1</td><td   >2</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >5</td><td   >1</td><td   >0</td><td   >730</td><td   >1617</td><td   >1637</td><td   >20</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28823'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>484</td><td>208</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>W</td><td>484</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>1754</td><td>L</td><td>330</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>971</td><td>W</td><td>553</td><td>249</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1175</td><td>W</td><td>474</td><td>414</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>1754</td><td>W</td><td>462</td><td>375</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >484</td><td   >208</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >W</td><td   >484</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >L</td><td   >330</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >W</td><td   >553</td><td   >249</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >W</td><td   >474</td><td   >414</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >W</td><td   >462</td><td   >375</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28816'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28816'>+</button></td><td>2</td><td>1</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>5</td><td>1</td><td>0</td><td>303</td><td>1754</td><td>1754</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28816'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28816'>+</button></td><td   >2</td><td   >1</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >5</td><td   >1</td><td   >0</td><td   >303</td><td   >1754</td><td   >1754</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28816'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>W</td><td>384</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>971</td><td>W</td><td>440</td><td>264</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>1617</td><td>W</td><td>455</td><td>330</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1175</td><td>W</td><td>395</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>1451</td><td>W</td><td>407</td><td>405</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>1617</td><td>L</td><td>375</td><td>462</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >W</td><td   >384</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >W</td><td   >440</td><td   >264</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >W</td><td   >455</td><td   >330</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >W</td><td   >395</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >W</td><td   >407</td><td   >405</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >L</td><td   >375</td><td   >462</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28815'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28815'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>4</td><td>2</td><td>0</td><td>645</td><td>1559</td><td>1554</td><td>-5</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28815'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28815'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >4</td><td   >2</td><td   >0</td><td   >645</td><td   >1559</td><td   >1554</td><td   >-5</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28815'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>1276</td><td>W</td><td>655</td><td>371</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>1617</td><td>L</td><td>356</td><td>484</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>W</td><td>533</td><td>335</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>1451</td><td>L</td><td>281</td><td>448</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>638</td><td>W</td><td>570</td><td>272</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>1276</td><td>W</td><td>500</td><td>340</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >W</td><td   >655</td><td   >371</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >L</td><td   >356</td><td   >484</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >W</td><td   >533</td><td   >335</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >L</td><td   >281</td><td   >448</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >W</td><td   >570</td><td   >272</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >W</td><td   >500</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28814'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28814'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>4</td><td>2</td><td>0</td><td>345</td><td>1451</td><td>1455</td><td>4</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28814'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28814'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >4</td><td   >2</td><td   >0</td><td   >345</td><td   >1451</td><td   >1455</td><td   >4</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28814'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>W</td><td>375</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>W</td><td>351</td><td>345</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1175</td><td>L</td><td>397</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>W</td><td>448</td><td>281</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>1754</td><td>L</td><td>405</td><td>407</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1175</td><td>W</td><td>485</td><td>299</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >W</td><td   >375</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >W</td><td   >351</td><td   >345</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >L</td><td   >397</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >W</td><td   >448</td><td   >281</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >L</td><td   >405</td><td   >407</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >W</td><td   >485</td><td   >299</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28822'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28822'>+</button></td><td>5</td><td>5</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>4</td><td>2</td><td>0</td><td>-38</td><td>1276</td><td>1276</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28822'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28822'>+</button></td><td   >5</td><td   >5</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >4</td><td   >2</td><td   >0</td><td   >-38</td><td   >1276</td><td   >1276</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28822'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>L</td><td>371</td><td>655</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>416</td><td>165</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>W</td><td>405</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>W</td><td>426</td><td>349</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>W</td><td>454</td><td>389</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>L</td><td>340</td><td>500</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >L</td><td   >371</td><td   >655</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >416</td><td   >165</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >W</td><td   >405</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >W</td><td   >426</td><td   >349</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >W</td><td   >454</td><td   >389</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >L</td><td   >340</td><td   >500</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28826'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28826'>+</button></td><td>6</td><td>7</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>3</td><td>3</td><td>0</td><td>141</td><td>1064</td><td>1064</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28826'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28826'>+</button></td><td   >6</td><td   >7</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >3</td><td   >3</td><td   >0</td><td   >141</td><td   >1064</td><td   >1064</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28826'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>560</td><td>W</td><td>443</td><td>177</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1175</td><td>L</td><td>381</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>L</td><td>335</td><td>533</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>W</td><td>468</td><td>363</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>1276</td><td>L</td><td>389</td><td>454</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>W</td><td>412</td><td>373</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >W</td><td   >443</td><td   >177</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >L</td><td   >381</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >L</td><td   >335</td><td   >533</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >W</td><td   >468</td><td   >363</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >L</td><td   >389</td><td   >454</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >W</td><td   >412</td><td   >373</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28827'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28827'>+</button></td><td>7</td><td>9</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>3</td><td>3</td><td>0</td><td>-50</td><td>937</td><td>937</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28827'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28827'>+</button></td><td   >7</td><td   >9</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >3</td><td   >3</td><td   >0</td><td   >-50</td><td   >937</td><td   >937</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28827'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>1451</td><td>L</td><td>366</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td>300</td><td>W</td><td>367</td><td>325</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>1276</td><td>L</td><td>392</td><td>405</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>L</td><td>363</td><td>468</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>971</td><td>W</td><td>381</td><td>372</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>560</td><td>W</td><td>346</td><td>320</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >L</td><td   >366</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >300</td><td   >W</td><td   >367</td><td   >325</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >L</td><td   >392</td><td   >405</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >L</td><td   >363</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >W</td><td   >381</td><td   >372</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >W</td><td   >346</td><td   >320</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28825'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28825'>+</button></td><td>8</td><td>6</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>3</td><td>3</td><td>0</td><td>-81</td><td>1175</td><td>1189</td><td>14</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28825'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28825'>+</button></td><td   >8</td><td   >6</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >3</td><td   >3</td><td   >0</td><td   >-81</td><td   >1175</td><td   >1189</td><td   >14</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28825'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>638</td><td>W</td><td>474</td><td>315</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>W</td><td>387</td><td>381</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>1451</td><td>W</td><td>418</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>1754</td><td>L</td><td>374</td><td>395</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>1617</td><td>L</td><td>414</td><td>474</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>1451</td><td>L</td><td>299</td><td>485</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >W</td><td   >474</td><td   >315</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >W</td><td   >387</td><td   >381</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >W</td><td   >418</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >L</td><td   >374</td><td   >395</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >L</td><td   >414</td><td   >474</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >L</td><td   >299</td><td   >485</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28818'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28818'>+</button></td><td>9</td><td>8</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>3</td><td>3</td><td>0</td><td>-218</td><td>971</td><td>971</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28818'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28818'>+</button></td><td   >9</td><td   >8</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >3</td><td   >3</td><td   >0</td><td   >-218</td><td   >971</td><td   >971</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28818'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td>300</td><td>W</td><td>396</td><td>307</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>1754</td><td>L</td><td>264</td><td>440</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>560</td><td>W</td><td>280</td><td>208</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>1617</td><td>L</td><td>249</td><td>553</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>L</td><td>372</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>638</td><td>W</td><td>451</td><td>341</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >300</td><td   >W</td><td   >396</td><td   >307</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >L</td><td   >264</td><td   >440</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >W</td><td   >280</td><td   >208</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >L</td><td   >249</td><td   >553</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >L</td><td   >372</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >W</td><td   >451</td><td   >341</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28817'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28817'>+</button></td><td>10</td><td>11</td><td><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td>2</td><td>1</td><td>3</td><td>392</td><td>645</td><td>645</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28817'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28817'>+</button></td><td   >10</td><td   >11</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >2</td><td   >1</td><td   >3</td><td   >392</td><td   >645</td><td   >645</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28817'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>638</td><td>L</td><td>332</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>418</td><td>254</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>342</td><td>245</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >4</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >L</td><td   >332</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >418</td><td   >254</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >342</td><td   >245</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28821'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28821'>+</button></td><td>11</td><td>10</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>2</td><td>4</td><td>0</td><td>326</td><td>851</td><td>845</td><td>-6</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28821'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28821'>+</button></td><td   >11</td><td   >10</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >2</td><td   >4</td><td   >0</td><td   >326</td><td   >851</td><td   >845</td><td   >-6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28821'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td>1754</td><td>L</td><td>318</td><td>384</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td>1451</td><td>L</td><td>345</td><td>351</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td>300</td><td>W</td><td>525</td><td>83</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>1276</td><td>L</td><td>349</td><td>426</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>560</td><td>W</td><td>399</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>L</td><td>373</td><td>412</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >L</td><td   >318</td><td   >384</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >L</td><td   >345</td><td   >351</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >300</td><td   >W</td><td   >525</td><td   >83</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >L</td><td   >349</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >W</td><td   >399</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >L</td><td   >373</td><td   >412</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28824'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28824'>+</button></td><td>12</td><td>13</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>2</td><td>4</td><td>0</td><td>-176</td><td>560</td><td>560</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28824'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28824'>+</button></td><td   >12</td><td   >13</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >2</td><td   >4</td><td   >0</td><td   >-176</td><td   >560</td><td   >560</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28824'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>L</td><td>177</td><td>443</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>638</td><td>W</td><td>300</td><td>244</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>971</td><td>L</td><td>208</td><td>280</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>428</td><td>224</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>L</td><td>327</td><td>399</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>L</td><td>320</td><td>346</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >L</td><td   >177</td><td   >443</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >W</td><td   >300</td><td   >244</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >L</td><td   >208</td><td   >280</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >428</td><td   >224</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >L</td><td   >327</td><td   >399</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >L</td><td   >320</td><td   >346</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28820'>+</button></td><td>13</td><td>12</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>2</td><td>4</td><td>0</td><td>-412</td><td>638</td><td>638</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28820'>+</button></td><td   >13</td><td   >12</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >2</td><td   >4</td><td   >0</td><td   >-412</td><td   >638</td><td   >638</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28820'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1175</td><td>L</td><td>315</td><td>474</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>560</td><td>L</td><td>244</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>462</td><td>270</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td>645</td><td>W</td><td>351</td><td>332</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>L</td><td>272</td><td>570</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>971</td><td>L</td><td>341</td><td>451</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >L</td><td   >315</td><td   >474</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >L</td><td   >244</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >462</td><td   >270</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >645</td><td   >W</td><td   >351</td><td   >332</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >L</td><td   >272</td><td   >570</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >L</td><td   >341</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28819'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28819'>+</button></td><td>14</td><td>15</td><td><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td>0</td><td>3</td><td>3</td><td>-423</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28819'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28819'>+</button></td><td   >14</td><td   >15</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >0</td><td   >3</td><td   >3</td><td   >-423</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28819'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td>971</td><td>L</td><td>307</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>L</td><td>325</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>L</td><td>83</td><td>525</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >L</td><td   >307</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >L</td><td   >325</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >L</td><td   >83</td><td   >525</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28813'>+</button></td><td>15</td><td>14</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>0</td><td>6</td><td>0</td><td>-1184</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28813'>+</button></td><td   >15</td><td   >14</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >0</td><td   >6</td><td   >0</td><td   >-1184</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28813'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td>1617</td><td>L</td><td>208</td><td>484</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td>1276</td><td>L</td><td>165</td><td>416</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td>638</td><td>L</td><td>270</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td>560</td><td>L</td><td>224</td><td>428</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td>645</td><td>L</td><td>254</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td>645</td><td>L</td><td>245</td><td>342</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >L</td><td   >208</td><td   >484</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >L</td><td   >165</td><td   >416</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >L</td><td   >270</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >L</td><td   >224</td><td   >428</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >645</td><td   >L</td><td   >254</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >645</td><td   >L</td><td   >245</td><td   >342</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >655</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >570</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >553</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >533</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >525</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >500</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >485</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >484</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >484</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >474</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >474</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >468</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >462</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >462</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >455</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >454</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >451</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >448</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >443</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >440</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >428</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >426</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >418</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >418</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >416</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >412</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >407</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >405</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >399</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >396</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >395</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >387</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >384</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >381</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >375</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >367</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >351</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >351</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >346</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >342</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >280</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >414</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >405</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >397</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >392</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >389</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >381</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >375</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >374</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >373</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >372</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >371</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >366</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >363</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >356</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >349</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >345</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >341</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >340</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >335</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >332</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >330</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >327</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >325</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >320</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >318</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >315</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >307</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >299</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >281</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >272</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >270</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >264</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >254</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >249</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >245</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >244</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >224</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >208</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >208</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >177</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >165</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >83</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >525</td><td   >83</td><td   >442</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >553</td><td   >249</td><td   >304</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >570</td><td   >272</td><td   >298</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >655</td><td   >371</td><td   >284</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >484</td><td   >208</td><td   >276</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >443</td><td   >177</td><td   >266</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >416</td><td   >165</td><td   >251</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >428</td><td   >224</td><td   >204</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >533</td><td   >335</td><td   >198</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >462</td><td   >270</td><td   >192</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >485</td><td   >299</td><td   >186</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >440</td><td   >264</td><td   >176</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >448</td><td   >281</td><td   >167</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >418</td><td   >254</td><td   >164</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >500</td><td   >340</td><td   >160</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >474</td><td   >315</td><td   >159</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >484</td><td   >356</td><td   >128</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >455</td><td   >330</td><td   >125</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >451</td><td   >341</td><td   >110</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >468</td><td   >363</td><td   >105</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >342</td><td   >245</td><td   >97</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >396</td><td   >307</td><td   >89</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >462</td><td   >375</td><td   >87</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >426</td><td   >349</td><td   >77</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >399</td><td   >327</td><td   >72</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >280</td><td   >208</td><td   >72</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >384</td><td   >318</td><td   >66</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >454</td><td   >389</td><td   >65</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >474</td><td   >414</td><td   >60</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >300</td><td   >244</td><td   >56</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >367</td><td   >325</td><td   >42</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >412</td><td   >373</td><td   >39</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >346</td><td   >320</td><td   >26</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >395</td><td   >374</td><td   >21</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >418</td><td   >397</td><td   >21</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >351</td><td   >332</td><td   >19</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >405</td><td   >392</td><td   >13</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >375</td><td   >366</td><td   >9</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >381</td><td   >372</td><td   >9</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >351</td><td   >345</td><td   >6</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >387</td><td   >381</td><td   >6</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >407</td><td   >405</td><td   >2</td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1026</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >888</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >868</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >843</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >842</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >840</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >840</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >837</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >831</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >815</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >812</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >802</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >797</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >792</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >789</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >785</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >785</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >784</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >775</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >769</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >768</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >753</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >741</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >732</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >729</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >726</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >704</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >703</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >702</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >696</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >692</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >692</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >683</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >672</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >666</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >652</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >620</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >608</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >587</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >581</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >544</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >488</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >488</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >544</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >581</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >587</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >608</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >620</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >652</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >666</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >672</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >683</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >692</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >692</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >696</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >702</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >703</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >704</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >726</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >729</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >732</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >741</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >753</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >768</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >769</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >775</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >784</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >785</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >785</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >789</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >792</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >797</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >802</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >812</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >815</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >831</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >837</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >840</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >840</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >842</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >843</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >868</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >888</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1026</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >1317</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >976</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >921</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >903</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >783</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >671</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >646</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >637</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >600</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >579</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >300</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >551</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >537</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >514</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >504</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >495</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >442</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >425</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >411</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >377</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >645</td><td   >345</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >645</td><td   >345</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >339</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >338</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >333</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >303</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >291</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >283</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >283</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >276</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   >276</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   >260</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >213</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >1276</td><td   >212</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >137</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >1754</td><td   >137</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >127</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1175</td><td   >111</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >1451</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >108</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >560</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   >78</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >1617</td><td   >58</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >971</td><td   >34</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >638</td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >645</td><td   >7</td><td   >4</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/NLD.html'>Netherlands</a></td><td   ><a href='/aardvark/html/players/250.html'>Anand Buddhdev</a></td><td   >4.021</td><td   >5</td><td   >356</td><td   >341</td><td   >1</td><td   >1</td><td   >1617</td><td   >20</td><td   >1637</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5080.html'>Alexander Robertson</a></td><td   >4.677</td><td   >5</td><td   ></td><td   >218</td><td   ></td><td   >1</td><td   >1754</td><td   >0</td><td   >1754</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/ENG.html'>England</a></td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >4.26</td><td   >4</td><td   >439</td><td   >445</td><td   >56</td><td   >56</td><td   >1559</td><td   >-5</td><td   >1554</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/SCO.html'>Scotland</a></td><td   ><a href='/aardvark/html/players/710.html'>Moya Dewar</a></td><td   >3.822</td><td   >4</td><td   >566</td><td   >560</td><td   >11</td><td   >11</td><td   >1451</td><td   >4</td><td   >1455</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/4644.html'>Benoit Delafontaine</a></td><td   >3.758</td><td   >4</td><td   ></td><td   >795</td><td   ></td><td   >1</td><td   >1276</td><td   >0</td><td   >1276</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/DEU.html'>Germany</a></td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >3.014</td><td   >3</td><td   >1075</td><td   >1075</td><td   >1</td><td   >1</td><td   >1064</td><td   >0</td><td   >1064</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >2.933</td><td   >3</td><td   ></td><td   >1270</td><td   ></td><td   >1</td><td   >937</td><td   >0</td><td   >937</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/HUN.html'>Hungary</a></td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >2.322</td><td   >3</td><td   >919</td><td   >894</td><td   >1</td><td   >1</td><td   >1175</td><td   >14</td><td   >1189</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5084.html'>Marilyn Deguzman</a></td><td   >3.145</td><td   >3</td><td   ></td><td   >1219</td><td   ></td><td   >1</td><td   >971</td><td   >0</td><td   >971</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5085.html'>Pamela Bayona</a></td><td   >2.025</td><td   >2</td><td   ></td><td   >1523</td><td   ></td><td   >1</td><td   >645</td><td   >0</td><td   >645</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/DEU.html'>Germany</a></td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >2.278</td><td   >2</td><td   >1352</td><td   >1360</td><td   >4</td><td   >4</td><td   >851</td><td   >-6</td><td   >845</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5081.html'>Chris Baball</a></td><td   >2</td><td   >2</td><td   ></td><td   >1577</td><td   ></td><td   >1</td><td   >560</td><td   >0</td><td   >560</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5082.html'>Ena Robertson</a></td><td   >2.241</td><td   >2</td><td   ></td><td   >1524</td><td   ></td><td   >1</td><td   >638</td><td   >0</td><td   >638</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5086.html'>Peter Horsnell</a></td><td   >0.341</td><td   >0</td><td   ></td><td   >1689</td><td   ></td><td   >1</td><td   >300</td><td   >0</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >1.072</td><td   >0</td><td   ></td><td   >1689</td><td   ></td><td   >1</td><td   >300</td><td   >0</td><td   >300</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

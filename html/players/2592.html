@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Mohammed Sufiyan</h2>
             <div>
               <IMG SRC="../../flags/IND.png" alt="IND">
-              <p>IND</p>
+              <p><a href='/aardvark/html/rankings/IND.html'>India</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 300<br>
               <b>Games Played:</b> 13<br>
               <b>Wins:</b> 3 (23.08%)<br>
               <b>Losses: </b>10 (76.92%)<br>
@@ -183,83 +184,83 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_8610'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_8610'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>3</td><td>10</td><td>2</td><td>-936</td><td>12</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_8610'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_8610'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >3</td><td   >10</td><td   >2</td><td   >-936</td><td   >12</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_8610'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>2</td><td><a href='/aardvark/html/players/1362.html'>Srikar Raghavan</a></td><td>657</td><td>L</td><td>274</td><td>454</td></tr>
-        <tr  class='rowodd'  ><td>3</td><td><a href='/aardvark/html/players/1302.html'>Dev Garg</a></td><td>300</td><td>L</td><td>300</td><td>400</td></tr>
-        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/2588.html'>Chirag Vaitheeswaran</a></td><td>311</td><td>W</td><td>332</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/2589.html'>Deepa Rao</a></td><td>585</td><td>L</td><td>279</td><td>322</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td>332</td><td>W</td><td>413</td><td>410</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td>300</td><td>L</td><td>307</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1359.html'>Shailaja Nadig</a></td><td>621</td><td>L</td><td>182</td><td>480</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/64.html'>Chris Imison</a></td><td>789</td><td>L</td><td>277</td><td>447</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2593.html'>Vishal Chaturvedi</a></td><td>854</td><td>L</td><td>275</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td>332</td><td>L</td><td>351</td><td>406</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td>300</td><td>W</td><td>444</td><td>317</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td>332</td><td>L</td><td>324</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td>300</td><td>L</td><td>342</td><td>390</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >2</td><td   ><a href='/aardvark/html/players/1362.html'>Srikar Raghavan</a></td><td   >657</td><td   >L</td><td   >274</td><td   >454</td></tr>
+        <tr  class='rowodd'  ><td   >3</td><td   ><a href='/aardvark/html/players/1302.html'>Dev Garg</a></td><td   >300</td><td   >L</td><td   >300</td><td   >400</td></tr>
+        <tr  class='roweven'  ><td   >4</td><td   ><a href='/aardvark/html/players/2588.html'>Chirag Vaitheeswaran</a></td><td   >311</td><td   >W</td><td   >332</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/2589.html'>Deepa Rao</a></td><td   >585</td><td   >L</td><td   >279</td><td   >322</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td   >332</td><td   >W</td><td   >413</td><td   >410</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td   >300</td><td   >L</td><td   >307</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/1359.html'>Shailaja Nadig</a></td><td   >621</td><td   >L</td><td   >182</td><td   >480</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/64.html'>Chris Imison</a></td><td   >789</td><td   >L</td><td   >277</td><td   >447</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2593.html'>Vishal Chaturvedi</a></td><td   >854</td><td   >L</td><td   >275</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td   >332</td><td   >L</td><td   >351</td><td   >406</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td   >300</td><td   >W</td><td   >444</td><td   >317</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td   >332</td><td   >L</td><td   >324</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td   >300</td><td   >L</td><td   >342</td><td   >390</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2591'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2591'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td>300</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>364.33</td><td>352.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2591'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2591'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2591.html'>Jaishree Vaitheeswar</a></td><td   >300</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >364.33</td><td   >352.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2591'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>7</td><td>L</td><td>300</td><td>300</td><td>307</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>13</td><td>W</td><td>300</td><td>300</td><td>444</td><td>317</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>15</td><td>L</td><td>300</td><td>300</td><td>342</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >7</td><td   >L</td><td   >300</td><td   >300</td><td   >307</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >13</td><td   >W</td><td   >300</td><td   >300</td><td   >444</td><td   >317</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >15</td><td   >L</td><td   >300</td><td   >300</td><td   >342</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1337'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1337'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td>512</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>362.67</td><td>405.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1337'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1337'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1337.html'>Harsh Sood</a></td><td   >512</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >362.67</td><td   >405.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1337'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>6</td><td>W</td><td>300</td><td>332</td><td>413</td><td>410</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>12</td><td>L</td><td>300</td><td>332</td><td>351</td><td>406</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>14</td><td>L</td><td>300</td><td>332</td><td>324</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >6</td><td   >W</td><td   >300</td><td   >332</td><td   >413</td><td   >410</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >12</td><td   >L</td><td   >300</td><td   >332</td><td   >351</td><td   >406</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >14</td><td   >L</td><td   >300</td><td   >332</td><td   >324</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1362'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1362'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1362.html'>Srikar Raghavan</a></td><td>652</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>274.00</td><td>454.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1362'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1362'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1362.html'>Srikar Raghavan</a></td><td   >652</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >274.00</td><td   >454.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1362'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>2</td><td>L</td><td>300</td><td>657</td><td>274</td><td>454</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >2</td><td   >L</td><td   >300</td><td   >657</td><td   >274</td><td   >454</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2589'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2589'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2589.html'>Deepa Rao</a></td><td>585</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>279.00</td><td>322.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2589'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2589'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2589.html'>Deepa Rao</a></td><td   >585</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >279.00</td><td   >322.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2589'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>5</td><td>L</td><td>300</td><td>585</td><td>279</td><td>322</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >5</td><td   >L</td><td   >300</td><td   >585</td><td   >279</td><td   >322</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_64'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_64'>+</button></td><td>5</td><td><a href='/aardvark/html/players/64.html'>Chris Imison</a></td><td>804</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>277.00</td><td>447.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_64'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_64'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/64.html'>Chris Imison</a></td><td   >804</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >277.00</td><td   >447.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_64'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>10</td><td>L</td><td>300</td><td>789</td><td>277</td><td>447</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >10</td><td   >L</td><td   >300</td><td   >789</td><td   >277</td><td   >447</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1359'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1359'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1359.html'>Shailaja Nadig</a></td><td>706</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>182.00</td><td>480.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1359'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1359'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1359.html'>Shailaja Nadig</a></td><td   >706</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >182.00</td><td   >480.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1359'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>8</td><td>L</td><td>300</td><td>621</td><td>182</td><td>480</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >8</td><td   >L</td><td   >300</td><td   >621</td><td   >182</td><td   >480</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1302'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1302'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1302.html'>Dev Garg</a></td><td>387</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>400.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1302'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1302'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1302.html'>Dev Garg</a></td><td   >387</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >400.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1302'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>3</td><td>L</td><td>300</td><td>300</td><td>300</td><td>400</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >3</td><td   >L</td><td   >300</td><td   >300</td><td   >300</td><td   >400</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2593'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2593'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2593.html'>Vishal Chaturvedi</a></td><td>854</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>275.00</td><td>434.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2593'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2593'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/2593.html'>Vishal Chaturvedi</a></td><td   >854</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >275.00</td><td   >434.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2593'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>11</td><td>L</td><td>300</td><td>854</td><td>275</td><td>434</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >11</td><td   >L</td><td   >300</td><td   >854</td><td   >275</td><td   >434</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2588'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2588'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2588.html'>Chirag Vaitheeswaran</a></td><td>311</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>332.00</td><td>327.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2588'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2588'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2588.html'>Chirag Vaitheeswaran</a></td><td   >311</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >332.00</td><td   >327.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2588'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td>2015-01-18</td><td>4</td><td>W</td><td>300</td><td>311</td><td>332</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/221.html'>iGATE International   </a></td><td   >2015-01-18</td><td   >4</td><td   >W</td><td   >300</td><td   >311</td><td   >332</td><td   >327</td></tr>
 </table></div></td></tr>
 
 </table>

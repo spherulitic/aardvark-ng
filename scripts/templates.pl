@@ -287,6 +287,22 @@ sub get_player_template_html_string
   my $results_html_id      = 'results';
   my $head_to_head_html_id = 'head_to_head';
 
+  my $no_country_filename = Constants::NO_COUNTRY_FILENAME;
+
+  my $country_rankings = "";
+
+  my $country_png      = "$html_path/flags/$no_country_filename";
+
+  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $country_fullname = $trigraph_hashref->{$country};
+
+  if ($country_fullname)
+  {
+    $country_png = "$html_path/flags/$country.png";
+    my $country_rankings_link = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . '/' . "$country.html";
+    $country_rankings = "<a href='/$country_rankings_link'>$country_fullname</a>";
+  }
+
   my $tabs = make_tab_div([['Results', $results_html_id], ['Head to Head', $head_to_head_html_id]], $player_tabclass, $player_tablink);
 
   my $player_html_page = "";
@@ -308,13 +324,13 @@ $doctype
     
       function show_tournament_entry(id)
       {
-        showContent(event, '$results_html_id');
+        document.getElementById('button_$results_html_id').click();
         \$('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, '$head_to_head_html_id');
+        document.getElementById('button_$head_to_head_html_id').click();
         \$('#' + id).collapse('show');
       }
 
@@ -331,8 +347,8 @@ $doctype
           <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
             <h2>$player_name</h2>
             <div>
-              <IMG SRC="$html_path/flags/$country_trigraph.png" alt="$country">
-              <p>$country</p>
+              <IMG SRC="$country_png" alt="$country">
+              <p>$country_rankings</p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -343,6 +359,7 @@ $doctype
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> $rating<br>
               <b>Games Played:</b> $games_played<br>
               <b>Wins:</b> $wins ($win_percentage%)<br>
               <b>Losses: </b>$losses ($loss_percentage%)<br>
@@ -393,8 +410,9 @@ sub get_tournament_template_html_string
 
   my $division_results   = "";
 
-  my $first_id;
-
+  my @ids_to_click = ();
+  
+  my $display_none_style = "style='display:none;'";
 
   my $tourney_tabclass  = "tournament_tab";
   my $tourney_tablink   = "tournament_tablink";
@@ -409,18 +427,22 @@ sub get_tournament_template_html_string
 
     push @tabdata, [$text, $id];
 
-    my $stats_tabclass = "stats_tab_" . $id ;
-    my $stats_tablink  = "stats_tablink_" . $id ;
-    my $division_tabclass = "division_tab_" . $id ;
+    my $stats_tabclass    = "stats_tab_"        . $id ;
+    my $stats_tablink     = "stats_tablink_"    . $id ;
+    my $ratings_tabclass  = "ratings_tab_"      . $id ;
+    my $ratings_tablink   = "ratings_tablink_"  . $id ;
+    my $division_tabclass = "division_tab_"     . $id ;
     my $division_tablink  = "division_tablink_" . $id ;
  
     if ($i == 0)
     {
-      $first_id = $id;
+      push @ids_to_click, "button_$id";
     }
-    my $div_html  = $division_data->[$i]->[0];
-    my $div_data  = $division_data->[$i]->[1];
-    my $div_stats = $division_data->[$i]->[2];
+    my $div_html    = $division_data->[$i]->[0];
+    my $div_data    = $division_data->[$i]->[1];
+    my $div_stats   = $division_data->[$i]->[2];
+    my $div_ratings = $division_data->[$i]->[3];
+
     my $stats_content = "";
     my @stats_tabdata = ();
 
@@ -433,27 +455,48 @@ sub get_tournament_template_html_string
       push @stats_tabdata, [$cat, $stat_id];
 
       my $stat_html = $div_stats->{$cat};
-      $stats_content .= "<div id='$stat_id' class='$stats_tabclass' style='display: none;'>$stat_html</div>\n";
- 
+      $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+      if ($k == 0)
+      {
+        push @ids_to_click, "button_$stat_id";
+      }
     }
 
     $stats_content = make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
 
     my $div_standings_id = "division_$i" . "_standings";
     my $div_stats_id     = "division_$i" . "_stats";
+    my $div_ratings_id   = "division_$i" . "_ratings";
 
-    my $div_tabs = make_tab_div([["Standings", $div_standings_id],["Statistics", $div_stats_id]], $division_tabclass, $division_tablink);
+    push @ids_to_click, "button_$div_standings_id";
 
-    my $div_standings_div = "<div id='$div_standings_id' class='$division_tabclass'>$div_html</div>";
-    my $div_stats_div     = "<div id='$div_stats_id' class='$division_tabclass'>$stats_content</div>";
+    my $div_tabs = make_tab_div([["Standings", $div_standings_id],["Statistics", $div_stats_id], ["Ratings", $div_ratings_id]], $division_tabclass, $division_tablink);
+
+    my $div_standings_div = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
+    my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
+    my $div_ratings_div   = "<div id='$div_ratings_id'   class='$division_tabclass' $display_none_style>$div_ratings  </div>";
 
 
-    my $div_content = $div_tabs . $div_standings_div . $div_stats_div;
+    my $div_content = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
 
     $division_results .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
   }
 
   my $tabs = make_tab_div(\@tabdata, $tourney_tabclass, $tourney_tablink);
+
+  my $ids_to_click_javascript_array = "[";
+
+  for (my $i = 0; $i < scalar @ids_to_click; $i++)
+  {
+    my $id = $ids_to_click[$i];
+    $ids_to_click_javascript_array .= "'$id'";
+    if ($i != (scalar @ids_to_click) - 1)
+    {
+      $ids_to_click_javascript_array .= ", ";
+    }
+  }
+
+  $ids_to_click_javascript_array .= "]";
 
   my $tournament_html_page = "";
 
@@ -472,7 +515,16 @@ $doctype
  
     $scripts
 
-    window.onload = function() { document.getElementById('button_$first_id').click();}
+   
+    window.onload = function()
+    { 
+      var ids = $ids_to_click_javascript_array;
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>

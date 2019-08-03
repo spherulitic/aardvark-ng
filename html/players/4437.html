@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Mindi Thompson</h2>
             <div>
               <IMG SRC="../../flags/USA.png" alt="USA">
-              <p>USA</p>
+              <p><a href='/aardvark/html/rankings/USA.html'>United States</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 300<br>
               <b>Games Played:</b> 4<br>
               <b>Wins:</b> 0 (0.00%)<br>
               <b>Losses: </b>4 (100.00%)<br>
@@ -183,45 +184,45 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_22154'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_22154'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td>2012-11-25</td><td>0</td><td>4</td><td>11</td><td>-158</td><td>26</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_22154'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_22154'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td   >2012-11-25</td><td   >0</td><td   >4</td><td   >11</td><td   >-158</td><td   >26</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_22154'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1877</td><td>L</td><td>275</td><td>490</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/173.html'>Jakkrit Klaphajone</a></td><td>2063</td><td>L</td><td>234</td><td>527</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/144.html'>Apirat Choomai</a></td><td>1732</td><td>L</td><td>100</td><td>200</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/154.html'>Suthiraphan Assarat</a></td><td>1408</td><td>L</td><td>100</td><td>200</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1877</td><td   >L</td><td   >275</td><td   >490</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/173.html'>Jakkrit Klaphajone</a></td><td   >2063</td><td   >L</td><td   >234</td><td   >527</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/144.html'>Apirat Choomai</a></td><td   >1732</td><td   >L</td><td   >100</td><td   >200</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/154.html'>Suthiraphan Assarat</a></td><td   >1408</td><td   >L</td><td   >100</td><td   >200</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_173'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_173'>+</button></td><td>1</td><td><a href='/aardvark/html/players/173.html'>Jakkrit Klaphajone</a></td><td>1866</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>234.00</td><td>527.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_173'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_173'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/173.html'>Jakkrit Klaphajone</a></td><td   >1866</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >234.00</td><td   >527.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_173'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td>2012-11-25</td><td>2</td><td>L</td><td>300</td><td>2063</td><td>234</td><td>527</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td   >2012-11-25</td><td   >2</td><td   >L</td><td   >300</td><td   >2063</td><td   >234</td><td   >527</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_154'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_154'>+</button></td><td>2</td><td><a href='/aardvark/html/players/154.html'>Suthiraphan Assarat</a></td><td>1475</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>100.00</td><td>200.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_154'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_154'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/154.html'>Suthiraphan Assarat</a></td><td   >1475</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >100.00</td><td   >200.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_154'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td>2012-11-25</td><td>4</td><td>L</td><td>300</td><td>1408</td><td>100</td><td>200</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td   >2012-11-25</td><td   >4</td><td   >L</td><td   >300</td><td   >1408</td><td   >100</td><td   >200</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_40'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_40'>+</button></td><td>3</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1614</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>275.00</td><td>490.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_40'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_40'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1614</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >275.00</td><td   >490.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_40'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td>2012-11-25</td><td>1</td><td>L</td><td>300</td><td>1877</td><td>275</td><td>490</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td   >2012-11-25</td><td   >1</td><td   >L</td><td   >300</td><td   >1877</td><td   >275</td><td   >490</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_144'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_144'>+</button></td><td>4</td><td><a href='/aardvark/html/players/144.html'>Apirat Choomai</a></td><td>1627</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>100.00</td><td>200.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_144'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_144'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/144.html'>Apirat Choomai</a></td><td   >1627</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >100.00</td><td   >200.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_144'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td>2012-11-25</td><td>3</td><td>L</td><td>300</td><td>1732</td><td>100</td><td>200</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/572.html'>Thailand Princess Cup </a></td><td   >2012-11-25</td><td   >3</td><td   >L</td><td   >300</td><td   >1732</td><td   >100</td><td   >200</td></tr>
 </table></div></td></tr>
 
 </table>

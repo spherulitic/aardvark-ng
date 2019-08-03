@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Emma Wekiya</h2>
             <div>
               <IMG SRC="../../flags/UGA.png" alt="UGA">
-              <p>UGA</p>
+              <p><a href='/aardvark/html/rankings/UGA.html'>Uganda</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 682<br>
               <b>Games Played:</b> 28<br>
               <b>Wins:</b> 8 (28.57%)<br>
               <b>Losses: </b>20 (71.43%)<br>
@@ -183,145 +184,145 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_10558'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_10558'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>8</td><td>20</td><td>0</td><td>-1785</td><td>83</td><td>682</td><td>682</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_10558'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_10558'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >8</td><td   >20</td><td   >0</td><td   >-1785</td><td   >83</td><td   >682</td><td   >682</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_10558'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/586.html'>Phillip Edwin-Mugish</a></td><td>1845</td><td>L</td><td>446</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/607.html'>Lawrence Onyoin</a></td><td>1272</td><td>L</td><td>363</td><td>380</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td>1699</td><td>L</td><td>241</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1789.html'>Chitundu Mulenga</a></td><td>1070</td><td>L</td><td>320</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/609.html'>Nelson Kyagera</a></td><td>1085</td><td>L</td><td>287</td><td>407</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>W</td><td>378</td><td>377</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td>1185</td><td>W</td><td>375</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>831</td><td>L</td><td>331</td><td>499</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2749.html'>Mwangi Kihuni</a></td><td>1386</td><td>L</td><td>246</td><td>491</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1786.html'>Assumpta Nakyanzi</a></td><td>1081</td><td>L</td><td>315</td><td>487</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1808.html'>Ngala Lubunda</a></td><td>822</td><td>W</td><td>424</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>W</td><td>380</td><td>341</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2747.html'>George Opolot</a></td><td>686</td><td>L</td><td>371</td><td>447</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2746.html'>Francis Omona</a></td><td>987</td><td>L</td><td>373</td><td>512</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1777.html'>Muema Muumbi</a></td><td>1430</td><td>L</td><td>262</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td>1185</td><td>W</td><td>417</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td>882</td><td>L</td><td>323</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>831</td><td>L</td><td>289</td><td>539</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td>1011</td><td>L</td><td>411</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/1801.html'>John Sang</a></td><td>1184</td><td>L</td><td>351</td><td>414</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>L</td><td>300</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>W</td><td>411</td><td>404</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>W</td><td>420</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/2746.html'>Francis Omona</a></td><td>987</td><td>L</td><td>294</td><td>596</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td>1185</td><td>L</td><td>347</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>26</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>L</td><td>324</td><td>358</td></tr>
-        <tr  class='roweven'  ><td>27</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>L</td><td>331</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>28</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>W</td><td>460</td><td>266</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/586.html'>Phillip Edwin-Mugish</a></td><td   >1845</td><td   >L</td><td   >446</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/607.html'>Lawrence Onyoin</a></td><td   >1272</td><td   >L</td><td   >363</td><td   >380</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td   >1699</td><td   >L</td><td   >241</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1789.html'>Chitundu Mulenga</a></td><td   >1070</td><td   >L</td><td   >320</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/609.html'>Nelson Kyagera</a></td><td   >1085</td><td   >L</td><td   >287</td><td   >407</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >W</td><td   >378</td><td   >377</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td   >1185</td><td   >W</td><td   >375</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >831</td><td   >L</td><td   >331</td><td   >499</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2749.html'>Mwangi Kihuni</a></td><td   >1386</td><td   >L</td><td   >246</td><td   >491</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1786.html'>Assumpta Nakyanzi</a></td><td   >1081</td><td   >L</td><td   >315</td><td   >487</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1808.html'>Ngala Lubunda</a></td><td   >822</td><td   >W</td><td   >424</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >W</td><td   >380</td><td   >341</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2747.html'>George Opolot</a></td><td   >686</td><td   >L</td><td   >371</td><td   >447</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2746.html'>Francis Omona</a></td><td   >987</td><td   >L</td><td   >373</td><td   >512</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1777.html'>Muema Muumbi</a></td><td   >1430</td><td   >L</td><td   >262</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td   >1185</td><td   >W</td><td   >417</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td   >882</td><td   >L</td><td   >323</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >831</td><td   >L</td><td   >289</td><td   >539</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td   >1011</td><td   >L</td><td   >411</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1801.html'>John Sang</a></td><td   >1184</td><td   >L</td><td   >351</td><td   >414</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >L</td><td   >300</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >W</td><td   >411</td><td   >404</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >W</td><td   >420</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2746.html'>Francis Omona</a></td><td   >987</td><td   >L</td><td   >294</td><td   >596</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td   >1185</td><td   >L</td><td   >347</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >L</td><td   >324</td><td   >358</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >L</td><td   >331</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >W</td><td   >460</td><td   >266</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2751'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2751'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td>624</td><td>8</td><td>5</td><td>3</td><td>0</td><td>0.62</td><td>375.50</td><td>348.25</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2751'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2751'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2751.html'>Tony Kibet</a></td><td   >624</td><td   >8</td><td   >5</td><td   >3</td><td   >0</td><td   >0.62</td><td   >375.50</td><td   >348.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2751'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>6</td><td>W</td><td>682</td><td>624</td><td>378</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>12</td><td>W</td><td>682</td><td>624</td><td>380</td><td>341</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>21</td><td>L</td><td>682</td><td>624</td><td>300</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>22</td><td>W</td><td>682</td><td>624</td><td>411</td><td>404</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>23</td><td>W</td><td>682</td><td>624</td><td>420</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>26</td><td>L</td><td>682</td><td>624</td><td>324</td><td>358</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>27</td><td>L</td><td>682</td><td>624</td><td>331</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>28</td><td>W</td><td>682</td><td>624</td><td>460</td><td>266</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >6</td><td   >W</td><td   >682</td><td   >624</td><td   >378</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >12</td><td   >W</td><td   >682</td><td   >624</td><td   >380</td><td   >341</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >21</td><td   >L</td><td   >682</td><td   >624</td><td   >300</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >22</td><td   >W</td><td   >682</td><td   >624</td><td   >411</td><td   >404</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >23</td><td   >W</td><td   >682</td><td   >624</td><td   >420</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >26</td><td   >L</td><td   >682</td><td   >624</td><td   >324</td><td   >358</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >27</td><td   >L</td><td   >682</td><td   >624</td><td   >331</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >28</td><td   >W</td><td   >682</td><td   >624</td><td   >460</td><td   >266</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2742'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2742'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td>1004</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>379.67</td><td>346.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2742'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2742'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2742.html'>Deo Mbabazi</a></td><td   >1004</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >379.67</td><td   >346.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2742'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>7</td><td>W</td><td>682</td><td>1185</td><td>375</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>16</td><td>W</td><td>682</td><td>1185</td><td>417</td><td>374</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>25</td><td>L</td><td>682</td><td>1185</td><td>347</td><td>364</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >7</td><td   >W</td><td   >682</td><td   >1185</td><td   >375</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >16</td><td   >W</td><td   >682</td><td   >1185</td><td   >417</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >25</td><td   >L</td><td   >682</td><td   >1185</td><td   >347</td><td   >364</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2060'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2060'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>886</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>310.00</td><td>519.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2060'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2060'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >886</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >519.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2060'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>8</td><td>L</td><td>682</td><td>831</td><td>331</td><td>499</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>18</td><td>L</td><td>682</td><td>831</td><td>289</td><td>539</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >8</td><td   >L</td><td   >682</td><td   >831</td><td   >331</td><td   >499</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >18</td><td   >L</td><td   >682</td><td   >831</td><td   >289</td><td   >539</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2746'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2746'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2746.html'>Francis Omona</a></td><td>871</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>333.50</td><td>554.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2746'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2746'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2746.html'>Francis Omona</a></td><td   >871</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >333.50</td><td   >554.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2746'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>14</td><td>L</td><td>682</td><td>987</td><td>373</td><td>512</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>24</td><td>L</td><td>682</td><td>987</td><td>294</td><td>596</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >14</td><td   >L</td><td   >682</td><td   >987</td><td   >373</td><td   >512</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >24</td><td   >L</td><td   >682</td><td   >987</td><td   >294</td><td   >596</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1813'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td>797</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>323.00</td><td>403.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1813'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td   >797</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >323.00</td><td   >403.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1813'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>17</td><td>L</td><td>682</td><td>882</td><td>323</td><td>403</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >17</td><td   >L</td><td   >682</td><td   >882</td><td   >323</td><td   >403</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1801'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1801'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1801.html'>John Sang</a></td><td>1057</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>351.00</td><td>414.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1801'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1801'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1801.html'>John Sang</a></td><td   >1057</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >351.00</td><td   >414.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1801'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>20</td><td>L</td><td>682</td><td>1184</td><td>351</td><td>414</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >20</td><td   >L</td><td   >682</td><td   >1184</td><td   >351</td><td   >414</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2747'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2747'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2747.html'>George Opolot</a></td><td>668</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>371.00</td><td>447.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2747'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2747'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2747.html'>George Opolot</a></td><td   >668</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >371.00</td><td   >447.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2747'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>13</td><td>L</td><td>682</td><td>686</td><td>371</td><td>447</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >13</td><td   >L</td><td   >682</td><td   >686</td><td   >371</td><td   >447</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_607'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_607'>+</button></td><td>8</td><td><a href='/aardvark/html/players/607.html'>Lawrence Onyoin</a></td><td>1524</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>363.00</td><td>380.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_607'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_607'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/607.html'>Lawrence Onyoin</a></td><td   >1524</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >363.00</td><td   >380.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_607'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>2</td><td>L</td><td>682</td><td>1272</td><td>363</td><td>380</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >2</td><td   >L</td><td   >682</td><td   >1272</td><td   >363</td><td   >380</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1777'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1777'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1777.html'>Muema Muumbi</a></td><td>1419</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>262.00</td><td>445.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1777'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1777'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1777.html'>Muema Muumbi</a></td><td   >1419</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >262.00</td><td   >445.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1777'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>15</td><td>L</td><td>682</td><td>1430</td><td>262</td><td>445</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >15</td><td   >L</td><td   >682</td><td   >1430</td><td   >262</td><td   >445</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_586'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_586'>+</button></td><td>10</td><td><a href='/aardvark/html/players/586.html'>Phillip Edwin-Mugish</a></td><td>1780</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>446.00</td><td>455.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_586'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_586'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/586.html'>Phillip Edwin-Mugish</a></td><td   >1780</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >446.00</td><td   >455.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_586'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>1</td><td>L</td><td>682</td><td>1845</td><td>446</td><td>455</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >1</td><td   >L</td><td   >682</td><td   >1845</td><td   >446</td><td   >455</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_609'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_609'>+</button></td><td>11</td><td><a href='/aardvark/html/players/609.html'>Nelson Kyagera</a></td><td>960</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>287.00</td><td>407.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_609'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_609'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/609.html'>Nelson Kyagera</a></td><td   >960</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >287.00</td><td   >407.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_609'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>5</td><td>L</td><td>682</td><td>1085</td><td>287</td><td>407</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >5</td><td   >L</td><td   >682</td><td   >1085</td><td   >287</td><td   >407</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2749'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2749'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2749.html'>Mwangi Kihuni</a></td><td>1364</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>246.00</td><td>491.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2749'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2749'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2749.html'>Mwangi Kihuni</a></td><td   >1364</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >246.00</td><td   >491.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2749'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>9</td><td>L</td><td>682</td><td>1386</td><td>246</td><td>491</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >9</td><td   >L</td><td   >682</td><td   >1386</td><td   >246</td><td   >491</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1808'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1808'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1808.html'>Ngala Lubunda</a></td><td>962</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>424.00</td><td>344.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1808'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1808'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/1808.html'>Ngala Lubunda</a></td><td   >962</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >424.00</td><td   >344.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1808'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>11</td><td>W</td><td>682</td><td>822</td><td>424</td><td>344</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >11</td><td   >W</td><td   >682</td><td   >822</td><td   >424</td><td   >344</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_604'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_604'>+</button></td><td>14</td><td><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td>1698</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>241.00</td><td>471.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_604'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_604'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td   >1698</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >241.00</td><td   >471.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_604'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>3</td><td>L</td><td>682</td><td>1699</td><td>241</td><td>471</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >3</td><td   >L</td><td   >682</td><td   >1699</td><td   >241</td><td   >471</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1789'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1789'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1789.html'>Chitundu Mulenga</a></td><td>1154</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>320.00</td><td>425.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1789'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1789'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1789.html'>Chitundu Mulenga</a></td><td   >1154</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >320.00</td><td   >425.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1789'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>4</td><td>L</td><td>682</td><td>1070</td><td>320</td><td>425</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >4</td><td   >L</td><td   >682</td><td   >1070</td><td   >320</td><td   >425</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2069'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2069'>+</button></td><td>16</td><td><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td>1001</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>411.00</td><td>436.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2069'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2069'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td   >1001</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >411.00</td><td   >436.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2069'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>19</td><td>L</td><td>682</td><td>1011</td><td>411</td><td>436</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >19</td><td   >L</td><td   >682</td><td   >1011</td><td   >411</td><td   >436</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1786'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1786.html'>Assumpta Nakyanzi</a></td><td>1071</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>487.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1786'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1786.html'>Assumpta Nakyanzi</a></td><td   >1071</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >487.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1786'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td>2015-04-06</td><td>10</td><td>L</td><td>682</td><td>1081</td><td>315</td><td>487</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/257.html'>East, Central and Southern African Scrabble Championship</a></td><td   >2015-04-06</td><td   >10</td><td   >L</td><td   >682</td><td   >1081</td><td   >315</td><td   >487</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>David Williams</h2>
             <div>
               <IMG SRC="../../flags/WAL.png" alt="WAL">
-              <p>WAL</p>
+              <p><a href='/aardvark/html/rankings/WAL.html'>Wales</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1312<br>
               <b>Games Played:</b> 37<br>
               <b>Wins:</b> 8 (21.62%)<br>
               <b>Losses: </b>29 (78.38%)<br>
@@ -183,215 +184,215 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_24382'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24382'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>1</td><td>11</td><td>0</td><td>-500</td><td>16</td><td>1313</td><td>1312</td><td>-1</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_24382'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24382'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >1</td><td   >11</td><td   >0</td><td   >-500</td><td   >16</td><td   >1313</td><td   >1312</td><td   >-1</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24382'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2286</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1958</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4184.html'>Adam Philpotts</a></td><td>2049</td><td>W</td><td>350</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td>1886</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>2001</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>1922</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1776</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1727</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td>1874</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2035</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1960</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2286</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1958</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4184.html'>Adam Philpotts</a></td><td   >2049</td><td   >W</td><td   >350</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td   >1886</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2001</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td   >1922</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td   >1776</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td   >1727</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td   >1874</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td   >2035</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td   >1960</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td   >1713</td><td   >L</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_24403'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24403'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>5</td><td>8</td><td>0</td><td>-95</td><td>30</td><td>1464</td><td>1313</td><td>-151</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_24403'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24403'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >5</td><td   >8</td><td   >0</td><td   >-95</td><td   >30</td><td   >1464</td><td   >1313</td><td   >-151</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24403'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1529.html'>Danny McMullan</a></td><td>1440</td><td>L</td><td>345</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>2016</td><td>L</td><td>337</td><td>515</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/262.html'>John Cunningham-Ryan</a></td><td>1108</td><td>W</td><td>404</td><td>299</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1011.html'>Anne Creaven</a></td><td>874</td><td>L</td><td>295</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4554.html'>John Morrissey</a></td><td>1130</td><td>W</td><td>470</td><td>287</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/261.html'>John McCart</a></td><td>796</td><td>W</td><td>379</td><td>309</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4552.html'>Christopher Fenwick</a></td><td>1770</td><td>L</td><td>372</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4424.html'>Mike O'Rourke</a></td><td>1520</td><td>L</td><td>406</td><td>431</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/251.html'>Anne Lyng</a></td><td>947</td><td>W</td><td>342</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1028.html'>Siobhan Buckley</a></td><td>1590</td><td>L</td><td>323</td><td>521</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1578.html'>Ademola Ajayi</a></td><td>1579</td><td>L</td><td>319</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4553.html'>James Corry</a></td><td>1545</td><td>L</td><td>305</td><td>330</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/263.html'>John Winick</a></td><td>978</td><td>W</td><td>425</td><td>293</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1529.html'>Danny McMullan</a></td><td   >1440</td><td   >L</td><td   >345</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >2016</td><td   >L</td><td   >337</td><td   >515</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/262.html'>John Cunningham-Ryan</a></td><td   >1108</td><td   >W</td><td   >404</td><td   >299</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1011.html'>Anne Creaven</a></td><td   >874</td><td   >L</td><td   >295</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4554.html'>John Morrissey</a></td><td   >1130</td><td   >W</td><td   >470</td><td   >287</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/261.html'>John McCart</a></td><td   >796</td><td   >W</td><td   >379</td><td   >309</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4552.html'>Christopher Fenwick</a></td><td   >1770</td><td   >L</td><td   >372</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4424.html'>Mike O'Rourke</a></td><td   >1520</td><td   >L</td><td   >406</td><td   >431</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/251.html'>Anne Lyng</a></td><td   >947</td><td   >W</td><td   >342</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1028.html'>Siobhan Buckley</a></td><td   >1590</td><td   >L</td><td   >323</td><td   >521</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1578.html'>Ademola Ajayi</a></td><td   >1579</td><td   >L</td><td   >319</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/4553.html'>James Corry</a></td><td   >1545</td><td   >L</td><td   >305</td><td   >330</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/263.html'>John Winick</a></td><td   >978</td><td   >W</td><td   >425</td><td   >293</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_19083'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_19083'>+</button></td><td>3</td><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>2</td><td>10</td><td>0</td><td>-786</td><td>15</td><td>1464</td><td>1464</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_19083'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_19083'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >2</td><td   >10</td><td   >0</td><td   >-786</td><td   >15</td><td   >1464</td><td   >1464</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_19083'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>1922</td><td>L</td><td>300</td><td>324</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1721</td><td>L</td><td>300</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1604</td><td>L</td><td>300</td><td>363</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>2070</td><td>L</td><td>300</td><td>358</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1998</td><td>W</td><td>418</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1850</td><td>L</td><td>300</td><td>323</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2043</td><td>L</td><td>300</td><td>501</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1713</td><td>L</td><td>300</td><td>322</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1905</td><td>L</td><td>300</td><td>487</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>300</td><td>357</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1854</td><td>W</td><td>301</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1896</td><td>L</td><td>300</td><td>461</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >1922</td><td   >L</td><td   >300</td><td   >324</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td   >1721</td><td   >L</td><td   >300</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td   >1604</td><td   >L</td><td   >300</td><td   >363</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td   >2070</td><td   >L</td><td   >300</td><td   >358</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td   >1998</td><td   >W</td><td   >418</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td   >1850</td><td   >L</td><td   >300</td><td   >323</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td   >2043</td><td   >L</td><td   >300</td><td   >501</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td   >1713</td><td   >L</td><td   >300</td><td   >322</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td   >1905</td><td   >L</td><td   >300</td><td   >487</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2413</td><td   >L</td><td   >300</td><td   >357</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td   >1854</td><td   >W</td><td   >301</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1896</td><td   >L</td><td   >300</td><td   >461</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_276'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_276'>+</button></td><td>1</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1653</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>336.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_276'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_276'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td   >1653</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >336.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_276'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>8</td><td>L</td><td>1464</td><td>1713</td><td>300</td><td>322</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>12</td><td>L</td><td>1313</td><td>1713</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >8</td><td   >L</td><td   >1464</td><td   >1713</td><td   >300</td><td   >322</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >12</td><td   >L</td><td   >1313</td><td   >1713</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1081'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2043</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>353.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1081'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2043</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >353.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1081'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>10</td><td>L</td><td>1464</td><td>2413</td><td>300</td><td>357</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>1</td><td>L</td><td>1313</td><td>2286</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >10</td><td   >L</td><td   >1464</td><td   >2413</td><td   >300</td><td   >357</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >1</td><td   >L</td><td   >1313</td><td   >2286</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_275'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_275'>+</button></td><td>3</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1825</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>379.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_275'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_275'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td   >1825</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >379.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_275'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>2</td><td>L</td><td>1464</td><td>1721</td><td>300</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>7</td><td>L</td><td>1313</td><td>1776</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >2</td><td   >L</td><td   >1464</td><td   >1721</td><td   >300</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >7</td><td   >L</td><td   >1313</td><td   >1776</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_290'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_290'>+</button></td><td>4</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>1932</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>425.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_290'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_290'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td   >1932</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >425.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_290'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>7</td><td>L</td><td>1464</td><td>2043</td><td>300</td><td>501</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>10</td><td>L</td><td>1313</td><td>2035</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >7</td><td   >L</td><td   >1464</td><td   >2043</td><td   >300</td><td   >501</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >10</td><td   >L</td><td   >1313</td><td   >2035</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_304'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_304'>+</button></td><td>5</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1894</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>405.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_304'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_304'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1894</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >405.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_304'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>12</td><td>L</td><td>1464</td><td>1896</td><td>300</td><td>461</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>2</td><td>L</td><td>1313</td><td>1958</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >12</td><td   >L</td><td   >1464</td><td   >1896</td><td   >300</td><td   >461</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >2</td><td   >L</td><td   >1313</td><td   >1958</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_283'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_283'>+</button></td><td>6</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1311</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>356.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_283'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_283'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td   >1311</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >356.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_283'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>3</td><td>L</td><td>1464</td><td>1604</td><td>300</td><td>363</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>8</td><td>L</td><td>1313</td><td>1727</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >3</td><td   >L</td><td   >1464</td><td   >1604</td><td   >300</td><td   >363</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >8</td><td   >L</td><td   >1313</td><td   >1727</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_260'>+</button></td><td>7</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>1818</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>354.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_260'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td   >1818</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >354.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_260'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>4</td><td>L</td><td>1464</td><td>2070</td><td>300</td><td>358</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>6</td><td>L</td><td>1313</td><td>1922</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >4</td><td   >L</td><td   >1464</td><td   >2070</td><td   >300</td><td   >358</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >6</td><td   >L</td><td   >1313</td><td   >1922</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1531'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1531'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>2044</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>337.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1531'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1531'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2044</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >337.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1531'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>1</td><td>L</td><td>1464</td><td>1922</td><td>300</td><td>324</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>5</td><td>L</td><td>1313</td><td>2001</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >1</td><td   >L</td><td   >1464</td><td   >1922</td><td   >300</td><td   >324</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >5</td><td   >L</td><td   >1313</td><td   >2001</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_988'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_988'>+</button></td><td>9</td><td><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td>1833</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>359.00</td><td>325.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_988'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_988'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/988.html'>Neil Scott</a></td><td   >1833</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >359.00</td><td   >325.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_988'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>5</td><td>W</td><td>1464</td><td>1998</td><td>418</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>11</td><td>L</td><td>1313</td><td>1960</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >5</td><td   >W</td><td   >1464</td><td   >1998</td><td   >418</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >11</td><td   >L</td><td   >1313</td><td   >1960</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1529'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1529'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1529.html'>Danny McMullan</a></td><td>1349</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>345.00</td><td>377.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1529'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1529'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1529.html'>Danny McMullan</a></td><td   >1349</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >345.00</td><td   >377.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1529'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>1</td><td>L</td><td>1464</td><td>1440</td><td>345</td><td>377</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >1</td><td   >L</td><td   >1464</td><td   >1440</td><td   >345</td><td   >377</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1028'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1028'>+</button></td><td>11</td><td><a href='/aardvark/html/players/1028.html'>Siobhan Buckley</a></td><td>1185</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>323.00</td><td>521.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1028'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1028'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/1028.html'>Siobhan Buckley</a></td><td   >1185</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >323.00</td><td   >521.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1028'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>10</td><td>L</td><td>1464</td><td>1590</td><td>323</td><td>521</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >10</td><td   >L</td><td   >1464</td><td   >1590</td><td   >323</td><td   >521</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_263'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_263'>+</button></td><td>12</td><td><a href='/aardvark/html/players/263.html'>John Winick</a></td><td>993</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>425.00</td><td>293.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_263'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_263'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/263.html'>John Winick</a></td><td   >993</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >425.00</td><td   >293.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_263'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>13</td><td>W</td><td>1464</td><td>978</td><td>425</td><td>293</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >13</td><td   >W</td><td   >1464</td><td   >978</td><td   >425</td><td   >293</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_262'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_262'>+</button></td><td>13</td><td><a href='/aardvark/html/players/262.html'>John Cunningham-Ryan</a></td><td>1110</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>404.00</td><td>299.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_262'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_262'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/262.html'>John Cunningham-Ryan</a></td><td   >1110</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >404.00</td><td   >299.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_262'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>3</td><td>W</td><td>1464</td><td>1108</td><td>404</td><td>299</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >3</td><td   >W</td><td   >1464</td><td   >1108</td><td   >404</td><td   >299</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_726'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_726'>+</button></td><td>14</td><td><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td>1857</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>487.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_726'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_726'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/726.html'>Terry Kirk</a></td><td   >1857</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >487.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_726'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>9</td><td>L</td><td>1464</td><td>1905</td><td>300</td><td>487</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >9</td><td   >L</td><td   >1464</td><td   >1905</td><td   >300</td><td   >487</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4424'>+</button></td><td>15</td><td><a href='/aardvark/html/players/4424.html'>Mike O'Rourke</a></td><td>1700</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>406.00</td><td>431.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4424'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/4424.html'>Mike O'Rourke</a></td><td   >1700</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >406.00</td><td   >431.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4424'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>8</td><td>L</td><td>1464</td><td>1520</td><td>406</td><td>431</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >8</td><td   >L</td><td   >1464</td><td   >1520</td><td   >406</td><td   >431</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1578'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1578'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1578.html'>Ademola Ajayi</a></td><td>1676</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>319.00</td><td>390.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1578'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1578'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/1578.html'>Ademola Ajayi</a></td><td   >1676</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >319.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1578'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>11</td><td>L</td><td>1464</td><td>1579</td><td>319</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >11</td><td   >L</td><td   >1464</td><td   >1579</td><td   >319</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4553'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4553'>+</button></td><td>17</td><td><a href='/aardvark/html/players/4553.html'>James Corry</a></td><td>1545</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>305.00</td><td>330.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4553'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4553'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/4553.html'>James Corry</a></td><td   >1545</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >305.00</td><td   >330.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4553'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>12</td><td>L</td><td>1464</td><td>1545</td><td>305</td><td>330</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >12</td><td   >L</td><td   >1464</td><td   >1545</td><td   >305</td><td   >330</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_939'>+</button></td><td>18</td><td><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td>2068</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_939'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td   >2068</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >350.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_939'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>9</td><td>L</td><td>1313</td><td>1874</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >9</td><td   >L</td><td   >1313</td><td   >1874</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4184'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4184'>+</button></td><td>19</td><td><a href='/aardvark/html/players/4184.html'>Adam Philpotts</a></td><td>2047</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4184'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4184'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/4184.html'>Adam Philpotts</a></td><td   >2047</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >350.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4184'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>3</td><td>W</td><td>1313</td><td>2049</td><td>350</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >3</td><td   >W</td><td   >1313</td><td   >2049</td><td   >350</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4552'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4552'>+</button></td><td>20</td><td><a href='/aardvark/html/players/4552.html'>Christopher Fenwick</a></td><td>1770</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>372.00</td><td>394.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4552'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4552'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/4552.html'>Christopher Fenwick</a></td><td   >1770</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >372.00</td><td   >394.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4552'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>7</td><td>L</td><td>1464</td><td>1770</td><td>372</td><td>394</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >7</td><td   >L</td><td   >1464</td><td   >1770</td><td   >372</td><td   >394</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_251'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_251'>+</button></td><td>21</td><td><a href='/aardvark/html/players/251.html'>Anne Lyng</a></td><td>918</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>342.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_251'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_251'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/251.html'>Anne Lyng</a></td><td   >918</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >342.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_251'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>9</td><td>W</td><td>1464</td><td>947</td><td>342</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >9</td><td   >W</td><td   >1464</td><td   >947</td><td   >342</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_661'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_661'>+</button></td><td>22</td><td><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td>1875</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>350.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_661'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_661'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td   >1875</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >350.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_661'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td>2008-11-01</td><td>4</td><td>L</td><td>1313</td><td>1886</td><td>300</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/632.html'>Four Nations</a></td><td   >2008-11-01</td><td   >4</td><td   >L</td><td   >1313</td><td   >1886</td><td   >300</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4554'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4554'>+</button></td><td>23</td><td><a href='/aardvark/html/players/4554.html'>John Morrissey</a></td><td>1130</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>470.00</td><td>287.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4554'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4554'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/4554.html'>John Morrissey</a></td><td   >1130</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >470.00</td><td   >287.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4554'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>5</td><td>W</td><td>1464</td><td>1130</td><td>470</td><td>287</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >5</td><td   >W</td><td   >1464</td><td   >1130</td><td   >470</td><td   >287</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_261'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_261'>+</button></td><td>24</td><td><a href='/aardvark/html/players/261.html'>John McCart</a></td><td>1230</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>379.00</td><td>309.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_261'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_261'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/261.html'>John McCart</a></td><td   >1230</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >379.00</td><td   >309.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_261'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>6</td><td>W</td><td>1464</td><td>796</td><td>379</td><td>309</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >6</td><td   >W</td><td   >1464</td><td   >796</td><td   >379</td><td   >309</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_299'>+</button></td><td>25</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>2006</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>337.00</td><td>515.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_299'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >2006</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >337.00</td><td   >515.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_299'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>2</td><td>L</td><td>1464</td><td>2016</td><td>337</td><td>515</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >2</td><td   >L</td><td   >1464</td><td   >2016</td><td   >337</td><td   >515</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_451'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_451'>+</button></td><td>26</td><td><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td>1807</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>301.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_451'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_451'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/451.html'>Elie Dangoor</a></td><td   >1807</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >301.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_451'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>11</td><td>W</td><td>1464</td><td>1854</td><td>301</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >11</td><td   >W</td><td   >1464</td><td   >1854</td><td   >301</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1011'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1011'>+</button></td><td>27</td><td><a href='/aardvark/html/players/1011.html'>Anne Creaven</a></td><td>1103</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>295.00</td><td>371.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1011'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1011'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/1011.html'>Anne Creaven</a></td><td   >1103</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >295.00</td><td   >371.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1011'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td>2008-02-10</td><td>4</td><td>L</td><td>1464</td><td>874</td><td>295</td><td>371</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/633.html'>Northern Ireland Championships</a></td><td   >2008-02-10</td><td   >4</td><td   >L</td><td   >1464</td><td   >874</td><td   >295</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2155'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2155'>+</button></td><td>28</td><td><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td>1847</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>323.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2155'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2155'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/2155.html'>Wilma Warwick</a></td><td   >1847</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >323.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2155'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td>2007-12-03</td><td>6</td><td>L</td><td>1464</td><td>1850</td><td>300</td><td>323</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/490.html'>4 Nations</a></td><td   >2007-12-03</td><td   >6</td><td   >L</td><td   >1464</td><td   >1850</td><td   >300</td><td   >323</td></tr>
 </table></div></td></tr>
 
 </table>

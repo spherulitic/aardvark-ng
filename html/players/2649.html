@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Dennis Omedo</h2>
             <div>
               <IMG SRC="../../flags/KEN.png" alt="KEN">
-              <p>KEN</p>
+              <p><a href='/aardvark/html/rankings/KEN.html'>Kenya</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1062<br>
               <b>Games Played:</b> 18<br>
               <b>Wins:</b> 6 (33.33%)<br>
               <b>Losses: </b>12 (66.67%)<br>
@@ -183,105 +184,105 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_9424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_9424'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>6</td><td>12</td><td>0</td><td>-387</td><td>35</td><td>1062</td><td>1062</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_9424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_9424'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >6</td><td   >12</td><td   >0</td><td   >-387</td><td   >35</td><td   >1062</td><td   >1062</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_9424'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1778.html'>Mutua Ngundi</a></td><td>1268</td><td>L</td><td>362</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/602.html'>Francis Wachira</a></td><td>1813</td><td>W</td><td>419</td><td>324</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/743.html'>Benard Amuke</a></td><td>1727</td><td>L</td><td>354</td><td>414</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2650.html'>Emily Okioma</a></td><td>1187</td><td>L</td><td>416</td><td>422</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td>1298</td><td>L</td><td>319</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/613.html'>Stanley Njoroge</a></td><td>1859</td><td>L</td><td>315</td><td>552</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td>1558</td><td>W</td><td>395</td><td>371</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2651.html'>George Nyakundi</a></td><td>1293</td><td>L</td><td>341</td><td>375</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2653.html'>Julius Odongo</a></td><td>1100</td><td>L</td><td>304</td><td>372</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/740.html'>Julius Auka</a></td><td>1504</td><td>L</td><td>302</td><td>376</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>831</td><td>L</td><td>350</td><td>411</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1771.html'>Daniel Machanje</a></td><td>1507</td><td>L</td><td>390</td><td>400</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>831</td><td>W</td><td>442</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1771.html'>Daniel Machanje</a></td><td>1507</td><td>L</td><td>340</td><td>362</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>831</td><td>W</td><td>394</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>831</td><td>W</td><td>384</td><td>341</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2653.html'>Julius Odongo</a></td><td>1100</td><td>L</td><td>338</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/1778.html'>Mutua Ngundi</a></td><td>1268</td><td>W</td><td>440</td><td>372</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1778.html'>Mutua Ngundi</a></td><td   >1268</td><td   >L</td><td   >362</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/602.html'>Francis Wachira</a></td><td   >1813</td><td   >W</td><td   >419</td><td   >324</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/743.html'>Benard Amuke</a></td><td   >1727</td><td   >L</td><td   >354</td><td   >414</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2650.html'>Emily Okioma</a></td><td   >1187</td><td   >L</td><td   >416</td><td   >422</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td   >1298</td><td   >L</td><td   >319</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/613.html'>Stanley Njoroge</a></td><td   >1859</td><td   >L</td><td   >315</td><td   >552</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td   >1558</td><td   >W</td><td   >395</td><td   >371</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2651.html'>George Nyakundi</a></td><td   >1293</td><td   >L</td><td   >341</td><td   >375</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2653.html'>Julius Odongo</a></td><td   >1100</td><td   >L</td><td   >304</td><td   >372</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/740.html'>Julius Auka</a></td><td   >1504</td><td   >L</td><td   >302</td><td   >376</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >831</td><td   >L</td><td   >350</td><td   >411</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1771.html'>Daniel Machanje</a></td><td   >1507</td><td   >L</td><td   >390</td><td   >400</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >831</td><td   >W</td><td   >442</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1771.html'>Daniel Machanje</a></td><td   >1507</td><td   >L</td><td   >340</td><td   >362</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >831</td><td   >W</td><td   >394</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >831</td><td   >W</td><td   >384</td><td   >341</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2653.html'>Julius Odongo</a></td><td   >1100</td><td   >L</td><td   >338</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1778.html'>Mutua Ngundi</a></td><td   >1268</td><td   >W</td><td   >440</td><td   >372</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2060'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2060'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td>886</td><td>4</td><td>3</td><td>1</td><td>0</td><td>0.75</td><td>392.50</td><td>371.25</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2060'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2060'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2060.html'>Elizabeth Kintu</a></td><td   >886</td><td   >4</td><td   >3</td><td   >1</td><td   >0</td><td   >0.75</td><td   >392.50</td><td   >371.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2060'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>11</td><td>L</td><td>1062</td><td>831</td><td>350</td><td>411</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>13</td><td>W</td><td>1062</td><td>831</td><td>442</td><td>360</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>15</td><td>W</td><td>1062</td><td>831</td><td>394</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>16</td><td>W</td><td>1062</td><td>831</td><td>384</td><td>341</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >11</td><td   >L</td><td   >1062</td><td   >831</td><td   >350</td><td   >411</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >13</td><td   >W</td><td   >1062</td><td   >831</td><td   >442</td><td   >360</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >15</td><td   >W</td><td   >1062</td><td   >831</td><td   >394</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >16</td><td   >W</td><td   >1062</td><td   >831</td><td   >384</td><td   >341</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1778'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1778.html'>Mutua Ngundi</a></td><td>1394</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>401.00</td><td>376.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1778'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1778.html'>Mutua Ngundi</a></td><td   >1394</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >401.00</td><td   >376.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1778'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>1</td><td>L</td><td>1062</td><td>1268</td><td>362</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>18</td><td>W</td><td>1062</td><td>1268</td><td>440</td><td>372</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >1</td><td   >L</td><td   >1062</td><td   >1268</td><td   >362</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >18</td><td   >W</td><td   >1062</td><td   >1268</td><td   >440</td><td   >372</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1771'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1771'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1771.html'>Daniel Machanje</a></td><td>1363</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>365.00</td><td>381.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1771'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1771'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1771.html'>Daniel Machanje</a></td><td   >1363</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >365.00</td><td   >381.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1771'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>12</td><td>L</td><td>1062</td><td>1507</td><td>390</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>14</td><td>L</td><td>1062</td><td>1507</td><td>340</td><td>362</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >12</td><td   >L</td><td   >1062</td><td   >1507</td><td   >390</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >14</td><td   >L</td><td   >1062</td><td   >1507</td><td   >340</td><td   >362</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2653'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2653'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2653.html'>Julius Odongo</a></td><td>1086</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>321.00</td><td>381.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2653'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2653'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2653.html'>Julius Odongo</a></td><td   >1086</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >321.00</td><td   >381.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2653'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>9</td><td>L</td><td>1062</td><td>1100</td><td>304</td><td>372</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>17</td><td>L</td><td>1062</td><td>1100</td><td>338</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >9</td><td   >L</td><td   >1062</td><td   >1100</td><td   >304</td><td   >372</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >17</td><td   >L</td><td   >1062</td><td   >1100</td><td   >338</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_613'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_613'>+</button></td><td>5</td><td><a href='/aardvark/html/players/613.html'>Stanley Njoroge</a></td><td>1735</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>552.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_613'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_613'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/613.html'>Stanley Njoroge</a></td><td   >1735</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >552.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_613'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>6</td><td>L</td><td>1062</td><td>1859</td><td>315</td><td>552</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >6</td><td   >L</td><td   >1062</td><td   >1859</td><td   >315</td><td   >552</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_743'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_743'>+</button></td><td>6</td><td><a href='/aardvark/html/players/743.html'>Benard Amuke</a></td><td>1695</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>354.00</td><td>414.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_743'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_743'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/743.html'>Benard Amuke</a></td><td   >1695</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >354.00</td><td   >414.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_743'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>3</td><td>L</td><td>1062</td><td>1727</td><td>354</td><td>414</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >3</td><td   >L</td><td   >1062</td><td   >1727</td><td   >354</td><td   >414</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2651'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2651'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2651.html'>George Nyakundi</a></td><td>1135</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>341.00</td><td>375.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2651'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2651'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2651.html'>George Nyakundi</a></td><td   >1135</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >341.00</td><td   >375.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2651'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>8</td><td>L</td><td>1062</td><td>1293</td><td>341</td><td>375</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >8</td><td   >L</td><td   >1062</td><td   >1293</td><td   >341</td><td   >375</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1802'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1802'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td>1502</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>395.00</td><td>371.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1802'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1802'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td   >1502</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >395.00</td><td   >371.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1802'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>7</td><td>W</td><td>1062</td><td>1558</td><td>395</td><td>371</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >7</td><td   >W</td><td   >1062</td><td   >1558</td><td   >395</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_740'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_740'>+</button></td><td>9</td><td><a href='/aardvark/html/players/740.html'>Julius Auka</a></td><td>1369</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>302.00</td><td>376.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_740'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_740'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/740.html'>Julius Auka</a></td><td   >1369</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >302.00</td><td   >376.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_740'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>10</td><td>L</td><td>1062</td><td>1504</td><td>302</td><td>376</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >10</td><td   >L</td><td   >1062</td><td   >1504</td><td   >302</td><td   >376</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1807'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td>1411</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>319.00</td><td>396.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1807'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td   >1411</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >319.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1807'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>5</td><td>L</td><td>1062</td><td>1298</td><td>319</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >5</td><td   >L</td><td   >1062</td><td   >1298</td><td   >319</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_602'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_602'>+</button></td><td>11</td><td><a href='/aardvark/html/players/602.html'>Francis Wachira</a></td><td>1762</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>419.00</td><td>324.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_602'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_602'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/602.html'>Francis Wachira</a></td><td   >1762</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >419.00</td><td   >324.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_602'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>2</td><td>W</td><td>1062</td><td>1813</td><td>419</td><td>324</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >2</td><td   >W</td><td   >1062</td><td   >1813</td><td   >419</td><td   >324</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2650'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2650.html'>Emily Okioma</a></td><td>1190</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>416.00</td><td>422.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2650'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2650.html'>Emily Okioma</a></td><td   >1190</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >416.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2650'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td>2015-02-08</td><td>4</td><td>L</td><td>1062</td><td>1187</td><td>416</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/242.html'>Kisii County National Tournament, Kenya</a></td><td   >2015-02-08</td><td   >4</td><td   >L</td><td   >1062</td><td   >1187</td><td   >416</td><td   >422</td></tr>
 </table></div></td></tr>
 
 </table>

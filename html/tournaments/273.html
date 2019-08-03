@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,54 +156,155 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_10784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10784'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>5</td><td>1</td><td>0</td><td>530</td><td>1962</td><td>1968</td><td>6</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_10784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10784'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >5</td><td   >1</td><td   >0</td><td   >530</td><td   >1962</td><td   >1968</td><td   >6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10784'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>1431</td><td>L</td><td>358</td><td>536</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>1431</td><td>W</td><td>491</td><td>432</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1853</td><td>W</td><td>462</td><td>335</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1853</td><td>W</td><td>502</td><td>365</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1429</td><td>W</td><td>478</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1429</td><td>W</td><td>643</td><td>341</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >L</td><td   >358</td><td   >536</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >W</td><td   >491</td><td   >432</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >W</td><td   >462</td><td   >335</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >W</td><td   >502</td><td   >365</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   >W</td><td   >478</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   >W</td><td   >643</td><td   >341</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_10783'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10783'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>4</td><td>2</td><td>0</td><td>7</td><td>1853</td><td>1851</td><td>-2</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_10783'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10783'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >4</td><td   >2</td><td   >0</td><td   >7</td><td   >1853</td><td   >1851</td><td   >-2</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10783'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1429</td><td>W</td><td>456</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1429</td><td>W</td><td>501</td><td>369</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>1962</td><td>L</td><td>335</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>1962</td><td>L</td><td>365</td><td>502</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>1431</td><td>W</td><td>410</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>1431</td><td>W</td><td>493</td><td>392</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   >W</td><td   >456</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   >W</td><td   >501</td><td   >369</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >L</td><td   >335</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >L</td><td   >365</td><td   >502</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >W</td><td   >410</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >W</td><td   >493</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_10785'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10785'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>2</td><td>4</td><td>0</td><td>131</td><td>1431</td><td>1440</td><td>9</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_10785'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10785'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >2</td><td   >4</td><td   >0</td><td   >131</td><td   >1431</td><td   >1440</td><td   >9</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10785'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>1962</td><td>W</td><td>536</td><td>358</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>1962</td><td>L</td><td>432</td><td>491</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1429</td><td>W</td><td>488</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1429</td><td>L</td><td>416</td><td>427</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1853</td><td>L</td><td>390</td><td>410</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1853</td><td>L</td><td>392</td><td>493</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >W</td><td   >536</td><td   >358</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >L</td><td   >432</td><td   >491</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   >W</td><td   >488</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   >L</td><td   >416</td><td   >427</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >L</td><td   >390</td><td   >410</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >L</td><td   >392</td><td   >493</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_10786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10786'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td>1</td><td>5</td><td>0</td><td>-668</td><td>1429</td><td>1357</td><td>-72</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_10786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_10786'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1</td><td   >5</td><td   >0</td><td   >-668</td><td   >1429</td><td   >1357</td><td   >-72</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_10786'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1853</td><td>L</td><td>438</td><td>456</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1853</td><td>L</td><td>369</td><td>501</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>1431</td><td>L</td><td>344</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td>1431</td><td>W</td><td>427</td><td>416</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>1962</td><td>L</td><td>395</td><td>478</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>1962</td><td>L</td><td>341</td><td>643</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >L</td><td   >438</td><td   >456</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >L</td><td   >369</td><td   >501</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >L</td><td   >344</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >W</td><td   >427</td><td   >416</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >L</td><td   >395</td><td   >478</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >L</td><td   >341</td><td   >643</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >643</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >536</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >502</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >501</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >493</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >491</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >488</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >478</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >462</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >456</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >427</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >410</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >438</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >432</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >416</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >395</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >392</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >390</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >369</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >365</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >358</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >344</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >341</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >335</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >643</td><td   >341</td><td   >302</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >536</td><td   >358</td><td   >178</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >488</td><td   >344</td><td   >144</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >502</td><td   >365</td><td   >137</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >501</td><td   >369</td><td   >132</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >462</td><td   >335</td><td   >127</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >493</td><td   >392</td><td   >101</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >478</td><td   >395</td><td   >83</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >491</td><td   >432</td><td   >59</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >410</td><td   >390</td><td   >20</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >456</td><td   >438</td><td   >18</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >427</td><td   >416</td><td   >11</td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >984</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >923</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >894</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >894</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >885</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >873</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >870</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >867</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >843</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >832</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >800</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >797</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >797</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >800</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >832</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >843</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >867</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >870</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >873</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >885</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >894</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >894</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >923</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >984</td><td   >6</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >533</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >533</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >531</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >531</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >424</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >424</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >422</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   >422</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >109</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1853</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1962</td><td   >109</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >2</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1429</td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1431</td><td   >2</td><td   >3</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >4.599</td><td   >5</td><td   >75</td><td   >69</td><td   >14</td><td   >14</td><td   >1962</td><td   >6</td><td   >1968</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >4.095</td><td   >4</td><td   >151</td><td   >152</td><td   >9</td><td   >9</td><td   >1853</td><td   >-2</td><td   >1851</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2764.html'>Chris Patrick Morgan</a></td><td   >1.803</td><td   >2</td><td   >507</td><td   >500</td><td   >57</td><td   >58</td><td   >1431</td><td   >9</td><td   >1440</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2767.html'>KC Frodyma</a></td><td   >1.672</td><td   >1</td><td   >507</td><td   >580</td><td   >57</td><td   >61</td><td   >1429</td><td   >-72</td><td   >1357</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Baldip Kaur</h2>
             <div>
               <IMG SRC="../../flags/ENG.png" alt="ENG">
-              <p>ENG</p>
+              <p><a href='/aardvark/html/rankings/ENG.html'>England</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 722<br>
               <b>Games Played:</b> 66<br>
               <b>Wins:</b> 22 (33.33%)<br>
               <b>Losses: </b>44 (66.67%)<br>
@@ -183,393 +184,393 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_26793'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_26793'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>3</td><td>13</td><td>0</td><td>-1310</td><td>52</td><td>695</td><td>722</td><td>27</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_26793'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_26793'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >3</td><td   >13</td><td   >0</td><td   >-1310</td><td   >52</td><td   >695</td><td   >722</td><td   >27</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_26793'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1866</td><td>L</td><td>331</td><td>510</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1102.html'>Mohamed Kamara</a></td><td>1617</td><td>L</td><td>408</td><td>464</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1568.html'>Graham Harding</a></td><td>1482</td><td>L</td><td>377</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2356.html'>David Holmes</a></td><td>1587</td><td>L</td><td>429</td><td>439</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td>1462</td><td>L</td><td>361</td><td>505</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/678.html'>Angele Andrews</a></td><td>997</td><td>W</td><td>439</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1541.html'>Adrienne Berger</a></td><td>1329</td><td>L</td><td>210</td><td>520</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/58.html'>Ayaz Kazi</a></td><td>953</td><td>L</td><td>357</td><td>449</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4801.html'>Anne Convery</a></td><td>1024</td><td>L</td><td>364</td><td>511</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1543.html'>Matthew Pinner</a></td><td>1430</td><td>W</td><td>413</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td>1517</td><td>L</td><td>366</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1591.html'>Victoria Kingham</a></td><td>1511</td><td>L</td><td>422</td><td>433</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2611.html'>Chris Harrison</a></td><td>1523</td><td>W</td><td>425</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1505.html'>Diane Bromilow</a></td><td>1429</td><td>L</td><td>370</td><td>509</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1554.html'>Rick Blakeway</a></td><td>1598</td><td>L</td><td>344</td><td>387</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/702.html'>Kevin Synnott</a></td><td>1465</td><td>L</td><td>324</td><td>444</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1866</td><td   >L</td><td   >331</td><td   >510</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1102.html'>Mohamed Kamara</a></td><td   >1617</td><td   >L</td><td   >408</td><td   >464</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1568.html'>Graham Harding</a></td><td   >1482</td><td   >L</td><td   >377</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2356.html'>David Holmes</a></td><td   >1587</td><td   >L</td><td   >429</td><td   >439</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td   >1462</td><td   >L</td><td   >361</td><td   >505</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/678.html'>Angele Andrews</a></td><td   >997</td><td   >W</td><td   >439</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1541.html'>Adrienne Berger</a></td><td   >1329</td><td   >L</td><td   >210</td><td   >520</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/58.html'>Ayaz Kazi</a></td><td   >953</td><td   >L</td><td   >357</td><td   >449</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/4801.html'>Anne Convery</a></td><td   >1024</td><td   >L</td><td   >364</td><td   >511</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1543.html'>Matthew Pinner</a></td><td   >1430</td><td   >W</td><td   >413</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td   >1517</td><td   >L</td><td   >366</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1591.html'>Victoria Kingham</a></td><td   >1511</td><td   >L</td><td   >422</td><td   >433</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2611.html'>Chris Harrison</a></td><td   >1523</td><td   >W</td><td   >425</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1505.html'>Diane Bromilow</a></td><td   >1429</td><td   >L</td><td   >370</td><td   >509</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1554.html'>Rick Blakeway</a></td><td   >1598</td><td   >L</td><td   >344</td><td   >387</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/702.html'>Kevin Synnott</a></td><td   >1465</td><td   >L</td><td   >324</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_8982'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_8982'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>4</td><td>11</td><td>0</td><td>-620</td><td>19</td><td>699</td><td>695</td><td>-4</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_8982'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_8982'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >4</td><td   >11</td><td   >0</td><td   >-620</td><td   >19</td><td   >699</td><td   >695</td><td   >-4</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_8982'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1044.html'>Anlaug Frydenlund</a></td><td>1277</td><td>L</td><td>293</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/678.html'>Angele Andrews</a></td><td>1009</td><td>W</td><td>436</td><td>354</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td>1202</td><td>L</td><td>367</td><td>370</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2617.html'>Russell Morris</a></td><td>930</td><td>W</td><td>434</td><td>365</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1516.html'>Caroline Elliott</a></td><td>773</td><td>L</td><td>344</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1623.html'>Malcolm Davis</a></td><td>1175</td><td>L</td><td>295</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1556.html'>Angie Brodie</a></td><td>597</td><td>W</td><td>466</td><td>313</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1621.html'>Dan Smith</a></td><td>953</td><td>L</td><td>374</td><td>389</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1518.html'>Geoff Cooper</a></td><td>1074</td><td>W</td><td>538</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1519.html'>Kim Phipps</a></td><td>1370</td><td>L</td><td>352</td><td>480</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1021.html'>Peter Thorpe</a></td><td>1022</td><td>L</td><td>381</td><td>503</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2614.html'>Colin St Hill</a></td><td>1111</td><td>L</td><td>329</td><td>483</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1522.html'>Mel Maltz</a></td><td>774</td><td>L</td><td>354</td><td>481</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1514.html'>Ted Lewis</a></td><td>1176</td><td>L</td><td>383</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1516.html'>Caroline Elliott</a></td><td>773</td><td>L</td><td>300</td><td>492</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1044.html'>Anlaug Frydenlund</a></td><td   >1277</td><td   >L</td><td   >293</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/678.html'>Angele Andrews</a></td><td   >1009</td><td   >W</td><td   >436</td><td   >354</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td   >1202</td><td   >L</td><td   >367</td><td   >370</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2617.html'>Russell Morris</a></td><td   >930</td><td   >W</td><td   >434</td><td   >365</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1516.html'>Caroline Elliott</a></td><td   >773</td><td   >L</td><td   >344</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1623.html'>Malcolm Davis</a></td><td   >1175</td><td   >L</td><td   >295</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1556.html'>Angie Brodie</a></td><td   >597</td><td   >W</td><td   >466</td><td   >313</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1621.html'>Dan Smith</a></td><td   >953</td><td   >L</td><td   >374</td><td   >389</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1518.html'>Geoff Cooper</a></td><td   >1074</td><td   >W</td><td   >538</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1519.html'>Kim Phipps</a></td><td   >1370</td><td   >L</td><td   >352</td><td   >480</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1021.html'>Peter Thorpe</a></td><td   >1022</td><td   >L</td><td   >381</td><td   >503</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2614.html'>Colin St Hill</a></td><td   >1111</td><td   >L</td><td   >329</td><td   >483</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1522.html'>Mel Maltz</a></td><td   >774</td><td   >L</td><td   >354</td><td   >481</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1514.html'>Ted Lewis</a></td><td   >1176</td><td   >L</td><td   >383</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1516.html'>Caroline Elliott</a></td><td   >773</td><td   >L</td><td   >300</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_5910'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_5910'>+</button></td><td>3</td><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>15</td><td>20</td><td>0</td><td>-791</td><td>43</td><td>699</td><td>699</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_5910'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_5910'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >15</td><td   >20</td><td   >0</td><td   >-791</td><td   >43</td><td   >699</td><td   >699</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_5910'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/209.html'>Indunil Amarasinghe</a></td><td>1469</td><td>L</td><td>305</td><td>493</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td>1060</td><td>W</td><td>425</td><td>336</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td>1440</td><td>L</td><td>305</td><td>515</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/51.html'>Abdul Waheed</a></td><td>1030</td><td>W</td><td>422</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1163.html'>Samrath Singh Bhatia</a></td><td>924</td><td>L</td><td>441</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1328.html'>Siddarth Raman</a></td><td>1148</td><td>L</td><td>272</td><td>522</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1315.html'>R Nalini</a></td><td>1126</td><td>L</td><td>348</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/66.html'>Hari Prasad</a></td><td>909</td><td>L</td><td>251</td><td>449</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1188.html'>Yash Potnis</a></td><td>300</td><td>W</td><td>435</td><td>326</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2251.html'>Pranay Addepalli</a></td><td>498</td><td>W</td><td>335</td><td>309</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1378.html'>Rhys McGuckin</a></td><td>932</td><td>W</td><td>426</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1310.html'>Nitya Chagti</a></td><td>600</td><td>L</td><td>347</td><td>348</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/91.html'>Neena Shahani</a></td><td>923</td><td>L</td><td>295</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1036.html'>Rehet Singh Bhatia</a></td><td>691</td><td>W</td><td>398</td><td>363</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1331.html'>Asha Namdev Kamath</a></td><td>461</td><td>W</td><td>394</td><td>322</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2252.html'>Sree Sukumar</a></td><td>842</td><td>W</td><td>476</td><td>398</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/73.html'>Joe Rodrigues</a></td><td>1105</td><td>L</td><td>418</td><td>556</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td>1034</td><td>L</td><td>274</td><td>421</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>709</td><td>L</td><td>359</td><td>507</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/1305.html'>Kala Ganesh</a></td><td>358</td><td>L</td><td>310</td><td>488</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/55.html'>Aruna Grover</a></td><td>844</td><td>W</td><td>454</td><td>379</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/1335.html'>Erol Jorge</a></td><td>572</td><td>W</td><td>491</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/1342.html'>Parvathy Raghunathan</a></td><td>410</td><td>L</td><td>428</td><td>468</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/2250.html'>Nikhil Ravishankar</a></td><td>512</td><td>W</td><td>442</td><td>352</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td>519</td><td>W</td><td>417</td><td>309</td></tr>
-        <tr  class='rowodd'  ><td>26</td><td><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td>854</td><td>W</td><td>456</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>27</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>668</td><td>L</td><td>421</td><td>451</td></tr>
-        <tr  class='rowodd'  ><td>28</td><td><a href='/aardvark/html/players/102.html'>Romilla Thakur</a></td><td>958</td><td>L</td><td>419</td><td>454</td></tr>
-        <tr  class='roweven'  ><td>29</td><td><a href='/aardvark/html/players/2252.html'>Sree Sukumar</a></td><td>842</td><td>L</td><td>369</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td>30</td><td><a href='/aardvark/html/players/2250.html'>Nikhil Ravishankar</a></td><td>512</td><td>W</td><td>471</td><td>276</td></tr>
-        <tr  class='roweven'  ><td>31</td><td><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td>854</td><td>L</td><td>294</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>32</td><td><a href='/aardvark/html/players/1320.html'>Sunny Bhatia</a></td><td>764</td><td>L</td><td>274</td><td>492</td></tr>
-        <tr  class='roweven'  ><td>33</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>709</td><td>W</td><td>552</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td>34</td><td><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td>854</td><td>L</td><td>382</td><td>435</td></tr>
-        <tr  class='roweven'  ><td>35</td><td><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td>519</td><td>L</td><td>358</td><td>397</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/209.html'>Indunil Amarasinghe</a></td><td   >1469</td><td   >L</td><td   >305</td><td   >493</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td   >1060</td><td   >W</td><td   >425</td><td   >336</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td   >1440</td><td   >L</td><td   >305</td><td   >515</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/51.html'>Abdul Waheed</a></td><td   >1030</td><td   >W</td><td   >422</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1163.html'>Samrath Singh Bhatia</a></td><td   >924</td><td   >L</td><td   >441</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1328.html'>Siddarth Raman</a></td><td   >1148</td><td   >L</td><td   >272</td><td   >522</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1315.html'>R Nalini</a></td><td   >1126</td><td   >L</td><td   >348</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/66.html'>Hari Prasad</a></td><td   >909</td><td   >L</td><td   >251</td><td   >449</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1188.html'>Yash Potnis</a></td><td   >300</td><td   >W</td><td   >435</td><td   >326</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2251.html'>Pranay Addepalli</a></td><td   >498</td><td   >W</td><td   >335</td><td   >309</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1378.html'>Rhys McGuckin</a></td><td   >932</td><td   >W</td><td   >426</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1310.html'>Nitya Chagti</a></td><td   >600</td><td   >L</td><td   >347</td><td   >348</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/91.html'>Neena Shahani</a></td><td   >923</td><td   >L</td><td   >295</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1036.html'>Rehet Singh Bhatia</a></td><td   >691</td><td   >W</td><td   >398</td><td   >363</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1331.html'>Asha Namdev Kamath</a></td><td   >461</td><td   >W</td><td   >394</td><td   >322</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2252.html'>Sree Sukumar</a></td><td   >842</td><td   >W</td><td   >476</td><td   >398</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/73.html'>Joe Rodrigues</a></td><td   >1105</td><td   >L</td><td   >418</td><td   >556</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td   >1034</td><td   >L</td><td   >274</td><td   >421</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >709</td><td   >L</td><td   >359</td><td   >507</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1305.html'>Kala Ganesh</a></td><td   >358</td><td   >L</td><td   >310</td><td   >488</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/55.html'>Aruna Grover</a></td><td   >844</td><td   >W</td><td   >454</td><td   >379</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1335.html'>Erol Jorge</a></td><td   >572</td><td   >W</td><td   >491</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1342.html'>Parvathy Raghunathan</a></td><td   >410</td><td   >L</td><td   >428</td><td   >468</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2250.html'>Nikhil Ravishankar</a></td><td   >512</td><td   >W</td><td   >442</td><td   >352</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td   >519</td><td   >W</td><td   >417</td><td   >309</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td   >854</td><td   >W</td><td   >456</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >668</td><td   >L</td><td   >421</td><td   >451</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/102.html'>Romilla Thakur</a></td><td   >958</td><td   >L</td><td   >419</td><td   >454</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2252.html'>Sree Sukumar</a></td><td   >842</td><td   >L</td><td   >369</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2250.html'>Nikhil Ravishankar</a></td><td   >512</td><td   >W</td><td   >471</td><td   >276</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td   >854</td><td   >L</td><td   >294</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/1320.html'>Sunny Bhatia</a></td><td   >764</td><td   >L</td><td   >274</td><td   >492</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >709</td><td   >W</td><td   >552</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td   >854</td><td   >L</td><td   >382</td><td   >435</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td   >519</td><td   >L</td><td   >358</td><td   >397</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_105'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_105'>+</button></td><td>1</td><td><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td>855</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>377.33</td><td>403.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_105'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_105'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td   >855</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >377.33</td><td   >403.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_105'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>26</td><td>W</td><td>699</td><td>854</td><td>456</td><td>378</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>31</td><td>L</td><td>699</td><td>854</td><td>294</td><td>397</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>34</td><td>L</td><td>699</td><td>854</td><td>382</td><td>435</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >26</td><td   >W</td><td   >699</td><td   >854</td><td   >456</td><td   >378</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >31</td><td   >L</td><td   >699</td><td   >854</td><td   >294</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >34</td><td   >L</td><td   >699</td><td   >854</td><td   >382</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2250'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2250'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2250.html'>Nikhil Ravishankar</a></td><td>606</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>456.50</td><td>314.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2250'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2250'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2250.html'>Nikhil Ravishankar</a></td><td   >606</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >456.50</td><td   >314.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2250'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>24</td><td>W</td><td>699</td><td>512</td><td>442</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>30</td><td>W</td><td>699</td><td>512</td><td>471</td><td>276</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >24</td><td   >W</td><td   >699</td><td   >512</td><td   >442</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >30</td><td   >W</td><td   >699</td><td   >512</td><td   >471</td><td   >276</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1516'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1516'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1516.html'>Caroline Elliott</a></td><td>689</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>322.00</td><td>449.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1516'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1516'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1516.html'>Caroline Elliott</a></td><td   >689</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >322.00</td><td   >449.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1516'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>5</td><td>L</td><td>699</td><td>773</td><td>344</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>15</td><td>L</td><td>699</td><td>773</td><td>300</td><td>492</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >5</td><td   >L</td><td   >699</td><td   >773</td><td   >344</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >15</td><td   >L</td><td   >699</td><td   >773</td><td   >300</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_678'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_678'>+</button></td><td>4</td><td><a href='/aardvark/html/players/678.html'>Angele Andrews</a></td><td>1004</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>437.50</td><td>385.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_678'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_678'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/678.html'>Angele Andrews</a></td><td   >1004</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >437.50</td><td   >385.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_678'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>2</td><td>W</td><td>699</td><td>1009</td><td>436</td><td>354</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>6</td><td>W</td><td>695</td><td>997</td><td>439</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >2</td><td   >W</td><td   >699</td><td   >1009</td><td   >436</td><td   >354</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >6</td><td   >W</td><td   >695</td><td   >997</td><td   >439</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_224'>+</button></td><td>5</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>601</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>455.50</td><td>424.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_224'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >601</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >455.50</td><td   >424.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_224'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>19</td><td>L</td><td>699</td><td>709</td><td>359</td><td>507</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>33</td><td>W</td><td>699</td><td>709</td><td>552</td><td>342</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >19</td><td   >L</td><td   >699</td><td   >709</td><td   >359</td><td   >507</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >33</td><td   >W</td><td   >699</td><td   >709</td><td   >552</td><td   >342</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1348'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td>844</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>387.50</td><td>353.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1348'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1348.html'>Vidya Goggi</a></td><td   >844</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >387.50</td><td   >353.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1348'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>25</td><td>W</td><td>699</td><td>519</td><td>417</td><td>309</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>35</td><td>L</td><td>699</td><td>519</td><td>358</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >25</td><td   >W</td><td   >699</td><td   >519</td><td   >417</td><td   >309</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >35</td><td   >L</td><td   >699</td><td   >519</td><td   >358</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2252'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2252'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2252.html'>Sree Sukumar</a></td><td>812</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>422.50</td><td>391.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2252'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2252'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2252.html'>Sree Sukumar</a></td><td   >812</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >422.50</td><td   >391.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2252'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>16</td><td>W</td><td>699</td><td>842</td><td>476</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>29</td><td>L</td><td>699</td><td>842</td><td>369</td><td>385</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >16</td><td   >W</td><td   >699</td><td   >842</td><td   >476</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >29</td><td   >L</td><td   >699</td><td   >842</td><td   >369</td><td   >385</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1591'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1591'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1591.html'>Victoria Kingham</a></td><td>1518</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>422.00</td><td>433.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1591'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1591'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1591.html'>Victoria Kingham</a></td><td   >1518</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >422.00</td><td   >433.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1591'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>12</td><td>L</td><td>695</td><td>1511</td><td>422</td><td>433</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >12</td><td   >L</td><td   >695</td><td   >1511</td><td   >422</td><td   >433</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_102'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_102'>+</button></td><td>9</td><td><a href='/aardvark/html/players/102.html'>Romilla Thakur</a></td><td>760</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>419.00</td><td>454.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_102'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_102'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/102.html'>Romilla Thakur</a></td><td   >760</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >419.00</td><td   >454.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_102'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>28</td><td>L</td><td>699</td><td>958</td><td>419</td><td>454</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >28</td><td   >L</td><td   >699</td><td   >958</td><td   >419</td><td   >454</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1320'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1320'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1320.html'>Sunny Bhatia</a></td><td>1560</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>274.00</td><td>492.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1320'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1320'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1320.html'>Sunny Bhatia</a></td><td   >1560</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >274.00</td><td   >492.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1320'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>32</td><td>L</td><td>699</td><td>764</td><td>274</td><td>492</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >32</td><td   >L</td><td   >699</td><td   >764</td><td   >274</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1522'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1522'>+</button></td><td>11</td><td><a href='/aardvark/html/players/1522.html'>Mel Maltz</a></td><td>1039</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>354.00</td><td>481.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1522'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1522'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/1522.html'>Mel Maltz</a></td><td   >1039</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >354.00</td><td   >481.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1522'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>13</td><td>L</td><td>699</td><td>774</td><td>354</td><td>481</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >13</td><td   >L</td><td   >699</td><td   >774</td><td   >354</td><td   >481</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1541'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1541'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1541.html'>Adrienne Berger</a></td><td>1276</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>210.00</td><td>520.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1541'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1541'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/1541.html'>Adrienne Berger</a></td><td   >1276</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >210.00</td><td   >520.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1541'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>7</td><td>L</td><td>695</td><td>1329</td><td>210</td><td>520</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >7</td><td   >L</td><td   >695</td><td   >1329</td><td   >210</td><td   >520</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1623'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1623'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1623.html'>Malcolm Davis</a></td><td>990</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>295.00</td><td>409.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1623'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1623'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/1623.html'>Malcolm Davis</a></td><td   >990</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >295.00</td><td   >409.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1623'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>6</td><td>L</td><td>699</td><td>1175</td><td>295</td><td>409</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >6</td><td   >L</td><td   >699</td><td   >1175</td><td   >295</td><td   >409</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_55'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_55'>+</button></td><td>14</td><td><a href='/aardvark/html/players/55.html'>Aruna Grover</a></td><td>706</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>454.00</td><td>379.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_55'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_55'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/55.html'>Aruna Grover</a></td><td   >706</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >454.00</td><td   >379.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_55'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>21</td><td>W</td><td>699</td><td>844</td><td>454</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >21</td><td   >W</td><td   >699</td><td   >844</td><td   >454</td><td   >379</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1621'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1621'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1621.html'>Dan Smith</a></td><td>867</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>374.00</td><td>389.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1621'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1621'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1621.html'>Dan Smith</a></td><td   >867</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >374.00</td><td   >389.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1621'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>8</td><td>L</td><td>699</td><td>953</td><td>374</td><td>389</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >8</td><td   >L</td><td   >699</td><td   >953</td><td   >374</td><td   >389</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1543'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1543'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1543.html'>Matthew Pinner</a></td><td>1371</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>413.00</td><td>408.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1543'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1543'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/1543.html'>Matthew Pinner</a></td><td   >1371</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >413.00</td><td   >408.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1543'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>10</td><td>W</td><td>695</td><td>1430</td><td>413</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >10</td><td   >W</td><td   >695</td><td   >1430</td><td   >413</td><td   >408</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1188'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1188'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1188.html'>Yash Potnis</a></td><td>1265</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>435.00</td><td>326.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1188'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1188'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1188.html'>Yash Potnis</a></td><td   >1265</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >435.00</td><td   >326.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1188'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>9</td><td>W</td><td>699</td><td>300</td><td>435</td><td>326</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >9</td><td   >W</td><td   >699</td><td   >300</td><td   >435</td><td   >326</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2356'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2356'>+</button></td><td>18</td><td><a href='/aardvark/html/players/2356.html'>David Holmes</a></td><td>1579</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>429.00</td><td>439.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2356'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2356'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/2356.html'>David Holmes</a></td><td   >1579</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >429.00</td><td   >439.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2356'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>4</td><td>L</td><td>695</td><td>1587</td><td>429</td><td>439</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >4</td><td   >L</td><td   >695</td><td   >1587</td><td   >429</td><td   >439</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_471'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_471'>+</button></td><td>19</td><td><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td>1356</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>361.00</td><td>505.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_471'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_471'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td   >1356</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >361.00</td><td   >505.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_471'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>5</td><td>L</td><td>695</td><td>1462</td><td>361</td><td>505</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >5</td><td   >L</td><td   >695</td><td   >1462</td><td   >361</td><td   >505</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1036'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1036'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1036.html'>Rehet Singh Bhatia</a></td><td>858</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>398.00</td><td>363.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1036'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1036'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1036.html'>Rehet Singh Bhatia</a></td><td   >858</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >398.00</td><td   >363.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1036'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>14</td><td>W</td><td>699</td><td>691</td><td>398</td><td>363</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >14</td><td   >W</td><td   >699</td><td   >691</td><td   >398</td><td   >363</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1503'>+</button></td><td>21</td><td><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td>1492</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>366.00</td><td>403.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1503'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td   >1492</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >366.00</td><td   >403.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1503'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>11</td><td>L</td><td>695</td><td>1517</td><td>366</td><td>403</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >11</td><td   >L</td><td   >695</td><td   >1517</td><td   >366</td><td   >403</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2614'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2614'>+</button></td><td>22</td><td><a href='/aardvark/html/players/2614.html'>Colin St Hill</a></td><td>1111</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>329.00</td><td>483.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2614'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2614'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/2614.html'>Colin St Hill</a></td><td   >1111</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >329.00</td><td   >483.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2614'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>12</td><td>L</td><td>699</td><td>1111</td><td>329</td><td>483</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >12</td><td   >L</td><td   >699</td><td   >1111</td><td   >329</td><td   >483</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1310'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1310'>+</button></td><td>23</td><td><a href='/aardvark/html/players/1310.html'>Nitya Chagti</a></td><td>906</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>347.00</td><td>348.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1310'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1310'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/1310.html'>Nitya Chagti</a></td><td   >906</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >347.00</td><td   >348.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1310'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>12</td><td>L</td><td>699</td><td>600</td><td>347</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >12</td><td   >L</td><td   >699</td><td   >600</td><td   >347</td><td   >348</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1163'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1163'>+</button></td><td>24</td><td><a href='/aardvark/html/players/1163.html'>Samrath Singh Bhatia</a></td><td>1315</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>441.00</td><td>462.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1163'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1163'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/1163.html'>Samrath Singh Bhatia</a></td><td   >1315</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >441.00</td><td   >462.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1163'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>5</td><td>L</td><td>699</td><td>924</td><td>441</td><td>462</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >5</td><td   >L</td><td   >699</td><td   >924</td><td   >441</td><td   >462</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1518'>+</button></td><td>25</td><td><a href='/aardvark/html/players/1518.html'>Geoff Cooper</a></td><td>1036</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>538.00</td><td>346.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1518'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/1518.html'>Geoff Cooper</a></td><td   >1036</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >538.00</td><td   >346.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1518'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>9</td><td>W</td><td>699</td><td>1074</td><td>538</td><td>346</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >9</td><td   >W</td><td   >699</td><td   >1074</td><td   >538</td><td   >346</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_879'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_879'>+</button></td><td>26</td><td><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td>841</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>274.00</td><td>421.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_879'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_879'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/879.html'>Shafique Ahmed</a></td><td   >841</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >274.00</td><td   >421.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_879'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>18</td><td>L</td><td>699</td><td>1034</td><td>274</td><td>421</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >18</td><td   >L</td><td   >699</td><td   >1034</td><td   >274</td><td   >421</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4801'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4801'>+</button></td><td>27</td><td><a href='/aardvark/html/players/4801.html'>Anne Convery</a></td><td>1024</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>364.00</td><td>511.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4801'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4801'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/4801.html'>Anne Convery</a></td><td   >1024</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >364.00</td><td   >511.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4801'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>9</td><td>L</td><td>695</td><td>1024</td><td>364</td><td>511</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >9</td><td   >L</td><td   >695</td><td   >1024</td><td   >364</td><td   >511</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1044'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1044'>+</button></td><td>28</td><td><a href='/aardvark/html/players/1044.html'>Anlaug Frydenlund</a></td><td>1234</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>293.00</td><td>476.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1044'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1044'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/1044.html'>Anlaug Frydenlund</a></td><td   >1234</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >293.00</td><td   >476.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1044'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>1</td><td>L</td><td>699</td><td>1277</td><td>293</td><td>476</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >1</td><td   >L</td><td   >699</td><td   >1277</td><td   >293</td><td   >476</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1021'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1021'>+</button></td><td>29</td><td><a href='/aardvark/html/players/1021.html'>Peter Thorpe</a></td><td>1069</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>381.00</td><td>503.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1021'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1021'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/1021.html'>Peter Thorpe</a></td><td   >1069</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >381.00</td><td   >503.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1021'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>11</td><td>L</td><td>699</td><td>1022</td><td>381</td><td>503</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >11</td><td   >L</td><td   >699</td><td   >1022</td><td   >381</td><td   >503</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1315'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1315'>+</button></td><td>30</td><td><a href='/aardvark/html/players/1315.html'>R Nalini</a></td><td>1130</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>348.00</td><td>390.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1315'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1315'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/1315.html'>R Nalini</a></td><td   >1130</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >348.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1315'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>7</td><td>L</td><td>699</td><td>1126</td><td>348</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >7</td><td   >L</td><td   >699</td><td   >1126</td><td   >348</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2617'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2617'>+</button></td><td>31</td><td><a href='/aardvark/html/players/2617.html'>Russell Morris</a></td><td>930</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>434.00</td><td>365.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2617'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2617'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/2617.html'>Russell Morris</a></td><td   >930</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >434.00</td><td   >365.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2617'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>4</td><td>W</td><td>699</td><td>930</td><td>434</td><td>365</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >4</td><td   >W</td><td   >699</td><td   >930</td><td   >434</td><td   >365</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1568'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1568'>+</button></td><td>32</td><td><a href='/aardvark/html/players/1568.html'>Graham Harding</a></td><td>1513</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>377.00</td><td>455.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1568'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1568'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/1568.html'>Graham Harding</a></td><td   >1513</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >377.00</td><td   >455.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1568'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>3</td><td>L</td><td>695</td><td>1482</td><td>377</td><td>455</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >3</td><td   >L</td><td   >695</td><td   >1482</td><td   >377</td><td   >455</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2251'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2251'>+</button></td><td>33</td><td><a href='/aardvark/html/players/2251.html'>Pranay Addepalli</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>335.00</td><td>309.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2251'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2251'>+</button></td><td   >33</td><td   ><a href='/aardvark/html/players/2251.html'>Pranay Addepalli</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >335.00</td><td   >309.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2251'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>10</td><td>W</td><td>699</td><td>498</td><td>335</td><td>309</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >10</td><td   >W</td><td   >699</td><td   >498</td><td   >335</td><td   >309</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_91'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_91'>+</button></td><td>34</td><td><a href='/aardvark/html/players/91.html'>Neena Shahani</a></td><td>858</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>295.00</td><td>390.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_91'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_91'>+</button></td><td   >34</td><td   ><a href='/aardvark/html/players/91.html'>Neena Shahani</a></td><td   >858</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >295.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_91'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>13</td><td>L</td><td>699</td><td>923</td><td>295</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >13</td><td   >L</td><td   >699</td><td   >923</td><td   >295</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_702'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_702'>+</button></td><td>35</td><td><a href='/aardvark/html/players/702.html'>Kevin Synnott</a></td><td>1439</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>324.00</td><td>444.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_702'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_702'>+</button></td><td   >35</td><td   ><a href='/aardvark/html/players/702.html'>Kevin Synnott</a></td><td   >1439</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >324.00</td><td   >444.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_702'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>16</td><td>L</td><td>695</td><td>1465</td><td>324</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >16</td><td   >L</td><td   >695</td><td   >1465</td><td   >324</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_514'>+</button></td><td>36</td><td><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td>1645</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>305.00</td><td>515.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_514'>+</button></td><td   >36</td><td   ><a href='/aardvark/html/players/514.html'>Vinnith Ramamurti</a></td><td   >1645</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >305.00</td><td   >515.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_514'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>3</td><td>L</td><td>699</td><td>1440</td><td>305</td><td>515</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >3</td><td   >L</td><td   >699</td><td   >1440</td><td   >305</td><td   >515</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2611'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2611'>+</button></td><td>37</td><td><a href='/aardvark/html/players/2611.html'>Chris Harrison</a></td><td>1466</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>425.00</td><td>396.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2611'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2611'>+</button></td><td   >37</td><td   ><a href='/aardvark/html/players/2611.html'>Chris Harrison</a></td><td   >1466</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >425.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2611'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>13</td><td>W</td><td>695</td><td>1523</td><td>425</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >13</td><td   >W</td><td   >695</td><td   >1523</td><td   >425</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1505'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1505'>+</button></td><td>38</td><td><a href='/aardvark/html/players/1505.html'>Diane Bromilow</a></td><td>1374</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>370.00</td><td>509.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1505'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1505'>+</button></td><td   >38</td><td   ><a href='/aardvark/html/players/1505.html'>Diane Bromilow</a></td><td   >1374</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >370.00</td><td   >509.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1505'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>14</td><td>L</td><td>695</td><td>1429</td><td>370</td><td>509</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >14</td><td   >L</td><td   >695</td><td   >1429</td><td   >370</td><td   >509</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1556'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1556'>+</button></td><td>39</td><td><a href='/aardvark/html/players/1556.html'>Angie Brodie</a></td><td>1000</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>466.00</td><td>313.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1556'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1556'>+</button></td><td   >39</td><td   ><a href='/aardvark/html/players/1556.html'>Angie Brodie</a></td><td   >1000</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >466.00</td><td   >313.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1556'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>7</td><td>W</td><td>699</td><td>597</td><td>466</td><td>313</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >7</td><td   >W</td><td   >699</td><td   >597</td><td   >466</td><td   >313</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1331'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1331'>+</button></td><td>40</td><td><a href='/aardvark/html/players/1331.html'>Asha Namdev Kamath</a></td><td>600</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>394.00</td><td>322.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1331'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1331'>+</button></td><td   >40</td><td   ><a href='/aardvark/html/players/1331.html'>Asha Namdev Kamath</a></td><td   >600</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >394.00</td><td   >322.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1331'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>15</td><td>W</td><td>699</td><td>461</td><td>394</td><td>322</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >15</td><td   >W</td><td   >699</td><td   >461</td><td   >394</td><td   >322</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1514'>+</button></td><td>41</td><td><a href='/aardvark/html/players/1514.html'>Ted Lewis</a></td><td>1104</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>383.00</td><td>399.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1514'>+</button></td><td   >41</td><td   ><a href='/aardvark/html/players/1514.html'>Ted Lewis</a></td><td   >1104</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >383.00</td><td   >399.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1514'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>14</td><td>L</td><td>699</td><td>1176</td><td>383</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >14</td><td   >L</td><td   >699</td><td   >1176</td><td   >383</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2103'>+</button></td><td>42</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>578</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>421.00</td><td>451.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2103'>+</button></td><td   >42</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >578</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >421.00</td><td   >451.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2103'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>27</td><td>L</td><td>699</td><td>668</td><td>421</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >27</td><td   >L</td><td   >699</td><td   >668</td><td   >421</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_304'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_304'>+</button></td><td>43</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1894</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>331.00</td><td>510.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_304'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_304'>+</button></td><td   >43</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1894</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >331.00</td><td   >510.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_304'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>1</td><td>L</td><td>695</td><td>1866</td><td>331</td><td>510</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >1</td><td   >L</td><td   >695</td><td   >1866</td><td   >331</td><td   >510</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1342'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1342'>+</button></td><td>44</td><td><a href='/aardvark/html/players/1342.html'>Parvathy Raghunathan</a></td><td>490</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>428.00</td><td>468.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1342'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1342'>+</button></td><td   >44</td><td   ><a href='/aardvark/html/players/1342.html'>Parvathy Raghunathan</a></td><td   >490</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >428.00</td><td   >468.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1342'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>23</td><td>L</td><td>699</td><td>410</td><td>428</td><td>468</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >23</td><td   >L</td><td   >699</td><td   >410</td><td   >428</td><td   >468</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1102'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1102'>+</button></td><td>45</td><td><a href='/aardvark/html/players/1102.html'>Mohamed Kamara</a></td><td>1495</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>408.00</td><td>464.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1102'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1102'>+</button></td><td   >45</td><td   ><a href='/aardvark/html/players/1102.html'>Mohamed Kamara</a></td><td   >1495</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >408.00</td><td   >464.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1102'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>2</td><td>L</td><td>695</td><td>1617</td><td>408</td><td>464</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >2</td><td   >L</td><td   >695</td><td   >1617</td><td   >408</td><td   >464</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1519'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1519'>+</button></td><td>46</td><td><a href='/aardvark/html/players/1519.html'>Kim Phipps</a></td><td>1115</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>352.00</td><td>480.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1519'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1519'>+</button></td><td   >46</td><td   ><a href='/aardvark/html/players/1519.html'>Kim Phipps</a></td><td   >1115</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >352.00</td><td   >480.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1519'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>10</td><td>L</td><td>699</td><td>1370</td><td>352</td><td>480</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >10</td><td   >L</td><td   >699</td><td   >1370</td><td   >352</td><td   >480</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1305'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1305'>+</button></td><td>47</td><td><a href='/aardvark/html/players/1305.html'>Kala Ganesh</a></td><td>1087</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>310.00</td><td>488.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1305'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1305'>+</button></td><td   >47</td><td   ><a href='/aardvark/html/players/1305.html'>Kala Ganesh</a></td><td   >1087</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >488.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1305'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>20</td><td>L</td><td>699</td><td>358</td><td>310</td><td>488</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >20</td><td   >L</td><td   >699</td><td   >358</td><td   >310</td><td   >488</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1378'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1378'>+</button></td><td>48</td><td><a href='/aardvark/html/players/1378.html'>Rhys McGuckin</a></td><td>906</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>426.00</td><td>386.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1378'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1378'>+</button></td><td   >48</td><td   ><a href='/aardvark/html/players/1378.html'>Rhys McGuckin</a></td><td   >906</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >426.00</td><td   >386.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1378'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>11</td><td>W</td><td>699</td><td>932</td><td>426</td><td>386</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >11</td><td   >W</td><td   >699</td><td   >932</td><td   >426</td><td   >386</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_51'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_51'>+</button></td><td>49</td><td><a href='/aardvark/html/players/51.html'>Abdul Waheed</a></td><td>851</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>422.00</td><td>409.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_51'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_51'>+</button></td><td   >49</td><td   ><a href='/aardvark/html/players/51.html'>Abdul Waheed</a></td><td   >851</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >422.00</td><td   >409.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_51'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>4</td><td>W</td><td>699</td><td>1030</td><td>422</td><td>409</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >4</td><td   >W</td><td   >699</td><td   >1030</td><td   >422</td><td   >409</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_58'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_58'>+</button></td><td>50</td><td><a href='/aardvark/html/players/58.html'>Ayaz Kazi</a></td><td>1052</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>357.00</td><td>449.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_58'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_58'>+</button></td><td   >50</td><td   ><a href='/aardvark/html/players/58.html'>Ayaz Kazi</a></td><td   >1052</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >357.00</td><td   >449.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_58'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>8</td><td>L</td><td>695</td><td>953</td><td>357</td><td>449</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >8</td><td   >L</td><td   >695</td><td   >953</td><td   >357</td><td   >449</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_456'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_456'>+</button></td><td>51</td><td><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td>980</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>367.00</td><td>370.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_456'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_456'>+</button></td><td   >51</td><td   ><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td   >980</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >367.00</td><td   >370.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_456'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td>2015-07-19</td><td>3</td><td>L</td><td>699</td><td>1202</td><td>367</td><td>370</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/231.html'>Festival of Scrabble - Westminster Academy</a></td><td   >2015-07-19</td><td   >3</td><td   >L</td><td   >699</td><td   >1202</td><td   >367</td><td   >370</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1335'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1335'>+</button></td><td>52</td><td><a href='/aardvark/html/players/1335.html'>Erol Jorge</a></td><td>510</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>491.00</td><td>350.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1335'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1335'>+</button></td><td   >52</td><td   ><a href='/aardvark/html/players/1335.html'>Erol Jorge</a></td><td   >510</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >491.00</td><td   >350.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1335'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>22</td><td>W</td><td>699</td><td>572</td><td>491</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >22</td><td   >W</td><td   >699</td><td   >572</td><td   >491</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_209'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_209'>+</button></td><td>53</td><td><a href='/aardvark/html/players/209.html'>Indunil Amarasinghe</a></td><td>1450</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>305.00</td><td>493.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_209'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_209'>+</button></td><td   >53</td><td   ><a href='/aardvark/html/players/209.html'>Indunil Amarasinghe</a></td><td   >1450</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >305.00</td><td   >493.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_209'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>1</td><td>L</td><td>699</td><td>1469</td><td>305</td><td>493</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >1</td><td   >L</td><td   >699</td><td   >1469</td><td   >305</td><td   >493</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1554'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1554'>+</button></td><td>54</td><td><a href='/aardvark/html/players/1554.html'>Rick Blakeway</a></td><td>1640</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>344.00</td><td>387.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1554'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1554'>+</button></td><td   >54</td><td   ><a href='/aardvark/html/players/1554.html'>Rick Blakeway</a></td><td   >1640</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >344.00</td><td   >387.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1554'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td>2018-10-07</td><td>15</td><td>L</td><td>695</td><td>1598</td><td>344</td><td>387</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/687.html'>British National Scrabble Championship</a></td><td   >2018-10-07</td><td   >15</td><td   >L</td><td   >695</td><td   >1598</td><td   >344</td><td   >387</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1328'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1328'>+</button></td><td>55</td><td><a href='/aardvark/html/players/1328.html'>Siddarth Raman</a></td><td>1017</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>272.00</td><td>522.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1328'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1328'>+</button></td><td   >55</td><td   ><a href='/aardvark/html/players/1328.html'>Siddarth Raman</a></td><td   >1017</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >272.00</td><td   >522.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1328'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>6</td><td>L</td><td>699</td><td>1148</td><td>272</td><td>522</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >6</td><td   >L</td><td   >699</td><td   >1148</td><td   >272</td><td   >522</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_784'>+</button></td><td>56</td><td><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td>1006</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>425.00</td><td>336.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_784'>+</button></td><td   >56</td><td   ><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td   >1006</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >425.00</td><td   >336.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_784'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>2</td><td>W</td><td>699</td><td>1060</td><td>425</td><td>336</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >2</td><td   >W</td><td   >699</td><td   >1060</td><td   >425</td><td   >336</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_73'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_73'>+</button></td><td>57</td><td><a href='/aardvark/html/players/73.html'>Joe Rodrigues</a></td><td>909</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>418.00</td><td>556.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_73'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_73'>+</button></td><td   >57</td><td   ><a href='/aardvark/html/players/73.html'>Joe Rodrigues</a></td><td   >909</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >418.00</td><td   >556.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_73'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>17</td><td>L</td><td>699</td><td>1105</td><td>418</td><td>556</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >17</td><td   >L</td><td   >699</td><td   >1105</td><td   >418</td><td   >556</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_66'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_66'>+</button></td><td>58</td><td><a href='/aardvark/html/players/66.html'>Hari Prasad</a></td><td>871</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>251.00</td><td>449.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_66'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_66'>+</button></td><td   >58</td><td   ><a href='/aardvark/html/players/66.html'>Hari Prasad</a></td><td   >871</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >251.00</td><td   >449.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_66'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td>2014-01-12</td><td>8</td><td>L</td><td>699</td><td>909</td><td>251</td><td>449</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/142.html'>iGATE International  </a></td><td   >2014-01-12</td><td   >8</td><td   >L</td><td   >699</td><td   >909</td><td   >251</td><td   >449</td></tr>
 </table></div></td></tr>
 
 </table>

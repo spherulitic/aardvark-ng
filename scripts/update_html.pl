@@ -8,7 +8,7 @@ use Getopt::Long;
 use Pod::Usage qw(pod2usage);
 use DBI;
 use Data::Dumper;
-use List::Util qw(max);
+use List::Util qw(max min);
 
 use lib './modules';
 use Constants;
@@ -39,6 +39,9 @@ sub update_html
   my $player_html_dir     = Constants::PLAYER_HTML_DIR;
   my $tournament_html_dir = Constants::TOURNAMENT_HTML_DIR;
   my $rankings_html_dir   = Constants::RANKINGS_HTML_DIR;
+  my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
+
+  system "rm -rf $html_dir";
 
   system "mkdir -p $html_dir";
   system "mkdir -p $html_dir/$player_html_dir";
@@ -51,7 +54,7 @@ sub update_html
 
   foreach my $tournament_id (@{$tournament_ids_to_create_ref})
   {
-    if ($tournament_id != 301){next;}
+    # if ($tournament_id != 301){next;}
     my @division_data = ();
     my @division_rows = @{query_table($dbh, Constants::DIVISIONS_TABLE_NAME, "tournament_id", $tournament_id)};
 
@@ -86,12 +89,15 @@ sub update_html
     my $games_played     = $player[0]->{'total_games'};
     my $rating           = $player[0]->{'rating'};
     my $photo_filename   = $player[0]->{'photo'};
+    my $deceased         = $player[0]->{'deceased'};
+    my $suspended        = $player[0]->{'suspended'};
+    my $current          = $player[0]->{'current'};
 
     if (!$country_trigraph)
     {
       $country_trigraph = "";
     }
-    else
+    elsif (!$deceased && !$suspended && $current)
     {
       push @country_rankings_to_create, $country_trigraph;
     }
@@ -140,44 +146,169 @@ sub update_html
 
   @country_rankings_to_create = @{uniq(\@country_rankings_to_create)};
 
+  check_country_flag_icons(\@country_rankings_to_create);
+
   update_rankings_html($dbh, \@country_rankings_to_create);
 
-  update_player_search_data($dbh);
+  update_dynamically_loaded_content($dbh);
 
   my $cmd = "rm -rf $working_dir/$html_dir && cp -r $html_dir $working_dir";
   system $cmd;
 
   system "cp $html_files_dir/* /srv/dev/";
+  system "cp -r $flags_dir/ $working_dir";
 }
 
-sub update_player_search_data
+sub check_country_flag_icons
+{
+  my $country_ref = shift;
+
+  my @countries = @{$country_ref};
+
+  my $filename_prefix = Constants::COUNTRY_FLAGS_DIR;
+  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+
+  opendir my $flag_dir_handle, $filename_prefix or die "Cannot open $filename_prefix: $!\n";
+  my @existing_flags = grep (/[A-Z]{3}/, readdir($flag_dir_handle));
+
+  foreach my $ef (@existing_flags)
+  {
+    $ef =~ /(([A-Z]{3}))/;
+    if (!$trigraph_hashref->{$1})
+    {
+      print "\nInvalid flag image name: $1\n\n";
+    }
+  }
+
+  my $extension = ".png";
+
+  foreach my $country (@countries)
+  {
+    my $flag = $filename_prefix . '/' . $country . $extension;
+    if (!(-e $flag))
+    {
+      print "\nCountry does not have a flag image: $country\nMissing file:$flag\n\n";
+    }
+  }
+}
+
+sub update_dynamically_loaded_content
 {
   my $dbh = shift;
   my $players_table = Constants::PLAYERS_TABLE_NAME;
-  my @player_data = @{$dbh->selectall_arrayref("SELECT name, id FROM $players_table"  , {"RaiseError" => 1})};
+  my @player_data = @{$dbh->selectall_arrayref("SELECT * FROM $players_table"  , {Slice => {}, "RaiseError" => 1})};
 
-  my $filename = Constants::HTML_FILES_DIR . '/' . Constants::PLAYER_SEARCH_DATA_FILENAME;
+  @player_data = sort {$b->{'rating'} <=> $a->{'rating'}} @player_data;
+
+  my @valid_player_data = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @player_data;   
+
+  my $cutoff = Constants::FRONT_PAGE_RATINGS_CUTOFF;
+
+  $cutoff = min($cutoff, scalar @valid_player_data);
+
+  my $peek_html = "<table class='table'>\n";
+  $peek_html .=
+    make_row
+    (
+      0,
+      ['Rank', 'Player', 'Rating'],
+      1,
+      0,
+      'white'
+    );
+
+  for (my $i = 0; $i < $cutoff; $i++)
+  {
+    my $row_class = 'roweven';
+    if ($i % 2 == 1)
+    {
+      $row_class = 'rowodd';
+    }
+    my $player = $valid_player_data[$i];
+    $player->{'rank'} = $i + 1;
+    $peek_html .= make_row($player, ['rank', 'name', 'rating'], 0, 0, $row_class);
+  }
+  $peek_html .= "</table>\n";
+
+  my $peek_filename = Constants::HTML_FILES_DIR . '/' . Constants::FRONT_PAGE_RATINGS_DATA_FILENAME;
+
+  write_string_to_file($peek_html, $peek_filename);
+
+  my $player_search_filename = Constants::HTML_FILES_DIR . '/' . Constants::PLAYER_SEARCH_DATA_FILENAME;
 
   my $working_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR;
   my $html_dir = Constants::HTML_DIR;
   my $player_dir = Constants::PLAYER_HTML_DIR;
 
-  my $html_id = "search_input_players";
+  my $player_search_html =
+    get_datalist_html
+    (
+      \@player_data,
+      "Player Name:",
+      "/$working_dir/$html_dir/$player_dir",
+      "search_input_players",
+      "datalist_input_element_players",
+      'id',
+      'name'
+    );
 
-  my $input_id = "datalist_input_element";
+  write_string_to_file($player_search_html, $player_search_filename);
+
+  my $country_search_filename = Constants::HTML_FILES_DIR . '/' . Constants::COUNTRY_SEARCH_DATA_FILENAME;
+
+  my $rankings_dir = Constants::RANKINGS_HTML_DIR;
+
+  my @country_data = map { $_->{'country'}  } @valid_player_data;
+
+  @country_data = @{uniq(\@country_data)};
+
+
+  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+
+  @country_data = grep {$trigraph_hashref->{$_}} @country_data;
+
+  @country_data = map { {'trigraph' => $_, 'country' => $trigraph_hashref->{$_}}   } @country_data;
+
+  my $country_search_html =
+    get_datalist_html
+    (
+      \@country_data,
+      "Country:",
+      "/$working_dir/$html_dir/$rankings_dir",
+      "search_input_countries",
+      "datalist_input_element_countries",
+      'trigraph',
+      'country'
+    );
+
+  write_string_to_file($country_search_html, $country_search_filename);
+}
+
+sub get_datalist_html
+{
+  my $data     = shift;
+  my $title    = shift;
+  my $href     = shift;
+  my $html_id  = shift;
+  my $input_id = shift;
+  my $data_value_key = shift;
+  my $value_key  = shift;
+
   my $escaped_char = "&quot;";
 
   my $html =
   "
-  Player Name:
+  $title
   <input list='$html_id' id='$input_id'>
     <datalist id='$html_id'>
   ";
 
-  foreach my $item (@player_data)
+  my @data_array = @{$data};
+
+  foreach my $item (@data_array)
   {
-    my $name = $item->[0];
-    my $id   = $item->[1];
+    my $name = $item->{$value_key};
+    my $id   = $item->{$data_value_key};
     $html .= "<option data-value='$id' value=\"$name\"></option>\n";
   }
   
@@ -190,12 +321,10 @@ sub update_player_search_data
         (function ()
         {
           var pname = document.getElementById('$input_id').value;
-          console.log(pname);
           var pid   = document.querySelector('#$html_id option[value=$escaped_char'+pname+'$escaped_char]').dataset.value;
-          console.log(pid);
           if (pid)
           {
-            window.location.href = '/$working_dir/$html_dir/$player_dir/' + pid + '.html';
+            window.location.href = '$href/' + pid + '.html';
           }
         })()
       " 
@@ -203,9 +332,7 @@ FUNCTION
 ;
 
   $html .= "<input type='button' value='Submit' $function>";
-
-  write_string_to_file($html, $filename);
-
+  return $html
 }
 
 sub write_string_to_file
@@ -261,24 +388,31 @@ sub get_tournament_results_html_string
     pr1.score                       AS pr1_score,
     pr2.score                       AS pr2_score,
     pr1.result                      AS pr1_result,
-    p.name                          AS opp_name, 
-    p.id                            AS opp_id,
-    p.rating                        AS opp_current_rating,
+    opp.name                        AS opp_name, 
+    opp.id                          AS opp_id,
+    opp.rating                      AS opp_current_rating,
     tr_opp.start_rating             AS opp_rating,
-    t.id                            AS t_id
+    t.id                            AS t_id,
+    tr.expected_wins                AS tr_expected_wins,
+    tr.old_world_rank               AS tr_old_world_rank,
+    tr.new_world_rank               AS tr_new_world_rank,
+    tr.old_national_rank            AS tr_old_national_rank,
+    tr.new_national_rank            AS tr_new_national_rank,
+    player.country                  AS p_country
   FROM
-    $tr_table_name AS tr, $tr_table_name AS tr_opp, $g_table_name AS g, $pr_table_name AS pr1, $pr_table_name AS pr2, $p_table_name AS p, $t_table_name AS t, $d_table_name AS d
+    $tr_table_name AS tr, $tr_table_name AS tr_opp, $g_table_name AS g, $pr_table_name AS pr1, $pr_table_name AS pr2, $p_table_name AS opp, $t_table_name AS t, $d_table_name AS d, $p_table_name AS player
   WHERE
     t.id           = d.tournament_id     AND
     d.id           = tr.division_id      AND
     d.id           = tr_opp.division_id  AND
-    p.id           = tr_opp.player_id    AND
+    opp.id         = tr_opp.player_id    AND
     tr.division_id = g.division_id       AND
     tr.player_id   = pr1.player_id       AND
     g.id           = pr1.game_id         AND
     g.id           = pr2.game_id         AND
     pr1.id        != pr2.id              AND
-    p.id           = pr2.player_id       AND
+    opp.id         = pr2.player_id       AND
+    pr1.player_id  = player.id           AND
   ";
 
   if ($type == $player_type || $type == $head_to_head_type)
@@ -291,6 +425,20 @@ sub get_tournament_results_html_string
   }
 
   my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1})};
+
+  foreach my $data (@raw_tournament_data)
+  {
+    if ($data->{'tr_start_rating'} <= 0)
+    {
+      $data->{'tr_rating_change'} = "";
+    }
+    $data->{'tr_start_rating'}      = empty_string_if_nonpositive($data->{'tr_start_rating'});
+    $data->{'tr_expected_wins'}     = empty_string_if_nonpositive($data->{'tr_expected_wins'});
+    $data->{'tr_old_world_rank'}    = empty_string_if_nonpositive($data->{'tr_old_world_rank'});
+    $data->{'tr_new_world_rank'}    = empty_string_if_nonpositive($data->{'tr_new_world_rank'});
+    $data->{'tr_old_national_rank'} = empty_string_if_nonpositive($data->{'tr_old_national_rank'});
+    $data->{'tr_new_national_rank'} = empty_string_if_nonpositive($data->{'tr_new_national_rank'});
+  }
 
   # Prepare tournament stats datastructure
 
@@ -371,8 +519,8 @@ sub get_tournament_results_html_string
         {
           $b->{$stat_key_name} <=> $a->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Player', 'Spread', 'Opponent', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
+        'titles' => ['Rank', 'Player', 'Opponent', 'Player Score', 'Opponent Score', 'Spread', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', 'pr1_score', 'pr2_score', $stat_key_name, 'g_round'],
         'list'   => []
       },
 
@@ -435,7 +583,7 @@ sub get_tournament_results_html_string
         sub
         {
           my $data = shift;
-          return $data->{'opp_rating'} > $data->{'tr_start_rating'};
+          return $data->{'tr_start_rating'} && $data->{'opp_rating'} > $data->{'tr_start_rating'};
         },
         'eval' =>
         sub
@@ -448,8 +596,8 @@ sub get_tournament_results_html_string
         {
           $b->{$stat_key_name} <=> $a->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Player', 'Opponent', 'Rating Difference', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
+        'titles' => ['Rank', 'Player', 'Player Rating', 'Opponent', 'Opponent Rating', 'Rating Difference', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', 'tr_start_rating', 'opp_name', 'opp_rating', $stat_key_name, 'g_round'],
         'list'   => []
       }
     };
@@ -553,8 +701,24 @@ sub get_tournament_results_html_string
   {
     # First sort to determine the seeding
     @tournament_results = sort {
-                                 $b->[0]->{'tr_start_rating'} <=> $a->[0]->{'tr_start_rating'} ||
-                                 $a->[0]->{'tr_player_name'}         cmp $b->[0]->{'tr_player_name'}
+                                 if (!$a->[0]->{'tr_start_rating'} && !$b->[0]->{'tr_start_rating'})
+                                 {
+                                   $a->[0]->{'tr_player_name'}         cmp $b->[0]->{'tr_player_name'};
+                                 }
+                                 elsif (!$a->[0]->{'tr_start_rating'})
+                                 {
+                                   return 1;
+                                 }
+                                 elsif (!$b->[0]->{'tr_start_rating'})
+                                 {
+                                   return -1;
+                                 }
+                                 else
+                                 {
+                                   return
+                                   $b->[0]->{'tr_start_rating'} <=> $a->[0]->{'tr_start_rating'} ||
+                                   $a->[0]->{'tr_player_name'}         cmp $b->[0]->{'tr_player_name'}
+                                 }
                                }
                           @tournament_results;
 
@@ -590,6 +754,8 @@ sub get_tournament_results_html_string
     $games = \@sorted_games;
   }
 
+  # Move to constants plz
+
   my $tournament_title_ref = ['Details', '#', 'Tournament', 'Date', 'Wins', 'Losses', 'Byes', 'Spread', 'Place', 'Start Rating', 'End Rating', 'Rating Change'];
   my $tournament_keys_ref  = ['details', '#', 'tr_tournament_name', 'tr_date', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_position', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
 
@@ -606,7 +772,13 @@ sub get_tournament_results_html_string
   my $head_to_head_games_keys_ref  = ['tr_tournament_name', 'tr_date', 'g_round', 'pr1_result', 'tr_start_rating', 'opp_rating', 'pr1_score', 'pr2_score'];
 
 
+  my $ratings_super_title_ref = ['Player', 'Wins', 'World rank', 'Nation rank', 'Rating points'];
+  my $ratings_title_ref = ['Country', 'Name', 'Exp', 'Act', 'Old', 'New', 'Old', 'New', 'Old', '+/-', 'New'];
+  my $ratings_keys_ref   = ['p_country', 'tr_player_name', 'tr_expected_wins', 'tr_wins', 'tr_old_world_rank', 'tr_new_world_rank', 'tr_old_national_rank', 'tr_new_national_rank', 'tr_start_rating', 'tr_rating_change', 'tr_end_rating'];
+
+
   my $tournament_results_list_html_string = "<table class='table'>\n";
+  my $tournament_ratings_html_string      = "<table class='table'>\n";
 
   my $title_ref = $tournament_title_ref;
   my $sub_title_ref = $games_title_ref;
@@ -623,7 +795,27 @@ sub get_tournament_results_html_string
   {
     $title_ref = $tournament_standings_title_ref;
     $keys_ref = $tournament_standings_keys_ref;
+    $tournament_ratings_html_string .=
+      make_row
+      (
+        0,
+        $ratings_super_title_ref,
+        1,
+        0,
+        'white',
+        2
+      );
+    $tournament_ratings_html_string .=
+      make_row
+      (
+        0,
+        $ratings_title_ref,
+        1,
+        0,
+        'white',
+      );
   }
+
   my $title_length = scalar @{$title_ref};
 
   $tournament_results_list_html_string .=
@@ -723,6 +915,18 @@ sub get_tournament_results_html_string
       $new_entry .= make_new_entry_head($games_ref, $keys_ref, $row_class, $entry_id, $title_length, $games_title_row);
     }
 
+    if ($type == $tournament_type)
+    {
+      $tournament_ratings_html_string .=
+        make_row
+        (
+          $games_ref->[0],
+          $ratings_keys_ref,
+          0,
+          0,
+          $row_class
+        );
+    }
 
 
     my $num_games = scalar @{$games_ref};
@@ -890,6 +1094,9 @@ sub get_tournament_results_html_string
 
   if ($type == $tournament_type)
   {
+
+    $tournament_ratings_html_string .= "\n</table>\n";
+
     foreach my $key (keys %{$tournament_stats})
     {
       my $dataitem = $tournament_stats->{$key};
@@ -923,7 +1130,7 @@ sub get_tournament_results_html_string
   }
 
 
-  return [$tournament_results_list_html_string, $game_data, $tournament_stats_html];
+  return [$tournament_results_list_html_string, $game_data, $tournament_stats_html, $tournament_ratings_html_string];
 }
 
 sub make_new_entry_head
@@ -1052,13 +1259,16 @@ sub get_most_recent_tournament
       SELECT t.id AS id, t.name AS name
       FROM $tournament_results_tn AS tr, $players_tn AS p, $divisions_tn AS d, $tournaments_tn AS t
       WHERE
-            d.tournament_id = t.id AND
-            tr.division_id  = d.id AND
-            tr.player_id    = p.id AND
-            p.country       = '$trigraph'
+            d.tournament_id = t.id        AND
+            tr.division_id  = d.id        AND
+            tr.player_id    = p.id        AND
+            p.country       = '$trigraph' AND
+            p.deceased      = 0           AND
+            p.suspended     = 0           AND
+            p.current       = 1
             
       ORDER BY t.end_date DESC
-    "
+    ";
   }
   else
   {
@@ -1067,7 +1277,7 @@ sub get_most_recent_tournament
       SELECT id, name
       FROM $tournaments_tn
       GROUP BY end_date DESC
-    "
+    ";
   }
   my @tournament_name = @{$dbh->selectall_arrayref($query, {"RaiseError" => 1})};
   return [$tournament_name[0]->[0],  $tournament_name[0]->[1]];
@@ -1090,7 +1300,7 @@ sub get_rankings_html_string
     @players = @{$dbh->selectall_arrayref("SELECT * FROM " . Constants::PLAYERS_TABLE_NAME, {Slice => {}, "RaiseError" => 1})};
   }
 
-  # @players = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @players;   
+  @players = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @players;   
 
   @players = sort { $b->{'rating'} <=> $a->{'rating'} } @players;
 
@@ -1098,7 +1308,7 @@ sub get_rankings_html_string
 
   my $titles = ['Ranking', 'Name', 'Country', 'Rating', 'Total Games', 'Last Played'];
 
-  $full_rankings_string .= make_row(0, $titles, 1, 0, 0);
+  $full_rankings_string .= make_row(0, $titles, 1, 0, 'white');
 
   for (my $i = 0; $i < scalar @players; $i++)
   {
@@ -1125,13 +1335,20 @@ sub make_row
   my $is_title  = shift;
   my $id        = shift;
   my $class     = shift;
-
+  my $colspan   = shift;
 
   my $el = "td";
 
   if ($is_title)
   {
     $el = "th";
+  }
+
+  my $colspan_attr = "";
+
+  if ($colspan)
+  {
+    $colspan_attr = " colspan='$colspan' ";
   }
 
   my @key_array = @{$keys};
@@ -1164,6 +1381,8 @@ sub make_row
     my $base_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
     my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
     my $player_dir     = Constants::PLAYER_HTML_DIR;
+    my $rankings_dir   = Constants::RANKINGS_HTML_DIR;
+    my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
     if ($key eq 'tr_tournament_name')
     {
@@ -1181,12 +1400,29 @@ sub make_row
     {
       $val = make_link($base_dir, $player_dir, $item->{'id'} . ".html", $val);
     }
+    elsif ($key eq 'p_country' || $key eq 'country')
+    {
+      my $trig = $item->{'p_country'};
+
+      if (!$trig)
+      {
+        $trig = $item->{'country'};
+      }
+      if ($trig)
+      {
+        my $country_fullname = $trigraph_hashref->{$trig};
+        if ($country_fullname)
+        {
+          $val = make_link($base_dir, $rankings_dir, "$trig.html", $country_fullname);
+        }
+      }
+    }
     if (!(defined $val))
     {
       $val = "";
     }
 
-    $row_string .= sprintf "<$el>%s</$el>", $val;
+    $row_string .= sprintf "<$el $colspan_attr  >%s</$el>", $val;
   }
   $row_string .= "</tr>\n";
 
@@ -1200,7 +1436,8 @@ sub make_link
   my $filename = shift;
   my $content  = shift;
 
-  return "<a href='/$base_dir/$dir/$filename'>$content</a>";
+  my $link = "<a href='/$base_dir/$dir/$filename'>$content</a>";
+  return $link;
 }
 
 sub query_table
@@ -1217,6 +1454,15 @@ sub query_table
   return $query_result;
 }
 
+sub empty_string_if_nonpositive
+{
+  my $num = shift;
+  if (!$num || $num <= 0)
+  {
+    return "";
+  }
+  return $num;
+}
 
 1;
 

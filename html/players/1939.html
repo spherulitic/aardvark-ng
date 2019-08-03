@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Judy Mason</h2>
             <div>
               <IMG SRC="../../flags/AUS.png" alt="AUS">
-              <p>AUS</p>
+              <p><a href='/aardvark/html/rankings/AUS.html'>Australia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 453<br>
               <b>Games Played:</b> 16<br>
               <b>Wins:</b> 4 (25.00%)<br>
               <b>Losses: </b>12 (75.00%)<br>
@@ -183,97 +184,97 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_4447'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4447'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>4</td><td>12</td><td>0</td><td>-957</td><td>39</td><td>453</td><td>453</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_4447'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4447'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >4</td><td   >12</td><td   >0</td><td   >-957</td><td   >39</td><td   >453</td><td   >453</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_4447'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1840.html'>Rob York</a></td><td>948</td><td>L</td><td>343</td><td>452</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1941.html'>Kerry Reimers</a></td><td>1073</td><td>L</td><td>315</td><td>438</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td>609</td><td>L</td><td>310</td><td>336</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1951.html'>Sherie Brown</a></td><td>957</td><td>W</td><td>397</td><td>391</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1945.html'>Martin Waterworth</a></td><td>1272</td><td>L</td><td>309</td><td>468</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1957.html'>Yvette Copley</a></td><td>943</td><td>L</td><td>267</td><td>478</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1947.html'>Patricia Shelvey</a></td><td>594</td><td>L</td><td>297</td><td>389</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1954.html'>Trish Cearns</a></td><td>655</td><td>L</td><td>313</td><td>386</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1947.html'>Patricia Shelvey</a></td><td>594</td><td>L</td><td>300</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1948.html'>Rebecca Law</a></td><td>700</td><td>L</td><td>330</td><td>368</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td>968</td><td>L</td><td>321</td><td>330</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1941.html'>Kerry Reimers</a></td><td>1073</td><td>L</td><td>305</td><td>334</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td>609</td><td>W</td><td>403</td><td>343</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td>1013</td><td>L</td><td>285</td><td>440</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1954.html'>Trish Cearns</a></td><td>655</td><td>W</td><td>380</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td>609</td><td>W</td><td>336</td><td>327</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1840.html'>Rob York</a></td><td   >948</td><td   >L</td><td   >343</td><td   >452</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1941.html'>Kerry Reimers</a></td><td   >1073</td><td   >L</td><td   >315</td><td   >438</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td   >609</td><td   >L</td><td   >310</td><td   >336</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1951.html'>Sherie Brown</a></td><td   >957</td><td   >W</td><td   >397</td><td   >391</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1945.html'>Martin Waterworth</a></td><td   >1272</td><td   >L</td><td   >309</td><td   >468</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1957.html'>Yvette Copley</a></td><td   >943</td><td   >L</td><td   >267</td><td   >478</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1947.html'>Patricia Shelvey</a></td><td   >594</td><td   >L</td><td   >297</td><td   >389</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1954.html'>Trish Cearns</a></td><td   >655</td><td   >L</td><td   >313</td><td   >386</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1947.html'>Patricia Shelvey</a></td><td   >594</td><td   >L</td><td   >300</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1948.html'>Rebecca Law</a></td><td   >700</td><td   >L</td><td   >330</td><td   >368</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td   >968</td><td   >L</td><td   >321</td><td   >330</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1941.html'>Kerry Reimers</a></td><td   >1073</td><td   >L</td><td   >305</td><td   >334</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td   >609</td><td   >W</td><td   >403</td><td   >343</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td   >1013</td><td   >L</td><td   >285</td><td   >440</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1954.html'>Trish Cearns</a></td><td   >655</td><td   >W</td><td   >380</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td   >609</td><td   >W</td><td   >336</td><td   >327</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1944'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1944'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td>534</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>349.67</td><td>335.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1944'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1944'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/1944.html'>Margaret Inglis</a></td><td   >534</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >349.67</td><td   >335.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1944'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>3</td><td>L</td><td>453</td><td>609</td><td>310</td><td>336</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>13</td><td>W</td><td>453</td><td>609</td><td>403</td><td>343</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>16</td><td>W</td><td>453</td><td>609</td><td>336</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >3</td><td   >L</td><td   >453</td><td   >609</td><td   >310</td><td   >336</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >13</td><td   >W</td><td   >453</td><td   >609</td><td   >403</td><td   >343</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >16</td><td   >W</td><td   >453</td><td   >609</td><td   >336</td><td   >327</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1941'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1941.html'>Kerry Reimers</a></td><td>977</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>310.00</td><td>386.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1941'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1941.html'>Kerry Reimers</a></td><td   >977</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >386.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1941'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>2</td><td>L</td><td>453</td><td>1073</td><td>315</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>12</td><td>L</td><td>453</td><td>1073</td><td>305</td><td>334</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >2</td><td   >L</td><td   >453</td><td   >1073</td><td   >315</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >12</td><td   >L</td><td   >453</td><td   >1073</td><td   >305</td><td   >334</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1954'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1954'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1954.html'>Trish Cearns</a></td><td>632</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>346.50</td><td>366.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1954'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1954'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1954.html'>Trish Cearns</a></td><td   >632</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >346.50</td><td   >366.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1954'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>8</td><td>L</td><td>453</td><td>655</td><td>313</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>15</td><td>W</td><td>453</td><td>655</td><td>380</td><td>346</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >8</td><td   >L</td><td   >453</td><td   >655</td><td   >313</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >15</td><td   >W</td><td   >453</td><td   >655</td><td   >380</td><td   >346</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1947'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1947'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1947.html'>Patricia Shelvey</a></td><td>594</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>298.50</td><td>365.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1947'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1947'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1947.html'>Patricia Shelvey</a></td><td   >594</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >298.50</td><td   >365.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1947'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>7</td><td>L</td><td>453</td><td>594</td><td>297</td><td>389</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>9</td><td>L</td><td>453</td><td>594</td><td>300</td><td>342</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >7</td><td   >L</td><td   >453</td><td   >594</td><td   >297</td><td   >389</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >9</td><td   >L</td><td   >453</td><td   >594</td><td   >300</td><td   >342</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1948'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1948'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1948.html'>Rebecca Law</a></td><td>700</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>330.00</td><td>368.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1948'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1948'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1948.html'>Rebecca Law</a></td><td   >700</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >330.00</td><td   >368.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1948'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>10</td><td>L</td><td>453</td><td>700</td><td>330</td><td>368</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >10</td><td   >L</td><td   >453</td><td   >700</td><td   >330</td><td   >368</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1957'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1957.html'>Yvette Copley</a></td><td>956</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>267.00</td><td>478.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1957'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1957.html'>Yvette Copley</a></td><td   >956</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >267.00</td><td   >478.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1957'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>6</td><td>L</td><td>453</td><td>943</td><td>267</td><td>478</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >6</td><td   >L</td><td   >453</td><td   >943</td><td   >267</td><td   >478</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1951'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1951'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1951.html'>Sherie Brown</a></td><td>957</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>397.00</td><td>391.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1951'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1951'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1951.html'>Sherie Brown</a></td><td   >957</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >397.00</td><td   >391.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1951'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>4</td><td>W</td><td>453</td><td>957</td><td>397</td><td>391</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >4</td><td   >W</td><td   >453</td><td   >957</td><td   >397</td><td   >391</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1945'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1945'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1945.html'>Martin Waterworth</a></td><td>1264</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>309.00</td><td>468.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1945'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1945'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1945.html'>Martin Waterworth</a></td><td   >1264</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >309.00</td><td   >468.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1945'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>5</td><td>L</td><td>453</td><td>1272</td><td>309</td><td>468</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >5</td><td   >L</td><td   >453</td><td   >1272</td><td   >309</td><td   >468</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1840'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1840'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1840.html'>Rob York</a></td><td>1041</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>343.00</td><td>452.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1840'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1840'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1840.html'>Rob York</a></td><td   >1041</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >343.00</td><td   >452.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1840'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>1</td><td>L</td><td>453</td><td>948</td><td>343</td><td>452</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >1</td><td   >L</td><td   >453</td><td   >948</td><td   >343</td><td   >452</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_784'>+</button></td><td>10</td><td><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td>1006</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>285.00</td><td>440.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_784'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_784'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/784.html'>Sunny Wright</a></td><td   >1006</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >285.00</td><td   >440.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_784'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>14</td><td>L</td><td>453</td><td>1013</td><td>285</td><td>440</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >14</td><td   >L</td><td   >453</td><td   >1013</td><td   >285</td><td   >440</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1953'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1953'>+</button></td><td>11</td><td><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td>974</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>321.00</td><td>330.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1953'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1953'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td   >974</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >321.00</td><td   >330.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1953'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td>2016-08-28</td><td>11</td><td>L</td><td>453</td><td>968</td><td>321</td><td>330</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/109.html'>Queensland Championship</a></td><td   >2016-08-28</td><td   >11</td><td   >L</td><td   >453</td><td   >968</td><td   >321</td><td   >330</td></tr>
 </table></div></td></tr>
 
 </table>

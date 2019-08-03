@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -155,8 +155,8 @@
           <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
             <h2>Benoit Delafontaine</h2>
             <div>
-              <IMG SRC="../../flags/SWI.png" alt="SWI">
-              <p>SWI</p>
+              <IMG SRC="../../flags/CHE.png" alt="CHE">
+              <p><a href='/aardvark/html/rankings/CHE.html'>Switzerland</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1152<br>
               <b>Games Played:</b> 23<br>
               <b>Wins:</b> 11 (47.83%)<br>
               <b>Losses: </b>12 (52.17%)<br>
@@ -183,159 +184,159 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_25292'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25292'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>7</td><td>10</td><td>0</td><td>-364</td><td>46</td><td>1276</td><td>1152</td><td>-124</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_25292'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25292'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >7</td><td   >10</td><td   >0</td><td   >-364</td><td   >46</td><td   >1276</td><td   >1152</td><td   >-124</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_25292'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/682.html'>Catalin-Eugen Caba</a></td><td>1362</td><td>W</td><td>519</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1826</td><td>L</td><td>310</td><td>536</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2361.html'>Mikolaj Szymanski</a></td><td>851</td><td>W</td><td>417</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td>1420</td><td>L</td><td>384</td><td>390</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1109.html'>Sandy Nang</a></td><td>1593</td><td>W</td><td>442</td><td>419</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/462.html'>Maureen Hoch</a></td><td>1178</td><td>L</td><td>428</td><td>446</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td>1443</td><td>L</td><td>379</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/877.html'>Herve Bohbot</a></td><td>1254</td><td>W</td><td>364</td><td>306</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1189</td><td>L</td><td>437</td><td>492</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1437</td><td>L</td><td>404</td><td>464</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/267.html'>Mary Doyle</a></td><td>1046</td><td>W</td><td>431</td><td>313</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/254.html'>Breda O'Brien</a></td><td>1186</td><td>L</td><td>392</td><td>467</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td>1373</td><td>L</td><td>323</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/257.html'>Christine Cartman</a></td><td>871</td><td>W</td><td>399</td><td>396</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2916.html'>Ruth Cawsey</a></td><td>1179</td><td>L</td><td>393</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1753.html'>Sharon Peress</a></td><td>944</td><td>L</td><td>356</td><td>441</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/270.html'>Paul Cartman</a></td><td>923</td><td>W</td><td>436</td><td>435</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/682.html'>Catalin-Eugen Caba</a></td><td   >1362</td><td   >W</td><td   >519</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td   >1826</td><td   >L</td><td   >310</td><td   >536</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2361.html'>Mikolaj Szymanski</a></td><td   >851</td><td   >W</td><td   >417</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td   >1420</td><td   >L</td><td   >384</td><td   >390</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1109.html'>Sandy Nang</a></td><td   >1593</td><td   >W</td><td   >442</td><td   >419</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/462.html'>Maureen Hoch</a></td><td   >1178</td><td   >L</td><td   >428</td><td   >446</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1443</td><td   >L</td><td   >379</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/877.html'>Herve Bohbot</a></td><td   >1254</td><td   >W</td><td   >364</td><td   >306</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1189</td><td   >L</td><td   >437</td><td   >492</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1437</td><td   >L</td><td   >404</td><td   >464</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/267.html'>Mary Doyle</a></td><td   >1046</td><td   >W</td><td   >431</td><td   >313</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/254.html'>Breda O'Brien</a></td><td   >1186</td><td   >L</td><td   >392</td><td   >467</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td   >1373</td><td   >L</td><td   >323</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/257.html'>Christine Cartman</a></td><td   >871</td><td   >W</td><td   >399</td><td   >396</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2916.html'>Ruth Cawsey</a></td><td   >1179</td><td   >L</td><td   >393</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1753.html'>Sharon Peress</a></td><td   >944</td><td   >L</td><td   >356</td><td   >441</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/270.html'>Paul Cartman</a></td><td   >923</td><td   >W</td><td   >436</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_28822'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_28822'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>4</td><td>2</td><td>0</td><td>-38</td><td>5</td><td>1276</td><td>1276</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_28822'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_28822'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >4</td><td   >2</td><td   >0</td><td   >-38</td><td   >5</td><td   >1276</td><td   >1276</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_28822'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>L</td><td>371</td><td>655</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>W</td><td>416</td><td>165</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>W</td><td>405</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>851</td><td>W</td><td>426</td><td>349</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>W</td><td>454</td><td>389</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1559</td><td>L</td><td>340</td><td>500</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >L</td><td   >371</td><td   >655</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >W</td><td   >416</td><td   >165</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >W</td><td   >405</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >851</td><td   >W</td><td   >426</td><td   >349</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >W</td><td   >454</td><td   >389</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1559</td><td   >L</td><td   >340</td><td   >500</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3947'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3947'>+</button></td><td>1</td><td><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td>1664</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>355.50</td><td>577.50</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3947'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3947'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/3947.html'>Jamie Jones</a></td><td   >1664</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >355.50</td><td   >577.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3947'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>1</td><td>L</td><td>1276</td><td>1559</td><td>371</td><td>655</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>6</td><td>L</td><td>1276</td><td>1559</td><td>340</td><td>500</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >1</td><td   >L</td><td   >1276</td><td   >1559</td><td   >371</td><td   >655</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >6</td><td   >L</td><td   >1276</td><td   >1559</td><td   >340</td><td   >500</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_877'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_877'>+</button></td><td>2</td><td><a href='/aardvark/html/players/877.html'>Herve Bohbot</a></td><td>1307</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>364.00</td><td>306.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_877'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_877'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/877.html'>Herve Bohbot</a></td><td   >1307</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >364.00</td><td   >306.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_877'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>8</td><td>W</td><td>1276</td><td>1254</td><td>364</td><td>306</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >8</td><td   >W</td><td   >1276</td><td   >1254</td><td   >364</td><td   >306</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1630'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1630'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td>1257</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>437.00</td><td>492.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1630'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1630'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1630.html'>Ferenc Gerlits</a></td><td   >1257</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >437.00</td><td   >492.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1630'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>9</td><td>L</td><td>1276</td><td>1189</td><td>437</td><td>492</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >9</td><td   >L</td><td   >1276</td><td   >1189</td><td   >437</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_267'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_267'>+</button></td><td>4</td><td><a href='/aardvark/html/players/267.html'>Mary Doyle</a></td><td>974</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>431.00</td><td>313.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_267'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_267'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/267.html'>Mary Doyle</a></td><td   >974</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >431.00</td><td   >313.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_267'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>11</td><td>W</td><td>1276</td><td>1046</td><td>431</td><td>313</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >11</td><td   >W</td><td   >1276</td><td   >1046</td><td   >431</td><td   >313</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1753'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1753'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1753.html'>Sharon Peress</a></td><td>987</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>356.00</td><td>441.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1753'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1753'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1753.html'>Sharon Peress</a></td><td   >987</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >356.00</td><td   >441.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1753'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>16</td><td>L</td><td>1276</td><td>944</td><td>356</td><td>441</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >16</td><td   >L</td><td   >1276</td><td   >944</td><td   >356</td><td   >441</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_5087'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5087'>+</button></td><td>6</td><td><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td>937</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>392.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_5087'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5087'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/5087.html'>Rosemary Konecki</a></td><td   >937</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >392.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5087'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>3</td><td>W</td><td>1276</td><td>937</td><td>405</td><td>392</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >3</td><td   >W</td><td   >1276</td><td   >937</td><td   >405</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_682'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_682'>+</button></td><td>7</td><td><a href='/aardvark/html/players/682.html'>Catalin-Eugen Caba</a></td><td>1404</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>519.00</td><td>360.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_682'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_682'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/682.html'>Catalin-Eugen Caba</a></td><td   >1404</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >519.00</td><td   >360.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_682'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>1</td><td>W</td><td>1276</td><td>1362</td><td>519</td><td>360</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >1</td><td   >W</td><td   >1276</td><td   >1362</td><td   >519</td><td   >360</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_715'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_715'>+</button></td><td>8</td><td><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td>847</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>426.00</td><td>349.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_715'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_715'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/715.html'>Peggy Fehily</a></td><td   >847</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >426.00</td><td   >349.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_715'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>4</td><td>W</td><td>1276</td><td>851</td><td>426</td><td>349</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >4</td><td   >W</td><td   >1276</td><td   >851</td><td   >426</td><td   >349</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2361'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2361'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2361.html'>Mikolaj Szymanski</a></td><td>911</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>417.00</td><td>415.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2361'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2361'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2361.html'>Mikolaj Szymanski</a></td><td   >911</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >417.00</td><td   >415.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2361'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>3</td><td>W</td><td>1276</td><td>851</td><td>417</td><td>415</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >3</td><td   >W</td><td   >1276</td><td   >851</td><td   >417</td><td   >415</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2322'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2322'>+</button></td><td>10</td><td><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td>1064</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>454.00</td><td>389.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2322'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2322'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/2322.html'>Ben Berger</a></td><td   >1064</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >454.00</td><td   >389.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2322'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>5</td><td>W</td><td>1276</td><td>1064</td><td>454</td><td>389</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >5</td><td   >W</td><td   >1276</td><td   >1064</td><td   >454</td><td   >389</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_806'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_806'>+</button></td><td>11</td><td><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td>1409</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>384.00</td><td>390.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_806'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_806'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td   >1409</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >384.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_806'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>4</td><td>L</td><td>1276</td><td>1420</td><td>384</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >4</td><td   >L</td><td   >1276</td><td   >1420</td><td   >384</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_257'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_257'>+</button></td><td>12</td><td><a href='/aardvark/html/players/257.html'>Christine Cartman</a></td><td>807</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>399.00</td><td>396.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_257'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_257'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/257.html'>Christine Cartman</a></td><td   >807</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >399.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_257'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>14</td><td>W</td><td>1276</td><td>871</td><td>399</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >14</td><td   >W</td><td   >1276</td><td   >871</td><td   >399</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_238'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_238'>+</button></td><td>13</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1726</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>310.00</td><td>536.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_238'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_238'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td   >1726</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >536.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_238'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>2</td><td>L</td><td>1276</td><td>1826</td><td>310</td><td>536</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >2</td><td   >L</td><td   >1276</td><td   >1826</td><td   >310</td><td   >536</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2916'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2916'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2916.html'>Ruth Cawsey</a></td><td>1090</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>393.00</td><td>430.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2916'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2916'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/2916.html'>Ruth Cawsey</a></td><td   >1090</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >393.00</td><td   >430.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2916'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>15</td><td>L</td><td>1276</td><td>1179</td><td>393</td><td>430</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >15</td><td   >L</td><td   >1276</td><td   >1179</td><td   >393</td><td   >430</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td>15</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1578</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>404.00</td><td>464.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1578</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >404.00</td><td   >464.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_75'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>10</td><td>L</td><td>1276</td><td>1437</td><td>404</td><td>464</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >10</td><td   >L</td><td   >1276</td><td   >1437</td><td   >404</td><td   >464</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_471'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_471'>+</button></td><td>16</td><td><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td>1356</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>323.00</td><td>392.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_471'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_471'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/471.html'>Ruth MacInerney</a></td><td   >1356</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >323.00</td><td   >392.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_471'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>13</td><td>L</td><td>1276</td><td>1373</td><td>323</td><td>392</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >13</td><td   >L</td><td   >1276</td><td   >1373</td><td   >323</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_254'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_254'>+</button></td><td>17</td><td><a href='/aardvark/html/players/254.html'>Breda O'Brien</a></td><td>1161</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>392.00</td><td>467.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_254'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_254'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/254.html'>Breda O'Brien</a></td><td   >1161</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >392.00</td><td   >467.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_254'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>12</td><td>L</td><td>1276</td><td>1186</td><td>392</td><td>467</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >12</td><td   >L</td><td   >1276</td><td   >1186</td><td   >392</td><td   >467</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_5083'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5083'>+</button></td><td>18</td><td><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>416.00</td><td>165.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_5083'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5083'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/5083.html'>Florian Detraz</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >416.00</td><td   >165.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5083'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td>2018-06-17</td><td>2</td><td>W</td><td>1276</td><td>300</td><td>416</td><td>165</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/752.html'>Swiss Open Scrabble Tournament</a></td><td   >2018-06-17</td><td   >2</td><td   >W</td><td   >1276</td><td   >300</td><td   >416</td><td   >165</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_462'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_462'>+</button></td><td>19</td><td><a href='/aardvark/html/players/462.html'>Maureen Hoch</a></td><td>1221</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>428.00</td><td>446.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_462'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_462'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/462.html'>Maureen Hoch</a></td><td   >1221</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >428.00</td><td   >446.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_462'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>6</td><td>L</td><td>1276</td><td>1178</td><td>428</td><td>446</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >6</td><td   >L</td><td   >1276</td><td   >1178</td><td   >428</td><td   >446</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2111'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2111'>+</button></td><td>20</td><td><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td>1440</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>379.00</td><td>476.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2111'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2111'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >379.00</td><td   >476.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2111'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>7</td><td>L</td><td>1276</td><td>1443</td><td>379</td><td>476</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >7</td><td   >L</td><td   >1276</td><td   >1443</td><td   >379</td><td   >476</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_270'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_270'>+</button></td><td>21</td><td><a href='/aardvark/html/players/270.html'>Paul Cartman</a></td><td>889</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>436.00</td><td>435.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_270'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_270'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/270.html'>Paul Cartman</a></td><td   >889</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >436.00</td><td   >435.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_270'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>17</td><td>W</td><td>1276</td><td>923</td><td>436</td><td>435</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >17</td><td   >W</td><td   >1276</td><td   >923</td><td   >436</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1109'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1109'>+</button></td><td>22</td><td><a href='/aardvark/html/players/1109.html'>Sandy Nang</a></td><td>1459</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>442.00</td><td>419.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1109'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1109'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/1109.html'>Sandy Nang</a></td><td   >1459</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >442.00</td><td   >419.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1109'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td>2018-10-14</td><td>5</td><td>W</td><td>1276</td><td>1593</td><td>442</td><td>419</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/653.html'>Continental Scrabble Championship - Bordeaux </a></td><td   >2018-10-14</td><td   >5</td><td   >W</td><td   >1276</td><td   >1593</td><td   >442</td><td   >419</td></tr>
 </table></div></td></tr>
 
 </table>

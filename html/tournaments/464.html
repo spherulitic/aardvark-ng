@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,86 +156,261 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17997'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17997'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>8</td><td>0</td><td>0</td><td>803</td><td>1849</td><td>1876</td><td>27</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17997'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17997'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >8</td><td   >0</td><td   >0</td><td   >803</td><td   >1849</td><td   >1876</td><td   >27</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17997'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>W</td><td>482</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>W</td><td>394</td><td>384</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>W</td><td>430</td><td>332</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>455</td><td>299</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>W</td><td>492</td><td>291</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>W</td><td>530</td><td>402</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>W</td><td>433</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>446</td><td>325</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >W</td><td   >482</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >W</td><td   >394</td><td   >384</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >W</td><td   >430</td><td   >332</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >455</td><td   >299</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >W</td><td   >492</td><td   >291</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >W</td><td   >530</td><td   >402</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >W</td><td   >433</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >446</td><td   >325</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17998'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17998'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>5</td><td>3</td><td>0</td><td>102</td><td>1661</td><td>1654</td><td>-7</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17998'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17998'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >5</td><td   >3</td><td   >0</td><td   >102</td><td   >1661</td><td   >1654</td><td   >-7</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17998'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>408</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>384</td><td>394</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>W</td><td>556</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>W</td><td>425</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>L</td><td>353</td><td>450</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>W</td><td>450</td><td>423</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>L</td><td>364</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>W</td><td>500</td><td>402</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >408</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >384</td><td   >394</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >W</td><td   >556</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >W</td><td   >425</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >L</td><td   >353</td><td   >450</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >W</td><td   >450</td><td   >423</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >L</td><td   >364</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >W</td><td   >500</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17999'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17999'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>4</td><td>4</td><td>0</td><td>29</td><td>1586</td><td>1560</td><td>-26</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17999'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17999'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >4</td><td   >4</td><td   >0</td><td   >29</td><td   >1586</td><td   >1560</td><td   >-26</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17999'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>445</td><td>482</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>L</td><td>384</td><td>424</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>L</td><td>347</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>L</td><td>418</td><td>490</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>W</td><td>450</td><td>353</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>461</td><td>424</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>375</td><td>359</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>W</td><td>513</td><td>397</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >445</td><td   >482</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >L</td><td   >384</td><td   >424</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >L</td><td   >347</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >L</td><td   >418</td><td   >490</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >W</td><td   >450</td><td   >353</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >461</td><td   >424</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >375</td><td   >359</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >W</td><td   >513</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17996'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17996'>+</button></td><td>4</td><td>6</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>3</td><td>5</td><td>0</td><td>-176</td><td>1240</td><td>1265</td><td>25</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17996'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17996'>+</button></td><td   >4</td><td   >6</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >3</td><td   >5</td><td   >0</td><td   >-176</td><td   >1240</td><td   >1265</td><td   >25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17996'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>L</td><td>354</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>W</td><td>424</td><td>384</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>332</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>L</td><td>399</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>512</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>402</td><td>530</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>W</td><td>445</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>L</td><td>402</td><td>500</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >L</td><td   >354</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >W</td><td   >424</td><td   >384</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >332</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >L</td><td   >399</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >512</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >402</td><td   >530</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >W</td><td   >445</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >L</td><td   >402</td><td   >500</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17995'>+</button></td><td>5</td><td>5</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>3</td><td>5</td><td>0</td><td>-387</td><td>1438</td><td>1438</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17995'>+</button></td><td   >5</td><td   >5</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >3</td><td   >5</td><td   >0</td><td   >-387</td><td   >1438</td><td   >1438</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17995'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>W</td><td>377</td><td>354</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1468</td><td>W</td><td>425</td><td>389</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>L</td><td>434</td><td>556</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>W</td><td>490</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>291</td><td>492</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>L</td><td>423</td><td>450</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>381</td><td>433</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>L</td><td>397</td><td>513</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >W</td><td   >377</td><td   >354</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >W</td><td   >425</td><td   >389</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >L</td><td   >434</td><td   >556</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >W</td><td   >490</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >291</td><td   >492</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >L</td><td   >423</td><td   >450</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >381</td><td   >433</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >L</td><td   >397</td><td   >513</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17994'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17994'>+</button></td><td>6</td><td>4</td><td><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td>1</td><td>7</td><td>0</td><td>-371</td><td>1468</td><td>1423</td><td>-45</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17994'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17994'>+</button></td><td   >6</td><td   >4</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1</td><td   >7</td><td   >0</td><td   >-371</td><td   >1468</td><td   >1423</td><td   >-45</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17994'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td>1661</td><td>L</td><td>391</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td>1438</td><td>L</td><td>389</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>W</td><td>435</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>299</td><td>455</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td>1240</td><td>L</td><td>436</td><td>512</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>L</td><td>424</td><td>461</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1586</td><td>L</td><td>359</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1849</td><td>L</td><td>325</td><td>446</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >L</td><td   >391</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >L</td><td   >389</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >W</td><td   >435</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >299</td><td   >455</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   >L</td><td   >436</td><td   >512</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >L</td><td   >424</td><td   >461</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >L</td><td   >359</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >L</td><td   >325</td><td   >446</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >556</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >530</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >513</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >512</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >500</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >492</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >490</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >482</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >461</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >455</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >450</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >450</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >446</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >445</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >435</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >433</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >430</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >425</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >425</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >424</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >408</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >394</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >377</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >375</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >7</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >445</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >436</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >434</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >424</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >423</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >418</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >402</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >402</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >399</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >397</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >391</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >389</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >384</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >384</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >381</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >364</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >359</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >354</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >353</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >347</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >332</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >325</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >299</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >291</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >492</td><td   >291</td><td   >201</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >455</td><td   >299</td><td   >156</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >530</td><td   >402</td><td   >128</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >556</td><td   >434</td><td   >122</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >446</td><td   >325</td><td   >121</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >513</td><td   >397</td><td   >116</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >430</td><td   >332</td><td   >98</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >500</td><td   >402</td><td   >98</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >450</td><td   >353</td><td   >97</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >435</td><td   >347</td><td   >88</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >445</td><td   >364</td><td   >81</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >512</td><td   >436</td><td   >76</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >490</td><td   >418</td><td   >72</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >433</td><td   >381</td><td   >52</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >424</td><td   >384</td><td   >40</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >482</td><td   >445</td><td   >37</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >461</td><td   >424</td><td   >37</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >425</td><td   >389</td><td   >36</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >450</td><td   >423</td><td   >27</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >425</td><td   >399</td><td   >26</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >377</td><td   >354</td><td   >23</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >408</td><td   >391</td><td   >17</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >375</td><td   >359</td><td   >16</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >394</td><td   >384</td><td   >10</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >990</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >948</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >932</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >927</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >910</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >908</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >902</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >885</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >873</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >824</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >814</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >814</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >809</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >808</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >803</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >799</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >783</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >782</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >778</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >771</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >762</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >754</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >734</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >731</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >731</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >734</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >754</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >762</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >771</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >778</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >782</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >783</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >799</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >803</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >808</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >809</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >814</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >814</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >824</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >873</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >885</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >902</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >908</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >910</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >927</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >932</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >948</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >990</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >609</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >609</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >421</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >421</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >421</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >411</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >411</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >381</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >381</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >346</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >263</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >228</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >223</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >223</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1240</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   >198</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >193</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1849</td><td   >188</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >148</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >148</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >118</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >118</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   >118</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1586</td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >1661</td><td   >75</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >1438</td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >1468</td><td   >30</td><td   >2</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >6.282</td><td   >8</td><td   >122</td><td   >110</td><td   >28</td><td   >27</td><td   >1849</td><td   >27</td><td   >1876</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2081.html'>Wendell Haynes</a></td><td   >5.33</td><td   >5</td><td   >288</td><td   >293</td><td   >45</td><td   >45</td><td   >1661</td><td   >-7</td><td   >1654</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >4.506</td><td   >4</td><td   >371</td><td   >396</td><td   >48</td><td   >51</td><td   >1586</td><td   >-26</td><td   >1560</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2099.html'>Joe Roberdeau</a></td><td   >1.765</td><td   >3</td><td   >743</td><td   >722</td><td   >81</td><td   >80</td><td   >1240</td><td   >25</td><td   >1265</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/BRB.html'>Barbados</a></td><td   ><a href='/aardvark/html/players/4011.html'>Lorton Graham</a></td><td   >2.942</td><td   >3</td><td   ></td><td   >531</td><td   ></td><td   >2</td><td   >1438</td><td   >0</td><td   >1438</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1281.html'>Mark Francillon</a></td><td   >3.236</td><td   >1</td><td   >499</td><td   >549</td><td   >64</td><td   >68</td><td   >1468</td><td   >-45</td><td   >1423</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>William Bustoni</h2>
             <div>
               <IMG SRC="../../flags/IDN.png" alt="IDN">
-              <p>IDN</p>
+              <p><a href='/aardvark/html/rankings/IDN.html'>Indonesia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 425<br>
               <b>Games Played:</b> 20<br>
               <b>Wins:</b> 8 (40.00%)<br>
               <b>Losses: </b>12 (60.00%)<br>
@@ -183,121 +184,121 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_10989'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_10989'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>8</td><td>12</td><td>0</td><td>-276</td><td>45</td><td>425</td><td>425</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_10989'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_10989'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >8</td><td   >12</td><td   >0</td><td   >-276</td><td   >45</td><td   >425</td><td   >425</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_10989'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td>476</td><td>W</td><td>255</td><td>210</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td>633</td><td>W</td><td>237</td><td>222</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2827.html'>Mutiara Dewi</a></td><td>760</td><td>L</td><td>212</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2795.html'>Cassius Hidayat</a></td><td>1106</td><td>L</td><td>203</td><td>434</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2828.html'>Nadiah Binti Hakim</a></td><td>750</td><td>L</td><td>254</td><td>267</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2791.html'>Aprilia Devianita P</a></td><td>773</td><td>L</td><td>262</td><td>329</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2797.html'>Danny Hartanto</a></td><td>759</td><td>L</td><td>258</td><td>288</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2805.html'>Gobinath Palesamy</a></td><td>743</td><td>L</td><td>271</td><td>310</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2796.html'>Chika Pricilla P</a></td><td>300</td><td>L</td><td>233</td><td>294</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2814.html'>Krys Jane Piojo</a></td><td>300</td><td>W</td><td>353</td><td>206</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2833.html'>Rachmad Janatul P</a></td><td>300</td><td>W</td><td>314</td><td>254</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2810.html'>Kaylla Danisya</a></td><td>372</td><td>W</td><td>348</td><td>269</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td>476</td><td>L</td><td>263</td><td>301</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2840.html'>Stalbek Ulanbek U</a></td><td>475</td><td>W</td><td>297</td><td>227</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td>476</td><td>L</td><td>256</td><td>273</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2810.html'>Kaylla Danisya</a></td><td>372</td><td>W</td><td>308</td><td>272</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2798.html'>Devin H.</a></td><td>544</td><td>W</td><td>298</td><td>256</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td>633</td><td>L</td><td>253</td><td>291</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2835.html'>Raynaldo Gusti Arya</a></td><td>573</td><td>L</td><td>196</td><td>267</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2840.html'>Stalbek Ulanbek U</a></td><td>475</td><td>L</td><td>264</td><td>279</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td   >476</td><td   >W</td><td   >255</td><td   >210</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td   >633</td><td   >W</td><td   >237</td><td   >222</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2827.html'>Mutiara Dewi</a></td><td   >760</td><td   >L</td><td   >212</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2795.html'>Cassius Hidayat</a></td><td   >1106</td><td   >L</td><td   >203</td><td   >434</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2828.html'>Nadiah Binti Hakim</a></td><td   >750</td><td   >L</td><td   >254</td><td   >267</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2791.html'>Aprilia Devianita P</a></td><td   >773</td><td   >L</td><td   >262</td><td   >329</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2797.html'>Danny Hartanto</a></td><td   >759</td><td   >L</td><td   >258</td><td   >288</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2805.html'>Gobinath Palesamy</a></td><td   >743</td><td   >L</td><td   >271</td><td   >310</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2796.html'>Chika Pricilla P</a></td><td   >300</td><td   >L</td><td   >233</td><td   >294</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2814.html'>Krys Jane Piojo</a></td><td   >300</td><td   >W</td><td   >353</td><td   >206</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2833.html'>Rachmad Janatul P</a></td><td   >300</td><td   >W</td><td   >314</td><td   >254</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2810.html'>Kaylla Danisya</a></td><td   >372</td><td   >W</td><td   >348</td><td   >269</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td   >476</td><td   >L</td><td   >263</td><td   >301</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2840.html'>Stalbek Ulanbek U</a></td><td   >475</td><td   >W</td><td   >297</td><td   >227</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td   >476</td><td   >L</td><td   >256</td><td   >273</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2810.html'>Kaylla Danisya</a></td><td   >372</td><td   >W</td><td   >308</td><td   >272</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2798.html'>Devin H.</a></td><td   >544</td><td   >W</td><td   >298</td><td   >256</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td   >633</td><td   >L</td><td   >253</td><td   >291</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2835.html'>Raynaldo Gusti Arya</a></td><td   >573</td><td   >L</td><td   >196</td><td   >267</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2840.html'>Stalbek Ulanbek U</a></td><td   >475</td><td   >L</td><td   >264</td><td   >279</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2801'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2801'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td>476</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>258.00</td><td>261.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2801'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2801'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2801.html'>Dhimas Setoyudho A</a></td><td   >476</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >258.00</td><td   >261.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2801'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>1</td><td>W</td><td>425</td><td>476</td><td>255</td><td>210</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>13</td><td>L</td><td>425</td><td>476</td><td>263</td><td>301</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>15</td><td>L</td><td>425</td><td>476</td><td>256</td><td>273</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >1</td><td   >W</td><td   >425</td><td   >476</td><td   >255</td><td   >210</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >13</td><td   >L</td><td   >425</td><td   >476</td><td   >263</td><td   >301</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >15</td><td   >L</td><td   >425</td><td   >476</td><td   >256</td><td   >273</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2840'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2840'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2840.html'>Stalbek Ulanbek U</a></td><td>475</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>280.50</td><td>253.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2840'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2840'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2840.html'>Stalbek Ulanbek U</a></td><td   >475</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >280.50</td><td   >253.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2840'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>14</td><td>W</td><td>425</td><td>475</td><td>297</td><td>227</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>20</td><td>L</td><td>425</td><td>475</td><td>264</td><td>279</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >14</td><td   >W</td><td   >425</td><td   >475</td><td   >297</td><td   >227</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >20</td><td   >L</td><td   >425</td><td   >475</td><td   >264</td><td   >279</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2810'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2810'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2810.html'>Kaylla Danisya</a></td><td>372</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>328.00</td><td>270.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2810'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2810'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2810.html'>Kaylla Danisya</a></td><td   >372</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >328.00</td><td   >270.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2810'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>12</td><td>W</td><td>425</td><td>372</td><td>348</td><td>269</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>16</td><td>W</td><td>425</td><td>372</td><td>308</td><td>272</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >12</td><td   >W</td><td   >425</td><td   >372</td><td   >348</td><td   >269</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >16</td><td   >W</td><td   >425</td><td   >372</td><td   >308</td><td   >272</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2819'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2819'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td>633</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>245.00</td><td>256.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2819'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2819'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2819.html'>Maria Victoria O</a></td><td   >633</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >245.00</td><td   >256.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2819'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>2</td><td>W</td><td>425</td><td>633</td><td>237</td><td>222</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>18</td><td>L</td><td>425</td><td>633</td><td>253</td><td>291</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >2</td><td   >W</td><td   >425</td><td   >633</td><td   >237</td><td   >222</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >18</td><td   >L</td><td   >425</td><td   >633</td><td   >253</td><td   >291</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2796'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2796'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2796.html'>Chika Pricilla P</a></td><td>300</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>233.00</td><td>294.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2796'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2796'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2796.html'>Chika Pricilla P</a></td><td   >300</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >233.00</td><td   >294.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2796'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>9</td><td>L</td><td>425</td><td>300</td><td>233</td><td>294</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >9</td><td   >L</td><td   >425</td><td   >300</td><td   >233</td><td   >294</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2835'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2835'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2835.html'>Raynaldo Gusti Arya</a></td><td>573</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>196.00</td><td>267.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2835'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2835'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2835.html'>Raynaldo Gusti Arya</a></td><td   >573</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >196.00</td><td   >267.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2835'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>19</td><td>L</td><td>425</td><td>573</td><td>196</td><td>267</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >19</td><td   >L</td><td   >425</td><td   >573</td><td   >196</td><td   >267</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2828'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2828'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2828.html'>Nadiah Binti Hakim</a></td><td>750</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>254.00</td><td>267.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2828'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2828'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2828.html'>Nadiah Binti Hakim</a></td><td   >750</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >254.00</td><td   >267.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2828'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>5</td><td>L</td><td>425</td><td>750</td><td>254</td><td>267</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >5</td><td   >L</td><td   >425</td><td   >750</td><td   >254</td><td   >267</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2791'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2791'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2791.html'>Aprilia Devianita P</a></td><td>773</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>262.00</td><td>329.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2791'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2791'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/2791.html'>Aprilia Devianita P</a></td><td   >773</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >262.00</td><td   >329.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2791'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>6</td><td>L</td><td>425</td><td>773</td><td>262</td><td>329</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >6</td><td   >L</td><td   >425</td><td   >773</td><td   >262</td><td   >329</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2814'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2814'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2814.html'>Krys Jane Piojo</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>353.00</td><td>206.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2814'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2814'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2814.html'>Krys Jane Piojo</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >353.00</td><td   >206.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2814'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>10</td><td>W</td><td>425</td><td>300</td><td>353</td><td>206</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >10</td><td   >W</td><td   >425</td><td   >300</td><td   >353</td><td   >206</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2827'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2827'>+</button></td><td>10</td><td><a href='/aardvark/html/players/2827.html'>Mutiara Dewi</a></td><td>760</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>212.00</td><td>362.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2827'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2827'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/2827.html'>Mutiara Dewi</a></td><td   >760</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >212.00</td><td   >362.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2827'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>3</td><td>L</td><td>425</td><td>760</td><td>212</td><td>362</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >3</td><td   >L</td><td   >425</td><td   >760</td><td   >212</td><td   >362</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2798'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2798'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2798.html'>Devin H.</a></td><td>544</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>298.00</td><td>256.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2798'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2798'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/2798.html'>Devin H.</a></td><td   >544</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >298.00</td><td   >256.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2798'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>17</td><td>W</td><td>425</td><td>544</td><td>298</td><td>256</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >17</td><td   >W</td><td   >425</td><td   >544</td><td   >298</td><td   >256</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2805'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2805.html'>Gobinath Palesamy</a></td><td>743</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>271.00</td><td>310.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2805'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2805.html'>Gobinath Palesamy</a></td><td   >743</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >271.00</td><td   >310.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2805'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>8</td><td>L</td><td>425</td><td>743</td><td>271</td><td>310</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >8</td><td   >L</td><td   >425</td><td   >743</td><td   >271</td><td   >310</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2797'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2797'>+</button></td><td>13</td><td><a href='/aardvark/html/players/2797.html'>Danny Hartanto</a></td><td>759</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>258.00</td><td>288.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2797'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2797'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/2797.html'>Danny Hartanto</a></td><td   >759</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >258.00</td><td   >288.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2797'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>7</td><td>L</td><td>425</td><td>759</td><td>258</td><td>288</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >7</td><td   >L</td><td   >425</td><td   >759</td><td   >258</td><td   >288</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2833'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2833.html'>Rachmad Janatul P</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>314.00</td><td>254.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2833'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/2833.html'>Rachmad Janatul P</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >314.00</td><td   >254.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2833'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>11</td><td>W</td><td>425</td><td>300</td><td>314</td><td>254</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >11</td><td   >W</td><td   >425</td><td   >300</td><td   >314</td><td   >254</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2795'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2795'>+</button></td><td>15</td><td><a href='/aardvark/html/players/2795.html'>Cassius Hidayat</a></td><td>1106</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>203.00</td><td>434.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2795'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2795'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/2795.html'>Cassius Hidayat</a></td><td   >1106</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >203.00</td><td   >434.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2795'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td>2019-02-15</td><td>4</td><td>L</td><td>425</td><td>1106</td><td>203</td><td>434</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/284.html'>Asian English Olympics</a></td><td   >2019-02-15</td><td   >4</td><td   >L</td><td   >425</td><td   >1106</td><td   >203</td><td   >434</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,122 +156,405 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_38'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_38'>+</button></td><td>1</td><td>3</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>11</td><td>3</td><td>0</td><td>468</td><td>1764</td><td>1817</td><td>53</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_38'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_38'>+</button></td><td   >1</td><td   >3</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >11</td><td   >3</td><td   >0</td><td   >468</td><td   >1764</td><td   >1817</td><td   >53</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_38'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>431</td><td>401</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>445</td><td>477</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>429</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>W</td><td>410</td><td>391</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>423</td><td>215</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>417</td><td>328</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>372</td><td>594</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>388</td><td>379</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>W</td><td>462</td><td>413</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>382</td><td>294</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>W</td><td>430</td><td>325</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>406</td><td>375</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>W</td><td>515</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>428</td><td>489</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >431</td><td   >401</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >445</td><td   >477</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >429</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >W</td><td   >410</td><td   >391</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >423</td><td   >215</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >417</td><td   >328</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >372</td><td   >594</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >388</td><td   >379</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >W</td><td   >462</td><td   >413</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >382</td><td   >294</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >W</td><td   >430</td><td   >325</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >406</td><td   >375</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >W</td><td   >515</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >428</td><td   >489</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_39'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_39'>+</button></td><td>2</td><td>1</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>10</td><td>4</td><td>0</td><td>928</td><td>1991</td><td>1979</td><td>-12</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_39'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_39'>+</button></td><td   >2</td><td   >1</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >10</td><td   >4</td><td   >0</td><td   >928</td><td   >1991</td><td   >1979</td><td   >-12</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_39'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>499</td><td>465</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>W</td><td>477</td><td>445</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>450</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>453</td><td>362</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>W</td><td>464</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>L</td><td>342</td><td>476</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>W</td><td>594</td><td>372</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>664</td><td>269</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>428</td><td>437</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>384</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>325</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>496</td><td>328</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>618</td><td>479</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>W</td><td>429</td><td>411</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >499</td><td   >465</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >W</td><td   >477</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >450</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >453</td><td   >362</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >W</td><td   >464</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >L</td><td   >342</td><td   >476</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >W</td><td   >594</td><td   >372</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >664</td><td   >269</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >428</td><td   >437</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >384</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >325</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >496</td><td   >328</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >618</td><td   >479</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >W</td><td   >429</td><td   >411</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_35'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_35'>+</button></td><td>3</td><td>2</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>8</td><td>6</td><td>0</td><td>969</td><td>1985</td><td>1943</td><td>-42</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_35'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_35'>+</button></td><td   >3</td><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >8</td><td   >6</td><td   >0</td><td   >969</td><td   >1985</td><td   >1943</td><td   >-42</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_35'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>496</td><td>254</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>L</td><td>410</td><td>412</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>471</td><td>447</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>391</td><td>410</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>421</td><td>464</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>523</td><td>233</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>553</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>481</td><td>411</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>413</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>W</td><td>444</td><td>384</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>526</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>590</td><td>353</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>385</td><td>515</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>411</td><td>429</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >496</td><td   >254</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >L</td><td   >410</td><td   >412</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >471</td><td   >447</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >391</td><td   >410</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >421</td><td   >464</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >523</td><td   >233</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >553</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >481</td><td   >411</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >413</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >W</td><td   >444</td><td   >384</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >526</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >590</td><td   >353</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >385</td><td   >515</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >411</td><td   >429</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_37'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_37'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>7</td><td>7</td><td>0</td><td>-76</td><td>1580</td><td>1575</td><td>-5</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_37'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_37'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >7</td><td   >7</td><td   >0</td><td   >-76</td><td   >1580</td><td   >1575</td><td   >-5</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_37'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>401</td><td>431</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>422</td><td>295</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>447</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>362</td><td>453</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>L</td><td>348</td><td>457</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>328</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>404</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>411</td><td>481</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>W</td><td>437</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>461</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>445</td><td>263</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>328</td><td>496</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>W</td><td>380</td><td>372</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>W</td><td>489</td><td>428</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >401</td><td   >431</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >422</td><td   >295</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >447</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >362</td><td   >453</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >L</td><td   >348</td><td   >457</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >328</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >404</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >411</td><td   >481</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >W</td><td   >437</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >461</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >445</td><td   >263</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >328</td><td   >496</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >W</td><td   >380</td><td   >372</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >W</td><td   >489</td><td   >428</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_40'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_40'>+</button></td><td>5</td><td>5</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>6</td><td>8</td><td>0</td><td>144</td><td>1465</td><td>1461</td><td>-4</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_40'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_40'>+</button></td><td   >5</td><td   >5</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >6</td><td   >8</td><td   >0</td><td   >144</td><td   >1465</td><td   >1461</td><td   >-4</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_40'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>465</td><td>499</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>W</td><td>412</td><td>410</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>404</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>420</td><td>290</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>W</td><td>457</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>W</td><td>476</td><td>342</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>376</td><td>553</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>379</td><td>388</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>490</td><td>313</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>387</td><td>461</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>396</td><td>526</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>375</td><td>406</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>372</td><td>380</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>616</td><td>W</td><td>465</td><td>385</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >465</td><td   >499</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >W</td><td   >412</td><td   >410</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >404</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >420</td><td   >290</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >W</td><td   >457</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >W</td><td   >476</td><td   >342</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >376</td><td   >553</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >379</td><td   >388</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >490</td><td   >313</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >387</td><td   >461</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >396</td><td   >526</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >375</td><td   >406</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >372</td><td   >380</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   >W</td><td   >465</td><td   >385</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_36'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_36'>+</button></td><td>6</td><td>6</td><td><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td>0</td><td>14</td><td>0</td><td>-2433</td><td>616</td><td>742</td><td>126</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_36'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_36'>+</button></td><td   >6</td><td   >6</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >0</td><td   >14</td><td   >0</td><td   >-2433</td><td   >616</td><td   >742</td><td   >126</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_36'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>254</td><td>496</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>295</td><td>422</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>356</td><td>450</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>L</td><td>290</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>215</td><td>423</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>233</td><td>523</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>360</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>269</td><td>664</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>L</td><td>313</td><td>490</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1764</td><td>L</td><td>294</td><td>382</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td>1580</td><td>L</td><td>263</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1985</td><td>L</td><td>353</td><td>590</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td>1991</td><td>L</td><td>479</td><td>618</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/36.html'>John Chew</a></td><td>1465</td><td>L</td><td>385</td><td>465</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >254</td><td   >496</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >295</td><td   >422</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >356</td><td   >450</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >L</td><td   >290</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >215</td><td   >423</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >233</td><td   >523</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >360</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >269</td><td   >664</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >L</td><td   >313</td><td   >490</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >L</td><td   >294</td><td   >382</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >L</td><td   >263</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >L</td><td   >353</td><td   >590</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >L</td><td   >479</td><td   >618</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >L</td><td   >385</td><td   >465</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >664</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >618</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >594</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >590</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >553</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >526</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >523</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >515</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >499</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >496</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >496</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >490</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >489</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >481</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >477</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >476</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >471</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >465</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >464</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >462</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >461</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >457</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >453</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >450</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >445</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >444</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >437</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >431</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >430</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >429</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >429</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >423</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >422</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >420</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >417</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >412</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >410</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >406</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >404</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >388</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >382</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >380</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >13</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >479</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >465</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >447</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >445</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >428</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >428</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >421</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >413</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >411</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >411</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >410</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >404</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >401</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >396</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >391</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >387</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >385</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >385</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >384</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >379</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >376</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >375</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >372</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >372</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >362</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >360</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >356</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >353</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >348</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >342</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >328</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >328</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >325</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >313</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >295</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >294</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >290</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >269</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >263</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >254</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >233</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >215</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >664</td><td   >269</td><td   >395</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >523</td><td   >233</td><td   >290</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >496</td><td   >254</td><td   >242</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >590</td><td   >353</td><td   >237</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >594</td><td   >372</td><td   >222</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >423</td><td   >215</td><td   >208</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >445</td><td   >263</td><td   >182</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >490</td><td   >313</td><td   >177</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >553</td><td   >376</td><td   >177</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >496</td><td   >328</td><td   >168</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >618</td><td   >479</td><td   >139</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >476</td><td   >342</td><td   >134</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >420</td><td   >290</td><td   >130</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >526</td><td   >396</td><td   >130</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >515</td><td   >385</td><td   >130</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >422</td><td   >295</td><td   >127</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >457</td><td   >348</td><td   >109</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >430</td><td   >325</td><td   >105</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >450</td><td   >356</td><td   >94</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >453</td><td   >362</td><td   >91</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >417</td><td   >328</td><td   >89</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >382</td><td   >294</td><td   >88</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >465</td><td   >385</td><td   >80</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >461</td><td   >387</td><td   >74</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >481</td><td   >411</td><td   >70</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >489</td><td   >428</td><td   >61</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >444</td><td   >384</td><td   >60</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >462</td><td   >413</td><td   >49</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >404</td><td   >360</td><td   >44</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >464</td><td   >421</td><td   >43</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >499</td><td   >465</td><td   >34</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >477</td><td   >445</td><td   >32</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >406</td><td   >375</td><td   >31</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >431</td><td   >401</td><td   >30</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >429</td><td   >404</td><td   >25</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >471</td><td   >447</td><td   >24</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >410</td><td   >391</td><td   >19</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >429</td><td   >411</td><td   >18</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >437</td><td   >428</td><td   >9</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >388</td><td   >379</td><td   >9</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >380</td><td   >372</td><td   >8</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >412</td><td   >410</td><td   >2</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >1097</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >966</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >964</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >943</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >933</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >929</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >922</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >922</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >918</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >917</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >900</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >892</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >885</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >875</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >865</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >850</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >848</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >840</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >833</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >832</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >828</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >824</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >822</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >818</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >815</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >806</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >805</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >803</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >801</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >781</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >767</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >764</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >756</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >755</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >752</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >750</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >745</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >717</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >710</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >708</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >676</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >638</td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >638</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >676</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >708</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >710</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >717</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >745</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >750</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >752</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >755</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >756</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >764</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >767</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >781</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >801</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >803</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >805</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >806</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >815</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >818</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >822</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >824</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >828</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >832</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >833</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >840</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >848</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >850</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >865</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >875</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >885</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >892</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >900</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >917</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >918</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >922</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >922</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >929</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >933</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >943</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >964</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >966</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >1097</td><td   >13</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >1375</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >1375</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >1375</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >1369</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >1369</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >1369</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >1148</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >1148</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >964</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >964</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >964</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >849</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >849</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >616</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   >849</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >526</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >526</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >520</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >520</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >520</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >411</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >411</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >411</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >405</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >405</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >299</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >299</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >299</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >227</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >227</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >227</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >221</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >221</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   >221</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >184</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >184</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1764</td><td   >184</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >115</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >115</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >1465</td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >1580</td><td   >115</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >6</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >6</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1985</td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >1991</td><td   >6</td><td   >5</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >8.143</td><td   >11</td><td   >221</td><td   >182</td><td   >21</td><td   >19</td><td   >1764</td><td   >53</td><td   >1817</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/38.html'>Ron Hoekstra</a></td><td   >10.728</td><td   >10</td><td   >57</td><td   >63</td><td   >5</td><td   >5</td><td   >1991</td><td   >-12</td><td   >1979</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >10.621</td><td   >8</td><td   >60</td><td   >85</td><td   >6</td><td   >6</td><td   >1985</td><td   >-42</td><td   >1943</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/39.html'>Ruth Hamilton</a></td><td   >6.691</td><td   >7</td><td   >343</td><td   >347</td><td   >24</td><td   >25</td><td   >1580</td><td   >-5</td><td   >1575</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/36.html'>John Chew</a></td><td   >5.582</td><td   >6</td><td   >419</td><td   >420</td><td   >14</td><td   >15</td><td   >1465</td><td   >-4</td><td   >1461</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/35.html'>Estelle Matthews</a></td><td   >0.39</td><td   >0</td><td   >684</td><td   >665</td><td   >14</td><td   >15</td><td   >616</td><td   >126</td><td   >742</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,58 +156,171 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_11692'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11692'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>6</td><td>1</td><td>0</td><td>887</td><td>1955</td><td>1966</td><td>11</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_11692'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11692'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >6</td><td   >1</td><td   >0</td><td   >887</td><td   >1955</td><td   >1966</td><td   >11</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11692'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>507</td><td>298</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>W</td><td>568</td><td>310</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>W</td><td>471</td><td>369</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>501</td><td>428</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>W</td><td>439</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>L</td><td>456</td><td>481</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>W</td><td>533</td><td>308</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >507</td><td   >298</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >W</td><td   >568</td><td   >310</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >W</td><td   >471</td><td   >369</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >501</td><td   >428</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >W</td><td   >439</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >L</td><td   >456</td><td   >481</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >W</td><td   >533</td><td   >308</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_11693'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11693'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>4</td><td>3</td><td>0</td><td>313</td><td>1855</td><td>1845</td><td>-10</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_11693'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11693'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >4</td><td   >3</td><td   >0</td><td   >313</td><td   >1855</td><td   >1845</td><td   >-10</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11693'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>W</td><td>507</td><td>308</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>597</td><td>309</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>L</td><td>369</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>L</td><td>436</td><td>470</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>548</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>W</td><td>481</td><td>456</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>L</td><td>308</td><td>533</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >W</td><td   >507</td><td   >308</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >597</td><td   >309</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >L</td><td   >369</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >L</td><td   >436</td><td   >470</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >548</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >W</td><td   >481</td><td   >456</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >L</td><td   >308</td><td   >533</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_11695'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11695'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>4</td><td>3</td><td>0</td><td>-91</td><td>1493</td><td>1510</td><td>17</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_11695'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11695'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >4</td><td   >3</td><td   >0</td><td   >-91</td><td   >1493</td><td   >1510</td><td   >17</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11695'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>L</td><td>308</td><td>507</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>L</td><td>310</td><td>568</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>445</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>W</td><td>470</td><td>436</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>L</td><td>394</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>577</td><td>398</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>1108</td><td>W</td><td>472</td><td>392</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >L</td><td   >308</td><td   >507</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >L</td><td   >310</td><td   >568</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >445</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >W</td><td   >470</td><td   >436</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >L</td><td   >394</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >577</td><td   >398</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   >W</td><td   >472</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_11694'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11694'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td>0</td><td>7</td><td>0</td><td>-1109</td><td>1108</td><td>1108</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_11694'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11694'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >0</td><td   >7</td><td   >0</td><td   >-1109</td><td   >1108</td><td   >1108</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11694'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>L</td><td>298</td><td>507</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>L</td><td>309</td><td>597</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>L</td><td>327</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1955</td><td>L</td><td>428</td><td>501</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1855</td><td>L</td><td>386</td><td>548</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>L</td><td>398</td><td>577</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td>1493</td><td>L</td><td>392</td><td>472</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >L</td><td   >298</td><td   >507</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >L</td><td   >309</td><td   >597</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >L</td><td   >327</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >L</td><td   >428</td><td   >501</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >L</td><td   >386</td><td   >548</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >L</td><td   >398</td><td   >577</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >L</td><td   >392</td><td   >472</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >597</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >577</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >568</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >548</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >533</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >507</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >507</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >501</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >481</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >472</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >471</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >470</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >445</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >439</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >456</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >436</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >428</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >398</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >394</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >392</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >386</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >369</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >327</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >310</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >309</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >308</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >308</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >298</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >597</td><td   >309</td><td   >288</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >568</td><td   >310</td><td   >258</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >533</td><td   >308</td><td   >225</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >507</td><td   >298</td><td   >209</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >507</td><td   >308</td><td   >199</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >577</td><td   >398</td><td   >179</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >548</td><td   >386</td><td   >162</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >445</td><td   >327</td><td   >118</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >471</td><td   >369</td><td   >102</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >472</td><td   >392</td><td   >80</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >501</td><td   >428</td><td   >73</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >439</td><td   >394</td><td   >45</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >470</td><td   >436</td><td   >34</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >481</td><td   >456</td><td   >25</td><td   >6</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >975</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >937</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >934</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >929</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >906</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >906</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >878</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >864</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >841</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >840</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >833</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >815</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >805</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >772</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >772</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >805</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >815</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >833</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >840</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >841</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >864</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >878</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >906</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >906</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >929</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >934</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >937</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >975</td><td   >6</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >847</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >847</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >747</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >747</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >462</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >462</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >385</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >385</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >1108</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   >385</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >362</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >1493</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   >362</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >100</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >100</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1855</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1955</td><td   >100</td><td   >3</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >5.282</td><td   >6</td><td   >52</td><td   >47</td><td   >12</td><td   >11</td><td   >1955</td><td   >11</td><td   >1966</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >4.611</td><td   >4</td><td   >113</td><td   >117</td><td   >25</td><td   >25</td><td   >1855</td><td   >-10</td><td   >1845</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1063.html'>Randi Goldberg</a></td><td   >3.163</td><td   >4</td><td   >501</td><td   >481</td><td   >64</td><td   >61</td><td   >1493</td><td   >17</td><td   >1510</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2973.html'>Della Lutz</a></td><td   >0.889</td><td   >0</td><td   ></td><td   >1001</td><td   ></td><td   >98</td><td   >1108</td><td   >0</td><td   >1108</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

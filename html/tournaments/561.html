@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,206 +156,719 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_21804'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21804'>+</button></td><td>1</td><td>2</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>15</td><td>5</td><td>0</td><td>585</td><td>1944</td><td>1991</td><td>47</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_21804'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21804'>+</button></td><td   >1</td><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >15</td><td   >5</td><td   >0</td><td   >585</td><td   >1944</td><td   >1991</td><td   >47</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21804'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>438</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>393</td><td>411</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>439</td><td>432</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>333</td><td>525</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>471</td><td>457</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>443</td><td>415</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>491</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>344</td><td>468</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>560</td><td>379</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>493</td><td>301</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>419</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>443</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>439</td><td>378</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>L</td><td>414</td><td>437</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>415</td><td>401</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>465</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>463</td><td>369</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>505</td><td>456</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>373</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>461</td><td>458</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >438</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >393</td><td   >411</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >439</td><td   >432</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >333</td><td   >525</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >471</td><td   >457</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >443</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >491</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >344</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >560</td><td   >379</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >493</td><td   >301</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >419</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >443</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >439</td><td   >378</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >L</td><td   >414</td><td   >437</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >415</td><td   >401</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >465</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >463</td><td   >369</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >505</td><td   >456</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >373</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >461</td><td   >458</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_21808'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21808'>+</button></td><td>2</td><td>5</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>12</td><td>8</td><td>0</td><td>156</td><td>1840</td><td>1864</td><td>24</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_21808'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21808'>+</button></td><td   >2</td><td   >5</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >12</td><td   >8</td><td   >0</td><td   >156</td><td   >1840</td><td   >1864</td><td   >24</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21808'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>510</td><td>388</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>373</td><td>469</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>432</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>376</td><td>304</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>551</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>535</td><td>342</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>452</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>W</td><td>468</td><td>344</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>403</td><td>365</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>444</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>543</td><td>338</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>361</td><td>657</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>497</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>318</td><td>541</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>383</td><td>517</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>372</td><td>465</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>347</td><td>536</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>392</td><td>453</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>497</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>438</td><td>383</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >510</td><td   >388</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >373</td><td   >469</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >432</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >376</td><td   >304</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >551</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >535</td><td   >342</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >452</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >W</td><td   >468</td><td   >344</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >403</td><td   >365</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >444</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >543</td><td   >338</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >361</td><td   >657</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >497</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >318</td><td   >541</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >383</td><td   >517</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >372</td><td   >465</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >347</td><td   >536</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >392</td><td   >453</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >497</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >438</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_21807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21807'>+</button></td><td>3</td><td>4</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>11</td><td>9</td><td>0</td><td>940</td><td>1864</td><td>1867</td><td>3</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_21807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21807'>+</button></td><td   >3</td><td   >4</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >11</td><td   >9</td><td   >0</td><td   >940</td><td   >1864</td><td   >1867</td><td   >3</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21807'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>458</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>469</td><td>373</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>399</td><td>299</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>493</td><td>377</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>457</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>441</td><td>556</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>566</td><td>312</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>L</td><td>384</td><td>525</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>400</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>475</td><td>458</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>400</td><td>419</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>516</td><td>357</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>398</td><td>497</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>434</td><td>452</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>517</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>529</td><td>293</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>502</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>456</td><td>505</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>553</td><td>402</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>427</td><td>440</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >458</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >469</td><td   >373</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >399</td><td   >299</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >493</td><td   >377</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >457</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >441</td><td   >556</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >566</td><td   >312</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >L</td><td   >384</td><td   >525</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >400</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >475</td><td   >458</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >400</td><td   >419</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >516</td><td   >357</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >398</td><td   >497</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >434</td><td   >452</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >517</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >529</td><td   >293</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >502</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >456</td><td   >505</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >553</td><td   >402</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >427</td><td   >440</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_21809'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21809'>+</button></td><td>4</td><td>1</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>10</td><td>10</td><td>0</td><td>522</td><td>2001</td><td>1951</td><td>-50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_21809'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21809'>+</button></td><td   >4</td><td   >1</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >10</td><td   >10</td><td   >0</td><td   >522</td><td   >2001</td><td   >1951</td><td   >-50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21809'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>388</td><td>510</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>477</td><td>383</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>504</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>W</td><td>525</td><td>333</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>471</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>556</td><td>441</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>438</td><td>339</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>441</td><td>500</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>409</td><td>359</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>458</td><td>475</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>364</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>409</td><td>443</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>591</td><td>277</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>541</td><td>318</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>394</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>378</td><td>499</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>369</td><td>463</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>487</td><td>373</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>402</td><td>553</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>L</td><td>325</td><td>511</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >388</td><td   >510</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >477</td><td   >383</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >504</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >W</td><td   >525</td><td   >333</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >471</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >556</td><td   >441</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >438</td><td   >339</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >441</td><td   >500</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >409</td><td   >359</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >458</td><td   >475</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >364</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >409</td><td   >443</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >591</td><td   >277</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >541</td><td   >318</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >394</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >378</td><td   >499</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >369</td><td   >463</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >487</td><td   >373</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >402</td><td   >553</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >L</td><td   >325</td><td   >511</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_21810'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21810'>+</button></td><td>5</td><td>6</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>10</td><td>10</td><td>0</td><td>48</td><td>1822</td><td>1822</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_21810'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21810'>+</button></td><td   >5</td><td   >6</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >10</td><td   >10</td><td   >0</td><td   >48</td><td   >1822</td><td   >1822</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21810'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>412</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>426</td><td>405</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>425</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>304</td><td>376</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>364</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>356</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>397</td><td>491</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>383</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>379</td><td>560</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>465</td><td>426</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>417</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>657</td><td>361</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>L</td><td>366</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>452</td><td>434</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>458</td><td>340</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>425</td><td>413</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>536</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>373</td><td>487</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>436</td><td>420</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>458</td><td>461</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >412</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >426</td><td   >405</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >425</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >304</td><td   >376</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >364</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >356</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >397</td><td   >491</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >383</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >379</td><td   >560</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >465</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >417</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >657</td><td   >361</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >L</td><td   >366</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >452</td><td   >434</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >458</td><td   >340</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >425</td><td   >413</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >536</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >373</td><td   >487</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >436</td><td   >420</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >458</td><td   >461</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_21806'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21806'>+</button></td><td>6</td><td>8</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>9</td><td>11</td><td>0</td><td>-1020</td><td>1476</td><td>1567</td><td>91</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_21806'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21806'>+</button></td><td   >6</td><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >9</td><td   >11</td><td   >0</td><td   >-1020</td><td   >1476</td><td   >1567</td><td   >91</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21806'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>W</td><td>430</td><td>328</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>383</td><td>477</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>418</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>L</td><td>339</td><td>472</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>421</td><td>551</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>415</td><td>443</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>312</td><td>566</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>451</td><td>383</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>455</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>301</td><td>493</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>338</td><td>543</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>430</td><td>336</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>277</td><td>591</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>322</td><td>499</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>418</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>413</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>466</td><td>388</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>W</td><td>453</td><td>392</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>W</td><td>404</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>440</td><td>427</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >W</td><td   >430</td><td   >328</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >383</td><td   >477</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >418</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >L</td><td   >339</td><td   >472</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >421</td><td   >551</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >415</td><td   >443</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >312</td><td   >566</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >451</td><td   >383</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >455</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >301</td><td   >493</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >338</td><td   >543</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >430</td><td   >336</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >277</td><td   >591</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >322</td><td   >499</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >418</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >413</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >466</td><td   >388</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >W</td><td   >453</td><td   >392</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >W</td><td   >404</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >440</td><td   >427</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_21803'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21803'>+</button></td><td>7</td><td>3</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>8</td><td>12</td><td>0</td><td>-281</td><td>1939</td><td>1879</td><td>-60</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_21803'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21803'>+</button></td><td   >7</td><td   >3</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >8</td><td   >12</td><td   >0</td><td   >-281</td><td   >1939</td><td   >1879</td><td   >-60</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21803'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>328</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>W</td><td>411</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>429</td><td>504</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>377</td><td>493</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>393</td><td>307</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>372</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>350</td><td>452</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>500</td><td>441</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>365</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>426</td><td>465</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>428</td><td>402</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>357</td><td>516</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>378</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>499</td><td>322</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>401</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>499</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>348</td><td>502</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1704</td><td>W</td><td>496</td><td>349</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>420</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>383</td><td>438</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >328</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >W</td><td   >411</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >429</td><td   >504</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >377</td><td   >493</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >393</td><td   >307</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >372</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >350</td><td   >452</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >500</td><td   >441</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >365</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >426</td><td   >465</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >428</td><td   >402</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >357</td><td   >516</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >378</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >499</td><td   >322</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >401</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >499</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >348</td><td   >502</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >W</td><td   >496</td><td   >349</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >420</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >383</td><td   >438</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_21805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21805'>+</button></td><td>8</td><td>7</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>5</td><td>15</td><td>0</td><td>-950</td><td>1704</td><td>1646</td><td>-58</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_21805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_21805'>+</button></td><td   >8</td><td   >7</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >5</td><td   >15</td><td   >0</td><td   >-950</td><td   >1704</td><td   >1646</td><td   >-58</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_21805'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>L</td><td>348</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>405</td><td>426</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>299</td><td>399</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>W</td><td>472</td><td>339</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>307</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>342</td><td>535</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>339</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>W</td><td>525</td><td>384</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>L</td><td>359</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>409</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>402</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>336</td><td>430</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>W</td><td>386</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1944</td><td>W</td><td>437</td><td>414</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td>1822</td><td>L</td><td>340</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1864</td><td>L</td><td>293</td><td>529</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1476</td><td>L</td><td>388</td><td>466</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td>1939</td><td>L</td><td>349</td><td>496</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1840</td><td>L</td><td>417</td><td>497</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td>2001</td><td>W</td><td>511</td><td>325</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >L</td><td   >348</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >405</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >299</td><td   >399</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >W</td><td   >472</td><td   >339</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >307</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >342</td><td   >535</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >339</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >W</td><td   >525</td><td   >384</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >L</td><td   >359</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >409</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >402</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >336</td><td   >430</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >W</td><td   >386</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >W</td><td   >437</td><td   >414</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >L</td><td   >340</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >L</td><td   >293</td><td   >529</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   >L</td><td   >388</td><td   >466</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >L</td><td   >349</td><td   >496</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >L</td><td   >417</td><td   >497</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >W</td><td   >511</td><td   >325</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >657</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >591</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >566</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >560</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >556</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >553</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >551</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >543</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >541</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >536</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >535</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >529</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >525</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >525</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >517</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >516</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >511</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >510</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >505</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >504</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >502</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >500</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >499</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >499</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >497</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >497</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >496</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >493</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >493</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >491</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >487</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >477</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >475</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >472</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >471</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >471</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >469</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >468</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >466</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >465</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >465</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >463</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >461</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >458</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >458</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >455</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >453</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >452</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >452</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >451</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >444</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >443</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >443</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >440</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >439</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >439</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >438</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >438</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >438</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >437</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >436</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >430</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >430</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >428</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >426</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >425</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >67</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >425</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >68</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >419</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >69</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >418</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >70</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >417</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >71</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >415</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >72</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >411</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >73</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >409</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >74</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >404</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >75</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >403</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >76</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >399</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >77</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >393</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >78</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >386</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >79</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >376</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >80</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >372</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >6</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >458</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >458</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >457</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >456</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >441</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >441</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >434</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >432</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >429</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >427</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >426</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >421</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >420</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >418</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >417</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >415</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >414</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >413</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >412</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >409</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >409</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >405</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >402</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >402</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >401</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >400</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >400</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >398</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >397</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >394</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >393</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >392</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >388</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >388</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >384</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >383</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >383</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >383</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >383</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >379</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >378</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >378</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >377</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >373</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >373</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >373</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >372</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >369</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >366</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >365</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >364</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >364</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >361</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >359</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >357</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >356</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >350</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >349</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >348</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >348</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >347</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >344</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >342</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >340</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >339</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >339</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >67</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >338</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >68</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >336</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >69</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >333</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >70</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >328</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >71</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >325</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >72</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >322</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >73</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >318</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >74</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >312</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >75</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >307</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >76</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >304</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >77</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >301</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >78</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >299</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >79</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >293</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >80</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >277</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >13</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >591</td><td   >277</td><td   >314</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >657</td><td   >361</td><td   >296</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >566</td><td   >312</td><td   >254</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >529</td><td   >293</td><td   >236</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >541</td><td   >318</td><td   >223</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >543</td><td   >338</td><td   >205</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >535</td><td   >342</td><td   >193</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >525</td><td   >333</td><td   >192</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >493</td><td   >301</td><td   >192</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >536</td><td   >347</td><td   >189</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >511</td><td   >325</td><td   >186</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >560</td><td   >379</td><td   >181</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >499</td><td   >322</td><td   >177</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >516</td><td   >357</td><td   >159</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >502</td><td   >348</td><td   >154</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >553</td><td   >402</td><td   >151</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >496</td><td   >349</td><td   >147</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >525</td><td   >384</td><td   >141</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >517</td><td   >383</td><td   >134</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >472</td><td   >339</td><td   >133</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >551</td><td   >421</td><td   >130</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >468</td><td   >344</td><td   >124</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >510</td><td   >388</td><td   >122</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >499</td><td   >378</td><td   >121</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >458</td><td   >340</td><td   >118</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >493</td><td   >377</td><td   >116</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >556</td><td   >441</td><td   >115</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >487</td><td   >373</td><td   >114</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >471</td><td   >364</td><td   >107</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >452</td><td   >350</td><td   >102</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >430</td><td   >328</td><td   >102</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >399</td><td   >299</td><td   >100</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >497</td><td   >398</td><td   >99</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >438</td><td   >339</td><td   >99</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >469</td><td   >373</td><td   >96</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >463</td><td   >369</td><td   >94</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >430</td><td   >336</td><td   >94</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >477</td><td   >383</td><td   >94</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >491</td><td   >397</td><td   >94</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >465</td><td   >372</td><td   >93</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >438</td><td   >348</td><td   >90</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >393</td><td   >307</td><td   >86</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >497</td><td   >417</td><td   >80</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >466</td><td   >388</td><td   >78</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >504</td><td   >429</td><td   >75</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >376</td><td   >304</td><td   >72</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >451</td><td   >383</td><td   >68</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >439</td><td   >378</td><td   >61</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >453</td><td   >392</td><td   >61</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >500</td><td   >441</td><td   >59</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >438</td><td   >383</td><td   >55</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >455</td><td   >400</td><td   >55</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >417</td><td   >364</td><td   >53</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >409</td><td   >359</td><td   >50</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >505</td><td   >456</td><td   >49</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >458</td><td   >412</td><td   >46</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >465</td><td   >426</td><td   >39</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >403</td><td   >365</td><td   >38</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >444</td><td   >409</td><td   >35</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >443</td><td   >409</td><td   >34</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >404</td><td   >373</td><td   >31</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >443</td><td   >415</td><td   >28</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >428</td><td   >402</td><td   >26</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >418</td><td   >394</td><td   >24</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >437</td><td   >414</td><td   >23</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >426</td><td   >405</td><td   >21</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >67</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >386</td><td   >366</td><td   >20</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >68</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >419</td><td   >400</td><td   >19</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >69</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >452</td><td   >434</td><td   >18</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >70</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >411</td><td   >393</td><td   >18</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >71</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >475</td><td   >458</td><td   >17</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >72</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >372</td><td   >356</td><td   >16</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >73</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >436</td><td   >420</td><td   >16</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >74</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >415</td><td   >401</td><td   >14</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >75</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >471</td><td   >457</td><td   >14</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >76</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >440</td><td   >427</td><td   >13</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >77</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >425</td><td   >413</td><td   >12</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >78</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >439</td><td   >432</td><td   >7</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >79</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >425</td><td   >418</td><td   >7</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >80</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >461</td><td   >458</td><td   >3</td><td   >20</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1018</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >997</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >972</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >961</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >955</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >941</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >939</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >933</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >933</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >928</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >919</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >914</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >909</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >900</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >898</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >895</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >891</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >888</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >886</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >883</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >881</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >878</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >877</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >877</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >873</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >871</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >870</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >870</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >868</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >867</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >860</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >860</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >859</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >858</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >858</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >856</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >855</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >854</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >853</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >852</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >851</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >850</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >845</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >845</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >843</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >842</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >838</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >837</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >836</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >835</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >834</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >832</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >831</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >830</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >822</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >821</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >821</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >819</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >817</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >816</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >812</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >812</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >811</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >804</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >802</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >798</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >67</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >794</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >68</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >786</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >69</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >781</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >70</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >777</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >71</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >777</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >72</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >768</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >73</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >768</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >74</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >766</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >75</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >758</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >76</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >752</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >77</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >728</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >78</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >700</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >79</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >698</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >80</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >680</td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >680</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >698</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >700</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >728</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >752</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >758</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >766</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >768</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >768</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >777</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >777</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >781</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >786</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >794</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >798</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >802</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >804</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >811</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >812</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >812</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >816</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >817</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >819</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >821</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >821</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >822</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >830</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >831</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >832</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >834</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >835</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >836</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >837</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >838</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >842</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >843</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >845</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >845</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >850</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >851</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >852</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >853</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >854</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >855</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >856</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >858</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >858</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >859</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >860</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >860</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >867</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >868</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >870</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >870</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >871</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >873</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >877</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >877</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >878</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >881</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >883</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >886</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >888</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >891</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >895</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >898</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >67</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >900</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >68</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >909</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >69</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >914</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >70</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >919</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >71</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >928</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >72</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >933</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >73</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >933</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >74</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >939</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >75</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >941</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >76</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >955</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >77</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >961</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >78</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >972</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >79</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >997</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >80</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1018</td><td   >12</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >525</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >525</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >525</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >468</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >468</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >468</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >463</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >463</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >388</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >388</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >388</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >364</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >364</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >364</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >346</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >346</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >346</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >297</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >297</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >297</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >240</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >240</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >235</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >235</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >235</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >228</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >228</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   >228</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >179</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >179</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >179</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >161</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >161</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >160</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >160</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >160</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >137</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >137</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >137</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >136</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >136</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >136</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >122</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >122</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >122</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >118</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >118</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1704</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   >118</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >117</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >117</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >117</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >104</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >104</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >104</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >99</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >99</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >99</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >80</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >80</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >80</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >75</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >75</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   >75</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >62</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >62</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >62</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >67</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >57</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >68</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >57</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >69</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >2001</td><td   >57</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >70</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >42</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >71</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >42</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >72</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >24</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >73</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >24</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >74</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1864</td><td   >24</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >75</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >18</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >76</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >18</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >77</td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >1822</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1840</td><td   >18</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >78</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >5</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >79</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >5</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >80</td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >1939</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1944</td><td   >5</td><td   >15</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >12.07</td><td   >15</td><td   >82</td><td   >56</td><td   >5</td><td   >4</td><td   >1944</td><td   >47</td><td   >1991</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >10.508</td><td   >12</td><td   >150</td><td   >128</td><td   >16</td><td   >16</td><td   >1840</td><td   >24</td><td   >1864</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >10.802</td><td   >11</td><td   >127</td><td   >127</td><td   >15</td><td   >15</td><td   >1864</td><td   >3</td><td   >1867</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/866.html'>Amit Chakrabarti</a></td><td   >13.168</td><td   >10</td><td   >48</td><td   >79</td><td   >5</td><td   >12</td><td   >2001</td><td   >-50</td><td   >1951</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/622.html'>Brian Bowman</a></td><td   >9.932</td><td   >10</td><td   ></td><td   >164</td><td   ></td><td   >17</td><td   >1822</td><td   >0</td><td   >1822</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >4.475</td><td   >9</td><td   >371</td><td   >326</td><td   >23</td><td   >23</td><td   >1476</td><td   >91</td><td   >1567</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/652.html'>Steve Polatnick</a></td><td   >11.761</td><td   >8</td><td   >87</td><td   >114</td><td   >13</td><td   >14</td><td   >1939</td><td   >-60</td><td   >1879</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >7.907</td><td   >5</td><td   >237</td><td   >282</td><td   >20</td><td   >20</td><td   >1704</td><td   >-58</td><td   >1646</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Victoria Wanjiku</h2>
             <div>
               <IMG SRC="../../flags/KEN.png" alt="KEN">
-              <p>KEN</p>
+              <p><a href='/aardvark/html/rankings/KEN.html'>Kenya</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 300<br>
               <b>Games Played:</b> 24<br>
               <b>Wins:</b> 9 (37.50%)<br>
               <b>Losses: </b>15 (62.50%)<br>
@@ -183,153 +184,153 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_25513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25513'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>9</td><td>15</td><td>0</td><td>-893</td><td>104</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_25513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25513'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >9</td><td   >15</td><td   >0</td><td   >-893</td><td   >104</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_25513'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1117.html'>Amanda Khan</a></td><td>709</td><td>L</td><td>280</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3925.html'>Shireeya Jeyendran</a></td><td>300</td><td>W</td><td>308</td><td>245</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1141.html'>Imadith Egodawaththe</a></td><td>431</td><td>L</td><td>286</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4660.html'>Aehzam Ahmed</a></td><td>462</td><td>L</td><td>343</td><td>355</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3927.html'>Taabish Borham</a></td><td>553</td><td>W</td><td>315</td><td>295</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3888.html'>Cynthia Chebet</a></td><td>954</td><td>L</td><td>236</td><td>481</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1157.html'>Okikioluwa Hector</a></td><td>542</td><td>L</td><td>313</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4675.html'>Mercy Muriuki</a></td><td>303</td><td>W</td><td>237</td><td>188</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1484.html'>Lau Wai Keung</a></td><td>687</td><td>L</td><td>247</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4685.html'>Sorraya Singh</a></td><td>423</td><td>W</td><td>360</td><td>298</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>580</td><td>L</td><td>287</td><td>433</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3908.html'>Linnet Njeri</a></td><td>780</td><td>L</td><td>264</td><td>494</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/4680.html'>Priscilla Irungu</a></td><td>300</td><td>L</td><td>310</td><td>323</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4673.html'>Mariyah Alshareef</a></td><td>300</td><td>W</td><td>451</td><td>268</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/4684.html'>Shahyan Reddy Goli</a></td><td>300</td><td>W</td><td>337</td><td>203</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3310.html'>Eeman Tariq</a></td><td>300</td><td>L</td><td>261</td><td>318</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/4664.html'>Asher Chhabra</a></td><td>639</td><td>W</td><td>442</td><td>302</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/4669.html'>Joshua Moisey</a></td><td>300</td><td>L</td><td>261</td><td>363</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/3412.html'>Paparavee Direkwatan</a></td><td>788</td><td>L</td><td>285</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/4675.html'>Mercy Muriuki</a></td><td>303</td><td>L</td><td>219</td><td>254</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/4668.html'>Jason Lau</a></td><td>406</td><td>L</td><td>266</td><td>354</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/4677.html'>Nabeeha Kardame</a></td><td>300</td><td>W</td><td>357</td><td>324</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/4680.html'>Priscilla Irungu</a></td><td>300</td><td>W</td><td>353</td><td>299</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/4685.html'>Sorraya Singh</a></td><td>423</td><td>L</td><td>220</td><td>427</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1117.html'>Amanda Khan</a></td><td   >709</td><td   >L</td><td   >280</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3925.html'>Shireeya Jeyendran</a></td><td   >300</td><td   >W</td><td   >308</td><td   >245</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1141.html'>Imadith Egodawaththe</a></td><td   >431</td><td   >L</td><td   >286</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4660.html'>Aehzam Ahmed</a></td><td   >462</td><td   >L</td><td   >343</td><td   >355</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3927.html'>Taabish Borham</a></td><td   >553</td><td   >W</td><td   >315</td><td   >295</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3888.html'>Cynthia Chebet</a></td><td   >954</td><td   >L</td><td   >236</td><td   >481</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1157.html'>Okikioluwa Hector</a></td><td   >542</td><td   >L</td><td   >313</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4675.html'>Mercy Muriuki</a></td><td   >303</td><td   >W</td><td   >237</td><td   >188</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1484.html'>Lau Wai Keung</a></td><td   >687</td><td   >L</td><td   >247</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/4685.html'>Sorraya Singh</a></td><td   >423</td><td   >W</td><td   >360</td><td   >298</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td   >580</td><td   >L</td><td   >287</td><td   >433</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3908.html'>Linnet Njeri</a></td><td   >780</td><td   >L</td><td   >264</td><td   >494</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4680.html'>Priscilla Irungu</a></td><td   >300</td><td   >L</td><td   >310</td><td   >323</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4673.html'>Mariyah Alshareef</a></td><td   >300</td><td   >W</td><td   >451</td><td   >268</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/4684.html'>Shahyan Reddy Goli</a></td><td   >300</td><td   >W</td><td   >337</td><td   >203</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3310.html'>Eeman Tariq</a></td><td   >300</td><td   >L</td><td   >261</td><td   >318</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/4664.html'>Asher Chhabra</a></td><td   >639</td><td   >W</td><td   >442</td><td   >302</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4669.html'>Joshua Moisey</a></td><td   >300</td><td   >L</td><td   >261</td><td   >363</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3412.html'>Paparavee Direkwatan</a></td><td   >788</td><td   >L</td><td   >285</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/4675.html'>Mercy Muriuki</a></td><td   >303</td><td   >L</td><td   >219</td><td   >254</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/4668.html'>Jason Lau</a></td><td   >406</td><td   >L</td><td   >266</td><td   >354</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/4677.html'>Nabeeha Kardame</a></td><td   >300</td><td   >W</td><td   >357</td><td   >324</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/4680.html'>Priscilla Irungu</a></td><td   >300</td><td   >W</td><td   >353</td><td   >299</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4685.html'>Sorraya Singh</a></td><td   >423</td><td   >L</td><td   >220</td><td   >427</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4680'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4680'>+</button></td><td>1</td><td><a href='/aardvark/html/players/4680.html'>Priscilla Irungu</a></td><td>300</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>331.50</td><td>311.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4680'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4680'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/4680.html'>Priscilla Irungu</a></td><td   >300</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >331.50</td><td   >311.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4680'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>13</td><td>L</td><td>300</td><td>300</td><td>310</td><td>323</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>23</td><td>W</td><td>300</td><td>300</td><td>353</td><td>299</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >13</td><td   >L</td><td   >300</td><td   >300</td><td   >310</td><td   >323</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >23</td><td   >W</td><td   >300</td><td   >300</td><td   >353</td><td   >299</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4685'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4685'>+</button></td><td>2</td><td><a href='/aardvark/html/players/4685.html'>Sorraya Singh</a></td><td>423</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>290.00</td><td>362.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4685'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4685'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/4685.html'>Sorraya Singh</a></td><td   >423</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >290.00</td><td   >362.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4685'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>10</td><td>W</td><td>300</td><td>423</td><td>360</td><td>298</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>24</td><td>L</td><td>300</td><td>423</td><td>220</td><td>427</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >10</td><td   >W</td><td   >300</td><td   >423</td><td   >360</td><td   >298</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >24</td><td   >L</td><td   >300</td><td   >423</td><td   >220</td><td   >427</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4675'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4675'>+</button></td><td>3</td><td><a href='/aardvark/html/players/4675.html'>Mercy Muriuki</a></td><td>303</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>228.00</td><td>221.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4675'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4675'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/4675.html'>Mercy Muriuki</a></td><td   >303</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >228.00</td><td   >221.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4675'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>8</td><td>W</td><td>300</td><td>303</td><td>237</td><td>188</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>20</td><td>L</td><td>300</td><td>303</td><td>219</td><td>254</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >8</td><td   >W</td><td   >300</td><td   >303</td><td   >237</td><td   >188</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >20</td><td   >L</td><td   >300</td><td   >303</td><td   >219</td><td   >254</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3927'>+</button></td><td>4</td><td><a href='/aardvark/html/players/3927.html'>Taabish Borham</a></td><td>442</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>315.00</td><td>295.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3927'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/3927.html'>Taabish Borham</a></td><td   >442</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >315.00</td><td   >295.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3927'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>5</td><td>W</td><td>300</td><td>553</td><td>315</td><td>295</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >5</td><td   >W</td><td   >300</td><td   >553</td><td   >315</td><td   >295</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4677'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4677'>+</button></td><td>5</td><td><a href='/aardvark/html/players/4677.html'>Nabeeha Kardame</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>357.00</td><td>324.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4677'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4677'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/4677.html'>Nabeeha Kardame</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >357.00</td><td   >324.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4677'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>22</td><td>W</td><td>300</td><td>300</td><td>357</td><td>324</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >22</td><td   >W</td><td   >300</td><td   >300</td><td   >357</td><td   >324</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1141'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1141'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1141.html'>Imadith Egodawaththe</a></td><td>458</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>286.00</td><td>360.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1141'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1141'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1141.html'>Imadith Egodawaththe</a></td><td   >458</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >286.00</td><td   >360.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1141'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>3</td><td>L</td><td>300</td><td>431</td><td>286</td><td>360</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >3</td><td   >L</td><td   >300</td><td   >431</td><td   >286</td><td   >360</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3908'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3908'>+</button></td><td>7</td><td><a href='/aardvark/html/players/3908.html'>Linnet Njeri</a></td><td>664</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>264.00</td><td>494.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3908'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3908'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/3908.html'>Linnet Njeri</a></td><td   >664</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >264.00</td><td   >494.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3908'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>12</td><td>L</td><td>300</td><td>780</td><td>264</td><td>494</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >12</td><td   >L</td><td   >300</td><td   >780</td><td   >264</td><td   >494</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3925'>+</button></td><td>8</td><td><a href='/aardvark/html/players/3925.html'>Shireeya Jeyendran</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>308.00</td><td>245.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3925'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/3925.html'>Shireeya Jeyendran</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >308.00</td><td   >245.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3925'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>2</td><td>W</td><td>300</td><td>300</td><td>308</td><td>245</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >2</td><td   >W</td><td   >300</td><td   >300</td><td   >308</td><td   >245</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3412'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3412'>+</button></td><td>9</td><td><a href='/aardvark/html/players/3412.html'>Paparavee Direkwatan</a></td><td>750</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>285.00</td><td>383.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3412'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3412'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/3412.html'>Paparavee Direkwatan</a></td><td   >750</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >285.00</td><td   >383.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3412'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>19</td><td>L</td><td>300</td><td>788</td><td>285</td><td>383</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >19</td><td   >L</td><td   >300</td><td   >788</td><td   >285</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4664'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4664'>+</button></td><td>10</td><td><a href='/aardvark/html/players/4664.html'>Asher Chhabra</a></td><td>639</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>442.00</td><td>302.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4664'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4664'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/4664.html'>Asher Chhabra</a></td><td   >639</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >442.00</td><td   >302.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4664'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>17</td><td>W</td><td>300</td><td>639</td><td>442</td><td>302</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >17</td><td   >W</td><td   >300</td><td   >639</td><td   >442</td><td   >302</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3310'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3310'>+</button></td><td>11</td><td><a href='/aardvark/html/players/3310.html'>Eeman Tariq</a></td><td>300</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>261.00</td><td>318.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3310'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3310'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/3310.html'>Eeman Tariq</a></td><td   >300</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >261.00</td><td   >318.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3310'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>16</td><td>L</td><td>300</td><td>300</td><td>261</td><td>318</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >16</td><td   >L</td><td   >300</td><td   >300</td><td   >261</td><td   >318</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1433'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1433'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td>567</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>287.00</td><td>433.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1433'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1433'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/1433.html'>Fung Pak Man</a></td><td   >567</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >287.00</td><td   >433.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1433'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>11</td><td>L</td><td>300</td><td>580</td><td>287</td><td>433</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >11</td><td   >L</td><td   >300</td><td   >580</td><td   >287</td><td   >433</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4673'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4673'>+</button></td><td>13</td><td><a href='/aardvark/html/players/4673.html'>Mariyah Alshareef</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>451.00</td><td>268.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4673'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4673'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/4673.html'>Mariyah Alshareef</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >451.00</td><td   >268.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4673'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>14</td><td>W</td><td>300</td><td>300</td><td>451</td><td>268</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >14</td><td   >W</td><td   >300</td><td   >300</td><td   >451</td><td   >268</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1117'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1117'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1117.html'>Amanda Khan</a></td><td>772</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>280.00</td><td>344.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1117'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1117'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1117.html'>Amanda Khan</a></td><td   >772</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >280.00</td><td   >344.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1117'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>1</td><td>L</td><td>300</td><td>709</td><td>280</td><td>344</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >1</td><td   >L</td><td   >300</td><td   >709</td><td   >280</td><td   >344</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3888'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3888'>+</button></td><td>15</td><td><a href='/aardvark/html/players/3888.html'>Cynthia Chebet</a></td><td>808</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>236.00</td><td>481.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3888'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3888'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/3888.html'>Cynthia Chebet</a></td><td   >808</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >236.00</td><td   >481.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3888'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>6</td><td>L</td><td>300</td><td>954</td><td>236</td><td>481</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >6</td><td   >L</td><td   >300</td><td   >954</td><td   >236</td><td   >481</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4669'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4669'>+</button></td><td>16</td><td><a href='/aardvark/html/players/4669.html'>Joshua Moisey</a></td><td>356</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>261.00</td><td>363.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4669'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4669'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/4669.html'>Joshua Moisey</a></td><td   >356</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >261.00</td><td   >363.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4669'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>18</td><td>L</td><td>300</td><td>300</td><td>261</td><td>363</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >18</td><td   >L</td><td   >300</td><td   >300</td><td   >261</td><td   >363</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4660'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4660'>+</button></td><td>17</td><td><a href='/aardvark/html/players/4660.html'>Aehzam Ahmed</a></td><td>462</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>343.00</td><td>355.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4660'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4660'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/4660.html'>Aehzam Ahmed</a></td><td   >462</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >343.00</td><td   >355.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4660'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>4</td><td>L</td><td>300</td><td>462</td><td>343</td><td>355</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >4</td><td   >L</td><td   >300</td><td   >462</td><td   >343</td><td   >355</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1157'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1157'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1157.html'>Okikioluwa Hector</a></td><td>665</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>313.00</td><td>444.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1157'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1157'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/1157.html'>Okikioluwa Hector</a></td><td   >665</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >313.00</td><td   >444.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1157'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>7</td><td>L</td><td>300</td><td>542</td><td>313</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >7</td><td   >L</td><td   >300</td><td   >542</td><td   >313</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4684'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4684'>+</button></td><td>19</td><td><a href='/aardvark/html/players/4684.html'>Shahyan Reddy Goli</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>337.00</td><td>203.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4684'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4684'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/4684.html'>Shahyan Reddy Goli</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >337.00</td><td   >203.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4684'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>15</td><td>W</td><td>300</td><td>300</td><td>337</td><td>203</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >15</td><td   >W</td><td   >300</td><td   >300</td><td   >337</td><td   >203</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1484'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1484'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1484.html'>Lau Wai Keung</a></td><td>664</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>247.00</td><td>376.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1484'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1484'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1484.html'>Lau Wai Keung</a></td><td   >664</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >247.00</td><td   >376.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1484'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>9</td><td>L</td><td>300</td><td>687</td><td>247</td><td>376</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >9</td><td   >L</td><td   >300</td><td   >687</td><td   >247</td><td   >376</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4668'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4668'>+</button></td><td>21</td><td><a href='/aardvark/html/players/4668.html'>Jason Lau</a></td><td>376</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>266.00</td><td>354.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4668'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4668'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/4668.html'>Jason Lau</a></td><td   >376</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >266.00</td><td   >354.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4668'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td>2018-12-15</td><td>21</td><td>L</td><td>300</td><td>406</td><td>266</td><td>354</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/657.html'>World Youth Cup</a></td><td   >2018-12-15</td><td   >21</td><td   >L</td><td   >300</td><td   >406</td><td   >266</td><td   >354</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,62 +156,182 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_11610'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11610'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>6.5</td><td>1.5</td><td>0</td><td>517</td><td>2015</td><td>2015</td><td>0</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_11610'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11610'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >6.5</td><td   >1.5</td><td   >0</td><td   >517</td><td   >2015</td><td   >2015</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11610'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>530</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>L</td><td>377</td><td>489</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>W</td><td>466</td><td>446</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>442</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>W</td><td>516</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>W</td><td>467</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>W</td><td>567</td><td>331</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>T</td><td>470</td><td>470</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >530</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >L</td><td   >377</td><td   >489</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >W</td><td   >466</td><td   >446</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >442</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >W</td><td   >516</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >W</td><td   >467</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >W</td><td   >567</td><td   >331</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >T</td><td   >470</td><td   >470</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_11608'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11608'>+</button></td><td>2</td><td>3</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>5.5</td><td>2.5</td><td>0</td><td>755</td><td>1660</td><td>1684</td><td>24</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_11608'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11608'>+</button></td><td   >2</td><td   >3</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >5.5</td><td   >2.5</td><td   >0</td><td   >755</td><td   >1660</td><td   >1684</td><td   >24</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11608'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>W</td><td>470</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>451</td><td>276</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>L</td><td>446</td><td>466</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>W</td><td>386</td><td>329</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>564</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>L</td><td>367</td><td>467</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>639</td><td>246</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>T</td><td>470</td><td>470</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >W</td><td   >470</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >451</td><td   >276</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >L</td><td   >446</td><td   >466</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >W</td><td   >386</td><td   >329</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >564</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >L</td><td   >367</td><td   >467</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >639</td><td   >246</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >T</td><td   >470</td><td   >470</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_11611'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11611'>+</button></td><td>3</td><td>2</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>4</td><td>4</td><td>0</td><td>62</td><td>1660</td><td>1655</td><td>-5</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_11611'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11611'>+</button></td><td   >3</td><td   >2</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >4</td><td   >4</td><td   >0</td><td   >62</td><td   >1660</td><td   >1655</td><td   >-5</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11611'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>L</td><td>428</td><td>470</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>W</td><td>489</td><td>377</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>503</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>L</td><td>329</td><td>386</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>L</td><td>476</td><td>516</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>470</td><td>338</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>L</td><td>331</td><td>567</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>1116</td><td>W</td><td>452</td><td>394</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >L</td><td   >428</td><td   >470</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >W</td><td   >489</td><td   >377</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >503</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >L</td><td   >329</td><td   >386</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >L</td><td   >476</td><td   >516</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >470</td><td   >338</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >L</td><td   >331</td><td   >567</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   >W</td><td   >452</td><td   >394</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_11609'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11609'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td>0</td><td>8</td><td>0</td><td>-1334</td><td>1116</td><td>1098</td><td>-18</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_11609'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_11609'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >0</td><td   >8</td><td   >0</td><td   >-1334</td><td   >1116</td><td   >1098</td><td   >-18</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_11609'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>L</td><td>383</td><td>530</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>L</td><td>276</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>L</td><td>368</td><td>503</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2015</td><td>L</td><td>356</td><td>442</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>L</td><td>356</td><td>564</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>L</td><td>338</td><td>470</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td>1660</td><td>L</td><td>246</td><td>639</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td>1660</td><td>L</td><td>394</td><td>452</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >L</td><td   >383</td><td   >530</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >L</td><td   >276</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >L</td><td   >368</td><td   >503</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >L</td><td   >356</td><td   >442</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >L</td><td   >356</td><td   >564</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >L</td><td   >338</td><td   >470</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >L</td><td   >246</td><td   >639</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >L</td><td   >394</td><td   >452</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >639</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >567</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >564</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >530</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >516</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >503</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >489</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >470</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >470</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >467</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >466</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >452</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >451</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >442</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >386</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >476</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >446</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >428</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >394</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >383</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >377</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >368</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >367</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >356</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >356</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >338</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >331</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >329</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >276</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >246</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >7</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >639</td><td   >246</td><td   >393</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >567</td><td   >331</td><td   >236</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >564</td><td   >356</td><td   >208</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >451</td><td   >276</td><td   >175</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >530</td><td   >383</td><td   >147</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >503</td><td   >368</td><td   >135</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >470</td><td   >338</td><td   >132</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >489</td><td   >377</td><td   >112</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >467</td><td   >367</td><td   >100</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >442</td><td   >356</td><td   >86</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >452</td><td   >394</td><td   >58</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >386</td><td   >329</td><td   >57</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >470</td><td   >428</td><td   >42</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >516</td><td   >476</td><td   >40</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >466</td><td   >446</td><td   >20</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >992</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >940</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >920</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >913</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >912</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >898</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >898</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >885</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >871</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >866</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >846</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >834</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >808</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >798</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >727</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >715</td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >715</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >727</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >798</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >808</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >834</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >846</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >866</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >871</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >885</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >898</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >898</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >912</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >913</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >920</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >940</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >992</td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >899</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >899</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >544</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >544</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >544</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   >544</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >544</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >1116</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   >544</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >355</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >355</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >355</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >355</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >1660</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >355</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >1660</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2015</td><td   >355</td><td   >3</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >6.498</td><td   >6.5</td><td   >27</td><td   >27</td><td   >5</td><td   >5</td><td   >2015</td><td   >0</td><td   >2015</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2958.html'>Cesar Del Solar</a></td><td   >4.283</td><td   >5.5</td><td   >317</td><td   >294</td><td   >43</td><td   >43</td><td   >1660</td><td   >24</td><td   >1684</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/MYS.html'>Malaysia</a></td><td   ><a href='/aardvark/html/players/1369.html'>Cedric Lewis</a></td><td   >4.242</td><td   >4</td><td   >316</td><td   >322</td><td   >10</td><td   >11</td><td   >1660</td><td   >-5</td><td   >1655</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2355.html'>Cornelia Guest</a></td><td   >0.914</td><td   >0</td><td   >986</td><td   >1017</td><td   >96</td><td   >98</td><td   >1116</td><td   >-18</td><td   >1098</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Bernadina Ballast</h2>
             <div>
               <IMG SRC="../../flags/PHL.png" alt="PHL">
-              <p>PHL</p>
+              <p><a href='/aardvark/html/rankings/PHL.html'>Philippines</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 718<br>
               <b>Games Played:</b> 28<br>
               <b>Wins:</b> 9 (32.14%)<br>
               <b>Losses: </b>19 (67.86%)<br>
@@ -183,161 +184,161 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_12518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_12518'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>9</td><td>19</td><td>1</td><td>-600</td><td>94</td><td>718</td><td>718</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_12518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_12518'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >9</td><td   >19</td><td   >1</td><td   >-600</td><td   >94</td><td   >718</td><td   >718</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_12518'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1992.html'>Cameron Farlow</a></td><td>1877</td><td>L</td><td>316</td><td>470</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td>1271</td><td>L</td><td>312</td><td>489</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/133.html'>Sinatarn Pattanasuwa</a></td><td>1504</td><td>L</td><td>383</td><td>453</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>911</td><td>L</td><td>344</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1339</td><td>W</td><td>439</td><td>345</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1715.html'>Maria Soares</a></td><td>1016</td><td>L</td><td>284</td><td>452</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/415.html'>Julius Wilson</a></td><td>1432</td><td>L</td><td>329</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2224.html'>Fatima Bisma</a></td><td>643</td><td>L</td><td>303</td><td>442</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td>1080</td><td>L</td><td>307</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/3055.html'>Mark-Young Seade</a></td><td>1047</td><td>W</td><td>374</td><td>316</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td>300</td><td>W</td><td>452</td><td>265</td></tr>
-        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/9.html'>KV Chidambaram</a></td><td>1250</td><td>L</td><td>373</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/3051.html'>Allie Quinn</a></td><td>1367</td><td>L</td><td>313</td><td>323</td></tr>
-        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/786.html'>Marites Carreon</a></td><td>1151</td><td>W</td><td>405</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>16</td><td><a href='/aardvark/html/players/3053.html'>Julie Walder</a></td><td>820</td><td>W</td><td>405</td><td>353</td></tr>
-        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/367.html'>Mohammad Inayatullah</a></td><td>1574</td><td>L</td><td>309</td><td>524</td></tr>
-        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/1299.html'>Aqila Khattak</a></td><td>850</td><td>L</td><td>357</td><td>440</td></tr>
-        <tr  class='rowodd'  ><td>19</td><td><a href='/aardvark/html/players/170.html'>Graham Buckingham</a></td><td>1326</td><td>L</td><td>284</td><td>379</td></tr>
-        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td>966</td><td>L</td><td>344</td><td>498</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td>703</td><td>L</td><td>298</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>22</td><td><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td>300</td><td>W</td><td>415</td><td>283</td></tr>
-        <tr  class='rowodd'  ><td>23</td><td><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td>300</td><td>W</td><td>454</td><td>306</td></tr>
-        <tr  class='roweven'  ><td>24</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>706</td><td>L</td><td>399</td><td>405</td></tr>
-        <tr  class='rowodd'  ><td>25</td><td><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td>703</td><td>L</td><td>334</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>26</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>911</td><td>L</td><td>383</td><td>414</td></tr>
-        <tr  class='rowodd'  ><td>27</td><td><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td>703</td><td>L</td><td>328</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>28</td><td><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td>300</td><td>W</td><td>554</td><td>270</td></tr>
-        <tr  class='rowodd'  ><td>29</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>706</td><td>W</td><td>453</td><td>272</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1992.html'>Cameron Farlow</a></td><td   >1877</td><td   >L</td><td   >316</td><td   >470</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td   >1271</td><td   >L</td><td   >312</td><td   >489</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/133.html'>Sinatarn Pattanasuwa</a></td><td   >1504</td><td   >L</td><td   >383</td><td   >453</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >911</td><td   >L</td><td   >344</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td   >1339</td><td   >W</td><td   >439</td><td   >345</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1715.html'>Maria Soares</a></td><td   >1016</td><td   >L</td><td   >284</td><td   >452</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/415.html'>Julius Wilson</a></td><td   >1432</td><td   >L</td><td   >329</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2224.html'>Fatima Bisma</a></td><td   >643</td><td   >L</td><td   >303</td><td   >442</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td   >1080</td><td   >L</td><td   >307</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/3055.html'>Mark-Young Seade</a></td><td   >1047</td><td   >W</td><td   >374</td><td   >316</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td   >300</td><td   >W</td><td   >452</td><td   >265</td></tr>
+        <tr  class='rowodd'  ><td   >13</td><td   ><a href='/aardvark/html/players/9.html'>KV Chidambaram</a></td><td   >1250</td><td   >L</td><td   >373</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >14</td><td   ><a href='/aardvark/html/players/3051.html'>Allie Quinn</a></td><td   >1367</td><td   >L</td><td   >313</td><td   >323</td></tr>
+        <tr  class='rowodd'  ><td   >15</td><td   ><a href='/aardvark/html/players/786.html'>Marites Carreon</a></td><td   >1151</td><td   >W</td><td   >405</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >16</td><td   ><a href='/aardvark/html/players/3053.html'>Julie Walder</a></td><td   >820</td><td   >W</td><td   >405</td><td   >353</td></tr>
+        <tr  class='rowodd'  ><td   >17</td><td   ><a href='/aardvark/html/players/367.html'>Mohammad Inayatullah</a></td><td   >1574</td><td   >L</td><td   >309</td><td   >524</td></tr>
+        <tr  class='roweven'  ><td   >18</td><td   ><a href='/aardvark/html/players/1299.html'>Aqila Khattak</a></td><td   >850</td><td   >L</td><td   >357</td><td   >440</td></tr>
+        <tr  class='rowodd'  ><td   >19</td><td   ><a href='/aardvark/html/players/170.html'>Graham Buckingham</a></td><td   >1326</td><td   >L</td><td   >284</td><td   >379</td></tr>
+        <tr  class='roweven'  ><td   >20</td><td   ><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td   >966</td><td   >L</td><td   >344</td><td   >498</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td   >703</td><td   >L</td><td   >298</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >22</td><td   ><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td   >300</td><td   >W</td><td   >415</td><td   >283</td></tr>
+        <tr  class='rowodd'  ><td   >23</td><td   ><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td   >300</td><td   >W</td><td   >454</td><td   >306</td></tr>
+        <tr  class='roweven'  ><td   >24</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >706</td><td   >L</td><td   >399</td><td   >405</td></tr>
+        <tr  class='rowodd'  ><td   >25</td><td   ><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td   >703</td><td   >L</td><td   >334</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >26</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >911</td><td   >L</td><td   >383</td><td   >414</td></tr>
+        <tr  class='rowodd'  ><td   >27</td><td   ><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td   >703</td><td   >L</td><td   >328</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >28</td><td   ><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td   >300</td><td   >W</td><td   >554</td><td   >270</td></tr>
+        <tr  class='rowodd'  ><td   >29</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >706</td><td   >W</td><td   >453</td><td   >272</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3054'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3054'>+</button></td><td>1</td><td><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td>300</td><td>4</td><td>4</td><td>0</td><td>0</td><td>1.00</td><td>468.75</td><td>281.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3054'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3054'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/3054.html'>Mary Villanueva</a></td><td   >300</td><td   >4</td><td   >4</td><td   >0</td><td   >0</td><td   >1.00</td><td   >468.75</td><td   >281.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3054'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>12</td><td>W</td><td>718</td><td>300</td><td>452</td><td>265</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>22</td><td>W</td><td>718</td><td>300</td><td>415</td><td>283</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>23</td><td>W</td><td>718</td><td>300</td><td>454</td><td>306</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>28</td><td>W</td><td>718</td><td>300</td><td>554</td><td>270</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >12</td><td   >W</td><td   >718</td><td   >300</td><td   >452</td><td   >265</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >22</td><td   >W</td><td   >718</td><td   >300</td><td   >415</td><td   >283</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >23</td><td   >W</td><td   >718</td><td   >300</td><td   >454</td><td   >306</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >28</td><td   >W</td><td   >718</td><td   >300</td><td   >554</td><td   >270</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3056'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3056'>+</button></td><td>2</td><td><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td>690</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0.00</td><td>320.00</td><td>398.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3056'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3056'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/3056.html'>Ruman Anis</a></td><td   >690</td><td   >3</td><td   >0</td><td   >3</td><td   >0</td><td   >0.00</td><td   >320.00</td><td   >398.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3056'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>21</td><td>L</td><td>718</td><td>703</td><td>298</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>25</td><td>L</td><td>718</td><td>703</td><td>334</td><td>399</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>27</td><td>L</td><td>718</td><td>703</td><td>328</td><td>387</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >21</td><td   >L</td><td   >718</td><td   >703</td><td   >298</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >25</td><td   >L</td><td   >718</td><td   >703</td><td   >334</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >27</td><td   >L</td><td   >718</td><td   >703</td><td   >328</td><td   >387</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_179'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_179'>+</button></td><td>3</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>679</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>363.50</td><td>390.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_179'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_179'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >679</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >363.50</td><td   >390.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_179'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>4</td><td>L</td><td>718</td><td>911</td><td>344</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>26</td><td>L</td><td>718</td><td>911</td><td>383</td><td>414</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >4</td><td   >L</td><td   >718</td><td   >911</td><td   >344</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >26</td><td   >L</td><td   >718</td><td   >911</td><td   >383</td><td   >414</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2103'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>578</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>426.00</td><td>338.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2103'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >578</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >426.00</td><td   >338.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2103'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>24</td><td>L</td><td>718</td><td>706</td><td>399</td><td>405</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>29</td><td>W</td><td>718</td><td>706</td><td>453</td><td>272</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >24</td><td   >L</td><td   >718</td><td   >706</td><td   >399</td><td   >405</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >29</td><td   >W</td><td   >718</td><td   >706</td><td   >453</td><td   >272</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_170'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_170'>+</button></td><td>5</td><td><a href='/aardvark/html/players/170.html'>Graham Buckingham</a></td><td>1175</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>284.00</td><td>379.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_170'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_170'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/170.html'>Graham Buckingham</a></td><td   >1175</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >284.00</td><td   >379.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_170'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>19</td><td>L</td><td>718</td><td>1326</td><td>284</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >19</td><td   >L</td><td   >718</td><td   >1326</td><td   >284</td><td   >379</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1299'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1299.html'>Aqila Khattak</a></td><td>460</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>357.00</td><td>440.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1299'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1299.html'>Aqila Khattak</a></td><td   >460</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >357.00</td><td   >440.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1299'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>18</td><td>L</td><td>718</td><td>850</td><td>357</td><td>440</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >18</td><td   >L</td><td   >718</td><td   >850</td><td   >357</td><td   >440</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2657'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2657'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td>1142</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>307.00</td><td>422.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2657'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2657'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td   >1142</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >307.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2657'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>10</td><td>L</td><td>718</td><td>1080</td><td>307</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >10</td><td   >L</td><td   >718</td><td   >1080</td><td   >307</td><td   >422</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3053'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3053'>+</button></td><td>8</td><td><a href='/aardvark/html/players/3053.html'>Julie Walder</a></td><td>860</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>353.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3053'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3053'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/3053.html'>Julie Walder</a></td><td   >860</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >353.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3053'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>16</td><td>W</td><td>718</td><td>820</td><td>405</td><td>353</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >16</td><td   >W</td><td   >718</td><td   >820</td><td   >405</td><td   >353</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1715'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1715'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1715.html'>Maria Soares</a></td><td>1108</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>284.00</td><td>452.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1715'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1715'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1715.html'>Maria Soares</a></td><td   >1108</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >284.00</td><td   >452.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1715'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>6</td><td>L</td><td>718</td><td>1016</td><td>284</td><td>452</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >6</td><td   >L</td><td   >718</td><td   >1016</td><td   >284</td><td   >452</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_186'>+</button></td><td>10</td><td><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td>1175</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>312.00</td><td>489.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_186'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td   >1175</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >312.00</td><td   >489.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_186'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>2</td><td>L</td><td>718</td><td>1271</td><td>312</td><td>489</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >2</td><td   >L</td><td   >718</td><td   >1271</td><td   >312</td><td   >489</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3055'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3055'>+</button></td><td>11</td><td><a href='/aardvark/html/players/3055.html'>Mark-Young Seade</a></td><td>1075</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>374.00</td><td>316.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3055'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3055'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/3055.html'>Mark-Young Seade</a></td><td   >1075</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >374.00</td><td   >316.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3055'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>11</td><td>W</td><td>718</td><td>1047</td><td>374</td><td>316</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >11</td><td   >W</td><td   >718</td><td   >1047</td><td   >374</td><td   >316</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_133'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_133'>+</button></td><td>12</td><td><a href='/aardvark/html/players/133.html'>Sinatarn Pattanasuwa</a></td><td>1717</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>383.00</td><td>453.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_133'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_133'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/133.html'>Sinatarn Pattanasuwa</a></td><td   >1717</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >383.00</td><td   >453.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_133'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>3</td><td>L</td><td>718</td><td>1504</td><td>383</td><td>453</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >3</td><td   >L</td><td   >718</td><td   >1504</td><td   >383</td><td   >453</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_786'>+</button></td><td>13</td><td><a href='/aardvark/html/players/786.html'>Marites Carreon</a></td><td>1086</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>387.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_786'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_786'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/786.html'>Marites Carreon</a></td><td   >1086</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >387.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_786'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>15</td><td>W</td><td>718</td><td>1151</td><td>405</td><td>387</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >15</td><td   >W</td><td   >718</td><td   >1151</td><td   >405</td><td   >387</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_9'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_9'>+</button></td><td>14</td><td><a href='/aardvark/html/players/9.html'>KV Chidambaram</a></td><td>1183</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>373.00</td><td>374.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_9'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_9'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/9.html'>KV Chidambaram</a></td><td   >1183</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >373.00</td><td   >374.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_9'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>13</td><td>L</td><td>718</td><td>1250</td><td>373</td><td>374</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >13</td><td   >L</td><td   >718</td><td   >1250</td><td   >373</td><td   >374</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2224'>+</button></td><td>15</td><td><a href='/aardvark/html/players/2224.html'>Fatima Bisma</a></td><td>679</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>303.00</td><td>442.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2224'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/2224.html'>Fatima Bisma</a></td><td   >679</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >303.00</td><td   >442.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2224'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>8</td><td>L</td><td>718</td><td>643</td><td>303</td><td>442</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >8</td><td   >L</td><td   >718</td><td   >643</td><td   >303</td><td   >442</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_367'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_367'>+</button></td><td>16</td><td><a href='/aardvark/html/players/367.html'>Mohammad Inayatullah</a></td><td>1558</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>309.00</td><td>524.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_367'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_367'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/367.html'>Mohammad Inayatullah</a></td><td   >1558</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >309.00</td><td   >524.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_367'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>17</td><td>L</td><td>718</td><td>1574</td><td>309</td><td>524</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >17</td><td   >L</td><td   >718</td><td   >1574</td><td   >309</td><td   >524</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_551'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_551'>+</button></td><td>17</td><td><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td>1010</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>344.00</td><td>498.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_551'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_551'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td   >1010</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >344.00</td><td   >498.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_551'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>20</td><td>L</td><td>718</td><td>966</td><td>344</td><td>498</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >20</td><td   >L</td><td   >718</td><td   >966</td><td   >344</td><td   >498</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1992'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1992'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1992.html'>Cameron Farlow</a></td><td>1938</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>316.00</td><td>470.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1992'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1992'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/1992.html'>Cameron Farlow</a></td><td   >1938</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >316.00</td><td   >470.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1992'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>1</td><td>L</td><td>718</td><td>1877</td><td>316</td><td>470</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >1</td><td   >L</td><td   >718</td><td   >1877</td><td   >316</td><td   >470</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_415'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_415'>+</button></td><td>19</td><td><a href='/aardvark/html/players/415.html'>Julius Wilson</a></td><td>1482</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>329.00</td><td>458.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_415'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_415'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/415.html'>Julius Wilson</a></td><td   >1482</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >329.00</td><td   >458.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_415'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>7</td><td>L</td><td>718</td><td>1432</td><td>329</td><td>458</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >7</td><td   >L</td><td   >718</td><td   >1432</td><td   >329</td><td   >458</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3051'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3051'>+</button></td><td>20</td><td><a href='/aardvark/html/players/3051.html'>Allie Quinn</a></td><td>1202</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>313.00</td><td>323.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3051'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3051'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/3051.html'>Allie Quinn</a></td><td   >1202</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >313.00</td><td   >323.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3051'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>14</td><td>L</td><td>718</td><td>1367</td><td>313</td><td>323</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >14</td><td   >L</td><td   >718</td><td   >1367</td><td   >313</td><td   >323</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_195'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_195'>+</button></td><td>21</td><td><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td>1121</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>439.00</td><td>345.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_195'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_195'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/195.html'>Warodom Geamsakul</a></td><td   >1121</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >439.00</td><td   >345.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_195'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td>2013-07-14</td><td>5</td><td>W</td><td>718</td><td>1339</td><td>439</td><td>345</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/325.html'>28th BRAND's Thailand International Crossword Game King's Cup</a></td><td   >2013-07-14</td><td   >5</td><td   >W</td><td   >718</td><td   >1339</td><td   >439</td><td   >345</td></tr>
 </table></div></td></tr>
 
 </table>

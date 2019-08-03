@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Dawn Boyle</h2>
             <div>
               <IMG SRC="../../flags/AUS.png" alt="AUS">
-              <p>AUS</p>
+              <p><a href='/aardvark/html/rankings/AUS.html'>Australia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 639<br>
               <b>Games Played:</b> 27<br>
               <b>Wins:</b> 4 (14.81%)<br>
               <b>Losses: </b>22 (81.48%)<br>
@@ -183,163 +184,163 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_17566'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_17566'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>0.5</td><td>12.5</td><td>1</td><td>-1554</td><td>18</td><td>768</td><td>639</td><td>-129</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_17566'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_17566'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >0.5</td><td   >12.5</td><td   >1</td><td   >-1554</td><td   >18</td><td   >768</td><td   >639</td><td   >-129</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_17566'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1926.html'>Lynne Jarvis</a></td><td>1193</td><td>L</td><td>231</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1929.html'>Pam Thomas</a></td><td>1233</td><td>L</td><td>296</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1923.html'>Julie Bingham</a></td><td>584</td><td>T</td><td>364</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3994.html'>Frances Adams</a></td><td>1194</td><td>L</td><td>324</td><td>331</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1920.html'>Ivy Nicholls</a></td><td>976</td><td>L</td><td>312</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3993.html'>Cindy Brunniche</a></td><td>1050</td><td>L</td><td>248</td><td>452</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2731.html'>Margaret Griggs</a></td><td>1170</td><td>L</td><td>262</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1922.html'>John Hayes</a></td><td>947</td><td>L</td><td>320</td><td>535</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1995.html'>Helen Metaxas</a></td><td>1308</td><td>L</td><td>261</td><td>477</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/1921.html'>Jan Hill</a></td><td>1111</td><td>L</td><td>351</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/1850.html'>Martin Rose</a></td><td>1420</td><td>L</td><td>315</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/1924.html'>Khen Meerding</a></td><td>1422</td><td>L</td><td>297</td><td>495</td></tr>
-        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/1679.html'>Alan Burn</a></td><td>1299</td><td>L</td><td>313</td><td>383</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1926.html'>Lynne Jarvis</a></td><td   >1193</td><td   >L</td><td   >231</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1929.html'>Pam Thomas</a></td><td   >1233</td><td   >L</td><td   >296</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1923.html'>Julie Bingham</a></td><td   >584</td><td   >T</td><td   >364</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3994.html'>Frances Adams</a></td><td   >1194</td><td   >L</td><td   >324</td><td   >331</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1920.html'>Ivy Nicholls</a></td><td   >976</td><td   >L</td><td   >312</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3993.html'>Cindy Brunniche</a></td><td   >1050</td><td   >L</td><td   >248</td><td   >452</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2731.html'>Margaret Griggs</a></td><td   >1170</td><td   >L</td><td   >262</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1922.html'>John Hayes</a></td><td   >947</td><td   >L</td><td   >320</td><td   >535</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1995.html'>Helen Metaxas</a></td><td   >1308</td><td   >L</td><td   >261</td><td   >477</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/1921.html'>Jan Hill</a></td><td   >1111</td><td   >L</td><td   >351</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/1850.html'>Martin Rose</a></td><td   >1420</td><td   >L</td><td   >315</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >13</td><td   ><a href='/aardvark/html/players/1924.html'>Khen Meerding</a></td><td   >1422</td><td   >L</td><td   >297</td><td   >495</td></tr>
+        <tr  class='roweven'  ><td   >14</td><td   ><a href='/aardvark/html/players/1679.html'>Alan Burn</a></td><td   >1299</td><td   >L</td><td   >313</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_4427'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4427'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>4</td><td>10</td><td>0</td><td>-1373</td><td>19</td><td>768</td><td>768</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_4427'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4427'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >4</td><td   >10</td><td   >0</td><td   >-1373</td><td   >19</td><td   >768</td><td   >768</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_4427'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1930.html'>Penny Wells</a></td><td>1130</td><td>L</td><td>228</td><td>416</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1925.html'>Leonie Balsley</a></td><td>1179</td><td>L</td><td>195</td><td>482</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1919.html'>Etty Meerding</a></td><td>855</td><td>L</td><td>317</td><td>335</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1922.html'>John Hayes</a></td><td>931</td><td>W</td><td>350</td><td>335</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td>943</td><td>L</td><td>274</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1830.html'>John Rider</a></td><td>1122</td><td>W</td><td>336</td><td>319</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1928.html'>Marion Merickel</a></td><td>1017</td><td>L</td><td>278</td><td>527</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1926.html'>Lynne Jarvis</a></td><td>1229</td><td>L</td><td>349</td><td>370</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1923.html'>Julie Bingham</a></td><td>516</td><td>W</td><td>396</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1931.html'>Ros Wilkinson</a></td><td>1146</td><td>W</td><td>401</td><td>400</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1872.html'>Arnold Appelhof</a></td><td>1262</td><td>L</td><td>352</td><td>379</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1929.html'>Pam Thomas</a></td><td>1233</td><td>L</td><td>306</td><td>360</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1924.html'>Khen Meerding</a></td><td>1437</td><td>L</td><td>214</td><td>460</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1921.html'>Jan Hill</a></td><td>1091</td><td>L</td><td>338</td><td>496</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1930.html'>Penny Wells</a></td><td   >1130</td><td   >L</td><td   >228</td><td   >416</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1925.html'>Leonie Balsley</a></td><td   >1179</td><td   >L</td><td   >195</td><td   >482</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1919.html'>Etty Meerding</a></td><td   >855</td><td   >L</td><td   >317</td><td   >335</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1922.html'>John Hayes</a></td><td   >931</td><td   >W</td><td   >350</td><td   >335</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td   >943</td><td   >L</td><td   >274</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1830.html'>John Rider</a></td><td   >1122</td><td   >W</td><td   >336</td><td   >319</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1928.html'>Marion Merickel</a></td><td   >1017</td><td   >L</td><td   >278</td><td   >527</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1926.html'>Lynne Jarvis</a></td><td   >1229</td><td   >L</td><td   >349</td><td   >370</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1923.html'>Julie Bingham</a></td><td   >516</td><td   >W</td><td   >396</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1931.html'>Ros Wilkinson</a></td><td   >1146</td><td   >W</td><td   >401</td><td   >400</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1872.html'>Arnold Appelhof</a></td><td   >1262</td><td   >L</td><td   >352</td><td   >379</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1929.html'>Pam Thomas</a></td><td   >1233</td><td   >L</td><td   >306</td><td   >360</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1924.html'>Khen Meerding</a></td><td   >1437</td><td   >L</td><td   >214</td><td   >460</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1921.html'>Jan Hill</a></td><td   >1091</td><td   >L</td><td   >338</td><td   >496</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1921'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1921'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1921.html'>Jan Hill</a></td><td>1163</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>344.50</td><td>452.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1921'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1921'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/1921.html'>Jan Hill</a></td><td   >1163</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >344.50</td><td   >452.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1921'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>14</td><td>L</td><td>768</td><td>1091</td><td>338</td><td>496</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>11</td><td>L</td><td>768</td><td>1111</td><td>351</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >14</td><td   >L</td><td   >768</td><td   >1091</td><td   >338</td><td   >496</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >11</td><td   >L</td><td   >768</td><td   >1111</td><td   >351</td><td   >408</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1923'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1923'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1923.html'>Julie Bingham</a></td><td>553</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0.75</td><td>380.00</td><td>365.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1923'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1923'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1923.html'>Julie Bingham</a></td><td   >553</td><td   >2</td><td   >1</td><td   >0</td><td   >1</td><td   >0.75</td><td   >380.00</td><td   >365.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1923'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>9</td><td>W</td><td>768</td><td>516</td><td>396</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>3</td><td>T</td><td>768</td><td>584</td><td>364</td><td>364</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >9</td><td   >W</td><td   >768</td><td   >516</td><td   >396</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >3</td><td   >T</td><td   >768</td><td   >584</td><td   >364</td><td   >364</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1926'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1926.html'>Lynne Jarvis</a></td><td>1124</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>290.00</td><td>397.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1926'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1926.html'>Lynne Jarvis</a></td><td   >1124</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >290.00</td><td   >397.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1926'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>8</td><td>L</td><td>768</td><td>1229</td><td>349</td><td>370</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>1</td><td>L</td><td>768</td><td>1193</td><td>231</td><td>425</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >8</td><td   >L</td><td   >768</td><td   >1229</td><td   >349</td><td   >370</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >1</td><td   >L</td><td   >768</td><td   >1193</td><td   >231</td><td   >425</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1924'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1924.html'>Khen Meerding</a></td><td>1313</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>255.50</td><td>477.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1924'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1924.html'>Khen Meerding</a></td><td   >1313</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >255.50</td><td   >477.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1924'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>13</td><td>L</td><td>768</td><td>1437</td><td>214</td><td>460</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>13</td><td>L</td><td>768</td><td>1422</td><td>297</td><td>495</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >13</td><td   >L</td><td   >768</td><td   >1437</td><td   >214</td><td   >460</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >13</td><td   >L</td><td   >768</td><td   >1422</td><td   >297</td><td   >495</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1929'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1929'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1929.html'>Pam Thomas</a></td><td>1021</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>301.00</td><td>402.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1929'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1929'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1929.html'>Pam Thomas</a></td><td   >1021</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >301.00</td><td   >402.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1929'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>12</td><td>L</td><td>768</td><td>1233</td><td>306</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>2</td><td>L</td><td>768</td><td>1233</td><td>296</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >12</td><td   >L</td><td   >768</td><td   >1233</td><td   >306</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >2</td><td   >L</td><td   >768</td><td   >1233</td><td   >296</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1922'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1922'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1922.html'>John Hayes</a></td><td>1129</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>335.00</td><td>435.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1922'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1922'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1922.html'>John Hayes</a></td><td   >1129</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >335.00</td><td   >435.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1922'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>4</td><td>W</td><td>768</td><td>931</td><td>350</td><td>335</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>8</td><td>L</td><td>768</td><td>947</td><td>320</td><td>535</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >4</td><td   >W</td><td   >768</td><td   >931</td><td   >350</td><td   >335</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >8</td><td   >L</td><td   >768</td><td   >947</td><td   >320</td><td   >535</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1928'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1928.html'>Marion Merickel</a></td><td>988</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>278.00</td><td>527.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1928'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1928.html'>Marion Merickel</a></td><td   >988</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >278.00</td><td   >527.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1928'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>7</td><td>L</td><td>768</td><td>1017</td><td>278</td><td>527</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >7</td><td   >L</td><td   >768</td><td   >1017</td><td   >278</td><td   >527</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1850'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1850'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1850.html'>Martin Rose</a></td><td>1274</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>430.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1850'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1850'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1850.html'>Martin Rose</a></td><td   >1274</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >430.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1850'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>12</td><td>L</td><td>768</td><td>1420</td><td>315</td><td>430</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >12</td><td   >L</td><td   >768</td><td   >1420</td><td   >315</td><td   >430</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1920'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1920.html'>Ivy Nicholls</a></td><td>976</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>312.00</td><td>398.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1920'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1920.html'>Ivy Nicholls</a></td><td   >976</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >312.00</td><td   >398.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1920'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>5</td><td>L</td><td>768</td><td>976</td><td>312</td><td>398</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >5</td><td   >L</td><td   >768</td><td   >976</td><td   >312</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1927'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td>1017</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>274.00</td><td>462.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1927'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td   >1017</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >274.00</td><td   >462.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1927'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>5</td><td>L</td><td>768</td><td>943</td><td>274</td><td>462</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >5</td><td   >L</td><td   >768</td><td   >943</td><td   >274</td><td   >462</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3994'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3994'>+</button></td><td>11</td><td><a href='/aardvark/html/players/3994.html'>Frances Adams</a></td><td>910</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>324.00</td><td>331.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3994'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3994'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/3994.html'>Frances Adams</a></td><td   >910</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >324.00</td><td   >331.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3994'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>4</td><td>L</td><td>768</td><td>1194</td><td>324</td><td>331</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >4</td><td   >L</td><td   >768</td><td   >1194</td><td   >324</td><td   >331</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1872'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1872'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1872.html'>Arnold Appelhof</a></td><td>1153</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>352.00</td><td>379.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1872'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1872'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/1872.html'>Arnold Appelhof</a></td><td   >1153</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >352.00</td><td   >379.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1872'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>11</td><td>L</td><td>768</td><td>1262</td><td>352</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >11</td><td   >L</td><td   >768</td><td   >1262</td><td   >352</td><td   >379</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1930'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1930'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1930.html'>Penny Wells</a></td><td>1130</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>228.00</td><td>416.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1930'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1930'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/1930.html'>Penny Wells</a></td><td   >1130</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >228.00</td><td   >416.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1930'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>1</td><td>L</td><td>768</td><td>1130</td><td>228</td><td>416</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >1</td><td   >L</td><td   >768</td><td   >1130</td><td   >228</td><td   >416</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1931'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1931'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1931.html'>Ros Wilkinson</a></td><td>1163</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>401.00</td><td>400.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1931'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1931'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1931.html'>Ros Wilkinson</a></td><td   >1163</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >401.00</td><td   >400.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1931'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>10</td><td>W</td><td>768</td><td>1146</td><td>401</td><td>400</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >10</td><td   >W</td><td   >768</td><td   >1146</td><td   >401</td><td   >400</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1925'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1925.html'>Leonie Balsley</a></td><td>1179</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>195.00</td><td>482.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1925'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1925.html'>Leonie Balsley</a></td><td   >1179</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >195.00</td><td   >482.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1925'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>2</td><td>L</td><td>768</td><td>1179</td><td>195</td><td>482</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >2</td><td   >L</td><td   >768</td><td   >1179</td><td   >195</td><td   >482</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1995'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1995.html'>Helen Metaxas</a></td><td>1299</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>261.00</td><td>477.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1995'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1995'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/1995.html'>Helen Metaxas</a></td><td   >1299</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >261.00</td><td   >477.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1995'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>9</td><td>L</td><td>768</td><td>1308</td><td>261</td><td>477</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >9</td><td   >L</td><td   >768</td><td   >1308</td><td   >261</td><td   >477</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1919'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1919.html'>Etty Meerding</a></td><td>757</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>317.00</td><td>335.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1919'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1919.html'>Etty Meerding</a></td><td   >757</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >317.00</td><td   >335.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1919'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>3</td><td>L</td><td>768</td><td>855</td><td>317</td><td>335</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >3</td><td   >L</td><td   >768</td><td   >855</td><td   >317</td><td   >335</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3993'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3993'>+</button></td><td>18</td><td><a href='/aardvark/html/players/3993.html'>Cindy Brunniche</a></td><td>865</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>248.00</td><td>452.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3993'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3993'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/3993.html'>Cindy Brunniche</a></td><td   >865</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >248.00</td><td   >452.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3993'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>6</td><td>L</td><td>768</td><td>1050</td><td>248</td><td>452</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >6</td><td   >L</td><td   >768</td><td   >1050</td><td   >248</td><td   >452</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1679'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1679'>+</button></td><td>19</td><td><a href='/aardvark/html/players/1679.html'>Alan Burn</a></td><td>1399</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>313.00</td><td>383.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1679'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1679'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/1679.html'>Alan Burn</a></td><td   >1399</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >313.00</td><td   >383.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1679'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>14</td><td>L</td><td>768</td><td>1299</td><td>313</td><td>383</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >14</td><td   >L</td><td   >768</td><td   >1299</td><td   >313</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1830'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1830'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1830.html'>John Rider</a></td><td>1221</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>336.00</td><td>319.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1830'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1830'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1830.html'>John Rider</a></td><td   >1221</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >336.00</td><td   >319.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1830'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td>2016-10-30</td><td>6</td><td>W</td><td>768</td><td>1122</td><td>336</td><td>319</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/108.html'>Tasmanian Championship</a></td><td   >2016-10-30</td><td   >6</td><td   >W</td><td   >768</td><td   >1122</td><td   >336</td><td   >319</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2731'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2731'>+</button></td><td>21</td><td><a href='/aardvark/html/players/2731.html'>Margaret Griggs</a></td><td>1212</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>262.00</td><td>356.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2731'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2731'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/2731.html'>Margaret Griggs</a></td><td   >1212</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >262.00</td><td   >356.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2731'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td>2017-10-29</td><td>7</td><td>L</td><td>768</td><td>1170</td><td>262</td><td>356</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/448.html'>Tasmanian Championship</a></td><td   >2017-10-29</td><td   >7</td><td   >L</td><td   >768</td><td   >1170</td><td   >262</td><td   >356</td></tr>
 </table></div></td></tr>
 
 </table>

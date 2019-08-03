@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,80 +156,237 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17983'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17983'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>5</td><td>2</td><td>0</td><td>571</td><td>2011</td><td>2005</td><td>-6</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17983'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17983'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >5</td><td   >2</td><td   >0</td><td   >571</td><td   >2011</td><td   >2005</td><td   >-6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17983'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>L</td><td>398</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>W</td><td>451</td><td>321</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>W</td><td>540</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>W</td><td>581</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>L</td><td>495</td><td>499</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>W</td><td>440</td><td>396</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>W</td><td>492</td><td>453</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >L</td><td   >398</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >W</td><td   >451</td><td   >321</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >W</td><td   >540</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >W</td><td   >581</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >L</td><td   >495</td><td   >499</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >W</td><td   >440</td><td   >396</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >W</td><td   >492</td><td   >453</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17985'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17985'>+</button></td><td>2</td><td>4</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>5</td><td>2</td><td>0</td><td>376</td><td>1604</td><td>1645</td><td>41</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17985'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17985'>+</button></td><td   >2</td><td   >4</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >5</td><td   >2</td><td   >0</td><td   >376</td><td   >1604</td><td   >1645</td><td   >41</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17985'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>W</td><td>600</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>W</td><td>420</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>W</td><td>519</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>L</td><td>368</td><td>481</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>W</td><td>499</td><td>495</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>W</td><td>507</td><td>313</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>L</td><td>453</td><td>492</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >W</td><td   >600</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >W</td><td   >420</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >W</td><td   >519</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >L</td><td   >368</td><td   >481</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >W</td><td   >499</td><td   >495</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >W</td><td   >507</td><td   >313</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >L</td><td   >453</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17987'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17987'>+</button></td><td>3</td><td>5</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>4</td><td>3</td><td>0</td><td>-177</td><td>1484</td><td>1514</td><td>30</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17987'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17987'>+</button></td><td   >3</td><td   >5</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >4</td><td   >3</td><td   >0</td><td   >-177</td><td   >1484</td><td   >1514</td><td   >30</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17987'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>L</td><td>428</td><td>600</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>W</td><td>421</td><td>403</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>L</td><td>357</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>L</td><td>356</td><td>581</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>W</td><td>455</td><td>317</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>W</td><td>530</td><td>370</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>W</td><td>361</td><td>356</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >L</td><td   >428</td><td   >600</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >W</td><td   >421</td><td   >403</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >L</td><td   >357</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >L</td><td   >356</td><td   >581</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >W</td><td   >455</td><td   >317</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >W</td><td   >530</td><td   >370</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >W</td><td   >361</td><td   >356</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17986'>+</button></td><td>4</td><td>2</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>3</td><td>4</td><td>0</td><td>-263</td><td>1812</td><td>1784</td><td>-28</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17986'>+</button></td><td   >4</td><td   >2</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >3</td><td   >4</td><td   >0</td><td   >-263</td><td   >1812</td><td   >1784</td><td   >-28</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17986'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>W</td><td>427</td><td>416</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>L</td><td>321</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>W</td><td>458</td><td>357</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>W</td><td>481</td><td>368</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>L</td><td>347</td><td>506</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>L</td><td>313</td><td>507</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>L</td><td>356</td><td>361</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >W</td><td   >427</td><td   >416</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >L</td><td   >321</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >W</td><td   >458</td><td   >357</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >W</td><td   >481</td><td   >368</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >L</td><td   >347</td><td   >506</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >L</td><td   >313</td><td   >507</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >L</td><td   >356</td><td   >361</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17984'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17984'>+</button></td><td>5</td><td>6</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>2</td><td>5</td><td>0</td><td>-124</td><td>1354</td><td>1361</td><td>7</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17984'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17984'>+</button></td><td   >5</td><td   >6</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >2</td><td   >5</td><td   >0</td><td   >-124</td><td   >1354</td><td   >1361</td><td   >7</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17984'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>W</td><td>404</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>L</td><td>403</td><td>421</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>L</td><td>394</td><td>519</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>L</td><td>388</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>W</td><td>506</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>L</td><td>396</td><td>440</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>1744</td><td>L</td><td>378</td><td>417</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >W</td><td   >404</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >L</td><td   >403</td><td   >421</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >L</td><td   >394</td><td   >519</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >L</td><td   >388</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >W</td><td   >506</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >L</td><td   >396</td><td   >440</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >L</td><td   >378</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17982'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17982'>+</button></td><td>6</td><td>3</td><td><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td>2</td><td>5</td><td>0</td><td>-383</td><td>1744</td><td>1590</td><td>-154</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17982'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17982'>+</button></td><td   >6</td><td   >3</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >2</td><td   >5</td><td   >0</td><td   >-383</td><td   >1744</td><td   >1590</td><td   >-154</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17982'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td>1812</td><td>L</td><td>416</td><td>427</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td>1604</td><td>L</td><td>387</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td>2011</td><td>L</td><td>397</td><td>540</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>W</td><td>451</td><td>388</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>L</td><td>317</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td>1484</td><td>L</td><td>370</td><td>530</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1354</td><td>W</td><td>417</td><td>378</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >L</td><td   >416</td><td   >427</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >L</td><td   >387</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >L</td><td   >397</td><td   >540</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >W</td><td   >451</td><td   >388</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >L</td><td   >317</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >L</td><td   >370</td><td   >530</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   >W</td><td   >417</td><td   >378</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >600</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >581</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >540</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >530</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >519</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >507</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >506</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >499</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >492</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >481</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >458</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >455</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >451</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >451</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >440</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >427</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >421</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >420</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >417</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >404</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >361</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >7</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >495</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >453</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >428</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >416</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >403</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >398</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >397</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >396</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >394</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >388</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >387</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >378</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >370</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >368</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >357</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >356</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >356</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >347</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >321</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >317</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >313</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >6</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >581</td><td   >356</td><td   >225</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >507</td><td   >313</td><td   >194</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >600</td><td   >428</td><td   >172</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >530</td><td   >370</td><td   >160</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >506</td><td   >347</td><td   >159</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >540</td><td   >397</td><td   >143</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >455</td><td   >317</td><td   >138</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >451</td><td   >321</td><td   >130</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >519</td><td   >394</td><td   >125</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >481</td><td   >368</td><td   >113</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >458</td><td   >357</td><td   >101</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >451</td><td   >388</td><td   >63</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >440</td><td   >396</td><td   >44</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >417</td><td   >378</td><td   >39</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >492</td><td   >453</td><td   >39</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >420</td><td   >387</td><td   >33</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >421</td><td   >403</td><td   >18</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >427</td><td   >416</td><td   >11</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >404</td><td   >398</td><td   >6</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >361</td><td   >356</td><td   >5</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >499</td><td   >495</td><td   >4</td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1028</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >994</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >945</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >937</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >937</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >913</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >900</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >853</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >849</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >843</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >839</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >836</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >824</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >820</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >815</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >807</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >802</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >795</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >772</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >772</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >717</td><td   >7</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >717</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >772</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >772</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >795</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >802</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >807</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >815</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >820</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >824</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >836</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >839</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >843</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >849</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >853</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >900</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >913</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >937</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >937</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >945</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >994</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1028</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >657</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >657</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >527</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >458</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >407</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >407</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >390</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >390</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >328</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >328</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >267</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >260</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >260</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >250</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >208</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >208</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >2011</td><td   >199</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   >140</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1354</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   >130</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >1484</td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >1604</td><td   >120</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >1744</td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >1812</td><td   >68</td><td   >1</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/3365.html'>Sam Rosin</a></td><td   >5.611</td><td   >5</td><td   >43</td><td   >43</td><td   >8</td><td   >8</td><td   >2011</td><td   >-6</td><td   >2005</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2086.html'>Joshua Castellano</a></td><td   >2.932</td><td   >5</td><td   >349</td><td   >303</td><td   >48</td><td   >47</td><td   >1604</td><td   >41</td><td   >1645</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2078.html'>Jennifer Lee</a></td><td   >2.488</td><td   >4</td><td   >483</td><td   >448</td><td   >61</td><td   >55</td><td   >1484</td><td   >30</td><td   >1514</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1288.html'>Tim Weiss</a></td><td   >4.554</td><td   >3</td><td   >157</td><td   >175</td><td   >31</td><td   >33</td><td   >1812</td><td   >-28</td><td   >1784</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1.667</td><td   >2</td><td   >618</td><td   >612</td><td   >72</td><td   >71</td><td   >1354</td><td   >7</td><td   >1361</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/1290.html'>Vince Castellano</a></td><td   >4.356</td><td   >2</td><td   >213</td><td   >364</td><td   >37</td><td   >50</td><td   >1744</td><td   >-154</td><td   >1590</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

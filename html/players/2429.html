@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Nanette Reynolds</h2>
             <div>
               <IMG SRC="../../flags/AUS.png" alt="AUS">
-              <p>AUS</p>
+              <p><a href='/aardvark/html/rankings/AUS.html'>Australia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 782<br>
               <b>Games Played:</b> 32<br>
               <b>Wins:</b> 16 (50.00%)<br>
               <b>Losses: </b>16 (50.00%)<br>
@@ -183,205 +184,205 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_11497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11497'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>3</td><td>5</td><td>0</td><td>-126</td><td>47</td><td>807</td><td>782</td><td>-25</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_11497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11497'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >3</td><td   >5</td><td   >0</td><td   >-126</td><td   >47</td><td   >807</td><td   >782</td><td   >-25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_11497'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td>1221</td><td>L</td><td>364</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2677.html'>Jenny Templeton</a></td><td>457</td><td>W</td><td>384</td><td>338</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td>1082</td><td>L</td><td>362</td><td>495</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2934.html'>Arie Holla</a></td><td>465</td><td>W</td><td>345</td><td>309</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2935.html'>David Hotstone</a></td><td>880</td><td>L</td><td>346</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1007</td><td>L</td><td>375</td><td>402</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2941.html'>Jason Tang</a></td><td>484</td><td>W</td><td>388</td><td>276</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1866.html'>Hanne Marks</a></td><td>1065</td><td>L</td><td>365</td><td>405</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td   >1221</td><td   >L</td><td   >364</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2677.html'>Jenny Templeton</a></td><td   >457</td><td   >W</td><td   >384</td><td   >338</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td   >1082</td><td   >L</td><td   >362</td><td   >495</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2934.html'>Arie Holla</a></td><td   >465</td><td   >W</td><td   >345</td><td   >309</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2935.html'>David Hotstone</a></td><td   >880</td><td   >L</td><td   >346</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td   >1007</td><td   >L</td><td   >375</td><td   >402</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2941.html'>Jason Tang</a></td><td   >484</td><td   >W</td><td   >388</td><td   >276</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1866.html'>Hanne Marks</a></td><td   >1065</td><td   >L</td><td   >365</td><td   >405</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_7198'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7198'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>13</td><td>11</td><td>0</td><td>83</td><td>25</td><td>807</td><td>807</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_7198'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7198'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >13</td><td   >11</td><td   >0</td><td   >83</td><td   >25</td><td   >807</td><td   >807</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_7198'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1862.html'>Cheryl Michler</a></td><td>1162</td><td>L</td><td>254</td><td>382</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2019.html'>Joan King</a></td><td>300</td><td>L</td><td>342</td><td>351</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td>639</td><td>L</td><td>293</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2422.html'>Ann Fiddler</a></td><td>643</td><td>W</td><td>409</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1895.html'>Benjamin Lee</a></td><td>716</td><td>L</td><td>303</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2425.html'>Brenda Sloane</a></td><td>588</td><td>W</td><td>334</td><td>302</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1833.html'>Marisa Nuccitelli</a></td><td>303</td><td>W</td><td>316</td><td>301</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1877.html'>Hailey Sutton</a></td><td>1027</td><td>L</td><td>283</td><td>396</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1878.html'>Jacky Booth</a></td><td>631</td><td>W</td><td>387</td><td>340</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2009.html'>Balada Catanchin</a></td><td>300</td><td>L</td><td>332</td><td>411</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td>953</td><td>L</td><td>331</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2424.html'>Beth Goodwin</a></td><td>300</td><td>W</td><td>371</td><td>250</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2019.html'>Joan King</a></td><td>300</td><td>W</td><td>409</td><td>284</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2423.html'>Barbara Joffe</a></td><td>780</td><td>L</td><td>324</td><td>477</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2009.html'>Balada Catanchin</a></td><td>300</td><td>W</td><td>355</td><td>331</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1880.html'>Margaret Neal</a></td><td>870</td><td>W</td><td>394</td><td>302</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/177.html'>Kay Anderson</a></td><td>1003</td><td>W</td><td>417</td><td>341</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td>1062</td><td>W</td><td>457</td><td>354</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2434.html'>Sandy McConnell</a></td><td>672</td><td>L</td><td>332</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2431.html'>Raya Wilkinson</a></td><td>779</td><td>W</td><td>393</td><td>313</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/1973.html'>Lyndee Hill</a></td><td>1018</td><td>W</td><td>530</td><td>301</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2428.html'>Marion Miller</a></td><td>1016</td><td>W</td><td>328</td><td>306</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/2426.html'>Christine Foot</a></td><td>1204</td><td>L</td><td>323</td><td>345</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/1964.html'>Francoise Finlayson</a></td><td>1125</td><td>L</td><td>352</td><td>398</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1862.html'>Cheryl Michler</a></td><td   >1162</td><td   >L</td><td   >254</td><td   >382</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2019.html'>Joan King</a></td><td   >300</td><td   >L</td><td   >342</td><td   >351</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td   >639</td><td   >L</td><td   >293</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2422.html'>Ann Fiddler</a></td><td   >643</td><td   >W</td><td   >409</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1895.html'>Benjamin Lee</a></td><td   >716</td><td   >L</td><td   >303</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2425.html'>Brenda Sloane</a></td><td   >588</td><td   >W</td><td   >334</td><td   >302</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1833.html'>Marisa Nuccitelli</a></td><td   >303</td><td   >W</td><td   >316</td><td   >301</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1877.html'>Hailey Sutton</a></td><td   >1027</td><td   >L</td><td   >283</td><td   >396</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1878.html'>Jacky Booth</a></td><td   >631</td><td   >W</td><td   >387</td><td   >340</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2009.html'>Balada Catanchin</a></td><td   >300</td><td   >L</td><td   >332</td><td   >411</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td   >953</td><td   >L</td><td   >331</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2424.html'>Beth Goodwin</a></td><td   >300</td><td   >W</td><td   >371</td><td   >250</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2019.html'>Joan King</a></td><td   >300</td><td   >W</td><td   >409</td><td   >284</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2423.html'>Barbara Joffe</a></td><td   >780</td><td   >L</td><td   >324</td><td   >477</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2009.html'>Balada Catanchin</a></td><td   >300</td><td   >W</td><td   >355</td><td   >331</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1880.html'>Margaret Neal</a></td><td   >870</td><td   >W</td><td   >394</td><td   >302</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/177.html'>Kay Anderson</a></td><td   >1003</td><td   >W</td><td   >417</td><td   >341</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td   >1062</td><td   >W</td><td   >457</td><td   >354</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2434.html'>Sandy McConnell</a></td><td   >672</td><td   >L</td><td   >332</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2431.html'>Raya Wilkinson</a></td><td   >779</td><td   >W</td><td   >393</td><td   >313</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1973.html'>Lyndee Hill</a></td><td   >1018</td><td   >W</td><td   >530</td><td   >301</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2428.html'>Marion Miller</a></td><td   >1016</td><td   >W</td><td   >328</td><td   >306</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2426.html'>Christine Foot</a></td><td   >1204</td><td   >L</td><td   >323</td><td   >345</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/1964.html'>Francoise Finlayson</a></td><td   >1125</td><td   >L</td><td   >352</td><td   >398</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2009'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2009'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2009.html'>Balada Catanchin</a></td><td>433</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>343.50</td><td>371.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2009'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2009'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2009.html'>Balada Catanchin</a></td><td   >433</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >343.50</td><td   >371.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2009'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>10</td><td>L</td><td>807</td><td>300</td><td>332</td><td>411</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>15</td><td>W</td><td>807</td><td>300</td><td>355</td><td>331</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >10</td><td   >L</td><td   >807</td><td   >300</td><td   >332</td><td   >411</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >15</td><td   >W</td><td   >807</td><td   >300</td><td   >355</td><td   >331</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2019'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2019'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2019.html'>Joan King</a></td><td>423</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>375.50</td><td>317.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2019'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2019'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2019.html'>Joan King</a></td><td   >423</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >375.50</td><td   >317.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2019'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>2</td><td>L</td><td>807</td><td>300</td><td>342</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>13</td><td>W</td><td>807</td><td>300</td><td>409</td><td>284</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >2</td><td   >L</td><td   >807</td><td   >300</td><td   >342</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >13</td><td   >W</td><td   >807</td><td   >300</td><td   >409</td><td   >284</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1870'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1870'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td>1070</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>409.50</td><td>424.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1870'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1870'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1870.html'>Yvonne Edwards</a></td><td   >1070</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >409.50</td><td   >424.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1870'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>18</td><td>W</td><td>807</td><td>1062</td><td>457</td><td>354</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>3</td><td>L</td><td>807</td><td>1082</td><td>362</td><td>495</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >18</td><td   >W</td><td   >807</td><td   >1062</td><td   >457</td><td   >354</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >3</td><td   >L</td><td   >807</td><td   >1082</td><td   >362</td><td   >495</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2428'>+</button></td><td>4</td><td><a href='/aardvark/html/players/2428.html'>Marion Miller</a></td><td>1099</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>328.00</td><td>306.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2428'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/2428.html'>Marion Miller</a></td><td   >1099</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >328.00</td><td   >306.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2428'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>22</td><td>W</td><td>807</td><td>1016</td><td>328</td><td>306</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >22</td><td   >W</td><td   >807</td><td   >1016</td><td   >328</td><td   >306</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2422'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2422.html'>Ann Fiddler</a></td><td>634</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>409.00</td><td>367.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2422'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2422.html'>Ann Fiddler</a></td><td   >634</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >409.00</td><td   >367.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2422'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>4</td><td>W</td><td>807</td><td>643</td><td>409</td><td>367</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >4</td><td   >W</td><td   >807</td><td   >643</td><td   >409</td><td   >367</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1964'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1964'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1964.html'>Francoise Finlayson</a></td><td>1108</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>352.00</td><td>398.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1964'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1964'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1964.html'>Francoise Finlayson</a></td><td   >1108</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >352.00</td><td   >398.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1964'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>24</td><td>L</td><td>807</td><td>1125</td><td>352</td><td>398</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >24</td><td   >L</td><td   >807</td><td   >1125</td><td   >352</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1927'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td>1017</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>293.00</td><td>348.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1927'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1927.html'>Margaret Bishop</a></td><td   >1017</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >293.00</td><td   >348.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1927'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>3</td><td>L</td><td>807</td><td>639</td><td>293</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >3</td><td   >L</td><td   >807</td><td   >639</td><td   >293</td><td   >348</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2425'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2425'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2425.html'>Brenda Sloane</a></td><td>437</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>334.00</td><td>302.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2425'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2425'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/2425.html'>Brenda Sloane</a></td><td   >437</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >334.00</td><td   >302.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2425'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>6</td><td>W</td><td>807</td><td>588</td><td>334</td><td>302</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >6</td><td   >W</td><td   >807</td><td   >588</td><td   >334</td><td   >302</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1973'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1973'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1973.html'>Lyndee Hill</a></td><td>789</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>530.00</td><td>301.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1973'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1973'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1973.html'>Lyndee Hill</a></td><td   >789</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >530.00</td><td   >301.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1973'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>21</td><td>W</td><td>807</td><td>1018</td><td>530</td><td>301</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >21</td><td   >W</td><td   >807</td><td   >1018</td><td   >530</td><td   >301</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1895'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1895'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1895.html'>Benjamin Lee</a></td><td>1033</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>303.00</td><td>397.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1895'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1895'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1895.html'>Benjamin Lee</a></td><td   >1033</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >303.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1895'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>5</td><td>L</td><td>807</td><td>716</td><td>303</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >5</td><td   >L</td><td   >807</td><td   >716</td><td   >303</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2424'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2424.html'>Beth Goodwin</a></td><td>352</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>371.00</td><td>250.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2424'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2424'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/2424.html'>Beth Goodwin</a></td><td   >352</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >371.00</td><td   >250.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2424'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>12</td><td>W</td><td>807</td><td>300</td><td>371</td><td>250</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >12</td><td   >W</td><td   >807</td><td   >300</td><td   >371</td><td   >250</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2423'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2423.html'>Barbara Joffe</a></td><td>780</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>324.00</td><td>477.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2423'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2423.html'>Barbara Joffe</a></td><td   >780</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >324.00</td><td   >477.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2423'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>14</td><td>L</td><td>807</td><td>780</td><td>324</td><td>477</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >14</td><td   >L</td><td   >807</td><td   >780</td><td   >324</td><td   >477</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_186'>+</button></td><td>13</td><td><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td>1175</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>364.00</td><td>418.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_186'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td   >1175</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >364.00</td><td   >418.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_186'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>1</td><td>L</td><td>807</td><td>1221</td><td>364</td><td>418</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >1</td><td   >L</td><td   >807</td><td   >1221</td><td   >364</td><td   >418</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1877'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1877'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1877.html'>Hailey Sutton</a></td><td>1005</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>283.00</td><td>396.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1877'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1877'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1877.html'>Hailey Sutton</a></td><td   >1005</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >283.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1877'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>8</td><td>L</td><td>807</td><td>1027</td><td>283</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >8</td><td   >L</td><td   >807</td><td   >1027</td><td   >283</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1020'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1020'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td>1039</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>375.00</td><td>402.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1020'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1020'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1020.html'>Mary Morgan</a></td><td   >1039</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >375.00</td><td   >402.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1020'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>6</td><td>L</td><td>807</td><td>1007</td><td>375</td><td>402</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >6</td><td   >L</td><td   >807</td><td   >1007</td><td   >375</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1880'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1880'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1880.html'>Margaret Neal</a></td><td>1136</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>394.00</td><td>302.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1880'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1880'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/1880.html'>Margaret Neal</a></td><td   >1136</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >394.00</td><td   >302.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1880'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>16</td><td>W</td><td>807</td><td>870</td><td>394</td><td>302</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >16</td><td   >W</td><td   >807</td><td   >870</td><td   >394</td><td   >302</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2934'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2934'>+</button></td><td>17</td><td><a href='/aardvark/html/players/2934.html'>Arie Holla</a></td><td>465</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>345.00</td><td>309.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2934'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2934'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/2934.html'>Arie Holla</a></td><td   >465</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >345.00</td><td   >309.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2934'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>4</td><td>W</td><td>807</td><td>465</td><td>345</td><td>309</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >4</td><td   >W</td><td   >807</td><td   >465</td><td   >345</td><td   >309</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2431'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2431'>+</button></td><td>18</td><td><a href='/aardvark/html/players/2431.html'>Raya Wilkinson</a></td><td>851</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>393.00</td><td>313.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2431'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2431'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/2431.html'>Raya Wilkinson</a></td><td   >851</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >393.00</td><td   >313.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2431'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>20</td><td>W</td><td>807</td><td>779</td><td>393</td><td>313</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >20</td><td   >W</td><td   >807</td><td   >779</td><td   >393</td><td   >313</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2677'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2677'>+</button></td><td>19</td><td><a href='/aardvark/html/players/2677.html'>Jenny Templeton</a></td><td>603</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>384.00</td><td>338.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2677'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2677'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/2677.html'>Jenny Templeton</a></td><td   >603</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >384.00</td><td   >338.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2677'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>2</td><td>W</td><td>807</td><td>457</td><td>384</td><td>338</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >2</td><td   >W</td><td   >807</td><td   >457</td><td   >384</td><td   >338</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1833'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1833.html'>Marisa Nuccitelli</a></td><td>499</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>316.00</td><td>301.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1833'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1833'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1833.html'>Marisa Nuccitelli</a></td><td   >499</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >316.00</td><td   >301.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1833'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>7</td><td>W</td><td>807</td><td>303</td><td>316</td><td>301</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >7</td><td   >W</td><td   >807</td><td   >303</td><td   >316</td><td   >301</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1866'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1866'>+</button></td><td>21</td><td><a href='/aardvark/html/players/1866.html'>Hanne Marks</a></td><td>1124</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>365.00</td><td>405.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1866'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1866'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/1866.html'>Hanne Marks</a></td><td   >1124</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >365.00</td><td   >405.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1866'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>8</td><td>L</td><td>807</td><td>1065</td><td>365</td><td>405</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >8</td><td   >L</td><td   >807</td><td   >1065</td><td   >365</td><td   >405</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2426'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2426'>+</button></td><td>22</td><td><a href='/aardvark/html/players/2426.html'>Christine Foot</a></td><td>1023</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>323.00</td><td>345.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2426'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2426'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/2426.html'>Christine Foot</a></td><td   >1023</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >323.00</td><td   >345.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2426'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>23</td><td>L</td><td>807</td><td>1204</td><td>323</td><td>345</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >23</td><td   >L</td><td   >807</td><td   >1204</td><td   >323</td><td   >345</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2941'>+</button></td><td>23</td><td><a href='/aardvark/html/players/2941.html'>Jason Tang</a></td><td>504</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>388.00</td><td>276.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2941'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/2941.html'>Jason Tang</a></td><td   >504</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >388.00</td><td   >276.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2941'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>7</td><td>W</td><td>807</td><td>484</td><td>388</td><td>276</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >7</td><td   >W</td><td   >807</td><td   >484</td><td   >388</td><td   >276</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2935'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2935'>+</button></td><td>24</td><td><a href='/aardvark/html/players/2935.html'>David Hotstone</a></td><td>952</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>346.00</td><td>412.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2935'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2935'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/2935.html'>David Hotstone</a></td><td   >952</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >346.00</td><td   >412.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2935'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td>2019-01-26</td><td>5</td><td>L</td><td>807</td><td>880</td><td>346</td><td>412</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/295.html'>Australia Day Open</a></td><td   >2019-01-26</td><td   >5</td><td   >L</td><td   >807</td><td   >880</td><td   >346</td><td   >412</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2434'>+</button></td><td>25</td><td><a href='/aardvark/html/players/2434.html'>Sandy McConnell</a></td><td>851</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>332.00</td><td>445.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2434'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/2434.html'>Sandy McConnell</a></td><td   >851</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >332.00</td><td   >445.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2434'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>19</td><td>L</td><td>807</td><td>672</td><td>332</td><td>445</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >19</td><td   >L</td><td   >807</td><td   >672</td><td   >332</td><td   >445</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1878'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1878'>+</button></td><td>26</td><td><a href='/aardvark/html/players/1878.html'>Jacky Booth</a></td><td>637</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>387.00</td><td>340.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1878'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1878'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/1878.html'>Jacky Booth</a></td><td   >637</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >387.00</td><td   >340.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1878'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>9</td><td>W</td><td>807</td><td>631</td><td>387</td><td>340</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >9</td><td   >W</td><td   >807</td><td   >631</td><td   >387</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_177'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_177'>+</button></td><td>27</td><td><a href='/aardvark/html/players/177.html'>Kay Anderson</a></td><td>865</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>417.00</td><td>341.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_177'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_177'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/177.html'>Kay Anderson</a></td><td   >865</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >417.00</td><td   >341.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_177'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>17</td><td>W</td><td>807</td><td>1003</td><td>417</td><td>341</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >17</td><td   >W</td><td   >807</td><td   >1003</td><td   >417</td><td   >341</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1953'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1953'>+</button></td><td>28</td><td><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td>974</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>331.00</td><td>444.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1953'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1953'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/1953.html'>Sue-Ellen Cooper</a></td><td   >974</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >331.00</td><td   >444.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1953'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>11</td><td>L</td><td>807</td><td>953</td><td>331</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >11</td><td   >L</td><td   >807</td><td   >953</td><td   >331</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1862'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1862'>+</button></td><td>29</td><td><a href='/aardvark/html/players/1862.html'>Cheryl Michler</a></td><td>1096</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>254.00</td><td>382.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1862'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1862'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/1862.html'>Cheryl Michler</a></td><td   >1096</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >254.00</td><td   >382.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1862'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td>2014-04-21</td><td>1</td><td>L</td><td>807</td><td>1162</td><td>254</td><td>382</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/171.html'>Australian Championship</a></td><td   >2014-04-21</td><td   >1</td><td   >L</td><td   >807</td><td   >1162</td><td   >254</td><td   >382</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings', 'button_division_1_stats_High Win', 'button_division_1_standings', 'button_division_2_stats_High Win', 'button_division_2_standings', 'button_division_3_stats_High Win', 'button_division_3_standings', 'button_division_4_stats_High Win', 'button_division_4_standings', 'button_division_5_stats_High Win', 'button_division_5_standings', 'button_division_6_stats_High Win', 'button_division_6_standings', 'button_division_7_stats_High Win', 'button_division_7_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,155 +156,497 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button><button id='button_division_1' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_1')">Division 2</button><button id='button_division_2' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_2')">Division 3</button><button id='button_division_3' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_3')">Division 4</button><button id='button_division_4' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_4')">Division 5</button><button id='button_division_5' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_5')">Division 6</button><button id='button_division_6' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_6')">Division 7</button><button id='button_division_7' style='width: 12.5%' class='tablinks' onclick="showContent(event, 'division_7')">Division 8</button></div><br>
+<button id='button_division_0' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button><button id='button_division_1' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_1', 'tournament_tab', 'tournament_tablink')">Division 2</button><button id='button_division_2' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_2', 'tournament_tab', 'tournament_tablink')">Division 3</button><button id='button_division_3' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_3', 'tournament_tab', 'tournament_tablink')">Division 4</button><button id='button_division_4' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_4', 'tournament_tab', 'tournament_tablink')">Division 5</button><button id='button_division_5' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_5', 'tournament_tab', 'tournament_tablink')">Division 6</button><button id='button_division_6' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_6', 'tournament_tab', 'tournament_tablink')">Division 7</button><button id='button_division_7' style='width: 12.5%' class='tournament_tablink' onclick="showContent(event, 'division_7', 'tournament_tab', 'tournament_tablink')">Division 8</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26914'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26914'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td>2</td><td>0</td><td>0</td><td>278</td><td>2278</td><td>2283</td><td>5</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26914'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26914'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >2</td><td   >0</td><td   >0</td><td   >278</td><td   >2278</td><td   >2283</td><td   >5</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26914'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>1972</td><td>W</td><td>451</td><td>331</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>1972</td><td>W</td><td>572</td><td>414</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1972</td><td   >W</td><td   >451</td><td   >331</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1972</td><td   >W</td><td   >572</td><td   >414</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26917'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26917'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>0</td><td>2</td><td>0</td><td>-278</td><td>1972</td><td>1964</td><td>-8</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26917'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26917'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >0</td><td   >2</td><td   >0</td><td   >-278</td><td   >1972</td><td   >1964</td><td   >-8</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26917'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td>2278</td><td>L</td><td>331</td><td>451</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td>2278</td><td>L</td><td>414</td><td>572</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >2278</td><td   >L</td><td   >331</td><td   >451</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >2278</td><td   >L</td><td   >414</td><td   >572</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_1' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26920'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2</td><td>1</td><td>0</td><td>-112</td><td>2025</td><td>2029</td><td>4</td></tr>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >572</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >451</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >414</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >331</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >572</td><td   >414</td><td   >158</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >451</td><td   >331</td><td   >120</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >986</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >782</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >782</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >986</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1972</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >2278</td><td   >306</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1972</td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >2278</td><td   >306</td><td   >1</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/NZL.html'>New Zealand</a></td><td   ><a href='/aardvark/html/players/93.html'>Nigel Richards</a></td><td   >1.47</td><td   >2</td><td   >2</td><td   >2</td><td   >1</td><td   >1</td><td   >2278</td><td   >5</td><td   >2283</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/SCO.html'>Scotland</a></td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >0.523</td><td   >0</td><td   >44</td><td   >48</td><td   >1</td><td   >1</td><td   >1972</td><td   >-8</td><td   >1964</td></tr>
+
+</table>
+  </div></div>
+<div id='division_1' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_1_standings' style='width: 33.3333333333333%' class='division_tablink_division_1' onclick="showContent(event, 'division_1_standings', 'division_tab_division_1', 'division_tablink_division_1')">Standings</button><button id='button_division_1_stats' style='width: 33.3333333333333%' class='division_tablink_division_1' onclick="showContent(event, 'division_1_stats', 'division_tab_division_1', 'division_tablink_division_1')">Statistics</button><button id='button_division_1_ratings' style='width: 33.3333333333333%' class='division_tablink_division_1' onclick="showContent(event, 'division_1_ratings', 'division_tab_division_1', 'division_tablink_division_1')">Ratings</button></div><br><div id='division_1_standings' class='division_tab_division_1' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26920'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2</td><td   >1</td><td   >0</td><td   >-112</td><td   >2025</td><td   >2029</td><td   >4</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26920'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1967</td><td>W</td><td>444</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1967</td><td>L</td><td>306</td><td>535</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1967</td><td>W</td><td>443</td><td>380</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1967</td><td   >W</td><td   >444</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1967</td><td   >L</td><td   >306</td><td   >535</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1967</td><td   >W</td><td   >443</td><td   >380</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26913'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26913'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1</td><td>2</td><td>0</td><td>112</td><td>1967</td><td>1961</td><td>-6</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26913'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26913'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1</td><td   >2</td><td   >0</td><td   >112</td><td   >1967</td><td   >1961</td><td   >-6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26913'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2025</td><td>L</td><td>390</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2025</td><td>W</td><td>535</td><td>306</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td>2025</td><td>L</td><td>380</td><td>443</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2025</td><td   >L</td><td   >390</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2025</td><td   >W</td><td   >535</td><td   >306</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2025</td><td   >L</td><td   >380</td><td   >443</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_2' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26918'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26918'>+</button></td><td>1</td><td>2</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>2</td><td>1</td><td>0</td><td>-41</td><td>2062</td><td>2069</td><td>7</td></tr>
+     </div><div id='division_1_stats'     class='division_tab_division_1' style='display:none;'><br><div class='tab'>
+<button id='button_division_1_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_1' onclick="showContent(event, 'division_1_stats_High Win', 'stats_tab_division_1', 'stats_tablink_division_1')">High Win</button><button id='button_division_1_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_1' onclick="showContent(event, 'division_1_stats_High Loss', 'stats_tab_division_1', 'stats_tablink_division_1')">High Loss</button><button id='button_division_1_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_1' onclick="showContent(event, 'division_1_stats_High Spread', 'stats_tab_division_1', 'stats_tablink_division_1')">High Spread</button><button id='button_division_1_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_1' onclick="showContent(event, 'division_1_stats_High Combined', 'stats_tab_division_1', 'stats_tablink_division_1')">High Combined</button><button id='button_division_1_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_1' onclick="showContent(event, 'division_1_stats_Low Combined', 'stats_tab_division_1', 'stats_tablink_division_1')">Low Combined</button><button id='button_division_1_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_1' onclick="showContent(event, 'division_1_stats_Upsets', 'stats_tab_division_1', 'stats_tablink_division_1')">Upsets</button></div><br><div id='division_1_stats_High Win' class='stats_tab_division_1' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >535</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >444</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >443</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_1_stats_High Loss' class='stats_tab_division_1' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >390</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >380</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >306</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >2</td></tr>
+        </table></div>
+<div id='division_1_stats_High Spread' class='stats_tab_division_1' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >535</td><td   >306</td><td   >229</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >443</td><td   >380</td><td   >63</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >444</td><td   >390</td><td   >54</td><td   >1</td></tr>
+        </table></div>
+<div id='division_1_stats_High Combined' class='stats_tab_division_1' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >841</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >834</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >823</td><td   >3</td></tr>
+        </table></div>
+<div id='division_1_stats_Low Combined' class='stats_tab_division_1' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >823</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >834</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >841</td><td   >2</td></tr>
+        </table></div>
+<div id='division_1_stats_Upsets' class='stats_tab_division_1' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1967</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2025</td><td   >58</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1967</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2025</td><td   >58</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1967</td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >2025</td><td   >58</td><td   >3</td></tr>
+        </table></div>
+</div><div id='division_1_ratings'   class='division_tab_division_1' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1080.html'>Jesse Day</a></td><td   >1.645</td><td   >2</td><td   >26</td><td   >26</td><td   >5</td><td   >5</td><td   >2025</td><td   >4</td><td   >2029</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1.347</td><td   >1</td><td   >47</td><td   >52</td><td   >10</td><td   >11</td><td   >1967</td><td   >-6</td><td   >1961</td></tr>
+
+</table>
+  </div></div>
+<div id='division_2' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_2_standings' style='width: 33.3333333333333%' class='division_tablink_division_2' onclick="showContent(event, 'division_2_standings', 'division_tab_division_2', 'division_tablink_division_2')">Standings</button><button id='button_division_2_stats' style='width: 33.3333333333333%' class='division_tablink_division_2' onclick="showContent(event, 'division_2_stats', 'division_tab_division_2', 'division_tablink_division_2')">Statistics</button><button id='button_division_2_ratings' style='width: 33.3333333333333%' class='division_tablink_division_2' onclick="showContent(event, 'division_2_ratings', 'division_tab_division_2', 'division_tablink_division_2')">Ratings</button></div><br><div id='division_2_standings' class='division_tab_division_2' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26918'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26918'>+</button></td><td   >1</td><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2</td><td   >1</td><td   >0</td><td   >-41</td><td   >2062</td><td   >2069</td><td   >7</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26918'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td>2132</td><td>W</td><td>417</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td>2132</td><td>L</td><td>456</td><td>534</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td>2132</td><td>W</td><td>452</td><td>441</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2132</td><td   >W</td><td   >417</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2132</td><td   >L</td><td   >456</td><td   >534</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2132</td><td   >W</td><td   >452</td><td   >441</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26922'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26922'>+</button></td><td>2</td><td>1</td><td><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td>1</td><td>2</td><td>0</td><td>41</td><td>2132</td><td>2125</td><td>-7</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26922'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26922'>+</button></td><td   >2</td><td   >1</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >1</td><td   >2</td><td   >0</td><td   >41</td><td   >2132</td><td   >2125</td><td   >-7</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26922'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>2062</td><td>L</td><td>391</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>2062</td><td>W</td><td>534</td><td>456</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td>2062</td><td>L</td><td>441</td><td>452</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2062</td><td   >L</td><td   >391</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2062</td><td   >W</td><td   >534</td><td   >456</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2062</td><td   >L</td><td   >441</td><td   >452</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_3' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26919'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td>2</td><td>1</td><td>0</td><td>325</td><td>2149</td><td>2152</td><td>3</td></tr>
+     </div><div id='division_2_stats'     class='division_tab_division_2' style='display:none;'><br><div class='tab'>
+<button id='button_division_2_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_2' onclick="showContent(event, 'division_2_stats_High Win', 'stats_tab_division_2', 'stats_tablink_division_2')">High Win</button><button id='button_division_2_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_2' onclick="showContent(event, 'division_2_stats_High Loss', 'stats_tab_division_2', 'stats_tablink_division_2')">High Loss</button><button id='button_division_2_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_2' onclick="showContent(event, 'division_2_stats_High Spread', 'stats_tab_division_2', 'stats_tablink_division_2')">High Spread</button><button id='button_division_2_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_2' onclick="showContent(event, 'division_2_stats_High Combined', 'stats_tab_division_2', 'stats_tablink_division_2')">High Combined</button><button id='button_division_2_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_2' onclick="showContent(event, 'division_2_stats_Low Combined', 'stats_tab_division_2', 'stats_tablink_division_2')">Low Combined</button><button id='button_division_2_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_2' onclick="showContent(event, 'division_2_stats_Upsets', 'stats_tab_division_2', 'stats_tablink_division_2')">Upsets</button></div><br><div id='division_2_stats_High Win' class='stats_tab_division_2' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >534</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >452</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >417</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_2_stats_High Loss' class='stats_tab_division_2' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >456</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >441</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >391</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_2_stats_High Spread' class='stats_tab_division_2' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >534</td><td   >456</td><td   >78</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >417</td><td   >391</td><td   >26</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >452</td><td   >441</td><td   >11</td><td   >3</td></tr>
+        </table></div>
+<div id='division_2_stats_High Combined' class='stats_tab_division_2' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >990</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >893</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >808</td><td   >1</td></tr>
+        </table></div>
+<div id='division_2_stats_Low Combined' class='stats_tab_division_2' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >808</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >893</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >990</td><td   >2</td></tr>
+        </table></div>
+<div id='division_2_stats_Upsets' class='stats_tab_division_2' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2062</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2132</td><td   >70</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2062</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2132</td><td   >70</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >2062</td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >2132</td><td   >70</td><td   >2</td></tr>
+        </table></div>
+</div><div id='division_2_ratings'   class='division_tab_division_2' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/IRL.html'>Ireland</a></td><td   ><a href='/aardvark/html/players/1531.html'>Kevin McMahon</a></td><td   >1.326</td><td   >2</td><td   >21</td><td   >18</td><td   >1</td><td   >1</td><td   >2062</td><td   >7</td><td   >2069</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/NGA.html'>Nigeria</a></td><td   ><a href='/aardvark/html/players/596.html'>Wellington Jighere</a></td><td   >1.658</td><td   >1</td><td   >7</td><td   >8</td><td   >1</td><td   >1</td><td   >2132</td><td   >-7</td><td   >2125</td></tr>
+
+</table>
+  </div></div>
+<div id='division_3' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_3_standings' style='width: 33.3333333333333%' class='division_tablink_division_3' onclick="showContent(event, 'division_3_standings', 'division_tab_division_3', 'division_tablink_division_3')">Standings</button><button id='button_division_3_stats' style='width: 33.3333333333333%' class='division_tablink_division_3' onclick="showContent(event, 'division_3_stats', 'division_tab_division_3', 'division_tablink_division_3')">Statistics</button><button id='button_division_3_ratings' style='width: 33.3333333333333%' class='division_tablink_division_3' onclick="showContent(event, 'division_3_ratings', 'division_tab_division_3', 'division_tablink_division_3')">Ratings</button></div><br><div id='division_3_standings' class='division_tab_division_3' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26919'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26919'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2</td><td   >1</td><td   >0</td><td   >325</td><td   >2149</td><td   >2152</td><td   >3</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26919'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td>2076</td><td>W</td><td>480</td><td>293</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td>2076</td><td>L</td><td>419</td><td>437</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td>2076</td><td>W</td><td>491</td><td>335</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2076</td><td   >W</td><td   >480</td><td   >293</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2076</td><td   >L</td><td   >419</td><td   >437</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2076</td><td   >W</td><td   >491</td><td   >335</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26925'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td>1</td><td>2</td><td>0</td><td>-325</td><td>2076</td><td>2073</td><td>-3</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26925'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26925'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >1</td><td   >2</td><td   >0</td><td   >-325</td><td   >2076</td><td   >2073</td><td   >-3</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26925'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td>2149</td><td>L</td><td>293</td><td>480</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td>2149</td><td>W</td><td>437</td><td>419</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td>2149</td><td>L</td><td>335</td><td>491</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2149</td><td   >L</td><td   >293</td><td   >480</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2149</td><td   >W</td><td   >437</td><td   >419</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2149</td><td   >L</td><td   >335</td><td   >491</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_4' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26928'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td>2</td><td>1</td><td>0</td><td>397</td><td>1652</td><td>1652</td><td>0</td></tr>
+     </div><div id='division_3_stats'     class='division_tab_division_3' style='display:none;'><br><div class='tab'>
+<button id='button_division_3_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_3' onclick="showContent(event, 'division_3_stats_High Win', 'stats_tab_division_3', 'stats_tablink_division_3')">High Win</button><button id='button_division_3_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_3' onclick="showContent(event, 'division_3_stats_High Loss', 'stats_tab_division_3', 'stats_tablink_division_3')">High Loss</button><button id='button_division_3_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_3' onclick="showContent(event, 'division_3_stats_High Spread', 'stats_tab_division_3', 'stats_tablink_division_3')">High Spread</button><button id='button_division_3_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_3' onclick="showContent(event, 'division_3_stats_High Combined', 'stats_tab_division_3', 'stats_tablink_division_3')">High Combined</button><button id='button_division_3_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_3' onclick="showContent(event, 'division_3_stats_Low Combined', 'stats_tab_division_3', 'stats_tablink_division_3')">Low Combined</button><button id='button_division_3_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_3' onclick="showContent(event, 'division_3_stats_Upsets', 'stats_tab_division_3', 'stats_tablink_division_3')">Upsets</button></div><br><div id='division_3_stats_High Win' class='stats_tab_division_3' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >491</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >480</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >437</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2</td></tr>
+        </table></div>
+<div id='division_3_stats_High Loss' class='stats_tab_division_3' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >419</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >335</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >293</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_3_stats_High Spread' class='stats_tab_division_3' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >480</td><td   >293</td><td   >187</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >491</td><td   >335</td><td   >156</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >437</td><td   >419</td><td   >18</td><td   >2</td></tr>
+        </table></div>
+<div id='division_3_stats_High Combined' class='stats_tab_division_3' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >856</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >826</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >773</td><td   >1</td></tr>
+        </table></div>
+<div id='division_3_stats_Low Combined' class='stats_tab_division_3' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >773</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >826</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >856</td><td   >2</td></tr>
+        </table></div>
+<div id='division_3_stats_Upsets' class='stats_tab_division_3' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2076</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2149</td><td   >73</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2076</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2149</td><td   >73</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >2076</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2149</td><td   >73</td><td   >2</td></tr>
+        </table></div>
+</div><div id='division_3_ratings'   class='division_tab_division_3' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/ENG.html'>England</a></td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >1.682</td><td   >2</td><td   >4</td><td   >3</td><td   >1</td><td   >1</td><td   >2149</td><td   >3</td><td   >2152</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/NIR.html'>Northern Ireland</a></td><td   ><a href='/aardvark/html/players/271.html'>Paul Gallen</a></td><td   >1.311</td><td   >1</td><td   >17</td><td   >17</td><td   >1</td><td   >1</td><td   >2076</td><td   >-3</td><td   >2073</td></tr>
+
+</table>
+  </div></div>
+<div id='division_4' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_4_standings' style='width: 33.3333333333333%' class='division_tablink_division_4' onclick="showContent(event, 'division_4_standings', 'division_tab_division_4', 'division_tablink_division_4')">Standings</button><button id='button_division_4_stats' style='width: 33.3333333333333%' class='division_tablink_division_4' onclick="showContent(event, 'division_4_stats', 'division_tab_division_4', 'division_tablink_division_4')">Statistics</button><button id='button_division_4_ratings' style='width: 33.3333333333333%' class='division_tablink_division_4' onclick="showContent(event, 'division_4_ratings', 'division_tab_division_4', 'division_tablink_division_4')">Ratings</button></div><br><div id='division_4_standings' class='division_tab_division_4' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26928'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >2</td><td   >1</td><td   >0</td><td   >397</td><td   >1652</td><td   >1652</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26928'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td>1440</td><td>L</td><td>449</td><td>508</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td>1440</td><td>W</td><td>527</td><td>301</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td>1440</td><td>W</td><td>519</td><td>289</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   >L</td><td   >449</td><td   >508</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   >W</td><td   >527</td><td   >301</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   >W</td><td   >519</td><td   >289</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26921'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26921'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td>1</td><td>2</td><td>0</td><td>-397</td><td>1440</td><td>1440</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26921'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26921'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1</td><td   >2</td><td   >0</td><td   >-397</td><td   >1440</td><td   >1440</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26921'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td>1652</td><td>W</td><td>508</td><td>449</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td>1652</td><td>L</td><td>301</td><td>527</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td>1652</td><td>L</td><td>289</td><td>519</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1652</td><td   >W</td><td   >508</td><td   >449</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1652</td><td   >L</td><td   >301</td><td   >527</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1652</td><td   >L</td><td   >289</td><td   >519</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_5' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26915'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26915'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td>2</td><td>1</td><td>0</td><td>203</td><td>1615</td><td>1612</td><td>-3</td></tr>
+     </div><div id='division_4_stats'     class='division_tab_division_4' style='display:none;'><br><div class='tab'>
+<button id='button_division_4_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_4' onclick="showContent(event, 'division_4_stats_High Win', 'stats_tab_division_4', 'stats_tablink_division_4')">High Win</button><button id='button_division_4_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_4' onclick="showContent(event, 'division_4_stats_High Loss', 'stats_tab_division_4', 'stats_tablink_division_4')">High Loss</button><button id='button_division_4_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_4' onclick="showContent(event, 'division_4_stats_High Spread', 'stats_tab_division_4', 'stats_tablink_division_4')">High Spread</button><button id='button_division_4_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_4' onclick="showContent(event, 'division_4_stats_High Combined', 'stats_tab_division_4', 'stats_tablink_division_4')">High Combined</button><button id='button_division_4_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_4' onclick="showContent(event, 'division_4_stats_Low Combined', 'stats_tab_division_4', 'stats_tablink_division_4')">Low Combined</button><button id='button_division_4_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_4' onclick="showContent(event, 'division_4_stats_Upsets', 'stats_tab_division_4', 'stats_tablink_division_4')">Upsets</button></div><br><div id='division_4_stats_High Win' class='stats_tab_division_4' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >527</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >519</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >508</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_4_stats_High Loss' class='stats_tab_division_4' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >449</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >301</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >289</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_4_stats_High Spread' class='stats_tab_division_4' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >519</td><td   >289</td><td   >230</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >527</td><td   >301</td><td   >226</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >508</td><td   >449</td><td   >59</td><td   >1</td></tr>
+        </table></div>
+<div id='division_4_stats_High Combined' class='stats_tab_division_4' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >957</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >828</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >808</td><td   >3</td></tr>
+        </table></div>
+<div id='division_4_stats_Low Combined' class='stats_tab_division_4' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >808</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >828</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >957</td><td   >1</td></tr>
+        </table></div>
+<div id='division_4_stats_Upsets' class='stats_tab_division_4' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1652</td><td   >212</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1652</td><td   >212</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >1440</td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >1652</td><td   >212</td><td   >2</td></tr>
+        </table></div>
+</div><div id='division_4_ratings'   class='division_tab_division_4' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/1031.html'>Hammad Hadi Khan</a></td><td   >2.009</td><td   >2</td><td   >327</td><td   >327</td><td   >3</td><td   >3</td><td   >1652</td><td   >0</td><td   >1652</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/ENG.html'>England</a></td><td   ><a href='/aardvark/html/players/2111.html'>Timothy Lawrence</a></td><td   >0.991</td><td   >1</td><td   >579</td><td   >579</td><td   >69</td><td   >69</td><td   >1440</td><td   >0</td><td   >1440</td></tr>
+
+</table>
+  </div></div>
+<div id='division_5' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_5_standings' style='width: 33.3333333333333%' class='division_tablink_division_5' onclick="showContent(event, 'division_5_standings', 'division_tab_division_5', 'division_tablink_division_5')">Standings</button><button id='button_division_5_stats' style='width: 33.3333333333333%' class='division_tablink_division_5' onclick="showContent(event, 'division_5_stats', 'division_tab_division_5', 'division_tablink_division_5')">Statistics</button><button id='button_division_5_ratings' style='width: 33.3333333333333%' class='division_tablink_division_5' onclick="showContent(event, 'division_5_ratings', 'division_tab_division_5', 'division_tablink_division_5')">Ratings</button></div><br><div id='division_5_standings' class='division_tab_division_5' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26915'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26915'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >2</td><td   >1</td><td   >0</td><td   >203</td><td   >1615</td><td   >1612</td><td   >-3</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26915'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td>1334</td><td>W</td><td>425</td><td>338</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td>1334</td><td>L</td><td>333</td><td>363</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td>1334</td><td>W</td><td>495</td><td>349</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1334</td><td   >W</td><td   >425</td><td   >338</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1334</td><td   >L</td><td   >333</td><td   >363</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1334</td><td   >W</td><td   >495</td><td   >349</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26926'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td>1</td><td>2</td><td>0</td><td>-203</td><td>1334</td><td>1337</td><td>3</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26926'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1</td><td   >2</td><td   >0</td><td   >-203</td><td   >1334</td><td   >1337</td><td   >3</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26926'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td>1615</td><td>L</td><td>338</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td>1615</td><td>W</td><td>363</td><td>333</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td>1615</td><td>L</td><td>349</td><td>495</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1615</td><td   >L</td><td   >338</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1615</td><td   >W</td><td   >363</td><td   >333</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1615</td><td   >L</td><td   >349</td><td   >495</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_6' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26927'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td>2</td><td>0</td><td>0</td><td>34</td><td>1540</td><td>1558</td><td>18</td></tr>
+     </div><div id='division_5_stats'     class='division_tab_division_5' style='display:none;'><br><div class='tab'>
+<button id='button_division_5_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_5' onclick="showContent(event, 'division_5_stats_High Win', 'stats_tab_division_5', 'stats_tablink_division_5')">High Win</button><button id='button_division_5_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_5' onclick="showContent(event, 'division_5_stats_High Loss', 'stats_tab_division_5', 'stats_tablink_division_5')">High Loss</button><button id='button_division_5_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_5' onclick="showContent(event, 'division_5_stats_High Spread', 'stats_tab_division_5', 'stats_tablink_division_5')">High Spread</button><button id='button_division_5_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_5' onclick="showContent(event, 'division_5_stats_High Combined', 'stats_tab_division_5', 'stats_tablink_division_5')">High Combined</button><button id='button_division_5_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_5' onclick="showContent(event, 'division_5_stats_Low Combined', 'stats_tab_division_5', 'stats_tablink_division_5')">Low Combined</button><button id='button_division_5_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_5' onclick="showContent(event, 'division_5_stats_Upsets', 'stats_tab_division_5', 'stats_tablink_division_5')">Upsets</button></div><br><div id='division_5_stats_High Win' class='stats_tab_division_5' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >495</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >425</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >363</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >2</td></tr>
+        </table></div>
+<div id='division_5_stats_High Loss' class='stats_tab_division_5' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >349</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >338</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >333</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >2</td></tr>
+        </table></div>
+<div id='division_5_stats_High Spread' class='stats_tab_division_5' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >495</td><td   >349</td><td   >146</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >425</td><td   >338</td><td   >87</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >363</td><td   >333</td><td   >30</td><td   >2</td></tr>
+        </table></div>
+<div id='division_5_stats_High Combined' class='stats_tab_division_5' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >844</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >763</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >696</td><td   >2</td></tr>
+        </table></div>
+<div id='division_5_stats_Low Combined' class='stats_tab_division_5' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >696</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >763</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >844</td><td   >3</td></tr>
+        </table></div>
+<div id='division_5_stats_Upsets' class='stats_tab_division_5' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1334</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1615</td><td   >281</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1334</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1615</td><td   >281</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1334</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1615</td><td   >281</td><td   >1</td></tr>
+        </table></div>
+</div><div id='division_5_ratings'   class='division_tab_division_5' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >2.155</td><td   >2</td><td   >368</td><td   >370</td><td   >4</td><td   >4</td><td   >1615</td><td   >-3</td><td   >1612</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >0.851</td><td   >1</td><td   >723</td><td   >720</td><td   >16</td><td   >16</td><td   >1334</td><td   >3</td><td   >1337</td></tr>
+
+</table>
+  </div></div>
+<div id='division_6' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_6_standings' style='width: 33.3333333333333%' class='division_tablink_division_6' onclick="showContent(event, 'division_6_standings', 'division_tab_division_6', 'division_tablink_division_6')">Standings</button><button id='button_division_6_stats' style='width: 33.3333333333333%' class='division_tablink_division_6' onclick="showContent(event, 'division_6_stats', 'division_tab_division_6', 'division_tablink_division_6')">Statistics</button><button id='button_division_6_ratings' style='width: 33.3333333333333%' class='division_tablink_division_6' onclick="showContent(event, 'division_6_ratings', 'division_tab_division_6', 'division_tablink_division_6')">Ratings</button></div><br><div id='division_6_standings' class='division_tab_division_6' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26927'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26927'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >2</td><td   >0</td><td   >0</td><td   >34</td><td   >1540</td><td   >1558</td><td   >18</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26927'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td>1467</td><td>W</td><td>397</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td>1467</td><td>W</td><td>442</td><td>414</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >1467</td><td   >W</td><td   >397</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >1467</td><td   >W</td><td   >442</td><td   >414</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26924'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td>0</td><td>2</td><td>0</td><td>-34</td><td>1467</td><td>1450</td><td>-17</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26924'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26924'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >0</td><td   >2</td><td   >0</td><td   >-34</td><td   >1467</td><td   >1450</td><td   >-17</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26924'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td>1540</td><td>L</td><td>391</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td>1540</td><td>L</td><td>414</td><td>442</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >1540</td><td   >L</td><td   >391</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >1540</td><td   >L</td><td   >414</td><td   >442</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
-<div id='division_7' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_26916'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26916'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td>2</td><td>0</td><td>0</td><td>89</td><td>1496</td><td>1515</td><td>19</td></tr>
+     </div><div id='division_6_stats'     class='division_tab_division_6' style='display:none;'><br><div class='tab'>
+<button id='button_division_6_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_6' onclick="showContent(event, 'division_6_stats_High Win', 'stats_tab_division_6', 'stats_tablink_division_6')">High Win</button><button id='button_division_6_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_6' onclick="showContent(event, 'division_6_stats_High Loss', 'stats_tab_division_6', 'stats_tablink_division_6')">High Loss</button><button id='button_division_6_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_6' onclick="showContent(event, 'division_6_stats_High Spread', 'stats_tab_division_6', 'stats_tablink_division_6')">High Spread</button><button id='button_division_6_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_6' onclick="showContent(event, 'division_6_stats_High Combined', 'stats_tab_division_6', 'stats_tablink_division_6')">High Combined</button><button id='button_division_6_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_6' onclick="showContent(event, 'division_6_stats_Low Combined', 'stats_tab_division_6', 'stats_tablink_division_6')">Low Combined</button><button id='button_division_6_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_6' onclick="showContent(event, 'division_6_stats_Upsets', 'stats_tab_division_6', 'stats_tablink_division_6')">Upsets</button></div><br><div id='division_6_stats_High Win' class='stats_tab_division_6' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >442</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >397</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_6_stats_High Loss' class='stats_tab_division_6' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >414</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >391</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_6_stats_High Spread' class='stats_tab_division_6' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >442</td><td   >414</td><td   >28</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >397</td><td   >391</td><td   >6</td><td   >1</td></tr>
+        </table></div>
+<div id='division_6_stats_High Combined' class='stats_tab_division_6' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >856</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >788</td><td   >1</td></tr>
+        </table></div>
+<div id='division_6_stats_Low Combined' class='stats_tab_division_6' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >788</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >856</td><td   >2</td></tr>
+        </table></div>
+<div id='division_6_stats_Upsets' class='stats_tab_division_6' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >1467</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >1540</td><td   >73</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >1467</td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >1540</td><td   >73</td><td   >2</td></tr>
+        </table></div>
+</div><div id='division_6_ratings'   class='division_tab_division_6' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/1071.html'>Syed Imaad Ali</a></td><td   >1.121</td><td   >2</td><td   >467</td><td   >445</td><td   >8</td><td   >8</td><td   >1540</td><td   >18</td><td   >1558</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >0.85</td><td   >0</td><td   >552</td><td   >569</td><td   >12</td><td   >12</td><td   >1467</td><td   >-17</td><td   >1450</td></tr>
+
+</table>
+  </div></div>
+<div id='division_7' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_7_standings' style='width: 33.3333333333333%' class='division_tablink_division_7' onclick="showContent(event, 'division_7_standings', 'division_tab_division_7', 'division_tablink_division_7')">Standings</button><button id='button_division_7_stats' style='width: 33.3333333333333%' class='division_tablink_division_7' onclick="showContent(event, 'division_7_stats', 'division_tab_division_7', 'division_tablink_division_7')">Statistics</button><button id='button_division_7_ratings' style='width: 33.3333333333333%' class='division_tablink_division_7' onclick="showContent(event, 'division_7_ratings', 'division_tab_division_7', 'division_tablink_division_7')">Ratings</button></div><br><div id='division_7_standings' class='division_tab_division_7' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_26916'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26916'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >2</td><td   >0</td><td   >0</td><td   >89</td><td   >1496</td><td   >1515</td><td   >19</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26916'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td>1478</td><td>W</td><td>464</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td>1478</td><td>W</td><td>438</td><td>377</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1478</td><td   >W</td><td   >464</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1478</td><td   >W</td><td   >438</td><td   >377</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_26923'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26923'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td>0</td><td>2</td><td>0</td><td>-89</td><td>1478</td><td>1459</td><td>-19</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_26923'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_26923'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >0</td><td   >2</td><td   >0</td><td   >-89</td><td   >1478</td><td   >1459</td><td   >-19</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_26923'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td>1496</td><td>L</td><td>436</td><td>464</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td>1496</td><td>L</td><td>377</td><td>438</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1496</td><td   >L</td><td   >436</td><td   >464</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1496</td><td   >L</td><td   >377</td><td   >438</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_7_stats'     class='division_tab_division_7' style='display:none;'><br><div class='tab'>
+<button id='button_division_7_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_7' onclick="showContent(event, 'division_7_stats_High Win', 'stats_tab_division_7', 'stats_tablink_division_7')">High Win</button><button id='button_division_7_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_7' onclick="showContent(event, 'division_7_stats_High Loss', 'stats_tab_division_7', 'stats_tablink_division_7')">High Loss</button><button id='button_division_7_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_7' onclick="showContent(event, 'division_7_stats_High Spread', 'stats_tab_division_7', 'stats_tablink_division_7')">High Spread</button><button id='button_division_7_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_7' onclick="showContent(event, 'division_7_stats_High Combined', 'stats_tab_division_7', 'stats_tablink_division_7')">High Combined</button><button id='button_division_7_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_7' onclick="showContent(event, 'division_7_stats_Low Combined', 'stats_tab_division_7', 'stats_tablink_division_7')">Low Combined</button><button id='button_division_7_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_7' onclick="showContent(event, 'division_7_stats_Upsets', 'stats_tab_division_7', 'stats_tablink_division_7')">Upsets</button></div><br><div id='division_7_stats_High Win' class='stats_tab_division_7' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >464</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >438</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >2</td></tr>
+        </table></div>
+<div id='division_7_stats_High Loss' class='stats_tab_division_7' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >436</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >377</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >2</td></tr>
+        </table></div>
+<div id='division_7_stats_High Spread' class='stats_tab_division_7' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >438</td><td   >377</td><td   >61</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >464</td><td   >436</td><td   >28</td><td   >1</td></tr>
+        </table></div>
+<div id='division_7_stats_High Combined' class='stats_tab_division_7' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >900</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >815</td><td   >2</td></tr>
+        </table></div>
+<div id='division_7_stats_Low Combined' class='stats_tab_division_7' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >815</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >900</td><td   >1</td></tr>
+        </table></div>
+<div id='division_7_stats_Upsets' class='stats_tab_division_7' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1478</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1496</td><td   >18</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1478</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1496</td><td   >18</td><td   >1</td></tr>
+        </table></div>
+</div><div id='division_7_ratings'   class='division_tab_division_7' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1.062</td><td   >2</td><td   >513</td><td   >486</td><td   >9</td><td   >9</td><td   >1496</td><td   >19</td><td   >1515</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >0.97</td><td   >0</td><td   >540</td><td   >562</td><td   >10</td><td   >11</td><td   >1478</td><td   >-19</td><td   >1459</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

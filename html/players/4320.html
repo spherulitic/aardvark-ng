@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Muhd Irfan Haqqim</h2>
             <div>
               <IMG SRC="../../flags/MYS.png" alt="MYS">
-              <p>MYS</p>
+              <p><a href='/aardvark/html/rankings/MYS.html'>Malaysia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 300<br>
               <b>Games Played:</b> 42<br>
               <b>Wins:</b> 10 (23.81%)<br>
               <b>Losses: </b>31 (73.81%)<br>
@@ -183,173 +184,173 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_20428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_20428'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>10.5</td><td>31.5</td><td>3</td><td>-3031</td><td>81</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_20428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_20428'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >10.5</td><td   >31.5</td><td   >3</td><td   >-3031</td><td   >81</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_20428'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2028.html'>Vonni Farlow</a></td><td>1316</td><td>L</td><td>224</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>544</td><td>L</td><td>191</td><td>523</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4324.html'>Vincentius Salim</a></td><td>300</td><td>L</td><td>157</td><td>603</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td>327</td><td>L</td><td>257</td><td>413</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td>300</td><td>L</td><td>282</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td>300</td><td>W</td><td>208</td><td>175</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td>405</td><td>L</td><td>155</td><td>218</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4316.html'>Maree Farlow</a></td><td>528</td><td>L</td><td>305</td><td>348</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td>477</td><td>L</td><td>277</td><td>370</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>W</td><td>330</td><td>227</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td>300</td><td>L</td><td>149</td><td>243</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td>327</td><td>L</td><td>217</td><td>281</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td>405</td><td>L</td><td>185</td><td>209</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2028.html'>Vonni Farlow</a></td><td>1316</td><td>L</td><td>278</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>544</td><td>L</td><td>268</td><td>537</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td>809</td><td>L</td><td>292</td><td>465</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td>300</td><td>W</td><td>352</td><td>269</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/423.html'>Mahani Mohamed</a></td><td>681</td><td>L</td><td>265</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/4324.html'>Vincentius Salim</a></td><td>300</td><td>L</td><td>261</td><td>447</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td>327</td><td>L</td><td>239</td><td>478</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>L</td><td>190</td><td>193</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td>300</td><td>W</td><td>365</td><td>327</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td>300</td><td>L</td><td>142</td><td>166</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/4315.html'>Amira Aquilla</a></td><td>345</td><td>L</td><td>219</td><td>344</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>570</td><td>L</td><td>333</td><td>374</td></tr>
-        <tr  class='rowodd'  ><td>26</td><td><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td>444</td><td>L</td><td>282</td><td>456</td></tr>
-        <tr  class='roweven'  ><td>28</td><td><a href='/aardvark/html/players/4318.html'>Muhammad Izzul</a></td><td>564</td><td>L</td><td>270</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>29</td><td><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td>405</td><td>L</td><td>256</td><td>308</td></tr>
-        <tr  class='roweven'  ><td>31</td><td><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td>300</td><td>L</td><td>174</td><td>197</td></tr>
-        <tr  class='rowodd'  ><td>32</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>W</td><td>317</td><td>246</td></tr>
-        <tr  class='roweven'  ><td>33</td><td><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td>300</td><td>W</td><td>253</td><td>222</td></tr>
-        <tr  class='rowodd'  ><td>34</td><td><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td>327</td><td>L</td><td>273</td><td>402</td></tr>
-        <tr  class='roweven'  ><td>35</td><td><a href='/aardvark/html/players/4315.html'>Amira Aquilla</a></td><td>345</td><td>W</td><td>375</td><td>325</td></tr>
-        <tr  class='rowodd'  ><td>36</td><td><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td>477</td><td>L</td><td>286</td><td>402</td></tr>
-        <tr  class='roweven'  ><td>37</td><td><a href='/aardvark/html/players/423.html'>Mahani Mohamed</a></td><td>681</td><td>L</td><td>253</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>38</td><td><a href='/aardvark/html/players/513.html'>Umair Khalidi</a></td><td>747</td><td>L</td><td>298</td><td>346</td></tr>
-        <tr  class='roweven'  ><td>40</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>W</td><td>177</td><td>134</td></tr>
-        <tr  class='rowodd'  ><td>41</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>L</td><td>150</td><td>186</td></tr>
-        <tr  class='roweven'  ><td>42</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>L</td><td>147</td><td>190</td></tr>
-        <tr  class='rowodd'  ><td>43</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>T</td><td>304</td><td>304</td></tr>
-        <tr  class='roweven'  ><td>44</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>W</td><td>244</td><td>127</td></tr>
-        <tr  class='rowodd'  ><td>45</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>300</td><td>W</td><td>281</td><td>115</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2028.html'>Vonni Farlow</a></td><td   >1316</td><td   >L</td><td   >224</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >544</td><td   >L</td><td   >191</td><td   >523</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4324.html'>Vincentius Salim</a></td><td   >300</td><td   >L</td><td   >157</td><td   >603</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td   >327</td><td   >L</td><td   >257</td><td   >413</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td   >300</td><td   >L</td><td   >282</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td   >300</td><td   >W</td><td   >208</td><td   >175</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td   >405</td><td   >L</td><td   >155</td><td   >218</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4316.html'>Maree Farlow</a></td><td   >528</td><td   >L</td><td   >305</td><td   >348</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td   >477</td><td   >L</td><td   >277</td><td   >370</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >W</td><td   >330</td><td   >227</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td   >300</td><td   >L</td><td   >149</td><td   >243</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td   >327</td><td   >L</td><td   >217</td><td   >281</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td   >405</td><td   >L</td><td   >185</td><td   >209</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2028.html'>Vonni Farlow</a></td><td   >1316</td><td   >L</td><td   >278</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >544</td><td   >L</td><td   >268</td><td   >537</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td   >809</td><td   >L</td><td   >292</td><td   >465</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td   >300</td><td   >W</td><td   >352</td><td   >269</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/423.html'>Mahani Mohamed</a></td><td   >681</td><td   >L</td><td   >265</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/4324.html'>Vincentius Salim</a></td><td   >300</td><td   >L</td><td   >261</td><td   >447</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td   >327</td><td   >L</td><td   >239</td><td   >478</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >L</td><td   >190</td><td   >193</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td   >300</td><td   >W</td><td   >365</td><td   >327</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td   >300</td><td   >L</td><td   >142</td><td   >166</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4315.html'>Amira Aquilla</a></td><td   >345</td><td   >L</td><td   >219</td><td   >344</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >570</td><td   >L</td><td   >333</td><td   >374</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td   >444</td><td   >L</td><td   >282</td><td   >456</td></tr>
+        <tr  class='roweven'  ><td   >28</td><td   ><a href='/aardvark/html/players/4318.html'>Muhammad Izzul</a></td><td   >564</td><td   >L</td><td   >270</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >29</td><td   ><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td   >405</td><td   >L</td><td   >256</td><td   >308</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td   >300</td><td   >L</td><td   >174</td><td   >197</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >W</td><td   >317</td><td   >246</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td   >300</td><td   >W</td><td   >253</td><td   >222</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td   >327</td><td   >L</td><td   >273</td><td   >402</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/4315.html'>Amira Aquilla</a></td><td   >345</td><td   >W</td><td   >375</td><td   >325</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td   >477</td><td   >L</td><td   >286</td><td   >402</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/423.html'>Mahani Mohamed</a></td><td   >681</td><td   >L</td><td   >253</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/513.html'>Umair Khalidi</a></td><td   >747</td><td   >L</td><td   >298</td><td   >346</td></tr>
+        <tr  class='roweven'  ><td   >40</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >W</td><td   >177</td><td   >134</td></tr>
+        <tr  class='rowodd'  ><td   >41</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >L</td><td   >150</td><td   >186</td></tr>
+        <tr  class='roweven'  ><td   >42</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >L</td><td   >147</td><td   >190</td></tr>
+        <tr  class='rowodd'  ><td   >43</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >T</td><td   >304</td><td   >304</td></tr>
+        <tr  class='roweven'  ><td   >44</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >W</td><td   >244</td><td   >127</td></tr>
+        <tr  class='rowodd'  ><td   >45</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >300</td><td   >W</td><td   >281</td><td   >115</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2283'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2283'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td>406</td><td>9</td><td>5</td><td>3</td><td>1</td><td>0.61</td><td>237.78</td><td>191.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2283'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2283'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2283.html'>Danial Faris</a></td><td   >406</td><td   >9</td><td   >5</td><td   >3</td><td   >1</td><td   >0.61</td><td   >237.78</td><td   >191.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2283'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>10</td><td>W</td><td>300</td><td>300</td><td>330</td><td>227</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>21</td><td>L</td><td>300</td><td>300</td><td>190</td><td>193</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>32</td><td>W</td><td>300</td><td>300</td><td>317</td><td>246</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>40</td><td>W</td><td>300</td><td>300</td><td>177</td><td>134</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>41</td><td>L</td><td>300</td><td>300</td><td>150</td><td>186</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>42</td><td>L</td><td>300</td><td>300</td><td>147</td><td>190</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>43</td><td>T</td><td>300</td><td>300</td><td>304</td><td>304</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>44</td><td>W</td><td>300</td><td>300</td><td>244</td><td>127</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>45</td><td>W</td><td>300</td><td>300</td><td>281</td><td>115</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >10</td><td   >W</td><td   >300</td><td   >300</td><td   >330</td><td   >227</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >21</td><td   >L</td><td   >300</td><td   >300</td><td   >190</td><td   >193</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >32</td><td   >W</td><td   >300</td><td   >300</td><td   >317</td><td   >246</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >40</td><td   >W</td><td   >300</td><td   >300</td><td   >177</td><td   >134</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >41</td><td   >L</td><td   >300</td><td   >300</td><td   >150</td><td   >186</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >42</td><td   >L</td><td   >300</td><td   >300</td><td   >147</td><td   >190</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >43</td><td   >T</td><td   >300</td><td   >300</td><td   >304</td><td   >304</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >44</td><td   >W</td><td   >300</td><td   >300</td><td   >244</td><td   >127</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >45</td><td   >W</td><td   >300</td><td   >300</td><td   >281</td><td   >115</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4321'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4321'>+</button></td><td>2</td><td><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td>300</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>257.25</td><td>251.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4321'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4321'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/4321.html'>Prashaath Nair</a></td><td   >300</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >257.25</td><td   >251.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4321'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>5</td><td>L</td><td>300</td><td>300</td><td>282</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>17</td><td>W</td><td>300</td><td>300</td><td>352</td><td>269</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>23</td><td>L</td><td>300</td><td>300</td><td>142</td><td>166</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>33</td><td>W</td><td>300</td><td>300</td><td>253</td><td>222</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >5</td><td   >L</td><td   >300</td><td   >300</td><td   >282</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >17</td><td   >W</td><td   >300</td><td   >300</td><td   >352</td><td   >269</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >23</td><td   >L</td><td   >300</td><td   >300</td><td   >142</td><td   >166</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >33</td><td   >W</td><td   >300</td><td   >300</td><td   >253</td><td   >222</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4319'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4319'>+</button></td><td>3</td><td><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td>327</td><td>4</td><td>0</td><td>4</td><td>0</td><td>0.00</td><td>246.50</td><td>393.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4319'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4319'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/4319.html'>Muhammad Muaz</a></td><td   >327</td><td   >4</td><td   >0</td><td   >4</td><td   >0</td><td   >0.00</td><td   >246.50</td><td   >393.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4319'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>4</td><td>L</td><td>300</td><td>327</td><td>257</td><td>413</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>12</td><td>L</td><td>300</td><td>327</td><td>217</td><td>281</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>20</td><td>L</td><td>300</td><td>327</td><td>239</td><td>478</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>34</td><td>L</td><td>300</td><td>327</td><td>273</td><td>402</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >4</td><td   >L</td><td   >300</td><td   >327</td><td   >257</td><td   >413</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >12</td><td   >L</td><td   >300</td><td   >327</td><td   >217</td><td   >281</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >20</td><td   >L</td><td   >300</td><td   >327</td><td   >239</td><td   >478</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >34</td><td   >L</td><td   >300</td><td   >327</td><td   >273</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4314'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4314'>+</button></td><td>4</td><td><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td>300</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>224.00</td><td>235.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4314'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4314'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/4314.html'>Adam Syamim</a></td><td   >300</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >224.00</td><td   >235.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4314'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>6</td><td>W</td><td>300</td><td>300</td><td>208</td><td>175</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>11</td><td>L</td><td>300</td><td>300</td><td>149</td><td>243</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>22</td><td>W</td><td>300</td><td>300</td><td>365</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>31</td><td>L</td><td>300</td><td>300</td><td>174</td><td>197</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >6</td><td   >W</td><td   >300</td><td   >300</td><td   >208</td><td   >175</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >11</td><td   >L</td><td   >300</td><td   >300</td><td   >149</td><td   >243</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >22</td><td   >W</td><td   >300</td><td   >300</td><td   >365</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >31</td><td   >L</td><td   >300</td><td   >300</td><td   >174</td><td   >197</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1653'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1653'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td>626</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0.00</td><td>198.67</td><td>245.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1653'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1653'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1653.html'>Tashwindran</a></td><td   >626</td><td   >3</td><td   >0</td><td   >3</td><td   >0</td><td   >0.00</td><td   >198.67</td><td   >245.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1653'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>7</td><td>L</td><td>300</td><td>405</td><td>155</td><td>218</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>13</td><td>L</td><td>300</td><td>405</td><td>185</td><td>209</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>29</td><td>L</td><td>300</td><td>405</td><td>256</td><td>308</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >7</td><td   >L</td><td   >300</td><td   >405</td><td   >155</td><td   >218</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >13</td><td   >L</td><td   >300</td><td   >405</td><td   >185</td><td   >209</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >29</td><td   >L</td><td   >300</td><td   >405</td><td   >256</td><td   >308</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2028'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2028'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2028.html'>Vonni Farlow</a></td><td>760</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>251.00</td><td>436.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2028'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2028'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2028.html'>Vonni Farlow</a></td><td   >760</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >251.00</td><td   >436.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2028'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>1</td><td>L</td><td>300</td><td>1316</td><td>224</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>14</td><td>L</td><td>300</td><td>1316</td><td>278</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >1</td><td   >L</td><td   >300</td><td   >1316</td><td   >224</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >14</td><td   >L</td><td   >300</td><td   >1316</td><td   >278</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4324'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4324'>+</button></td><td>7</td><td><a href='/aardvark/html/players/4324.html'>Vincentius Salim</a></td><td>533</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>209.00</td><td>525.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4324'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4324'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/4324.html'>Vincentius Salim</a></td><td   >533</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >209.00</td><td   >525.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4324'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>3</td><td>L</td><td>300</td><td>300</td><td>157</td><td>603</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>19</td><td>L</td><td>300</td><td>300</td><td>261</td><td>447</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >3</td><td   >L</td><td   >300</td><td   >300</td><td   >157</td><td   >603</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >19</td><td   >L</td><td   >300</td><td   >300</td><td   >261</td><td   >447</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4315'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4315'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4315.html'>Amira Aquilla</a></td><td>345</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>297.00</td><td>334.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4315'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4315'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/4315.html'>Amira Aquilla</a></td><td   >345</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >297.00</td><td   >334.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4315'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>24</td><td>L</td><td>300</td><td>345</td><td>219</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>35</td><td>W</td><td>300</td><td>345</td><td>375</td><td>325</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >24</td><td   >L</td><td   >300</td><td   >345</td><td   >219</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >35</td><td   >W</td><td   >300</td><td   >345</td><td   >375</td><td   >325</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1650'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td>532</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>281.50</td><td>386.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1650'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td   >532</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >281.50</td><td   >386.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1650'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>9</td><td>L</td><td>300</td><td>477</td><td>277</td><td>370</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>36</td><td>L</td><td>300</td><td>477</td><td>286</td><td>402</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >9</td><td   >L</td><td   >300</td><td   >477</td><td   >277</td><td   >370</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >36</td><td   >L</td><td   >300</td><td   >477</td><td   >286</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_224'>+</button></td><td>10</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>601</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>229.50</td><td>530.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_224'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >601</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >229.50</td><td   >530.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_224'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>2</td><td>L</td><td>300</td><td>544</td><td>191</td><td>523</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>15</td><td>L</td><td>300</td><td>544</td><td>268</td><td>537</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >2</td><td   >L</td><td   >300</td><td   >544</td><td   >191</td><td   >523</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >15</td><td   >L</td><td   >300</td><td   >544</td><td   >268</td><td   >537</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_423'>+</button></td><td>11</td><td><a href='/aardvark/html/players/423.html'>Mahani Mohamed</a></td><td>694</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>259.00</td><td>438.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_423'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/423.html'>Mahani Mohamed</a></td><td   >694</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >259.00</td><td   >438.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_423'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>18</td><td>L</td><td>300</td><td>681</td><td>265</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>37</td><td>L</td><td>300</td><td>681</td><td>253</td><td>458</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >18</td><td   >L</td><td   >300</td><td   >681</td><td   >265</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >37</td><td   >L</td><td   >300</td><td   >681</td><td   >253</td><td   >458</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4318'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4318'>+</button></td><td>12</td><td><a href='/aardvark/html/players/4318.html'>Muhammad Izzul</a></td><td>564</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>270.00</td><td>397.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4318'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4318'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/4318.html'>Muhammad Izzul</a></td><td   >564</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >270.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4318'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>28</td><td>L</td><td>300</td><td>564</td><td>270</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >28</td><td   >L</td><td   >300</td><td   >564</td><td   >270</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_116'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_116'>+</button></td><td>13</td><td><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td>577</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>282.00</td><td>456.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_116'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_116'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/116.html'>Faraad Moyce</a></td><td   >577</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >282.00</td><td   >456.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_116'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>26</td><td>L</td><td>300</td><td>444</td><td>282</td><td>456</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >26</td><td   >L</td><td   >300</td><td   >444</td><td   >282</td><td   >456</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3037'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3037'>+</button></td><td>14</td><td><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td>881</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>292.00</td><td>465.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3037'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3037'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/3037.html'>Asad Raza Merchant</a></td><td   >881</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >292.00</td><td   >465.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3037'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>16</td><td>L</td><td>300</td><td>809</td><td>292</td><td>465</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >16</td><td   >L</td><td   >300</td><td   >809</td><td   >292</td><td   >465</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_513'>+</button></td><td>15</td><td><a href='/aardvark/html/players/513.html'>Umair Khalidi</a></td><td>685</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>298.00</td><td>346.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_513'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/513.html'>Umair Khalidi</a></td><td   >685</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >298.00</td><td   >346.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_513'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>38</td><td>L</td><td>300</td><td>747</td><td>298</td><td>346</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >38</td><td   >L</td><td   >300</td><td   >747</td><td   >298</td><td   >346</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2103'>+</button></td><td>16</td><td><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td>578</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>333.00</td><td>374.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2103'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/2103.html'>Rafique Khatri</a></td><td   >578</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >333.00</td><td   >374.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2103'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>25</td><td>L</td><td>300</td><td>570</td><td>333</td><td>374</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >25</td><td   >L</td><td   >300</td><td   >570</td><td   >333</td><td   >374</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4316'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4316'>+</button></td><td>17</td><td><a href='/aardvark/html/players/4316.html'>Maree Farlow</a></td><td>603</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>305.00</td><td>348.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4316'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4316'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/4316.html'>Maree Farlow</a></td><td   >603</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >305.00</td><td   >348.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4316'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td>2011-11-30</td><td>8</td><td>L</td><td>300</td><td>528</td><td>305</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/520.html'>CAUSEWAY 2011</a></td><td   >2011-11-30</td><td   >8</td><td   >L</td><td   >300</td><td   >528</td><td   >305</td><td   >348</td></tr>
 </table></div></td></tr>
 
 </table>

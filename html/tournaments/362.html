@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,58 +156,171 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_13861'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13861'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>6</td><td>1</td><td>0</td><td>516</td><td>1939</td><td>1956</td><td>17</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_13861'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13861'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >6</td><td   >1</td><td   >0</td><td   >516</td><td   >1939</td><td   >1956</td><td   >17</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13861'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>W</td><td>385</td><td>341</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>W</td><td>535</td><td>366</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>W</td><td>464</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>W</td><td>577</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>W</td><td>477</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>W</td><td>438</td><td>412</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>L</td><td>347</td><td>385</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >W</td><td   >385</td><td   >341</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >W</td><td   >535</td><td   >366</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >W</td><td   >464</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >W</td><td   >577</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >W</td><td   >477</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >W</td><td   >438</td><td   >412</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >L</td><td   >347</td><td   >385</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_13862'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13862'>+</button></td><td>2</td><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>5</td><td>2</td><td>0</td><td>409</td><td>1930</td><td>1932</td><td>2</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_13862'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13862'>+</button></td><td   >2</td><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >5</td><td   >2</td><td   >0</td><td   >409</td><td   >1930</td><td   >1932</td><td   >2</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13862'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>W</td><td>453</td><td>311</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>W</td><td>428</td><td>354</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>L</td><td>417</td><td>464</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>W</td><td>474</td><td>292</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>W</td><td>438</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>L</td><td>412</td><td>438</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>W</td><td>385</td><td>347</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >W</td><td   >453</td><td   >311</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >W</td><td   >428</td><td   >354</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >L</td><td   >417</td><td   >464</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >W</td><td   >474</td><td   >292</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >W</td><td   >438</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >L</td><td   >412</td><td   >438</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >W</td><td   >385</td><td   >347</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_13863'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13863'>+</button></td><td>3</td><td>3</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>2</td><td>5</td><td>0</td><td>-493</td><td>1460</td><td>1451</td><td>-9</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_13863'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13863'>+</button></td><td   >3</td><td   >3</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >2</td><td   >5</td><td   >0</td><td   >-493</td><td   >1460</td><td   >1451</td><td   >-9</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13863'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>L</td><td>311</td><td>453</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>L</td><td>366</td><td>535</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>L</td><td>418</td><td>424</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>L</td><td>292</td><td>474</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>L</td><td>415</td><td>477</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>W</td><td>404</td><td>362</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1340</td><td>W</td><td>464</td><td>438</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >L</td><td   >311</td><td   >453</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >L</td><td   >366</td><td   >535</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >L</td><td   >418</td><td   >424</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >L</td><td   >292</td><td   >474</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >L</td><td   >415</td><td   >477</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >W</td><td   >404</td><td   >362</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   >W</td><td   >464</td><td   >438</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_13864'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13864'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1</td><td>6</td><td>0</td><td>-432</td><td>1340</td><td>1326</td><td>-14</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_13864'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13864'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1</td><td   >6</td><td   >0</td><td   >-432</td><td   >1340</td><td   >1326</td><td   >-14</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13864'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>L</td><td>341</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>L</td><td>354</td><td>428</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>W</td><td>424</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td>1939</td><td>L</td><td>371</td><td>577</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1930</td><td>L</td><td>392</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>L</td><td>362</td><td>404</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td>1460</td><td>L</td><td>438</td><td>464</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >L</td><td   >341</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >L</td><td   >354</td><td   >428</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >W</td><td   >424</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >L</td><td   >371</td><td   >577</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >L</td><td   >392</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >L</td><td   >362</td><td   >404</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >L</td><td   >438</td><td   >464</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >577</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >535</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >477</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >474</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >464</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >464</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >453</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >438</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >438</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >428</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >424</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >404</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >385</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >385</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >438</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >418</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >417</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >415</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >412</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >392</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >371</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >366</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >362</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >354</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >347</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >341</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >311</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >292</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >577</td><td   >371</td><td   >206</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >474</td><td   >292</td><td   >182</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >535</td><td   >366</td><td   >169</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >453</td><td   >311</td><td   >142</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >428</td><td   >354</td><td   >74</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >477</td><td   >415</td><td   >62</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >464</td><td   >417</td><td   >47</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >438</td><td   >392</td><td   >46</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >385</td><td   >341</td><td   >44</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >404</td><td   >362</td><td   >42</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >385</td><td   >347</td><td   >38</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >438</td><td   >412</td><td   >26</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >464</td><td   >438</td><td   >26</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >424</td><td   >418</td><td   >6</td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >948</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >902</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >901</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >892</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >881</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >850</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >842</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >830</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >782</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >766</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >766</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >764</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >732</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >726</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >726</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >732</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >764</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >766</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >766</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >782</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >830</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >842</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >850</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >881</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >892</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >901</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >902</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >948</td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >599</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >599</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >590</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >590</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >479</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >479</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >470</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   >470</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >120</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >120</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1340</td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >1460</td><td   >120</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >9</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >9</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1930</td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >1939</td><td   >9</td><td   >3</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1076.html'>Evans Clinchy</a></td><td   >4.946</td><td   >6</td><td   >85</td><td   >80</td><td   >15</td><td   >14</td><td   >1939</td><td   >17</td><td   >1956</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >4.845</td><td   >5</td><td   >89</td><td   >87</td><td   >17</td><td   >16</td><td   >1930</td><td   >2</td><td   >1932</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/3223.html'>Samantha Southard</a></td><td   >2.461</td><td   >2</td><td   >470</td><td   >474</td><td   >58</td><td   >60</td><td   >1460</td><td   >-9</td><td   >1451</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1.697</td><td   >1</td><td   >563</td><td   >568</td><td   >65</td><td   >66</td><td   >1340</td><td   >-14</td><td   >1326</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

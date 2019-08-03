@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Satish Casiechetty</h2>
             <div>
               <IMG SRC="../../flags/LKA.png" alt="LKA">
-              <p>LKA</p>
+              <p><a href='/aardvark/html/rankings/LKA.html'>Sri Lanka</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1046<br>
               <b>Games Played:</b> 24<br>
               <b>Wins:</b> 10 (41.67%)<br>
               <b>Losses: </b>14 (58.33%)<br>
@@ -183,149 +184,149 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_260'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>10</td><td>14</td><td>0</td><td>-693</td><td>42</td><td>1046</td><td>1046</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_260'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >10</td><td   >14</td><td   >0</td><td   >-693</td><td   >42</td><td   >1046</td><td   >1046</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_260'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/84.html'>Manju Sood</a></td><td>1421</td><td>L</td><td>351</td><td>486</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/201.html'>Anisha Bandaranaike</a></td><td>931</td><td>W</td><td>439</td><td>326</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td>858</td><td>W</td><td>406</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/200.html'>Anil Wickramasinghe</a></td><td>1026</td><td>W</td><td>504</td><td>412</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/227.html'>Yasiru Fernando</a></td><td>1326</td><td>W</td><td>457</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>2040</td><td>L</td><td>391</td><td>516</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/228.html'>Yeshan Jayasuriya</a></td><td>1051</td><td>L</td><td>354</td><td>463</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/222.html'>Shaini Wilson</a></td><td>1085</td><td>W</td><td>431</td><td>391</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/203.html'>Asanka Amarasinghe</a></td><td>1591</td><td>L</td><td>364</td><td>480</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/109.html'>Shirley de Silva</a></td><td>1314</td><td>L</td><td>412</td><td>438</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td>1579</td><td>L</td><td>347</td><td>402</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/204.html'>Asanka Dissanayake</a></td><td>1546</td><td>L</td><td>382</td><td>385</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>544</td><td>W</td><td>391</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/223.html'>Sheroze Sheriffdeen</a></td><td>1325</td><td>L</td><td>285</td><td>447</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/205.html'>Bernadette Silva</a></td><td>621</td><td>W</td><td>353</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/217.html'>Praveeni Jayasekera</a></td><td>1107</td><td>L</td><td>303</td><td>446</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/207.html'>Hayati Rassool</a></td><td>410</td><td>W</td><td>412</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/222.html'>Shaini Wilson</a></td><td>1085</td><td>L</td><td>417</td><td>430</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/202.html'>Anushika Kuruppu</a></td><td>759</td><td>W</td><td>405</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/200.html'>Anil Wickramasinghe</a></td><td>1026</td><td>L</td><td>380</td><td>386</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/84.html'>Manju Sood</a></td><td>1421</td><td>W</td><td>416</td><td>380</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/109.html'>Shirley de Silva</a></td><td>1314</td><td>L</td><td>373</td><td>492</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td>936</td><td>L</td><td>352</td><td>411</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/82.html'>Mangala Bhandarkar</a></td><td>1471</td><td>L</td><td>397</td><td>418</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/84.html'>Manju Sood</a></td><td   >1421</td><td   >L</td><td   >351</td><td   >486</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/201.html'>Anisha Bandaranaike</a></td><td   >931</td><td   >W</td><td   >439</td><td   >326</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td   >858</td><td   >W</td><td   >406</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/200.html'>Anil Wickramasinghe</a></td><td   >1026</td><td   >W</td><td   >504</td><td   >412</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/227.html'>Yasiru Fernando</a></td><td   >1326</td><td   >W</td><td   >457</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td   >2040</td><td   >L</td><td   >391</td><td   >516</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/228.html'>Yeshan Jayasuriya</a></td><td   >1051</td><td   >L</td><td   >354</td><td   >463</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/222.html'>Shaini Wilson</a></td><td   >1085</td><td   >W</td><td   >431</td><td   >391</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/203.html'>Asanka Amarasinghe</a></td><td   >1591</td><td   >L</td><td   >364</td><td   >480</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/109.html'>Shirley de Silva</a></td><td   >1314</td><td   >L</td><td   >412</td><td   >438</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td   >1579</td><td   >L</td><td   >347</td><td   >402</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/204.html'>Asanka Dissanayake</a></td><td   >1546</td><td   >L</td><td   >382</td><td   >385</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >544</td><td   >W</td><td   >391</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/223.html'>Sheroze Sheriffdeen</a></td><td   >1325</td><td   >L</td><td   >285</td><td   >447</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/205.html'>Bernadette Silva</a></td><td   >621</td><td   >W</td><td   >353</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/217.html'>Praveeni Jayasekera</a></td><td   >1107</td><td   >L</td><td   >303</td><td   >446</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/207.html'>Hayati Rassool</a></td><td   >410</td><td   >W</td><td   >412</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/222.html'>Shaini Wilson</a></td><td   >1085</td><td   >L</td><td   >417</td><td   >430</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/202.html'>Anushika Kuruppu</a></td><td   >759</td><td   >W</td><td   >405</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/200.html'>Anil Wickramasinghe</a></td><td   >1026</td><td   >L</td><td   >380</td><td   >386</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/84.html'>Manju Sood</a></td><td   >1421</td><td   >W</td><td   >416</td><td   >380</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/109.html'>Shirley de Silva</a></td><td   >1314</td><td   >L</td><td   >373</td><td   >492</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td   >936</td><td   >L</td><td   >352</td><td   >411</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/82.html'>Mangala Bhandarkar</a></td><td   >1471</td><td   >L</td><td   >397</td><td   >418</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_200'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_200'>+</button></td><td>1</td><td><a href='/aardvark/html/players/200.html'>Anil Wickramasinghe</a></td><td>983</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>442.00</td><td>399.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_200'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_200'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/200.html'>Anil Wickramasinghe</a></td><td   >983</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >442.00</td><td   >399.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_200'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>4</td><td>W</td><td>1046</td><td>1026</td><td>504</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>20</td><td>L</td><td>1046</td><td>1026</td><td>380</td><td>386</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >4</td><td   >W</td><td   >1046</td><td   >1026</td><td   >504</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >20</td><td   >L</td><td   >1046</td><td   >1026</td><td   >380</td><td   >386</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_222'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_222'>+</button></td><td>2</td><td><a href='/aardvark/html/players/222.html'>Shaini Wilson</a></td><td>1129</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>424.00</td><td>410.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_222'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_222'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/222.html'>Shaini Wilson</a></td><td   >1129</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >424.00</td><td   >410.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_222'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>8</td><td>W</td><td>1046</td><td>1085</td><td>431</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>18</td><td>L</td><td>1046</td><td>1085</td><td>417</td><td>430</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >8</td><td   >W</td><td   >1046</td><td   >1085</td><td   >431</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >18</td><td   >L</td><td   >1046</td><td   >1085</td><td   >417</td><td   >430</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_84'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_84'>+</button></td><td>3</td><td><a href='/aardvark/html/players/84.html'>Manju Sood</a></td><td>1388</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>383.50</td><td>433.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_84'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_84'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/84.html'>Manju Sood</a></td><td   >1388</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >383.50</td><td   >433.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_84'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>1</td><td>L</td><td>1046</td><td>1421</td><td>351</td><td>486</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>21</td><td>W</td><td>1046</td><td>1421</td><td>416</td><td>380</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >1</td><td   >L</td><td   >1046</td><td   >1421</td><td   >351</td><td   >486</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >21</td><td   >W</td><td   >1046</td><td   >1421</td><td   >416</td><td   >380</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_109'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_109'>+</button></td><td>4</td><td><a href='/aardvark/html/players/109.html'>Shirley de Silva</a></td><td>1254</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>392.50</td><td>465.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_109'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_109'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/109.html'>Shirley de Silva</a></td><td   >1254</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >392.50</td><td   >465.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_109'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>10</td><td>L</td><td>1046</td><td>1314</td><td>412</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>22</td><td>L</td><td>1046</td><td>1314</td><td>373</td><td>492</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >10</td><td   >L</td><td   >1046</td><td   >1314</td><td   >412</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >22</td><td   >L</td><td   >1046</td><td   >1314</td><td   >373</td><td   >492</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_225'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_225'>+</button></td><td>5</td><td><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td>1115</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>352.00</td><td>411.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_225'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_225'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/225.html'>Vinu Wijesekara</a></td><td   >1115</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >352.00</td><td   >411.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_225'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>23</td><td>L</td><td>1046</td><td>936</td><td>352</td><td>411</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >23</td><td   >L</td><td   >1046</td><td   >936</td><td   >352</td><td   >411</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_204'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_204'>+</button></td><td>6</td><td><a href='/aardvark/html/players/204.html'>Asanka Dissanayake</a></td><td>1513</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>382.00</td><td>385.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_204'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_204'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/204.html'>Asanka Dissanayake</a></td><td   >1513</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >382.00</td><td   >385.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_204'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>12</td><td>L</td><td>1046</td><td>1546</td><td>382</td><td>385</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >12</td><td   >L</td><td   >1046</td><td   >1546</td><td   >382</td><td   >385</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_217'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_217'>+</button></td><td>7</td><td><a href='/aardvark/html/players/217.html'>Praveeni Jayasekera</a></td><td>1123</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>303.00</td><td>446.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_217'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_217'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/217.html'>Praveeni Jayasekera</a></td><td   >1123</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >303.00</td><td   >446.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_217'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>16</td><td>L</td><td>1046</td><td>1107</td><td>303</td><td>446</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >16</td><td   >L</td><td   >1046</td><td   >1107</td><td   >303</td><td   >446</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_207'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_207'>+</button></td><td>8</td><td><a href='/aardvark/html/players/207.html'>Hayati Rassool</a></td><td>787</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>412.00</td><td>396.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_207'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_207'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/207.html'>Hayati Rassool</a></td><td   >787</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >412.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_207'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>17</td><td>W</td><td>1046</td><td>410</td><td>412</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >17</td><td   >W</td><td   >1046</td><td   >410</td><td   >412</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_227'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_227'>+</button></td><td>9</td><td><a href='/aardvark/html/players/227.html'>Yasiru Fernando</a></td><td>1407</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>457.00</td><td>385.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_227'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_227'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/227.html'>Yasiru Fernando</a></td><td   >1407</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >457.00</td><td   >385.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_227'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>5</td><td>W</td><td>1046</td><td>1326</td><td>457</td><td>385</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >5</td><td   >W</td><td   >1046</td><td   >1326</td><td   >457</td><td   >385</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_205'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_205'>+</button></td><td>10</td><td><a href='/aardvark/html/players/205.html'>Bernadette Silva</a></td><td>674</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>353.00</td><td>351.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_205'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_205'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/205.html'>Bernadette Silva</a></td><td   >674</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >353.00</td><td   >351.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_205'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>15</td><td>W</td><td>1046</td><td>621</td><td>353</td><td>351</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >15</td><td   >W</td><td   >1046</td><td   >621</td><td   >353</td><td   >351</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_65'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_65'>+</button></td><td>11</td><td><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td>1475</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>347.00</td><td>402.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_65'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_65'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td   >1475</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >347.00</td><td   >402.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_65'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>11</td><td>L</td><td>1046</td><td>1579</td><td>347</td><td>402</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >11</td><td   >L</td><td   >1046</td><td   >1579</td><td   >347</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_105'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_105'>+</button></td><td>12</td><td><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td>855</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>406.00</td><td>391.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_105'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_105'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/105.html'>Satish Srinivasan</a></td><td   >855</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >406.00</td><td   >391.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_105'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>3</td><td>W</td><td>1046</td><td>858</td><td>406</td><td>391</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >3</td><td   >W</td><td   >1046</td><td   >858</td><td   >406</td><td   >391</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_82'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_82'>+</button></td><td>13</td><td><a href='/aardvark/html/players/82.html'>Mangala Bhandarkar</a></td><td>1320</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>397.00</td><td>418.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_82'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_82'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/82.html'>Mangala Bhandarkar</a></td><td   >1320</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >397.00</td><td   >418.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_82'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>24</td><td>L</td><td>1046</td><td>1471</td><td>397</td><td>418</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >24</td><td   >L</td><td   >1046</td><td   >1471</td><td   >397</td><td   >418</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_203'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_203'>+</button></td><td>14</td><td><a href='/aardvark/html/players/203.html'>Asanka Amarasinghe</a></td><td>1557</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>364.00</td><td>480.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_203'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_203'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/203.html'>Asanka Amarasinghe</a></td><td   >1557</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >364.00</td><td   >480.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_203'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>9</td><td>L</td><td>1046</td><td>1591</td><td>364</td><td>480</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >9</td><td   >L</td><td   >1046</td><td   >1591</td><td   >364</td><td   >480</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_228'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_228'>+</button></td><td>15</td><td><a href='/aardvark/html/players/228.html'>Yeshan Jayasuriya</a></td><td>1448</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>354.00</td><td>463.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_228'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_228'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/228.html'>Yeshan Jayasuriya</a></td><td   >1448</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >354.00</td><td   >463.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_228'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>7</td><td>L</td><td>1046</td><td>1051</td><td>354</td><td>463</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >7</td><td   >L</td><td   >1046</td><td   >1051</td><td   >354</td><td   >463</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_108'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_108'>+</button></td><td>16</td><td><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td>1813</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>391.00</td><td>516.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_108'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_108'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/108.html'>Sherwin Rodrigues</a></td><td   >1813</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >391.00</td><td   >516.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_108'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>6</td><td>L</td><td>1046</td><td>2040</td><td>391</td><td>516</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >6</td><td   >L</td><td   >1046</td><td   >2040</td><td   >391</td><td   >516</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_202'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_202'>+</button></td><td>17</td><td><a href='/aardvark/html/players/202.html'>Anushika Kuruppu</a></td><td>759</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>398.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_202'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_202'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/202.html'>Anushika Kuruppu</a></td><td   >759</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >398.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_202'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>19</td><td>W</td><td>1046</td><td>759</td><td>405</td><td>398</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >19</td><td   >W</td><td   >1046</td><td   >759</td><td   >405</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_201'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_201'>+</button></td><td>18</td><td><a href='/aardvark/html/players/201.html'>Anisha Bandaranaike</a></td><td>1029</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>439.00</td><td>326.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_201'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_201'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/201.html'>Anisha Bandaranaike</a></td><td   >1029</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >439.00</td><td   >326.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_201'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>2</td><td>W</td><td>1046</td><td>931</td><td>439</td><td>326</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >2</td><td   >W</td><td   >1046</td><td   >931</td><td   >439</td><td   >326</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_224'>+</button></td><td>19</td><td><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td>601</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>391.00</td><td>385.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_224'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_224'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/224.html'>Sylvia Coelho</a></td><td   >601</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >391.00</td><td   >385.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_224'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>13</td><td>W</td><td>1046</td><td>544</td><td>391</td><td>385</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >13</td><td   >W</td><td   >1046</td><td   >544</td><td   >391</td><td   >385</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_223'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_223'>+</button></td><td>20</td><td><a href='/aardvark/html/players/223.html'>Sheroze Sheriffdeen</a></td><td>1377</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>285.00</td><td>447.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_223'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_223'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/223.html'>Sheroze Sheriffdeen</a></td><td   >1377</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >285.00</td><td   >447.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_223'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td>2010-08-27</td><td>14</td><td>L</td><td>1046</td><td>1325</td><td>285</td><td>447</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/9.html'>Sri Lanka Internationl</a></td><td   >2010-08-27</td><td   >14</td><td   >L</td><td   >1046</td><td   >1325</td><td   >285</td><td   >447</td></tr>
 </table></div></td></tr>
 
 </table>

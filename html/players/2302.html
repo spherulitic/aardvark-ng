@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Nikesh Vinayagamoort</h2>
             <div>
               <IMG SRC="../../flags/LKA.png" alt="LKA">
-              <p>LKA</p>
+              <p><a href='/aardvark/html/rankings/LKA.html'>Sri Lanka</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 551<br>
               <b>Games Played:</b> 24<br>
               <b>Wins:</b> 11 (45.83%)<br>
               <b>Losses: </b>13 (54.17%)<br>
@@ -183,161 +184,161 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_6130'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_6130'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>11</td><td>13</td><td>0</td><td>78</td><td>76</td><td>551</td><td>551</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_6130'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_6130'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >11</td><td   >13</td><td   >0</td><td   >78</td><td   >76</td><td   >551</td><td   >551</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_6130'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2301.html'>Nicha Chiangkhrua</a></td><td>791</td><td>W</td><td>438</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1167.html'>Sophia Mohammed</a></td><td>604</td><td>W</td><td>371</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1181.html'>Ushara De Silva</a></td><td>574</td><td>L</td><td>314</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td>1135</td><td>L</td><td>287</td><td>436</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1066.html'>Shekinah Giffen</a></td><td>610</td><td>W</td><td>391</td><td>276</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2288.html'>Irfan Sabri</a></td><td>584</td><td>L</td><td>313</td><td>454</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2305.html'>Nuti Suri</a></td><td>954</td><td>L</td><td>277</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1178.html'>Thirandi De Silva</a></td><td>730</td><td>L</td><td>298</td><td>457</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2313.html'>Thareefa Ismail</a></td><td>300</td><td>W</td><td>433</td><td>359</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1038.html'>Abbas Shabbir</a></td><td>330</td><td>L</td><td>311</td><td>468</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2278.html'>Alif Akmal Hashim</a></td><td>581</td><td>L</td><td>360</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2292.html'>Muhamad Aqil Bin Azh</a></td><td>594</td><td>L</td><td>353</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1103.html'>Mohammed Talha Arif</a></td><td>441</td><td>W</td><td>382</td><td>316</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2294.html'>Muhd Amirul Hakim</a></td><td>589</td><td>W</td><td>350</td><td>332</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2223.html'>Affan Shahzad</a></td><td>698</td><td>L</td><td>315</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2319.html'>Yunus Ismail</a></td><td>300</td><td>W</td><td>405</td><td>284</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/1139.html'>Hasini Perara</a></td><td>300</td><td>W</td><td>517</td><td>260</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2300.html'>Nethara Waduge</a></td><td>300</td><td>W</td><td>586</td><td>202</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2301.html'>Nicha Chiangkhrua</a></td><td>791</td><td>L</td><td>375</td><td>420</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/1186.html'>Vraj Jain</a></td><td>804</td><td>L</td><td>360</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/2281.html'>Aum Biyani</a></td><td>578</td><td>W</td><td>433</td><td>340</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td>543</td><td>L</td><td>316</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/2290.html'>Jithmal Wijesinghe</a></td><td>721</td><td>W</td><td>427</td><td>328</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/2274.html'>Adam Ali</a></td><td>703</td><td>L</td><td>363</td><td>526</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2301.html'>Nicha Chiangkhrua</a></td><td   >791</td><td   >W</td><td   >438</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1167.html'>Sophia Mohammed</a></td><td   >604</td><td   >W</td><td   >371</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1181.html'>Ushara De Silva</a></td><td   >574</td><td   >L</td><td   >314</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1135</td><td   >L</td><td   >287</td><td   >436</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1066.html'>Shekinah Giffen</a></td><td   >610</td><td   >W</td><td   >391</td><td   >276</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2288.html'>Irfan Sabri</a></td><td   >584</td><td   >L</td><td   >313</td><td   >454</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2305.html'>Nuti Suri</a></td><td   >954</td><td   >L</td><td   >277</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1178.html'>Thirandi De Silva</a></td><td   >730</td><td   >L</td><td   >298</td><td   >457</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2313.html'>Thareefa Ismail</a></td><td   >300</td><td   >W</td><td   >433</td><td   >359</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1038.html'>Abbas Shabbir</a></td><td   >330</td><td   >L</td><td   >311</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2278.html'>Alif Akmal Hashim</a></td><td   >581</td><td   >L</td><td   >360</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2292.html'>Muhamad Aqil Bin Azh</a></td><td   >594</td><td   >L</td><td   >353</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1103.html'>Mohammed Talha Arif</a></td><td   >441</td><td   >W</td><td   >382</td><td   >316</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2294.html'>Muhd Amirul Hakim</a></td><td   >589</td><td   >W</td><td   >350</td><td   >332</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2223.html'>Affan Shahzad</a></td><td   >698</td><td   >L</td><td   >315</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2319.html'>Yunus Ismail</a></td><td   >300</td><td   >W</td><td   >405</td><td   >284</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1139.html'>Hasini Perara</a></td><td   >300</td><td   >W</td><td   >517</td><td   >260</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2300.html'>Nethara Waduge</a></td><td   >300</td><td   >W</td><td   >586</td><td   >202</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2301.html'>Nicha Chiangkhrua</a></td><td   >791</td><td   >L</td><td   >375</td><td   >420</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1186.html'>Vraj Jain</a></td><td   >804</td><td   >L</td><td   >360</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2281.html'>Aum Biyani</a></td><td   >578</td><td   >W</td><td   >433</td><td   >340</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >543</td><td   >L</td><td   >316</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2290.html'>Jithmal Wijesinghe</a></td><td   >721</td><td   >W</td><td   >427</td><td   >328</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2274.html'>Adam Ali</a></td><td   >703</td><td   >L</td><td   >363</td><td   >526</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2301'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2301'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2301.html'>Nicha Chiangkhrua</a></td><td>791</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>406.50</td><td>386.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2301'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2301'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2301.html'>Nicha Chiangkhrua</a></td><td   >791</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >406.50</td><td   >386.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2301'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>1</td><td>W</td><td>551</td><td>791</td><td>438</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>19</td><td>L</td><td>551</td><td>791</td><td>375</td><td>420</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >1</td><td   >W</td><td   >551</td><td   >791</td><td   >438</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >19</td><td   >L</td><td   >551</td><td   >791</td><td   >375</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1139'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1139'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1139.html'>Hasini Perara</a></td><td>548</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>517.00</td><td>260.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1139'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1139'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1139.html'>Hasini Perara</a></td><td   >548</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >517.00</td><td   >260.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1139'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>17</td><td>W</td><td>551</td><td>300</td><td>517</td><td>260</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >17</td><td   >W</td><td   >551</td><td   >300</td><td   >517</td><td   >260</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2223'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2223'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2223.html'>Affan Shahzad</a></td><td>762</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>393.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2223'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2223'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2223.html'>Affan Shahzad</a></td><td   >762</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2223'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>15</td><td>L</td><td>551</td><td>698</td><td>315</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >15</td><td   >L</td><td   >551</td><td   >698</td><td   >315</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1038'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1038'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1038.html'>Abbas Shabbir</a></td><td>930</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>311.00</td><td>468.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1038'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1038'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1038.html'>Abbas Shabbir</a></td><td   >930</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >311.00</td><td   >468.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1038'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>10</td><td>L</td><td>551</td><td>330</td><td>311</td><td>468</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >10</td><td   >L</td><td   >551</td><td   >330</td><td   >311</td><td   >468</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2305'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2305'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2305.html'>Nuti Suri</a></td><td>1123</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>277.00</td><td>425.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2305'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2305'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2305.html'>Nuti Suri</a></td><td   >1123</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >277.00</td><td   >425.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2305'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>7</td><td>L</td><td>551</td><td>954</td><td>277</td><td>425</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >7</td><td   >L</td><td   >551</td><td   >954</td><td   >277</td><td   >425</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2274'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2274'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2274.html'>Adam Ali</a></td><td>681</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>363.00</td><td>526.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2274'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2274'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2274.html'>Adam Ali</a></td><td   >681</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >363.00</td><td   >526.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2274'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>24</td><td>L</td><td>551</td><td>703</td><td>363</td><td>526</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >24</td><td   >L</td><td   >551</td><td   >703</td><td   >363</td><td   >526</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1066'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1066'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1066.html'>Shekinah Giffen</a></td><td>914</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>391.00</td><td>276.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1066'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1066'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1066.html'>Shekinah Giffen</a></td><td   >914</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >391.00</td><td   >276.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1066'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>5</td><td>W</td><td>551</td><td>610</td><td>391</td><td>276</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >5</td><td   >W</td><td   >551</td><td   >610</td><td   >391</td><td   >276</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1178'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1178'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1178.html'>Thirandi De Silva</a></td><td>1151</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>298.00</td><td>457.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1178'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1178'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1178.html'>Thirandi De Silva</a></td><td   >1151</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >298.00</td><td   >457.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1178'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>8</td><td>L</td><td>551</td><td>730</td><td>298</td><td>457</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >8</td><td   >L</td><td   >551</td><td   >730</td><td   >298</td><td   >457</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2290'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2290'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2290.html'>Jithmal Wijesinghe</a></td><td>721</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>427.00</td><td>328.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2290'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2290'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2290.html'>Jithmal Wijesinghe</a></td><td   >721</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >427.00</td><td   >328.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2290'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>23</td><td>W</td><td>551</td><td>721</td><td>427</td><td>328</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >23</td><td   >W</td><td   >551</td><td   >721</td><td   >427</td><td   >328</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1181'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1181'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1181.html'>Ushara De Silva</a></td><td>949</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>314.00</td><td>392.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1181'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1181'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1181.html'>Ushara De Silva</a></td><td   >949</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >314.00</td><td   >392.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1181'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>3</td><td>L</td><td>551</td><td>574</td><td>314</td><td>392</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >3</td><td   >L</td><td   >551</td><td   >574</td><td   >314</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2300'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2300.html'>Nethara Waduge</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>586.00</td><td>202.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2300'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/2300.html'>Nethara Waduge</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >586.00</td><td   >202.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2300'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>18</td><td>W</td><td>551</td><td>300</td><td>586</td><td>202</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >18</td><td   >W</td><td   >551</td><td   >300</td><td   >586</td><td   >202</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1167'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1167.html'>Sophia Mohammed</a></td><td>562</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>371.00</td><td>356.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1167'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/1167.html'>Sophia Mohammed</a></td><td   >562</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >371.00</td><td   >356.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1167'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>2</td><td>W</td><td>551</td><td>604</td><td>371</td><td>356</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >2</td><td   >W</td><td   >551</td><td   >604</td><td   >371</td><td   >356</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1051'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1051'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td>1392</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>316.00</td><td>417.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1051'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1051'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/1051.html'>Hasham Hadi Khan</a></td><td   >1392</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >316.00</td><td   >417.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1051'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>22</td><td>L</td><td>551</td><td>543</td><td>316</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >22</td><td   >L</td><td   >551</td><td   >543</td><td   >316</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1186'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1186.html'>Vraj Jain</a></td><td>1361</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>360.00</td><td>371.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1186'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1186.html'>Vraj Jain</a></td><td   >1361</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >360.00</td><td   >371.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1186'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>20</td><td>L</td><td>551</td><td>804</td><td>360</td><td>371</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >20</td><td   >L</td><td   >551</td><td   >804</td><td   >360</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2292'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2292'>+</button></td><td>15</td><td><a href='/aardvark/html/players/2292.html'>Muhamad Aqil Bin Azh</a></td><td>606</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>353.00</td><td>371.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2292'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2292'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/2292.html'>Muhamad Aqil Bin Azh</a></td><td   >606</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >353.00</td><td   >371.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2292'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>12</td><td>L</td><td>551</td><td>594</td><td>353</td><td>371</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >12</td><td   >L</td><td   >551</td><td   >594</td><td   >353</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2281'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2281'>+</button></td><td>16</td><td><a href='/aardvark/html/players/2281.html'>Aum Biyani</a></td><td>622</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>433.00</td><td>340.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2281'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2281'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/2281.html'>Aum Biyani</a></td><td   >622</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >433.00</td><td   >340.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2281'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>21</td><td>W</td><td>551</td><td>578</td><td>433</td><td>340</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >21</td><td   >W</td><td   >551</td><td   >578</td><td   >433</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1103'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1103.html'>Mohammed Talha Arif</a></td><td>722</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>382.00</td><td>316.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1103'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1103'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1103.html'>Mohammed Talha Arif</a></td><td   >722</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >382.00</td><td   >316.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1103'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>13</td><td>W</td><td>551</td><td>441</td><td>382</td><td>316</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >13</td><td   >W</td><td   >551</td><td   >441</td><td   >382</td><td   >316</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2313'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2313'>+</button></td><td>18</td><td><a href='/aardvark/html/players/2313.html'>Thareefa Ismail</a></td><td>339</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>433.00</td><td>359.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2313'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2313'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/2313.html'>Thareefa Ismail</a></td><td   >339</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >433.00</td><td   >359.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2313'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>9</td><td>W</td><td>551</td><td>300</td><td>433</td><td>359</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >9</td><td   >W</td><td   >551</td><td   >300</td><td   >433</td><td   >359</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2294'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2294'>+</button></td><td>19</td><td><a href='/aardvark/html/players/2294.html'>Muhd Amirul Hakim</a></td><td>695</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>350.00</td><td>332.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2294'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2294'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/2294.html'>Muhd Amirul Hakim</a></td><td   >695</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >350.00</td><td   >332.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2294'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>14</td><td>W</td><td>551</td><td>589</td><td>350</td><td>332</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >14</td><td   >W</td><td   >551</td><td   >589</td><td   >350</td><td   >332</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1032'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1032'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td>1541</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>287.00</td><td>436.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1032'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1032'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1032.html'>Hassan Hadi Khan</a></td><td   >1541</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >287.00</td><td   >436.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1032'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>4</td><td>L</td><td>551</td><td>1135</td><td>287</td><td>436</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >4</td><td   >L</td><td   >551</td><td   >1135</td><td   >287</td><td   >436</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2319'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2319'>+</button></td><td>21</td><td><a href='/aardvark/html/players/2319.html'>Yunus Ismail</a></td><td>334</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>284.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2319'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2319'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/2319.html'>Yunus Ismail</a></td><td   >334</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >284.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2319'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>16</td><td>W</td><td>551</td><td>300</td><td>405</td><td>284</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >16</td><td   >W</td><td   >551</td><td   >300</td><td   >405</td><td   >284</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2288'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2288'>+</button></td><td>22</td><td><a href='/aardvark/html/players/2288.html'>Irfan Sabri</a></td><td>499</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>313.00</td><td>454.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2288'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2288'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/2288.html'>Irfan Sabri</a></td><td   >499</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >313.00</td><td   >454.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2288'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>6</td><td>L</td><td>551</td><td>584</td><td>313</td><td>454</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >6</td><td   >L</td><td   >551</td><td   >584</td><td   >313</td><td   >454</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2278'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2278'>+</button></td><td>23</td><td><a href='/aardvark/html/players/2278.html'>Alif Akmal Hashim</a></td><td>578</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>360.00</td><td>362.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2278'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2278'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/2278.html'>Alif Akmal Hashim</a></td><td   >578</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >360.00</td><td   >362.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2278'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td>2014-08-31</td><td>11</td><td>L</td><td>551</td><td>581</td><td>360</td><td>362</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/148.html'>WORLD YOUTH COLOMBO</a></td><td   >2014-08-31</td><td   >11</td><td   >L</td><td   >551</td><td   >581</td><td   >360</td><td   >362</td></tr>
 </table></div></td></tr>
 
 </table>

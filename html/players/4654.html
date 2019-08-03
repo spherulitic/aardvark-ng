@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Shehryar Hassan</h2>
             <div>
               <IMG SRC="../../flags/PAK.png" alt="PAK">
-              <p>PAK</p>
+              <p><a href='/aardvark/html/rankings/PAK.html'>Pakistan</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 617<br>
               <b>Games Played:</b> 27<br>
               <b>Wins:</b> 12 (44.44%)<br>
               <b>Losses: </b>15 (55.56%)<br>
@@ -183,155 +184,155 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_25348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25348'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>12</td><td>15</td><td>0</td><td>-629</td><td>42</td><td>617</td><td>617</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_25348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_25348'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >12</td><td   >15</td><td   >0</td><td   >-629</td><td   >42</td><td   >617</td><td   >617</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_25348'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1211</td><td>L</td><td>286</td><td>516</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3309.html'>Basil Ali Khan</a></td><td>757</td><td>L</td><td>212</td><td>524</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3344.html'>Rameen Adeel</a></td><td>300</td><td>W</td><td>396</td><td>263</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td>588</td><td>W</td><td>435</td><td>334</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3325.html'>Aashir Ahmed</a></td><td>634</td><td>W</td><td>397</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td>1545</td><td>L</td><td>225</td><td>548</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1052.html'>Hassan Bin Arshad</a></td><td>983</td><td>L</td><td>326</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3311.html'>Fatima Siddique</a></td><td>413</td><td>W</td><td>397</td><td>330</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1236.html'>Muzammil Asim</a></td><td>522</td><td>L</td><td>328</td><td>358</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3347.html'>Teham Ahmed</a></td><td>831</td><td>W</td><td>333</td><td>321</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3312.html'>Hammad Hamid</a></td><td>633</td><td>L</td><td>373</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3312.html'>Hammad Hamid</a></td><td>633</td><td>W</td><td>440</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1108.html'>Saim Usmani</a></td><td>780</td><td>L</td><td>409</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td>588</td><td>L</td><td>313</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3911.html'>Misbah Rehman</a></td><td>693</td><td>W</td><td>356</td><td>251</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1227.html'>Foaad Sami</a></td><td>676</td><td>L</td><td>410</td><td>412</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/4655.html'>Zainab Shujat</a></td><td>521</td><td>L</td><td>319</td><td>378</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/4646.html'>Aliza Ahmed</a></td><td>452</td><td>W</td><td>472</td><td>259</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td>588</td><td>W</td><td>386</td><td>316</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/3344.html'>Rameen Adeel</a></td><td>300</td><td>W</td><td>546</td><td>248</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/3319.html'>Umar Naeem</a></td><td>806</td><td>L</td><td>293</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1211</td><td>L</td><td>303</td><td>493</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/1237.html'>Nasir Mehmood</a></td><td>611</td><td>L</td><td>298</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/4648.html'>Arsalan Ahmed</a></td><td>527</td><td>W</td><td>320</td><td>302</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/1237.html'>Nasir Mehmood</a></td><td>611</td><td>L</td><td>372</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>26</td><td><a href='/aardvark/html/players/1227.html'>Foaad Sami</a></td><td>676</td><td>L</td><td>340</td><td>469</td></tr>
-        <tr  class='roweven'  ><td>27</td><td><a href='/aardvark/html/players/4651.html'>Mahrukh Zaim</a></td><td>456</td><td>W</td><td>374</td><td>313</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1211</td><td   >L</td><td   >286</td><td   >516</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3309.html'>Basil Ali Khan</a></td><td   >757</td><td   >L</td><td   >212</td><td   >524</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3344.html'>Rameen Adeel</a></td><td   >300</td><td   >W</td><td   >396</td><td   >263</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td   >588</td><td   >W</td><td   >435</td><td   >334</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3325.html'>Aashir Ahmed</a></td><td   >634</td><td   >W</td><td   >397</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1545</td><td   >L</td><td   >225</td><td   >548</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1052.html'>Hassan Bin Arshad</a></td><td   >983</td><td   >L</td><td   >326</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3311.html'>Fatima Siddique</a></td><td   >413</td><td   >W</td><td   >397</td><td   >330</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1236.html'>Muzammil Asim</a></td><td   >522</td><td   >L</td><td   >328</td><td   >358</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3347.html'>Teham Ahmed</a></td><td   >831</td><td   >W</td><td   >333</td><td   >321</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3312.html'>Hammad Hamid</a></td><td   >633</td><td   >L</td><td   >373</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3312.html'>Hammad Hamid</a></td><td   >633</td><td   >W</td><td   >440</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1108.html'>Saim Usmani</a></td><td   >780</td><td   >L</td><td   >409</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td   >588</td><td   >L</td><td   >313</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3911.html'>Misbah Rehman</a></td><td   >693</td><td   >W</td><td   >356</td><td   >251</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1227.html'>Foaad Sami</a></td><td   >676</td><td   >L</td><td   >410</td><td   >412</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/4655.html'>Zainab Shujat</a></td><td   >521</td><td   >L</td><td   >319</td><td   >378</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/4646.html'>Aliza Ahmed</a></td><td   >452</td><td   >W</td><td   >472</td><td   >259</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td   >588</td><td   >W</td><td   >386</td><td   >316</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3344.html'>Rameen Adeel</a></td><td   >300</td><td   >W</td><td   >546</td><td   >248</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3319.html'>Umar Naeem</a></td><td   >806</td><td   >L</td><td   >293</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1211</td><td   >L</td><td   >303</td><td   >493</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1237.html'>Nasir Mehmood</a></td><td   >611</td><td   >L</td><td   >298</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/4648.html'>Arsalan Ahmed</a></td><td   >527</td><td   >W</td><td   >320</td><td   >302</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/1237.html'>Nasir Mehmood</a></td><td   >611</td><td   >L</td><td   >372</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/1227.html'>Foaad Sami</a></td><td   >676</td><td   >L</td><td   >340</td><td   >469</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/4651.html'>Mahrukh Zaim</a></td><td   >456</td><td   >W</td><td   >374</td><td   >313</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4652'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4652'>+</button></td><td>1</td><td><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td>562</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>378.00</td><td>341.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4652'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4652'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/4652.html'>Momina Riaz</a></td><td   >562</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >378.00</td><td   >341.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4652'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>4</td><td>W</td><td>617</td><td>588</td><td>435</td><td>334</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>14</td><td>L</td><td>617</td><td>588</td><td>313</td><td>374</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>19</td><td>W</td><td>617</td><td>588</td><td>386</td><td>316</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >4</td><td   >W</td><td   >617</td><td   >588</td><td   >435</td><td   >334</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >14</td><td   >L</td><td   >617</td><td   >588</td><td   >313</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >19</td><td   >W</td><td   >617</td><td   >588</td><td   >386</td><td   >316</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3312'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3312'>+</button></td><td>2</td><td><a href='/aardvark/html/players/3312.html'>Hammad Hamid</a></td><td>630</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>406.50</td><td>416.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3312'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3312'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/3312.html'>Hammad Hamid</a></td><td   >630</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >406.50</td><td   >416.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3312'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>11</td><td>L</td><td>617</td><td>633</td><td>373</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>12</td><td>W</td><td>617</td><td>633</td><td>440</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >11</td><td   >L</td><td   >617</td><td   >633</td><td   >373</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >12</td><td   >W</td><td   >617</td><td   >633</td><td   >440</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1237'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1237'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1237.html'>Nasir Mehmood</a></td><td>685</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>335.00</td><td>429.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1237'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1237'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1237.html'>Nasir Mehmood</a></td><td   >685</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >335.00</td><td   >429.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1237'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>23</td><td>L</td><td>617</td><td>611</td><td>298</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>25</td><td>L</td><td>617</td><td>611</td><td>372</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >23</td><td   >L</td><td   >617</td><td   >611</td><td   >298</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >25</td><td   >L</td><td   >617</td><td   >611</td><td   >372</td><td   >422</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3344'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3344'>+</button></td><td>4</td><td><a href='/aardvark/html/players/3344.html'>Rameen Adeel</a></td><td>300</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>471.00</td><td>255.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3344'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3344'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/3344.html'>Rameen Adeel</a></td><td   >300</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >471.00</td><td   >255.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3344'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>3</td><td>W</td><td>617</td><td>300</td><td>396</td><td>263</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>20</td><td>W</td><td>617</td><td>300</td><td>546</td><td>248</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >3</td><td   >W</td><td   >617</td><td   >300</td><td   >396</td><td   >263</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >20</td><td   >W</td><td   >617</td><td   >300</td><td   >546</td><td   >248</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1227'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1227'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1227.html'>Foaad Sami</a></td><td>720</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>375.00</td><td>440.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1227'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1227'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1227.html'>Foaad Sami</a></td><td   >720</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >375.00</td><td   >440.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1227'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>16</td><td>L</td><td>617</td><td>676</td><td>410</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>26</td><td>L</td><td>617</td><td>676</td><td>340</td><td>469</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >16</td><td   >L</td><td   >617</td><td   >676</td><td   >410</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >26</td><td   >L</td><td   >617</td><td   >676</td><td   >340</td><td   >469</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_507'>+</button></td><td>6</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1174</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>294.50</td><td>504.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_507'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1174</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >294.50</td><td   >504.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_507'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>1</td><td>L</td><td>617</td><td>1211</td><td>286</td><td>516</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>22</td><td>L</td><td>617</td><td>1211</td><td>303</td><td>493</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >1</td><td   >L</td><td   >617</td><td   >1211</td><td   >286</td><td   >516</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >22</td><td   >L</td><td   >617</td><td   >1211</td><td   >303</td><td   >493</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3347'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3347'>+</button></td><td>7</td><td><a href='/aardvark/html/players/3347.html'>Teham Ahmed</a></td><td>703</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>333.00</td><td>321.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3347'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3347'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/3347.html'>Teham Ahmed</a></td><td   >703</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >333.00</td><td   >321.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3347'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>10</td><td>W</td><td>617</td><td>831</td><td>333</td><td>321</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >10</td><td   >W</td><td   >617</td><td   >831</td><td   >333</td><td   >321</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4651'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4651'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4651.html'>Mahrukh Zaim</a></td><td>456</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>374.00</td><td>313.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4651'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4651'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/4651.html'>Mahrukh Zaim</a></td><td   >456</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >374.00</td><td   >313.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4651'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>27</td><td>W</td><td>617</td><td>456</td><td>374</td><td>313</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >27</td><td   >W</td><td   >617</td><td   >456</td><td   >374</td><td   >313</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1236'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1236'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1236.html'>Muzammil Asim</a></td><td>657</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>328.00</td><td>358.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1236'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1236'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1236.html'>Muzammil Asim</a></td><td   >657</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >328.00</td><td   >358.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1236'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>9</td><td>L</td><td>617</td><td>522</td><td>328</td><td>358</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >9</td><td   >L</td><td   >617</td><td   >522</td><td   >328</td><td   >358</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3309'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3309'>+</button></td><td>10</td><td><a href='/aardvark/html/players/3309.html'>Basil Ali Khan</a></td><td>1148</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>212.00</td><td>524.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3309'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3309'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/3309.html'>Basil Ali Khan</a></td><td   >1148</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >212.00</td><td   >524.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3309'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>2</td><td>L</td><td>617</td><td>757</td><td>212</td><td>524</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >2</td><td   >L</td><td   >617</td><td   >757</td><td   >212</td><td   >524</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3311'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3311'>+</button></td><td>11</td><td><a href='/aardvark/html/players/3311.html'>Fatima Siddique</a></td><td>546</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>397.00</td><td>330.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3311'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3311'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/3311.html'>Fatima Siddique</a></td><td   >546</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >397.00</td><td   >330.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3311'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>8</td><td>W</td><td>617</td><td>413</td><td>397</td><td>330</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >8</td><td   >W</td><td   >617</td><td   >413</td><td   >397</td><td   >330</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3325'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3325'>+</button></td><td>12</td><td><a href='/aardvark/html/players/3325.html'>Aashir Ahmed</a></td><td>483</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>397.00</td><td>350.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3325'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3325'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/3325.html'>Aashir Ahmed</a></td><td   >483</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >397.00</td><td   >350.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3325'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>5</td><td>W</td><td>617</td><td>634</td><td>397</td><td>350</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >5</td><td   >W</td><td   >617</td><td   >634</td><td   >397</td><td   >350</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4648'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4648'>+</button></td><td>13</td><td><a href='/aardvark/html/players/4648.html'>Arsalan Ahmed</a></td><td>527</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>320.00</td><td>302.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4648'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4648'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/4648.html'>Arsalan Ahmed</a></td><td   >527</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >320.00</td><td   >302.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4648'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>24</td><td>W</td><td>617</td><td>527</td><td>320</td><td>302</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >24</td><td   >W</td><td   >617</td><td   >527</td><td   >320</td><td   >302</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4655'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4655'>+</button></td><td>14</td><td><a href='/aardvark/html/players/4655.html'>Zainab Shujat</a></td><td>521</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>319.00</td><td>378.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4655'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4655'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/4655.html'>Zainab Shujat</a></td><td   >521</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >319.00</td><td   >378.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4655'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>17</td><td>L</td><td>617</td><td>521</td><td>319</td><td>378</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >17</td><td   >L</td><td   >617</td><td   >521</td><td   >319</td><td   >378</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3319'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3319'>+</button></td><td>15</td><td><a href='/aardvark/html/players/3319.html'>Umar Naeem</a></td><td>890</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>293.00</td><td>397.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3319'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3319'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/3319.html'>Umar Naeem</a></td><td   >890</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >293.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3319'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>21</td><td>L</td><td>617</td><td>806</td><td>293</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >21</td><td   >L</td><td   >617</td><td   >806</td><td   >293</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1108'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1108'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1108.html'>Saim Usmani</a></td><td>909</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>409.00</td><td>417.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1108'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1108'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/1108.html'>Saim Usmani</a></td><td   >909</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >409.00</td><td   >417.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1108'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>13</td><td>L</td><td>617</td><td>780</td><td>409</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >13</td><td   >L</td><td   >617</td><td   >780</td><td   >409</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4646'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4646'>+</button></td><td>17</td><td><a href='/aardvark/html/players/4646.html'>Aliza Ahmed</a></td><td>452</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>472.00</td><td>259.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4646'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4646'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/4646.html'>Aliza Ahmed</a></td><td   >452</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >472.00</td><td   >259.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4646'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>18</td><td>W</td><td>617</td><td>452</td><td>472</td><td>259</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >18</td><td   >W</td><td   >617</td><td   >452</td><td   >472</td><td   >259</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1067'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1067'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td>1614</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>225.00</td><td>548.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1067'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1067'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/1067.html'>Sohaib Sanaullah</a></td><td   >1614</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >225.00</td><td   >548.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1067'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>6</td><td>L</td><td>617</td><td>1545</td><td>225</td><td>548</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >6</td><td   >L</td><td   >617</td><td   >1545</td><td   >225</td><td   >548</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3911'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3911'>+</button></td><td>19</td><td><a href='/aardvark/html/players/3911.html'>Misbah Rehman</a></td><td>671</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>356.00</td><td>251.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3911'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3911'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/3911.html'>Misbah Rehman</a></td><td   >671</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >356.00</td><td   >251.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3911'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>15</td><td>W</td><td>617</td><td>693</td><td>356</td><td>251</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >15</td><td   >W</td><td   >617</td><td   >693</td><td   >356</td><td   >251</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1052'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1052'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1052.html'>Hassan Bin Arshad</a></td><td>1094</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>326.00</td><td>425.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1052'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1052'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1052.html'>Hassan Bin Arshad</a></td><td   >1094</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >326.00</td><td   >425.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1052'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td>2018-07-15</td><td>7</td><td>L</td><td>617</td><td>983</td><td>326</td><td>425</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/655.html'>30th Pakistan Scrabble Championship </a></td><td   >2018-07-15</td><td   >7</td><td   >L</td><td   >617</td><td   >983</td><td   >326</td><td   >425</td></tr>
 </table></div></td></tr>
 
 </table>

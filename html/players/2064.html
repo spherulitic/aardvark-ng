@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Hellen Mazima</h2>
             <div>
               <IMG SRC="../../flags/UGA.png" alt="UGA">
-              <p>UGA</p>
+              <p><a href='/aardvark/html/rankings/UGA.html'>Uganda</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 322<br>
               <b>Games Played:</b> 17<br>
               <b>Wins:</b> 2 (11.76%)<br>
               <b>Losses: </b>11 (64.71%)<br>
@@ -183,103 +184,103 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_4813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4813'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>4</td><td>13</td><td>1</td><td>-1647</td><td>48</td><td>322</td><td>322</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_4813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_4813'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >4</td><td   >13</td><td   >1</td><td   >-1647</td><td   >48</td><td   >322</td><td   >322</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_4813'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>2</td><td><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td>1011</td><td>L</td><td>271</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>3</td><td><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td>1635</td><td>L</td><td>205</td><td>520</td></tr>
-        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/603.html'>Geria Richard</a></td><td>1815</td><td>L</td><td>135</td><td>615</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/2073.html'>Samuel Sekiwere</a></td><td>300</td><td>W</td><td>287</td><td>239</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/2057.html'>Alex Hasakya</a></td><td>300</td><td>W</td><td>300</td><td>200</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/2062.html'>Eve Gimono</a></td><td>693</td><td>L</td><td>234</td><td>433</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td>999</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/2061.html'>Esther Kate</a></td><td>524</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/2071.html'>Oswell Okello</a></td><td>566</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td>354</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td>843</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td>354</td><td>T</td><td>200</td><td>200</td></tr>
-        <tr  class='roweven'  ><td>14</td><td><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td>354</td><td>T</td><td>200</td><td>200</td></tr>
-        <tr  class='rowodd'  ><td>15</td><td><a href='/aardvark/html/players/2070.html'>Lisa Giibwa</a></td><td>600</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>16</td><td><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td>354</td><td>T</td><td>200</td><td>200</td></tr>
-        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/2062.html'>Eve Gimono</a></td><td>693</td><td>L</td><td>200</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td>354</td><td>T</td><td>300</td><td>300</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >2</td><td   ><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td   >1011</td><td   >L</td><td   >271</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >3</td><td   ><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td   >1635</td><td   >L</td><td   >205</td><td   >520</td></tr>
+        <tr  class='roweven'  ><td   >4</td><td   ><a href='/aardvark/html/players/603.html'>Geria Richard</a></td><td   >1815</td><td   >L</td><td   >135</td><td   >615</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/2073.html'>Samuel Sekiwere</a></td><td   >300</td><td   >W</td><td   >287</td><td   >239</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/2057.html'>Alex Hasakya</a></td><td   >300</td><td   >W</td><td   >300</td><td   >200</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/2062.html'>Eve Gimono</a></td><td   >693</td><td   >L</td><td   >234</td><td   >433</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td   >999</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/2061.html'>Esther Kate</a></td><td   >524</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/2071.html'>Oswell Okello</a></td><td   >566</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td   >354</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td   >843</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >13</td><td   ><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td   >354</td><td   >T</td><td   >200</td><td   >200</td></tr>
+        <tr  class='roweven'  ><td   >14</td><td   ><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td   >354</td><td   >T</td><td   >200</td><td   >200</td></tr>
+        <tr  class='rowodd'  ><td   >15</td><td   ><a href='/aardvark/html/players/2070.html'>Lisa Giibwa</a></td><td   >600</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >16</td><td   ><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td   >354</td><td   >T</td><td   >200</td><td   >200</td></tr>
+        <tr  class='rowodd'  ><td   >17</td><td   ><a href='/aardvark/html/players/2062.html'>Eve Gimono</a></td><td   >693</td><td   >L</td><td   >200</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >18</td><td   ><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td   >354</td><td   >T</td><td   >300</td><td   >300</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2068'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2068'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td>354</td><td>5</td><td>0</td><td>1</td><td>4</td><td>0.40</td><td>220.00</td><td>240.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2068'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2068'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2068.html'>Joseph Muyengere</a></td><td   >354</td><td   >5</td><td   >0</td><td   >1</td><td   >4</td><td   >0.40</td><td   >220.00</td><td   >240.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2068'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>11</td><td>L</td><td>322</td><td>354</td><td>200</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>13</td><td>T</td><td>322</td><td>354</td><td>200</td><td>200</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>14</td><td>T</td><td>322</td><td>354</td><td>200</td><td>200</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>16</td><td>T</td><td>322</td><td>354</td><td>200</td><td>200</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>18</td><td>T</td><td>322</td><td>354</td><td>300</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >11</td><td   >L</td><td   >322</td><td   >354</td><td   >200</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >13</td><td   >T</td><td   >322</td><td   >354</td><td   >200</td><td   >200</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >14</td><td   >T</td><td   >322</td><td   >354</td><td   >200</td><td   >200</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >16</td><td   >T</td><td   >322</td><td   >354</td><td   >200</td><td   >200</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >18</td><td   >T</td><td   >322</td><td   >354</td><td   >300</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2062'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2062'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2062.html'>Eve Gimono</a></td><td>693</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>217.00</td><td>366.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2062'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2062'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2062.html'>Eve Gimono</a></td><td   >693</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >217.00</td><td   >366.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2062'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>7</td><td>L</td><td>322</td><td>693</td><td>234</td><td>433</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>17</td><td>L</td><td>322</td><td>693</td><td>200</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >7</td><td   >L</td><td   >322</td><td   >693</td><td   >234</td><td   >433</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >17</td><td   >L</td><td   >322</td><td   >693</td><td   >200</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2061'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2061'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2061.html'>Esther Kate</a></td><td>524</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>200.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2061'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2061'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2061.html'>Esther Kate</a></td><td   >524</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >200.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2061'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>9</td><td>L</td><td>322</td><td>524</td><td>200</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >9</td><td   >L</td><td   >322</td><td   >524</td><td   >200</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1813'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td>797</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>200.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1813'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1813.html'>Powell Kiplagat</a></td><td   >797</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >200.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1813'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>12</td><td>L</td><td>322</td><td>843</td><td>200</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >12</td><td   >L</td><td   >322</td><td   >843</td><td   >200</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2057'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2057'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2057.html'>Alex Hasakya</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>300.00</td><td>200.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2057'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2057'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2057.html'>Alex Hasakya</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >300.00</td><td   >200.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2057'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>6</td><td>W</td><td>322</td><td>300</td><td>300</td><td>200</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >6</td><td   >W</td><td   >322</td><td   >300</td><td   >300</td><td   >200</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2071'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2071'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2071.html'>Oswell Okello</a></td><td>566</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>200.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2071'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2071'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2071.html'>Oswell Okello</a></td><td   >566</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >200.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2071'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>10</td><td>L</td><td>322</td><td>566</td><td>200</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >10</td><td   >L</td><td   >322</td><td   >566</td><td   >200</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2069'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2069'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td>1001</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>271.00</td><td>422.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2069'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2069'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2069.html'>Justin Opolot</a></td><td   >1001</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >271.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2069'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>2</td><td>L</td><td>322</td><td>1011</td><td>271</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >2</td><td   >L</td><td   >322</td><td   >1011</td><td   >271</td><td   >422</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_604'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_604'>+</button></td><td>8</td><td><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td>1698</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>205.00</td><td>520.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_604'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_604'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/604.html'>Joash Manyasa</a></td><td   >1698</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >205.00</td><td   >520.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_604'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>3</td><td>L</td><td>322</td><td>1635</td><td>205</td><td>520</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >3</td><td   >L</td><td   >322</td><td   >1635</td><td   >205</td><td   >520</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2073'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2073'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2073.html'>Samuel Sekiwere</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>287.00</td><td>239.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2073'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2073'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2073.html'>Samuel Sekiwere</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >287.00</td><td   >239.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2073'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>5</td><td>W</td><td>322</td><td>300</td><td>287</td><td>239</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >5</td><td   >W</td><td   >322</td><td   >300</td><td   >287</td><td   >239</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_603'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_603'>+</button></td><td>10</td><td><a href='/aardvark/html/players/603.html'>Geria Richard</a></td><td>1885</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>135.00</td><td>615.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_603'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_603'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/603.html'>Geria Richard</a></td><td   >1885</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >135.00</td><td   >615.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_603'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>4</td><td>L</td><td>322</td><td>1815</td><td>135</td><td>615</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >4</td><td   >L</td><td   >322</td><td   >1815</td><td   >135</td><td   >615</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_599'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_599'>+</button></td><td>11</td><td><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td>1051</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>200.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_599'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_599'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td   >1051</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >200.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_599'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>8</td><td>L</td><td>322</td><td>999</td><td>200</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >8</td><td   >L</td><td   >322</td><td   >999</td><td   >200</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2070'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2070'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2070.html'>Lisa Giibwa</a></td><td>600</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>200.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2070'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2070'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2070.html'>Lisa Giibwa</a></td><td   >600</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >200.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2070'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td>2016-11-27</td><td>15</td><td>L</td><td>322</td><td>600</td><td>200</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/114.html'>Scrabble on the Nile</a></td><td   >2016-11-27</td><td   >15</td><td   >L</td><td   >322</td><td   >600</td><td   >200</td><td   >300</td></tr>
 </table></div></td></tr>
 
 </table>

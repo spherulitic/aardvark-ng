@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Carol Muya</h2>
             <div>
               <IMG SRC="../../flags/KEN.png" alt="KEN">
-              <p>KEN</p>
+              <p><a href='/aardvark/html/rankings/KEN.html'>Kenya</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1431<br>
               <b>Games Played:</b> 44<br>
               <b>Wins:</b> 25 (56.82%)<br>
               <b>Losses: </b>19 (43.18%)<br>
@@ -183,249 +184,249 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_16840'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_16840'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>12</td><td>12</td><td>0</td><td>-650</td><td>97</td><td>1785</td><td>1431</td><td>-354</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_16840'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_16840'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >12</td><td   >12</td><td   >0</td><td   >-650</td><td   >97</td><td   >1785</td><td   >1431</td><td   >-354</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_16840'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1707.html'>Jarrett Tan</a></td><td>674</td><td>L</td><td>310</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>650</td><td>L</td><td>244</td><td>426</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3928.html'>Tairah John-Seedial</a></td><td>874</td><td>L</td><td>268</td><td>427</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3881.html'>Alisha Mohanaselvan</a></td><td>586</td><td>W</td><td>316</td><td>301</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1114.html'>Adib Mukhriz</a></td><td>457</td><td>W</td><td>358</td><td>286</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1118.html'>Muhd Amirul Hakeem</a></td><td>1410</td><td>L</td><td>348</td><td>376</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1148.html'>Joshua Ayden Lim</a></td><td>325</td><td>W</td><td>342</td><td>289</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3906.html'>Leanne Denise Candia</a></td><td>953</td><td>L</td><td>258</td><td>278</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3880.html'>Aldo Setiawan</a></td><td>822</td><td>W</td><td>306</td><td>297</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3933.html'>Wong Chun Ki</a></td><td>852</td><td>W</td><td>378</td><td>314</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3627.html'>Lakshmant Ian</a></td><td>916</td><td>L</td><td>285</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3883.html'>Ashvin Kesavan</a></td><td>755</td><td>L</td><td>274</td><td>547</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/3582.html'>Avinash Ramash Lakhw</a></td><td>648</td><td>W</td><td>402</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3571.html'>Amerenthiran Anantha</a></td><td>657</td><td>L</td><td>327</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1913.html'>Liana Aho</a></td><td>434</td><td>W</td><td>394</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3897.html'>Hareet Patel</a></td><td>935</td><td>W</td><td>312</td><td>278</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/1183.html'>Vershnil Weeraratne</a></td><td>307</td><td>W</td><td>345</td><td>164</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td>1541</td><td>W</td><td>412</td><td>331</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/1132.html'>Dulmini Weeraratne</a></td><td>518</td><td>W</td><td>371</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/1182.html'>Vedika Hingorani</a></td><td>667</td><td>L</td><td>254</td><td>478</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>970</td><td>L</td><td>259</td><td>479</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/3929.html'>Tarin Pairor</a></td><td>780</td><td>L</td><td>315</td><td>360</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/3633.html'>Megan Raaj Sethu</a></td><td>967</td><td>W</td><td>407</td><td>320</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/3906.html'>Leanne Denise Candia</a></td><td>953</td><td>L</td><td>295</td><td>331</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1707.html'>Jarrett Tan</a></td><td   >674</td><td   >L</td><td   >310</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td   >650</td><td   >L</td><td   >244</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3928.html'>Tairah John-Seedial</a></td><td   >874</td><td   >L</td><td   >268</td><td   >427</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3881.html'>Alisha Mohanaselvan</a></td><td   >586</td><td   >W</td><td   >316</td><td   >301</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1114.html'>Adib Mukhriz</a></td><td   >457</td><td   >W</td><td   >358</td><td   >286</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1118.html'>Muhd Amirul Hakeem</a></td><td   >1410</td><td   >L</td><td   >348</td><td   >376</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1148.html'>Joshua Ayden Lim</a></td><td   >325</td><td   >W</td><td   >342</td><td   >289</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3906.html'>Leanne Denise Candia</a></td><td   >953</td><td   >L</td><td   >258</td><td   >278</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3880.html'>Aldo Setiawan</a></td><td   >822</td><td   >W</td><td   >306</td><td   >297</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3933.html'>Wong Chun Ki</a></td><td   >852</td><td   >W</td><td   >378</td><td   >314</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3627.html'>Lakshmant Ian</a></td><td   >916</td><td   >L</td><td   >285</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3883.html'>Ashvin Kesavan</a></td><td   >755</td><td   >L</td><td   >274</td><td   >547</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3582.html'>Avinash Ramash Lakhw</a></td><td   >648</td><td   >W</td><td   >402</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3571.html'>Amerenthiran Anantha</a></td><td   >657</td><td   >L</td><td   >327</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1913.html'>Liana Aho</a></td><td   >434</td><td   >W</td><td   >394</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3897.html'>Hareet Patel</a></td><td   >935</td><td   >W</td><td   >312</td><td   >278</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1183.html'>Vershnil Weeraratne</a></td><td   >307</td><td   >W</td><td   >345</td><td   >164</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td   >1541</td><td   >W</td><td   >412</td><td   >331</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1132.html'>Dulmini Weeraratne</a></td><td   >518</td><td   >W</td><td   >371</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1182.html'>Vedika Hingorani</a></td><td   >667</td><td   >L</td><td   >254</td><td   >478</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td   >970</td><td   >L</td><td   >259</td><td   >479</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/3929.html'>Tarin Pairor</a></td><td   >780</td><td   >L</td><td   >315</td><td   >360</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/3633.html'>Megan Raaj Sethu</a></td><td   >967</td><td   >W</td><td   >407</td><td   >320</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/3906.html'>Leanne Denise Candia</a></td><td   >953</td><td   >L</td><td   >295</td><td   >331</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_17120'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_17120'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>13</td><td>7</td><td>0</td><td>690</td><td>4</td><td>1785</td><td>1785</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_17120'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_17120'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >13</td><td   >7</td><td   >0</td><td   >690</td><td   >4</td><td   >1785</td><td   >1785</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_17120'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3959.html'>Japheth Wandera</a></td><td>1298</td><td>W</td><td>403</td><td>317</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3970.html'>Vishwash Brahmbatt</a></td><td>1042</td><td>W</td><td>291</td><td>289</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3890.html'>Debora Wandia</a></td><td>1289</td><td>W</td><td>499</td><td>240</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3962.html'>Michael Mwangi</a></td><td>1717</td><td>W</td><td>373</td><td>306</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3964.html'>Peninah Gakuiya</a></td><td>1503</td><td>W</td><td>323</td><td>313</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td>1959</td><td>L</td><td>300</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3958.html'>Jamie Chew</a></td><td>2011</td><td>L</td><td>272</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3884.html'>Calistus Kibet</a></td><td>1535</td><td>L</td><td>382</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td>1541</td><td>W</td><td>370</td><td>287</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3893.html'>Eunice Wakio</a></td><td>1503</td><td>W</td><td>375</td><td>286</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3895.html'>Francis Matati</a></td><td>1581</td><td>W</td><td>399</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3897.html'>Hareet Patel</a></td><td>935</td><td>W</td><td>401</td><td>217</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td>1959</td><td>L</td><td>299</td><td>418</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3958.html'>Jamie Chew</a></td><td>2011</td><td>L</td><td>318</td><td>475</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3964.html'>Peninah Gakuiya</a></td><td>1503</td><td>W</td><td>350</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3895.html'>Francis Matati</a></td><td>1581</td><td>W</td><td>425</td><td>320</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/3962.html'>Michael Mwangi</a></td><td>1717</td><td>L</td><td>297</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/3892.html'>Esther Muturi</a></td><td>1353</td><td>W</td><td>345</td><td>324</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td>1959</td><td>L</td><td>363</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td>1541</td><td>W</td><td>405</td><td>222</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3959.html'>Japheth Wandera</a></td><td   >1298</td><td   >W</td><td   >403</td><td   >317</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3970.html'>Vishwash Brahmbatt</a></td><td   >1042</td><td   >W</td><td   >291</td><td   >289</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3890.html'>Debora Wandia</a></td><td   >1289</td><td   >W</td><td   >499</td><td   >240</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3962.html'>Michael Mwangi</a></td><td   >1717</td><td   >W</td><td   >373</td><td   >306</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3964.html'>Peninah Gakuiya</a></td><td   >1503</td><td   >W</td><td   >323</td><td   >313</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td   >1959</td><td   >L</td><td   >300</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3958.html'>Jamie Chew</a></td><td   >2011</td><td   >L</td><td   >272</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3884.html'>Calistus Kibet</a></td><td   >1535</td><td   >L</td><td   >382</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td   >1541</td><td   >W</td><td   >370</td><td   >287</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3893.html'>Eunice Wakio</a></td><td   >1503</td><td   >W</td><td   >375</td><td   >286</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3895.html'>Francis Matati</a></td><td   >1581</td><td   >W</td><td   >399</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3897.html'>Hareet Patel</a></td><td   >935</td><td   >W</td><td   >401</td><td   >217</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td   >1959</td><td   >L</td><td   >299</td><td   >418</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3958.html'>Jamie Chew</a></td><td   >2011</td><td   >L</td><td   >318</td><td   >475</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3964.html'>Peninah Gakuiya</a></td><td   >1503</td><td   >W</td><td   >350</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3895.html'>Francis Matati</a></td><td   >1581</td><td   >W</td><td   >425</td><td   >320</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3962.html'>Michael Mwangi</a></td><td   >1717</td><td   >L</td><td   >297</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3892.html'>Esther Muturi</a></td><td   >1353</td><td   >W</td><td   >345</td><td   >324</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td   >1959</td><td   >L</td><td   >363</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td   >1541</td><td   >W</td><td   >405</td><td   >222</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3920'>+</button></td><td>1</td><td><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td>1266</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1.00</td><td>395.67</td><td>280.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3920'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3920'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/3920.html'>Rose Natalie</a></td><td   >1266</td><td   >3</td><td   >3</td><td   >0</td><td   >0</td><td   >1.00</td><td   >395.67</td><td   >280.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3920'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>9</td><td>W</td><td>1785</td><td>1541</td><td>370</td><td>287</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>20</td><td>W</td><td>1785</td><td>1541</td><td>405</td><td>222</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>18</td><td>W</td><td>1785</td><td>1541</td><td>412</td><td>331</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >9</td><td   >W</td><td   >1785</td><td   >1541</td><td   >370</td><td   >287</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >20</td><td   >W</td><td   >1785</td><td   >1541</td><td   >405</td><td   >222</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >18</td><td   >W</td><td   >1785</td><td   >1541</td><td   >412</td><td   >331</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3957'>+</button></td><td>2</td><td><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td>1959</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0.00</td><td>320.67</td><td>386.67</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3957'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/3957.html'>Ian Otieno</a></td><td   >1959</td><td   >3</td><td   >0</td><td   >3</td><td   >0</td><td   >0.00</td><td   >320.67</td><td   >386.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3957'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>6</td><td>L</td><td>1785</td><td>1959</td><td>300</td><td>350</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>13</td><td>L</td><td>1785</td><td>1959</td><td>299</td><td>418</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>19</td><td>L</td><td>1785</td><td>1959</td><td>363</td><td>392</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >6</td><td   >L</td><td   >1785</td><td   >1959</td><td   >300</td><td   >350</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >13</td><td   >L</td><td   >1785</td><td   >1959</td><td   >299</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >19</td><td   >L</td><td   >1785</td><td   >1959</td><td   >363</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3906'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3906'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3906.html'>Leanne Denise Candia</a></td><td>953</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>276.50</td><td>304.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3906'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3906'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3906.html'>Leanne Denise Candia</a></td><td   >953</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >276.50</td><td   >304.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3906'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>8</td><td>L</td><td>1785</td><td>953</td><td>258</td><td>278</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>24</td><td>L</td><td>1785</td><td>953</td><td>295</td><td>331</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >8</td><td   >L</td><td   >1785</td><td   >953</td><td   >258</td><td   >278</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >24</td><td   >L</td><td   >1785</td><td   >953</td><td   >295</td><td   >331</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3958'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3958'>+</button></td><td>4</td><td><a href='/aardvark/html/players/3958.html'>Jamie Chew</a></td><td>2011</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>295.00</td><td>413.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3958'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3958'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/3958.html'>Jamie Chew</a></td><td   >2011</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >295.00</td><td   >413.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3958'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>7</td><td>L</td><td>1785</td><td>2011</td><td>272</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>14</td><td>L</td><td>1785</td><td>2011</td><td>318</td><td>475</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >7</td><td   >L</td><td   >1785</td><td   >2011</td><td   >272</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >14</td><td   >L</td><td   >1785</td><td   >2011</td><td   >318</td><td   >475</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3962'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3962'>+</button></td><td>5</td><td><a href='/aardvark/html/players/3962.html'>Michael Mwangi</a></td><td>1717</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>335.00</td><td>303.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3962'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3962'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/3962.html'>Michael Mwangi</a></td><td   >1717</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >335.00</td><td   >303.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3962'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>4</td><td>W</td><td>1785</td><td>1717</td><td>373</td><td>306</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>17</td><td>L</td><td>1785</td><td>1717</td><td>297</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >4</td><td   >W</td><td   >1785</td><td   >1717</td><td   >373</td><td   >306</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >17</td><td   >L</td><td   >1785</td><td   >1717</td><td   >297</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3895'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3895'>+</button></td><td>6</td><td><a href='/aardvark/html/players/3895.html'>Francis Matati</a></td><td>1208</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>412.00</td><td>346.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3895'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3895'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/3895.html'>Francis Matati</a></td><td   >1208</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >412.00</td><td   >346.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3895'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>11</td><td>W</td><td>1785</td><td>1581</td><td>399</td><td>373</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>16</td><td>W</td><td>1785</td><td>1581</td><td>425</td><td>320</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >11</td><td   >W</td><td   >1785</td><td   >1581</td><td   >399</td><td   >373</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >16</td><td   >W</td><td   >1785</td><td   >1581</td><td   >425</td><td   >320</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3964'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3964'>+</button></td><td>7</td><td><a href='/aardvark/html/players/3964.html'>Peninah Gakuiya</a></td><td>1503</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>336.50</td><td>320.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3964'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3964'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/3964.html'>Peninah Gakuiya</a></td><td   >1503</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >336.50</td><td   >320.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3964'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>5</td><td>W</td><td>1785</td><td>1503</td><td>323</td><td>313</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>15</td><td>W</td><td>1785</td><td>1503</td><td>350</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >5</td><td   >W</td><td   >1785</td><td   >1503</td><td   >323</td><td   >313</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >15</td><td   >W</td><td   >1785</td><td   >1503</td><td   >350</td><td   >327</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3897'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3897'>+</button></td><td>8</td><td><a href='/aardvark/html/players/3897.html'>Hareet Patel</a></td><td>783</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>356.50</td><td>247.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3897'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3897'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/3897.html'>Hareet Patel</a></td><td   >783</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >356.50</td><td   >247.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3897'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>12</td><td>W</td><td>1785</td><td>935</td><td>401</td><td>217</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>16</td><td>W</td><td>1785</td><td>935</td><td>312</td><td>278</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >12</td><td   >W</td><td   >1785</td><td   >935</td><td   >401</td><td   >217</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >16</td><td   >W</td><td   >1785</td><td   >935</td><td   >312</td><td   >278</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3884'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3884'>+</button></td><td>9</td><td><a href='/aardvark/html/players/3884.html'>Calistus Kibet</a></td><td>1137</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>382.00</td><td>393.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3884'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3884'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/3884.html'>Calistus Kibet</a></td><td   >1137</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >382.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3884'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>8</td><td>L</td><td>1785</td><td>1535</td><td>382</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >8</td><td   >L</td><td   >1785</td><td   >1535</td><td   >382</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3881'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3881'>+</button></td><td>10</td><td><a href='/aardvark/html/players/3881.html'>Alisha Mohanaselvan</a></td><td>586</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>316.00</td><td>301.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3881'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3881'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/3881.html'>Alisha Mohanaselvan</a></td><td   >586</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >316.00</td><td   >301.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3881'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>4</td><td>W</td><td>1785</td><td>586</td><td>316</td><td>301</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >4</td><td   >W</td><td   >1785</td><td   >586</td><td   >316</td><td   >301</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3633'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3633'>+</button></td><td>11</td><td><a href='/aardvark/html/players/3633.html'>Megan Raaj Sethu</a></td><td>931</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>407.00</td><td>320.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3633'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3633'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/3633.html'>Megan Raaj Sethu</a></td><td   >931</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >407.00</td><td   >320.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3633'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>23</td><td>W</td><td>1785</td><td>967</td><td>407</td><td>320</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >23</td><td   >W</td><td   >1785</td><td   >967</td><td   >407</td><td   >320</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3928'>+</button></td><td>12</td><td><a href='/aardvark/html/players/3928.html'>Tairah John-Seedial</a></td><td>874</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>268.00</td><td>427.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3928'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3928'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/3928.html'>Tairah John-Seedial</a></td><td   >874</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >268.00</td><td   >427.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3928'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>3</td><td>L</td><td>1785</td><td>874</td><td>268</td><td>427</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >3</td><td   >L</td><td   >1785</td><td   >874</td><td   >268</td><td   >427</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3959'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3959'>+</button></td><td>13</td><td><a href='/aardvark/html/players/3959.html'>Japheth Wandera</a></td><td>1298</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>403.00</td><td>317.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3959'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3959'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/3959.html'>Japheth Wandera</a></td><td   >1298</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >403.00</td><td   >317.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3959'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>1</td><td>W</td><td>1785</td><td>1298</td><td>403</td><td>317</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >1</td><td   >W</td><td   >1785</td><td   >1298</td><td   >403</td><td   >317</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3892'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3892'>+</button></td><td>14</td><td><a href='/aardvark/html/players/3892.html'>Esther Muturi</a></td><td>1048</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>345.00</td><td>324.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3892'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3892'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/3892.html'>Esther Muturi</a></td><td   >1048</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >345.00</td><td   >324.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3892'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>18</td><td>W</td><td>1785</td><td>1353</td><td>345</td><td>324</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >18</td><td   >W</td><td   >1785</td><td   >1353</td><td   >345</td><td   >324</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3582'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3582'>+</button></td><td>15</td><td><a href='/aardvark/html/players/3582.html'>Avinash Ramash Lakhw</a></td><td>1063</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>402.00</td><td>352.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3582'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3582'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/3582.html'>Avinash Ramash Lakhw</a></td><td   >1063</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >402.00</td><td   >352.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3582'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>13</td><td>W</td><td>1785</td><td>648</td><td>402</td><td>352</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >13</td><td   >W</td><td   >1785</td><td   >648</td><td   >402</td><td   >352</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3571'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3571'>+</button></td><td>16</td><td><a href='/aardvark/html/players/3571.html'>Amerenthiran Anantha</a></td><td>669</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>327.00</td><td>393.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3571'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3571'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/3571.html'>Amerenthiran Anantha</a></td><td   >669</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3571'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>14</td><td>L</td><td>1785</td><td>657</td><td>327</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >14</td><td   >L</td><td   >1785</td><td   >657</td><td   >327</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1148'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1148'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1148.html'>Joshua Ayden Lim</a></td><td>404</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>342.00</td><td>289.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1148'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1148'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1148.html'>Joshua Ayden Lim</a></td><td   >404</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >342.00</td><td   >289.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1148'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>7</td><td>W</td><td>1785</td><td>325</td><td>342</td><td>289</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >7</td><td   >W</td><td   >1785</td><td   >325</td><td   >342</td><td   >289</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3880'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3880'>+</button></td><td>18</td><td><a href='/aardvark/html/players/3880.html'>Aldo Setiawan</a></td><td>822</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>306.00</td><td>297.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3880'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3880'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/3880.html'>Aldo Setiawan</a></td><td   >822</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >306.00</td><td   >297.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3880'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>9</td><td>W</td><td>1785</td><td>822</td><td>306</td><td>297</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >9</td><td   >W</td><td   >1785</td><td   >822</td><td   >306</td><td   >297</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1114'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1114'>+</button></td><td>19</td><td><a href='/aardvark/html/players/1114.html'>Adib Mukhriz</a></td><td>460</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>358.00</td><td>286.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1114'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1114'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/1114.html'>Adib Mukhriz</a></td><td   >460</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >358.00</td><td   >286.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1114'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>5</td><td>W</td><td>1785</td><td>457</td><td>358</td><td>286</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >5</td><td   >W</td><td   >1785</td><td   >457</td><td   >358</td><td   >286</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1182'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1182'>+</button></td><td>20</td><td><a href='/aardvark/html/players/1182.html'>Vedika Hingorani</a></td><td>1022</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>254.00</td><td>478.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1182'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1182'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/1182.html'>Vedika Hingorani</a></td><td   >1022</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >254.00</td><td   >478.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1182'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>20</td><td>L</td><td>1785</td><td>667</td><td>254</td><td>478</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >20</td><td   >L</td><td   >1785</td><td   >667</td><td   >254</td><td   >478</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1183'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1183'>+</button></td><td>21</td><td><a href='/aardvark/html/players/1183.html'>Vershnil Weeraratne</a></td><td>444</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>345.00</td><td>164.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1183'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1183'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/1183.html'>Vershnil Weeraratne</a></td><td   >444</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >345.00</td><td   >164.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1183'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>17</td><td>W</td><td>1785</td><td>307</td><td>345</td><td>164</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >17</td><td   >W</td><td   >1785</td><td   >307</td><td   >345</td><td   >164</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3893'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3893'>+</button></td><td>22</td><td><a href='/aardvark/html/players/3893.html'>Eunice Wakio</a></td><td>1186</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>375.00</td><td>286.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3893'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3893'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/3893.html'>Eunice Wakio</a></td><td   >1186</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >375.00</td><td   >286.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3893'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>10</td><td>W</td><td>1785</td><td>1503</td><td>375</td><td>286</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >10</td><td   >W</td><td   >1785</td><td   >1503</td><td   >375</td><td   >286</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3883'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3883'>+</button></td><td>23</td><td><a href='/aardvark/html/players/3883.html'>Ashvin Kesavan</a></td><td>724</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>274.00</td><td>547.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3883'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3883'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/3883.html'>Ashvin Kesavan</a></td><td   >724</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >274.00</td><td   >547.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3883'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>12</td><td>L</td><td>1785</td><td>755</td><td>274</td><td>547</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >12</td><td   >L</td><td   >1785</td><td   >755</td><td   >274</td><td   >547</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1913'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1913'>+</button></td><td>24</td><td><a href='/aardvark/html/players/1913.html'>Liana Aho</a></td><td>569</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>394.00</td><td>327.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1913'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1913'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/1913.html'>Liana Aho</a></td><td   >569</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >394.00</td><td   >327.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1913'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>15</td><td>W</td><td>1785</td><td>434</td><td>394</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >15</td><td   >W</td><td   >1785</td><td   >434</td><td   >394</td><td   >327</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1707'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1707'>+</button></td><td>25</td><td><a href='/aardvark/html/players/1707.html'>Jarrett Tan</a></td><td>782</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>310.00</td><td>348.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1707'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1707'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/1707.html'>Jarrett Tan</a></td><td   >782</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >310.00</td><td   >348.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1707'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>1</td><td>L</td><td>1785</td><td>674</td><td>310</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >1</td><td   >L</td><td   >1785</td><td   >674</td><td   >310</td><td   >348</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1132'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1132'>+</button></td><td>26</td><td><a href='/aardvark/html/players/1132.html'>Dulmini Weeraratne</a></td><td>663</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>371.00</td><td>368.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1132'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1132'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/1132.html'>Dulmini Weeraratne</a></td><td   >663</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >371.00</td><td   >368.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1132'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>19</td><td>W</td><td>1785</td><td>518</td><td>371</td><td>368</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >19</td><td   >W</td><td   >1785</td><td   >518</td><td   >371</td><td   >368</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3970'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3970'>+</button></td><td>27</td><td><a href='/aardvark/html/players/3970.html'>Vishwash Brahmbatt</a></td><td>1042</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>291.00</td><td>289.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3970'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3970'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/3970.html'>Vishwash Brahmbatt</a></td><td   >1042</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >291.00</td><td   >289.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3970'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>2</td><td>W</td><td>1785</td><td>1042</td><td>291</td><td>289</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >2</td><td   >W</td><td   >1785</td><td   >1042</td><td   >291</td><td   >289</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1100'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1100'>+</button></td><td>28</td><td><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td>711</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>244.00</td><td>426.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1100'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1100'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/1100.html'>Kiki Chung Wing Sze</a></td><td   >711</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >244.00</td><td   >426.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1100'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>2</td><td>L</td><td>1785</td><td>650</td><td>244</td><td>426</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >2</td><td   >L</td><td   >1785</td><td   >650</td><td   >244</td><td   >426</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3627'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3627'>+</button></td><td>29</td><td><a href='/aardvark/html/players/3627.html'>Lakshmant Ian</a></td><td>1009</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>285.00</td><td>360.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3627'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3627'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/3627.html'>Lakshmant Ian</a></td><td   >1009</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >285.00</td><td   >360.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3627'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>11</td><td>L</td><td>1785</td><td>916</td><td>285</td><td>360</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >11</td><td   >L</td><td   >1785</td><td   >916</td><td   >285</td><td   >360</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3890'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3890'>+</button></td><td>30</td><td><a href='/aardvark/html/players/3890.html'>Debora Wandia</a></td><td>808</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>499.00</td><td>240.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3890'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3890'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/3890.html'>Debora Wandia</a></td><td   >808</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >499.00</td><td   >240.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3890'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td>2017-11-10</td><td>3</td><td>W</td><td>1785</td><td>1289</td><td>499</td><td>240</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/440.html'>Nairobi International Youth Championship</a></td><td   >2017-11-10</td><td   >3</td><td   >W</td><td   >1785</td><td   >1289</td><td   >499</td><td   >240</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1093'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1093'>+</button></td><td>31</td><td><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td>1085</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>259.00</td><td>479.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1093'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1093'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/1093.html'>Boris Chung</a></td><td   >1085</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >259.00</td><td   >479.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1093'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>21</td><td>L</td><td>1785</td><td>970</td><td>259</td><td>479</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >21</td><td   >L</td><td   >1785</td><td   >970</td><td   >259</td><td   >479</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3933'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3933'>+</button></td><td>32</td><td><a href='/aardvark/html/players/3933.html'>Wong Chun Ki</a></td><td>817</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>378.00</td><td>314.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3933'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3933'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/3933.html'>Wong Chun Ki</a></td><td   >817</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >378.00</td><td   >314.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3933'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>10</td><td>W</td><td>1785</td><td>852</td><td>378</td><td>314</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >10</td><td   >W</td><td   >1785</td><td   >852</td><td   >378</td><td   >314</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3929'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3929'>+</button></td><td>33</td><td><a href='/aardvark/html/players/3929.html'>Tarin Pairor</a></td><td>1061</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>360.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3929'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3929'>+</button></td><td   >33</td><td   ><a href='/aardvark/html/players/3929.html'>Tarin Pairor</a></td><td   >1061</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >360.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3929'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>22</td><td>L</td><td>1785</td><td>780</td><td>315</td><td>360</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >22</td><td   >L</td><td   >1785</td><td   >780</td><td   >315</td><td   >360</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1118'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1118'>+</button></td><td>34</td><td><a href='/aardvark/html/players/1118.html'>Muhd Amirul Hakeem</a></td><td>1250</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>348.00</td><td>376.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1118'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1118'>+</button></td><td   >34</td><td   ><a href='/aardvark/html/players/1118.html'>Muhd Amirul Hakeem</a></td><td   >1250</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >348.00</td><td   >376.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1118'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td>2017-11-29</td><td>6</td><td>L</td><td>1785</td><td>1410</td><td>348</td><td>376</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/433.html'>WESPA Youth Cup </a></td><td   >2017-11-29</td><td   >6</td><td   >L</td><td   >1785</td><td   >1410</td><td   >348</td><td   >376</td></tr>
 </table></div></td></tr>
 
 </table>

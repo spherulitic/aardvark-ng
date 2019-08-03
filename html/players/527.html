@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Marvin Villarete</h2>
             <div>
               <IMG SRC="../../flags/PHL.png" alt="PHL">
-              <p>PHL</p>
+              <p><a href='/aardvark/html/rankings/PHL.html'>Philippines</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1096<br>
               <b>Games Played:</b> 33<br>
               <b>Wins:</b> 15 (45.45%)<br>
               <b>Losses: </b>18 (54.55%)<br>
@@ -183,183 +184,183 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_738'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_738'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>3</td><td>5</td><td>0</td><td>-659</td><td>32</td><td>1112</td><td>1096</td><td>-16</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_738'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_738'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >3</td><td   >5</td><td   >0</td><td   >-659</td><td   >32</td><td   >1112</td><td   >1096</td><td   >-16</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_738'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/385.html'>Alberto Palomo</a></td><td>1328</td><td>W</td><td>362</td><td>332</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/481.html'>Fatima Arif Pabaney</a></td><td>749</td><td>W</td><td>414</td><td>400</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/414.html'>Jowar Ayuno</a></td><td>1741</td><td>L</td><td>283</td><td>559</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td>1565</td><td>L</td><td>293</td><td>493</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1144</td><td>L</td><td>322</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td>828</td><td>W</td><td>480</td><td>356</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1184</td><td>L</td><td>382</td><td>490</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1144</td><td>L</td><td>332</td><td>480</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/385.html'>Alberto Palomo</a></td><td   >1328</td><td   >W</td><td   >362</td><td   >332</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/481.html'>Fatima Arif Pabaney</a></td><td   >749</td><td   >W</td><td   >414</td><td   >400</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/414.html'>Jowar Ayuno</a></td><td   >1741</td><td   >L</td><td   >283</td><td   >559</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1565</td><td   >L</td><td   >293</td><td   >493</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td   >1144</td><td   >L</td><td   >322</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td   >828</td><td   >W</td><td   >480</td><td   >356</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1184</td><td   >L</td><td   >382</td><td   >490</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td   >1144</td><td   >L</td><td   >332</td><td   >480</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_778'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>12</td><td>13</td><td>0</td><td>-555</td><td>26</td><td>1112</td><td>1112</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_778'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >12</td><td   >13</td><td   >0</td><td   >-555</td><td   >26</td><td   >1112</td><td   >1112</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_778'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1411</td><td>L</td><td>306</td><td>401</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1419</td><td>L</td><td>354</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/545.html'>Larry Serrano</a></td><td>1202</td><td>W</td><td>430</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/541.html'>Huub Jan Luyk</a></td><td>1285</td><td>L</td><td>343</td><td>396</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/522.html'>Jullence Labalan</a></td><td>1775</td><td>L</td><td>295</td><td>519</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/550.html'>Rebecca Luyk</a></td><td>896</td><td>W</td><td>368</td><td>327</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/535.html'>Amitha D'Souza</a></td><td>690</td><td>W</td><td>393</td><td>343</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/549.html'>Moises Mendez</a></td><td>1027</td><td>L</td><td>339</td><td>443</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/545.html'>Larry Serrano</a></td><td>1202</td><td>L</td><td>293</td><td>451</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td>1106</td><td>L</td><td>352</td><td>396</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td>1106</td><td>W</td><td>421</td><td>332</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/547.html'>Mary Grace Paredee</a></td><td>1004</td><td>W</td><td>454</td><td>392</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/538.html'>Christy-Ann Yosores</a></td><td>704</td><td>W</td><td>450</td><td>310</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/542.html'>James Nicolay</a></td><td>1181</td><td>W</td><td>439</td><td>362</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/535.html'>Amitha D'Souza</a></td><td>690</td><td>L</td><td>347</td><td>399</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1134</td><td>W</td><td>451</td><td>318</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/145.html'>Caroline Scowcroft</a></td><td>1330</td><td>L</td><td>356</td><td>358</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1373</td><td>L</td><td>291</td><td>525</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/413.html'>Jose Mari Diamola</a></td><td>1353</td><td>L</td><td>433</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/536.html'>Ben Filio</a></td><td>1508</td><td>W</td><td>400</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/538.html'>Christy-Ann Yosores</a></td><td>704</td><td>W</td><td>406</td><td>308</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/547.html'>Mary Grace Paredee</a></td><td>1004</td><td>W</td><td>403</td><td>389</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/549.html'>Moises Mendez</a></td><td>1027</td><td>L</td><td>323</td><td>426</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1134</td><td>L</td><td>278</td><td>498</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/536.html'>Ben Filio</a></td><td>1508</td><td>W</td><td>400</td><td>387</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td   >1411</td><td   >L</td><td   >306</td><td   >401</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td   >1419</td><td   >L</td><td   >354</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/545.html'>Larry Serrano</a></td><td   >1202</td><td   >W</td><td   >430</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/541.html'>Huub Jan Luyk</a></td><td   >1285</td><td   >L</td><td   >343</td><td   >396</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/522.html'>Jullence Labalan</a></td><td   >1775</td><td   >L</td><td   >295</td><td   >519</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/550.html'>Rebecca Luyk</a></td><td   >896</td><td   >W</td><td   >368</td><td   >327</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/535.html'>Amitha D'Souza</a></td><td   >690</td><td   >W</td><td   >393</td><td   >343</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/549.html'>Moises Mendez</a></td><td   >1027</td><td   >L</td><td   >339</td><td   >443</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/545.html'>Larry Serrano</a></td><td   >1202</td><td   >L</td><td   >293</td><td   >451</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td   >1106</td><td   >L</td><td   >352</td><td   >396</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td   >1106</td><td   >W</td><td   >421</td><td   >332</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/547.html'>Mary Grace Paredee</a></td><td   >1004</td><td   >W</td><td   >454</td><td   >392</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/538.html'>Christy-Ann Yosores</a></td><td   >704</td><td   >W</td><td   >450</td><td   >310</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/542.html'>James Nicolay</a></td><td   >1181</td><td   >W</td><td   >439</td><td   >362</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/535.html'>Amitha D'Souza</a></td><td   >690</td><td   >L</td><td   >347</td><td   >399</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td   >1134</td><td   >W</td><td   >451</td><td   >318</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/145.html'>Caroline Scowcroft</a></td><td   >1330</td><td   >L</td><td   >356</td><td   >358</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td   >1373</td><td   >L</td><td   >291</td><td   >525</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/413.html'>Jose Mari Diamola</a></td><td   >1353</td><td   >L</td><td   >433</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/536.html'>Ben Filio</a></td><td   >1508</td><td   >W</td><td   >400</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/538.html'>Christy-Ann Yosores</a></td><td   >704</td><td   >W</td><td   >406</td><td   >308</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/547.html'>Mary Grace Paredee</a></td><td   >1004</td><td   >W</td><td   >403</td><td   >389</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/549.html'>Moises Mendez</a></td><td   >1027</td><td   >L</td><td   >323</td><td   >426</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td   >1134</td><td   >L</td><td   >278</td><td   >498</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/536.html'>Ben Filio</a></td><td   >1508</td><td   >W</td><td   >400</td><td   >387</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_391'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_391'>+</button></td><td>1</td><td><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td>1063</td><td>4</td><td>1</td><td>3</td><td>0</td><td>0.25</td><td>345.75</td><td>428.25</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_391'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_391'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/391.html'>Betty Eriksen</a></td><td   >1063</td><td   >4</td><td   >1</td><td   >3</td><td   >0</td><td   >0.25</td><td   >345.75</td><td   >428.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_391'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>16</td><td>W</td><td>1112</td><td>1134</td><td>451</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>24</td><td>L</td><td>1112</td><td>1134</td><td>278</td><td>498</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>5</td><td>L</td><td>1112</td><td>1144</td><td>322</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>8</td><td>L</td><td>1112</td><td>1144</td><td>332</td><td>480</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >16</td><td   >W</td><td   >1112</td><td   >1134</td><td   >451</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >24</td><td   >L</td><td   >1112</td><td   >1134</td><td   >278</td><td   >498</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >5</td><td   >L</td><td   >1112</td><td   >1144</td><td   >322</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >8</td><td   >L</td><td   >1112</td><td   >1144</td><td   >332</td><td   >480</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_538'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_538'>+</button></td><td>2</td><td><a href='/aardvark/html/players/538.html'>Christy-Ann Yosores</a></td><td>704</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>428.00</td><td>309.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_538'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_538'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/538.html'>Christy-Ann Yosores</a></td><td   >704</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >428.00</td><td   >309.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_538'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>13</td><td>W</td><td>1112</td><td>704</td><td>450</td><td>310</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>21</td><td>W</td><td>1112</td><td>704</td><td>406</td><td>308</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >13</td><td   >W</td><td   >1112</td><td   >704</td><td   >450</td><td   >310</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >21</td><td   >W</td><td   >1112</td><td   >704</td><td   >406</td><td   >308</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_549'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_549'>+</button></td><td>3</td><td><a href='/aardvark/html/players/549.html'>Moises Mendez</a></td><td>964</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>331.00</td><td>434.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_549'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_549'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/549.html'>Moises Mendez</a></td><td   >964</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >331.00</td><td   >434.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_549'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>8</td><td>L</td><td>1112</td><td>1027</td><td>339</td><td>443</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>23</td><td>L</td><td>1112</td><td>1027</td><td>323</td><td>426</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >8</td><td   >L</td><td   >1112</td><td   >1027</td><td   >339</td><td   >443</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >23</td><td   >L</td><td   >1112</td><td   >1027</td><td   >323</td><td   >426</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_535'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_535'>+</button></td><td>4</td><td><a href='/aardvark/html/players/535.html'>Amitha D'Souza</a></td><td>806</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>370.00</td><td>371.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_535'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_535'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/535.html'>Amitha D'Souza</a></td><td   >806</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >370.00</td><td   >371.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_535'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>7</td><td>W</td><td>1112</td><td>690</td><td>393</td><td>343</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>15</td><td>L</td><td>1112</td><td>690</td><td>347</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >7</td><td   >W</td><td   >1112</td><td   >690</td><td   >393</td><td   >343</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >15</td><td   >L</td><td   >1112</td><td   >690</td><td   >347</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_547'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_547'>+</button></td><td>5</td><td><a href='/aardvark/html/players/547.html'>Mary Grace Paredee</a></td><td>1004</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>428.50</td><td>390.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_547'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_547'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/547.html'>Mary Grace Paredee</a></td><td   >1004</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >428.50</td><td   >390.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_547'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>12</td><td>W</td><td>1112</td><td>1004</td><td>454</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>22</td><td>W</td><td>1112</td><td>1004</td><td>403</td><td>389</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >12</td><td   >W</td><td   >1112</td><td   >1004</td><td   >454</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >22</td><td   >W</td><td   >1112</td><td   >1004</td><td   >403</td><td   >389</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_545'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_545'>+</button></td><td>6</td><td><a href='/aardvark/html/players/545.html'>Larry Serrano</a></td><td>1197</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>361.50</td><td>423.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_545'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_545'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/545.html'>Larry Serrano</a></td><td   >1197</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >361.50</td><td   >423.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_545'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>3</td><td>W</td><td>1112</td><td>1202</td><td>430</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>9</td><td>L</td><td>1112</td><td>1202</td><td>293</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >3</td><td   >W</td><td   >1112</td><td   >1202</td><td   >430</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >9</td><td   >L</td><td   >1112</td><td   >1202</td><td   >293</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_536'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_536'>+</button></td><td>7</td><td><a href='/aardvark/html/players/536.html'>Ben Filio</a></td><td>1329</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>400.00</td><td>390.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_536'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_536'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/536.html'>Ben Filio</a></td><td   >1329</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >400.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_536'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>20</td><td>W</td><td>1112</td><td>1508</td><td>400</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>25</td><td>W</td><td>1112</td><td>1508</td><td>400</td><td>387</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >20</td><td   >W</td><td   >1112</td><td   >1508</td><td   >400</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >25</td><td   >W</td><td   >1112</td><td   >1508</td><td   >400</td><td   >387</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_551'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_551'>+</button></td><td>8</td><td><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td>1010</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>386.50</td><td>364.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_551'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_551'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/551.html'>Roberto Salayog</a></td><td   >1010</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >386.50</td><td   >364.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_551'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>10</td><td>L</td><td>1112</td><td>1106</td><td>352</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>11</td><td>W</td><td>1112</td><td>1106</td><td>421</td><td>332</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >10</td><td   >L</td><td   >1112</td><td   >1106</td><td   >352</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >11</td><td   >W</td><td   >1112</td><td   >1106</td><td   >421</td><td   >332</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_385'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_385'>+</button></td><td>9</td><td><a href='/aardvark/html/players/385.html'>Alberto Palomo</a></td><td>1110</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>362.00</td><td>332.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_385'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_385'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/385.html'>Alberto Palomo</a></td><td   >1110</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >362.00</td><td   >332.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_385'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>1</td><td>W</td><td>1112</td><td>1328</td><td>362</td><td>332</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >1</td><td   >W</td><td   >1112</td><td   >1328</td><td   >362</td><td   >332</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_546'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_546'>+</button></td><td>10</td><td><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td>1508</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>306.00</td><td>401.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_546'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_546'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/546.html'>Lorenzo Bacani</a></td><td   >1508</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >306.00</td><td   >401.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_546'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>1</td><td>L</td><td>1112</td><td>1411</td><td>306</td><td>401</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >1</td><td   >L</td><td   >1112</td><td   >1411</td><td   >306</td><td   >401</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_413'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_413'>+</button></td><td>11</td><td><a href='/aardvark/html/players/413.html'>Jose Mari Diamola</a></td><td>1421</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>433.00</td><td>439.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_413'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_413'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/413.html'>Jose Mari Diamola</a></td><td   >1421</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >433.00</td><td   >439.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_413'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>19</td><td>L</td><td>1112</td><td>1353</td><td>433</td><td>439</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >19</td><td   >L</td><td   >1112</td><td   >1353</td><td   >433</td><td   >439</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_481'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_481'>+</button></td><td>12</td><td><a href='/aardvark/html/players/481.html'>Fatima Arif Pabaney</a></td><td>773</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>414.00</td><td>400.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_481'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_481'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/481.html'>Fatima Arif Pabaney</a></td><td   >773</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >414.00</td><td   >400.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_481'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>2</td><td>W</td><td>1112</td><td>749</td><td>414</td><td>400</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >2</td><td   >W</td><td   >1112</td><td   >749</td><td   >414</td><td   >400</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_522'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_522'>+</button></td><td>13</td><td><a href='/aardvark/html/players/522.html'>Jullence Labalan</a></td><td>1805</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>295.00</td><td>519.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_522'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_522'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/522.html'>Jullence Labalan</a></td><td   >1805</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >295.00</td><td   >519.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_522'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>5</td><td>L</td><td>1112</td><td>1775</td><td>295</td><td>519</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >5</td><td   >L</td><td   >1112</td><td   >1775</td><td   >295</td><td   >519</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_532'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_532'>+</button></td><td>14</td><td><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td>1488</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>293.00</td><td>493.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_532'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_532'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/532.html'>Tariq Pervez</a></td><td   >1488</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >293.00</td><td   >493.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_532'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>4</td><td>L</td><td>1112</td><td>1565</td><td>293</td><td>493</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >4</td><td   >L</td><td   >1112</td><td   >1565</td><td   >293</td><td   >493</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_541'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_541'>+</button></td><td>15</td><td><a href='/aardvark/html/players/541.html'>Huub Jan Luyk</a></td><td>1205</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>343.00</td><td>396.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_541'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_541'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/541.html'>Huub Jan Luyk</a></td><td   >1205</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >343.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_541'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>4</td><td>L</td><td>1112</td><td>1285</td><td>343</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >4</td><td   >L</td><td   >1112</td><td   >1285</td><td   >343</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_533'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_533'>+</button></td><td>16</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1365</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>291.00</td><td>525.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_533'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_533'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td   >1365</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >291.00</td><td   >525.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_533'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>18</td><td>L</td><td>1112</td><td>1373</td><td>291</td><td>525</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >18</td><td   >L</td><td   >1112</td><td   >1373</td><td   >291</td><td   >525</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_542'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_542'>+</button></td><td>17</td><td><a href='/aardvark/html/players/542.html'>James Nicolay</a></td><td>1181</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>439.00</td><td>362.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_542'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_542'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/542.html'>James Nicolay</a></td><td   >1181</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >439.00</td><td   >362.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_542'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>14</td><td>W</td><td>1112</td><td>1181</td><td>439</td><td>362</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >14</td><td   >W</td><td   >1112</td><td   >1181</td><td   >439</td><td   >362</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_497'>+</button></td><td>18</td><td><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td>1239</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>480.00</td><td>356.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_497'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/497.html'>Muhammad Jahanzaib</a></td><td   >1239</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >480.00</td><td   >356.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_497'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>6</td><td>W</td><td>1112</td><td>828</td><td>480</td><td>356</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >6</td><td   >W</td><td   >1112</td><td   >828</td><td   >480</td><td   >356</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_429'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_429'>+</button></td><td>19</td><td><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td>1353</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>354.00</td><td>372.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_429'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_429'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/429.html'>Paul Richards AUS</a></td><td   >1353</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >354.00</td><td   >372.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_429'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>2</td><td>L</td><td>1112</td><td>1419</td><td>354</td><td>372</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >2</td><td   >L</td><td   >1112</td><td   >1419</td><td   >354</td><td   >372</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_145'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_145'>+</button></td><td>20</td><td><a href='/aardvark/html/players/145.html'>Caroline Scowcroft</a></td><td>1249</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>356.00</td><td>358.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_145'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_145'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/145.html'>Caroline Scowcroft</a></td><td   >1249</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >356.00</td><td   >358.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_145'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>17</td><td>L</td><td>1112</td><td>1330</td><td>356</td><td>358</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >17</td><td   >L</td><td   >1112</td><td   >1330</td><td   >356</td><td   >358</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_414'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_414'>+</button></td><td>21</td><td><a href='/aardvark/html/players/414.html'>Jowar Ayuno</a></td><td>1595</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>283.00</td><td>559.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_414'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_414'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/414.html'>Jowar Ayuno</a></td><td   >1595</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >283.00</td><td   >559.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_414'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>3</td><td>L</td><td>1112</td><td>1741</td><td>283</td><td>559</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >3</td><td   >L</td><td   >1112</td><td   >1741</td><td   >283</td><td   >559</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_507'>+</button></td><td>22</td><td><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td>1174</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>382.00</td><td>490.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_507'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/507.html'>Shahzaib Khatri</a></td><td   >1174</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >382.00</td><td   >490.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_507'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td>2010-12-11</td><td>7</td><td>L</td><td>1112</td><td>1184</td><td>382</td><td>490</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/18.html'>Philippines Open</a></td><td   >2010-12-11</td><td   >7</td><td   >L</td><td   >1112</td><td   >1184</td><td   >382</td><td   >490</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_550'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_550'>+</button></td><td>23</td><td><a href='/aardvark/html/players/550.html'>Rebecca Luyk</a></td><td>880</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>368.00</td><td>327.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_550'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_550'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/550.html'>Rebecca Luyk</a></td><td   >880</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >368.00</td><td   >327.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_550'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td>2010-12-10</td><td>6</td><td>W</td><td>1112</td><td>896</td><td>368</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/19.html'>Manila Progressive Round Robin</a></td><td   >2010-12-10</td><td   >6</td><td   >W</td><td   >1112</td><td   >896</td><td   >368</td><td   >327</td></tr>
 </table></div></td></tr>
 
 </table>

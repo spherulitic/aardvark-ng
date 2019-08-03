@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Chaya Amir</h2>
             <div>
               <IMG SRC="../../flags/ISR.png" alt="ISR">
-              <p>ISR</p>
+              <p><a href='/aardvark/html/rankings/ISR.html'>Israel</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1382<br>
               <b>Games Played:</b> 18<br>
               <b>Wins:</b> 11 (61.11%)<br>
               <b>Losses: </b>7 (38.89%)<br>
@@ -183,117 +184,117 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_24714'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24714'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>11</td><td>7</td><td>0</td><td>-104</td><td>8</td><td>1382</td><td>1382</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_24714'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24714'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >11</td><td   >7</td><td   >0</td><td   >-104</td><td   >8</td><td   >1382</td><td   >1382</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24714'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/446.html'>Avril Shaw</a></td><td>772</td><td>W</td><td>398</td><td>323</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td>1790</td><td>L</td><td>377</td><td>479</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/4571.html'>Ruth Ogdan</a></td><td>1096</td><td>L</td><td>283</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1745.html'>Gail Morris</a></td><td>300</td><td>W</td><td>391</td><td>323</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/444.html'>Agi Brener</a></td><td>767</td><td>W</td><td>362</td><td>333</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/458.html'>Juliet Collins</a></td><td>435</td><td>W</td><td>414</td><td>316</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td>1337</td><td>W</td><td>453</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1754.html'>Pamela Loval</a></td><td>1164</td><td>W</td><td>382</td><td>358</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td>1780</td><td>W</td><td>399</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td>1581</td><td>L</td><td>436</td><td>481</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4422.html'>Liliane Servier</a></td><td>1179</td><td>W</td><td>413</td><td>330</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td>1790</td><td>L</td><td>311</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1885.html'>Rael Hayman</a></td><td>1570</td><td>L</td><td>348</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4571.html'>Ruth Ogdan</a></td><td>1096</td><td>W</td><td>356</td><td>352</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/467.html'>Naomi Landau</a></td><td>1132</td><td>W</td><td>379</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1461</td><td>L</td><td>368</td><td>458</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/4569.html'>Hadassah Braun</a></td><td>1163</td><td>W</td><td>442</td><td>424</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/1885.html'>Rael Hayman</a></td><td>1570</td><td>L</td><td>348</td><td>419</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/446.html'>Avril Shaw</a></td><td   >772</td><td   >W</td><td   >398</td><td   >323</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td   >1790</td><td   >L</td><td   >377</td><td   >479</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/4571.html'>Ruth Ogdan</a></td><td   >1096</td><td   >L</td><td   >283</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1745.html'>Gail Morris</a></td><td   >300</td><td   >W</td><td   >391</td><td   >323</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/444.html'>Agi Brener</a></td><td   >767</td><td   >W</td><td   >362</td><td   >333</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/458.html'>Juliet Collins</a></td><td   >435</td><td   >W</td><td   >414</td><td   >316</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td   >1337</td><td   >W</td><td   >453</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1754.html'>Pamela Loval</a></td><td   >1164</td><td   >W</td><td   >382</td><td   >358</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td   >1780</td><td   >W</td><td   >399</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td   >1581</td><td   >L</td><td   >436</td><td   >481</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/4422.html'>Liliane Servier</a></td><td   >1179</td><td   >W</td><td   >413</td><td   >330</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td   >1790</td><td   >L</td><td   >311</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1885.html'>Rael Hayman</a></td><td   >1570</td><td   >L</td><td   >348</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4571.html'>Ruth Ogdan</a></td><td   >1096</td><td   >W</td><td   >356</td><td   >352</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/467.html'>Naomi Landau</a></td><td   >1132</td><td   >W</td><td   >379</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1461</td><td   >L</td><td   >368</td><td   >458</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/4569.html'>Hadassah Braun</a></td><td   >1163</td><td   >W</td><td   >442</td><td   >424</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1885.html'>Rael Hayman</a></td><td   >1570</td><td   >L</td><td   >348</td><td   >419</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1885'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1885'>+</button></td><td>1</td><td><a href='/aardvark/html/players/1885.html'>Rael Hayman</a></td><td>1599</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>348.00</td><td>420.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1885'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1885'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/1885.html'>Rael Hayman</a></td><td   >1599</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >348.00</td><td   >420.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1885'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>13</td><td>L</td><td>1382</td><td>1570</td><td>348</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>18</td><td>L</td><td>1382</td><td>1570</td><td>348</td><td>419</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >13</td><td   >L</td><td   >1382</td><td   >1570</td><td   >348</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >18</td><td   >L</td><td   >1382</td><td   >1570</td><td   >348</td><td   >419</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4571'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4571'>+</button></td><td>2</td><td><a href='/aardvark/html/players/4571.html'>Ruth Ogdan</a></td><td>1096</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>319.50</td><td>395.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4571'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4571'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/4571.html'>Ruth Ogdan</a></td><td   >1096</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >319.50</td><td   >395.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4571'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>3</td><td>L</td><td>1382</td><td>1096</td><td>283</td><td>439</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>14</td><td>W</td><td>1382</td><td>1096</td><td>356</td><td>352</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >3</td><td   >L</td><td   >1382</td><td   >1096</td><td   >283</td><td   >439</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >14</td><td   >W</td><td   >1382</td><td   >1096</td><td   >356</td><td   >352</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_288'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_288'>+</button></td><td>3</td><td><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td>1782</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>344.00</td><td>448.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_288'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_288'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td   >1782</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >344.00</td><td   >448.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_288'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>2</td><td>L</td><td>1382</td><td>1790</td><td>377</td><td>479</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>12</td><td>L</td><td>1382</td><td>1790</td><td>311</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >2</td><td   >L</td><td   >1382</td><td   >1790</td><td   >377</td><td   >479</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >12</td><td   >L</td><td   >1382</td><td   >1790</td><td   >311</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_446'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_446'>+</button></td><td>4</td><td><a href='/aardvark/html/players/446.html'>Avril Shaw</a></td><td>781</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>398.00</td><td>323.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_446'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_446'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/446.html'>Avril Shaw</a></td><td   >781</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >398.00</td><td   >323.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_446'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>1</td><td>W</td><td>1382</td><td>772</td><td>398</td><td>323</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >1</td><td   >W</td><td   >1382</td><td   >772</td><td   >398</td><td   >323</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_458'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_458'>+</button></td><td>5</td><td><a href='/aardvark/html/players/458.html'>Juliet Collins</a></td><td>1004</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>414.00</td><td>316.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_458'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_458'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/458.html'>Juliet Collins</a></td><td   >1004</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >414.00</td><td   >316.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_458'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>6</td><td>W</td><td>1382</td><td>435</td><td>414</td><td>316</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >6</td><td   >W</td><td   >1382</td><td   >435</td><td   >414</td><td   >316</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_456'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_456'>+</button></td><td>6</td><td><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td>980</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>453.00</td><td>327.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_456'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_456'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/456.html'>Jake Berliner</a></td><td   >980</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >453.00</td><td   >327.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_456'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>7</td><td>W</td><td>1382</td><td>1337</td><td>453</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >7</td><td   >W</td><td   >1382</td><td   >1337</td><td   >453</td><td   >327</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_467'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_467'>+</button></td><td>7</td><td><a href='/aardvark/html/players/467.html'>Naomi Landau</a></td><td>1510</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>379.00</td><td>367.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_467'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_467'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/467.html'>Naomi Landau</a></td><td   >1510</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >379.00</td><td   >367.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_467'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>15</td><td>W</td><td>1382</td><td>1132</td><td>379</td><td>367</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >15</td><td   >W</td><td   >1382</td><td   >1132</td><td   >379</td><td   >367</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1766'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1766'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td>1712</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>436.00</td><td>481.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1766'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1766'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td   >1712</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >436.00</td><td   >481.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1766'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>10</td><td>L</td><td>1382</td><td>1581</td><td>436</td><td>481</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >10</td><td   >L</td><td   >1382</td><td   >1581</td><td   >436</td><td   >481</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1745'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1745'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1745.html'>Gail Morris</a></td><td>433</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>391.00</td><td>323.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1745'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1745'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1745.html'>Gail Morris</a></td><td   >433</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >391.00</td><td   >323.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1745'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>4</td><td>W</td><td>1382</td><td>300</td><td>391</td><td>323</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >4</td><td   >W</td><td   >1382</td><td   >300</td><td   >391</td><td   >323</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4569'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4569'>+</button></td><td>10</td><td><a href='/aardvark/html/players/4569.html'>Hadassah Braun</a></td><td>1163</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>442.00</td><td>424.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4569'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4569'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/4569.html'>Hadassah Braun</a></td><td   >1163</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >442.00</td><td   >424.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4569'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>17</td><td>W</td><td>1382</td><td>1163</td><td>442</td><td>424</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >17</td><td   >W</td><td   >1382</td><td   >1163</td><td   >442</td><td   >424</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_444'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_444'>+</button></td><td>11</td><td><a href='/aardvark/html/players/444.html'>Agi Brener</a></td><td>830</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>362.00</td><td>333.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_444'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_444'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/444.html'>Agi Brener</a></td><td   >830</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >362.00</td><td   >333.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_444'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>5</td><td>W</td><td>1382</td><td>767</td><td>362</td><td>333</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >5</td><td   >W</td><td   >1382</td><td   >767</td><td   >362</td><td   >333</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4422'>+</button></td><td>12</td><td><a href='/aardvark/html/players/4422.html'>Liliane Servier</a></td><td>1189</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>413.00</td><td>330.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4422'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/4422.html'>Liliane Servier</a></td><td   >1189</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >413.00</td><td   >330.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4422'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>11</td><td>W</td><td>1382</td><td>1179</td><td>413</td><td>330</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >11</td><td   >W</td><td   >1382</td><td   >1179</td><td   >413</td><td   >330</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_284'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_284'>+</button></td><td>13</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1605</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>368.00</td><td>458.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_284'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_284'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1605</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >368.00</td><td   >458.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_284'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>16</td><td>L</td><td>1382</td><td>1461</td><td>368</td><td>458</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >16</td><td   >L</td><td   >1382</td><td   >1461</td><td   >368</td><td   >458</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1754'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1754'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1754.html'>Pamela Loval</a></td><td>1189</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>382.00</td><td>358.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1754'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1754'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1754.html'>Pamela Loval</a></td><td   >1189</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >382.00</td><td   >358.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1754'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>8</td><td>W</td><td>1382</td><td>1164</td><td>382</td><td>358</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >8</td><td   >W</td><td   >1382</td><td   >1164</td><td   >382</td><td   >358</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_297'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_297'>+</button></td><td>15</td><td><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td>1586</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>399.00</td><td>397.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_297'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_297'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td   >1586</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >399.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_297'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td>2008-10-26</td><td>9</td><td>W</td><td>1382</td><td>1780</td><td>399</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/639.html'>Israeli Open</a></td><td   >2008-10-26</td><td   >9</td><td   >W</td><td   >1382</td><td   >1780</td><td   >399</td><td   >397</td></tr>
 </table></div></td></tr>
 
 </table>

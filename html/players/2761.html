@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Alan Helfgott</h2>
             <div>
               <IMG SRC="../../flags/USA.png" alt="USA">
-              <p>USA</p>
+              <p><a href='/aardvark/html/rankings/USA.html'>United States</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1645<br>
               <b>Games Played:</b> 21<br>
               <b>Wins:</b> 8 (38.10%)<br>
               <b>Losses: </b>13 (61.90%)<br>
@@ -183,91 +184,91 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_10721'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_10721'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>8</td><td>13</td><td>0</td><td>-162</td><td>6</td><td>1645</td><td>1645</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_10721'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_10721'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >8</td><td   >13</td><td   >0</td><td   >-162</td><td   >6</td><td   >1645</td><td   >1645</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_10721'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>2001</td><td>L</td><td>377</td><td>456</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td>2026</td><td>L</td><td>378</td><td>455</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1873</td><td>L</td><td>369</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1921</td><td>L</td><td>461</td><td>480</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td>1558</td><td>W</td><td>401</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td>1692</td><td>W</td><td>457</td><td>376</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td>1540</td><td>L</td><td>302</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>2001</td><td>L</td><td>365</td><td>442</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td>2026</td><td>L</td><td>356</td><td>517</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1873</td><td>L</td><td>381</td><td>419</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1921</td><td>L</td><td>387</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td>1558</td><td>L</td><td>425</td><td>461</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td>1692</td><td>W</td><td>535</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td>1540</td><td>L</td><td>383</td><td>459</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>2001</td><td>W</td><td>565</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td>2026</td><td>L</td><td>392</td><td>539</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1873</td><td>W</td><td>503</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1921</td><td>W</td><td>505</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td>1558</td><td>W</td><td>462</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td>1692</td><td>W</td><td>474</td><td>430</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td>1540</td><td>L</td><td>388</td><td>408</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >2001</td><td   >L</td><td   >377</td><td   >456</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td   >2026</td><td   >L</td><td   >378</td><td   >455</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1873</td><td   >L</td><td   >369</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1921</td><td   >L</td><td   >461</td><td   >480</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td   >1558</td><td   >W</td><td   >401</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td   >1692</td><td   >W</td><td   >457</td><td   >376</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td   >1540</td><td   >L</td><td   >302</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >2001</td><td   >L</td><td   >365</td><td   >442</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td   >2026</td><td   >L</td><td   >356</td><td   >517</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1873</td><td   >L</td><td   >381</td><td   >419</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1921</td><td   >L</td><td   >387</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td   >1558</td><td   >L</td><td   >425</td><td   >461</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td   >1692</td><td   >W</td><td   >535</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td   >1540</td><td   >L</td><td   >383</td><td   >459</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >2001</td><td   >W</td><td   >565</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td   >2026</td><td   >L</td><td   >392</td><td   >539</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1873</td><td   >W</td><td   >503</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1921</td><td   >W</td><td   >505</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td   >1558</td><td   >W</td><td   >462</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td   >1692</td><td   >W</td><td   >474</td><td   >430</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td   >1540</td><td   >L</td><td   >388</td><td   >408</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_623'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_623'>+</button></td><td>1</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>1909</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>435.67</td><td>430.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_623'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_623'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >1909</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >435.67</td><td   >430.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_623'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>1</td><td>L</td><td>1645</td><td>2001</td><td>377</td><td>456</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>8</td><td>L</td><td>1645</td><td>2001</td><td>365</td><td>442</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>15</td><td>W</td><td>1645</td><td>2001</td><td>565</td><td>392</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >1</td><td   >L</td><td   >1645</td><td   >2001</td><td   >377</td><td   >456</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >8</td><td   >L</td><td   >1645</td><td   >2001</td><td   >365</td><td   >442</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >15</td><td   >W</td><td   >1645</td><td   >2001</td><td   >565</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_619'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_619'>+</button></td><td>2</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1820</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>417.67</td><td>413.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_619'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_619'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1820</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >417.67</td><td   >413.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_619'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>3</td><td>L</td><td>1645</td><td>1873</td><td>369</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>10</td><td>L</td><td>1645</td><td>1873</td><td>381</td><td>419</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>17</td><td>W</td><td>1645</td><td>1873</td><td>503</td><td>386</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >3</td><td   >L</td><td   >1645</td><td   >1873</td><td   >369</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >10</td><td   >L</td><td   >1645</td><td   >1873</td><td   >381</td><td   >419</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >17</td><td   >W</td><td   >1645</td><td   >1873</td><td   >503</td><td   >386</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1085'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1085'>+</button></td><td>3</td><td><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td>1961</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0.00</td><td>375.33</td><td>503.67</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1085'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1085'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/1085.html'>Rob Robinsky</a></td><td   >1961</td><td   >3</td><td   >0</td><td   >3</td><td   >0</td><td   >0.00</td><td   >375.33</td><td   >503.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1085'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>2</td><td>L</td><td>1645</td><td>2026</td><td>378</td><td>455</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>9</td><td>L</td><td>1645</td><td>2026</td><td>356</td><td>517</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>16</td><td>L</td><td>1645</td><td>2026</td><td>392</td><td>539</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >2</td><td   >L</td><td   >1645</td><td   >2026</td><td   >378</td><td   >455</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >9</td><td   >L</td><td   >1645</td><td   >2026</td><td   >356</td><td   >517</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >16</td><td   >L</td><td   >1645</td><td   >2026</td><td   >392</td><td   >539</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_341'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_341'>+</button></td><td>4</td><td><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td>1845</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>451.00</td><td>422.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_341'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_341'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/341.html'>Marty Gabriel</a></td><td   >1845</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >451.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_341'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>4</td><td>L</td><td>1645</td><td>1921</td><td>461</td><td>480</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>11</td><td>L</td><td>1645</td><td>1921</td><td>387</td><td>415</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>18</td><td>W</td><td>1645</td><td>1921</td><td>505</td><td>371</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >4</td><td   >L</td><td   >1645</td><td   >1921</td><td   >461</td><td   >480</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >11</td><td   >L</td><td   >1645</td><td   >1921</td><td   >387</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >18</td><td   >W</td><td   >1645</td><td   >1921</td><td   >505</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2718'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2718'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td>1746</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1.00</td><td>488.67</td><td>402.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2718'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2718'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2718.html'>Scott Garner</a></td><td   >1746</td><td   >3</td><td   >3</td><td   >0</td><td   >0</td><td   >1.00</td><td   >488.67</td><td   >402.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2718'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>6</td><td>W</td><td>1645</td><td>1692</td><td>457</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>13</td><td>W</td><td>1645</td><td>1692</td><td>535</td><td>400</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>20</td><td>W</td><td>1645</td><td>1692</td><td>474</td><td>430</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >6</td><td   >W</td><td   >1645</td><td   >1692</td><td   >457</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >13</td><td   >W</td><td   >1645</td><td   >1692</td><td   >535</td><td   >400</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >20</td><td   >W</td><td   >1645</td><td   >1692</td><td   >474</td><td   >430</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1086'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1086'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td>1815</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0.00</td><td>357.67</td><td>421.33</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1086'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1086'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1086.html'>Scott Jackson</a></td><td   >1815</td><td   >3</td><td   >0</td><td   >3</td><td   >0</td><td   >0.00</td><td   >357.67</td><td   >421.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1086'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>7</td><td>L</td><td>1645</td><td>1540</td><td>302</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>14</td><td>L</td><td>1645</td><td>1540</td><td>383</td><td>459</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>21</td><td>L</td><td>1645</td><td>1540</td><td>388</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >7</td><td   >L</td><td   >1645</td><td   >1540</td><td   >302</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >14</td><td   >L</td><td   >1645</td><td   >1540</td><td   >383</td><td   >459</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >21</td><td   >L</td><td   >1645</td><td   >1540</td><td   >388</td><td   >408</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2442'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2442'>+</button></td><td>7</td><td><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td>1551</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>429.33</td><td>417.33</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2442'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2442'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/2442.html'>Melissa Routzahn</a></td><td   >1551</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >429.33</td><td   >417.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2442'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>5</td><td>W</td><td>1645</td><td>1558</td><td>401</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>12</td><td>L</td><td>1645</td><td>1558</td><td>425</td><td>461</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td>2015-05-25</td><td>19</td><td>W</td><td>1645</td><td>1558</td><td>462</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >5</td><td   >W</td><td   >1645</td><td   >1558</td><td   >401</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >12</td><td   >L</td><td   >1645</td><td   >1558</td><td   >425</td><td   >461</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/266.html'>Arden Cup, Elmhurst Il</a></td><td   >2015-05-25</td><td   >19</td><td   >W</td><td   >1645</td><td   >1558</td><td   >462</td><td   >408</td></tr>
 </table></div></td></tr>
 
 </table>

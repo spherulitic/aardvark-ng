@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Michael Early</h2>
             <div>
               <IMG SRC="../../flags/USA.png" alt="USA">
-              <p>USA</p>
+              <p><a href='/aardvark/html/rankings/USA.html'>United States</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1808<br>
               <b>Games Played:</b> 38<br>
               <b>Wins:</b> 20 (52.63%)<br>
               <b>Losses: </b>18 (47.37%)<br>
@@ -183,229 +184,229 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_24876'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24876'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>12</td><td>12</td><td>0</td><td>493</td><td>27</td><td>1896</td><td>1808</td><td>-88</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_24876'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24876'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >12</td><td   >12</td><td   >0</td><td   >493</td><td   >27</td><td   >1896</td><td   >1808</td><td   >-88</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24876'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>1974</td><td>L</td><td>420</td><td>424</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/650.html'>Kunihiko Kuroda</a></td><td>1367</td><td>W</td><td>445</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/143.html'>Amnuay Ploysangngam</a></td><td>1790</td><td>L</td><td>453</td><td>478</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/336.html'>David Wiegand</a></td><td>2035</td><td>L</td><td>384</td><td>390</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1927</td><td>W</td><td>429</td><td>387</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/553.html'>Anthony Ikolo</a></td><td>1882</td><td>L</td><td>368</td><td>468</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2675.html'>Donna MacDonald</a></td><td>1363</td><td>W</td><td>471</td><td>328</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/627.html'>Travis Chaney</a></td><td>1707</td><td>W</td><td>541</td><td>273</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1858</td><td>L</td><td>370</td><td>449</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/646.html'>Chris Cree</a></td><td>1680</td><td>L</td><td>361</td><td>487</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1506</td><td>W</td><td>436</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/4575.html'>James Sekyi</a></td><td>1675</td><td>W</td><td>446</td><td>340</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1624</td><td>L</td><td>394</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1878</td><td>W</td><td>390</td><td>388</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/191.html'>Sanmi Odelana</a></td><td>1479</td><td>L</td><td>403</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1906</td><td>L</td><td>371</td><td>508</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2565.html'>Victor Ikawa</a></td><td>1717</td><td>W</td><td>400</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1935</td><td>W</td><td>544</td><td>445</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/618.html'>James Kramer</a></td><td>2022</td><td>L</td><td>366</td><td>448</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/4577.html'>Sam Dick-Onuoha</a></td><td>1655</td><td>L</td><td>415</td><td>445</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td>1361</td><td>W</td><td>357</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/4573.html'>Bill Huttel</a></td><td>1710</td><td>W</td><td>431</td><td>343</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1883</td><td>L</td><td>391</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1415</td><td>W</td><td>560</td><td>299</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >1974</td><td   >L</td><td   >420</td><td   >424</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/650.html'>Kunihiko Kuroda</a></td><td   >1367</td><td   >W</td><td   >445</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/143.html'>Amnuay Ploysangngam</a></td><td   >1790</td><td   >L</td><td   >453</td><td   >478</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/336.html'>David Wiegand</a></td><td   >2035</td><td   >L</td><td   >384</td><td   >390</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td   >1927</td><td   >W</td><td   >429</td><td   >387</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/553.html'>Anthony Ikolo</a></td><td   >1882</td><td   >L</td><td   >368</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2675.html'>Donna MacDonald</a></td><td   >1363</td><td   >W</td><td   >471</td><td   >328</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/627.html'>Travis Chaney</a></td><td   >1707</td><td   >W</td><td   >541</td><td   >273</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1858</td><td   >L</td><td   >370</td><td   >449</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/646.html'>Chris Cree</a></td><td   >1680</td><td   >L</td><td   >361</td><td   >487</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/175.html'>John Barker</a></td><td   >1506</td><td   >W</td><td   >436</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/4575.html'>James Sekyi</a></td><td   >1675</td><td   >W</td><td   >446</td><td   >340</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1624</td><td   >L</td><td   >394</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td   >1878</td><td   >W</td><td   >390</td><td   >388</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/191.html'>Sanmi Odelana</a></td><td   >1479</td><td   >L</td><td   >403</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1906</td><td   >L</td><td   >371</td><td   >508</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2565.html'>Victor Ikawa</a></td><td   >1717</td><td   >W</td><td   >400</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1935</td><td   >W</td><td   >544</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/618.html'>James Kramer</a></td><td   >2022</td><td   >L</td><td   >366</td><td   >448</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/4577.html'>Sam Dick-Onuoha</a></td><td   >1655</td><td   >L</td><td   >415</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td   >1361</td><td   >W</td><td   >357</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/4573.html'>Bill Huttel</a></td><td   >1710</td><td   >W</td><td   >431</td><td   >343</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1883</td><td   >L</td><td   >391</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1415</td><td   >W</td><td   >560</td><td   >299</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_24865'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24865'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>8</td><td>6</td><td>0</td><td>44</td><td>6</td><td>1896</td><td>1896</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_24865'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24865'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >8</td><td   >6</td><td   >0</td><td   >44</td><td   >6</td><td   >1896</td><td   >1896</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24865'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1399</td><td>W</td><td>570</td><td>261</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/626.html'>Michael Thelen</a></td><td>2003</td><td>W</td><td>490</td><td>336</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1939</td><td>L</td><td>374</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1969</td><td>W</td><td>457</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4573.html'>Bill Huttel</a></td><td>1710</td><td>L</td><td>382</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2766.html'>Bryan Pepper</a></td><td>1457</td><td>L</td><td>384</td><td>427</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1543</td><td>W</td><td>402</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td>1804</td><td>W</td><td>421</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>1992</td><td>L</td><td>417</td><td>727</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>1933</td><td>W</td><td>433</td><td>380</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/813.html'>Yvonne Eade</a></td><td>1631</td><td>W</td><td>437</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1939</td><td>W</td><td>385</td><td>348</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>1933</td><td>L</td><td>328</td><td>508</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1939</td><td>L</td><td>373</td><td>462</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1399</td><td   >W</td><td   >570</td><td   >261</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/626.html'>Michael Thelen</a></td><td   >2003</td><td   >W</td><td   >490</td><td   >336</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1939</td><td   >L</td><td   >374</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1969</td><td   >W</td><td   >457</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4573.html'>Bill Huttel</a></td><td   >1710</td><td   >L</td><td   >382</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2766.html'>Bryan Pepper</a></td><td   >1457</td><td   >L</td><td   >384</td><td   >427</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1543</td><td   >W</td><td   >402</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td   >1804</td><td   >W</td><td   >421</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >1992</td><td   >L</td><td   >417</td><td   >727</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >1933</td><td   >W</td><td   >433</td><td   >380</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/813.html'>Yvonne Eade</a></td><td   >1631</td><td   >W</td><td   >437</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1939</td><td   >W</td><td   >385</td><td   >348</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >1933</td><td   >L</td><td   >328</td><td   >508</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1939</td><td   >L</td><td   >373</td><td   >462</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_37'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_37'>+</button></td><td>1</td><td><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td>1882</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>377.33</td><td>395.33</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_37'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_37'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/37.html'>Nick Ball</a></td><td   >1882</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >377.33</td><td   >395.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_37'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>3</td><td>L</td><td>1896</td><td>1939</td><td>374</td><td>376</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>12</td><td>W</td><td>1896</td><td>1939</td><td>385</td><td>348</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>14</td><td>L</td><td>1896</td><td>1939</td><td>373</td><td>462</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >3</td><td   >L</td><td   >1896</td><td   >1939</td><td   >374</td><td   >376</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >12</td><td   >W</td><td   >1896</td><td   >1939</td><td   >385</td><td   >348</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >14</td><td   >L</td><td   >1896</td><td   >1939</td><td   >373</td><td   >462</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_641'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_641'>+</button></td><td>2</td><td><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td>1547</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>398.00</td><td>373.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_641'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_641'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/641.html'>Stu Goldman</a></td><td   >1547</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >398.00</td><td   >373.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_641'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>7</td><td>W</td><td>1896</td><td>1543</td><td>402</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>13</td><td>L</td><td>1896</td><td>1624</td><td>394</td><td>398</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >7</td><td   >W</td><td   >1896</td><td   >1543</td><td   >402</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >13</td><td   >L</td><td   >1896</td><td   >1624</td><td   >394</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_623'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_623'>+</button></td><td>3</td><td><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td>1909</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>380.50</td><td>444.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_623'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_623'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/623.html'>Geoff Thevenot</a></td><td   >1909</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >380.50</td><td   >444.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_623'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>10</td><td>W</td><td>1896</td><td>1933</td><td>433</td><td>380</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>13</td><td>L</td><td>1896</td><td>1933</td><td>328</td><td>508</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >10</td><td   >W</td><td   >1896</td><td   >1933</td><td   >433</td><td   >380</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >13</td><td   >L</td><td   >1896</td><td   >1933</td><td   >328</td><td   >508</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4573'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4573'>+</button></td><td>4</td><td><a href='/aardvark/html/players/4573.html'>Bill Huttel</a></td><td>1592</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>406.50</td><td>393.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4573'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4573'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/4573.html'>Bill Huttel</a></td><td   >1592</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >406.50</td><td   >393.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4573'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>5</td><td>L</td><td>1896</td><td>1710</td><td>382</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>22</td><td>W</td><td>1896</td><td>1710</td><td>431</td><td>343</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >5</td><td   >L</td><td   >1896</td><td   >1710</td><td   >382</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >22</td><td   >W</td><td   >1896</td><td   >1710</td><td   >431</td><td   >343</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_372'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_372'>+</button></td><td>5</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1748</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>565.00</td><td>280.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_372'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_372'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1748</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >565.00</td><td   >280.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_372'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>1</td><td>W</td><td>1896</td><td>1399</td><td>570</td><td>261</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>24</td><td>W</td><td>1896</td><td>1415</td><td>560</td><td>299</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >1</td><td   >W</td><td   >1896</td><td   >1399</td><td   >570</td><td   >261</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >24</td><td   >W</td><td   >1896</td><td   >1415</td><td   >560</td><td   >299</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_346'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_346'>+</button></td><td>6</td><td><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td>1749</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>371.00</td><td>508.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_346'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_346'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/346.html'>Robert Linn</a></td><td   >1749</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >371.00</td><td   >508.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_346'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>16</td><td>L</td><td>1896</td><td>1906</td><td>371</td><td>508</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >16</td><td   >L</td><td   >1896</td><td   >1906</td><td   >371</td><td   >508</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_336'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_336'>+</button></td><td>7</td><td><a href='/aardvark/html/players/336.html'>David Wiegand</a></td><td>2083</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>384.00</td><td>390.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_336'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_336'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/336.html'>David Wiegand</a></td><td   >2083</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >384.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_336'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>4</td><td>L</td><td>1896</td><td>2035</td><td>384</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >4</td><td   >L</td><td   >1896</td><td   >2035</td><td   >384</td><td   >390</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2565'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2565'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2565.html'>Victor Ikawa</a></td><td>1761</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>400.00</td><td>393.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2565'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2565'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/2565.html'>Victor Ikawa</a></td><td   >1761</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >400.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2565'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>17</td><td>W</td><td>1896</td><td>1717</td><td>400</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >17</td><td   >W</td><td   >1896</td><td   >1717</td><td   >400</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2766'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2766'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2766.html'>Bryan Pepper</a></td><td>1249</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>384.00</td><td>427.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2766'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2766'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2766.html'>Bryan Pepper</a></td><td   >1249</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >384.00</td><td   >427.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2766'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>6</td><td>L</td><td>1896</td><td>1457</td><td>384</td><td>427</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >6</td><td   >L</td><td   >1896</td><td   >1457</td><td   >384</td><td   >427</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_353'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_353'>+</button></td><td>10</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1647</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>544.00</td><td>445.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_353'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_353'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1647</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >544.00</td><td   >445.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_353'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>18</td><td>W</td><td>1896</td><td>1935</td><td>544</td><td>445</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >18</td><td   >W</td><td   >1896</td><td   >1935</td><td   >544</td><td   >445</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4577'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4577'>+</button></td><td>11</td><td><a href='/aardvark/html/players/4577.html'>Sam Dick-Onuoha</a></td><td>1655</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>415.00</td><td>445.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4577'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4577'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/4577.html'>Sam Dick-Onuoha</a></td><td   >1655</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >415.00</td><td   >445.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4577'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>20</td><td>L</td><td>1896</td><td>1655</td><td>415</td><td>445</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >20</td><td   >L</td><td   >1896</td><td   >1655</td><td   >415</td><td   >445</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_805'>+</button></td><td>12</td><td><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td>1691</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>421.00</td><td>399.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_805'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td   >1691</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >421.00</td><td   >399.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_805'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>8</td><td>W</td><td>1896</td><td>1804</td><td>421</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >8</td><td   >W</td><td   >1896</td><td   >1804</td><td   >421</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_650'>+</button></td><td>13</td><td><a href='/aardvark/html/players/650.html'>Kunihiko Kuroda</a></td><td>1076</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>445.00</td><td>408.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_650'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/650.html'>Kunihiko Kuroda</a></td><td   >1076</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >445.00</td><td   >408.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_650'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>2</td><td>W</td><td>1896</td><td>1367</td><td>445</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >2</td><td   >W</td><td   >1896</td><td   >1367</td><td   >445</td><td   >408</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_40'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_40'>+</button></td><td>14</td><td><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td>1614</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>391.00</td><td>417.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_40'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_40'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/40.html'>Sam Kantimathi</a></td><td   >1614</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >391.00</td><td   >417.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_40'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>23</td><td>L</td><td>1896</td><td>1883</td><td>391</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >23</td><td   >L</td><td   >1896</td><td   >1883</td><td   >391</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_618'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_618'>+</button></td><td>15</td><td><a href='/aardvark/html/players/618.html'>James Kramer</a></td><td>1921</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>366.00</td><td>448.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_618'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_618'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/618.html'>James Kramer</a></td><td   >1921</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >366.00</td><td   >448.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_618'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>19</td><td>L</td><td>1896</td><td>2022</td><td>366</td><td>448</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >19</td><td   >L</td><td   >1896</td><td   >2022</td><td   >366</td><td   >448</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_299'>+</button></td><td>16</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>2006</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>420.00</td><td>424.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_299'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >2006</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >420.00</td><td   >424.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_299'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>1</td><td>L</td><td>1896</td><td>1974</td><td>420</td><td>424</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >1</td><td   >L</td><td   >1896</td><td   >1974</td><td   >420</td><td   >424</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4575'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4575'>+</button></td><td>17</td><td><a href='/aardvark/html/players/4575.html'>James Sekyi</a></td><td>1675</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>446.00</td><td>340.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4575'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4575'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/4575.html'>James Sekyi</a></td><td   >1675</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >446.00</td><td   >340.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4575'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>12</td><td>W</td><td>1896</td><td>1675</td><td>446</td><td>340</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >12</td><td   >W</td><td   >1896</td><td   >1675</td><td   >446</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_348'>+</button></td><td>18</td><td><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td>1913</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>429.00</td><td>387.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_348'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_348'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/348.html'>Trevor Halsall</a></td><td   >1913</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >429.00</td><td   >387.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_348'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>5</td><td>W</td><td>1896</td><td>1927</td><td>429</td><td>387</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >5</td><td   >W</td><td   >1896</td><td   >1927</td><td   >429</td><td   >387</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_191'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_191'>+</button></td><td>19</td><td><a href='/aardvark/html/players/191.html'>Sanmi Odelana</a></td><td>1300</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>403.00</td><td>428.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_191'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_191'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/191.html'>Sanmi Odelana</a></td><td   >1300</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >403.00</td><td   >428.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_191'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>15</td><td>L</td><td>1896</td><td>1479</td><td>403</td><td>428</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >15</td><td   >L</td><td   >1896</td><td   >1479</td><td   >403</td><td   >428</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_175'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_175'>+</button></td><td>20</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1313</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>436.00</td><td>391.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_175'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_175'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/175.html'>John Barker</a></td><td   >1313</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >436.00</td><td   >391.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_175'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>11</td><td>W</td><td>1896</td><td>1506</td><td>436</td><td>391</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >11</td><td   >W</td><td   >1896</td><td   >1506</td><td   >436</td><td   >391</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_815'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_815'>+</button></td><td>21</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>1997</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>417.00</td><td>727.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_815'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_815'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >1997</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >417.00</td><td   >727.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_815'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>9</td><td>L</td><td>1896</td><td>1992</td><td>417</td><td>727</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >9</td><td   >L</td><td   >1896</td><td   >1992</td><td   >417</td><td   >727</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_646'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_646'>+</button></td><td>22</td><td><a href='/aardvark/html/players/646.html'>Chris Cree</a></td><td>1783</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>361.00</td><td>487.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_646'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_646'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/646.html'>Chris Cree</a></td><td   >1783</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >361.00</td><td   >487.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_646'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>10</td><td>L</td><td>1896</td><td>1680</td><td>361</td><td>487</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >10</td><td   >L</td><td   >1896</td><td   >1680</td><td   >361</td><td   >487</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_627'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_627'>+</button></td><td>23</td><td><a href='/aardvark/html/players/627.html'>Travis Chaney</a></td><td>1724</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>541.00</td><td>273.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_627'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_627'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/627.html'>Travis Chaney</a></td><td   >1724</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >541.00</td><td   >273.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_627'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>8</td><td>W</td><td>1896</td><td>1707</td><td>541</td><td>273</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >8</td><td   >W</td><td   >1896</td><td   >1707</td><td   >541</td><td   >273</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_626'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_626'>+</button></td><td>24</td><td><a href='/aardvark/html/players/626.html'>Michael Thelen</a></td><td>1854</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>490.00</td><td>336.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_626'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_626'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/626.html'>Michael Thelen</a></td><td   >1854</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >490.00</td><td   >336.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_626'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>2</td><td>W</td><td>1896</td><td>2003</td><td>490</td><td>336</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >2</td><td   >W</td><td   >1896</td><td   >2003</td><td   >490</td><td   >336</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_813'>+</button></td><td>25</td><td><a href='/aardvark/html/players/813.html'>Yvonne Eade</a></td><td>1495</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>437.00</td><td>342.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_813'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_813'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/813.html'>Yvonne Eade</a></td><td   >1495</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >437.00</td><td   >342.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_813'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>11</td><td>W</td><td>1896</td><td>1631</td><td>437</td><td>342</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >11</td><td   >W</td><td   >1896</td><td   >1631</td><td   >437</td><td   >342</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_143'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_143'>+</button></td><td>26</td><td><a href='/aardvark/html/players/143.html'>Amnuay Ploysangngam</a></td><td>1543</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>453.00</td><td>478.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_143'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_143'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/143.html'>Amnuay Ploysangngam</a></td><td   >1543</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >453.00</td><td   >478.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_143'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>3</td><td>L</td><td>1896</td><td>1790</td><td>453</td><td>478</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >3</td><td   >L</td><td   >1896</td><td   >1790</td><td   >453</td><td   >478</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_644'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_644'>+</button></td><td>27</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1869</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>457.00</td><td>451.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_644'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_644'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1869</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >457.00</td><td   >451.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_644'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td>2008-06-15</td><td>4</td><td>W</td><td>1896</td><td>1969</td><td>457</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/644.html'>Texas SOWPODS Challenge</a></td><td   >2008-06-15</td><td   >4</td><td   >W</td><td   >1896</td><td   >1969</td><td   >457</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_422'>+</button></td><td>28</td><td><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td>690</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>357.00</td><td>318.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_422'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td   >690</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >357.00</td><td   >318.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_422'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>21</td><td>W</td><td>1896</td><td>1361</td><td>357</td><td>318</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >21</td><td   >W</td><td   >1896</td><td   >1361</td><td   >357</td><td   >318</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_553'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_553'>+</button></td><td>29</td><td><a href='/aardvark/html/players/553.html'>Anthony Ikolo</a></td><td>1881</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>368.00</td><td>468.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_553'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_553'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/553.html'>Anthony Ikolo</a></td><td   >1881</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >368.00</td><td   >468.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_553'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>6</td><td>L</td><td>1896</td><td>1882</td><td>368</td><td>468</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >6</td><td   >L</td><td   >1896</td><td   >1882</td><td   >368</td><td   >468</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_238'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_238'>+</button></td><td>30</td><td><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td>1726</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>390.00</td><td>388.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_238'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_238'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/238.html'>Joanne Craig</a></td><td   >1726</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >390.00</td><td   >388.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_238'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>14</td><td>W</td><td>1896</td><td>1878</td><td>390</td><td>388</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >14</td><td   >W</td><td   >1896</td><td   >1878</td><td   >390</td><td   >388</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_619'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_619'>+</button></td><td>31</td><td><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td>1820</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>370.00</td><td>449.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_619'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_619'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/619.html'>Mark Kenas</a></td><td   >1820</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >370.00</td><td   >449.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_619'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>9</td><td>L</td><td>1896</td><td>1858</td><td>370</td><td>449</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >9</td><td   >L</td><td   >1896</td><td   >1858</td><td   >370</td><td   >449</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2675'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2675'>+</button></td><td>32</td><td><a href='/aardvark/html/players/2675.html'>Donna MacDonald</a></td><td>1156</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>471.00</td><td>328.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2675'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2675'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/2675.html'>Donna MacDonald</a></td><td   >1156</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >471.00</td><td   >328.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2675'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td>2008-11-16</td><td>7</td><td>W</td><td>1896</td><td>1363</td><td>471</td><td>328</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/645.html'>World Players Championship</a></td><td   >2008-11-16</td><td   >7</td><td   >W</td><td   >1896</td><td   >1363</td><td   >471</td><td   >328</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,68 +156,189 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_13959'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13959'>+</button></td><td>1</td><td>2</td><td><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td>4</td><td>1</td><td>0</td><td>391</td><td>1958</td><td>1968</td><td>10</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_13959'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13959'>+</button></td><td   >1</td><td   >2</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >4</td><td   >1</td><td   >0</td><td   >391</td><td   >1958</td><td   >1968</td><td   >10</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13959'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1690</td><td>W</td><td>458</td><td>454</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1608</td><td>L</td><td>358</td><td>494</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1454</td><td>W</td><td>527</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td>1872</td><td>W</td><td>515</td><td>347</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1962</td><td>W</td><td>579</td><td>351</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >W</td><td   >458</td><td   >454</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   >L</td><td   >358</td><td   >494</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   >W</td><td   >527</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >W</td><td   >515</td><td   >347</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >W</td><td   >579</td><td   >351</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_13962'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13962'>+</button></td><td>2</td><td>5</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>3</td><td>2</td><td>0</td><td>220</td><td>1608</td><td>1631</td><td>23</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_13962'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13962'>+</button></td><td   >2</td><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >3</td><td   >2</td><td   >0</td><td   >220</td><td   >1608</td><td   >1631</td><td   >23</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13962'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1454</td><td>L</td><td>392</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td>1958</td><td>W</td><td>494</td><td>358</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1962</td><td>W</td><td>504</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1690</td><td>L</td><td>397</td><td>455</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td>1872</td><td>W</td><td>483</td><td>460</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   >L</td><td   >392</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >W</td><td   >494</td><td   >358</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >W</td><td   >504</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >L</td><td   >397</td><td   >455</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >W</td><td   >483</td><td   >460</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_13957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13957'>+</button></td><td>3</td><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>3</td><td>2</td><td>0</td><td>192</td><td>1962</td><td>1956</td><td>-6</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_13957'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13957'>+</button></td><td   >3</td><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3</td><td   >2</td><td   >0</td><td   >192</td><td   >1962</td><td   >1956</td><td   >-6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13957'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td>1872</td><td>W</td><td>466</td><td>316</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1690</td><td>W</td><td>427</td><td>304</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1608</td><td>L</td><td>377</td><td>504</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1454</td><td>W</td><td>564</td><td>290</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td>1958</td><td>L</td><td>351</td><td>579</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >W</td><td   >466</td><td   >316</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >W</td><td   >427</td><td   >304</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   >L</td><td   >377</td><td   >504</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   >W</td><td   >564</td><td   >290</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >L</td><td   >351</td><td   >579</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_13958'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13958'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>3</td><td>2</td><td>0</td><td>169</td><td>1690</td><td>1706</td><td>16</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_13958'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13958'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >3</td><td   >2</td><td   >0</td><td   >169</td><td   >1690</td><td   >1706</td><td   >16</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13958'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td>1958</td><td>L</td><td>454</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1962</td><td>L</td><td>304</td><td>427</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td>1872</td><td>W</td><td>530</td><td>309</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1608</td><td>W</td><td>455</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1454</td><td>W</td><td>419</td><td>402</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >L</td><td   >454</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >L</td><td   >304</td><td   >427</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >W</td><td   >530</td><td   >309</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   >W</td><td   >455</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   >W</td><td   >419</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_13961'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13961'>+</button></td><td>5</td><td>6</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>2</td><td>3</td><td>0</td><td>-289</td><td>1454</td><td>1470</td><td>16</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_13961'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13961'>+</button></td><td   >5</td><td   >6</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >2</td><td   >3</td><td   >0</td><td   >-289</td><td   >1454</td><td   >1470</td><td   >16</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13961'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1608</td><td>W</td><td>400</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td>1872</td><td>W</td><td>467</td><td>346</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td>1958</td><td>L</td><td>400</td><td>527</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1962</td><td>L</td><td>290</td><td>564</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1690</td><td>L</td><td>402</td><td>419</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   >W</td><td   >400</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >W</td><td   >467</td><td   >346</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >L</td><td   >400</td><td   >527</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >L</td><td   >290</td><td   >564</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >L</td><td   >402</td><td   >419</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_13960'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13960'>+</button></td><td>6</td><td>3</td><td><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td>0</td><td>5</td><td>0</td><td>-683</td><td>1872</td><td>1824</td><td>-48</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_13960'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_13960'>+</button></td><td   >6</td><td   >3</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >0</td><td   >5</td><td   >0</td><td   >-683</td><td   >1872</td><td   >1824</td><td   >-48</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_13960'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1962</td><td>L</td><td>316</td><td>466</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td>1454</td><td>L</td><td>346</td><td>467</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td>1690</td><td>L</td><td>309</td><td>530</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td>1958</td><td>L</td><td>347</td><td>515</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td>1608</td><td>L</td><td>460</td><td>483</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >L</td><td   >316</td><td   >466</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   >L</td><td   >346</td><td   >467</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >L</td><td   >309</td><td   >530</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >L</td><td   >347</td><td   >515</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   >L</td><td   >460</td><td   >483</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >579</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >564</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >530</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >527</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >515</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >504</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >494</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >483</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >467</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >466</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >458</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >455</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >427</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >419</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >400</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >460</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >454</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >402</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >400</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >397</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >392</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >377</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >358</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >351</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >347</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >346</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >316</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >309</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >304</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >290</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >4</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >564</td><td   >290</td><td   >274</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >579</td><td   >351</td><td   >228</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >530</td><td   >309</td><td   >221</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >515</td><td   >347</td><td   >168</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >466</td><td   >316</td><td   >150</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >494</td><td   >358</td><td   >136</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >527</td><td   >400</td><td   >127</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >504</td><td   >377</td><td   >127</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >427</td><td   >304</td><td   >123</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >467</td><td   >346</td><td   >121</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >455</td><td   >397</td><td   >58</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >483</td><td   >460</td><td   >23</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >419</td><td   >402</td><td   >17</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >400</td><td   >392</td><td   >8</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >458</td><td   >454</td><td   >4</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >943</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >930</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >927</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >912</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >881</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >862</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >854</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >852</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >852</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >839</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >821</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >813</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >792</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >782</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >731</td><td   >2</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >731</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >782</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >792</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >813</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >821</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >839</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >852</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >852</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >854</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >862</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >881</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >912</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >927</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >930</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >943</td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >508</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >504</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >418</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >354</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >350</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >272</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >268</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >264</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >236</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   >182</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1454</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   >154</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >90</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >1872</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   >86</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1608</td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >1690</td><td   >82</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >1958</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1962</td><td   >4</td><td   >5</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1050.html'>David Koenig</a></td><td   >3.383</td><td   >4</td><td   >83</td><td   >73</td><td   >16</td><td   >14</td><td   >1958</td><td   >10</td><td   >1968</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/372.html'>Puneet Sharma</a></td><td   >1.856</td><td   >3</td><td   >339</td><td   >329</td><td   >48</td><td   >47</td><td   >1608</td><td   >23</td><td   >1631</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3.391</td><td   >3</td><td   >79</td><td   >84</td><td   >14</td><td   >16</td><td   >1962</td><td   >-6</td><td   >1956</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/AUS.html'>Australia</a></td><td   ><a href='/aardvark/html/players/353.html'>Carmel Dodd</a></td><td   >2.191</td><td   >3</td><td   >291</td><td   >277</td><td   >26</td><td   >26</td><td   >1690</td><td   >16</td><td   >1706</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1049.html'>Daniel Milton</a></td><td   >1.206</td><td   >2</td><td   >456</td><td   >449</td><td   >56</td><td   >56</td><td   >1454</td><td   >16</td><td   >1470</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2759.html'>Richard Buck</a></td><td   >3.007</td><td   >0</td><td   >138</td><td   >187</td><td   >27</td><td   >32</td><td   >1872</td><td   >-48</td><td   >1824</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

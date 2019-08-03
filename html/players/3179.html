@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Richard Matte</h2>
             <div>
               <IMG SRC="../../flags/KEN.png" alt="KEN">
-              <p>KEN</p>
+              <p><a href='/aardvark/html/rankings/KEN.html'>Kenya</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 686<br>
               <b>Games Played:</b> 10<br>
               <b>Wins:</b> 0 (0.00%)<br>
               <b>Losses: </b>10 (100.00%)<br>
@@ -183,81 +184,81 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_13467'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13467'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>0</td><td>10</td><td>18</td><td>-525</td><td>56</td><td>686</td><td>686</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_13467'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13467'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >0</td><td   >10</td><td   >18</td><td   >-525</td><td   >56</td><td   >686</td><td   >686</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_13467'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td>1581</td><td>L</td><td>227</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td>982</td><td>L</td><td>229</td><td>379</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1800.html'>John Mbote</a></td><td>1630</td><td>L</td><td>298</td><td>448</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/600.html'>David Kangethe</a></td><td>1749</td><td>L</td><td>306</td><td>456</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1820.html'>Symon Gitonga</a></td><td>1663</td><td>L</td><td>244</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3180.html'>Sammy Mwiti</a></td><td>1340</td><td>L</td><td>332</td><td>482</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2566.html'>Walter Nyandiko</a></td><td>1469</td><td>L</td><td>277</td><td>427</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1795.html'>Eliud Lell</a></td><td>1176</td><td>L</td><td>261</td><td>411</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td>1064</td><td>L</td><td>300</td><td>450</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3177.html'>Jedaidah Chilufya</a></td><td>565</td><td>L</td><td>300</td><td>375</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td   >1581</td><td   >L</td><td   >227</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td   >982</td><td   >L</td><td   >229</td><td   >379</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1800.html'>John Mbote</a></td><td   >1630</td><td   >L</td><td   >298</td><td   >448</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/600.html'>David Kangethe</a></td><td   >1749</td><td   >L</td><td   >306</td><td   >456</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1820.html'>Symon Gitonga</a></td><td   >1663</td><td   >L</td><td   >244</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3180.html'>Sammy Mwiti</a></td><td   >1340</td><td   >L</td><td   >332</td><td   >482</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2566.html'>Walter Nyandiko</a></td><td   >1469</td><td   >L</td><td   >277</td><td   >427</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1795.html'>Eliud Lell</a></td><td   >1176</td><td   >L</td><td   >261</td><td   >411</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td   >1064</td><td   >L</td><td   >300</td><td   >450</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3177.html'>Jedaidah Chilufya</a></td><td   >565</td><td   >L</td><td   >300</td><td   >375</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3180'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3180'>+</button></td><td>1</td><td><a href='/aardvark/html/players/3180.html'>Sammy Mwiti</a></td><td>1318</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>332.00</td><td>482.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3180'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3180'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/3180.html'>Sammy Mwiti</a></td><td   >1318</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >332.00</td><td   >482.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3180'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>6</td><td>L</td><td>686</td><td>1340</td><td>332</td><td>482</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >6</td><td   >L</td><td   >686</td><td   >1340</td><td   >332</td><td   >482</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1802'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1802'>+</button></td><td>2</td><td><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td>1502</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>227.00</td><td>377.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1802'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1802'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/1802.html'>Joseph Chavutia</a></td><td   >1502</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >227.00</td><td   >377.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1802'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>1</td><td>L</td><td>686</td><td>1581</td><td>227</td><td>377</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >1</td><td   >L</td><td   >686</td><td   >1581</td><td   >227</td><td   >377</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_600'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_600'>+</button></td><td>3</td><td><a href='/aardvark/html/players/600.html'>David Kangethe</a></td><td>1723</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>306.00</td><td>456.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_600'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_600'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/600.html'>David Kangethe</a></td><td   >1723</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >306.00</td><td   >456.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_600'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>4</td><td>L</td><td>686</td><td>1749</td><td>306</td><td>456</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >4</td><td   >L</td><td   >686</td><td   >1749</td><td   >306</td><td   >456</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1807'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td>1411</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>450.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1807'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1807.html'>Millie Kikechi</a></td><td   >1411</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >450.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1807'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>9</td><td>L</td><td>686</td><td>1064</td><td>300</td><td>450</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >9</td><td   >L</td><td   >686</td><td   >1064</td><td   >300</td><td   >450</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3177'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3177'>+</button></td><td>5</td><td><a href='/aardvark/html/players/3177.html'>Jedaidah Chilufya</a></td><td>565</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>375.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3177'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3177'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/3177.html'>Jedaidah Chilufya</a></td><td   >565</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >375.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3177'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>10</td><td>L</td><td>686</td><td>565</td><td>300</td><td>375</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >10</td><td   >L</td><td   >686</td><td   >565</td><td   >300</td><td   >375</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2566'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2566'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2566.html'>Walter Nyandiko</a></td><td>1211</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>277.00</td><td>427.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2566'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2566'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2566.html'>Walter Nyandiko</a></td><td   >1211</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >277.00</td><td   >427.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2566'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>7</td><td>L</td><td>686</td><td>1469</td><td>277</td><td>427</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >7</td><td   >L</td><td   >686</td><td   >1469</td><td   >277</td><td   >427</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1800'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1800'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1800.html'>John Mbote</a></td><td>1468</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>298.00</td><td>448.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1800'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1800'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1800.html'>John Mbote</a></td><td   >1468</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >298.00</td><td   >448.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1800'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>3</td><td>L</td><td>686</td><td>1630</td><td>298</td><td>448</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >3</td><td   >L</td><td   >686</td><td   >1630</td><td   >298</td><td   >448</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1795'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1795'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1795.html'>Eliud Lell</a></td><td>1036</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>261.00</td><td>411.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1795'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1795'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1795.html'>Eliud Lell</a></td><td   >1036</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >261.00</td><td   >411.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1795'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>8</td><td>L</td><td>686</td><td>1176</td><td>261</td><td>411</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >8</td><td   >L</td><td   >686</td><td   >1176</td><td   >261</td><td   >411</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1820'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1820.html'>Symon Gitonga</a></td><td>1510</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>244.00</td><td>394.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1820'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1820.html'>Symon Gitonga</a></td><td   >1510</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >244.00</td><td   >394.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1820'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>5</td><td>L</td><td>686</td><td>1663</td><td>244</td><td>394</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >5</td><td   >L</td><td   >686</td><td   >1663</td><td   >244</td><td   >394</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_599'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_599'>+</button></td><td>10</td><td><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td>1051</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>229.00</td><td>379.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_599'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_599'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/599.html'>Chris Kalibbala</a></td><td   >1051</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >229.00</td><td   >379.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_599'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td>2013-03-31</td><td>2</td><td>L</td><td>686</td><td>982</td><td>229</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/349.html'>ECASA 2013, Nairobi Kenya</a></td><td   >2013-03-31</td><td   >2</td><td   >L</td><td   >686</td><td   >982</td><td   >229</td><td   >379</td></tr>
 </table></div></td></tr>
 
 </table>

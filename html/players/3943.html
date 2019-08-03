@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Silfi Dia Antika</h2>
             <div>
               <IMG SRC="../../flags/IDN.png" alt="IDN">
-              <p>IDN</p>
+              <p><a href='/aardvark/html/rankings/IDN.html'>Indonesia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 667<br>
               <b>Games Played:</b> 20<br>
               <b>Wins:</b> 9 (45.00%)<br>
               <b>Losses: </b>11 (55.00%)<br>
@@ -183,125 +184,125 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_16908'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_16908'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>9</td><td>11</td><td>0</td><td>-2509</td><td>29</td><td>667</td><td>667</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_16908'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_16908'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >9</td><td   >11</td><td   >0</td><td   >-2509</td><td   >29</td><td   >667</td><td   >667</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_16908'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td>1231</td><td>L</td><td>150</td><td>594</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/92.html'>Nidhi Singhvi</a></td><td>1272</td><td>L</td><td>181</td><td>613</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3940.html'>Elia Agusta</a></td><td>347</td><td>W</td><td>309</td><td>252</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3944.html'>Teoh Yi Cern</a></td><td>300</td><td>W</td><td>346</td><td>249</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/381.html'>Adrian Tay</a></td><td>1351</td><td>L</td><td>166</td><td>643</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td>604</td><td>L</td><td>239</td><td>407</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3938.html'>Ahmad Najib Azmi</a></td><td>661</td><td>L</td><td>257</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3945.html'>Zati HananiAb Ghafar</a></td><td>300</td><td>W</td><td>283</td><td>265</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3942.html'>NorAzliana Mohd Noor</a></td><td>300</td><td>W</td><td>228</td><td>196</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3941.html'>Liyana Ilani Ahmad</a></td><td>344</td><td>W</td><td>289</td><td>247</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1708.html'>Jerry Khoo</a></td><td>973</td><td>L</td><td>197</td><td>449</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2926.html'>Rehdy Khairil</a></td><td>1000</td><td>L</td><td>285</td><td>461</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td>1245</td><td>L</td><td>223</td><td>550</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td>1165</td><td>L</td><td>188</td><td>433</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3940.html'>Elia Agusta</a></td><td>347</td><td>W</td><td>345</td><td>265</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3941.html'>Liyana Ilani Ahmad</a></td><td>344</td><td>W</td><td>384</td><td>317</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/835.html'>Jerry Jang</a></td><td>1018</td><td>L</td><td>241</td><td>417</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/3944.html'>Teoh Yi Cern</a></td><td>300</td><td>W</td><td>357</td><td>275</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/3939.html'>Cheah Kim Tarh</a></td><td>1226</td><td>L</td><td>175</td><td>419</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/3945.html'>Zati HananiAb Ghafar</a></td><td>300</td><td>W</td><td>330</td><td>235</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td   >1231</td><td   >L</td><td   >150</td><td   >594</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/92.html'>Nidhi Singhvi</a></td><td   >1272</td><td   >L</td><td   >181</td><td   >613</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3940.html'>Elia Agusta</a></td><td   >347</td><td   >W</td><td   >309</td><td   >252</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3944.html'>Teoh Yi Cern</a></td><td   >300</td><td   >W</td><td   >346</td><td   >249</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/381.html'>Adrian Tay</a></td><td   >1351</td><td   >L</td><td   >166</td><td   >643</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td   >604</td><td   >L</td><td   >239</td><td   >407</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3938.html'>Ahmad Najib Azmi</a></td><td   >661</td><td   >L</td><td   >257</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3945.html'>Zati HananiAb Ghafar</a></td><td   >300</td><td   >W</td><td   >283</td><td   >265</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3942.html'>NorAzliana Mohd Noor</a></td><td   >300</td><td   >W</td><td   >228</td><td   >196</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3941.html'>Liyana Ilani Ahmad</a></td><td   >344</td><td   >W</td><td   >289</td><td   >247</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1708.html'>Jerry Khoo</a></td><td   >973</td><td   >L</td><td   >197</td><td   >449</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2926.html'>Rehdy Khairil</a></td><td   >1000</td><td   >L</td><td   >285</td><td   >461</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1245</td><td   >L</td><td   >223</td><td   >550</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td   >1165</td><td   >L</td><td   >188</td><td   >433</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3940.html'>Elia Agusta</a></td><td   >347</td><td   >W</td><td   >345</td><td   >265</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3941.html'>Liyana Ilani Ahmad</a></td><td   >344</td><td   >W</td><td   >384</td><td   >317</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/835.html'>Jerry Jang</a></td><td   >1018</td><td   >L</td><td   >241</td><td   >417</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3944.html'>Teoh Yi Cern</a></td><td   >300</td><td   >W</td><td   >357</td><td   >275</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3939.html'>Cheah Kim Tarh</a></td><td   >1226</td><td   >L</td><td   >175</td><td   >419</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3945.html'>Zati HananiAb Ghafar</a></td><td   >300</td><td   >W</td><td   >330</td><td   >235</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3944'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3944'>+</button></td><td>1</td><td><a href='/aardvark/html/players/3944.html'>Teoh Yi Cern</a></td><td>300</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>351.50</td><td>262.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3944'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3944'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/3944.html'>Teoh Yi Cern</a></td><td   >300</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >351.50</td><td   >262.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3944'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>4</td><td>W</td><td>667</td><td>300</td><td>346</td><td>249</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>18</td><td>W</td><td>667</td><td>300</td><td>357</td><td>275</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >4</td><td   >W</td><td   >667</td><td   >300</td><td   >346</td><td   >249</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >18</td><td   >W</td><td   >667</td><td   >300</td><td   >357</td><td   >275</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3941'>+</button></td><td>2</td><td><a href='/aardvark/html/players/3941.html'>Liyana Ilani Ahmad</a></td><td>344</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>336.50</td><td>282.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3941'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3941'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/3941.html'>Liyana Ilani Ahmad</a></td><td   >344</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >336.50</td><td   >282.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3941'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>10</td><td>W</td><td>667</td><td>344</td><td>289</td><td>247</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>16</td><td>W</td><td>667</td><td>344</td><td>384</td><td>317</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >10</td><td   >W</td><td   >667</td><td   >344</td><td   >289</td><td   >247</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >16</td><td   >W</td><td   >667</td><td   >344</td><td   >384</td><td   >317</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3940'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3940'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3940.html'>Elia Agusta</a></td><td>347</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>327.00</td><td>258.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3940'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3940'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3940.html'>Elia Agusta</a></td><td   >347</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >327.00</td><td   >258.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3940'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>3</td><td>W</td><td>667</td><td>347</td><td>309</td><td>252</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>15</td><td>W</td><td>667</td><td>347</td><td>345</td><td>265</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >3</td><td   >W</td><td   >667</td><td   >347</td><td   >309</td><td   >252</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >15</td><td   >W</td><td   >667</td><td   >347</td><td   >345</td><td   >265</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3945'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3945'>+</button></td><td>4</td><td><a href='/aardvark/html/players/3945.html'>Zati HananiAb Ghafar</a></td><td>300</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>306.50</td><td>250.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3945'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3945'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/3945.html'>Zati HananiAb Ghafar</a></td><td   >300</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >306.50</td><td   >250.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3945'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>8</td><td>W</td><td>667</td><td>300</td><td>283</td><td>265</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>20</td><td>W</td><td>667</td><td>300</td><td>330</td><td>235</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >8</td><td   >W</td><td   >667</td><td   >300</td><td   >283</td><td   >265</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >20</td><td   >W</td><td   >667</td><td   >300</td><td   >330</td><td   >235</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1095'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1095'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td>1337</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>223.00</td><td>550.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1095'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1095'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1095.html'>Danial Sanaullah</a></td><td   >1337</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >223.00</td><td   >550.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1095'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>13</td><td>L</td><td>667</td><td>1245</td><td>223</td><td>550</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >13</td><td   >L</td><td   >667</td><td   >1245</td><td   >223</td><td   >550</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3939'>+</button></td><td>6</td><td><a href='/aardvark/html/players/3939.html'>Cheah Kim Tarh</a></td><td>1029</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>175.00</td><td>419.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3939'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/3939.html'>Cheah Kim Tarh</a></td><td   >1029</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >175.00</td><td   >419.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3939'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>19</td><td>L</td><td>667</td><td>1226</td><td>175</td><td>419</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >19</td><td   >L</td><td   >667</td><td   >1226</td><td   >175</td><td   >419</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3942'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3942'>+</button></td><td>7</td><td><a href='/aardvark/html/players/3942.html'>NorAzliana Mohd Noor</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>228.00</td><td>196.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3942'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3942'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/3942.html'>NorAzliana Mohd Noor</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >228.00</td><td   >196.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3942'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>9</td><td>W</td><td>667</td><td>300</td><td>228</td><td>196</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >9</td><td   >W</td><td   >667</td><td   >300</td><td   >228</td><td   >196</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_186'>+</button></td><td>8</td><td><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td>1175</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>188.00</td><td>433.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_186'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_186'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/186.html'>Olga Visser</a></td><td   >1175</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >188.00</td><td   >433.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_186'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>14</td><td>L</td><td>667</td><td>1165</td><td>188</td><td>433</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >14</td><td   >L</td><td   >667</td><td   >1165</td><td   >188</td><td   >433</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3938'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3938'>+</button></td><td>9</td><td><a href='/aardvark/html/players/3938.html'>Ahmad Najib Azmi</a></td><td>661</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>257.00</td><td>395.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3938'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3938'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/3938.html'>Ahmad Najib Azmi</a></td><td   >661</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >257.00</td><td   >395.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3938'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>7</td><td>L</td><td>667</td><td>661</td><td>257</td><td>395</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >7</td><td   >L</td><td   >667</td><td   >661</td><td   >257</td><td   >395</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1650'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td>532</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>239.00</td><td>407.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1650'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1650'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1650.html'>Shyla William</a></td><td   >532</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >239.00</td><td   >407.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1650'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>6</td><td>L</td><td>667</td><td>604</td><td>239</td><td>407</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >6</td><td   >L</td><td   >667</td><td   >604</td><td   >239</td><td   >407</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_381'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_381'>+</button></td><td>11</td><td><a href='/aardvark/html/players/381.html'>Adrian Tay</a></td><td>1350</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>166.00</td><td>643.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_381'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_381'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/381.html'>Adrian Tay</a></td><td   >1350</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >166.00</td><td   >643.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_381'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>5</td><td>L</td><td>667</td><td>1351</td><td>166</td><td>643</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >5</td><td   >L</td><td   >667</td><td   >1351</td><td   >166</td><td   >643</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2926'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2926.html'>Rehdy Khairil</a></td><td>1093</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>285.00</td><td>461.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2926'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2926'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2926.html'>Rehdy Khairil</a></td><td   >1093</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >285.00</td><td   >461.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2926'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>12</td><td>L</td><td>667</td><td>1000</td><td>285</td><td>461</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >12</td><td   >L</td><td   >667</td><td   >1000</td><td   >285</td><td   >461</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_835'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_835'>+</button></td><td>13</td><td><a href='/aardvark/html/players/835.html'>Jerry Jang</a></td><td>1019</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>241.00</td><td>417.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_835'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_835'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/835.html'>Jerry Jang</a></td><td   >1019</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >241.00</td><td   >417.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_835'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>17</td><td>L</td><td>667</td><td>1018</td><td>241</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >17</td><td   >L</td><td   >667</td><td   >1018</td><td   >241</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_92'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_92'>+</button></td><td>14</td><td><a href='/aardvark/html/players/92.html'>Nidhi Singhvi</a></td><td>1351</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>181.00</td><td>613.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_92'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_92'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/92.html'>Nidhi Singhvi</a></td><td   >1351</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >181.00</td><td   >613.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_92'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>2</td><td>L</td><td>667</td><td>1272</td><td>181</td><td>613</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >2</td><td   >L</td><td   >667</td><td   >1272</td><td   >181</td><td   >613</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1691'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1691'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td>1367</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>150.00</td><td>594.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1691'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1691'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1691.html'>Rastra Teguh</a></td><td   >1367</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >150.00</td><td   >594.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1691'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>1</td><td>L</td><td>667</td><td>1231</td><td>150</td><td>594</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >1</td><td   >L</td><td   >667</td><td   >1231</td><td   >150</td><td   >594</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1708'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1708'>+</button></td><td>16</td><td><a href='/aardvark/html/players/1708.html'>Jerry Khoo</a></td><td>1011</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>197.00</td><td>449.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1708'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1708'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/1708.html'>Jerry Khoo</a></td><td   >1011</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >197.00</td><td   >449.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1708'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td>2017-12-03</td><td>11</td><td>L</td><td>667</td><td>973</td><td>197</td><td>449</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/435.html'>Kuala Lumpur International</a></td><td   >2017-12-03</td><td   >11</td><td   >L</td><td   >667</td><td   >973</td><td   >197</td><td   >449</td></tr>
 </table></div></td></tr>
 
 </table>

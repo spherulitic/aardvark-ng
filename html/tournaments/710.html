@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,168 +156,578 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_27882'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27882'>+</button></td><td>1</td><td>2</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>14</td><td>4</td><td>3</td><td>1902</td><td>1705</td><td>1719</td><td>14</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_27882'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27882'>+</button></td><td   >1</td><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >14</td><td   >4</td><td   >3</td><td   >1902</td><td   >1705</td><td   >1719</td><td   >14</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27882'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>479</td><td>331</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>400</td><td>466</td></tr>
-        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>426</td><td>378</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>414</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>418</td><td>431</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>588</td><td>414</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>465</td><td>315</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>434</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>574</td><td>354</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>538</td><td>312</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>364</td><td>407</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>467</td><td>297</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>524</td><td>338</td></tr>
-        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>509</td><td>343</td></tr>
-        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>470</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>19</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>558</td><td>282</td></tr>
-        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>464</td><td>456</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>435</td><td>420</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >479</td><td   >331</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >400</td><td   >466</td></tr>
+        <tr  class='roweven'  ><td   >4</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >426</td><td   >378</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >414</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >418</td><td   >431</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >588</td><td   >414</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >465</td><td   >315</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >434</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >574</td><td   >354</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >538</td><td   >312</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >364</td><td   >407</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >467</td><td   >297</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >524</td><td   >338</td></tr>
+        <tr  class='rowodd'  ><td   >17</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >509</td><td   >343</td></tr>
+        <tr  class='roweven'  ><td   >18</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >470</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >19</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >558</td><td   >282</td></tr>
+        <tr  class='roweven'  ><td   >20</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >464</td><td   >456</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >435</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_27879'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27879'>+</button></td><td>2</td><td>1</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>11</td><td>7</td><td>3</td><td>1208</td><td>1810</td><td>1744</td><td>-66</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_27879'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27879'>+</button></td><td   >2</td><td   >1</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >11</td><td   >7</td><td   >3</td><td   >1208</td><td   >1810</td><td   >1744</td><td   >-66</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27879'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>2</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>W</td><td>466</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>3</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>500</td><td>410</td></tr>
-        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>378</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>484</td><td>319</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>415</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>418</td><td>439</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>514</td><td>312</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>458</td><td>479</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>392</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>480</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>502</td><td>317</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>297</td><td>467</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>411</td><td>441</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>408</td><td>495</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>580</td><td>365</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>491</td><td>296</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>561</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>456</td><td>464</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >W</td><td   >466</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >3</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >500</td><td   >410</td></tr>
+        <tr  class='roweven'  ><td   >4</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >378</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >484</td><td   >319</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >415</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >418</td><td   >439</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >514</td><td   >312</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >458</td><td   >479</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >392</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >480</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >502</td><td   >317</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >297</td><td   >467</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >411</td><td   >441</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >408</td><td   >495</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >580</td><td   >365</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >491</td><td   >296</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >561</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >456</td><td   >464</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_27878'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27878'>+</button></td><td>3</td><td>6</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>11</td><td>7</td><td>3</td><td>-85</td><td>1284</td><td>1361</td><td>77</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_27878'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27878'>+</button></td><td   >3</td><td   >6</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >11</td><td   >7</td><td   >3</td><td   >-85</td><td   >1284</td><td   >1361</td><td   >77</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27878'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>443</td><td>264</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>431</td><td>440</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>344</td><td>512</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>392</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>428</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>W</td><td>431</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>314</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>383</td><td>348</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>375</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>357</td><td>339</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>W</td><td>407</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>418</td><td>366</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>441</td><td>411</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>290</td><td>446</td></tr>
-        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>449</td><td>305</td></tr>
-        <tr  class='rowodd'  ><td>19</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>282</td><td>558</td></tr>
-        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>353</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>421</td><td>416</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >443</td><td   >264</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >431</td><td   >440</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >344</td><td   >512</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >392</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >428</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >W</td><td   >431</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >314</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >383</td><td   >348</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >375</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >357</td><td   >339</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >W</td><td   >407</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >418</td><td   >366</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >441</td><td   >411</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >290</td><td   >446</td></tr>
+        <tr  class='roweven'  ><td   >18</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >449</td><td   >305</td></tr>
+        <tr  class='rowodd'  ><td   >19</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >282</td><td   >558</td></tr>
+        <tr  class='roweven'  ><td   >20</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >353</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >421</td><td   >416</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_27881'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27881'>+</button></td><td>4</td><td>3</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>8</td><td>10</td><td>3</td><td>-4</td><td>1394</td><td>1378</td><td>-16</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_27881'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27881'>+</button></td><td   >4</td><td   >3</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >8</td><td   >10</td><td   >3</td><td   >-4</td><td   >1394</td><td   >1378</td><td   >-16</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27881'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>325</td><td>491</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>327</td><td>483</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>512</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>W</td><td>444</td><td>414</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>360</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>439</td><td>416</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>315</td><td>465</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>409</td><td>395</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>417</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>339</td><td>357</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>317</td><td>502</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>459</td><td>307</td></tr>
-        <tr  class='roweven'  ><td>16</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>446</td><td>290</td></tr>
-        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>504</td><td>314</td></tr>
-        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>390</td><td>470</td></tr>
-        <tr  class='rowodd'  ><td>19</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>444</td><td>561</td></tr>
-        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>333</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>510</td><td>347</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >325</td><td   >491</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >327</td><td   >483</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >512</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >W</td><td   >444</td><td   >414</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >360</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >439</td><td   >416</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >315</td><td   >465</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >409</td><td   >395</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >417</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >339</td><td   >357</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >317</td><td   >502</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >459</td><td   >307</td></tr>
+        <tr  class='roweven'  ><td   >16</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >446</td><td   >290</td></tr>
+        <tr  class='rowodd'  ><td   >17</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >504</td><td   >314</td></tr>
+        <tr  class='roweven'  ><td   >18</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >390</td><td   >470</td></tr>
+        <tr  class='rowodd'  ><td   >19</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >444</td><td   >561</td></tr>
+        <tr  class='roweven'  ><td   >20</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >333</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >510</td><td   >347</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_27880'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27880'>+</button></td><td>5</td><td>4</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>8</td><td>10</td><td>3</td><td>-124</td><td>1390</td><td>1376</td><td>-14</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_27880'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27880'>+</button></td><td   >5</td><td   >4</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >8</td><td   >10</td><td   >3</td><td   >-124</td><td   >1390</td><td   >1376</td><td   >-14</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27880'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>331</td><td>479</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>483</td><td>327</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>444</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>340</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>352</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>439</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>488</td><td>314</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>479</td><td>458</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>354</td><td>574</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>371</td><td>468</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>L</td><td>385</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>307</td><td>459</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>468</td><td>308</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>496</td><td>301</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>365</td><td>580</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>305</td><td>449</td></tr>
-        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>444</td><td>333</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>420</td><td>435</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >331</td><td   >479</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >483</td><td   >327</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >444</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >340</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >352</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >439</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >488</td><td   >314</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >479</td><td   >458</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >354</td><td   >574</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >371</td><td   >468</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >L</td><td   >385</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >307</td><td   >459</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >468</td><td   >308</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >496</td><td   >301</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >365</td><td   >580</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >305</td><td   >449</td></tr>
+        <tr  class='roweven'  ><td   >20</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >444</td><td   >333</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >420</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_27876'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27876'>+</button></td><td>6</td><td>5</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>8</td><td>10</td><td>3</td><td>-199</td><td>1312</td><td>1321</td><td>9</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_27876'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27876'>+</button></td><td   >6</td><td   >5</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >8</td><td   >10</td><td   >3</td><td   >-199</td><td   >1312</td><td   >1321</td><td   >9</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27876'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>491</td><td>325</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>440</td><td>431</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>410</td><td>500</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>444</td><td>340</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>L</td><td>414</td><td>472</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>414</td><td>588</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>397</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>W</td><td>429</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>468</td><td>371</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>378</td><td>480</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>W</td><td>451</td><td>292</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>366</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>308</td><td>468</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>W</td><td>495</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>343</td><td>509</td></tr>
-        <tr  class='rowodd'  ><td>19</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>1041</td><td>L</td><td>412</td><td>437</td></tr>
-        <tr  class='roweven'  ><td>20</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>W</td><td>397</td><td>353</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>347</td><td>510</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >491</td><td   >325</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >440</td><td   >431</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >410</td><td   >500</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >444</td><td   >340</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >L</td><td   >414</td><td   >472</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >414</td><td   >588</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >397</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >W</td><td   >429</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >468</td><td   >371</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >378</td><td   >480</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >W</td><td   >451</td><td   >292</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >366</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >308</td><td   >468</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >W</td><td   >495</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >343</td><td   >509</td></tr>
+        <tr  class='rowodd'  ><td   >19</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   >L</td><td   >412</td><td   >437</td></tr>
+        <tr  class='roweven'  ><td   >20</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >W</td><td   >397</td><td   >353</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >347</td><td   >510</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_27877'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27877'>+</button></td><td>7</td><td>7</td><td><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td>3</td><td>15</td><td>3</td><td>-1648</td><td>1041</td><td>1028</td><td>-13</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_27877'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_27877'>+</button></td><td   >7</td><td   >7</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >3</td><td   >15</td><td   >3</td><td   >-1648</td><td   >1041</td><td   >1028</td><td   >-13</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_27877'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>264</td><td>443</td></tr>
-        <tr  class='rowodd'  ><td>3</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>366</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>4</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>378</td><td>426</td></tr>
-        <tr  class='rowodd'  ><td>5</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>319</td><td>484</td></tr>
-        <tr  class='roweven'  ><td>6</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>472</td><td>414</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>416</td><td>439</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>312</td><td>514</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>395</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>10</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>348</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>11</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>312</td><td>538</td></tr>
-        <tr  class='roweven'  ><td>12</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>W</td><td>404</td><td>385</td></tr>
-        <tr  class='rowodd'  ><td>13</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>L</td><td>292</td><td>451</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td>1705</td><td>L</td><td>338</td><td>524</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td>1390</td><td>L</td><td>301</td><td>496</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td>1394</td><td>L</td><td>314</td><td>504</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td>1810</td><td>L</td><td>296</td><td>491</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td>1312</td><td>W</td><td>437</td><td>412</td></tr>
-        <tr  class='rowodd'  ><td>21</td><td><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td>1284</td><td>L</td><td>416</td><td>421</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >264</td><td   >443</td></tr>
+        <tr  class='rowodd'  ><td   >3</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >366</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >4</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >378</td><td   >426</td></tr>
+        <tr  class='rowodd'  ><td   >5</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >319</td><td   >484</td></tr>
+        <tr  class='roweven'  ><td   >6</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >472</td><td   >414</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >416</td><td   >439</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >312</td><td   >514</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >395</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >10</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >348</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >11</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >312</td><td   >538</td></tr>
+        <tr  class='roweven'  ><td   >12</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >W</td><td   >404</td><td   >385</td></tr>
+        <tr  class='rowodd'  ><td   >13</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >L</td><td   >292</td><td   >451</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >L</td><td   >338</td><td   >524</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >L</td><td   >301</td><td   >496</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >L</td><td   >314</td><td   >504</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >L</td><td   >296</td><td   >491</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >W</td><td   >437</td><td   >412</td></tr>
+        <tr  class='rowodd'  ><td   >21</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >L</td><td   >416</td><td   >421</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >588</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >580</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >574</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >561</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >558</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >538</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >524</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >514</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >512</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >510</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >509</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >504</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >502</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >500</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >496</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >495</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >491</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >491</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >488</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >484</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >483</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >480</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >479</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >479</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >472</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >470</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >468</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >468</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >467</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >466</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >465</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >464</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >459</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >451</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >449</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >446</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >444</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >444</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >444</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >444</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >443</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >441</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >440</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >439</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >439</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >437</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >435</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >434</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >431</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >429</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >428</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >426</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >421</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >418</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >415</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >409</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >407</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >404</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >397</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >392</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >392</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >383</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >357</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >12</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >458</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >456</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >444</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >431</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >420</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >418</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >418</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >417</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >416</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >416</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >414</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >414</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >414</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >412</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >411</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >410</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >408</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >400</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >397</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >395</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >390</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >385</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >378</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >378</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >378</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >375</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >371</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >366</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >366</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >365</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >364</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >360</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >354</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >353</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >352</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >348</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >347</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >344</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >343</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >340</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >339</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >338</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >333</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >331</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >327</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >325</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >319</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >317</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >315</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >314</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >314</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >312</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >312</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >308</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >307</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >305</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >301</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >297</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >296</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >292</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >290</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >282</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >264</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >558</td><td   >282</td><td   >276</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >538</td><td   >312</td><td   >226</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >574</td><td   >354</td><td   >220</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >580</td><td   >365</td><td   >215</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >514</td><td   >312</td><td   >202</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >491</td><td   >296</td><td   >195</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >496</td><td   >301</td><td   >195</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >504</td><td   >314</td><td   >190</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >524</td><td   >338</td><td   >186</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >502</td><td   >317</td><td   >185</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >443</td><td   >264</td><td   >179</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >488</td><td   >314</td><td   >174</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >588</td><td   >414</td><td   >174</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >467</td><td   >297</td><td   >170</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >512</td><td   >344</td><td   >168</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >509</td><td   >343</td><td   >166</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >491</td><td   >325</td><td   >166</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >484</td><td   >319</td><td   >165</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >510</td><td   >347</td><td   >163</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >468</td><td   >308</td><td   >160</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >451</td><td   >292</td><td   >159</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >483</td><td   >327</td><td   >156</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >446</td><td   >290</td><td   >156</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >459</td><td   >307</td><td   >152</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >465</td><td   >315</td><td   >150</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >479</td><td   >331</td><td   >148</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >449</td><td   >305</td><td   >144</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >561</td><td   >444</td><td   >117</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >444</td><td   >333</td><td   >111</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >444</td><td   >340</td><td   >104</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >480</td><td   >378</td><td   >102</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >468</td><td   >371</td><td   >97</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >500</td><td   >410</td><td   >90</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >495</td><td   >408</td><td   >87</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >470</td><td   >390</td><td   >80</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >444</td><td   >366</td><td   >78</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >428</td><td   >352</td><td   >76</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >466</td><td   >400</td><td   >66</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >472</td><td   >414</td><td   >58</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >415</td><td   >360</td><td   >55</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >418</td><td   >366</td><td   >52</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >426</td><td   >378</td><td   >48</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >397</td><td   >353</td><td   >44</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >407</td><td   >364</td><td   >43</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >434</td><td   >397</td><td   >37</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >383</td><td   >348</td><td   >35</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >441</td><td   >411</td><td   >30</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >444</td><td   >414</td><td   >30</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >437</td><td   >412</td><td   >25</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >439</td><td   >416</td><td   >23</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >479</td><td   >458</td><td   >21</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >439</td><td   >418</td><td   >21</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >404</td><td   >385</td><td   >19</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >357</td><td   >339</td><td   >18</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >392</td><td   >375</td><td   >17</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >435</td><td   >420</td><td   >15</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >392</td><td   >378</td><td   >14</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >409</td><td   >395</td><td   >14</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >431</td><td   >418</td><td   >13</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >429</td><td   >417</td><td   >12</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >440</td><td   >431</td><td   >9</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >464</td><td   >456</td><td   >8</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >421</td><td   >416</td><td   >5</td><td   >21</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1005</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1002</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >945</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >937</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >928</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >920</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >910</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >903</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >886</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >871</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >866</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >862</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >860</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >858</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >858</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >857</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >857</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >856</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >855</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >855</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >852</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >852</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >850</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >849</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >849</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >846</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >840</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >839</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >837</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >831</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >826</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >819</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >818</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >816</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >810</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >810</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >810</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >804</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >804</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >803</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >802</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >797</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >789</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >787</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >784</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >784</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >780</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >780</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >777</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >776</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >775</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >771</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >770</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >767</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >766</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >764</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >754</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >750</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >743</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >736</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >731</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >707</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >696</td><td   >12</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >696</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >707</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >731</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >736</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >743</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >750</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >754</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >764</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >766</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >767</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >770</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >771</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >775</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >776</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >777</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >780</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >780</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >784</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >784</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >787</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >789</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >797</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >802</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >803</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >804</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >804</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >810</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >810</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >810</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >816</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >818</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >819</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >826</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >831</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >837</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >839</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >840</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >846</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >849</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >849</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >850</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >852</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >852</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >855</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >855</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >856</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >857</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >857</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >858</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >858</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >860</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >862</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >866</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >871</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >886</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >903</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >910</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >920</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >928</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >937</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >945</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1002</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1005</td><td   >19</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >769</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >769</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >769</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >664</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >664</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >664</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >526</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >526</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >526</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >498</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >498</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >498</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >421</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >421</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >421</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >420</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >420</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >420</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >416</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >416</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >416</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >393</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >393</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >393</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >353</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >353</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >353</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >349</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >349</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >349</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >315</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >315</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >315</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >311</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >311</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   >311</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >271</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >271</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >271</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >243</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >243</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >1041</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   >243</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >110</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >110</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >110</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >106</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >106</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >106</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >105</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >105</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >1705</td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >1810</td><td   >105</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >82</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >82</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >82</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >78</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >78</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   >78</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >28</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >28</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >1284</td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >1312</td><td   >28</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >4</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >4</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >1390</td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >1394</td><td   >4</td><td   >14</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2439.html'>David Whitley</a></td><td   >13.315</td><td   >14</td><td   >268</td><td   >248</td><td   >42</td><td   >40</td><td   >1705</td><td   >14</td><td   >1719</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/48.html'>Tony Leah</a></td><td   >14.43</td><td   >11</td><td   >151</td><td   >221</td><td   >7</td><td   >8</td><td   >1810</td><td   >-66</td><td   >1744</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/1294.html'>Abdul Khan</a></td><td   >7.125</td><td   >11</td><td   >782</td><td   >697</td><td   >29</td><td   >26</td><td   >1284</td><td   >77</td><td   >1361</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/2212.html'>Yvonne Lobo</a></td><td   >8.785</td><td   >8</td><td   >653</td><td   >668</td><td   >23</td><td   >24</td><td   >1394</td><td   >-16</td><td   >1378</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/CAN.html'>Canada</a></td><td   ><a href='/aardvark/html/players/1110.html'>Sue Tremblay</a></td><td   >8.689</td><td   >8</td><td   >658</td><td   >671</td><td   >24</td><td   >25</td><td   >1390</td><td   >-14</td><td   >1376</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2971.html'>Noel Livermore</a></td><td   >7.569</td><td   >8</td><td   >749</td><td   >741</td><td   >78</td><td   >78</td><td   >1312</td><td   >9</td><td   >1321</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/797.html'>Mahboob Khan</a></td><td   >3.636</td><td   >3</td><td   >1129</td><td   >1150</td><td   >101</td><td   >101</td><td   >1041</td><td   >-13</td><td   >1028</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

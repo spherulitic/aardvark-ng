@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Claire Dove</h2>
             <div>
               <IMG SRC="../../flags/AUS.png" alt="AUS">
-              <p>AUS</p>
+              <p><a href='/aardvark/html/rankings/AUS.html'>Australia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1117<br>
               <b>Games Played:</b> 27<br>
               <b>Wins:</b> 9 (33.33%)<br>
               <b>Losses: </b>18 (66.67%)<br>
@@ -183,135 +184,135 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_11889'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11889'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>9</td><td>18</td><td>0</td><td>-637</td><td>78</td><td>1117</td><td>1117</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_11889'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_11889'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >9</td><td   >18</td><td   >0</td><td   >-637</td><td   >78</td><td   >1117</td><td   >1117</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_11889'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/772.html'>Thepparit Wichaya</a></td><td>1758</td><td>L</td><td>300</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/169.html'>Dianne Ward</a></td><td>1757</td><td>L</td><td>327</td><td>391</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td>1549</td><td>L</td><td>249</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td>1338</td><td>W</td><td>330</td><td>286</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td>1617</td><td>L</td><td>323</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1362</td><td>W</td><td>382</td><td>275</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/783.html'>Maida Manaog</a></td><td>1764</td><td>L</td><td>327</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/399.html'>Delio Dimaano</a></td><td>1723</td><td>L</td><td>297</td><td>443</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>1368</td><td>L</td><td>317</td><td>363</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1362</td><td>L</td><td>292</td><td>361</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2518.html'>Lawrence Low</a></td><td>1161</td><td>L</td><td>302</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>1368</td><td>W</td><td>312</td><td>303</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td>855</td><td>L</td><td>382</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td>1091</td><td>L</td><td>341</td><td>382</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td>1091</td><td>W</td><td>347</td><td>297</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td>1338</td><td>W</td><td>322</td><td>280</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1675</td><td>L</td><td>381</td><td>496</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2993.html'>Teeranuch Rijiraw</a></td><td>1261</td><td>L</td><td>300</td><td>358</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td>1338</td><td>L</td><td>321</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td>855</td><td>W</td><td>300</td><td>250</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/778.html'>Paulette Yeoh</a></td><td>1557</td><td>L</td><td>326</td><td>379</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td>1091</td><td>L</td><td>339</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td>855</td><td>W</td><td>300</td><td>250</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td>1338</td><td>W</td><td>410</td><td>261</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>1368</td><td>L</td><td>318</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td>26</td><td><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td>1338</td><td>W</td><td>398</td><td>292</td></tr>
-        <tr  class='roweven'  ><td>27</td><td><a href='/aardvark/html/players/2993.html'>Teeranuch Rijiraw</a></td><td>1261</td><td>L</td><td>341</td><td>410</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/772.html'>Thepparit Wichaya</a></td><td   >1758</td><td   >L</td><td   >300</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/169.html'>Dianne Ward</a></td><td   >1757</td><td   >L</td><td   >327</td><td   >391</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td   >1549</td><td   >L</td><td   >249</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td   >1338</td><td   >W</td><td   >330</td><td   >286</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td   >1617</td><td   >L</td><td   >323</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td   >1362</td><td   >W</td><td   >382</td><td   >275</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/783.html'>Maida Manaog</a></td><td   >1764</td><td   >L</td><td   >327</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/399.html'>Delio Dimaano</a></td><td   >1723</td><td   >L</td><td   >297</td><td   >443</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >1368</td><td   >L</td><td   >317</td><td   >363</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td   >1362</td><td   >L</td><td   >292</td><td   >361</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2518.html'>Lawrence Low</a></td><td   >1161</td><td   >L</td><td   >302</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >1368</td><td   >W</td><td   >312</td><td   >303</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td   >855</td><td   >L</td><td   >382</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td   >1091</td><td   >L</td><td   >341</td><td   >382</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td   >1091</td><td   >W</td><td   >347</td><td   >297</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td   >1338</td><td   >W</td><td   >322</td><td   >280</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1675</td><td   >L</td><td   >381</td><td   >496</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2993.html'>Teeranuch Rijiraw</a></td><td   >1261</td><td   >L</td><td   >300</td><td   >358</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td   >1338</td><td   >L</td><td   >321</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td   >855</td><td   >W</td><td   >300</td><td   >250</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/778.html'>Paulette Yeoh</a></td><td   >1557</td><td   >L</td><td   >326</td><td   >379</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td   >1091</td><td   >L</td><td   >339</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td   >855</td><td   >W</td><td   >300</td><td   >250</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td   >1338</td><td   >W</td><td   >410</td><td   >261</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >1368</td><td   >L</td><td   >318</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td   >1338</td><td   >W</td><td   >398</td><td   >292</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2993.html'>Teeranuch Rijiraw</a></td><td   >1261</td><td   >L</td><td   >341</td><td   >410</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_788'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_788'>+</button></td><td>1</td><td><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td>949</td><td>5</td><td>4</td><td>1</td><td>0</td><td>0.80</td><td>356.20</td><td>296.60</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_788'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_788'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/788.html'>Khwanjai Thammaping</a></td><td   >949</td><td   >5</td><td   >4</td><td   >1</td><td   >0</td><td   >0.80</td><td   >356.20</td><td   >296.60</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_788'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>4</td><td>W</td><td>1117</td><td>1338</td><td>330</td><td>286</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>16</td><td>W</td><td>1117</td><td>1338</td><td>322</td><td>280</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>19</td><td>L</td><td>1117</td><td>1338</td><td>321</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>24</td><td>W</td><td>1117</td><td>1338</td><td>410</td><td>261</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>26</td><td>W</td><td>1117</td><td>1338</td><td>398</td><td>292</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >4</td><td   >W</td><td   >1117</td><td   >1338</td><td   >330</td><td   >286</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >16</td><td   >W</td><td   >1117</td><td   >1338</td><td   >322</td><td   >280</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >19</td><td   >L</td><td   >1117</td><td   >1338</td><td   >321</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >24</td><td   >W</td><td   >1117</td><td   >1338</td><td   >410</td><td   >261</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >26</td><td   >W</td><td   >1117</td><td   >1338</td><td   >398</td><td   >292</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2987'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2987'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td>1091</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>342.33</td><td>359.33</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2987'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2987'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2987.html'>Brian Irwin</a></td><td   >1091</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >342.33</td><td   >359.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2987'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>14</td><td>L</td><td>1117</td><td>1091</td><td>341</td><td>382</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>15</td><td>W</td><td>1117</td><td>1091</td><td>347</td><td>297</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>22</td><td>L</td><td>1117</td><td>1091</td><td>339</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >14</td><td   >L</td><td   >1117</td><td   >1091</td><td   >341</td><td   >382</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >15</td><td   >W</td><td   >1117</td><td   >1091</td><td   >347</td><td   >297</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >22</td><td   >L</td><td   >1117</td><td   >1091</td><td   >339</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2989'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2989'>+</button></td><td>3</td><td><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td>855</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>327.33</td><td>307.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2989'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2989'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/2989.html'>Kochakorn Kiatsom</a></td><td   >855</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >327.33</td><td   >307.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2989'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>13</td><td>L</td><td>1117</td><td>855</td><td>382</td><td>421</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>20</td><td>W</td><td>1117</td><td>855</td><td>300</td><td>250</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>23</td><td>W</td><td>1117</td><td>855</td><td>300</td><td>250</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >13</td><td   >L</td><td   >1117</td><td   >855</td><td   >382</td><td   >421</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >20</td><td   >W</td><td   >1117</td><td   >855</td><td   >300</td><td   >250</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >23</td><td   >W</td><td   >1117</td><td   >855</td><td   >300</td><td   >250</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_179'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_179'>+</button></td><td>4</td><td><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td>679</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>315.67</td><td>339.33</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_179'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_179'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/179.html'>Maneeda Tanasarn</a></td><td   >679</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >315.67</td><td   >339.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_179'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>9</td><td>L</td><td>1117</td><td>1368</td><td>317</td><td>363</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>12</td><td>W</td><td>1117</td><td>1368</td><td>312</td><td>303</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>25</td><td>L</td><td>1117</td><td>1368</td><td>318</td><td>352</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >9</td><td   >L</td><td   >1117</td><td   >1368</td><td   >317</td><td   >363</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >12</td><td   >W</td><td   >1117</td><td   >1368</td><td   >312</td><td   >303</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >25</td><td   >L</td><td   >1117</td><td   >1368</td><td   >318</td><td   >352</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_533'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_533'>+</button></td><td>5</td><td><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td>1365</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>337.00</td><td>318.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_533'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_533'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/533.html'>Wilfredo Padua</a></td><td   >1365</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >337.00</td><td   >318.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_533'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>6</td><td>W</td><td>1117</td><td>1362</td><td>382</td><td>275</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>10</td><td>L</td><td>1117</td><td>1362</td><td>292</td><td>361</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >6</td><td   >W</td><td   >1117</td><td   >1362</td><td   >382</td><td   >275</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >10</td><td   >L</td><td   >1117</td><td   >1362</td><td   >292</td><td   >361</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2993'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2993'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2993.html'>Teeranuch Rijiraw</a></td><td>1261</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>320.50</td><td>384.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2993'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2993'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2993.html'>Teeranuch Rijiraw</a></td><td   >1261</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >320.50</td><td   >384.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2993'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>18</td><td>L</td><td>1117</td><td>1261</td><td>300</td><td>358</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>27</td><td>L</td><td>1117</td><td>1261</td><td>341</td><td>410</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >18</td><td   >L</td><td   >1117</td><td   >1261</td><td   >300</td><td   >358</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >27</td><td   >L</td><td   >1117</td><td   >1261</td><td   >341</td><td   >410</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_772'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_772'>+</button></td><td>7</td><td><a href='/aardvark/html/players/772.html'>Thepparit Wichaya</a></td><td>1641</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>395.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_772'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_772'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/772.html'>Thepparit Wichaya</a></td><td   >1641</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >395.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_772'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>1</td><td>L</td><td>1117</td><td>1758</td><td>300</td><td>395</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >1</td><td   >L</td><td   >1117</td><td   >1758</td><td   >300</td><td   >395</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_778'>+</button></td><td>8</td><td><a href='/aardvark/html/players/778.html'>Paulette Yeoh</a></td><td>1485</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>326.00</td><td>379.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_778'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/778.html'>Paulette Yeoh</a></td><td   >1485</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >326.00</td><td   >379.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_778'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>21</td><td>L</td><td>1117</td><td>1557</td><td>326</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >21</td><td   >L</td><td   >1117</td><td   >1557</td><td   >326</td><td   >379</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td>9</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1578</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>381.00</td><td>496.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1578</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >381.00</td><td   >496.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_75'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>17</td><td>L</td><td>1117</td><td>1675</td><td>381</td><td>496</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >17</td><td   >L</td><td   >1117</td><td   >1675</td><td   >381</td><td   >496</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_783'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_783'>+</button></td><td>10</td><td><a href='/aardvark/html/players/783.html'>Maida Manaog</a></td><td>1731</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>327.00</td><td>352.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_783'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_783'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/783.html'>Maida Manaog</a></td><td   >1731</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >352.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_783'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>7</td><td>L</td><td>1117</td><td>1764</td><td>327</td><td>352</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >7</td><td   >L</td><td   >1117</td><td   >1764</td><td   >327</td><td   >352</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2518'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2518.html'>Lawrence Low</a></td><td>1263</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>302.00</td><td>381.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2518'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/2518.html'>Lawrence Low</a></td><td   >1263</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >302.00</td><td   >381.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2518'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>11</td><td>L</td><td>1117</td><td>1161</td><td>302</td><td>381</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >11</td><td   >L</td><td   >1117</td><td   >1161</td><td   >302</td><td   >381</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_820'>+</button></td><td>12</td><td><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td>1403</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>323.00</td><td>377.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_820'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td   >1403</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >323.00</td><td   >377.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_820'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>5</td><td>L</td><td>1117</td><td>1617</td><td>323</td><td>377</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >5</td><td   >L</td><td   >1117</td><td   >1617</td><td   >323</td><td   >377</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_399'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_399'>+</button></td><td>13</td><td><a href='/aardvark/html/players/399.html'>Delio Dimaano</a></td><td>1325</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>297.00</td><td>443.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_399'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_399'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/399.html'>Delio Dimaano</a></td><td   >1325</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >297.00</td><td   >443.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_399'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>8</td><td>L</td><td>1117</td><td>1723</td><td>297</td><td>443</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >8</td><td   >L</td><td   >1117</td><td   >1723</td><td   >297</td><td   >443</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_169'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_169'>+</button></td><td>14</td><td><a href='/aardvark/html/players/169.html'>Dianne Ward</a></td><td>1354</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>327.00</td><td>391.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_169'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_169'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/169.html'>Dianne Ward</a></td><td   >1354</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >391.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_169'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>2</td><td>L</td><td>1117</td><td>1757</td><td>327</td><td>391</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >2</td><td   >L</td><td   >1117</td><td   >1757</td><td   >327</td><td   >391</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_65'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_65'>+</button></td><td>15</td><td><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td>1475</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>249.00</td><td>403.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_65'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_65'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/65.html'>Douglas Lobo</a></td><td   >1475</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >249.00</td><td   >403.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_65'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td>2004-06-28</td><td>3</td><td>L</td><td>1117</td><td>1549</td><td>249</td><td>403</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/311.html'>19th Brand's Kings Cup 2004</a></td><td   >2004-06-28</td><td   >3</td><td   >L</td><td   >1117</td><td   >1549</td><td   >249</td><td   >403</td></tr>
 </table></div></td></tr>
 
 </table>

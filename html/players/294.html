@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Maureen Chamberlain</h2>
             <div>
               <IMG SRC="../../flags/ENG.png" alt="ENG">
-              <p>ENG</p>
+              <p><a href='/aardvark/html/rankings/ENG.html'>England</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1722<br>
               <b>Games Played:</b> 57<br>
               <b>Wins:</b> 24 (42.11%)<br>
               <b>Losses: </b>33 (57.89%)<br>
@@ -183,279 +184,279 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_345'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_345'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>15</td><td>23</td><td>0</td><td>-1288</td><td>24</td><td>1783</td><td>1722</td><td>-61</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_345'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_345'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >15</td><td   >23</td><td   >0</td><td   >-1288</td><td   >24</td><td   >1783</td><td   >1722</td><td   >-61</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_345'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td>1591</td><td>W</td><td>356</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/287.html'>Craig Beevers</a></td><td>2051</td><td>L</td><td>301</td><td>513</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/295.html'>Mikki Nicholson</a></td><td>2139</td><td>L</td><td>289</td><td>474</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2095</td><td>L</td><td>378</td><td>483</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>1964</td><td>W</td><td>447</td><td>413</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/282.html'>Adrian Tamas</a></td><td>1867</td><td>W</td><td>495</td><td>418</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1989</td><td>L</td><td>298</td><td>509</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/302.html'>Theresa Brousson</a></td><td>2010</td><td>W</td><td>402</td><td>390</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td>1689</td><td>L</td><td>371</td><td>416</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>1847</td><td>L</td><td>333</td><td>393</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td>1678</td><td>L</td><td>341</td><td>345</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td>1649</td><td>L</td><td>379</td><td>409</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1811</td><td>L</td><td>340</td><td>590</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1725</td><td>L</td><td>406</td><td>431</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/301.html'>Ronan Webb</a></td><td>1716</td><td>L</td><td>350</td><td>486</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>2074</td><td>L</td><td>434</td><td>456</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/285.html'>Brian Sugar</a></td><td>1889</td><td>W</td><td>358</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/291.html'>Jojo Delia</a></td><td>1787</td><td>L</td><td>350</td><td>509</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td>1811</td><td>L</td><td>450</td><td>451</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1572</td><td>L</td><td>331</td><td>351</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td>1867</td><td>L</td><td>394</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td>1848</td><td>L</td><td>395</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td>1591</td><td>W</td><td>412</td><td>363</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/301.html'>Ronan Webb</a></td><td>1716</td><td>W</td><td>364</td><td>321</td></tr>
-        <tr  class='roweven'  ><td>25</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1811</td><td>W</td><td>385</td><td>267</td></tr>
-        <tr  class='rowodd'  ><td>26</td><td><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td>1689</td><td>W</td><td>439</td><td>426</td></tr>
-        <tr  class='roweven'  ><td>27</td><td><a href='/aardvark/html/players/291.html'>Jojo Delia</a></td><td>1787</td><td>W</td><td>410</td><td>353</td></tr>
-        <tr  class='rowodd'  ><td>28</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1572</td><td>W</td><td>348</td><td>309</td></tr>
-        <tr  class='roweven'  ><td>29</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1725</td><td>L</td><td>298</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td>30</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>1964</td><td>L</td><td>340</td><td>511</td></tr>
-        <tr  class='roweven'  ><td>31</td><td><a href='/aardvark/html/players/285.html'>Brian Sugar</a></td><td>1889</td><td>W</td><td>381</td><td>380</td></tr>
-        <tr  class='rowodd'  ><td>32</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>1847</td><td>L</td><td>300</td><td>437</td></tr>
-        <tr  class='roweven'  ><td>33</td><td><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td>1848</td><td>W</td><td>486</td><td>296</td></tr>
-        <tr  class='rowodd'  ><td>34</td><td><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td>1678</td><td>L</td><td>317</td><td>348</td></tr>
-        <tr  class='roweven'  ><td>35</td><td><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td>1689</td><td>W</td><td>396</td><td>339</td></tr>
-        <tr  class='rowodd'  ><td>36</td><td><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td>1848</td><td>W</td><td>390</td><td>366</td></tr>
-        <tr  class='roweven'  ><td>37</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1811</td><td>L</td><td>358</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>38</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1811</td><td>L</td><td>393</td><td>402</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td   >1591</td><td   >W</td><td   >356</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/287.html'>Craig Beevers</a></td><td   >2051</td><td   >L</td><td   >301</td><td   >513</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/295.html'>Mikki Nicholson</a></td><td   >2139</td><td   >L</td><td   >289</td><td   >474</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2095</td><td   >L</td><td   >378</td><td   >483</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >1964</td><td   >W</td><td   >447</td><td   >413</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/282.html'>Adrian Tamas</a></td><td   >1867</td><td   >W</td><td   >495</td><td   >418</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1989</td><td   >L</td><td   >298</td><td   >509</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/302.html'>Theresa Brousson</a></td><td   >2010</td><td   >W</td><td   >402</td><td   >390</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td   >1689</td><td   >L</td><td   >371</td><td   >416</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td   >1847</td><td   >L</td><td   >333</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td   >1678</td><td   >L</td><td   >341</td><td   >345</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td   >1649</td><td   >L</td><td   >379</td><td   >409</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1811</td><td   >L</td><td   >340</td><td   >590</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td   >1725</td><td   >L</td><td   >406</td><td   >431</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/301.html'>Ronan Webb</a></td><td   >1716</td><td   >L</td><td   >350</td><td   >486</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td   >2074</td><td   >L</td><td   >434</td><td   >456</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/285.html'>Brian Sugar</a></td><td   >1889</td><td   >W</td><td   >358</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/291.html'>Jojo Delia</a></td><td   >1787</td><td   >L</td><td   >350</td><td   >509</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td   >1811</td><td   >L</td><td   >450</td><td   >451</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1572</td><td   >L</td><td   >331</td><td   >351</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td   >1867</td><td   >L</td><td   >394</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td   >1848</td><td   >L</td><td   >395</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td   >1591</td><td   >W</td><td   >412</td><td   >363</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/301.html'>Ronan Webb</a></td><td   >1716</td><td   >W</td><td   >364</td><td   >321</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1811</td><td   >W</td><td   >385</td><td   >267</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td   >1689</td><td   >W</td><td   >439</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/291.html'>Jojo Delia</a></td><td   >1787</td><td   >W</td><td   >410</td><td   >353</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1572</td><td   >W</td><td   >348</td><td   >309</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td   >1725</td><td   >L</td><td   >298</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >1964</td><td   >L</td><td   >340</td><td   >511</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/285.html'>Brian Sugar</a></td><td   >1889</td><td   >W</td><td   >381</td><td   >380</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td   >1847</td><td   >L</td><td   >300</td><td   >437</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td   >1848</td><td   >W</td><td   >486</td><td   >296</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td   >1678</td><td   >L</td><td   >317</td><td   >348</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td   >1689</td><td   >W</td><td   >396</td><td   >339</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td   >1848</td><td   >W</td><td   >390</td><td   >366</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1811</td><td   >L</td><td   >358</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1811</td><td   >L</td><td   >393</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_24305'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24305'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>9</td><td>10</td><td>0</td><td>-459</td><td>19</td><td>1783</td><td>1783</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_24305'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_24305'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >9</td><td   >10</td><td   >0</td><td   >-459</td><td   >19</td><td   >1783</td><td   >1783</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_24305'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/253.html'>Ben Wilson</a></td><td>1894</td><td>L</td><td>353</td><td>488</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/278.html'>Stewart Holden</a></td><td>1923</td><td>L</td><td>320</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td>1965</td><td>W</td><td>402</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>2015</td><td>L</td><td>327</td><td>487</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2413</td><td>L</td><td>328</td><td>442</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td>1825</td><td>W</td><td>523</td><td>361</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1939</td><td>W</td><td>478</td><td>355</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3007.html'>Clement Ikolo</a></td><td>2045</td><td>L</td><td>334</td><td>483</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/252.html'>Azu Ogbogu</a></td><td>1854</td><td>L</td><td>256</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td>1848</td><td>W</td><td>455</td><td>391</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2333.html'>Jake Jacobs</a></td><td>1880</td><td>L</td><td>364</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2346.html'>Chrystal Rose</a></td><td>1390</td><td>L</td><td>319</td><td>395</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/807.html'>Robert Richland</a></td><td>1618</td><td>W</td><td>386</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td>1591</td><td>W</td><td>399</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/4285.html'>David Steel</a></td><td>1542</td><td>W</td><td>477</td><td>348</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1552.html'>Paul Burton</a></td><td>1767</td><td>L</td><td>328</td><td>421</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td>1701</td><td>W</td><td>435</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td>1805</td><td>W</td><td>454</td><td>359</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/807.html'>Robert Richland</a></td><td>1618</td><td>L</td><td>313</td><td>411</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/253.html'>Ben Wilson</a></td><td   >1894</td><td   >L</td><td   >353</td><td   >488</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/278.html'>Stewart Holden</a></td><td   >1923</td><td   >L</td><td   >320</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td   >1965</td><td   >W</td><td   >402</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >2015</td><td   >L</td><td   >327</td><td   >487</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2413</td><td   >L</td><td   >328</td><td   >442</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td   >1825</td><td   >W</td><td   >523</td><td   >361</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1939</td><td   >W</td><td   >478</td><td   >355</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3007.html'>Clement Ikolo</a></td><td   >2045</td><td   >L</td><td   >334</td><td   >483</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/252.html'>Azu Ogbogu</a></td><td   >1854</td><td   >L</td><td   >256</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td   >1848</td><td   >W</td><td   >455</td><td   >391</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2333.html'>Jake Jacobs</a></td><td   >1880</td><td   >L</td><td   >364</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2346.html'>Chrystal Rose</a></td><td   >1390</td><td   >L</td><td   >319</td><td   >395</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/807.html'>Robert Richland</a></td><td   >1618</td><td   >W</td><td   >386</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td   >1591</td><td   >W</td><td   >399</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/4285.html'>David Steel</a></td><td   >1542</td><td   >W</td><td   >477</td><td   >348</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1552.html'>Paul Burton</a></td><td   >1767</td><td   >L</td><td   >328</td><td   >421</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td   >1701</td><td   >W</td><td   >435</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td   >1805</td><td   >W</td><td   >454</td><td   >359</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/807.html'>Robert Richland</a></td><td   >1618</td><td   >L</td><td   >313</td><td   >411</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_300'>+</button></td><td>1</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1433</td><td>4</td><td>1</td><td>3</td><td>0</td><td>0.25</td><td>369.00</td><td>420.25</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_300'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1433</td><td   >4</td><td   >1</td><td   >3</td><td   >0</td><td   >0.25</td><td   >369.00</td><td   >420.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_300'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>13</td><td>L</td><td>1783</td><td>1811</td><td>340</td><td>590</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>25</td><td>W</td><td>1783</td><td>1811</td><td>385</td><td>267</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>37</td><td>L</td><td>1783</td><td>1811</td><td>358</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>38</td><td>L</td><td>1783</td><td>1811</td><td>393</td><td>402</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >13</td><td   >L</td><td   >1783</td><td   >1811</td><td   >340</td><td   >590</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >25</td><td   >W</td><td   >1783</td><td   >1811</td><td   >385</td><td   >267</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >37</td><td   >L</td><td   >1783</td><td   >1811</td><td   >358</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >38</td><td   >L</td><td   >1783</td><td   >1811</td><td   >393</td><td   >402</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_281'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_281'>+</button></td><td>2</td><td><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td>1554</td><td>4</td><td>3</td><td>1</td><td>0</td><td>0.75</td><td>431.50</td><td>365.25</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_281'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_281'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/281.html'>Abraham Sosseh</a></td><td   >1554</td><td   >4</td><td   >3</td><td   >1</td><td   >0</td><td   >0.75</td><td   >431.50</td><td   >365.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_281'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>10</td><td>W</td><td>1783</td><td>1848</td><td>455</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>22</td><td>L</td><td>1783</td><td>1848</td><td>395</td><td>408</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>33</td><td>W</td><td>1783</td><td>1848</td><td>486</td><td>296</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>36</td><td>W</td><td>1783</td><td>1848</td><td>390</td><td>366</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >10</td><td   >W</td><td   >1783</td><td   >1848</td><td   >455</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >22</td><td   >L</td><td   >1783</td><td   >1848</td><td   >395</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >33</td><td   >W</td><td   >1783</td><td   >1848</td><td   >486</td><td   >296</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >36</td><td   >W</td><td   >1783</td><td   >1848</td><td   >390</td><td   >366</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_286'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_286'>+</button></td><td>3</td><td><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td>1575</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>364.33</td><td>349.67</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_286'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_286'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/286.html'>Cecil Muscat</a></td><td   >1575</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >364.33</td><td   >349.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_286'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>17</td><td>W</td><td>1783</td><td>1701</td><td>435</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>11</td><td>L</td><td>1783</td><td>1678</td><td>341</td><td>345</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>34</td><td>L</td><td>1783</td><td>1678</td><td>317</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >17</td><td   >W</td><td   >1783</td><td   >1701</td><td   >435</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >11</td><td   >L</td><td   >1783</td><td   >1678</td><td   >341</td><td   >345</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >34</td><td   >L</td><td   >1783</td><td   >1678</td><td   >317</td><td   >348</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_303'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_303'>+</button></td><td>4</td><td><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td>1645</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>402.00</td><td>393.67</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_303'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_303'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/303.html'>Vincent Boyle</a></td><td   >1645</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >402.00</td><td   >393.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_303'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>9</td><td>L</td><td>1783</td><td>1689</td><td>371</td><td>416</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>26</td><td>W</td><td>1783</td><td>1689</td><td>439</td><td>426</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>35</td><td>W</td><td>1783</td><td>1689</td><td>396</td><td>339</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >9</td><td   >L</td><td   >1783</td><td   >1689</td><td   >371</td><td   >416</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >26</td><td   >W</td><td   >1783</td><td   >1689</td><td   >439</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >35</td><td   >W</td><td   >1783</td><td   >1689</td><td   >396</td><td   >339</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_296'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_296'>+</button></td><td>5</td><td><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td>1537</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1.00</td><td>389.00</td><td>368.67</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_296'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_296'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/296.html'>Olakunle Ajayi</a></td><td   >1537</td><td   >3</td><td   >3</td><td   >0</td><td   >0</td><td   >1.00</td><td   >389.00</td><td   >368.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_296'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>14</td><td>W</td><td>1783</td><td>1591</td><td>399</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>1</td><td>W</td><td>1783</td><td>1591</td><td>356</td><td>346</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>23</td><td>W</td><td>1783</td><td>1591</td><td>412</td><td>363</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >14</td><td   >W</td><td   >1783</td><td   >1591</td><td   >399</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >1</td><td   >W</td><td   >1783</td><td   >1591</td><td   >356</td><td   >346</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >23</td><td   >W</td><td   >1783</td><td   >1591</td><td   >412</td><td   >363</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_283'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_283'>+</button></td><td>6</td><td><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td>1311</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>352.00</td><td>411.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_283'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_283'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/283.html'>Alex Gboye Balogun</a></td><td   >1311</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >352.00</td><td   >411.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_283'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>14</td><td>L</td><td>1783</td><td>1725</td><td>406</td><td>431</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>29</td><td>L</td><td>1783</td><td>1725</td><td>298</td><td>392</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >14</td><td   >L</td><td   >1783</td><td   >1725</td><td   >406</td><td   >431</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >29</td><td   >L</td><td   >1783</td><td   >1725</td><td   >298</td><td   >392</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_299'>+</button></td><td>7</td><td><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td>2006</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>393.50</td><td>462.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_299'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_299'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/299.html'>Phil Robertshaw</a></td><td   >2006</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >393.50</td><td   >462.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_299'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>5</td><td>W</td><td>1783</td><td>1964</td><td>447</td><td>413</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>30</td><td>L</td><td>1783</td><td>1964</td><td>340</td><td>511</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >5</td><td   >W</td><td   >1783</td><td   >1964</td><td   >447</td><td   >413</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >30</td><td   >L</td><td   >1783</td><td   >1964</td><td   >340</td><td   >511</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_285'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_285'>+</button></td><td>8</td><td><a href='/aardvark/html/players/285.html'>Brian Sugar</a></td><td>1795</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>369.50</td><td>365.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_285'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_285'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/285.html'>Brian Sugar</a></td><td   >1795</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >369.50</td><td   >365.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_285'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>17</td><td>W</td><td>1783</td><td>1889</td><td>358</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>31</td><td>W</td><td>1783</td><td>1889</td><td>381</td><td>380</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >17</td><td   >W</td><td   >1783</td><td   >1889</td><td   >358</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >31</td><td   >W</td><td   >1783</td><td   >1889</td><td   >381</td><td   >380</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_301'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_301'>+</button></td><td>9</td><td><a href='/aardvark/html/players/301.html'>Ronan Webb</a></td><td>1533</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>357.00</td><td>403.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_301'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_301'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/301.html'>Ronan Webb</a></td><td   >1533</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >357.00</td><td   >403.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_301'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>15</td><td>L</td><td>1783</td><td>1716</td><td>350</td><td>486</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>24</td><td>W</td><td>1783</td><td>1716</td><td>364</td><td>321</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >15</td><td   >L</td><td   >1783</td><td   >1716</td><td   >350</td><td   >486</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >24</td><td   >W</td><td   >1783</td><td   >1716</td><td   >364</td><td   >321</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_304'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_304'>+</button></td><td>10</td><td><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td>1894</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>388.00</td><td>432.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_304'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_304'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/304.html'>Wayne Kelly</a></td><td   >1894</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >388.00</td><td   >432.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_304'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>7</td><td>W</td><td>1783</td><td>1939</td><td>478</td><td>355</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>7</td><td>L</td><td>1783</td><td>1989</td><td>298</td><td>509</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >7</td><td   >W</td><td   >1783</td><td   >1939</td><td   >478</td><td   >355</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >7</td><td   >L</td><td   >1783</td><td   >1989</td><td   >298</td><td   >509</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_291'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_291'>+</button></td><td>11</td><td><a href='/aardvark/html/players/291.html'>Jojo Delia</a></td><td>1546</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>380.00</td><td>431.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_291'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_291'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/291.html'>Jojo Delia</a></td><td   >1546</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >380.00</td><td   >431.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_291'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>18</td><td>L</td><td>1783</td><td>1787</td><td>350</td><td>509</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>27</td><td>W</td><td>1783</td><td>1787</td><td>410</td><td>353</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >18</td><td   >L</td><td   >1783</td><td   >1787</td><td   >350</td><td   >509</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >27</td><td   >W</td><td   >1783</td><td   >1787</td><td   >410</td><td   >353</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_284'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_284'>+</button></td><td>12</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1605</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>339.50</td><td>330.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_284'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_284'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1605</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >339.50</td><td   >330.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_284'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>20</td><td>L</td><td>1783</td><td>1572</td><td>331</td><td>351</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>28</td><td>W</td><td>1783</td><td>1572</td><td>348</td><td>309</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >20</td><td   >L</td><td   >1783</td><td   >1572</td><td   >331</td><td   >351</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >28</td><td   >W</td><td   >1783</td><td   >1572</td><td   >348</td><td   >309</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_260'>+</button></td><td>13</td><td><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td>1818</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>316.50</td><td>415.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_260'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_260'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/260.html'>Feargal Weatherhead</a></td><td   >1818</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >316.50</td><td   >415.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_260'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>10</td><td>L</td><td>1783</td><td>1847</td><td>333</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>32</td><td>L</td><td>1783</td><td>1847</td><td>300</td><td>437</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >10</td><td   >L</td><td   >1783</td><td   >1847</td><td   >333</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >32</td><td   >L</td><td   >1783</td><td   >1847</td><td   >300</td><td   >437</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_807'>+</button></td><td>14</td><td><a href='/aardvark/html/players/807.html'>Robert Richland</a></td><td>1722</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>349.50</td><td>396.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_807'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_807'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/807.html'>Robert Richland</a></td><td   >1722</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >349.50</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_807'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>13</td><td>W</td><td>1783</td><td>1618</td><td>386</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>19</td><td>L</td><td>1783</td><td>1618</td><td>313</td><td>411</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >13</td><td   >W</td><td   >1783</td><td   >1618</td><td   >386</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >19</td><td   >L</td><td   >1783</td><td   >1618</td><td   >313</td><td   >411</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_293'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_293'>+</button></td><td>15</td><td><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td>1977</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>398.00</td><td>398.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_293'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_293'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td   >1977</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >398.00</td><td   >398.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_293'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>3</td><td>W</td><td>1783</td><td>1965</td><td>402</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>21</td><td>L</td><td>1783</td><td>1867</td><td>394</td><td>429</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >3</td><td   >W</td><td   >1783</td><td   >1965</td><td   >402</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >21</td><td   >L</td><td   >1783</td><td   >1867</td><td   >394</td><td   >429</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_288'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_288'>+</button></td><td>16</td><td><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td>1782</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>450.00</td><td>451.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_288'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_288'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/288.html'>Evan Cohen</a></td><td   >1782</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >450.00</td><td   >451.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_288'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>19</td><td>L</td><td>1783</td><td>1811</td><td>450</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >19</td><td   >L</td><td   >1783</td><td   >1811</td><td   >450</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_297'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_297'>+</button></td><td>17</td><td><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td>1586</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>379.00</td><td>409.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_297'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_297'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/297.html'>Paloma Raychbart</a></td><td   >1586</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >379.00</td><td   >409.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_297'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>12</td><td>L</td><td>1783</td><td>1649</td><td>379</td><td>409</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >12</td><td   >L</td><td   >1783</td><td   >1649</td><td   >379</td><td   >409</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1504'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1504'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td>1272</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>454.00</td><td>359.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1504'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1504'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td   >1272</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >454.00</td><td   >359.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1504'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>18</td><td>W</td><td>1783</td><td>1805</td><td>454</td><td>359</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >18</td><td   >W</td><td   >1783</td><td   >1805</td><td   >454</td><td   >359</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_252'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_252'>+</button></td><td>19</td><td><a href='/aardvark/html/players/252.html'>Azu Ogbogu</a></td><td>1876</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>256.00</td><td>435.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_252'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_252'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/252.html'>Azu Ogbogu</a></td><td   >1876</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >256.00</td><td   >435.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_252'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>9</td><td>L</td><td>1783</td><td>1854</td><td>256</td><td>435</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >9</td><td   >L</td><td   >1783</td><td   >1854</td><td   >256</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_298'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_298'>+</button></td><td>20</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>1918</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>327.00</td><td>487.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_298'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_298'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1918</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >487.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_298'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>4</td><td>L</td><td>1783</td><td>2015</td><td>327</td><td>487</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >4</td><td   >L</td><td   >1783</td><td   >2015</td><td   >327</td><td   >487</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_277'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_277'>+</button></td><td>21</td><td><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td>1646</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>523.00</td><td>361.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_277'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_277'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td   >1646</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >523.00</td><td   >361.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_277'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>6</td><td>W</td><td>1783</td><td>1825</td><td>523</td><td>361</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >6</td><td   >W</td><td   >1783</td><td   >1825</td><td   >523</td><td   >361</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2333'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2333'>+</button></td><td>22</td><td><a href='/aardvark/html/players/2333.html'>Jake Jacobs</a></td><td>1866</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>364.00</td><td>415.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2333'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2333'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/2333.html'>Jake Jacobs</a></td><td   >1866</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >364.00</td><td   >415.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2333'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>11</td><td>L</td><td>1783</td><td>1880</td><td>364</td><td>415</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >11</td><td   >L</td><td   >1783</td><td   >1880</td><td   >364</td><td   >415</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_278'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_278'>+</button></td><td>23</td><td><a href='/aardvark/html/players/278.html'>Stewart Holden</a></td><td>1885</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>320.00</td><td>417.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_278'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_278'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/278.html'>Stewart Holden</a></td><td   >1885</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >320.00</td><td   >417.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_278'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>2</td><td>L</td><td>1783</td><td>1923</td><td>320</td><td>417</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >2</td><td   >L</td><td   >1783</td><td   >1923</td><td   >320</td><td   >417</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_282'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_282'>+</button></td><td>24</td><td><a href='/aardvark/html/players/282.html'>Adrian Tamas</a></td><td>1850</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>495.00</td><td>418.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_282'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_282'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/282.html'>Adrian Tamas</a></td><td   >1850</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >495.00</td><td   >418.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_282'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>6</td><td>W</td><td>1783</td><td>1867</td><td>495</td><td>418</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >6</td><td   >W</td><td   >1783</td><td   >1867</td><td   >495</td><td   >418</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1081'>+</button></td><td>25</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2043</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>328.00</td><td>442.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1081'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2043</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >328.00</td><td   >442.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1081'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>5</td><td>L</td><td>1783</td><td>2413</td><td>328</td><td>442</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >5</td><td   >L</td><td   >1783</td><td   >2413</td><td   >328</td><td   >442</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_295'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_295'>+</button></td><td>26</td><td><a href='/aardvark/html/players/295.html'>Mikki Nicholson</a></td><td>2086</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>289.00</td><td>474.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_295'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_295'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/295.html'>Mikki Nicholson</a></td><td   >2086</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >289.00</td><td   >474.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_295'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>3</td><td>L</td><td>1783</td><td>2139</td><td>289</td><td>474</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >3</td><td   >L</td><td   >1783</td><td   >2139</td><td   >289</td><td   >474</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_287'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_287'>+</button></td><td>27</td><td><a href='/aardvark/html/players/287.html'>Craig Beevers</a></td><td>2029</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>301.00</td><td>513.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_287'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_287'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/287.html'>Craig Beevers</a></td><td   >2029</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >301.00</td><td   >513.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_287'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>2</td><td>L</td><td>1783</td><td>2051</td><td>301</td><td>513</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >2</td><td   >L</td><td   >1783</td><td   >2051</td><td   >301</td><td   >513</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_167'>+</button></td><td>28</td><td><a href='/aardvark/html/players/167.html'>Chris May</a></td><td>2084</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>378.00</td><td>483.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_167'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_167'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/167.html'>Chris May</a></td><td   >2084</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >378.00</td><td   >483.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_167'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>4</td><td>L</td><td>1783</td><td>2095</td><td>378</td><td>483</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >4</td><td   >L</td><td   >1783</td><td   >2095</td><td   >378</td><td   >483</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_290'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_290'>+</button></td><td>29</td><td><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td>1932</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>434.00</td><td>456.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_290'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_290'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/290.html'>Helen Gipson</a></td><td   >1932</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >434.00</td><td   >456.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_290'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>16</td><td>L</td><td>1783</td><td>2074</td><td>434</td><td>456</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >16</td><td   >L</td><td   >1783</td><td   >2074</td><td   >434</td><td   >456</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1552'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1552'>+</button></td><td>30</td><td><a href='/aardvark/html/players/1552.html'>Paul Burton</a></td><td>1552</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>328.00</td><td>421.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1552'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1552'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/1552.html'>Paul Burton</a></td><td   >1552</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >328.00</td><td   >421.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1552'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>16</td><td>L</td><td>1783</td><td>1767</td><td>328</td><td>421</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >16</td><td   >L</td><td   >1783</td><td   >1767</td><td   >328</td><td   >421</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3007'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3007'>+</button></td><td>31</td><td><a href='/aardvark/html/players/3007.html'>Clement Ikolo</a></td><td>1989</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>334.00</td><td>483.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3007'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3007'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/3007.html'>Clement Ikolo</a></td><td   >1989</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >334.00</td><td   >483.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3007'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>8</td><td>L</td><td>1783</td><td>2045</td><td>334</td><td>483</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >8</td><td   >L</td><td   >1783</td><td   >2045</td><td   >334</td><td   >483</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2346'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2346'>+</button></td><td>32</td><td><a href='/aardvark/html/players/2346.html'>Chrystal Rose</a></td><td>1365</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>319.00</td><td>395.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2346'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2346'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/2346.html'>Chrystal Rose</a></td><td   >1365</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >319.00</td><td   >395.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2346'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>12</td><td>L</td><td>1783</td><td>1390</td><td>319</td><td>395</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >12</td><td   >L</td><td   >1783</td><td   >1390</td><td   >319</td><td   >395</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_253'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_253'>+</button></td><td>33</td><td><a href='/aardvark/html/players/253.html'>Ben Wilson</a></td><td>1694</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>353.00</td><td>488.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_253'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_253'>+</button></td><td   >33</td><td   ><a href='/aardvark/html/players/253.html'>Ben Wilson</a></td><td   >1694</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >353.00</td><td   >488.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_253'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>1</td><td>L</td><td>1783</td><td>1894</td><td>353</td><td>488</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >1</td><td   >L</td><td   >1783</td><td   >1894</td><td   >353</td><td   >488</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4285'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4285'>+</button></td><td>34</td><td><a href='/aardvark/html/players/4285.html'>David Steel</a></td><td>1805</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>477.00</td><td>348.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4285'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4285'>+</button></td><td   >34</td><td   ><a href='/aardvark/html/players/4285.html'>David Steel</a></td><td   >1805</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >477.00</td><td   >348.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4285'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td>2008-09-10</td><td>15</td><td>W</td><td>1783</td><td>1542</td><td>477</td><td>348</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/629.html'>English Open</a></td><td   >2008-09-10</td><td   >15</td><td   >W</td><td   >1783</td><td   >1542</td><td   >477</td><td   >348</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_302'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_302'>+</button></td><td>35</td><td><a href='/aardvark/html/players/302.html'>Theresa Brousson</a></td><td>1781</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>402.00</td><td>390.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_302'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_302'>+</button></td><td   >35</td><td   ><a href='/aardvark/html/players/302.html'>Theresa Brousson</a></td><td   >1781</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >402.00</td><td   >390.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_302'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td>2010-01-08</td><td>8</td><td>W</td><td>1783</td><td>2010</td><td>402</td><td>390</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/12.html'>UK Open</a></td><td   >2010-01-08</td><td   >8</td><td   >W</td><td   >1783</td><td   >2010</td><td   >402</td><td   >390</td></tr>
 </table></div></td></tr>
 
 </table>

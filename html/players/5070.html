@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Fomba Swaray</h2>
             <div>
               <IMG SRC="../../flags/LBR.png" alt="LBR">
-              <p>LBR</p>
+              <p><a href='/aardvark/html/rankings/LBR.html'>Liberia</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1530<br>
               <b>Games Played:</b> 16<br>
               <b>Wins:</b> 8 (50.00%)<br>
               <b>Losses: </b>8 (50.00%)<br>
@@ -183,113 +184,113 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_28758'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_28758'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>8</td><td>8</td><td>0</td><td>-256</td><td>45</td><td>1530</td><td>1530</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_28758'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_28758'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >8</td><td   >8</td><td   >0</td><td   >-256</td><td   >45</td><td   >1530</td><td   >1530</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_28758'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/363.html'>Isong Williams</a></td><td>1803</td><td>L</td><td>299</td><td>426</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1090.html'>Akinfemisoye Ayomipo</a></td><td>1669</td><td>L</td><td>393</td><td>398</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1682.html'>Dayo Tayo</a></td><td>1706</td><td>W</td><td>429</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4809.html'>Charles Uzamere</a></td><td>1230</td><td>W</td><td>504</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4043.html'>Adegbola Abiola</a></td><td>1557</td><td>L</td><td>396</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/654.html'>Ben Ufeli</a></td><td>1703</td><td>L</td><td>372</td><td>463</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/595.html'>Wale Ilori</a></td><td>1673</td><td>L</td><td>398</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2500.html'>Segun Adegbenro</a></td><td>1615</td><td>W</td><td>437</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4143.html'>Olanipekun Febisola</a></td><td>1243</td><td>W</td><td>435</td><td>367</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4055.html'>Ikpere Sylvanus</a></td><td>1763</td><td>L</td><td>316</td><td>462</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/669.html'>Oshevire Avwenagha</a></td><td>1905</td><td>L</td><td>374</td><td>532</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td>1759</td><td>L</td><td>333</td><td>542</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/4130.html'>Hussain Yakubu</a></td><td>1277</td><td>W</td><td>400</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/5072.html'>Hakeem Giwa</a></td><td>1259</td><td>W</td><td>433</td><td>338</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/5079.html'>Orji Helen</a></td><td>1327</td><td>W</td><td>460</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/4809.html'>Charles Uzamere</a></td><td>1230</td><td>W</td><td>427</td><td>365</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/363.html'>Isong Williams</a></td><td   >1803</td><td   >L</td><td   >299</td><td   >426</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1090.html'>Akinfemisoye Ayomipo</a></td><td   >1669</td><td   >L</td><td   >393</td><td   >398</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1682.html'>Dayo Tayo</a></td><td   >1706</td><td   >W</td><td   >429</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4809.html'>Charles Uzamere</a></td><td   >1230</td><td   >W</td><td   >504</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4043.html'>Adegbola Abiola</a></td><td   >1557</td><td   >L</td><td   >396</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/654.html'>Ben Ufeli</a></td><td   >1703</td><td   >L</td><td   >372</td><td   >463</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/595.html'>Wale Ilori</a></td><td   >1673</td><td   >L</td><td   >398</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2500.html'>Segun Adegbenro</a></td><td   >1615</td><td   >W</td><td   >437</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/4143.html'>Olanipekun Febisola</a></td><td   >1243</td><td   >W</td><td   >435</td><td   >367</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/4055.html'>Ikpere Sylvanus</a></td><td   >1763</td><td   >L</td><td   >316</td><td   >462</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/669.html'>Oshevire Avwenagha</a></td><td   >1905</td><td   >L</td><td   >374</td><td   >532</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td   >1759</td><td   >L</td><td   >333</td><td   >542</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4130.html'>Hussain Yakubu</a></td><td   >1277</td><td   >W</td><td   >400</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5072.html'>Hakeem Giwa</a></td><td   >1259</td><td   >W</td><td   >433</td><td   >338</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/5079.html'>Orji Helen</a></td><td   >1327</td><td   >W</td><td   >460</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/4809.html'>Charles Uzamere</a></td><td   >1230</td><td   >W</td><td   >427</td><td   >365</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4809'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4809'>+</button></td><td>1</td><td><a href='/aardvark/html/players/4809.html'>Charles Uzamere</a></td><td>1248</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>465.50</td><td>381.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4809'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4809'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/4809.html'>Charles Uzamere</a></td><td   >1248</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >465.50</td><td   >381.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4809'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>4</td><td>W</td><td>1530</td><td>1230</td><td>504</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>16</td><td>W</td><td>1530</td><td>1230</td><td>427</td><td>365</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >4</td><td   >W</td><td   >1530</td><td   >1230</td><td   >504</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >16</td><td   >W</td><td   >1530</td><td   >1230</td><td   >427</td><td   >365</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4055'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4055'>+</button></td><td>2</td><td><a href='/aardvark/html/players/4055.html'>Ikpere Sylvanus</a></td><td>1715</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>316.00</td><td>462.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4055'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4055'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/4055.html'>Ikpere Sylvanus</a></td><td   >1715</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >316.00</td><td   >462.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4055'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>10</td><td>L</td><td>1530</td><td>1763</td><td>316</td><td>462</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >10</td><td   >L</td><td   >1530</td><td   >1763</td><td   >316</td><td   >462</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_595'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_595'>+</button></td><td>3</td><td><a href='/aardvark/html/players/595.html'>Wale Ilori</a></td><td>1688</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>398.00</td><td>408.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_595'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_595'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/595.html'>Wale Ilori</a></td><td   >1688</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >398.00</td><td   >408.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_595'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>7</td><td>L</td><td>1530</td><td>1673</td><td>398</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >7</td><td   >L</td><td   >1530</td><td   >1673</td><td   >398</td><td   >408</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4143'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4143'>+</button></td><td>4</td><td><a href='/aardvark/html/players/4143.html'>Olanipekun Febisola</a></td><td>1234</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>435.00</td><td>367.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4143'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4143'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/4143.html'>Olanipekun Febisola</a></td><td   >1234</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >435.00</td><td   >367.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4143'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>9</td><td>W</td><td>1530</td><td>1243</td><td>435</td><td>367</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >9</td><td   >W</td><td   >1530</td><td   >1243</td><td   >435</td><td   >367</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1090'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1090'>+</button></td><td>5</td><td><a href='/aardvark/html/players/1090.html'>Akinfemisoye Ayomipo</a></td><td>1702</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>393.00</td><td>398.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1090'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1090'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/1090.html'>Akinfemisoye Ayomipo</a></td><td   >1702</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >393.00</td><td   >398.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1090'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>2</td><td>L</td><td>1530</td><td>1669</td><td>393</td><td>398</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >2</td><td   >L</td><td   >1530</td><td   >1669</td><td   >393</td><td   >398</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4043'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4043'>+</button></td><td>6</td><td><a href='/aardvark/html/players/4043.html'>Adegbola Abiola</a></td><td>1515</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>396.00</td><td>397.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4043'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4043'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/4043.html'>Adegbola Abiola</a></td><td   >1515</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >396.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4043'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>5</td><td>L</td><td>1530</td><td>1557</td><td>396</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >5</td><td   >L</td><td   >1530</td><td   >1557</td><td   >396</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1682'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1682'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1682.html'>Dayo Tayo</a></td><td>1721</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>429.00</td><td>425.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1682'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1682'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1682.html'>Dayo Tayo</a></td><td   >1721</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >429.00</td><td   >425.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1682'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>3</td><td>W</td><td>1530</td><td>1706</td><td>429</td><td>425</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >3</td><td   >W</td><td   >1530</td><td   >1706</td><td   >429</td><td   >425</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4130'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4130'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4130.html'>Hussain Yakubu</a></td><td>1271</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>400.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4130'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4130'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/4130.html'>Hussain Yakubu</a></td><td   >1271</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >400.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4130'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>13</td><td>W</td><td>1530</td><td>1277</td><td>400</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >13</td><td   >W</td><td   >1530</td><td   >1277</td><td   >400</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_669'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_669'>+</button></td><td>9</td><td><a href='/aardvark/html/players/669.html'>Oshevire Avwenagha</a></td><td>1803</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>374.00</td><td>532.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_669'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_669'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/669.html'>Oshevire Avwenagha</a></td><td   >1803</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >374.00</td><td   >532.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_669'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>11</td><td>L</td><td>1530</td><td>1905</td><td>374</td><td>532</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >11</td><td   >L</td><td   >1530</td><td   >1905</td><td   >374</td><td   >532</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1766'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1766'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td>1712</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>333.00</td><td>542.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1766'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1766'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1766.html'>Abba Hydara</a></td><td   >1712</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >333.00</td><td   >542.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1766'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>12</td><td>L</td><td>1530</td><td>1759</td><td>333</td><td>542</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >12</td><td   >L</td><td   >1530</td><td   >1759</td><td   >333</td><td   >542</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_363'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_363'>+</button></td><td>11</td><td><a href='/aardvark/html/players/363.html'>Isong Williams</a></td><td>1738</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>299.00</td><td>426.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_363'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_363'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/363.html'>Isong Williams</a></td><td   >1738</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >299.00</td><td   >426.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_363'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>1</td><td>L</td><td>1530</td><td>1803</td><td>299</td><td>426</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >1</td><td   >L</td><td   >1530</td><td   >1803</td><td   >299</td><td   >426</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2500'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2500'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2500.html'>Segun Adegbenro</a></td><td>1559</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>437.00</td><td>420.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2500'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2500'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2500.html'>Segun Adegbenro</a></td><td   >1559</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >437.00</td><td   >420.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2500'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>8</td><td>W</td><td>1530</td><td>1615</td><td>437</td><td>420</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >8</td><td   >W</td><td   >1530</td><td   >1615</td><td   >437</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_5072'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5072'>+</button></td><td>13</td><td><a href='/aardvark/html/players/5072.html'>Hakeem Giwa</a></td><td>1259</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>433.00</td><td>338.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_5072'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5072'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/5072.html'>Hakeem Giwa</a></td><td   >1259</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >433.00</td><td   >338.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5072'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>14</td><td>W</td><td>1530</td><td>1259</td><td>433</td><td>338</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >14</td><td   >W</td><td   >1530</td><td   >1259</td><td   >433</td><td   >338</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_654'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_654'>+</button></td><td>14</td><td><a href='/aardvark/html/players/654.html'>Ben Ufeli</a></td><td>1652</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>372.00</td><td>463.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_654'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_654'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/654.html'>Ben Ufeli</a></td><td   >1652</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >372.00</td><td   >463.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_654'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>6</td><td>L</td><td>1530</td><td>1703</td><td>372</td><td>463</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >6</td><td   >L</td><td   >1530</td><td   >1703</td><td   >372</td><td   >463</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_5079'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5079'>+</button></td><td>15</td><td><a href='/aardvark/html/players/5079.html'>Orji Helen</a></td><td>1327</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>460.00</td><td>422.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_5079'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5079'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/5079.html'>Orji Helen</a></td><td   >1327</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >460.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5079'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td>2018-11-11</td><td>15</td><td>W</td><td>1530</td><td>1327</td><td>460</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/751.html'>Mind Games Premier Championship Grand Finale</a></td><td   >2018-11-11</td><td   >15</td><td   >W</td><td   >1530</td><td   >1327</td><td   >460</td><td   >422</td></tr>
 </table></div></td></tr>
 
 </table>

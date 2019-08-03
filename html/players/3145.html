@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Andy Roughton</h2>
             <div>
               <IMG SRC="../../flags/ENG.png" alt="ENG">
-              <p>ENG</p>
+              <p><a href='/aardvark/html/rankings/ENG.html'>England</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1677<br>
               <b>Games Played:</b> 66<br>
               <b>Wins:</b> 32 (48.48%)<br>
               <b>Losses: </b>34 (51.52%)<br>
@@ -183,369 +184,369 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_13259'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13259'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>5</td><td>9</td><td>0</td><td>-227</td><td>49</td><td>1711</td><td>1677</td><td>-34</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_13259'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13259'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >5</td><td   >9</td><td   >0</td><td   >-227</td><td   >49</td><td   >1711</td><td   >1677</td><td   >-34</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_13259'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1574.html'>Penny Downer</a></td><td>1951</td><td>W</td><td>396</td><td>365</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2093</td><td>L</td><td>401</td><td>500</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1575.html'>Quentin Baker</a></td><td>1788</td><td>W</td><td>395</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1087.html'>Stephen Hunt</a></td><td>1665</td><td>L</td><td>374</td><td>436</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>2069</td><td>L</td><td>352</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2335.html'>Len Edwards</a></td><td>1418</td><td>L</td><td>350</td><td>376</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1855</td><td>L</td><td>362</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1413.html'>Tom Sharp</a></td><td>1696</td><td>L</td><td>359</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/811.html'>Margaret Staunton</a></td><td>1508</td><td>W</td><td>416</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td>1846</td><td>L</td><td>368</td><td>443</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3160.html'>Stewart Houten</a></td><td>1699</td><td>L</td><td>334</td><td>477</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/809.html'>Ivy Dixon-Baird</a></td><td>1917</td><td>W</td><td>557</td><td>346</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2620.html'>Ashley Coldrick</a></td><td>1524</td><td>L</td><td>432</td><td>443</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1567.html'>Elizabeth Hull</a></td><td>1304</td><td>W</td><td>444</td><td>358</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1574.html'>Penny Downer</a></td><td   >1951</td><td   >W</td><td   >396</td><td   >365</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2093</td><td   >L</td><td   >401</td><td   >500</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1575.html'>Quentin Baker</a></td><td   >1788</td><td   >W</td><td   >395</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1087.html'>Stephen Hunt</a></td><td   >1665</td><td   >L</td><td   >374</td><td   >436</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >2069</td><td   >L</td><td   >352</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2335.html'>Len Edwards</a></td><td   >1418</td><td   >L</td><td   >350</td><td   >376</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td   >1855</td><td   >L</td><td   >362</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1413.html'>Tom Sharp</a></td><td   >1696</td><td   >L</td><td   >359</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/811.html'>Margaret Staunton</a></td><td   >1508</td><td   >W</td><td   >416</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td   >1846</td><td   >L</td><td   >368</td><td   >443</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3160.html'>Stewart Houten</a></td><td   >1699</td><td   >L</td><td   >334</td><td   >477</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/809.html'>Ivy Dixon-Baird</a></td><td   >1917</td><td   >W</td><td   >557</td><td   >346</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2620.html'>Ashley Coldrick</a></td><td   >1524</td><td   >L</td><td   >432</td><td   >443</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1567.html'>Elizabeth Hull</a></td><td   >1304</td><td   >W</td><td   >444</td><td   >358</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_13090'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13090'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>10</td><td>11</td><td>0</td><td>-118</td><td>34</td><td>1731</td><td>1711</td><td>-20</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_13090'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_13090'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >10</td><td   >11</td><td   >0</td><td   >-118</td><td   >34</td><td   >1731</td><td   >1711</td><td   >-20</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_13090'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1087.html'>Stephen Hunt</a></td><td>1665</td><td>L</td><td>448</td><td>452</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2098</td><td>L</td><td>358</td><td>483</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2327.html'>Anne Darby</a></td><td>874</td><td>W</td><td>478</td><td>340</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2325.html'>Andy Gray</a></td><td>1362</td><td>W</td><td>446</td><td>335</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1500.html'>John Ashmore</a></td><td>1907</td><td>W</td><td>405</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/539.html'>Diane Pratesi</a></td><td>1710</td><td>L</td><td>392</td><td>444</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1622</td><td>W</td><td>410</td><td>383</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1062.html'>Rafal Dominiczak</a></td><td>1717</td><td>W</td><td>452</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1084.html'>Natalie Zolty</a></td><td>878</td><td>L</td><td>360</td><td>379</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1589.html'>Mike Whiteoak</a></td><td>1785</td><td>W</td><td>487</td><td>399</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1632</td><td>W</td><td>405</td><td>363</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td>1599</td><td>L</td><td>305</td><td>397</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td>1917</td><td>W</td><td>491</td><td>340</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/728.html'>David Webb</a></td><td>1840</td><td>W</td><td>402</td><td>384</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>2081</td><td>L</td><td>336</td><td>448</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td>1951</td><td>L</td><td>361</td><td>475</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td>1514</td><td>L</td><td>306</td><td>419</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/269.html'>Nuala O'Rourke</a></td><td>1538</td><td>W</td><td>515</td><td>423</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/321.html'>Tan Jin Chor</a></td><td>1677</td><td>L</td><td>312</td><td>401</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2329.html'>Calum Edwards</a></td><td>1806</td><td>L</td><td>327</td><td>386</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/1047.html'>Chris Vicary</a></td><td>1839</td><td>L</td><td>351</td><td>451</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1087.html'>Stephen Hunt</a></td><td   >1665</td><td   >L</td><td   >448</td><td   >452</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2098</td><td   >L</td><td   >358</td><td   >483</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2327.html'>Anne Darby</a></td><td   >874</td><td   >W</td><td   >478</td><td   >340</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2325.html'>Andy Gray</a></td><td   >1362</td><td   >W</td><td   >446</td><td   >335</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1500.html'>John Ashmore</a></td><td   >1907</td><td   >W</td><td   >405</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/539.html'>Diane Pratesi</a></td><td   >1710</td><td   >L</td><td   >392</td><td   >444</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1622</td><td   >W</td><td   >410</td><td   >383</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1062.html'>Rafal Dominiczak</a></td><td   >1717</td><td   >W</td><td   >452</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1084.html'>Natalie Zolty</a></td><td   >878</td><td   >L</td><td   >360</td><td   >379</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1589.html'>Mike Whiteoak</a></td><td   >1785</td><td   >W</td><td   >487</td><td   >399</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1632</td><td   >W</td><td   >405</td><td   >363</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td   >1599</td><td   >L</td><td   >305</td><td   >397</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td   >1917</td><td   >W</td><td   >491</td><td   >340</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/728.html'>David Webb</a></td><td   >1840</td><td   >W</td><td   >402</td><td   >384</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >2081</td><td   >L</td><td   >336</td><td   >448</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td   >1951</td><td   >L</td><td   >361</td><td   >475</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td   >1514</td><td   >L</td><td   >306</td><td   >419</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/269.html'>Nuala O'Rourke</a></td><td   >1538</td><td   >W</td><td   >515</td><td   >423</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/321.html'>Tan Jin Chor</a></td><td   >1677</td><td   >L</td><td   >312</td><td   >401</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2329.html'>Calum Edwards</a></td><td   >1806</td><td   >L</td><td   >327</td><td   >386</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1047.html'>Chris Vicary</a></td><td   >1839</td><td   >L</td><td   >351</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_22530'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_22530'>+</button></td><td>3</td><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>8</td><td>6</td><td>0</td><td>-547</td><td>22</td><td>1568</td><td>1731</td><td>163</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_22530'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_22530'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >8</td><td   >6</td><td   >0</td><td   >-547</td><td   >22</td><td   >1568</td><td   >1731</td><td   >163</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_22530'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td>2152</td><td>L</td><td>318</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4464.html'>Kristian Saether</a></td><td>1935</td><td>W</td><td>431</td><td>430</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1532.html'>Kwaku Sapong</a></td><td>1709</td><td>L</td><td>381</td><td>437</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1513.html'>Sue Bowman</a></td><td>1482</td><td>W</td><td>345</td><td>302</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/340.html'>Evan Simpson</a></td><td>1926</td><td>L</td><td>304</td><td>495</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1607.html'>Gary Oliver</a></td><td>1943</td><td>L</td><td>404</td><td>423</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td>1682</td><td>W</td><td>340</td><td>312</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td>1723</td><td>W</td><td>434</td><td>422</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/539.html'>Diane Pratesi</a></td><td>1669</td><td>W</td><td>460</td><td>423</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td>1965</td><td>W</td><td>435</td><td>392</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1571.html'>Martin Thompson</a></td><td>1791</td><td>L</td><td>393</td><td>549</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>2088</td><td>W</td><td>441</td><td>394</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/986.html'>Russell Byers</a></td><td>1993</td><td>L</td><td>301</td><td>603</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3149.html'>Howard Wilde</a></td><td>1936</td><td>W</td><td>402</td><td>346</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2152</td><td   >L</td><td   >318</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4464.html'>Kristian Saether</a></td><td   >1935</td><td   >W</td><td   >431</td><td   >430</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1532.html'>Kwaku Sapong</a></td><td   >1709</td><td   >L</td><td   >381</td><td   >437</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1513.html'>Sue Bowman</a></td><td   >1482</td><td   >W</td><td   >345</td><td   >302</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/340.html'>Evan Simpson</a></td><td   >1926</td><td   >L</td><td   >304</td><td   >495</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1607.html'>Gary Oliver</a></td><td   >1943</td><td   >L</td><td   >404</td><td   >423</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td   >1682</td><td   >W</td><td   >340</td><td   >312</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td   >1723</td><td   >W</td><td   >434</td><td   >422</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/539.html'>Diane Pratesi</a></td><td   >1669</td><td   >W</td><td   >460</td><td   >423</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td   >1965</td><td   >W</td><td   >435</td><td   >392</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1571.html'>Martin Thompson</a></td><td   >1791</td><td   >L</td><td   >393</td><td   >549</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >2088</td><td   >W</td><td   >441</td><td   >394</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/986.html'>Russell Byers</a></td><td   >1993</td><td   >L</td><td   >301</td><td   >603</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3149.html'>Howard Wilde</a></td><td   >1936</td><td   >W</td><td   >402</td><td   >346</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_20206'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_20206'>+</button></td><td>4</td><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>9</td><td>8</td><td>1</td><td>417</td><td>6</td><td>1568</td><td>1568</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_20206'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_20206'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >9</td><td   >8</td><td   >1</td><td   >417</td><td   >6</td><td   >1568</td><td   >1568</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_20206'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td>1830</td><td>W</td><td>403</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td>1830</td><td>L</td><td>358</td><td>535</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1507.html'>Janet Phillips</a></td><td>961</td><td>W</td><td>534</td><td>282</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1507.html'>Janet Phillips</a></td><td>961</td><td>W</td><td>426</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1450</td><td>W</td><td>527</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1450</td><td>L</td><td>371</td><td>413</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td>1838</td><td>W</td><td>479</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td>1838</td><td>W</td><td>438</td><td>429</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1675</td><td>L</td><td>374</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1675</td><td>L</td><td>317</td><td>396</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1583.html'>Bob Berry</a></td><td>1443</td><td>L</td><td>417</td><td>451</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1583.html'>Bob Berry</a></td><td>1443</td><td>W</td><td>396</td><td>312</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1709</td><td>W</td><td>424</td><td>380</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1709</td><td>L</td><td>321</td><td>455</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1586.html'>Paul Thomson</a></td><td>1147</td><td>W</td><td>511</td><td>261</td></tr>
-        <tr  class='rowodd'  ><td>17</td><td><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td>1633</td><td>L</td><td>318</td><td>415</td></tr>
-        <tr  class='roweven'  ><td>18</td><td><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td>1633</td><td>L</td><td>390</td><td>437</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td   >1830</td><td   >W</td><td   >403</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td   >1830</td><td   >L</td><td   >358</td><td   >535</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1507.html'>Janet Phillips</a></td><td   >961</td><td   >W</td><td   >534</td><td   >282</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1507.html'>Janet Phillips</a></td><td   >961</td><td   >W</td><td   >426</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/175.html'>John Barker</a></td><td   >1450</td><td   >W</td><td   >527</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/175.html'>John Barker</a></td><td   >1450</td><td   >L</td><td   >371</td><td   >413</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td   >1838</td><td   >W</td><td   >479</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td   >1838</td><td   >W</td><td   >438</td><td   >429</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td   >1675</td><td   >L</td><td   >374</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td   >1675</td><td   >L</td><td   >317</td><td   >396</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1583.html'>Bob Berry</a></td><td   >1443</td><td   >L</td><td   >417</td><td   >451</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1583.html'>Bob Berry</a></td><td   >1443</td><td   >W</td><td   >396</td><td   >312</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1709</td><td   >W</td><td   >424</td><td   >380</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1709</td><td   >L</td><td   >321</td><td   >455</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1586.html'>Paul Thomson</a></td><td   >1147</td><td   >W</td><td   >511</td><td   >261</td></tr>
+        <tr  class='rowodd'  ><td   >17</td><td   ><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td   >1633</td><td   >L</td><td   >318</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   >18</td><td   ><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td   >1633</td><td   >L</td><td   >390</td><td   >437</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_274'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_274'>+</button></td><td>1</td><td><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td>1474</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0.00</td><td>338.00</td><td>423.67</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_274'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_274'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/274.html'>Peter Thomas</a></td><td   >1474</td><td   >3</td><td   >0</td><td   >3</td><td   >0</td><td   >0.00</td><td   >338.00</td><td   >423.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_274'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>17</td><td>L</td><td>1568</td><td>1633</td><td>318</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>18</td><td>L</td><td>1568</td><td>1633</td><td>390</td><td>437</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>17</td><td>L</td><td>1731</td><td>1514</td><td>306</td><td>419</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >17</td><td   >L</td><td   >1568</td><td   >1633</td><td   >318</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >18</td><td   >L</td><td   >1568</td><td   >1633</td><td   >390</td><td   >437</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >17</td><td   >L</td><td   >1731</td><td   >1514</td><td   >306</td><td   >419</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_298'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_298'>+</button></td><td>2</td><td><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td>1918</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>376.33</td><td>412.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_298'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_298'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/298.html'>Paul Allan</a></td><td   >1918</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >376.33</td><td   >412.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_298'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>12</td><td>W</td><td>1568</td><td>2088</td><td>441</td><td>394</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>15</td><td>L</td><td>1731</td><td>2081</td><td>336</td><td>448</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>5</td><td>L</td><td>1711</td><td>2069</td><td>352</td><td>394</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >12</td><td   >W</td><td   >1568</td><td   >2088</td><td   >441</td><td   >394</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >15</td><td   >L</td><td   >1731</td><td   >2081</td><td   >336</td><td   >448</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >5</td><td   >L</td><td   >1711</td><td   >2069</td><td   >352</td><td   >394</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_276'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_276'>+</button></td><td>3</td><td><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td>1653</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>345.50</td><td>396.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_276'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_276'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/276.html'>Ross Mackenzie</a></td><td   >1653</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >345.50</td><td   >396.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_276'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>9</td><td>L</td><td>1568</td><td>1675</td><td>374</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>10</td><td>L</td><td>1568</td><td>1675</td><td>317</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >9</td><td   >L</td><td   >1568</td><td   >1675</td><td   >374</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >10</td><td   >L</td><td   >1568</td><td   >1675</td><td   >317</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_805'>+</button></td><td>4</td><td><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td>1691</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>458.50</td><td>386.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_805'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_805'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/805.html'>Alec Webb</a></td><td   >1691</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >458.50</td><td   >386.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_805'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>7</td><td>W</td><td>1568</td><td>1838</td><td>479</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>8</td><td>W</td><td>1568</td><td>1838</td><td>438</td><td>429</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >7</td><td   >W</td><td   >1568</td><td   >1838</td><td   >479</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >8</td><td   >W</td><td   >1568</td><td   >1838</td><td   >438</td><td   >429</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_661'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_661'>+</button></td><td>5</td><td><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td>1875</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>401.50</td><td>417.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_661'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_661'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/661.html'>Femi Awowade</a></td><td   >1875</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >401.50</td><td   >417.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_661'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>10</td><td>W</td><td>1568</td><td>1965</td><td>435</td><td>392</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>10</td><td>L</td><td>1711</td><td>1846</td><td>368</td><td>443</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >10</td><td   >W</td><td   >1568</td><td   >1965</td><td   >435</td><td   >392</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >10</td><td   >L</td><td   >1711</td><td   >1846</td><td   >368</td><td   >443</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td>6</td><td><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td>1578</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>372.50</td><td>417.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_75'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_75'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/75.html'>Karen Richards</a></td><td   >1578</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >372.50</td><td   >417.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_75'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>13</td><td>W</td><td>1568</td><td>1709</td><td>424</td><td>380</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>14</td><td>L</td><td>1568</td><td>1709</td><td>321</td><td>455</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >13</td><td   >W</td><td   >1568</td><td   >1709</td><td   >424</td><td   >380</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >14</td><td   >L</td><td   >1568</td><td   >1709</td><td   >321</td><td   >455</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_277'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_277'>+</button></td><td>7</td><td><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td>1646</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>380.50</td><td>449.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_277'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_277'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/277.html'>Steve Perry</a></td><td   >1646</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >380.50</td><td   >449.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_277'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>1</td><td>W</td><td>1568</td><td>1830</td><td>403</td><td>364</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>2</td><td>L</td><td>1568</td><td>1830</td><td>358</td><td>535</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >1</td><td   >W</td><td   >1568</td><td   >1830</td><td   >403</td><td   >364</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >2</td><td   >L</td><td   >1568</td><td   >1830</td><td   >358</td><td   >535</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_175'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_175'>+</button></td><td>8</td><td><a href='/aardvark/html/players/175.html'>John Barker</a></td><td>1313</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>449.00</td><td>379.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_175'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_175'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/175.html'>John Barker</a></td><td   >1313</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >449.00</td><td   >379.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_175'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>5</td><td>W</td><td>1568</td><td>1450</td><td>527</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>6</td><td>L</td><td>1568</td><td>1450</td><td>371</td><td>413</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >5</td><td   >W</td><td   >1568</td><td   >1450</td><td   >527</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >6</td><td   >L</td><td   >1568</td><td   >1450</td><td   >371</td><td   >413</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1507'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1507.html'>Janet Phillips</a></td><td>1332</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>480.00</td><td>351.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1507'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1507'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1507.html'>Janet Phillips</a></td><td   >1332</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >480.00</td><td   >351.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1507'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>3</td><td>W</td><td>1568</td><td>961</td><td>534</td><td>282</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>4</td><td>W</td><td>1568</td><td>961</td><td>426</td><td>420</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >3</td><td   >W</td><td   >1568</td><td   >961</td><td   >534</td><td   >282</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >4</td><td   >W</td><td   >1568</td><td   >961</td><td   >426</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1081'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td>2043</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>379.50</td><td>491.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1081'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1081'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1081.html'>Lewis Mackay</a></td><td   >2043</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >379.50</td><td   >491.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1081'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>2</td><td>L</td><td>1731</td><td>2098</td><td>358</td><td>483</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>2</td><td>L</td><td>1711</td><td>2093</td><td>401</td><td>500</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >2</td><td   >L</td><td   >1731</td><td   >2098</td><td   >358</td><td   >483</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >2</td><td   >L</td><td   >1711</td><td   >2093</td><td   >401</td><td   >500</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1583'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1583'>+</button></td><td>11</td><td><a href='/aardvark/html/players/1583.html'>Bob Berry</a></td><td>1390</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>406.50</td><td>381.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1583'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1583'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/1583.html'>Bob Berry</a></td><td   >1390</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >406.50</td><td   >381.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1583'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>11</td><td>L</td><td>1568</td><td>1443</td><td>417</td><td>451</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>12</td><td>W</td><td>1568</td><td>1443</td><td>396</td><td>312</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >11</td><td   >L</td><td   >1568</td><td   >1443</td><td   >417</td><td   >451</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >12</td><td   >W</td><td   >1568</td><td   >1443</td><td   >396</td><td   >312</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1087'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1087'>+</button></td><td>12</td><td><a href='/aardvark/html/players/1087.html'>Stephen Hunt</a></td><td>1776</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>411.00</td><td>444.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1087'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1087'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/1087.html'>Stephen Hunt</a></td><td   >1776</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >411.00</td><td   >444.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1087'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>1</td><td>L</td><td>1731</td><td>1665</td><td>448</td><td>452</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>4</td><td>L</td><td>1711</td><td>1665</td><td>374</td><td>436</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >1</td><td   >L</td><td   >1731</td><td   >1665</td><td   >448</td><td   >452</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >4</td><td   >L</td><td   >1711</td><td   >1665</td><td   >374</td><td   >436</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_539'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_539'>+</button></td><td>13</td><td><a href='/aardvark/html/players/539.html'>Diane Pratesi</a></td><td>1670</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>426.00</td><td>433.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_539'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_539'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/539.html'>Diane Pratesi</a></td><td   >1670</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >426.00</td><td   >433.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_539'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>9</td><td>W</td><td>1568</td><td>1669</td><td>460</td><td>423</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>6</td><td>L</td><td>1731</td><td>1710</td><td>392</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >9</td><td   >W</td><td   >1568</td><td   >1669</td><td   >460</td><td   >423</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >6</td><td   >L</td><td   >1731</td><td   >1710</td><td   >392</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1574'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1574'>+</button></td><td>14</td><td><a href='/aardvark/html/players/1574.html'>Penny Downer</a></td><td>1833</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>396.00</td><td>365.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1574'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1574'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/1574.html'>Penny Downer</a></td><td   >1833</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >396.00</td><td   >365.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1574'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>1</td><td>W</td><td>1711</td><td>1951</td><td>396</td><td>365</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >1</td><td   >W</td><td   >1711</td><td   >1951</td><td   >396</td><td   >365</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1084'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1084'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1084.html'>Natalie Zolty</a></td><td>1694</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>360.00</td><td>379.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1084'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1084'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1084.html'>Natalie Zolty</a></td><td   >1694</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >360.00</td><td   >379.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1084'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>9</td><td>L</td><td>1731</td><td>878</td><td>360</td><td>379</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >9</td><td   >L</td><td   >1731</td><td   >878</td><td   >360</td><td   >379</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2335'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2335'>+</button></td><td>16</td><td><a href='/aardvark/html/players/2335.html'>Len Edwards</a></td><td>1347</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>350.00</td><td>376.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2335'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2335'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/2335.html'>Len Edwards</a></td><td   >1347</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >350.00</td><td   >376.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2335'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>6</td><td>L</td><td>1711</td><td>1418</td><td>350</td><td>376</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >6</td><td   >L</td><td   >1711</td><td   >1418</td><td   >350</td><td   >376</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1047'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1047'>+</button></td><td>17</td><td><a href='/aardvark/html/players/1047.html'>Chris Vicary</a></td><td>1838</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>351.00</td><td>451.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1047'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1047'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/1047.html'>Chris Vicary</a></td><td   >1838</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >351.00</td><td   >451.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1047'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>21</td><td>L</td><td>1731</td><td>1839</td><td>351</td><td>451</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >21</td><td   >L</td><td   >1731</td><td   >1839</td><td   >351</td><td   >451</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1589'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1589'>+</button></td><td>18</td><td><a href='/aardvark/html/players/1589.html'>Mike Whiteoak</a></td><td>1658</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>487.00</td><td>399.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1589'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1589'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/1589.html'>Mike Whiteoak</a></td><td   >1658</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >487.00</td><td   >399.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1589'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>10</td><td>W</td><td>1731</td><td>1785</td><td>487</td><td>399</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >10</td><td   >W</td><td   >1731</td><td   >1785</td><td   >487</td><td   >399</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1567'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1567'>+</button></td><td>19</td><td><a href='/aardvark/html/players/1567.html'>Elizabeth Hull</a></td><td>1238</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>444.00</td><td>358.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1567'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1567'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/1567.html'>Elizabeth Hull</a></td><td   >1238</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >444.00</td><td   >358.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1567'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>14</td><td>W</td><td>1711</td><td>1304</td><td>444</td><td>358</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >14</td><td   >W</td><td   >1711</td><td   >1304</td><td   >444</td><td   >358</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_939'>+</button></td><td>20</td><td><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td>2068</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>361.00</td><td>475.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_939'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_939'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/939.html'>Allan Simmons</a></td><td   >2068</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >361.00</td><td   >475.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_939'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>16</td><td>L</td><td>1731</td><td>1951</td><td>361</td><td>475</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >16</td><td   >L</td><td   >1731</td><td   >1951</td><td   >361</td><td   >475</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1532'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1532'>+</button></td><td>21</td><td><a href='/aardvark/html/players/1532.html'>Kwaku Sapong</a></td><td>1555</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>381.00</td><td>437.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1532'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1532'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/1532.html'>Kwaku Sapong</a></td><td   >1555</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >381.00</td><td   >437.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1532'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>3</td><td>L</td><td>1568</td><td>1709</td><td>381</td><td>437</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >3</td><td   >L</td><td   >1568</td><td   >1709</td><td   >381</td><td   >437</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_806'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_806'>+</button></td><td>22</td><td><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td>1409</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>434.00</td><td>422.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_806'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_806'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/806.html'>Elisabeth Jardine</a></td><td   >1409</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >434.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_806'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>8</td><td>W</td><td>1568</td><td>1723</td><td>434</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >8</td><td   >W</td><td   >1568</td><td   >1723</td><td   >434</td><td   >422</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_300'>+</button></td><td>23</td><td><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td>1433</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>410.00</td><td>383.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_300'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_300'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/300.html'>Ray Tate</a></td><td   >1433</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >410.00</td><td   >383.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_300'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>7</td><td>W</td><td>1731</td><td>1622</td><td>410</td><td>383</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >7</td><td   >W</td><td   >1731</td><td   >1622</td><td   >410</td><td   >383</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_811'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_811'>+</button></td><td>24</td><td><a href='/aardvark/html/players/811.html'>Margaret Staunton</a></td><td>1181</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>416.00</td><td>393.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_811'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_811'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/811.html'>Margaret Staunton</a></td><td   >1181</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >416.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_811'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>9</td><td>W</td><td>1711</td><td>1508</td><td>416</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >9</td><td   >W</td><td   >1711</td><td   >1508</td><td   >416</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1504'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1504'>+</button></td><td>25</td><td><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td>1272</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>305.00</td><td>397.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1504'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1504'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/1504.html'>David Shenkin</a></td><td   >1272</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >305.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1504'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>12</td><td>L</td><td>1731</td><td>1599</td><td>305</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >12</td><td   >L</td><td   >1731</td><td   >1599</td><td   >305</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_334'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_334'>+</button></td><td>26</td><td><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td>2133</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>318.00</td><td>408.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_334'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_334'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/334.html'>Brett Smitheram</a></td><td   >2133</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >318.00</td><td   >408.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_334'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>1</td><td>L</td><td>1568</td><td>2152</td><td>318</td><td>408</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >1</td><td   >L</td><td   >1568</td><td   >2152</td><td   >318</td><td   >408</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_986'>+</button></td><td>27</td><td><a href='/aardvark/html/players/986.html'>Russell Byers</a></td><td>1694</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>301.00</td><td>603.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_986'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_986'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/986.html'>Russell Byers</a></td><td   >1694</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >301.00</td><td   >603.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_986'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>13</td><td>L</td><td>1568</td><td>1993</td><td>301</td><td>603</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >13</td><td   >L</td><td   >1568</td><td   >1993</td><td   >301</td><td   >603</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1413'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1413'>+</button></td><td>28</td><td><a href='/aardvark/html/players/1413.html'>Tom Sharp</a></td><td>1596</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>359.00</td><td>367.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1413'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1413'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/1413.html'>Tom Sharp</a></td><td   >1596</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >359.00</td><td   >367.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1413'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>8</td><td>L</td><td>1711</td><td>1696</td><td>359</td><td>367</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >8</td><td   >L</td><td   >1711</td><td   >1696</td><td   >359</td><td   >367</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1503'>+</button></td><td>29</td><td><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td>1492</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>340.00</td><td>312.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1503'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/1503.html'>Anne Ashmore</a></td><td   >1492</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >340.00</td><td   >312.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1503'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>7</td><td>W</td><td>1568</td><td>1682</td><td>340</td><td>312</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >7</td><td   >W</td><td   >1568</td><td   >1682</td><td   >340</td><td   >312</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1607'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1607'>+</button></td><td>30</td><td><a href='/aardvark/html/players/1607.html'>Gary Oliver</a></td><td>1745</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>404.00</td><td>423.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1607'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1607'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/1607.html'>Gary Oliver</a></td><td   >1745</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >404.00</td><td   >423.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1607'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>6</td><td>L</td><td>1568</td><td>1943</td><td>404</td><td>423</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >6</td><td   >L</td><td   >1568</td><td   >1943</td><td   >404</td><td   >423</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4464'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4464'>+</button></td><td>31</td><td><a href='/aardvark/html/players/4464.html'>Kristian Saether</a></td><td>1861</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>431.00</td><td>430.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4464'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4464'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/4464.html'>Kristian Saether</a></td><td   >1861</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >431.00</td><td   >430.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4464'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>2</td><td>W</td><td>1568</td><td>1935</td><td>431</td><td>430</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >2</td><td   >W</td><td   >1568</td><td   >1935</td><td   >431</td><td   >430</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1586'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1586'>+</button></td><td>32</td><td><a href='/aardvark/html/players/1586.html'>Paul Thomson</a></td><td>1352</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>511.00</td><td>261.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1586'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1586'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/1586.html'>Paul Thomson</a></td><td   >1352</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >511.00</td><td   >261.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1586'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td>2011-01-03</td><td>15</td><td>W</td><td>1568</td><td>1147</td><td>511</td><td>261</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/518.html'>UK Open Warm-up</a></td><td   >2011-01-03</td><td   >15</td><td   >W</td><td   >1568</td><td   >1147</td><td   >511</td><td   >261</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_269'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_269'>+</button></td><td>33</td><td><a href='/aardvark/html/players/269.html'>Nuala O'Rourke</a></td><td>1499</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>515.00</td><td>423.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_269'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_269'>+</button></td><td   >33</td><td   ><a href='/aardvark/html/players/269.html'>Nuala O'Rourke</a></td><td   >1499</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >515.00</td><td   >423.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_269'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>18</td><td>W</td><td>1731</td><td>1538</td><td>515</td><td>423</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >18</td><td   >W</td><td   >1731</td><td   >1538</td><td   >515</td><td   >423</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_728'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_728'>+</button></td><td>34</td><td><a href='/aardvark/html/players/728.html'>David Webb</a></td><td>1922</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>402.00</td><td>384.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_728'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_728'>+</button></td><td   >34</td><td   ><a href='/aardvark/html/players/728.html'>David Webb</a></td><td   >1922</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >402.00</td><td   >384.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_728'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>14</td><td>W</td><td>1731</td><td>1840</td><td>402</td><td>384</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >14</td><td   >W</td><td   >1731</td><td   >1840</td><td   >402</td><td   >384</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1513'>+</button></td><td>35</td><td><a href='/aardvark/html/players/1513.html'>Sue Bowman</a></td><td>1162</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>345.00</td><td>302.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1513'>+</button></td><td   >35</td><td   ><a href='/aardvark/html/players/1513.html'>Sue Bowman</a></td><td   >1162</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >345.00</td><td   >302.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1513'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>4</td><td>W</td><td>1568</td><td>1482</td><td>345</td><td>302</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >4</td><td   >W</td><td   >1568</td><td   >1482</td><td   >345</td><td   >302</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2325'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2325'>+</button></td><td>36</td><td><a href='/aardvark/html/players/2325.html'>Andy Gray</a></td><td>1269</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>446.00</td><td>335.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2325'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2325'>+</button></td><td   >36</td><td   ><a href='/aardvark/html/players/2325.html'>Andy Gray</a></td><td   >1269</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >446.00</td><td   >335.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2325'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>4</td><td>W</td><td>1731</td><td>1362</td><td>446</td><td>335</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >4</td><td   >W</td><td   >1731</td><td   >1362</td><td   >446</td><td   >335</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_275'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_275'>+</button></td><td>37</td><td><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td>1825</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>362.00</td><td>476.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_275'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_275'>+</button></td><td   >37</td><td   ><a href='/aardvark/html/players/275.html'>Rik Kennedy</a></td><td   >1825</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >362.00</td><td   >476.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_275'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>7</td><td>L</td><td>1711</td><td>1855</td><td>362</td><td>476</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >7</td><td   >L</td><td   >1711</td><td   >1855</td><td   >362</td><td   >476</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1571'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1571'>+</button></td><td>38</td><td><a href='/aardvark/html/players/1571.html'>Martin Thompson</a></td><td>1670</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>393.00</td><td>549.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1571'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1571'>+</button></td><td   >38</td><td   ><a href='/aardvark/html/players/1571.html'>Martin Thompson</a></td><td   >1670</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >393.00</td><td   >549.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1571'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>11</td><td>L</td><td>1568</td><td>1791</td><td>393</td><td>549</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >11</td><td   >L</td><td   >1568</td><td   >1791</td><td   >393</td><td   >549</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_809'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_809'>+</button></td><td>39</td><td><a href='/aardvark/html/players/809.html'>Ivy Dixon-Baird</a></td><td>1437</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>557.00</td><td>346.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_809'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_809'>+</button></td><td   >39</td><td   ><a href='/aardvark/html/players/809.html'>Ivy Dixon-Baird</a></td><td   >1437</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >557.00</td><td   >346.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_809'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>12</td><td>W</td><td>1711</td><td>1917</td><td>557</td><td>346</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >12</td><td   >W</td><td   >1711</td><td   >1917</td><td   >557</td><td   >346</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2327'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2327'>+</button></td><td>40</td><td><a href='/aardvark/html/players/2327.html'>Anne Darby</a></td><td>949</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>478.00</td><td>340.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2327'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2327'>+</button></td><td   >40</td><td   ><a href='/aardvark/html/players/2327.html'>Anne Darby</a></td><td   >949</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >478.00</td><td   >340.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2327'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>3</td><td>W</td><td>1731</td><td>874</td><td>478</td><td>340</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >3</td><td   >W</td><td   >1731</td><td   >874</td><td   >478</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3160'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3160'>+</button></td><td>41</td><td><a href='/aardvark/html/players/3160.html'>Stewart Houten</a></td><td>1513</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>334.00</td><td>477.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3160'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3160'>+</button></td><td   >41</td><td   ><a href='/aardvark/html/players/3160.html'>Stewart Houten</a></td><td   >1513</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >334.00</td><td   >477.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3160'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>11</td><td>L</td><td>1711</td><td>1699</td><td>334</td><td>477</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >11</td><td   >L</td><td   >1711</td><td   >1699</td><td   >334</td><td   >477</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2329'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2329'>+</button></td><td>42</td><td><a href='/aardvark/html/players/2329.html'>Calum Edwards</a></td><td>1663</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>327.00</td><td>386.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2329'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2329'>+</button></td><td   >42</td><td   ><a href='/aardvark/html/players/2329.html'>Calum Edwards</a></td><td   >1663</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >386.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2329'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>20</td><td>L</td><td>1731</td><td>1806</td><td>327</td><td>386</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >20</td><td   >L</td><td   >1731</td><td   >1806</td><td   >327</td><td   >386</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1500'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1500'>+</button></td><td>43</td><td><a href='/aardvark/html/players/1500.html'>John Ashmore</a></td><td>1630</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>396.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1500'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1500'>+</button></td><td   >43</td><td   ><a href='/aardvark/html/players/1500.html'>John Ashmore</a></td><td   >1630</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1500'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>5</td><td>W</td><td>1731</td><td>1907</td><td>405</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >5</td><td   >W</td><td   >1731</td><td   >1907</td><td   >405</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1062'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1062'>+</button></td><td>44</td><td><a href='/aardvark/html/players/1062.html'>Rafal Dominiczak</a></td><td>1741</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>452.00</td><td>367.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1062'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1062'>+</button></td><td   >44</td><td   ><a href='/aardvark/html/players/1062.html'>Rafal Dominiczak</a></td><td   >1741</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >452.00</td><td   >367.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1062'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>8</td><td>W</td><td>1731</td><td>1717</td><td>452</td><td>367</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >8</td><td   >W</td><td   >1731</td><td   >1717</td><td   >452</td><td   >367</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2620'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2620'>+</button></td><td>45</td><td><a href='/aardvark/html/players/2620.html'>Ashley Coldrick</a></td><td>1633</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>432.00</td><td>443.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2620'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2620'>+</button></td><td   >45</td><td   ><a href='/aardvark/html/players/2620.html'>Ashley Coldrick</a></td><td   >1633</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >432.00</td><td   >443.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2620'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>13</td><td>L</td><td>1711</td><td>1524</td><td>432</td><td>443</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >13</td><td   >L</td><td   >1711</td><td   >1524</td><td   >432</td><td   >443</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_321'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_321'>+</button></td><td>46</td><td><a href='/aardvark/html/players/321.html'>Tan Jin Chor</a></td><td>1453</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>312.00</td><td>401.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_321'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_321'>+</button></td><td   >46</td><td   ><a href='/aardvark/html/players/321.html'>Tan Jin Chor</a></td><td   >1453</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >312.00</td><td   >401.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_321'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>19</td><td>L</td><td>1731</td><td>1677</td><td>312</td><td>401</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >19</td><td   >L</td><td   >1731</td><td   >1677</td><td   >312</td><td   >401</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1575'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1575'>+</button></td><td>47</td><td><a href='/aardvark/html/players/1575.html'>Quentin Baker</a></td><td>1606</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>395.00</td><td>393.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1575'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1575'>+</button></td><td   >47</td><td   ><a href='/aardvark/html/players/1575.html'>Quentin Baker</a></td><td   >1606</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >395.00</td><td   >393.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1575'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td>2013-09-15</td><td>3</td><td>W</td><td>1711</td><td>1788</td><td>395</td><td>393</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/342.html'>UK National Scrabble Championship Semi Final  </a></td><td   >2013-09-15</td><td   >3</td><td   >W</td><td   >1711</td><td   >1788</td><td   >395</td><td   >393</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_340'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_340'>+</button></td><td>48</td><td><a href='/aardvark/html/players/340.html'>Evan Simpson</a></td><td>1898</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>304.00</td><td>495.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_340'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_340'>+</button></td><td   >48</td><td   ><a href='/aardvark/html/players/340.html'>Evan Simpson</a></td><td   >1898</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >304.00</td><td   >495.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_340'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>5</td><td>L</td><td>1568</td><td>1926</td><td>304</td><td>495</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >5</td><td   >L</td><td   >1568</td><td   >1926</td><td   >304</td><td   >495</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_284'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_284'>+</button></td><td>49</td><td><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td>1605</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>405.00</td><td>363.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_284'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_284'>+</button></td><td   >49</td><td   ><a href='/aardvark/html/players/284.html'>Barry Grossman</a></td><td   >1605</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >405.00</td><td   >363.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_284'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>11</td><td>W</td><td>1731</td><td>1632</td><td>405</td><td>363</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >11</td><td   >W</td><td   >1731</td><td   >1632</td><td   >405</td><td   >363</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_293'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_293'>+</button></td><td>50</td><td><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td>1977</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>491.00</td><td>340.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_293'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_293'>+</button></td><td   >50</td><td   ><a href='/aardvark/html/players/293.html'>Martin Harrison</a></td><td   >1977</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >491.00</td><td   >340.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_293'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td>2013-08-26</td><td>13</td><td>W</td><td>1731</td><td>1917</td><td>491</td><td>340</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/337.html'>British Matchplay Scrabble Championship - Open Division</a></td><td   >2013-08-26</td><td   >13</td><td   >W</td><td   >1731</td><td   >1917</td><td   >491</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3149'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3149'>+</button></td><td>51</td><td><a href='/aardvark/html/players/3149.html'>Howard Wilde</a></td><td>1872</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>402.00</td><td>346.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3149'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3149'>+</button></td><td   >51</td><td   ><a href='/aardvark/html/players/3149.html'>Howard Wilde</a></td><td   >1872</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >402.00</td><td   >346.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3149'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td>2012-09-16</td><td>14</td><td>W</td><td>1568</td><td>1936</td><td>402</td><td>346</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/580.html'>UK NSC Semi Final </a></td><td   >2012-09-16</td><td   >14</td><td   >W</td><td   >1568</td><td   >1936</td><td   >402</td><td   >346</td></tr>
 </table></div></td></tr>
 
 </table>

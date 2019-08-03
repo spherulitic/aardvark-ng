@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -155,7 +155,7 @@
           <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
             <h2>Victor Berdie</h2>
             <div>
-              <IMG SRC="../../flags/.png" alt="">
+              <IMG SRC="../../flags/CAN.png" alt="">
               <p></p>
             </div>
           </div>
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 1770<br>
               <b>Games Played:</b> 24<br>
               <b>Wins:</b> 12 (50.00%)<br>
               <b>Losses: </b>11 (45.83%)<br>
@@ -183,141 +184,141 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_7861'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7861'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>12.5</td><td>11.5</td><td>0</td><td>-430</td><td>23</td><td>1808</td><td>1770</td><td>-38</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_7861'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_7861'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >12.5</td><td   >11.5</td><td   >0</td><td   >-430</td><td   >23</td><td   >1808</td><td   >1770</td><td   >-38</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_7861'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2491.html'>Olabiyi Oyadiran</a></td><td>1926</td><td>L</td><td>300</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2505.html'>Tee Jay</a></td><td>1519</td><td>W</td><td>323</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2506.html'>Mike Ofori</a></td><td>1401</td><td>W</td><td>376</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/556.html'>Bennet Kpentey</a></td><td>1691</td><td>L</td><td>300</td><td>343</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/560.html'>Chrys Placca</a></td><td>1816</td><td>W</td><td>360</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/592.html'>Sunday Oshodi</a></td><td>1888</td><td>L</td><td>300</td><td>349</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td>1800</td><td>L</td><td>300</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/593.html'>Venayori Kinga</a></td><td>1493</td><td>L</td><td>300</td><td>429</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2490.html'>Ras Attachey</a></td><td>1853</td><td>W</td><td>373</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2503.html'>M Bola</a></td><td>1557</td><td>L</td><td>300</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2504.html'>Adebayo Fasubo</a></td><td>1406</td><td>W</td><td>374</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2506.html'>Mike Ofori</a></td><td>1401</td><td>W</td><td>320</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/741.html'>Samson Midigo</a></td><td>1665</td><td>W</td><td>358</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/575.html'>Kojo Acheampong</a></td><td>1791</td><td>W</td><td>319</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/577.html'>Mensah Mantey</a></td><td>1608</td><td>W</td><td>377</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td>1800</td><td>W</td><td>351</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2208.html'>Yawo Takyi Ananga</a></td><td>2123</td><td>L</td><td>300</td><td>414</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/732.html'>Patrick Litunya</a></td><td>2060</td><td>L</td><td>300</td><td>415</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/575.html'>Kojo Acheampong</a></td><td>1791</td><td>W</td><td>342</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td>1800</td><td>W</td><td>326</td><td>300</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/592.html'>Sunday Oshodi</a></td><td>1888</td><td>L</td><td>300</td><td>535</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2451.html'>Olatunde Adigun</a></td><td>1778</td><td>L</td><td>300</td><td>326</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/579.html'>Michael Quao</a></td><td>1627</td><td>L</td><td>300</td><td>310</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/560.html'>Chrys Placca</a></td><td>1816</td><td>T</td><td>300</td><td>300</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2491.html'>Olabiyi Oyadiran</a></td><td   >1926</td><td   >L</td><td   >300</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2505.html'>Tee Jay</a></td><td   >1519</td><td   >W</td><td   >323</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2506.html'>Mike Ofori</a></td><td   >1401</td><td   >W</td><td   >376</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/556.html'>Bennet Kpentey</a></td><td   >1691</td><td   >L</td><td   >300</td><td   >343</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/560.html'>Chrys Placca</a></td><td   >1816</td><td   >W</td><td   >360</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/592.html'>Sunday Oshodi</a></td><td   >1888</td><td   >L</td><td   >300</td><td   >349</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td   >1800</td><td   >L</td><td   >300</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/593.html'>Venayori Kinga</a></td><td   >1493</td><td   >L</td><td   >300</td><td   >429</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2490.html'>Ras Attachey</a></td><td   >1853</td><td   >W</td><td   >373</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2503.html'>M Bola</a></td><td   >1557</td><td   >L</td><td   >300</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2504.html'>Adebayo Fasubo</a></td><td   >1406</td><td   >W</td><td   >374</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2506.html'>Mike Ofori</a></td><td   >1401</td><td   >W</td><td   >320</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/741.html'>Samson Midigo</a></td><td   >1665</td><td   >W</td><td   >358</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/575.html'>Kojo Acheampong</a></td><td   >1791</td><td   >W</td><td   >319</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/577.html'>Mensah Mantey</a></td><td   >1608</td><td   >W</td><td   >377</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td   >1800</td><td   >W</td><td   >351</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2208.html'>Yawo Takyi Ananga</a></td><td   >2123</td><td   >L</td><td   >300</td><td   >414</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/732.html'>Patrick Litunya</a></td><td   >2060</td><td   >L</td><td   >300</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/575.html'>Kojo Acheampong</a></td><td   >1791</td><td   >W</td><td   >342</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td   >1800</td><td   >W</td><td   >326</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/592.html'>Sunday Oshodi</a></td><td   >1888</td><td   >L</td><td   >300</td><td   >535</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2451.html'>Olatunde Adigun</a></td><td   >1778</td><td   >L</td><td   >300</td><td   >326</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/579.html'>Michael Quao</a></td><td   >1627</td><td   >L</td><td   >300</td><td   >310</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/560.html'>Chrys Placca</a></td><td   >1816</td><td   >T</td><td   >300</td><td   >300</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2497'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td>1830</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0.67</td><td>325.67</td><td>344.67</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2497'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2497'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2497.html'>Nana Kwame</a></td><td   >1830</td><td   >3</td><td   >2</td><td   >1</td><td   >0</td><td   >0.67</td><td   >325.67</td><td   >344.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2497'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>7</td><td>L</td><td>1808</td><td>1800</td><td>300</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>16</td><td>W</td><td>1808</td><td>1800</td><td>351</td><td>300</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>20</td><td>W</td><td>1808</td><td>1800</td><td>326</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >7</td><td   >L</td><td   >1808</td><td   >1800</td><td   >300</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >16</td><td   >W</td><td   >1808</td><td   >1800</td><td   >351</td><td   >300</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >20</td><td   >W</td><td   >1808</td><td   >1800</td><td   >326</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_575'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_575'>+</button></td><td>2</td><td><a href='/aardvark/html/players/575.html'>Kojo Acheampong</a></td><td>1547</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>330.50</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_575'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_575'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/575.html'>Kojo Acheampong</a></td><td   >1547</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >330.50</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_575'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>14</td><td>W</td><td>1808</td><td>1791</td><td>319</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>19</td><td>W</td><td>1808</td><td>1791</td><td>342</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >14</td><td   >W</td><td   >1808</td><td   >1791</td><td   >319</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >19</td><td   >W</td><td   >1808</td><td   >1791</td><td   >342</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_560'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_560'>+</button></td><td>3</td><td><a href='/aardvark/html/players/560.html'>Chrys Placca</a></td><td>1794</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0.75</td><td>330.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_560'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_560'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/560.html'>Chrys Placca</a></td><td   >1794</td><td   >2</td><td   >1</td><td   >0</td><td   >1</td><td   >0.75</td><td   >330.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_560'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>5</td><td>W</td><td>1808</td><td>1816</td><td>360</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>24</td><td>T</td><td>1808</td><td>1816</td><td>300</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >5</td><td   >W</td><td   >1808</td><td   >1816</td><td   >360</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >24</td><td   >T</td><td   >1808</td><td   >1816</td><td   >300</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_592'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_592'>+</button></td><td>4</td><td><a href='/aardvark/html/players/592.html'>Sunday Oshodi</a></td><td>1889</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>300.00</td><td>442.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_592'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_592'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/592.html'>Sunday Oshodi</a></td><td   >1889</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >442.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_592'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>6</td><td>L</td><td>1808</td><td>1888</td><td>300</td><td>349</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>21</td><td>L</td><td>1808</td><td>1888</td><td>300</td><td>535</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >6</td><td   >L</td><td   >1808</td><td   >1888</td><td   >300</td><td   >349</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >21</td><td   >L</td><td   >1808</td><td   >1888</td><td   >300</td><td   >535</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2506'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2506'>+</button></td><td>5</td><td><a href='/aardvark/html/players/2506.html'>Mike Ofori</a></td><td>1420</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>348.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2506'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2506'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/2506.html'>Mike Ofori</a></td><td   >1420</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >348.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2506'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>3</td><td>W</td><td>1808</td><td>1401</td><td>376</td><td>300</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>12</td><td>W</td><td>1808</td><td>1401</td><td>320</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >3</td><td   >W</td><td   >1808</td><td   >1401</td><td   >376</td><td   >300</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >12</td><td   >W</td><td   >1808</td><td   >1401</td><td   >320</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_593'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_593'>+</button></td><td>6</td><td><a href='/aardvark/html/players/593.html'>Venayori Kinga</a></td><td>1834</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>429.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_593'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_593'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/593.html'>Venayori Kinga</a></td><td   >1834</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >429.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_593'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>8</td><td>L</td><td>1808</td><td>1493</td><td>300</td><td>429</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >8</td><td   >L</td><td   >1808</td><td   >1493</td><td   >300</td><td   >429</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_579'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_579'>+</button></td><td>7</td><td><a href='/aardvark/html/players/579.html'>Michael Quao</a></td><td>1665</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>310.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_579'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_579'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/579.html'>Michael Quao</a></td><td   >1665</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >310.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_579'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>23</td><td>L</td><td>1808</td><td>1627</td><td>300</td><td>310</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >23</td><td   >L</td><td   >1808</td><td   >1627</td><td   >300</td><td   >310</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2504'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2504'>+</button></td><td>8</td><td><a href='/aardvark/html/players/2504.html'>Adebayo Fasubo</a></td><td>1409</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>374.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2504'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2504'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/2504.html'>Adebayo Fasubo</a></td><td   >1409</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >374.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2504'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>11</td><td>W</td><td>1808</td><td>1406</td><td>374</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >11</td><td   >W</td><td   >1808</td><td   >1406</td><td   >374</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2491'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2491'>+</button></td><td>9</td><td><a href='/aardvark/html/players/2491.html'>Olabiyi Oyadiran</a></td><td>1967</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>396.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2491'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2491'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/2491.html'>Olabiyi Oyadiran</a></td><td   >1967</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >396.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2491'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>1</td><td>L</td><td>1808</td><td>1926</td><td>300</td><td>396</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >1</td><td   >L</td><td   >1808</td><td   >1926</td><td   >300</td><td   >396</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2451'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2451'>+</button></td><td>10</td><td><a href='/aardvark/html/players/2451.html'>Olatunde Adigun</a></td><td>1736</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>326.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2451'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2451'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/2451.html'>Olatunde Adigun</a></td><td   >1736</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >326.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2451'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>22</td><td>L</td><td>1808</td><td>1778</td><td>300</td><td>326</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >22</td><td   >L</td><td   >1808</td><td   >1778</td><td   >300</td><td   >326</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2503'>+</button></td><td>11</td><td><a href='/aardvark/html/players/2503.html'>M Bola</a></td><td>1656</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>378.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2503'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/2503.html'>M Bola</a></td><td   >1656</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >378.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2503'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>10</td><td>L</td><td>1808</td><td>1557</td><td>300</td><td>378</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >10</td><td   >L</td><td   >1808</td><td   >1557</td><td   >300</td><td   >378</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2505'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2505'>+</button></td><td>12</td><td><a href='/aardvark/html/players/2505.html'>Tee Jay</a></td><td>1503</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>323.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2505'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2505'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/2505.html'>Tee Jay</a></td><td   >1503</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >323.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2505'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>2</td><td>W</td><td>1808</td><td>1519</td><td>323</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >2</td><td   >W</td><td   >1808</td><td   >1519</td><td   >323</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_732'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_732'>+</button></td><td>13</td><td><a href='/aardvark/html/players/732.html'>Patrick Litunya</a></td><td>1735</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>415.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_732'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_732'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/732.html'>Patrick Litunya</a></td><td   >1735</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >415.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_732'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>18</td><td>L</td><td>1808</td><td>2060</td><td>300</td><td>415</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >18</td><td   >L</td><td   >1808</td><td   >2060</td><td   >300</td><td   >415</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2490'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2490'>+</button></td><td>14</td><td><a href='/aardvark/html/players/2490.html'>Ras Attachey</a></td><td>1812</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>373.00</td><td>300.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2490'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2490'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/2490.html'>Ras Attachey</a></td><td   >1812</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >373.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2490'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>9</td><td>W</td><td>1808</td><td>1853</td><td>373</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >9</td><td   >W</td><td   >1808</td><td   >1853</td><td   >373</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_741'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_741'>+</button></td><td>15</td><td><a href='/aardvark/html/players/741.html'>Samson Midigo</a></td><td>1236</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>358.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_741'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_741'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/741.html'>Samson Midigo</a></td><td   >1236</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >358.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_741'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>13</td><td>W</td><td>1808</td><td>1665</td><td>358</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >13</td><td   >W</td><td   >1808</td><td   >1665</td><td   >358</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2208'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2208'>+</button></td><td>16</td><td><a href='/aardvark/html/players/2208.html'>Yawo Takyi Ananga</a></td><td>1966</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>414.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2208'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2208'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/2208.html'>Yawo Takyi Ananga</a></td><td   >1966</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >414.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2208'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>17</td><td>L</td><td>1808</td><td>2123</td><td>300</td><td>414</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >17</td><td   >L</td><td   >1808</td><td   >2123</td><td   >300</td><td   >414</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_577'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_577'>+</button></td><td>17</td><td><a href='/aardvark/html/players/577.html'>Mensah Mantey</a></td><td>1375</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>377.00</td><td>300.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_577'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_577'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/577.html'>Mensah Mantey</a></td><td   >1375</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >377.00</td><td   >300.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_577'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>15</td><td>W</td><td>1808</td><td>1608</td><td>377</td><td>300</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >15</td><td   >W</td><td   >1808</td><td   >1608</td><td   >377</td><td   >300</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_556'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_556'>+</button></td><td>18</td><td><a href='/aardvark/html/players/556.html'>Bennet Kpentey</a></td><td>1741</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>343.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_556'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_556'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/556.html'>Bennet Kpentey</a></td><td   >1741</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >343.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_556'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td>2000-04-23</td><td>4</td><td>L</td><td>1808</td><td>1691</td><td>300</td><td>343</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/199.html'>4th Pan-African Championships</a></td><td   >2000-04-23</td><td   >4</td><td   >L</td><td   >1808</td><td   >1691</td><td   >300</td><td   >343</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -15,6 +15,8 @@ use Constants;
 require './scripts/correct_and_verify.pl';
 require './scripts/update_html.pl';
 require './scripts/utils.pl';
+require './scripts/update_current_players.pl';
+
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
@@ -101,6 +103,8 @@ sub main
   populate_deceased_players_hash();
 
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
+
+  update_current_players();
 
   if ($create_html)
   {
@@ -323,6 +327,9 @@ sub load_tournament_files
     my @divisions = ();
     my $tournament_results = {};
 
+    my $switch_world_and_nation = 0;
+    my $no_world                = 1;
+
     # Read the .STS file
     open(STS_OR_STA_FILE, "<", $sts_or_sta_file) or die "Cannot open .STS or .STA file $sts_or_sta_file: $!";
     while(<STS_OR_STA_FILE>)
@@ -340,36 +347,70 @@ sub load_tournament_files
       my $start_rating;
       my $end_rating;
 
+
+      my $expected_wins;
+      my $old_world_rank;
+      my $new_world_rank = undef;
+      my $old_national_rank;
+      my $new_national_rank;
+
       # Player info must be extracted differently if the file is .STS as
       # opposed to .STA
       if ($is_sts)
       {
         my @player_items = split /,/, $_;
-
-        # Remove trailing and leading whitespace for all items
-        @player_items = map { $_ =~ s/^\s+|\s+$//gr } @player_items;
-
-        $player_country = $player_items[1];
-        $player_name    = $player_items[2];
-        $start_rating   = $player_items[8];
-        $end_rating     = $player_items[9];
+        $player_country    = $player_items[1];
+        $player_name       = $player_items[2];
+        $expected_wins     = $player_items[4];
+        $start_rating      = $player_items[8];
+        $end_rating        = $player_items[9];
+        $old_world_rank    = $player_items[10];
+        $new_world_rank    = $player_items[11];
+        $old_national_rank = $player_items[12];
+        $new_national_rank = $player_items[13];
       }
       else
       {
+        if ($_ =~ /World.*Nation/i)
+        {
+          $switch_world_and_nation = 1;
+        }
+        elsif ($_ =~ /World/)
+        {
+          $no_world = 0;
+        }
         # Agonizing pattern match for .STA file
         # which is why .STS is preferred
-        if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|.*\|.*\|.*\|\s+(\d+)\D.* (\d+) \|/)
+        if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
         {
-          my $is_new_player = $1; # Unused for now
-          $player_country   = $2;
-          $player_name      = $3;
-          $start_rating     = $4;
-          $end_rating       = $5;
+          my $is_new_player  = $1; # Unused for now
+          $player_country    = $2;
+          $player_name       = $3;
 
-          $player_country =~ s/^\s+|\s+$//g;
-          $player_name    =~ s/^\s+|\s+$//g;
-          $start_rating   =~ s/^\s+|\s+$//g;
-          $end_rating     =~ s/^\s+|\s+$//g;
+          $old_national_rank = $4;
+          $new_national_rank = $5;
+
+          $old_world_rank    = $6;
+          $new_world_rank    = $7;
+
+          $expected_wins     = $8;
+          $start_rating      = $9;
+          $end_rating        = $10;
+
+          if ($switch_world_and_nation)
+          {
+            my $tmp1 = $old_national_rank;
+            my $tmp2 = $new_national_rank;
+            $old_national_rank = $old_world_rank;
+            $new_national_rank = $new_world_rank;
+            $old_world_rank    = $tmp1;
+            $new_world_rank    = $tmp2;
+          }
+          elsif ($no_world)
+          {
+            $old_world_rank = undef;
+            $new_world_rank = undef;
+          }
         }
         else
         {
@@ -383,6 +424,53 @@ sub load_tournament_files
       if (player_name_is_bye($player_name))
       {
         next;
+      }
+
+      $expected_wins     = negative_one_if_false($expected_wins);
+      $start_rating      = negative_one_if_false($start_rating);
+      $old_world_rank    = negative_one_if_false($old_world_rank);
+      $new_world_rank    = negative_one_if_false($new_world_rank);
+      $old_national_rank = negative_one_if_false($old_national_rank);
+      $new_national_rank = negative_one_if_false($new_national_rank);
+ 
+      $player_country    =~ s/^\s+|\s+$//g;
+      $player_name       =~ s/^\s+|\s+$//g;
+      $new_world_rank    =~ s/^\s+|\s+$//g;
+      $old_world_rank    =~ s/^\s+|\s+$//g;
+      $old_national_rank =~ s/^\s+|\s+$//g;
+      $new_national_rank =~ s/^\s+|\s+$//g;
+      $expected_wins     =~ s/^\s+|\s+$//g;
+      $start_rating      =~ s/^\s+|\s+$//g;
+      $end_rating        =~ s/^\s+|\s+$//g;    
+
+      my @required_captures =
+      (
+        $player_country,
+        $player_name,
+        $start_rating,
+        $end_rating,
+      );
+      if (grep {!defined($_)} @required_captures)
+      {
+        format_error([
+                       ["ERROR: ", "required values are uncaptured"], 
+                       ["File:  ", $sts_or_sta_file], 
+                       ["Name:  ", $player_name],
+                       ["Array: ", Dumper(\@required_captures)]
+                     ]);
+        next filename;
+      }
+
+      # Some country trigraphs in the old aardvark are incorrect
+      # and need to be converted to valid ISO 3166 trigraphs
+      
+      my $trigraph_conversion_hashref = Constants::COUNTRY_TRIGRAPH_CONVERSION;
+
+      my $new_trigraph = $trigraph_conversion_hashref->{$player_country};
+
+      if ($new_trigraph)
+      {
+        $player_country = $new_trigraph;
       }
 
       # Many players have a country code of OS in the tournament data.
@@ -516,20 +604,26 @@ sub load_tournament_files
       # Still need spread and position
       $tournament_results->{$player_name} = 
       {
-        "player_id"       => $player_id,
-        "player_name"     => $player_name,
-        "division_id"     => -1, # This will be replaced with the actual id later
+        "player_id"         => $player_id,
+        "player_name"       => $player_name,
+        "division_id"       => -1, # This will be replaced with the actual id later
         # Calculations done later because byes are annoying
-        "wins"            => 0,
-        "losses"          => 0,
-        "byes"            => 0,
+        "wins"              => 0,
+        "losses"            => 0,
+        "byes"              => 0,
         # "prize_money"    => 0,
         # "prize_currency" => "AAA",
         # "prize_ech_rate" => 1,
-        "start_rating"    => $start_rating,
-        "end_rating"      => $end_rating,
-        "date"            => $date,
-        "tournament_name" => $tournament_name
+        "start_rating"      => $start_rating,
+        "end_rating"        => $end_rating,
+        "date"              => $date,
+        "tournament_name"   => $tournament_name,
+
+        "expected_wins"     => $expected_wins,
+        "old_world_rank"    => $old_world_rank,
+        "new_world_rank"    => $new_world_rank,
+        "old_national_rank" => $old_national_rank,
+        "new_national_rank" => $new_national_rank,
       };
     }
 
@@ -1141,6 +1235,16 @@ sub sanitize
   $name =~ s/[^A-Z]//g;
 
   return $name;
+}
+
+sub negative_one_if_false
+{
+  my $s = shift;
+  if ($s)
+  {
+    return $s;
+  }
+  return -1;
 }
 
 sub add_games_to_existing_player

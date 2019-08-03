@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Malcolm Graham</h2>
             <div>
               <IMG SRC="../../flags/NZL.png" alt="NZL">
-              <p>NZL</p>
+              <p><a href='/aardvark/html/rankings/NZL.html'>New Zealand</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 795<br>
               <b>Games Played:</b> 54<br>
               <b>Wins:</b> 24 (44.44%)<br>
               <b>Losses: </b>29 (53.70%)<br>
@@ -183,273 +184,273 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_26428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_26428'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>10.5</td><td>5.5</td><td>0</td><td>453</td><td>1</td><td>764</td><td>795</td><td>31</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_26428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_26428'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >10.5</td><td   >5.5</td><td   >0</td><td   >453</td><td   >1</td><td   >764</td><td   >795</td><td   >31</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_26428'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td>850</td><td>W</td><td>435</td><td>375</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/4777.html'>Jenny Litchfield</a></td><td>767</td><td>W</td><td>426</td><td>281</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3420.html'>Anne Scatchard</a></td><td>476</td><td>W</td><td>462</td><td>326</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/4775.html'>Bernie Jardine</a></td><td>940</td><td>T</td><td>374</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/4778.html'>Junior Gesmundo</a></td><td>559</td><td>W</td><td>406</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/4776.html'>Jackie Reid</a></td><td>444</td><td>L</td><td>333</td><td>345</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/4780.html'>Rodney Jardine</a></td><td>680</td><td>L</td><td>340</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/4781.html'>Suzanne Liddall</a></td><td>748</td><td>L</td><td>303</td><td>390</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/4779.html'>Karen Miller</a></td><td>697</td><td>L</td><td>259</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/4781.html'>Suzanne Liddall</a></td><td>748</td><td>L</td><td>351</td><td>421</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/4777.html'>Jenny Litchfield</a></td><td>767</td><td>W</td><td>397</td><td>273</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td>850</td><td>W</td><td>440</td><td>317</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/4776.html'>Jackie Reid</a></td><td>444</td><td>W</td><td>412</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/4775.html'>Bernie Jardine</a></td><td>940</td><td>W</td><td>388</td><td>340</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/4778.html'>Junior Gesmundo</a></td><td>559</td><td>W</td><td>406</td><td>347</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/4779.html'>Karen Miller</a></td><td>697</td><td>W</td><td>406</td><td>371</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td   >850</td><td   >W</td><td   >435</td><td   >375</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/4777.html'>Jenny Litchfield</a></td><td   >767</td><td   >W</td><td   >426</td><td   >281</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3420.html'>Anne Scatchard</a></td><td   >476</td><td   >W</td><td   >462</td><td   >326</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/4775.html'>Bernie Jardine</a></td><td   >940</td><td   >T</td><td   >374</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/4778.html'>Junior Gesmundo</a></td><td   >559</td><td   >W</td><td   >406</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/4776.html'>Jackie Reid</a></td><td   >444</td><td   >L</td><td   >333</td><td   >345</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/4780.html'>Rodney Jardine</a></td><td   >680</td><td   >L</td><td   >340</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/4781.html'>Suzanne Liddall</a></td><td   >748</td><td   >L</td><td   >303</td><td   >390</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/4779.html'>Karen Miller</a></td><td   >697</td><td   >L</td><td   >259</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/4781.html'>Suzanne Liddall</a></td><td   >748</td><td   >L</td><td   >351</td><td   >421</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/4777.html'>Jenny Litchfield</a></td><td   >767</td><td   >W</td><td   >397</td><td   >273</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td   >850</td><td   >W</td><td   >440</td><td   >317</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/4776.html'>Jackie Reid</a></td><td   >444</td><td   >W</td><td   >412</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/4775.html'>Bernie Jardine</a></td><td   >940</td><td   >W</td><td   >388</td><td   >340</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/4778.html'>Junior Gesmundo</a></td><td   >559</td><td   >W</td><td   >406</td><td   >347</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/4779.html'>Karen Miller</a></td><td   >697</td><td   >W</td><td   >406</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_15428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15428'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>10</td><td>14</td><td>0</td><td>-387</td><td>66</td><td>700</td><td>764</td><td>64</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_15428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15428'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >10</td><td   >14</td><td   >0</td><td   >-387</td><td   >66</td><td   >700</td><td   >764</td><td   >64</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_15428'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1379.html'>Rocky Sharma</a></td><td>1566</td><td>L</td><td>351</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3422.html'>Betty Don</a></td><td>570</td><td>W</td><td>353</td><td>352</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td>1230</td><td>L</td><td>328</td><td>436</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3434.html'>Joanne Morley</a></td><td>945</td><td>W</td><td>408</td><td>351</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td>1106</td><td>W</td><td>387</td><td>312</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td>467</td><td>W</td><td>483</td><td>350</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2669.html'>Roger Cole-Baker</a></td><td>951</td><td>L</td><td>360</td><td>472</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1004.html'>Robert Springer</a></td><td>1035</td><td>L</td><td>357</td><td>503</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td>932</td><td>L</td><td>367</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td>467</td><td>L</td><td>339</td><td>362</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td>1220</td><td>L</td><td>363</td><td>393</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2553.html'>Marja Takala</a></td><td>1019</td><td>L</td><td>315</td><td>361</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td>779</td><td>W</td><td>351</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3450.html'>Sheila Reed</a></td><td>835</td><td>L</td><td>324</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3451.html'>Shirley Hol</a></td><td>1379</td><td>W</td><td>549</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td>850</td><td>W</td><td>433</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/3420.html'>Anne Scatchard</a></td><td>476</td><td>W</td><td>371</td><td>315</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/3448.html'>Rob Hutchinson</a></td><td>913</td><td>L</td><td>267</td><td>384</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>932</td><td>L</td><td>387</td><td>397</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td>467</td><td>W</td><td>415</td><td>401</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/1831.html'>Keri Heart</a></td><td>1313</td><td>L</td><td>311</td><td>501</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td>1220</td><td>W</td><td>500</td><td>312</td></tr>
-        <tr  class='roweven'  ><td>23</td><td><a href='/aardvark/html/players/1837.html'>Paula Messer</a></td><td>1055</td><td>L</td><td>364</td><td>444</td></tr>
-        <tr  class='rowodd'  ><td>24</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>976</td><td>L</td><td>407</td><td>449</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1379.html'>Rocky Sharma</a></td><td   >1566</td><td   >L</td><td   >351</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3422.html'>Betty Don</a></td><td   >570</td><td   >W</td><td   >353</td><td   >352</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td   >1230</td><td   >L</td><td   >328</td><td   >436</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3434.html'>Joanne Morley</a></td><td   >945</td><td   >W</td><td   >408</td><td   >351</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td   >1106</td><td   >W</td><td   >387</td><td   >312</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td   >467</td><td   >W</td><td   >483</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2669.html'>Roger Cole-Baker</a></td><td   >951</td><td   >L</td><td   >360</td><td   >472</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1004.html'>Robert Springer</a></td><td   >1035</td><td   >L</td><td   >357</td><td   >503</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td   >932</td><td   >L</td><td   >367</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td   >467</td><td   >L</td><td   >339</td><td   >362</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td   >1220</td><td   >L</td><td   >363</td><td   >393</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2553.html'>Marja Takala</a></td><td   >1019</td><td   >L</td><td   >315</td><td   >361</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td   >779</td><td   >W</td><td   >351</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3450.html'>Sheila Reed</a></td><td   >835</td><td   >L</td><td   >324</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3451.html'>Shirley Hol</a></td><td   >1379</td><td   >W</td><td   >549</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td   >850</td><td   >W</td><td   >433</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3420.html'>Anne Scatchard</a></td><td   >476</td><td   >W</td><td   >371</td><td   >315</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3448.html'>Rob Hutchinson</a></td><td   >913</td><td   >L</td><td   >267</td><td   >384</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td   >932</td><td   >L</td><td   >387</td><td   >397</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td   >467</td><td   >W</td><td   >415</td><td   >401</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1831.html'>Keri Heart</a></td><td   >1313</td><td   >L</td><td   >311</td><td   >501</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td   >1220</td><td   >W</td><td   >500</td><td   >312</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1837.html'>Paula Messer</a></td><td   >1055</td><td   >L</td><td   >364</td><td   >444</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td   >976</td><td   >L</td><td   >407</td><td   >449</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_15503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15503'>+</button></td><td>3</td><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>4</td><td>10</td><td>0</td><td>-589</td><td>63</td><td>700</td><td>700</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_15503'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15503'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >4</td><td   >10</td><td   >0</td><td   >-589</td><td   >63</td><td   >700</td><td   >700</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_15503'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td>1439</td><td>L</td><td>280</td><td>491</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>1044</td><td>W</td><td>390</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3457.html'>Hanna Dodge</a></td><td>830</td><td>W</td><td>318</td><td>302</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2007.html'>Anne Hough</a></td><td>864</td><td>W</td><td>370</td><td>324</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3462.html'>Selena Chan</a></td><td>1085</td><td>L</td><td>353</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2211.html'>Lynne Butler</a></td><td>1551</td><td>L</td><td>300</td><td>368</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td>1106</td><td>L</td><td>384</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td>908</td><td>W</td><td>321</td><td>318</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td>1106</td><td>L</td><td>327</td><td>334</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td>1220</td><td>L</td><td>360</td><td>370</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td>908</td><td>L</td><td>348</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3454.html'>Valma Gidman</a></td><td>985</td><td>L</td><td>301</td><td>327</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td>436</td><td>L</td><td>338</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3422.html'>Betty Don</a></td><td>570</td><td>L</td><td>343</td><td>427</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td   >1439</td><td   >L</td><td   >280</td><td   >491</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td   >1044</td><td   >W</td><td   >390</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3457.html'>Hanna Dodge</a></td><td   >830</td><td   >W</td><td   >318</td><td   >302</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2007.html'>Anne Hough</a></td><td   >864</td><td   >W</td><td   >370</td><td   >324</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3462.html'>Selena Chan</a></td><td   >1085</td><td   >L</td><td   >353</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2211.html'>Lynne Butler</a></td><td   >1551</td><td   >L</td><td   >300</td><td   >368</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td   >1106</td><td   >L</td><td   >384</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td   >908</td><td   >W</td><td   >321</td><td   >318</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td   >1106</td><td   >L</td><td   >327</td><td   >334</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td   >1220</td><td   >L</td><td   >360</td><td   >370</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td   >908</td><td   >L</td><td   >348</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3454.html'>Valma Gidman</a></td><td   >985</td><td   >L</td><td   >301</td><td   >327</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td   >436</td><td   >L</td><td   >338</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3422.html'>Betty Don</a></td><td   >570</td><td   >L</td><td   >343</td><td   >427</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2659'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2659'>+</button></td><td>1</td><td><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td>557</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0.50</td><td>393.75</td><td>397.25</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2659'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2659'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/2659.html'>Annette Coombes</a></td><td   >557</td><td   >4</td><td   >2</td><td   >2</td><td   >0</td><td   >0.50</td><td   >393.75</td><td   >397.25</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2659'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>13</td><td>L</td><td>700</td><td>436</td><td>338</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>6</td><td>W</td><td>700</td><td>467</td><td>483</td><td>350</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>10</td><td>L</td><td>700</td><td>467</td><td>339</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>20</td><td>W</td><td>700</td><td>467</td><td>415</td><td>401</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >13</td><td   >L</td><td   >700</td><td   >436</td><td   >338</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >6</td><td   >W</td><td   >700</td><td   >467</td><td   >483</td><td   >350</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >10</td><td   >L</td><td   >700</td><td   >467</td><td   >339</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >20</td><td   >W</td><td   >700</td><td   >467</td><td   >415</td><td   >401</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2662'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2662'>+</button></td><td>2</td><td><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td>1004</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>345.33</td><td>382.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2662'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2662'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/2662.html'>Dianne Cole-Baker</a></td><td   >1004</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >345.33</td><td   >382.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2662'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>8</td><td>W</td><td>700</td><td>908</td><td>321</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>11</td><td>L</td><td>700</td><td>908</td><td>348</td><td>422</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>9</td><td>L</td><td>700</td><td>932</td><td>367</td><td>406</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >8</td><td   >W</td><td   >700</td><td   >908</td><td   >321</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >11</td><td   >L</td><td   >700</td><td   >908</td><td   >348</td><td   >422</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >9</td><td   >L</td><td   >700</td><td   >932</td><td   >367</td><td   >406</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3452'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3452'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td>784</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1.00</td><td>436.00</td><td>356.67</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3452'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3452'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3452.html'>Suzanne Harding</a></td><td   >784</td><td   >3</td><td   >3</td><td   >0</td><td   >0</td><td   >1.00</td><td   >436.00</td><td   >356.67</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3452'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>16</td><td>W</td><td>700</td><td>850</td><td>433</td><td>378</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>1</td><td>W</td><td>764</td><td>850</td><td>435</td><td>375</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>12</td><td>W</td><td>764</td><td>850</td><td>440</td><td>317</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >16</td><td   >W</td><td   >700</td><td   >850</td><td   >433</td><td   >378</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >1</td><td   >W</td><td   >764</td><td   >850</td><td   >435</td><td   >375</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >12</td><td   >W</td><td   >764</td><td   >850</td><td   >440</td><td   >317</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3423'>+</button></td><td>4</td><td><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td>1075</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>407.67</td><td>358.33</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3423'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3423'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/3423.html'>Carolyn Kyle</a></td><td   >1075</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >407.67</td><td   >358.33</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3423'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>10</td><td>L</td><td>700</td><td>1220</td><td>360</td><td>370</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>11</td><td>L</td><td>700</td><td>1220</td><td>363</td><td>393</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>22</td><td>W</td><td>700</td><td>1220</td><td>500</td><td>312</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >10</td><td   >L</td><td   >700</td><td   >1220</td><td   >360</td><td   >370</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >11</td><td   >L</td><td   >700</td><td   >1220</td><td   >363</td><td   >393</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >22</td><td   >W</td><td   >700</td><td   >1220</td><td   >500</td><td   >312</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3428'>+</button></td><td>5</td><td><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td>1070</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0.33</td><td>366.00</td><td>357.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3428'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3428'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/3428.html'>Heather Landon</a></td><td   >1070</td><td   >3</td><td   >1</td><td   >2</td><td   >0</td><td   >0.33</td><td   >366.00</td><td   >357.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3428'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>7</td><td>L</td><td>700</td><td>1106</td><td>384</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>9</td><td>L</td><td>700</td><td>1106</td><td>327</td><td>334</td></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>5</td><td>W</td><td>700</td><td>1106</td><td>387</td><td>312</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >7</td><td   >L</td><td   >700</td><td   >1106</td><td   >384</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >9</td><td   >L</td><td   >700</td><td   >1106</td><td   >327</td><td   >334</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >5</td><td   >W</td><td   >700</td><td   >1106</td><td   >387</td><td   >312</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2656'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2656'>+</button></td><td>6</td><td><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td>990</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>398.50</td><td>410.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2656'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2656'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/2656.html'>Ruth Groffman</a></td><td   >990</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >398.50</td><td   >410.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2656'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>2</td><td>W</td><td>700</td><td>1044</td><td>390</td><td>372</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>24</td><td>L</td><td>700</td><td>976</td><td>407</td><td>449</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >2</td><td   >W</td><td   >700</td><td   >1044</td><td   >390</td><td   >372</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >24</td><td   >L</td><td   >700</td><td   >976</td><td   >407</td><td   >449</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4778'>+</button></td><td>7</td><td><a href='/aardvark/html/players/4778.html'>Junior Gesmundo</a></td><td>559</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>406.00</td><td>346.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4778'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4778'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/4778.html'>Junior Gesmundo</a></td><td   >559</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >406.00</td><td   >346.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4778'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>5</td><td>W</td><td>764</td><td>559</td><td>406</td><td>346</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>15</td><td>W</td><td>764</td><td>559</td><td>406</td><td>347</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >5</td><td   >W</td><td   >764</td><td   >559</td><td   >406</td><td   >346</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >15</td><td   >W</td><td   >764</td><td   >559</td><td   >406</td><td   >347</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4775'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4775'>+</button></td><td>8</td><td><a href='/aardvark/html/players/4775.html'>Bernie Jardine</a></td><td>940</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0.75</td><td>381.00</td><td>357.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4775'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4775'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/4775.html'>Bernie Jardine</a></td><td   >940</td><td   >2</td><td   >1</td><td   >0</td><td   >1</td><td   >0.75</td><td   >381.00</td><td   >357.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4775'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>4</td><td>T</td><td>764</td><td>940</td><td>374</td><td>374</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>14</td><td>W</td><td>764</td><td>940</td><td>388</td><td>340</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >4</td><td   >T</td><td   >764</td><td   >940</td><td   >374</td><td   >374</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >14</td><td   >W</td><td   >764</td><td   >940</td><td   >388</td><td   >340</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3422'>+</button></td><td>9</td><td><a href='/aardvark/html/players/3422.html'>Betty Don</a></td><td>512</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>348.00</td><td>389.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3422'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/3422.html'>Betty Don</a></td><td   >512</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >348.00</td><td   >389.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3422'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>14</td><td>L</td><td>700</td><td>570</td><td>343</td><td>427</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>2</td><td>W</td><td>700</td><td>570</td><td>353</td><td>352</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >14</td><td   >L</td><td   >700</td><td   >570</td><td   >343</td><td   >427</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >2</td><td   >W</td><td   >700</td><td   >570</td><td   >353</td><td   >352</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4777'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4777'>+</button></td><td>10</td><td><a href='/aardvark/html/players/4777.html'>Jenny Litchfield</a></td><td>767</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>411.50</td><td>277.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4777'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4777'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/4777.html'>Jenny Litchfield</a></td><td   >767</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >411.50</td><td   >277.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4777'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>2</td><td>W</td><td>764</td><td>767</td><td>426</td><td>281</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>11</td><td>W</td><td>764</td><td>767</td><td>397</td><td>273</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >2</td><td   >W</td><td   >764</td><td   >767</td><td   >426</td><td   >281</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >11</td><td   >W</td><td   >764</td><td   >767</td><td   >397</td><td   >273</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4779'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4779'>+</button></td><td>11</td><td><a href='/aardvark/html/players/4779.html'>Karen Miller</a></td><td>697</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>332.50</td><td>383.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4779'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4779'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/4779.html'>Karen Miller</a></td><td   >697</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >332.50</td><td   >383.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4779'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>9</td><td>L</td><td>764</td><td>697</td><td>259</td><td>395</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>16</td><td>W</td><td>764</td><td>697</td><td>406</td><td>371</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >9</td><td   >L</td><td   >764</td><td   >697</td><td   >259</td><td   >395</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >16</td><td   >W</td><td   >764</td><td   >697</td><td   >406</td><td   >371</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4781'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4781'>+</button></td><td>12</td><td><a href='/aardvark/html/players/4781.html'>Suzanne Liddall</a></td><td>748</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0.00</td><td>327.00</td><td>405.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4781'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4781'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/4781.html'>Suzanne Liddall</a></td><td   >748</td><td   >2</td><td   >0</td><td   >2</td><td   >0</td><td   >0.00</td><td   >327.00</td><td   >405.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4781'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>8</td><td>L</td><td>764</td><td>748</td><td>303</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>10</td><td>L</td><td>764</td><td>748</td><td>351</td><td>421</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >8</td><td   >L</td><td   >764</td><td   >748</td><td   >303</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >10</td><td   >L</td><td   >764</td><td   >748</td><td   >351</td><td   >421</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_4776'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4776'>+</button></td><td>13</td><td><a href='/aardvark/html/players/4776.html'>Jackie Reid</a></td><td>444</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0.50</td><td>372.50</td><td>353.50</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_4776'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4776'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/4776.html'>Jackie Reid</a></td><td   >444</td><td   >2</td><td   >1</td><td   >1</td><td   >0</td><td   >0.50</td><td   >372.50</td><td   >353.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4776'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>6</td><td>L</td><td>764</td><td>444</td><td>333</td><td>345</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>13</td><td>W</td><td>764</td><td>444</td><td>412</td><td>362</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >6</td><td   >L</td><td   >764</td><td   >444</td><td   >333</td><td   >345</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >13</td><td   >W</td><td   >764</td><td   >444</td><td   >412</td><td   >362</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3420'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3420'>+</button></td><td>14</td><td><a href='/aardvark/html/players/3420.html'>Anne Scatchard</a></td><td>491</td><td>2</td><td>2</td><td>0</td><td>0</td><td>1.00</td><td>416.50</td><td>320.50</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3420'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3420'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/3420.html'>Anne Scatchard</a></td><td   >491</td><td   >2</td><td   >2</td><td   >0</td><td   >0</td><td   >1.00</td><td   >416.50</td><td   >320.50</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3420'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>17</td><td>W</td><td>700</td><td>476</td><td>371</td><td>315</td></tr>
-        <tr  class='rowodd'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>3</td><td>W</td><td>764</td><td>476</td><td>462</td><td>326</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >17</td><td   >W</td><td   >700</td><td   >476</td><td   >371</td><td   >315</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >3</td><td   >W</td><td   >764</td><td   >476</td><td   >462</td><td   >326</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1831'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1831'>+</button></td><td>15</td><td><a href='/aardvark/html/players/1831.html'>Keri Heart</a></td><td>1377</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>311.00</td><td>501.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1831'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1831'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/1831.html'>Keri Heart</a></td><td   >1377</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >311.00</td><td   >501.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1831'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>21</td><td>L</td><td>700</td><td>1313</td><td>311</td><td>501</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >21</td><td   >L</td><td   >700</td><td   >1313</td><td   >311</td><td   >501</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_2657'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2657'>+</button></td><td>16</td><td><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td>1142</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>328.00</td><td>436.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_2657'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2657'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/2657.html'>Yoon Kim Fong</a></td><td   >1142</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >328.00</td><td   >436.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2657'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>3</td><td>L</td><td>700</td><td>1230</td><td>328</td><td>436</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >3</td><td   >L</td><td   >700</td><td   >1230</td><td   >328</td><td   >436</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2007'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2007'>+</button></td><td>17</td><td><a href='/aardvark/html/players/2007.html'>Anne Hough</a></td><td>859</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>370.00</td><td>324.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2007'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2007'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/2007.html'>Anne Hough</a></td><td   >859</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >370.00</td><td   >324.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2007'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>4</td><td>W</td><td>700</td><td>864</td><td>370</td><td>324</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >4</td><td   >W</td><td   >700</td><td   >864</td><td   >370</td><td   >324</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3457'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3457'>+</button></td><td>18</td><td><a href='/aardvark/html/players/3457.html'>Hanna Dodge</a></td><td>830</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>318.00</td><td>302.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3457'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3457'>+</button></td><td   >18</td><td   ><a href='/aardvark/html/players/3457.html'>Hanna Dodge</a></td><td   >830</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >318.00</td><td   >302.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3457'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>3</td><td>W</td><td>700</td><td>830</td><td>318</td><td>302</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >3</td><td   >W</td><td   >700</td><td   >830</td><td   >318</td><td   >302</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1004'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1004'>+</button></td><td>19</td><td><a href='/aardvark/html/players/1004.html'>Robert Springer</a></td><td>1058</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>357.00</td><td>503.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1004'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1004'>+</button></td><td   >19</td><td   ><a href='/aardvark/html/players/1004.html'>Robert Springer</a></td><td   >1058</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >357.00</td><td   >503.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1004'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>8</td><td>L</td><td>700</td><td>1035</td><td>357</td><td>503</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >8</td><td   >L</td><td   >700</td><td   >1035</td><td   >357</td><td   >503</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3450'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3450'>+</button></td><td>20</td><td><a href='/aardvark/html/players/3450.html'>Sheila Reed</a></td><td>835</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>324.00</td><td>420.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3450'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3450'>+</button></td><td   >20</td><td   ><a href='/aardvark/html/players/3450.html'>Sheila Reed</a></td><td   >835</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >324.00</td><td   >420.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3450'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>14</td><td>L</td><td>700</td><td>835</td><td>324</td><td>420</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >14</td><td   >L</td><td   >700</td><td   >835</td><td   >324</td><td   >420</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2553'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2553'>+</button></td><td>21</td><td><a href='/aardvark/html/players/2553.html'>Marja Takala</a></td><td>930</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>315.00</td><td>361.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2553'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2553'>+</button></td><td   >21</td><td   ><a href='/aardvark/html/players/2553.html'>Marja Takala</a></td><td   >930</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >315.00</td><td   >361.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2553'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>12</td><td>L</td><td>700</td><td>1019</td><td>315</td><td>361</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >12</td><td   >L</td><td   >700</td><td   >1019</td><td   >315</td><td   >361</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3434'>+</button></td><td>22</td><td><a href='/aardvark/html/players/3434.html'>Joanne Morley</a></td><td>945</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>408.00</td><td>351.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3434'>+</button></td><td   >22</td><td   ><a href='/aardvark/html/players/3434.html'>Joanne Morley</a></td><td   >945</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >408.00</td><td   >351.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3434'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>4</td><td>W</td><td>700</td><td>945</td><td>408</td><td>351</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >4</td><td   >W</td><td   >700</td><td   >945</td><td   >408</td><td   >351</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2211'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2211'>+</button></td><td>23</td><td><a href='/aardvark/html/players/2211.html'>Lynne Butler</a></td><td>1603</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>300.00</td><td>368.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2211'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2211'>+</button></td><td   >23</td><td   ><a href='/aardvark/html/players/2211.html'>Lynne Butler</a></td><td   >1603</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >300.00</td><td   >368.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2211'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>6</td><td>L</td><td>700</td><td>1551</td><td>300</td><td>368</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >6</td><td   >L</td><td   >700</td><td   >1551</td><td   >300</td><td   >368</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1837'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1837'>+</button></td><td>24</td><td><a href='/aardvark/html/players/1837.html'>Paula Messer</a></td><td>1101</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>364.00</td><td>444.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1837'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1837'>+</button></td><td   >24</td><td   ><a href='/aardvark/html/players/1837.html'>Paula Messer</a></td><td   >1101</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >364.00</td><td   >444.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1837'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>23</td><td>L</td><td>700</td><td>1055</td><td>364</td><td>444</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >23</td><td   >L</td><td   >700</td><td   >1055</td><td   >364</td><td   >444</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_820'>+</button></td><td>25</td><td><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td>1403</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>280.00</td><td>491.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_820'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_820'>+</button></td><td   >25</td><td   ><a href='/aardvark/html/players/820.html'>Paul Lister</a></td><td   >1403</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >280.00</td><td   >491.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_820'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>1</td><td>L</td><td>700</td><td>1439</td><td>280</td><td>491</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >1</td><td   >L</td><td   >700</td><td   >1439</td><td   >280</td><td   >491</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3454'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3454'>+</button></td><td>26</td><td><a href='/aardvark/html/players/3454.html'>Valma Gidman</a></td><td>774</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>301.00</td><td>327.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3454'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3454'>+</button></td><td   >26</td><td   ><a href='/aardvark/html/players/3454.html'>Valma Gidman</a></td><td   >774</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >301.00</td><td   >327.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3454'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>12</td><td>L</td><td>700</td><td>985</td><td>301</td><td>327</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >12</td><td   >L</td><td   >700</td><td   >985</td><td   >301</td><td   >327</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3451'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3451'>+</button></td><td>27</td><td><a href='/aardvark/html/players/3451.html'>Shirley Hol</a></td><td>1212</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>549.00</td><td>445.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3451'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3451'>+</button></td><td   >27</td><td   ><a href='/aardvark/html/players/3451.html'>Shirley Hol</a></td><td   >1212</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >549.00</td><td   >445.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3451'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>15</td><td>W</td><td>700</td><td>1379</td><td>549</td><td>445</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >15</td><td   >W</td><td   >700</td><td   >1379</td><td   >549</td><td   >445</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3448'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3448'>+</button></td><td>28</td><td><a href='/aardvark/html/players/3448.html'>Rob Hutchinson</a></td><td>918</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>267.00</td><td>384.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3448'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3448'>+</button></td><td   >28</td><td   ><a href='/aardvark/html/players/3448.html'>Rob Hutchinson</a></td><td   >918</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >267.00</td><td   >384.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3448'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>18</td><td>L</td><td>700</td><td>913</td><td>267</td><td>384</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >18</td><td   >L</td><td   >700</td><td   >913</td><td   >267</td><td   >384</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_422'>+</button></td><td>29</td><td><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td>690</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>351.00</td><td>318.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_422'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_422'>+</button></td><td   >29</td><td   ><a href='/aardvark/html/players/422.html'>Liz Jackman</a></td><td   >690</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >351.00</td><td   >318.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_422'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>13</td><td>W</td><td>700</td><td>779</td><td>351</td><td>318</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >13</td><td   >W</td><td   >700</td><td   >779</td><td   >351</td><td   >318</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1379'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1379'>+</button></td><td>30</td><td><a href='/aardvark/html/players/1379.html'>Rocky Sharma</a></td><td>1575</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>351.00</td><td>415.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1379'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1379'>+</button></td><td   >30</td><td   ><a href='/aardvark/html/players/1379.html'>Rocky Sharma</a></td><td   >1575</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >351.00</td><td   >415.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1379'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>1</td><td>L</td><td>700</td><td>1566</td><td>351</td><td>415</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >1</td><td   >L</td><td   >700</td><td   >1566</td><td   >351</td><td   >415</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_2669'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2669'>+</button></td><td>31</td><td><a href='/aardvark/html/players/2669.html'>Roger Cole-Baker</a></td><td>1001</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>360.00</td><td>472.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_2669'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_2669'>+</button></td><td   >31</td><td   ><a href='/aardvark/html/players/2669.html'>Roger Cole-Baker</a></td><td   >1001</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >360.00</td><td   >472.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_2669'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>7</td><td>L</td><td>700</td><td>951</td><td>360</td><td>472</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >7</td><td   >L</td><td   >700</td><td   >951</td><td   >360</td><td   >472</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1865'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1865'>+</button></td><td>32</td><td><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td>941</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>387.00</td><td>397.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1865'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1865'>+</button></td><td   >32</td><td   ><a href='/aardvark/html/players/1865.html'>George Khamis</a></td><td   >941</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >387.00</td><td   >397.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1865'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td>2017-11-23</td><td>19</td><td>L</td><td>700</td><td>932</td><td>387</td><td>397</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/409.html'>WESPA Seniors Championship</a></td><td   >2017-11-23</td><td   >19</td><td   >L</td><td   >700</td><td   >932</td><td   >387</td><td   >397</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3462'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3462'>+</button></td><td>33</td><td><a href='/aardvark/html/players/3462.html'>Selena Chan</a></td><td>1085</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>353.00</td><td>366.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3462'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3462'>+</button></td><td   >33</td><td   ><a href='/aardvark/html/players/3462.html'>Selena Chan</a></td><td   >1085</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >353.00</td><td   >366.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3462'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td>2017-11-19</td><td>5</td><td>L</td><td>700</td><td>1085</td><td>353</td><td>366</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/410.html'>WESPA Seniors Warmup</a></td><td   >2017-11-19</td><td   >5</td><td   >L</td><td   >700</td><td   >1085</td><td   >353</td><td   >366</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_4780'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4780'>+</button></td><td>34</td><td><a href='/aardvark/html/players/4780.html'>Rodney Jardine</a></td><td>680</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>340.00</td><td>422.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_4780'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_4780'>+</button></td><td   >34</td><td   ><a href='/aardvark/html/players/4780.html'>Rodney Jardine</a></td><td   >680</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >340.00</td><td   >422.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_4780'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td>2018-07-29</td><td>7</td><td>L</td><td>764</td><td>680</td><td>340</td><td>422</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/675.html'>Christmas In July</a></td><td   >2018-07-29</td><td   >7</td><td   >L</td><td   >764</td><td   >680</td><td   >340</td><td   >422</td></tr>
 </table></div></td></tr>
 
 </table>

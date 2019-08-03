@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Dennis Tan</h2>
             <div>
               <IMG SRC="../../flags/PHL.png" alt="PHL">
-              <p>PHL</p>
+              <p><a href='/aardvark/html/rankings/PHL.html'>Philippines</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 316<br>
               <b>Games Played:</b> 8<br>
               <b>Wins:</b> 2 (25.00%)<br>
               <b>Losses: </b>5 (62.50%)<br>
@@ -183,69 +184,69 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_28395'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_28395'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>2.5</td><td>5.5</td><td>6</td><td>-44</td><td>16</td><td>316</td><td>316</td><td>0</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_28395'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_28395'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >2.5</td><td   >5.5</td><td   >6</td><td   >-44</td><td   >16</td><td   >316</td><td   >316</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_28395'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5053.html'>Shane Isabille Javan</a></td><td>300</td><td>W</td><td>251</td><td>213</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5049.html'>Ninio Carijutan</a></td><td>660</td><td>L</td><td>267</td><td>410</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5043.html'>Eugene Trasfiero</a></td><td>563</td><td>L</td><td>352</td><td>356</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5046.html'>Hannah Jasmin Felici</a></td><td>494</td><td>L</td><td>309</td><td>354</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5055.html'>Vivien Oca</a></td><td>974</td><td>L</td><td>277</td><td>446</td></tr>
-        <tr  class='rowodd'  ><td>7</td><td><a href='/aardvark/html/players/5047.html'>Lawrence dela Cruz</a></td><td>300</td><td>W</td><td>344</td><td>265</td></tr>
-        <tr  class='roweven'  ><td>8</td><td><a href='/aardvark/html/players/3882.html'>Ardi Sevilla</a></td><td>461</td><td>L</td><td>0</td><td>100</td></tr>
-        <tr  class='rowodd'  ><td>9</td><td><a href='/aardvark/html/players/5041.html'>Ashley Ace Angeles</a></td><td>347</td><td>T</td><td>0</td><td>0</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5053.html'>Shane Isabille Javan</a></td><td   >300</td><td   >W</td><td   >251</td><td   >213</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5049.html'>Ninio Carijutan</a></td><td   >660</td><td   >L</td><td   >267</td><td   >410</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5043.html'>Eugene Trasfiero</a></td><td   >563</td><td   >L</td><td   >352</td><td   >356</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5046.html'>Hannah Jasmin Felici</a></td><td   >494</td><td   >L</td><td   >309</td><td   >354</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5055.html'>Vivien Oca</a></td><td   >974</td><td   >L</td><td   >277</td><td   >446</td></tr>
+        <tr  class='rowodd'  ><td   >7</td><td   ><a href='/aardvark/html/players/5047.html'>Lawrence dela Cruz</a></td><td   >300</td><td   >W</td><td   >344</td><td   >265</td></tr>
+        <tr  class='roweven'  ><td   >8</td><td   ><a href='/aardvark/html/players/3882.html'>Ardi Sevilla</a></td><td   >461</td><td   >L</td><td   >0</td><td   >100</td></tr>
+        <tr  class='rowodd'  ><td   >9</td><td   ><a href='/aardvark/html/players/5041.html'>Ashley Ace Angeles</a></td><td   >347</td><td   >T</td><td   >0</td><td   >0</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_5047'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5047'>+</button></td><td>1</td><td><a href='/aardvark/html/players/5047.html'>Lawrence dela Cruz</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>344.00</td><td>265.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_5047'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5047'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/5047.html'>Lawrence dela Cruz</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >344.00</td><td   >265.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5047'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>7</td><td>W</td><td>316</td><td>300</td><td>344</td><td>265</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >7</td><td   >W</td><td   >316</td><td   >300</td><td   >344</td><td   >265</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_5053'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5053'>+</button></td><td>2</td><td><a href='/aardvark/html/players/5053.html'>Shane Isabille Javan</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>251.00</td><td>213.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_5053'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5053'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/5053.html'>Shane Isabille Javan</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >251.00</td><td   >213.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5053'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>1</td><td>W</td><td>316</td><td>300</td><td>251</td><td>213</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >1</td><td   >W</td><td   >316</td><td   >300</td><td   >251</td><td   >213</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_5041'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5041'>+</button></td><td>3</td><td><a href='/aardvark/html/players/5041.html'>Ashley Ace Angeles</a></td><td>347</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>0.00</td><td>0.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_5041'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5041'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/5041.html'>Ashley Ace Angeles</a></td><td   >347</td><td   >1</td><td   >0</td><td   >0</td><td   >1</td><td   >0.50</td><td   >0.00</td><td   >0.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5041'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>9</td><td>T</td><td>316</td><td>347</td><td>0</td><td>0</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >9</td><td   >T</td><td   >316</td><td   >347</td><td   >0</td><td   >0</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_5049'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5049'>+</button></td><td>4</td><td><a href='/aardvark/html/players/5049.html'>Ninio Carijutan</a></td><td>660</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>267.00</td><td>410.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_5049'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5049'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/5049.html'>Ninio Carijutan</a></td><td   >660</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >267.00</td><td   >410.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5049'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>2</td><td>L</td><td>316</td><td>660</td><td>267</td><td>410</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >2</td><td   >L</td><td   >316</td><td   >660</td><td   >267</td><td   >410</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3882'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3882'>+</button></td><td>5</td><td><a href='/aardvark/html/players/3882.html'>Ardi Sevilla</a></td><td>472</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>0.00</td><td>100.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3882'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3882'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/3882.html'>Ardi Sevilla</a></td><td   >472</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >0.00</td><td   >100.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3882'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>8</td><td>L</td><td>316</td><td>461</td><td>0</td><td>100</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >8</td><td   >L</td><td   >316</td><td   >461</td><td   >0</td><td   >100</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_5043'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5043'>+</button></td><td>6</td><td><a href='/aardvark/html/players/5043.html'>Eugene Trasfiero</a></td><td>563</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>352.00</td><td>356.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_5043'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5043'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/5043.html'>Eugene Trasfiero</a></td><td   >563</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >352.00</td><td   >356.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5043'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>3</td><td>L</td><td>316</td><td>563</td><td>352</td><td>356</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >3</td><td   >L</td><td   >316</td><td   >563</td><td   >352</td><td   >356</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_5055'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5055'>+</button></td><td>7</td><td><a href='/aardvark/html/players/5055.html'>Vivien Oca</a></td><td>974</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>277.00</td><td>446.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_5055'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5055'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/5055.html'>Vivien Oca</a></td><td   >974</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >277.00</td><td   >446.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5055'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>5</td><td>L</td><td>316</td><td>974</td><td>277</td><td>446</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >5</td><td   >L</td><td   >316</td><td   >974</td><td   >277</td><td   >446</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_5046'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5046'>+</button></td><td>8</td><td><a href='/aardvark/html/players/5046.html'>Hannah Jasmin Felici</a></td><td>494</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>309.00</td><td>354.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_5046'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_5046'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/5046.html'>Hannah Jasmin Felici</a></td><td   >494</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >309.00</td><td   >354.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_5046'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td>2018-07-15</td><td>4</td><td>L</td><td>316</td><td>494</td><td>309</td><td>354</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/722.html'>Philippine National Scrabble Championship</a></td><td   >2018-07-15</td><td   >4</td><td   >L</td><td   >316</td><td   >494</td><td   >309</td><td   >354</td></tr>
 </table></div></td></tr>
 
 </table>

@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,170 +156,597 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28514'>+</button></td><td>1</td><td>5</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>15</td><td>7</td><td>0</td><td>1176</td><td>1772</td><td>1857</td><td>85</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28514'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28514'>+</button></td><td   >1</td><td   >5</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >15</td><td   >7</td><td   >0</td><td   >1176</td><td   >1772</td><td   >1857</td><td   >85</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28514'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>441</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>497</td><td>365</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>430</td><td>463</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>448</td><td>342</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>533</td><td>369</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>491</td><td>334</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>478</td><td>342</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>486</td><td>446</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>406</td><td>533</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>519</td><td>335</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>458</td><td>358</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>439</td><td>528</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>L</td><td>386</td><td>402</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>478</td><td>377</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>425</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>449</td><td>374</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>334</td><td>401</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>425</td><td>472</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>374</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>524</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>504</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>485</td><td>373</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >441</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >497</td><td   >365</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >430</td><td   >463</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >448</td><td   >342</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >533</td><td   >369</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >491</td><td   >334</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >478</td><td   >342</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >486</td><td   >446</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >406</td><td   >533</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >519</td><td   >335</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >458</td><td   >358</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >439</td><td   >528</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >L</td><td   >386</td><td   >402</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >478</td><td   >377</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >425</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >449</td><td   >374</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >334</td><td   >401</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >425</td><td   >472</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >374</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >524</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >504</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >485</td><td   >373</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28513'>+</button></td><td>2</td><td>1</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>13</td><td>9</td><td>0</td><td>386</td><td>1954</td><td>1938</td><td>-16</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28513'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28513'>+</button></td><td   >2</td><td   >1</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >13</td><td   >9</td><td   >0</td><td   >386</td><td   >1954</td><td   >1938</td><td   >-16</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28513'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>403</td><td>349</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>450</td><td>371</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>L</td><td>377</td><td>429</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>548</td><td>395</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>403</td><td>427</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>449</td><td>484</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>496</td><td>362</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>467</td><td>497</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>511</td><td>337</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>335</td><td>519</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>358</td><td>458</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>528</td><td>439</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>479</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>408</td><td>401</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>475</td><td>471</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>438</td><td>490</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>419</td><td>502</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>472</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>487</td><td>463</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>371</td><td>524</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>435</td><td>402</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>483</td><td>293</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >403</td><td   >349</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >450</td><td   >371</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >L</td><td   >377</td><td   >429</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >548</td><td   >395</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >403</td><td   >427</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >449</td><td   >484</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >496</td><td   >362</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >467</td><td   >497</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >511</td><td   >337</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >335</td><td   >519</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >358</td><td   >458</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >528</td><td   >439</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >479</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >408</td><td   >401</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >475</td><td   >471</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >438</td><td   >490</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >419</td><td   >502</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >472</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >487</td><td   >463</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >371</td><td   >524</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >435</td><td   >402</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >483</td><td   >293</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28517'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28517'>+</button></td><td>3</td><td>2</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>12</td><td>10</td><td>0</td><td>147</td><td>1839</td><td>1845</td><td>6</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28517'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28517'>+</button></td><td   >3</td><td   >2</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >12</td><td   >10</td><td   >0</td><td   >147</td><td   >1839</td><td   >1845</td><td   >6</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28517'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>409</td><td>441</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>365</td><td>497</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>463</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>395</td><td>548</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>427</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>484</td><td>449</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>472</td><td>445</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>L</td><td>378</td><td>437</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>540</td><td>527</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>508</td><td>360</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>525</td><td>404</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>419</td><td>435</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>424</td><td>504</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>558</td><td>334</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>341</td><td>405</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>490</td><td>438</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>401</td><td>334</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>380</td><td>406</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>368</td><td>462</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>412</td><td>354</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>404</td><td>504</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>520</td><td>419</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >409</td><td   >441</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >365</td><td   >497</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >463</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >395</td><td   >548</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >427</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >484</td><td   >449</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >472</td><td   >445</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >L</td><td   >378</td><td   >437</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >540</td><td   >527</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >508</td><td   >360</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >525</td><td   >404</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >419</td><td   >435</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >424</td><td   >504</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >558</td><td   >334</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >341</td><td   >405</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >490</td><td   >438</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >401</td><td   >334</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >380</td><td   >406</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >368</td><td   >462</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >412</td><td   >354</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >404</td><td   >504</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >520</td><td   >419</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28515'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28515'>+</button></td><td>4</td><td>3</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>11</td><td>11</td><td>0</td><td>75</td><td>1816</td><td>1814</td><td>-2</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28515'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28515'>+</button></td><td   >4</td><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >11</td><td   >11</td><td   >0</td><td   >75</td><td   >1816</td><td   >1814</td><td   >-2</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28515'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>456</td><td>287</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>446</td><td>420</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>428</td><td>523</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>559</td><td>342</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>559</td><td>344</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>425</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>342</td><td>478</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>446</td><td>486</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>533</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>360</td><td>508</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>404</td><td>525</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>435</td><td>419</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>368</td><td>479</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>401</td><td>408</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>471</td><td>475</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>374</td><td>449</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>424</td><td>409</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>406</td><td>380</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>462</td><td>368</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>475</td><td>518</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>431</td><td>329</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>293</td><td>483</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >456</td><td   >287</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >446</td><td   >420</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >428</td><td   >523</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >559</td><td   >342</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >559</td><td   >344</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >425</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >342</td><td   >478</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >446</td><td   >486</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >533</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >360</td><td   >508</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >404</td><td   >525</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >435</td><td   >419</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >368</td><td   >479</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >401</td><td   >408</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >471</td><td   >475</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >374</td><td   >449</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >424</td><td   >409</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >406</td><td   >380</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >462</td><td   >368</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >475</td><td   >518</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >431</td><td   >329</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >293</td><td   >483</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_28516'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28516'>+</button></td><td>5</td><td>4</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>11</td><td>11</td><td>0</td><td>-405</td><td>1809</td><td>1809</td><td>0</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_28516'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28516'>+</button></td><td   >5</td><td   >4</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >11</td><td   >11</td><td   >0</td><td   >-405</td><td   >1809</td><td   >1809</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28516'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>287</td><td>456</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>420</td><td>446</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>523</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>342</td><td>448</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>369</td><td>533</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>334</td><td>491</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>362</td><td>496</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>497</td><td>467</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>337</td><td>511</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>441</td><td>421</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>461</td><td>276</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>L</td><td>390</td><td>477</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>504</td><td>424</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>334</td><td>558</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>405</td><td>341</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>429</td><td>426</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>502</td><td>419</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>1695</td><td>W</td><td>642</td><td>329</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>428</td><td>374</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>W</td><td>518</td><td>475</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>402</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>419</td><td>520</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >287</td><td   >456</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >420</td><td   >446</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >523</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >342</td><td   >448</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >369</td><td   >533</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >334</td><td   >491</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >362</td><td   >496</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >497</td><td   >467</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >337</td><td   >511</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >441</td><td   >421</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >461</td><td   >276</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >L</td><td   >390</td><td   >477</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >504</td><td   >424</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >334</td><td   >558</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >405</td><td   >341</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >429</td><td   >426</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >502</td><td   >419</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   >W</td><td   >642</td><td   >329</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >428</td><td   >374</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >W</td><td   >518</td><td   >475</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >402</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >419</td><td   >520</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_28518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28518'>+</button></td><td>6</td><td>6</td><td><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td>4</td><td>18</td><td>0</td><td>-1379</td><td>1695</td><td>1610</td><td>-85</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_28518'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_28518'>+</button></td><td   >6</td><td   >6</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >4</td><td   >18</td><td   >0</td><td   >-1379</td><td   >1695</td><td   >1610</td><td   >-85</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_28518'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>349</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>371</td><td>450</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>W</td><td>429</td><td>377</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>342</td><td>559</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>344</td><td>559</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>387</td><td>425</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>445</td><td>472</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>W</td><td>437</td><td>378</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>527</td><td>540</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>421</td><td>441</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>276</td><td>461</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>W</td><td>477</td><td>390</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>W</td><td>402</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>377</td><td>478</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>408</td><td>425</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>426</td><td>429</td></tr>
-        <tr  class='roweven'  ><td>17</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>409</td><td>424</td></tr>
-        <tr  class='rowodd'  ><td>18</td><td><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td>1809</td><td>L</td><td>329</td><td>642</td></tr>
-        <tr  class='roweven'  ><td>19</td><td><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td>1954</td><td>L</td><td>463</td><td>487</td></tr>
-        <tr  class='rowodd'  ><td>20</td><td><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td>1839</td><td>L</td><td>354</td><td>412</td></tr>
-        <tr  class='roweven'  ><td>21</td><td><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td>1816</td><td>L</td><td>329</td><td>431</td></tr>
-        <tr  class='rowodd'  ><td>22</td><td><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td>1772</td><td>L</td><td>373</td><td>485</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >349</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >371</td><td   >450</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >W</td><td   >429</td><td   >377</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >342</td><td   >559</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >344</td><td   >559</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >387</td><td   >425</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >445</td><td   >472</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >W</td><td   >437</td><td   >378</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >527</td><td   >540</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >421</td><td   >441</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >276</td><td   >461</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >W</td><td   >477</td><td   >390</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >W</td><td   >402</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >377</td><td   >478</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >408</td><td   >425</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >426</td><td   >429</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >409</td><td   >424</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >L</td><td   >329</td><td   >642</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >L</td><td   >463</td><td   >487</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >L</td><td   >354</td><td   >412</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >L</td><td   >329</td><td   >431</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >L</td><td   >373</td><td   >485</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >642</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >559</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >559</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >558</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >548</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >540</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >533</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >533</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >528</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >525</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >524</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >523</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >520</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >519</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >518</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >511</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >508</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >504</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >504</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >502</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >497</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >497</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >496</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >491</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >490</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >487</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >486</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >485</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >484</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >483</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >479</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >478</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >478</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >477</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >475</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >472</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >472</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >463</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >462</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >461</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >458</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >456</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >450</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >449</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >448</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >446</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >441</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >441</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >437</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >435</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >435</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >431</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >429</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >429</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >428</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >427</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >425</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >425</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >424</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >412</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >408</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >406</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >405</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >403</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >402</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >401</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >17</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >527</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >475</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >471</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >467</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >463</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >449</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >446</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >445</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >439</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >438</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >430</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >428</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >426</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >425</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >424</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >421</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >420</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >419</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >419</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >419</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >409</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >409</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >408</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >406</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >404</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >404</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >403</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >402</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >401</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >395</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >390</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >387</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >386</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >380</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >378</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >377</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >377</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >374</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >374</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >373</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >371</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >371</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >369</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >368</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >368</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >365</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >362</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >360</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >358</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >354</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >349</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >344</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >342</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >342</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >342</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >341</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >337</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >335</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >334</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >334</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >334</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >329</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >329</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >293</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >287</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >276</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >11</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >642</td><td   >329</td><td   >313</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >558</td><td   >334</td><td   >224</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >559</td><td   >342</td><td   >217</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >559</td><td   >344</td><td   >215</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >483</td><td   >293</td><td   >190</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >461</td><td   >276</td><td   >185</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >519</td><td   >335</td><td   >184</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >511</td><td   >337</td><td   >174</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >456</td><td   >287</td><td   >169</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >533</td><td   >369</td><td   >164</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >491</td><td   >334</td><td   >157</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >524</td><td   >371</td><td   >153</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >548</td><td   >395</td><td   >153</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >508</td><td   >360</td><td   >148</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >478</td><td   >342</td><td   >136</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >496</td><td   >362</td><td   >134</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >497</td><td   >365</td><td   >132</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >533</td><td   >406</td><td   >127</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >525</td><td   >404</td><td   >121</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >485</td><td   >373</td><td   >112</td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >479</td><td   >368</td><td   >111</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >448</td><td   >342</td><td   >106</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >431</td><td   >329</td><td   >102</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >478</td><td   >377</td><td   >101</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >520</td><td   >419</td><td   >101</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >504</td><td   >404</td><td   >100</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >458</td><td   >358</td><td   >100</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >523</td><td   >428</td><td   >95</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >462</td><td   >368</td><td   >94</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >528</td><td   >439</td><td   >89</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >477</td><td   >390</td><td   >87</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >502</td><td   >419</td><td   >83</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >504</td><td   >424</td><td   >80</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >450</td><td   >371</td><td   >79</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >449</td><td   >374</td><td   >75</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >401</td><td   >334</td><td   >67</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >405</td><td   >341</td><td   >64</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >437</td><td   >378</td><td   >59</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >412</td><td   >354</td><td   >58</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >428</td><td   >374</td><td   >54</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >403</td><td   >349</td><td   >54</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >429</td><td   >377</td><td   >52</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >490</td><td   >438</td><td   >52</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >472</td><td   >425</td><td   >47</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >518</td><td   >475</td><td   >43</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >486</td><td   >446</td><td   >40</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >425</td><td   >387</td><td   >38</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >484</td><td   >449</td><td   >35</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >435</td><td   >402</td><td   >33</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >463</td><td   >430</td><td   >33</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >441</td><td   >409</td><td   >32</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >497</td><td   >467</td><td   >30</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >472</td><td   >445</td><td   >27</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >406</td><td   >380</td><td   >26</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >446</td><td   >420</td><td   >26</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >427</td><td   >403</td><td   >24</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >487</td><td   >463</td><td   >24</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >441</td><td   >421</td><td   >20</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >425</td><td   >408</td><td   >17</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >402</td><td   >386</td><td   >16</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >435</td><td   >419</td><td   >16</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >424</td><td   >409</td><td   >15</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >540</td><td   >527</td><td   >13</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >408</td><td   >401</td><td   >7</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >475</td><td   >471</td><td   >4</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >429</td><td   >426</td><td   >3</td><td   >16</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1067</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >993</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >971</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >967</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >964</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >951</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >950</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >946</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >943</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >939</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >939</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >933</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >932</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >929</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >928</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >928</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >921</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >917</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >908</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >903</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >902</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >901</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >897</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >895</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >893</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >892</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >868</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >867</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >866</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >862</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >862</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >858</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >858</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >855</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >855</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >854</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >854</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >850</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >848</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >847</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >837</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >833</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >833</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >830</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >830</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >825</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >823</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >821</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >820</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >816</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >815</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >812</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >809</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >806</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >802</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >790</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >788</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >786</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >776</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >766</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >760</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >752</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >746</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >743</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >737</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >735</td><td   >17</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >735</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >737</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >743</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >746</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >752</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >760</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >766</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >776</td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >786</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >788</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >790</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >802</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >806</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >809</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >812</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >815</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >816</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >820</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >821</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >823</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >825</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >830</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >830</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >833</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >833</td><td   >17</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >837</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >847</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >848</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >850</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >854</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >854</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >855</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >855</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >858</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >858</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >862</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >862</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >866</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >867</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >868</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >892</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >893</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >895</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >897</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >901</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >902</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >903</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >908</td><td   >21</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >917</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >921</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >928</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >928</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >929</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >932</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >933</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >939</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >939</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >943</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >946</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >950</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >951</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >964</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >967</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >971</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >993</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1067</td><td   >9</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >259</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >259</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >259</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >259</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >182</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >182</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >182</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >182</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >182</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >145</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >145</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >145</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >145</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >145</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >144</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >144</td><td   >20</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >144</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >144</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >138</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >138</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >138</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >138</td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >121</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >121</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >121</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >121</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >121</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >115</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >115</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >115</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >1954</td><td   >115</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >114</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >33</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >114</td><td   >18</td></tr>
+        <tr  class='rowodd'  ><td   >34</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >114</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >35</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >114</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >36</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >114</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >37</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >77</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >38</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >77</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >39</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >77</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >40</td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >1695</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   >77</td><td   >22</td></tr>
+        <tr  class='roweven'  ><td   >41</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >67</td><td   >21</td></tr>
+        <tr  class='rowodd'  ><td   >42</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >67</td><td   >17</td></tr>
+        <tr  class='roweven'  ><td   >43</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >67</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >44</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >67</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >45</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >67</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >46</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >44</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >47</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >44</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >48</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >44</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >49</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >44</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >50</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >37</td><td   >19</td></tr>
+        <tr  class='roweven'  ><td   >51</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >37</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >52</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >37</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >53</td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >1772</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   >37</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >54</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >30</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >55</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >30</td><td   >22</td></tr>
+        <tr  class='rowodd'  ><td   >56</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >30</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >57</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >30</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >58</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >23</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >59</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >23</td><td   >19</td></tr>
+        <tr  class='rowodd'  ><td   >60</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >23</td><td   >18</td></tr>
+        <tr  class='roweven'  ><td   >61</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >23</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >62</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >1839</td><td   >23</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >63</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >7</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >64</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >7</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >65</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >7</td><td   >20</td></tr>
+        <tr  class='rowodd'  ><td   >66</td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >1809</td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >1816</td><td   >7</td><td   >1</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/50.html'>Winter Zxqkj</a></td><td   >10.013</td><td   >15</td><td   >202</td><td   >116</td><td   >32</td><td   >23</td><td   >1772</td><td   >85</td><td   >1857</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/3359.html'>Joey Krafchick</a></td><td   >13.979</td><td   >13</td><td   >57</td><td   >63</td><td   >11</td><td   >11</td><td   >1954</td><td   >-16</td><td   >1938</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2076.html'>Becky Dyer</a></td><td   >11.625</td><td   >12</td><td   >134</td><td   >131</td><td   >26</td><td   >26</td><td   >1839</td><td   >6</td><td   >1845</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/589.html'>Rasheed Balogun</a></td><td   >11.119</td><td   >11</td><td   >153</td><td   >159</td><td   >41</td><td   >41</td><td   >1816</td><td   >-2</td><td   >1814</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/5060.html'>Eloy Gardea</a></td><td   >10.972</td><td   >11</td><td   ></td><td   >167</td><td   ></td><td   >31</td><td   >1809</td><td   >0</td><td   >1809</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2960.html'>James Curley</a></td><td   >8.253</td><td   >4</td><td   >283</td><td   >374</td><td   >43</td><td   >45</td><td   >1695</td><td   >-85</td><td   >1610</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

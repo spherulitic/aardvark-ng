@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -84,13 +84,13 @@
     
       function show_tournament_entry(id)
       {
-        showContent(event, 'results');
+        document.getElementById('button_results').click();
         $('#' + id).collapse('show');
       } 
 
       function show_head_to_head_entry(id)
       {
-        showContent(event, 'head_to_head');
+        document.getElementById('button_head_to_head').click();
         $('#' + id).collapse('show');
       }
 
@@ -156,7 +156,7 @@
             <h2>Lee Chun Yin</h2>
             <div>
               <IMG SRC="../../flags/HKG.png" alt="HKG">
-              <p>HKG</p>
+              <p><a href='/aardvark/html/rankings/HKG.html'>Hong Kong</a></p>
             </div>
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
@@ -167,6 +167,7 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
+              <b>Rating:</b> 355<br>
               <b>Games Played:</b> 17<br>
               <b>Wins:</b> 6 (35.29%)<br>
               <b>Losses: </b>11 (64.71%)<br>
@@ -183,127 +184,127 @@
             </div>
             <div>
               <br><div class='tab'>
-<button id='button_results' style='width: 50%' class='tablinks' onclick="showContent(event, 'results')">Results</button><button id='button_head_to_head' style='width: 50%' class='tablinks' onclick="showContent(event, 'head_to_head')">Head to Head</button></div><br>
+<button id='button_results' style='width: 50%' class='player_tablink' onclick="showContent(event, 'results', 'player_tab', 'player_tablink')">Results</button><button id='button_head_to_head' style='width: 50%' class='player_tablink' onclick="showContent(event, 'head_to_head', 'player_tab', 'player_tablink')">Head to Head</button></div><br>
             </div>   
-            <div id="results" class="tabcontent">
+            <div id="results" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th>#</th><th>Tournament</th><th>Date</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Place</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_0_15704'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15704'>+</button></td><td>1</td><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>3</td><td>5</td><td>0</td><td>-513</td><td>59</td><td>300</td><td>355</td><td>55</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   >#</th><th   >Tournament</th><th   >Date</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Place</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_0_15704'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15704'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >3</td><td   >5</td><td   >0</td><td   >-513</td><td   >59</td><td   >300</td><td   >355</td><td   >55</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_15704'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>963</td><td>L</td><td>200</td><td>481</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>978</td><td>L</td><td>248</td><td>583</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3506.html'>Chow Tsz Ying</a></td><td>300</td><td>W</td><td>458</td><td>178</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3511.html'>Imran Azdi Norazrol</a></td><td>535</td><td>W</td><td>367</td><td>281</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1735.html'>Muhd Faiq Haikal</a></td><td>531</td><td>L</td><td>224</td><td>435</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>661</td><td>L</td><td>317</td><td>443</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>347</td><td>L</td><td>283</td><td>292</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3486.html'>Law Tsz To</a></td><td>300</td><td>W</td><td>415</td><td>332</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td   >963</td><td   >L</td><td   >200</td><td   >481</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td   >978</td><td   >L</td><td   >248</td><td   >583</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3506.html'>Chow Tsz Ying</a></td><td   >300</td><td   >W</td><td   >458</td><td   >178</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3511.html'>Imran Azdi Norazrol</a></td><td   >535</td><td   >W</td><td   >367</td><td   >281</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1735.html'>Muhd Faiq Haikal</a></td><td   >531</td><td   >L</td><td   >224</td><td   >435</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td   >661</td><td   >L</td><td   >317</td><td   >443</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td   >347</td><td   >L</td><td   >283</td><td   >292</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3486.html'>Law Tsz To</a></td><td   >300</td><td   >W</td><td   >415</td><td   >332</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_0_15605'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15605'>+</button></td><td>2</td><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>3</td><td>6</td><td>0</td><td>-837</td><td>70</td><td>300</td><td>300</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_0_15605'  class='btn btn-info' data-toggle='collapse' data-target='#entry_0_15605'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >3</td><td   >6</td><td   >0</td><td   >-837</td><td   >70</td><td   >300</td><td   >300</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='11'><div class='collapse' id='entry_0_15605'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3469.html'>Chan Sin Kei</a></td><td>300</td><td>W</td><td>360</td><td>353</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3494.html'>Mak Chung Ting</a></td><td>697</td><td>L</td><td>257</td><td>410</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1476.html'>Coby Lam Hoi Ying</a></td><td>391</td><td>L</td><td>193</td><td>428</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>300</td><td>L</td><td>274</td><td>369</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3463.html'>Anne Chan</a></td><td>527</td><td>L</td><td>240</td><td>434</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3495.html'>Nathan Chan</a></td><td>300</td><td>W</td><td>327</td><td>321</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3496.html'>Nathan Hon Kwan Hang</a></td><td>353</td><td>L</td><td>233</td><td>384</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3472.html'>Cheng Hiu Yeung</a></td><td>300</td><td>W</td><td>251</td><td>233</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3476.html'>Chui Yan Ning</a></td><td>300</td><td>L</td><td>326</td><td>366</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3469.html'>Chan Sin Kei</a></td><td   >300</td><td   >W</td><td   >360</td><td   >353</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3494.html'>Mak Chung Ting</a></td><td   >697</td><td   >L</td><td   >257</td><td   >410</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1476.html'>Coby Lam Hoi Ying</a></td><td   >391</td><td   >L</td><td   >193</td><td   >428</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td   >300</td><td   >L</td><td   >274</td><td   >369</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3463.html'>Anne Chan</a></td><td   >527</td><td   >L</td><td   >240</td><td   >434</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3495.html'>Nathan Chan</a></td><td   >300</td><td   >W</td><td   >327</td><td   >321</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3496.html'>Nathan Hon Kwan Hang</a></td><td   >353</td><td   >L</td><td   >233</td><td   >384</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3472.html'>Cheng Hiu Yeung</a></td><td   >300</td><td   >W</td><td   >251</td><td   >233</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3476.html'>Chui Yan Ning</a></td><td   >300</td><td   >L</td><td   >326</td><td   >366</td></tr>
 </table></div></td></tr>
 
 </table>
 
             </div>
-            <div id="head_to_head" class="tabcontent">
+            <div id="head_to_head" class="player_tab">
               <table class='table'>
-        <tr  class='white'  ><th>Details</th><th></th><th>Opponent</th><th>Rating</th><th>Games</th><th>Wins</th><th>Losses</th><th>Draws</th><th>Pct</th><th>Average For</th><th>Average Against</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3463'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3463'>+</button></td><td>1</td><td><a href='/aardvark/html/players/3463.html'>Anne Chan</a></td><td>489</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>240.00</td><td>434.00</td></tr>
+        <tr  class='white'  ><th   >Details</th><th   ></th><th   >Opponent</th><th   >Rating</th><th   >Games</th><th   >Wins</th><th   >Losses</th><th   >Draws</th><th   >Pct</th><th   >Average For</th><th   >Average Against</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3463'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3463'>+</button></td><td   >1</td><td   ><a href='/aardvark/html/players/3463.html'>Anne Chan</a></td><td   >489</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >240.00</td><td   >434.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3463'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>5</td><td>L</td><td>300</td><td>527</td><td>240</td><td>434</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >5</td><td   >L</td><td   >300</td><td   >527</td><td   >240</td><td   >434</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3495'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3495'>+</button></td><td>2</td><td><a href='/aardvark/html/players/3495.html'>Nathan Chan</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>327.00</td><td>321.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3495'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3495'>+</button></td><td   >2</td><td   ><a href='/aardvark/html/players/3495.html'>Nathan Chan</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >327.00</td><td   >321.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3495'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>6</td><td>W</td><td>300</td><td>300</td><td>327</td><td>321</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >6</td><td   >W</td><td   >300</td><td   >300</td><td   >327</td><td   >321</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3506'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3506'>+</button></td><td>3</td><td><a href='/aardvark/html/players/3506.html'>Chow Tsz Ying</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>458.00</td><td>178.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3506'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3506'>+</button></td><td   >3</td><td   ><a href='/aardvark/html/players/3506.html'>Chow Tsz Ying</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >458.00</td><td   >178.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3506'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>3</td><td>W</td><td>300</td><td>300</td><td>458</td><td>178</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >3</td><td   >W</td><td   >300</td><td   >300</td><td   >458</td><td   >178</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1735'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1735'>+</button></td><td>4</td><td><a href='/aardvark/html/players/1735.html'>Muhd Faiq Haikal</a></td><td>683</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>224.00</td><td>435.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1735'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1735'>+</button></td><td   >4</td><td   ><a href='/aardvark/html/players/1735.html'>Muhd Faiq Haikal</a></td><td   >683</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >224.00</td><td   >435.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1735'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>5</td><td>L</td><td>300</td><td>531</td><td>224</td><td>435</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >5</td><td   >L</td><td   >300</td><td   >531</td><td   >224</td><td   >435</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3472'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3472'>+</button></td><td>5</td><td><a href='/aardvark/html/players/3472.html'>Cheng Hiu Yeung</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>251.00</td><td>233.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3472'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3472'>+</button></td><td   >5</td><td   ><a href='/aardvark/html/players/3472.html'>Cheng Hiu Yeung</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >251.00</td><td   >233.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3472'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>8</td><td>W</td><td>300</td><td>300</td><td>251</td><td>233</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >8</td><td   >W</td><td   >300</td><td   >300</td><td   >251</td><td   >233</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1434'>+</button></td><td>6</td><td><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td>738</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>317.00</td><td>443.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1434'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1434'>+</button></td><td   >6</td><td   ><a href='/aardvark/html/players/1434.html'>Fung Tsz Hin</a></td><td   >738</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >317.00</td><td   >443.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1434'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>6</td><td>L</td><td>300</td><td>661</td><td>317</td><td>443</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >6</td><td   >L</td><td   >300</td><td   >661</td><td   >317</td><td   >443</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1097'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1097'>+</button></td><td>7</td><td><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td>962</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>200.00</td><td>481.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1097'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1097'>+</button></td><td   >7</td><td   ><a href='/aardvark/html/players/1097.html'>Ho Chun Hung</a></td><td   >962</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >200.00</td><td   >481.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1097'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>1</td><td>L</td><td>300</td><td>963</td><td>200</td><td>481</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >1</td><td   >L</td><td   >300</td><td   >963</td><td   >200</td><td   >481</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1432'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1432'>+</button></td><td>8</td><td><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td>721</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>274.00</td><td>369.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1432'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1432'>+</button></td><td   >8</td><td   ><a href='/aardvark/html/players/1432.html'>Ernest So Yat Long</a></td><td   >721</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >274.00</td><td   >369.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1432'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>4</td><td>L</td><td>300</td><td>300</td><td>274</td><td>369</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >4</td><td   >L</td><td   >300</td><td   >300</td><td   >274</td><td   >369</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1476'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1476'>+</button></td><td>9</td><td><a href='/aardvark/html/players/1476.html'>Coby Lam Hoi Ying</a></td><td>546</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>193.00</td><td>428.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1476'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1476'>+</button></td><td   >9</td><td   ><a href='/aardvark/html/players/1476.html'>Coby Lam Hoi Ying</a></td><td   >546</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >193.00</td><td   >428.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1476'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>3</td><td>L</td><td>300</td><td>391</td><td>193</td><td>428</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >3</td><td   >L</td><td   >300</td><td   >391</td><td   >193</td><td   >428</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_1425'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1425'>+</button></td><td>10</td><td><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td>422</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>283.00</td><td>292.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_1425'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1425'>+</button></td><td   >10</td><td   ><a href='/aardvark/html/players/1425.html'>Calvin Pang Chi Kong</a></td><td   >422</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >283.00</td><td   >292.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1425'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>7</td><td>L</td><td>300</td><td>347</td><td>283</td><td>292</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >7</td><td   >L</td><td   >300</td><td   >347</td><td   >283</td><td   >292</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3494'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3494'>+</button></td><td>11</td><td><a href='/aardvark/html/players/3494.html'>Mak Chung Ting</a></td><td>688</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>257.00</td><td>410.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3494'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3494'>+</button></td><td   >11</td><td   ><a href='/aardvark/html/players/3494.html'>Mak Chung Ting</a></td><td   >688</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >257.00</td><td   >410.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3494'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>2</td><td>L</td><td>300</td><td>697</td><td>257</td><td>410</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >2</td><td   >L</td><td   >300</td><td   >697</td><td   >257</td><td   >410</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3469'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3469'>+</button></td><td>12</td><td><a href='/aardvark/html/players/3469.html'>Chan Sin Kei</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>360.00</td><td>353.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3469'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3469'>+</button></td><td   >12</td><td   ><a href='/aardvark/html/players/3469.html'>Chan Sin Kei</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >360.00</td><td   >353.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3469'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>1</td><td>W</td><td>300</td><td>300</td><td>360</td><td>353</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >1</td><td   >W</td><td   >300</td><td   >300</td><td   >360</td><td   >353</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_1415'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1415'>+</button></td><td>13</td><td><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td>1076</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>248.00</td><td>583.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_1415'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_1415'>+</button></td><td   >13</td><td   ><a href='/aardvark/html/players/1415.html'>Edwin Chan</a></td><td   >1076</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >248.00</td><td   >583.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_1415'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>2</td><td>L</td><td>300</td><td>978</td><td>248</td><td>583</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >2</td><td   >L</td><td   >300</td><td   >978</td><td   >248</td><td   >583</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3496'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3496'>+</button></td><td>14</td><td><a href='/aardvark/html/players/3496.html'>Nathan Hon Kwan Hang</a></td><td>353</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>233.00</td><td>384.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3496'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3496'>+</button></td><td   >14</td><td   ><a href='/aardvark/html/players/3496.html'>Nathan Hon Kwan Hang</a></td><td   >353</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >233.00</td><td   >384.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3496'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>7</td><td>L</td><td>300</td><td>353</td><td>233</td><td>384</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >7</td><td   >L</td><td   >300</td><td   >353</td><td   >233</td><td   >384</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3511'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3511'>+</button></td><td>15</td><td><a href='/aardvark/html/players/3511.html'>Imran Azdi Norazrol</a></td><td>535</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>367.00</td><td>281.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3511'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3511'>+</button></td><td   >15</td><td   ><a href='/aardvark/html/players/3511.html'>Imran Azdi Norazrol</a></td><td   >535</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >367.00</td><td   >281.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3511'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>4</td><td>W</td><td>300</td><td>535</td><td>367</td><td>281</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >4</td><td   >W</td><td   >300</td><td   >535</td><td   >367</td><td   >281</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_2_3476'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3476'>+</button></td><td>16</td><td><a href='/aardvark/html/players/3476.html'>Chui Yan Ning</a></td><td>518</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0.00</td><td>326.00</td><td>366.00</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_2_3476'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3476'>+</button></td><td   >16</td><td   ><a href='/aardvark/html/players/3476.html'>Chui Yan Ning</a></td><td   >518</td><td   >1</td><td   >0</td><td   >1</td><td   >0</td><td   >0.00</td><td   >326.00</td><td   >366.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3476'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td>2017-04-14</td><td>9</td><td>L</td><td>300</td><td>300</td><td>326</td><td>366</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/411.html'>Hong Kong National Scrabble Championship - Qualifying</a></td><td   >2017-04-14</td><td   >9</td><td   >L</td><td   >300</td><td   >300</td><td   >326</td><td   >366</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_2_3486'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3486'>+</button></td><td>17</td><td><a href='/aardvark/html/players/3486.html'>Law Tsz To</a></td><td>300</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.00</td><td>415.00</td><td>332.00</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_2_3486'  class='btn btn-info' data-toggle='collapse' data-target='#entry_2_3486'>+</button></td><td   >17</td><td   ><a href='/aardvark/html/players/3486.html'>Law Tsz To</a></td><td   >300</td><td   >1</td><td   >1</td><td   >0</td><td   >0</td><td   >1.00</td><td   >415.00</td><td   >332.00</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_2_3486'><table class='table'>
-        <tr  ><th>Tournament</th><th>Date</th><th>Round</th><th>Result</th><th>Rating</th><th>Opponent Rating</th><th>Score</th><th></th></tr>
-        <tr  class='roweven'  ><td><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td>2017-07-16</td><td>8</td><td>W</td><td>300</td><td>300</td><td>415</td><td>332</td></tr>
+        <tr  ><th   >Tournament</th><th   >Date</th><th   >Round</th><th   >Result</th><th   >Rating</th><th   >Opponent Rating</th><th   >Score</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/tournaments/413.html'>Hong Kong Scrabble Challenge - Main</a></td><td   >2017-07-16</td><td   >8</td><td   >W</td><td   >300</td><td   >300</td><td   >415</td><td   >332</td></tr>
 </table></div></td></tr>
 
 </table>

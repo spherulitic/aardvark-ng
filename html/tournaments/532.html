@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,94 +156,315 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_20701'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20701'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>11</td><td>5</td><td>0</td><td>795</td><td>2038</td><td>2037</td><td>-1</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_20701'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20701'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >11</td><td   >5</td><td   >0</td><td   >795</td><td   >2038</td><td   >2037</td><td   >-1</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_20701'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>581</td><td>352</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>367</td><td>541</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>384</td><td>391</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>422</td><td>388</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>414</td><td>407</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>W</td><td>568</td><td>304</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>450</td><td>318</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>485</td><td>319</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>381</td><td>457</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>608</td><td>387</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>432</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>406</td><td>416</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>L</td><td>366</td><td>438</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>455</td><td>448</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>W</td><td>415</td><td>390</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>W</td><td>447</td><td>430</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >581</td><td   >352</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >367</td><td   >541</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >384</td><td   >391</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >422</td><td   >388</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >414</td><td   >407</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >W</td><td   >568</td><td   >304</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >450</td><td   >318</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >485</td><td   >319</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >381</td><td   >457</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >608</td><td   >387</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >432</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >406</td><td   >416</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >L</td><td   >366</td><td   >438</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >455</td><td   >448</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >W</td><td   >415</td><td   >390</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >W</td><td   >447</td><td   >430</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_20700'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20700'>+</button></td><td>2</td><td>3</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>10</td><td>6</td><td>0</td><td>454</td><td>1881</td><td>1905</td><td>24</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_20700'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20700'>+</button></td><td   >2</td><td   >3</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >10</td><td   >6</td><td   >0</td><td   >454</td><td   >1881</td><td   >1905</td><td   >24</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_20700'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>371</td><td>422</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>489</td><td>369</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>W</td><td>391</td><td>384</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>404</td><td>362</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>593</td><td>239</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>304</td><td>568</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>403</td><td>659</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>507</td><td>286</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>W</td><td>457</td><td>381</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>481</td><td>428</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>504</td><td>308</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>W</td><td>416</td><td>406</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>340</td><td>469</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>489</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>390</td><td>415</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>430</td><td>447</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >371</td><td   >422</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >489</td><td   >369</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >W</td><td   >391</td><td   >384</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >404</td><td   >362</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >593</td><td   >239</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >304</td><td   >568</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >403</td><td   >659</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >507</td><td   >286</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >W</td><td   >457</td><td   >381</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >481</td><td   >428</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >504</td><td   >308</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >W</td><td   >416</td><td   >406</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >340</td><td   >469</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >489</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >390</td><td   >415</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >430</td><td   >447</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_20699'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20699'>+</button></td><td>3</td><td>2</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>8</td><td>8</td><td>0</td><td>874</td><td>1885</td><td>1870</td><td>-15</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_20699'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20699'>+</button></td><td   >3</td><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >8</td><td   >8</td><td   >0</td><td   >874</td><td   >1885</td><td   >1870</td><td   >-15</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_20699'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>W</td><td>422</td><td>371</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>W</td><td>541</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>L</td><td>386</td><td>398</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>362</td><td>404</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>407</td><td>414</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>587</td><td>295</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>W</td><td>659</td><td>403</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>319</td><td>485</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>473</td><td>305</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>428</td><td>481</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>400</td><td>432</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>430</td><td>343</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>W</td><td>469</td><td>340</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>448</td><td>455</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>L</td><td>310</td><td>430</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>1525</td><td>W</td><td>484</td><td>328</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >W</td><td   >422</td><td   >371</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >W</td><td   >541</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >L</td><td   >386</td><td   >398</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >362</td><td   >404</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >407</td><td   >414</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >587</td><td   >295</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >W</td><td   >659</td><td   >403</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >319</td><td   >485</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >473</td><td   >305</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >428</td><td   >481</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >400</td><td   >432</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >430</td><td   >343</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >W</td><td   >469</td><td   >340</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >448</td><td   >455</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >L</td><td   >310</td><td   >430</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   >W</td><td   >484</td><td   >328</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_20702'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20702'>+</button></td><td>4</td><td>4</td><td><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td>3</td><td>13</td><td>0</td><td>-2123</td><td>1525</td><td>1505</td><td>-20</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_20702'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_20702'>+</button></td><td   >4</td><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >3</td><td   >13</td><td   >0</td><td   >-2123</td><td   >1525</td><td   >1505</td><td   >-20</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_20702'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>352</td><td>581</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>369</td><td>489</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>398</td><td>386</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>388</td><td>422</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>239</td><td>593</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>295</td><td>587</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>318</td><td>450</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>286</td><td>507</td></tr>
-        <tr  class='roweven'  ><td>9</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>305</td><td>473</td></tr>
-        <tr  class='rowodd'  ><td>10</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>L</td><td>387</td><td>608</td></tr>
-        <tr  class='roweven'  ><td>11</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>308</td><td>504</td></tr>
-        <tr  class='rowodd'  ><td>12</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>343</td><td>430</td></tr>
-        <tr  class='roweven'  ><td>13</td><td><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td>2038</td><td>W</td><td>438</td><td>366</td></tr>
-        <tr  class='rowodd'  ><td>14</td><td><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td>1881</td><td>L</td><td>372</td><td>489</td></tr>
-        <tr  class='roweven'  ><td>15</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>W</td><td>430</td><td>310</td></tr>
-        <tr  class='rowodd'  ><td>16</td><td><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td>1885</td><td>L</td><td>328</td><td>484</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >352</td><td   >581</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >369</td><td   >489</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >398</td><td   >386</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >388</td><td   >422</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >239</td><td   >593</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >295</td><td   >587</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >318</td><td   >450</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >286</td><td   >507</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >305</td><td   >473</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >L</td><td   >387</td><td   >608</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >308</td><td   >504</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >343</td><td   >430</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >W</td><td   >438</td><td   >366</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >L</td><td   >372</td><td   >489</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >W</td><td   >430</td><td   >310</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >L</td><td   >328</td><td   >484</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >659</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >608</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >593</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >587</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >581</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >568</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >541</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >507</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >504</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >489</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >489</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >485</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >484</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >481</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >473</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >469</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >457</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >455</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >450</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >447</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >438</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >432</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >430</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >430</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >422</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >422</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >416</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >415</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >414</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >404</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >398</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >391</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >3</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >448</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >430</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >428</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >407</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >406</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >403</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >400</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >390</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >388</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >387</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >386</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >384</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >381</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >372</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >371</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >369</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >367</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >366</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >362</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >352</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >343</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >340</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >328</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >319</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >318</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >310</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >308</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >305</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >304</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >295</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >286</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >239</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >593</td><td   >239</td><td   >354</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >587</td><td   >295</td><td   >292</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >568</td><td   >304</td><td   >264</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >659</td><td   >403</td><td   >256</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >581</td><td   >352</td><td   >229</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >608</td><td   >387</td><td   >221</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >507</td><td   >286</td><td   >221</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >504</td><td   >308</td><td   >196</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >541</td><td   >367</td><td   >174</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >473</td><td   >305</td><td   >168</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >485</td><td   >319</td><td   >166</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >484</td><td   >328</td><td   >156</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >450</td><td   >318</td><td   >132</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >469</td><td   >340</td><td   >129</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >489</td><td   >369</td><td   >120</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >430</td><td   >310</td><td   >120</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >489</td><td   >372</td><td   >117</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >430</td><td   >343</td><td   >87</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >457</td><td   >381</td><td   >76</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >438</td><td   >366</td><td   >72</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >481</td><td   >428</td><td   >53</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >422</td><td   >371</td><td   >51</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >404</td><td   >362</td><td   >42</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >422</td><td   >388</td><td   >34</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >432</td><td   >400</td><td   >32</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >415</td><td   >390</td><td   >25</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >447</td><td   >430</td><td   >17</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >398</td><td   >386</td><td   >12</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >416</td><td   >406</td><td   >10</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >391</td><td   >384</td><td   >7</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >414</td><td   >407</td><td   >7</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >455</td><td   >448</td><td   >7</td><td   >14</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1062</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >995</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >933</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >909</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >908</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >903</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >882</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >877</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >872</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >861</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >858</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >838</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >832</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >832</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >822</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >821</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >812</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >812</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >810</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >809</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >805</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >804</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >804</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >793</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >793</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >784</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >778</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >775</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >773</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >768</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >766</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >740</td><td   >15</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >740</td><td   >15</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >766</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >768</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >773</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >775</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >778</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >784</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >793</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >793</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >804</td><td   >13</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >804</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >805</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >809</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >810</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >812</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >812</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >821</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >822</td><td   >12</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >832</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >832</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >838</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >858</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >861</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >872</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >877</td><td   >16</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >882</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >903</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >908</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >909</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >933</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >995</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1062</td><td   >7</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >513</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >513</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >513</td><td   >10</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >513</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >513</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >360</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >360</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >360</td><td   >9</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >360</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >360</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >360</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >356</td><td   >14</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >356</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >356</td><td   >11</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >356</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >1525</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   >356</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >157</td><td   >12</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >157</td><td   >15</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >157</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >157</td><td   >16</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >157</td><td   >9</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >157</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >153</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >153</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >25</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >153</td><td   >11</td></tr>
+        <tr  class='rowodd'  ><td   >26</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >153</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >27</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >2038</td><td   >153</td><td   >14</td></tr>
+        <tr  class='rowodd'  ><td   >28</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >4</td><td   >10</td></tr>
+        <tr  class='roweven'  ><td   >29</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >4</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >30</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >4</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >31</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >4</td><td   >13</td></tr>
+        <tr  class='rowodd'  ><td   >32</td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >1881</td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >1885</td><td   >4</td><td   >7</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/815.html'>John O'Laughlin</a></td><td   >11.126</td><td   >11</td><td   >33</td><td   >33</td><td   >4</td><td   >4</td><td   >2038</td><td   >-1</td><td   >2037</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/3219.html'>Laurie Cohen</a></td><td   >8.552</td><td   >10</td><td   >138</td><td   >116</td><td   >21</td><td   >17</td><td   >1881</td><td   >24</td><td   >1905</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1075.html'>Chris Lipe</a></td><td   >8.907</td><td   >8</td><td   >134</td><td   >148</td><td   >21</td><td   >23</td><td   >1885</td><td   >-15</td><td   >1870</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2445.html'>Judy Steward</a></td><td   >3.308</td><td   >3</td><td   >404</td><td   >417</td><td   >39</td><td   >40</td><td   >1525</td><td   >-20</td><td   >1505</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>

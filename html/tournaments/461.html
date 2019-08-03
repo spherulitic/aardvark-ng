@@ -62,15 +62,15 @@
         });
       });
 
-      function showContent(evt, id)
+      function showContent(evt, id, content_classname, links_classname)
       {
         var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
+        tabcontent = document.getElementsByClassName(content_classname);
         for (i = 0; i < tabcontent.length; i++)
         {
           tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
+        tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -82,7 +82,16 @@
 
 
 
-    window.onload = function() { document.getElementById('button_division_0').click();}
+   
+    window.onload = function()
+    { 
+      var ids = ['button_division_0', 'button_division_0_stats_High Win', 'button_division_0_standings'];
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
   </script>
 
   </head>
@@ -147,86 +156,261 @@
             <div>
               <br>
               <br><div class='tab'>
-<button id='button_division_0' style='width: 100%' class='tablinks' onclick="showContent(event, 'division_0')">Division 1</button></div><br>
+<button id='button_division_0' style='width: 100%' class='tournament_tablink' onclick="showContent(event, 'division_0', 'tournament_tab', 'tournament_tablink')">Division 1</button></div><br>
               <br>    
             </div>
-            <div id='division_0' class='tabcontent'><table class='table'>
-        <tr  class='white'  ><th>Details</th><th>Place</th><th>Seed</th><th>Name</th><th>Wins</th><th>Losses</th><th>Byes</th><th>Spread</th><th>Start Rating</th><th>End Rating</th><th>Rating Change</th></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17977'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17977'>+</button></td><td>1</td><td>1</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>6</td><td>2</td><td>0</td><td>720</td><td>1882</td><td>1889</td><td>7</td></tr>
+            <div id='division_0' class='tournament_tab'><br><div class='tab'>
+<button id='button_division_0_standings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_standings', 'division_tab_division_0', 'division_tablink_division_0')">Standings</button><button id='button_division_0_stats' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_stats', 'division_tab_division_0', 'division_tablink_division_0')">Statistics</button><button id='button_division_0_ratings' style='width: 33.3333333333333%' class='division_tablink_division_0' onclick="showContent(event, 'division_0_ratings', 'division_tab_division_0', 'division_tablink_division_0')">Ratings</button></div><br><div id='division_0_standings' class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th   >Details</th><th   >Place</th><th   >Seed</th><th   >Name</th><th   >Wins</th><th   >Losses</th><th   >Byes</th><th   >Spread</th><th   >Start Rating</th><th   >End Rating</th><th   >Rating Change</th></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17977'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17977'>+</button></td><td   >1</td><td   >1</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >6</td><td   >2</td><td   >0</td><td   >720</td><td   >1882</td><td   >1889</td><td   >7</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17977'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>W</td><td>476</td><td>327</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>W</td><td>449</td><td>329</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>W</td><td>495</td><td>274</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>W</td><td>493</td><td>392</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>W</td><td>427</td><td>331</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>W</td><td>454</td><td>367</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>L</td><td>419</td><td>447</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>L</td><td>416</td><td>442</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >W</td><td   >476</td><td   >327</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >W</td><td   >449</td><td   >329</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >W</td><td   >495</td><td   >274</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >W</td><td   >493</td><td   >392</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >W</td><td   >427</td><td   >331</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >W</td><td   >454</td><td   >367</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >L</td><td   >419</td><td   >447</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >L</td><td   >416</td><td   >442</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17981'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17981'>+</button></td><td>2</td><td>3</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>6</td><td>2</td><td>0</td><td>284</td><td>1657</td><td>1705</td><td>48</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17981'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17981'>+</button></td><td   >2</td><td   >3</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >6</td><td   >2</td><td   >0</td><td   >284</td><td   >1657</td><td   >1705</td><td   >48</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17981'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>W</td><td>400</td><td>257</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>W</td><td>445</td><td>332</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>W</td><td>408</td><td>379</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>L</td><td>392</td><td>493</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>W</td><td>474</td><td>378</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>L</td><td>379</td><td>429</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>W</td><td>447</td><td>419</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>W</td><td>442</td><td>416</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >W</td><td   >400</td><td   >257</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >W</td><td   >445</td><td   >332</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >W</td><td   >408</td><td   >379</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >L</td><td   >392</td><td   >493</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >W</td><td   >474</td><td   >378</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >L</td><td   >379</td><td   >429</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >W</td><td   >447</td><td   >419</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >W</td><td   >442</td><td   >416</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17980'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17980'>+</button></td><td>3</td><td>4</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>4</td><td>4</td><td>0</td><td>0</td><td>1651</td><td>1649</td><td>-2</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17980'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17980'>+</button></td><td   >3</td><td   >4</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >4</td><td   >4</td><td   >0</td><td   >0</td><td   >1651</td><td   >1649</td><td   >-2</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17980'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>W</td><td>528</td><td>360</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>W</td><td>475</td><td>354</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>L</td><td>274</td><td>495</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>W</td><td>417</td><td>372</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>L</td><td>378</td><td>474</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>L</td><td>367</td><td>454</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>L</td><td>431</td><td>447</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>W</td><td>421</td><td>335</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >W</td><td   >528</td><td   >360</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >W</td><td   >475</td><td   >354</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >L</td><td   >274</td><td   >495</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >W</td><td   >417</td><td   >372</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >L</td><td   >378</td><td   >474</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >L</td><td   >367</td><td   >454</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >L</td><td   >431</td><td   >447</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >W</td><td   >421</td><td   >335</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17978'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17978'>+</button></td><td>4</td><td>5</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>3</td><td>5</td><td>0</td><td>-194</td><td>1476</td><td>1475</td><td>-1</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17978'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17978'>+</button></td><td   >4</td><td   >5</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >3</td><td   >5</td><td   >0</td><td   >-194</td><td   >1476</td><td   >1475</td><td   >-1</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17978'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>L</td><td>327</td><td>476</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>L</td><td>332</td><td>445</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>L</td><td>406</td><td>437</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>L</td><td>372</td><td>417</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>W</td><td>407</td><td>396</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>W</td><td>606</td><td>403</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>W</td><td>447</td><td>431</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>L</td><td>335</td><td>421</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >L</td><td   >327</td><td   >476</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >L</td><td   >332</td><td   >445</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >L</td><td   >406</td><td   >437</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >L</td><td   >372</td><td   >417</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >W</td><td   >407</td><td   >396</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >W</td><td   >606</td><td   >403</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >W</td><td   >447</td><td   >431</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >L</td><td   >335</td><td   >421</td></tr>
 </table></div></td></tr>
-        <tr  class='roweven'  ><td><button type='button' id='button_1_17979'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17979'>+</button></td><td>5</td><td>2</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>3</td><td>5</td><td>0</td><td>-727</td><td>1850</td><td>1806</td><td>-44</td></tr>
+        <tr  class='roweven'  ><td   ><button type='button' id='button_1_17979'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17979'>+</button></td><td   >5</td><td   >2</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >3</td><td   >5</td><td   >0</td><td   >-727</td><td   >1850</td><td   >1806</td><td   >-44</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17979'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>L</td><td>257</td><td>400</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>L</td><td>354</td><td>475</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>W</td><td>437</td><td>406</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>W</td><td>415</td><td>381</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>L</td><td>331</td><td>427</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>W</td><td>429</td><td>379</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>L</td><td>249</td><td>642</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>1357</td><td>L</td><td>374</td><td>463</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >L</td><td   >257</td><td   >400</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >L</td><td   >354</td><td   >475</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >W</td><td   >437</td><td   >406</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >W</td><td   >415</td><td   >381</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >L</td><td   >331</td><td   >427</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >W</td><td   >429</td><td   >379</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >L</td><td   >249</td><td   >642</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   >L</td><td   >374</td><td   >463</td></tr>
 </table></div></td></tr>
-        <tr  class='rowodd'  ><td><button type='button' id='button_1_17976'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17976'>+</button></td><td>6</td><td>6</td><td><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td>2</td><td>6</td><td>0</td><td>-83</td><td>1357</td><td>1357</td><td>0</td></tr>
+        <tr  class='rowodd'  ><td   ><button type='button' id='button_1_17976'  class='btn btn-info' data-toggle='collapse' data-target='#entry_1_17976'>+</button></td><td   >6</td><td   >6</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >2</td><td   >6</td><td   >0</td><td   >-83</td><td   >1357</td><td   >1357</td><td   >0</td></tr>
 <tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='10'><div class='collapse' id='entry_1_17976'><table class='table'>
-        <tr  ><th>Round</th><th>Opponent</th><th>Opponent Rating</th><th>Result</th><th>Scores</th><th></th></tr>
-        <tr  class='roweven'  ><td>1</td><td><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td>1651</td><td>L</td><td>360</td><td>528</td></tr>
-        <tr  class='rowodd'  ><td>2</td><td><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td>1882</td><td>L</td><td>329</td><td>449</td></tr>
-        <tr  class='roweven'  ><td>3</td><td><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td>1657</td><td>L</td><td>379</td><td>408</td></tr>
-        <tr  class='rowodd'  ><td>4</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>L</td><td>381</td><td>415</td></tr>
-        <tr  class='roweven'  ><td>5</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>L</td><td>396</td><td>407</td></tr>
-        <tr  class='rowodd'  ><td>6</td><td><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td>1476</td><td>L</td><td>403</td><td>606</td></tr>
-        <tr  class='roweven'  ><td>7</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>W</td><td>642</td><td>249</td></tr>
-        <tr  class='rowodd'  ><td>8</td><td><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td>1850</td><td>W</td><td>463</td><td>374</td></tr>
+        <tr  ><th   >Round</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Result</th><th   >Scores</th><th   ></th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >L</td><td   >360</td><td   >528</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >L</td><td   >329</td><td   >449</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >L</td><td   >379</td><td   >408</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >L</td><td   >381</td><td   >415</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >L</td><td   >396</td><td   >407</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >L</td><td   >403</td><td   >606</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >W</td><td   >642</td><td   >249</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >W</td><td   >463</td><td   >374</td></tr>
 </table></div></td></tr>
 
 </table>
-</div>
+     </div><div id='division_0_stats'     class='division_tab_division_0' style='display:none;'><br><div class='tab'>
+<button id='button_division_0_stats_High Win' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Win', 'stats_tab_division_0', 'stats_tablink_division_0')">High Win</button><button id='button_division_0_stats_High Loss' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Loss', 'stats_tab_division_0', 'stats_tablink_division_0')">High Loss</button><button id='button_division_0_stats_High Spread' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Spread', 'stats_tab_division_0', 'stats_tablink_division_0')">High Spread</button><button id='button_division_0_stats_High Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_High Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">High Combined</button><button id='button_division_0_stats_Low Combined' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Low Combined', 'stats_tab_division_0', 'stats_tablink_division_0')">Low Combined</button><button id='button_division_0_stats_Upsets' style='width: 16.6666666666667%' class='stats_tablink_division_0' onclick="showContent(event, 'division_0_stats_Upsets', 'stats_tab_division_0', 'stats_tablink_division_0')">Upsets</button></div><br><div id='division_0_stats_High Win' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >642</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >606</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >528</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >495</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >493</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >476</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >475</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >474</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >463</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >454</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >449</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >447</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >447</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >445</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >442</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >437</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >429</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >427</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >421</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >417</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >415</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >408</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >407</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >400</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_High Loss' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Score</th><th   >Opponent</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >431</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >419</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >416</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >406</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >403</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >396</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >392</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >381</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >379</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >379</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >378</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >374</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >372</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >367</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >360</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >354</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >335</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >332</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >331</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >329</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >327</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >274</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >257</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >249</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >7</td></tr>
+        </table></div>
+<div id='division_0_stats_High Spread' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Opponent</th><th   >Player Score</th><th   >Opponent Score</th><th   >Spread</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >642</td><td   >249</td><td   >393</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >495</td><td   >274</td><td   >221</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >606</td><td   >403</td><td   >203</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >528</td><td   >360</td><td   >168</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >476</td><td   >327</td><td   >149</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >400</td><td   >257</td><td   >143</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >475</td><td   >354</td><td   >121</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >449</td><td   >329</td><td   >120</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >445</td><td   >332</td><td   >113</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >493</td><td   >392</td><td   >101</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >427</td><td   >331</td><td   >96</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >474</td><td   >378</td><td   >96</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >463</td><td   >374</td><td   >89</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >454</td><td   >367</td><td   >87</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >421</td><td   >335</td><td   >86</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >429</td><td   >379</td><td   >50</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >417</td><td   >372</td><td   >45</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >415</td><td   >381</td><td   >34</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >437</td><td   >406</td><td   >31</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >408</td><td   >379</td><td   >29</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >447</td><td   >419</td><td   >28</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >442</td><td   >416</td><td   >26</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >447</td><td   >431</td><td   >16</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >407</td><td   >396</td><td   >11</td><td   >5</td></tr>
+        </table></div>
+<div id='division_0_stats_High Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1009</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >891</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >888</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >885</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >878</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >866</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >858</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >852</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >843</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >837</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >829</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >821</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >808</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >803</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >803</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >796</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >789</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >787</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >778</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >777</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >769</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >758</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >756</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >657</td><td   >1</td></tr>
+        </table></div>
+<div id='division_0_stats_Low Combined' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Players</th><th   ></th><th   >Combined Score</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >657</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >756</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >758</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >769</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >777</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >778</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >787</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >789</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >796</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >803</td><td   >5</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >803</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >808</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >821</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >829</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >837</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >843</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >852</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >858</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >866</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >878</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >885</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >888</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >891</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1009</td><td   >6</td></tr>
+        </table></div>
+<div id='division_0_stats_Upsets' class='stats_tab_division_0' style='display:none;'>       <table class='table'>
+        <tr  ><th   >Rank</th><th   >Player</th><th   >Player Rating</th><th   >Opponent</th><th   >Opponent Rating</th><th   >Rating Difference</th><th   >Round</th></tr>
+        <tr  class='roweven'  ><td   >1</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >525</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >2</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >493</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >3</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >493</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >4</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >493</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >5</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >406</td><td   >1</td></tr>
+        <tr  class='rowodd'  ><td   >6</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >374</td><td   >3</td></tr>
+        <tr  class='roweven'  ><td   >7</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >300</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >8</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >294</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >9</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >231</td><td   >3</td></tr>
+        <tr  class='rowodd'  ><td   >10</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >231</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >11</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >225</td><td   >8</td></tr>
+        <tr  class='rowodd'  ><td   >12</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >225</td><td   >4</td></tr>
+        <tr  class='roweven'  ><td   >13</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >225</td><td   >7</td></tr>
+        <tr  class='rowodd'  ><td   >14</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >199</td><td   >2</td></tr>
+        <tr  class='roweven'  ><td   >15</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >193</td><td   >6</td></tr>
+        <tr  class='rowodd'  ><td   >16</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   >193</td><td   >1</td></tr>
+        <tr  class='roweven'  ><td   >17</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >181</td><td   >2</td></tr>
+        <tr  class='rowodd'  ><td   >18</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >175</td><td   >7</td></tr>
+        <tr  class='roweven'  ><td   >19</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >175</td><td   >4</td></tr>
+        <tr  class='rowodd'  ><td   >20</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   >175</td><td   >8</td></tr>
+        <tr  class='roweven'  ><td   >21</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >119</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >22</td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >1357</td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >1476</td><td   >119</td><td   >6</td></tr>
+        <tr  class='roweven'  ><td   >23</td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >1850</td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >1882</td><td   >32</td><td   >5</td></tr>
+        <tr  class='rowodd'  ><td   >24</td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >1651</td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >1657</td><td   >6</td><td   >5</td></tr>
+        </table></div>
+</div><div id='division_0_ratings'   class='division_tab_division_0' style='display:none;'><table class='table'>
+        <tr  class='white'  ><th  colspan='2'   >Player</th><th  colspan='2'   >Wins</th><th  colspan='2'   >World rank</th><th  colspan='2'   >Nation rank</th><th  colspan='2'   >Rating points</th></tr>
+        <tr  class='white'  ><th   >Country</th><th   >Name</th><th   >Exp</th><th   >Act</th><th   >Old</th><th   >New</th><th   >Old</th><th   >New</th><th   >Old</th><th   >+/-</th><th   >New</th></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/644.html'>Bob Lipton</a></td><td   >5.578</td><td   >6</td><td   >99</td><td   >96</td><td   >20</td><td   >19</td><td   >1882</td><td   >7</td><td   >1889</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2083.html'>Ryan Fischer</a></td><td   >3.586</td><td   >6</td><td   >285</td><td   >243</td><td   >46</td><td   >44</td><td   >1657</td><td   >48</td><td   >1705</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/GHA.html'>Ghana</a></td><td   ><a href='/aardvark/html/players/568.html'>Ezekiel Markwei</a></td><td   >4.104</td><td   >4</td><td   >291</td><td   >293</td><td   >6</td><td   >6</td><td   >1651</td><td   >-2</td><td   >1649</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1280.html'>Lisa Brown</a></td><td   >3.044</td><td   >3</td><td   >480</td><td   >481</td><td   >64</td><td   >65</td><td   >1476</td><td   >-1</td><td   >1475</td></tr>
+        <tr  class='roweven'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/2088.html'>Mohammed Zafar</a></td><td   >5.729</td><td   >3</td><td   >114</td><td   >149</td><td   >23</td><td   >29</td><td   >1850</td><td   >-44</td><td   >1806</td></tr>
+        <tr  class='rowodd'  ><td   ><a href='/aardvark/html/rankings/USA.html'>United States</a></td><td   ><a href='/aardvark/html/players/1694.html'>Supriya Devnani</a></td><td   >2.011</td><td   >2</td><td   >610</td><td   >610</td><td   >73</td><td   >73</td><td   >1357</td><td   >0</td><td   >1357</td></tr>
+
+</table>
+  </div></div>
 
           </div>
         </div>
