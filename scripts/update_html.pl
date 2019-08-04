@@ -54,7 +54,7 @@ sub update_html
 
   foreach my $tournament_id (@{$tournament_ids_to_create_ref})
   {
-    # if ($tournament_id != 301){next;}
+    # if ($tournament_id != 38){next;}
     my @division_data = ();
     my @division_rows = @{query_table($dbh, Constants::DIVISIONS_TABLE_NAME, "tournament_id", $tournament_id)};
 
@@ -77,7 +77,22 @@ sub update_html
   @player_ids_to_create = @{uniq(\@player_ids_to_create)};
   @player_ids_to_create = sort {$a <=> $b} @player_ids_to_create;
 
-  my @country_rankings_to_create = ();
+  my $players_tn = Constants::PLAYERS_TABLE_NAME;
+
+  my $valid_countries_query = 
+    "
+      SELECT p.country
+      FROM $players_tn AS p
+      WHERE
+            p.deceased      = 0           AND
+            p.suspended     = 0           AND
+            p.current       = 1
+      GROUP BY p.country
+    ";
+
+  my @country_rankings_to_create = map { $_->[0] }  @{$dbh->selectall_arrayref($valid_countries_query, {"RaiseError" => 1})};
+
+  my %valid_link_countries = map { $_ => 1 } @country_rankings_to_create;
 
   # Update the player html pages that have been changed
   foreach my $player_id (@player_ids_to_create)
@@ -89,18 +104,12 @@ sub update_html
     my $games_played     = $player[0]->{'total_games'};
     my $rating           = $player[0]->{'rating'};
     my $photo_filename   = $player[0]->{'photo'};
-    my $deceased         = $player[0]->{'deceased'};
-    my $suspended        = $player[0]->{'suspended'};
-    my $current          = $player[0]->{'current'};
 
     if (!$country_trigraph)
     {
       $country_trigraph = "";
     }
-    elsif (!$deceased && !$suspended && $current)
-    {
-      push @country_rankings_to_create, $country_trigraph;
-    }
+
     if (!$photo_filename)
     {
       $photo_filename = 'noimage.gif';
@@ -118,6 +127,7 @@ sub update_html
       'games_played'     => $games_played,
       'rating'           => $rating,
       'photo_filename'   => $photo_filename,
+      'valid_ranking'    => $valid_link_countries{$country_trigraph}
     };
 
     my $player_tournament_history   = get_tournament_results_html_string($dbh, $player_id, Constants::HTML_ID_PLAYER_TYPE);
@@ -248,6 +258,7 @@ sub update_dynamically_loaded_content
       "/$working_dir/$html_dir/$player_dir",
       "search_input_players",
       "datalist_input_element_players",
+      'player_button',
       'id',
       'name'
     );
@@ -277,6 +288,7 @@ sub update_dynamically_loaded_content
       "/$working_dir/$html_dir/$rankings_dir",
       "search_input_countries",
       "datalist_input_element_countries",
+      'country_button',
       'trigraph',
       'country'
     );
@@ -286,20 +298,83 @@ sub update_dynamically_loaded_content
 
 sub get_datalist_html
 {
-  my $data     = shift;
-  my $title    = shift;
-  my $href     = shift;
-  my $html_id  = shift;
-  my $input_id = shift;
+  my $data           = shift;
+  my $title          = shift;
+  my $href           = shift;
+  my $html_id        = shift;
+  my $input_id       = shift;
+  my $button_id      = shift;
   my $data_value_key = shift;
-  my $value_key  = shift;
+  my $value_key      = shift;
 
   my $escaped_char = "&quot;";
+
+  my $function = <<FUNCTION
+
+          var input = document.getElementById('$input_id');
+          var options = Array.from(document.getElementById('$html_id').options).map(function(el)
+          {
+            return el.value;
+          }); 
+          var relevantOptions = options.filter
+          (
+            function(option)
+            {
+              return option.toLowerCase().includes(input.value.toLowerCase());
+            }
+          );
+
+          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+          {
+            var pname = document.getElementById('$input_id').value;
+            var pid   = document.querySelector('#$html_id option[value=$escaped_char'+pname+'$escaped_char]').dataset.value;
+
+            if (pid)
+            {
+              window.location.href = '$href/' + pid + '.html';
+            }
+          }
+          else if (relevantOptions.length > 0)
+          {
+            input.value = relevantOptions.shift();
+          }
+          else
+          {
+            alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
+          }
+FUNCTION
+;
+  my $input_function = <<FUNCTION
+
+    onkeypress=
+    "
+      (function (event)
+      {
+        if (event.keyCode == 13)
+        {
+          $function
+        }
+      })(event)
+    "
+FUNCTION
+;
+
+  my $submit_function = <<FUNCTION
+    onclick=
+      "
+        (function ()
+        {
+          $function 
+        })()
+      " 
+
+FUNCTION
+;
 
   my $html =
   "
   $title
-  <input list='$html_id' id='$input_id'>
+  <input list='$html_id' id='$input_id' $input_function>
     <datalist id='$html_id'>
   ";
 
@@ -315,23 +390,7 @@ sub get_datalist_html
   $html .= "    </datalist>\n";
 
 
-  my $function = <<FUNCTION
-    onclick=
-      "
-        (function ()
-        {
-          var pname = document.getElementById('$input_id').value;
-          var pid   = document.querySelector('#$html_id option[value=$escaped_char'+pname+'$escaped_char]').dataset.value;
-          if (pid)
-          {
-            window.location.href = '$href/' + pid + '.html';
-          }
-        })()
-      " 
-FUNCTION
-;
-
-  $html .= "<input type='button' value='Submit' $function>";
+  $html .= "<input type='button' value='Submit' id='$button_id' $submit_function>";
   return $html
 }
 
@@ -841,6 +900,7 @@ sub get_tournament_results_html_string
   my $game_data =
   {
     'tournament_name' => $tournament_results[0]->[0]->{'tr_tournament_name'},
+    'tournament_date' => $tournament_results[0]->[0]->{'tr_date'},
     'games_played'    => 0,
     'wins'            => 0,
     'losses'          => 0,

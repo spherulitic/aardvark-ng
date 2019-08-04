@@ -1,6 +1,49 @@
 
   Player Name:
-  <input list='search_input_players' id='datalist_input_element_players'>
+  <input list='search_input_players' id='datalist_input_element_players' 
+    onkeypress=
+    "
+      (function (event)
+      {
+        if (event.keyCode == 13)
+        {
+          
+          var input = document.getElementById('datalist_input_element_players');
+          var options = Array.from(document.getElementById('search_input_players').options).map(function(el)
+          {
+            return el.value;
+          }); 
+          var relevantOptions = options.filter
+          (
+            function(option)
+            {
+              return option.toLowerCase().includes(input.value.toLowerCase());
+            }
+          );
+
+          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+          {
+            var pname = document.getElementById('datalist_input_element_players').value;
+            var pid   = document.querySelector('#search_input_players option[value=&quot;'+pname+'&quot;]').dataset.value;
+
+            if (pid)
+            {
+              window.location.href = '/aardvark/html/players/' + pid + '.html';
+            }
+          }
+          else if (relevantOptions.length > 0)
+          {
+            input.value = relevantOptions.shift();
+          }
+          else
+          {
+            alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
+          }
+
+        }
+      })(event)
+    "
+>
     <datalist id='search_input_players'>
   <option data-value='767' value="Ganesh Asirvatham"></option>
 <option data-value='93' value="Nigel Richards"></option>
@@ -5094,16 +5137,44 @@
 <option data-value='5083' value="Florian Detraz"></option>
 <option data-value='5086' value="Peter Horsnell"></option>
     </datalist>
-<input type='button' value='Submit'     onclick=
+<input type='button' value='Submit' id='player_button'     onclick=
       "
         (function ()
         {
-          var pname = document.getElementById('datalist_input_element_players').value;
-          var pid   = document.querySelector('#search_input_players option[value=&quot;'+pname+'&quot;]').dataset.value;
-          if (pid)
+          
+          var input = document.getElementById('datalist_input_element_players');
+          var options = Array.from(document.getElementById('search_input_players').options).map(function(el)
           {
-            window.location.href = '/aardvark/html/players/' + pid + '.html';
+            return el.value;
+          }); 
+          var relevantOptions = options.filter
+          (
+            function(option)
+            {
+              return option.toLowerCase().includes(input.value.toLowerCase());
+            }
+          );
+
+          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+          {
+            var pname = document.getElementById('datalist_input_element_players').value;
+            var pid   = document.querySelector('#search_input_players option[value=&quot;'+pname+'&quot;]').dataset.value;
+
+            if (pid)
+            {
+              window.location.href = '/aardvark/html/players/' + pid + '.html';
+            }
           }
+          else if (relevantOptions.length > 0)
+          {
+            input.value = relevantOptions.shift();
+          }
+          else
+          {
+            alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
+          }
+ 
         })()
       " 
+
 >

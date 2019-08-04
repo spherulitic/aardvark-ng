@@ -241,6 +241,7 @@ sub get_player_template_html_string
   my $games_played     = $player_info->{'games_played'};
   my $rating           = $player_info->{'rating'};
   my $photo_filename   = $player_info->{'photo_filename'};
+  my $valid_ranking    = $player_info->{'valid_ranking'};
 
   my $country = $country_trigraph;
 
@@ -296,11 +297,27 @@ sub get_player_template_html_string
   my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
   my $country_fullname = $trigraph_hashref->{$country};
 
+  my $valid_country_html      = "";
+
   if ($country_fullname)
   {
+    $country_rankings = $country_fullname;
+
     $country_png = "$html_path/flags/$country.png";
-    my $country_rankings_link = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . '/' . "$country.html";
-    $country_rankings = "<a href='/$country_rankings_link'>$country_fullname</a>";
+    if ($valid_ranking)
+    {
+      my $country_rankings_link = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . '/' . "$country.html";
+      $country_rankings = "<a href='/$country_rankings_link'>$country_fullname</a>";
+    }
+
+    $valid_country_html = 
+    "
+            <div>
+              <IMG SRC='$country_png' alt='$country'>
+              <p>$country_rankings</p>
+            </div>
+    ";
+
   }
 
   my $tabs = make_tab_div([['Results', $results_html_id], ['Head to Head', $head_to_head_html_id]], $player_tabclass, $player_tablink);
@@ -346,10 +363,7 @@ $doctype
         <div class="row">
           <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
             <h2>$player_name</h2>
-            <div>
-              <IMG SRC="$country_png" alt="$country">
-              <p>$country_rankings</p>
-            </div>
+            $valid_country_html
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
             <img src='$html_path/icons/$photo_filename' title='$player_name' alt='$player_name'>
@@ -403,6 +417,7 @@ sub get_tournament_template_html_string
   my $division_data = shift;
  
   my $tournament_name = $division_data->[0]->[1]->{'tournament_name'};
+  my $tournament_date = $division_data->[0]->[1]->{'tournament_date'};
  
   my $division_html_class = "division";
 
@@ -534,7 +549,7 @@ $doctype
     $nav
     <div style="background-color:#90D1EF">
       <div style="background-color:white;padding-top:10px;" class="container">
-        <h2>$tournament_name</h2>
+        <h2>$tournament_name ($tournament_date)</h2>
         <hr>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">

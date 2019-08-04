@@ -1,9 +1,51 @@
 
   Country:
-  <input list='search_input_countries' id='datalist_input_element_countries'>
+  <input list='search_input_countries' id='datalist_input_element_countries' 
+    onkeypress=
+    "
+      (function (event)
+      {
+        if (event.keyCode == 13)
+        {
+          
+          var input = document.getElementById('datalist_input_element_countries');
+          var options = Array.from(document.getElementById('search_input_countries').options).map(function(el)
+          {
+            return el.value;
+          }); 
+          var relevantOptions = options.filter
+          (
+            function(option)
+            {
+              return option.toLowerCase().includes(input.value.toLowerCase());
+            }
+          );
+
+          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+          {
+            var pname = document.getElementById('datalist_input_element_countries').value;
+            var pid   = document.querySelector('#search_input_countries option[value=&quot;'+pname+'&quot;]').dataset.value;
+
+            if (pid)
+            {
+              window.location.href = '/aardvark/html/rankings/' + pid + '.html';
+            }
+          }
+          else if (relevantOptions.length > 0)
+          {
+            input.value = relevantOptions.shift();
+          }
+          else
+          {
+            alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
+          }
+
+        }
+      })(event)
+    "
+>
     <datalist id='search_input_countries'>
   <option data-value='JPN' value="Japan"></option>
-<option data-value='NER' value="Niger"></option>
 <option data-value='UGA' value="Uganda"></option>
 <option data-value='NGA' value="Nigeria"></option>
 <option data-value='ISR' value="Israel"></option>
@@ -49,16 +91,44 @@
 <option data-value='ZMB' value="Zambia"></option>
 <option data-value='HKG' value="Hong Kong"></option>
     </datalist>
-<input type='button' value='Submit'     onclick=
+<input type='button' value='Submit' id='country_button'     onclick=
       "
         (function ()
         {
-          var pname = document.getElementById('datalist_input_element_countries').value;
-          var pid   = document.querySelector('#search_input_countries option[value=&quot;'+pname+'&quot;]').dataset.value;
-          if (pid)
+          
+          var input = document.getElementById('datalist_input_element_countries');
+          var options = Array.from(document.getElementById('search_input_countries').options).map(function(el)
           {
-            window.location.href = '/aardvark/html/rankings/' + pid + '.html';
+            return el.value;
+          }); 
+          var relevantOptions = options.filter
+          (
+            function(option)
+            {
+              return option.toLowerCase().includes(input.value.toLowerCase());
+            }
+          );
+
+          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+          {
+            var pname = document.getElementById('datalist_input_element_countries').value;
+            var pid   = document.querySelector('#search_input_countries option[value=&quot;'+pname+'&quot;]').dataset.value;
+
+            if (pid)
+            {
+              window.location.href = '/aardvark/html/rankings/' + pid + '.html';
+            }
           }
+          else if (relevantOptions.length > 0)
+          {
+            input.value = relevantOptions.shift();
+          }
+          else
+          {
+            alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
+          }
+ 
         })()
       " 
+
 >
