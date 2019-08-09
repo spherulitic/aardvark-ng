@@ -81,6 +81,19 @@ sub get_tournament_data_filenames
 }
 
 
+sub make_link
+{
+  my $base_dir = shift;
+  my $dir      = shift;
+  my $filename = shift;
+  my $content  = shift;
+
+  my $link = "<a href='/$base_dir/$dir/$filename'>$content</a>";
+  return $link;
+}
+
+
+
 1;
 
 

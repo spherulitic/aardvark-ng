@@ -50,6 +50,7 @@ sub update_html
 
   my @player_ids_to_create = ();
 
+
   # Create new tournament html pages
 
   foreach my $tournament_id (@{$tournament_ids_to_create_ref})
@@ -74,25 +75,32 @@ sub update_html
     write_string_to_file($tournament_html_page, $tournament_filename);
   }
 
-  @player_ids_to_create = @{uniq(\@player_ids_to_create)};
-  @player_ids_to_create = sort {$a <=> $b} @player_ids_to_create;
-
   my $players_tn = Constants::PLAYERS_TABLE_NAME;
 
-  my $valid_countries_query = 
+  my $countries_query = 
     "
-      SELECT p.country
-      FROM $players_tn AS p
-      WHERE
-            p.deceased      = 0           AND
-            p.suspended     = 0           AND
-            p.current       = 1
-      GROUP BY p.country
+      SELECT *
+      FROM $players_tn
     ";
 
-  my @country_rankings_to_create = map { $_->[0] }  @{$dbh->selectall_arrayref($valid_countries_query, {"RaiseError" => 1})};
+
+  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+
+  my @all_players = @{$dbh->selectall_arrayref($countries_query, {Slice => {}, "RaiseError" => 1})};
+
+  @all_players = grep {$_->{'country'} && $trigraph_hashref->{$_->{'country'}}} @all_players;
+
+  my @all_countries = map { $_->{'country'}  } @all_players;
+
+  @all_countries = @{uniq(\@all_countries)};
+
+  my @country_rankings_to_create = map { $_->{'country'}  } (grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}   } @all_players);
+  @country_rankings_to_create = @{uniq(\@country_rankings_to_create)};
 
   my %valid_link_countries = map { $_ => 1 } @country_rankings_to_create;
+
+  @player_ids_to_create = @{uniq(\@player_ids_to_create)};
+  @player_ids_to_create = sort {$a <=> $b} @player_ids_to_create;
 
   # Update the player html pages that have been changed
   foreach my $player_id (@player_ids_to_create)
@@ -154,13 +162,11 @@ sub update_html
 
   # Update the full ranking list
 
-  @country_rankings_to_create = @{uniq(\@country_rankings_to_create)};
-
   check_country_flag_icons(\@country_rankings_to_create);
 
   update_rankings_html($dbh, \@country_rankings_to_create);
 
-  update_dynamically_loaded_content($dbh);
+  update_dynamically_loaded_content($dbh, \@all_countries);
 
   my $cmd = "rm -rf $working_dir/$html_dir && cp -r $html_dir $working_dir";
   system $cmd;
@@ -204,7 +210,9 @@ sub check_country_flag_icons
 
 sub update_dynamically_loaded_content
 {
-  my $dbh = shift;
+  my $dbh               = shift;
+  my $all_countries_ref = shift;
+
   my $players_table = Constants::PLAYERS_TABLE_NAME;
   my @player_data = @{$dbh->selectall_arrayref("SELECT * FROM $players_table"  , {Slice => {}, "RaiseError" => 1})};
 
@@ -294,6 +302,49 @@ sub update_dynamically_loaded_content
     );
 
   write_string_to_file($country_search_html, $country_search_filename);
+
+  my @all_countries = @{$all_countries_ref};
+
+  my @localtime = localtime();
+  my $current_year = $localtime[5] + 1900;
+  my $year_options = "";
+  my $country_options = "";
+  
+
+  for (my $i = 2000; $i <= $current_year; $i++)
+  {
+    $year_options .= "<option value='$i'>$i</option>\n";
+  }
+
+  @all_countries = sort @all_countries;
+
+  for (my $i = 0; $i < scalar @all_countries; $i++)
+  {
+    my $trigraph = $all_countries[$i];
+    my $fullname = $trigraph_hashref->{$trigraph};
+    $country_options .= "<option value='$trigraph'>$fullname</option>\n";
+  }
+
+  my $tournament_form = "Between <select name='startyear'>\n<option value='1993'>Before 2000</option>";
+
+  $tournament_form .= $year_options;
+ 
+  $tournament_form .= "</select> and\n";
+
+  $tournament_form .= "<select name='endyear'>\n<option value='1999'>Before 2000</option>";
+  
+  $tournament_form .= $year_options;
+
+  $tournament_form .= "</select> in <select name='state'>\n<option selected='selected' value='all'>All countries</option>";
+
+  $tournament_form .= $country_options;
+
+  $tournament_form .= "</select>  Partial name: <input name='partname' size='20' value=''> <input type='submit' value='Submit'> <br>";
+
+  my $tournament_form_name = Constants::HTML_FILES_DIR . '/' . Constants::TOURNAMENT_FORM_DATA_FILENAME;
+
+  write_string_to_file($tournament_form, $tournament_form_name); 
+
 }
 
 sub get_datalist_html
@@ -1487,17 +1538,6 @@ sub make_row
   $row_string .= "</tr>\n";
 
   return $row_string;
-}
-
-sub make_link
-{
-  my $base_dir = shift;
-  my $dir      = shift;
-  my $filename = shift;
-  my $content  = shift;
-
-  my $link = "<a href='/$base_dir/$dir/$filename'>$content</a>";
-  return $link;
 }
 
 sub query_table

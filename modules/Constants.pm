@@ -19,6 +19,7 @@ use constant FULL_RANKINGS_NAME  => 'full_rankings';
 use constant PLAYER_SEARCH_DATA_FILENAME      => 'player_search_data.html';
 use constant COUNTRY_SEARCH_DATA_FILENAME     => 'country_search_data.html';
 use constant FRONT_PAGE_RATINGS_DATA_FILENAME => 'front_page_ratings_data.html';
+use constant TOURNAMENT_FORM_DATA_FILENAME    => 'tournament_form_data.html';
 use constant FRONT_PAGE_RATINGS_CUTOFF        => 10;
 
 use constant HTML_HEADER => "Content-type: text/html\n\n";
@@ -114,6 +115,7 @@ use constant TABLES =>
                             "start_date DATE",
                             "end_date   DATE",
                             "name       VARCHAR(255)",
+                            "country    VARCHAR(3)",
 
                             "PRIMARY KEY (id)",
                             "FOREIGN KEY (event_id) REFERENCES events(id)"
@@ -529,6 +531,197 @@ use constant COUNTRY_TRIGRAPH_CONVERSION =>
   'MYM' => 'MMR',
   'SRI' => 'LKA'
 };
+
+use constant TEMPLATE_DOCTYPE => 
+
+<<DOCTYPE
+<!DOCTYPE html>
+DOCTYPE
+
+;
+
+use constant TEMPLATE_META => 
+<<META
+
+META
+
+
+;
+
+use constant TEMPLATE_LANG => 
+
+<<LANG
+lang="en"
+LANG
+
+;
+
+use constant TEMPLATE_WESPA_IMAGE =>
+
+<<WESPA_IMG
+    <div class="container-topper">
+      <div style="margin: auto;width: 80px;">
+        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+      </div>
+    </div>
+WESPA_IMG
+
+
+;
+
+use constant TEMPLATE_SOURCES =>
+
+<<SOURCES
+
+<script  src="../../js/tabber.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+SOURCES
+;
+
+use constant TEMPLATE_STYLE =>
+
+<<STYLE
+
+<style >
+
+        .navbar {margin-bottom: 0px;}
+        .federation-row { padding-top:10px;
+                                          padding-bottom:10px;
+                                         
+        }
+        .navbar-nav>li>a {
+                color: black ;
+        }
+        td
+        {
+                padding: 0px;
+        }
+
+</style>  
+STYLE
+;
+
+use constant TEMPLATE_SCRIPTS =>
+
+
+<<SCRIPTS
+
+      \$(document).ready(function () {
+      
+        \$('.collapse').on('shown.bs.collapse', function (e) {
+        
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '&#8722';
+        
+        });
+        
+        \$('.collapse').on('hidden.bs.collapse', function (e) {
+      
+          var id = e.target.id;
+      
+          id = id.replace('entry', 'button'); 
+          var el = document.getElementById(id);
+          el.innerHTML = '+';
+         
+        });
+      });
+
+      function showContent(evt, id, content_classname, links_classname)
+      {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName(content_classname);
+        for (i = 0; i < tabcontent.length; i++)
+        {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName(links_classname);
+        for (i = 0; i < tablinks.length; i++)
+        {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+
+SCRIPTS
+
+
+;
+
+use constant TEMPLATE_NAV =>
+
+<<NAV
+<div class="navbar navbar-default" style="background:#e8e6e6;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>   
+        <span class="icon-bar"></span>                  
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
+            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
+            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
+            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
+        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+NAV
+
+
+;
+
+use constant TEMPLATE_FOOTER =>  
+
+
+<<FOOTER
+<div class="container-fluid" style="background-color:white;">
+     
+        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
+     
+</div>
+FOOTER
+;
+
 
 
 

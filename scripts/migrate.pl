@@ -236,6 +236,10 @@ sub load_tournament_files
 
     $filename =~ s/\.(.*)$//;
 
+    my @filename_items = split /\//, $filename;
+
+    my $tournament_country = $filename_items[5];
+
     my $sts_file = $filename . $sts_file_extension;
     my $sta_file = $filename . $sta_file_extension;
 
@@ -322,6 +326,7 @@ sub load_tournament_files
       "start_date" => $date, # This is changed later
       "end_date"   => $date, # This is changed later
       "name"       => $tournament_name, 
+      "country"    => $tournament_country, 
       # "td"         => "director of tournament",
     };
     my @divisions = ();
