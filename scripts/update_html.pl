@@ -15,6 +15,7 @@ use Constants;
 
 require './scripts/templates.pl';
 require './scripts/utils.pl';
+require './scripts/deploy.pl';
 
 unless (caller)
 {
@@ -35,13 +36,10 @@ sub update_html
 
   my $working_dir         = Constants::DEFAULT_WORKING_DIR;
   my $html_dir            = Constants::HTML_DIR;
-  my $html_files_dir      = Constants::HTML_FILES_DIR;
   my $player_html_dir     = Constants::PLAYER_HTML_DIR;
   my $tournament_html_dir = Constants::TOURNAMENT_HTML_DIR;
   my $rankings_html_dir   = Constants::RANKINGS_HTML_DIR;
   my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
-
-  system "rm -rf $html_dir";
 
   system "mkdir -p $html_dir";
   system "mkdir -p $html_dir/$player_html_dir";
@@ -168,11 +166,7 @@ sub update_html
 
   update_dynamically_loaded_content($dbh, \@all_countries);
 
-  my $cmd = "rm -rf $working_dir/$html_dir && cp -r $html_dir $working_dir";
-  system $cmd;
-
-  system "cp $html_files_dir/* /srv/dev/";
-  system "cp -r $flags_dir/ $working_dir";
+  deploy();
 }
 
 sub check_country_flag_icons
@@ -248,11 +242,11 @@ sub update_dynamically_loaded_content
   }
   $peek_html .= "</table>\n";
 
-  my $peek_filename = Constants::HTML_FILES_DIR . '/' . Constants::FRONT_PAGE_RATINGS_DATA_FILENAME;
+  my $peek_filename = Constants::HTML_DATA_DIR . '/' . Constants::FRONT_PAGE_RATINGS_DATA_FILENAME;
 
   write_string_to_file($peek_html, $peek_filename);
 
-  my $player_search_filename = Constants::HTML_FILES_DIR . '/' . Constants::PLAYER_SEARCH_DATA_FILENAME;
+  my $player_search_filename = Constants::HTML_DATA_DIR . '/' . Constants::PLAYER_SEARCH_DATA_FILENAME;
 
   my $working_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR;
   my $html_dir = Constants::HTML_DIR;
@@ -273,7 +267,7 @@ sub update_dynamically_loaded_content
 
   write_string_to_file($player_search_html, $player_search_filename);
 
-  my $country_search_filename = Constants::HTML_FILES_DIR . '/' . Constants::COUNTRY_SEARCH_DATA_FILENAME;
+  my $country_search_filename = Constants::HTML_DATA_DIR . '/' . Constants::COUNTRY_SEARCH_DATA_FILENAME;
 
   my $rankings_dir = Constants::RANKINGS_HTML_DIR;
 
@@ -341,7 +335,7 @@ sub update_dynamically_loaded_content
 
   $tournament_form .= "</select>  Partial name: <input name='partname' size='20' value=''> <input type='submit' value='Submit'> <br>";
 
-  my $tournament_form_name = Constants::HTML_FILES_DIR . '/' . Constants::TOURNAMENT_FORM_DATA_FILENAME;
+  my $tournament_form_name = Constants::HTML_DATA_DIR . '/' . Constants::TOURNAMENT_FORM_DATA_FILENAME;
 
   write_string_to_file($tournament_form, $tournament_form_name); 
 

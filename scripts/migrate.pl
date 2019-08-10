@@ -44,8 +44,6 @@ my $working_directory      = Constants::DEFAULT_WORKING_DIR;
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
-my $initialize             = '';
-my $add_tournament         = '';
 my $create_html            = '';
 my $help                   = '';
 
@@ -69,8 +67,6 @@ sub main
                'year:s'      => \$year_regex,
                'country:s'   => \$country_trigraph_regex,
                'file:s'      => \$file_regex,
-               'initialize'  => \$initialize,
-               'add'         => \$add_tournament,
                'html'        => \$create_html,
                'help|?'      => \$help,
              ); 
@@ -78,11 +74,8 @@ sub main
   pod2usage(1) if $help;  
   
 
-  my $dbh = initialize_database($tables, $creation_order, $add_tournament);
+  my $dbh = initialize_database($tables, $creation_order);
   
-  if ($initialize){return;}
-  
- 
   my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
                                                 "name");
   
@@ -189,9 +182,6 @@ sub initialize_database
   my $tables_ref         = shift;
   my $creation_order_ref = shift;
 
-  # This should be true if you are adding a tournament to an existing database
-  my $add_tournament     = shift;
-
   my %tables = %{$tables_ref};
   my @creation_order = @{$creation_order_ref};
 
@@ -199,20 +189,16 @@ sub initialize_database
   my $dbh = connect_to_database();
  
 
-  # If a tournament is being added, don't recreate each table
-  if (!$add_tournament)
+  for(my $i = 0; $i < scalar @creation_order; $i++)
   {
-    for(my $i = 0; $i < scalar @creation_order; $i++)
-    {
-      my $key = $creation_order[$i];
-      my @columns = @{$tables{$key}};
+    my $key = $creation_order[$i];
+    my @columns = @{$tables{$key}};
     
-      my $columns_string = join ", ", @columns;
+    my $columns_string = join ", ", @columns;
     
-      my $statement = "CREATE TABLE $key ($columns_string)";
+    my $statement = "CREATE TABLE IF NOT EXISTS $key ($columns_string)";
     
-      $dbh->do($statement);
-    }
+    $dbh->do($statement);
   }
 
   return $dbh;
@@ -252,6 +238,16 @@ sub load_tournament_files
       next filename;
     }
 
+    my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+    my $tou_query = "SELECT * FROM $loaded_tournaments_tn WHERE filename=\"$tou_file\"";
+
+    my @tou_query_result = $dbh->selectrow_array($tou_query, {"RaiseError" => 1});
+
+    if (@tou_query_result)
+    {
+      # print "Tournament already processed: $tou_file (Skipping)\n";
+      next filename;
+    }
 
     # First validate and maybe correct the .tou file
     my $reports = correct_and_verify_tournament($tou_file, $tou_file);
@@ -1132,6 +1128,21 @@ sub load_tournament_files
         insert_hash_into_table($dbh, $player_results_tn, $gapr->{"player2_result"});
       }
     }
+
+
+    my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+    $tournament_name =~ s/"//g;
+
+    my $insert_processed_tou =
+    "
+      INSERT INTO $loaded_tournaments_table_name
+      (name, filename)
+      VALUES (\"$tournament_name\", \"$tou_file\")
+    ";
+
+    $dbh->do($insert_processed_tou, {"RaiseError" => 1});
+
+
   }
 
   # Update ratings for all players
@@ -1434,8 +1445,6 @@ __END__
    -f, --file       specifies the filename regex for which tournament files to migrate
                     (for example -f atlanta16.tou would migrate tournament data from files
                     with "atlant16.tou" in the filename and their corresponding .STS/.STA files)
-   -i, --initialize flag to initialize the database with empty tables
-   -a, --add        flag to add tournaments to an initialized database
 =cut
 
 

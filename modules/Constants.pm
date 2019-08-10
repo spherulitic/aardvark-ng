@@ -10,7 +10,8 @@ use constant LOG_DIR             => 'logs';
 use constant MODULES_DIR         => 'modules';
 use constant SCRIPTS_DIR         => 'scripts';
 use constant HTML_DIR            => 'html';
-use constant HTML_FILES_DIR      => 'html_files';
+use constant HTML_STATIC_DIR     => 'html_static';
+use constant HTML_DATA_DIR       => 'html_data';
 use constant PLAYER_HTML_DIR     => 'players';
 use constant TOURNAMENT_HTML_DIR => 'tournaments';
 use constant RANKINGS_HTML_DIR   => 'rankings';
@@ -64,6 +65,7 @@ use constant GAMES_TABLE_NAME              => 'games';
 use constant TOURNAMENT_RESULTS_TABLE_NAME => 'tournament_results';
 use constant PLAYER_RESULTS_TABLE_NAME     => 'player_results';
 use constant LEXICONS_TABLE_NAME           => 'lexicons';
+use constant LOADED_TOURNAMENTS_TABLE_NAME => 'loaded_tournaments';
 
 use constant MASTER_RATINGS_LIST        => 'rating.dat';
 use constant NOT_IN_MASTER_RATINGS_LIST => 'not_in_ratings_list.log';
@@ -83,8 +85,19 @@ use constant DEFAULT_BYE_SCORE          => 1350;
 
 use constant ROUNDING_PLACE             => 2;
 
+use constant UPDATE_START_YEAR          => "2019";
+use constant UPDATE_SOURCE_DIR          => "/srv/iwi.wespa.org/aardvark";
+
 use constant TABLES =>
 {
+  Constants::LOADED_TOURNAMENTS_TABLE_NAME =>
+  [
+   "id                 INT NOT NULL AUTO_INCREMENT",
+   "name               VARCHAR(255)",
+   "filename           VARCHAR(255)",
+
+   "PRIMARY KEY (id)"
+  ],
   Constants::PLAYERS_TABLE_NAME   => [
                             "id                 INT NOT NULL AUTO_INCREMENT",
                             "name               VARCHAR(255)",
@@ -210,7 +223,8 @@ use constant TABLE_CREATION_ORDER =>
                        Constants::DIVISIONS_TABLE_NAME,
                        Constants::GAMES_TABLE_NAME,
                        Constants::TOURNAMENT_RESULTS_TABLE_NAME,
-                       Constants::PLAYER_RESULTS_TABLE_NAME
+                       Constants::PLAYER_RESULTS_TABLE_NAME,
+                       Constants::LOADED_TOURNAMENTS_TABLE_NAME
                      ];
 
 use constant LEXICONS => [
