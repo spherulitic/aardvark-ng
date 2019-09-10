@@ -691,30 +691,30 @@ use constant TEMPLATE_NAV =>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="http://www.wespa.org/index.shtml">Home</a></li>
+        <li><a href="/index.shtml">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="http://www.wespa.org/associations.shtml">Associations</a></li>
-            <li><a href="http://www.wespa.org/committees.shtml">Committees</a></li>
-            <li><a href="http://www.wespa.org/joinwespa.shtml">Join Us</a></li>
-            <li><a href="http://www.wespa.org/credits.shtml">Credits</a></li>
+            <li><a href="/associations.shtml">Associations</a></li>
+            <li><a href="/committees.shtml">Committees</a></li>
+            <li><a href="/joinwespa.shtml">Join Us</a></li>
+            <li><a href="/credits.shtml">Credits</a></li>
           </ul>
         </li>
-        <li><a href="http://www.wespa.org/news.shtml">News</a></li>
+        <li><a href="/news.shtml">News</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="http://www.wespa.org/tournaments/index.shtml">Calendar</a></li>
-            <li><a href="http://www.wespa.org/ratings.shtml">Ratings</a></li>
+            <li><a href="/tournaments/index.shtml">Calendar</a></li>
+            <li><a href="/ratings.shtml">Ratings</a></li>
           </ul>
         </li>
-        <li><a href="http://www.wespa.org/resources.shtml">Resources</a></li>
-        <li><a href="http://www.wespa.org/youth.shtml">Youth Scrabble</a></li>
-        <li><a href="http://www.wespa.org/products.shtml">Products</a></li>
+        <li><a href="/resources.shtml">Resources</a></li>
+        <li><a href="/youth.shtml">Youth Scrabble</a></li>
+        <li><a href="/products.shtml">Products</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://www.wespa.org/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li><a href="/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
       </ul>
     </div>
   </div>
