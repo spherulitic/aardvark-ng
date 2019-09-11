@@ -441,7 +441,7 @@ sub get_rankings_template_html_string
   my $rankings_html_page = "";
 
 
-  $rankings_html_page .= <<STOP;
+  $rankings_html_page .= <<STOP
 $doctype
 <html>
   <head>
@@ -487,7 +487,7 @@ $doctype
 </html>
 
 STOP
-
+;
   return $rankings_html_page;
 
 }

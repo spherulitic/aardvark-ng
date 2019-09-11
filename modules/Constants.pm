@@ -16,11 +16,13 @@ use constant PLAYER_HTML_DIR     => 'players';
 use constant TOURNAMENT_HTML_DIR => 'tournaments';
 use constant RANKINGS_HTML_DIR   => 'rankings';
 use constant FULL_RANKINGS_NAME  => 'full_rankings';
+use constant CGIBIN_DIR          => 'cgi-bin';
 
 use constant PLAYER_SEARCH_DATA_FILENAME      => 'player_search_data.html';
 use constant COUNTRY_SEARCH_DATA_FILENAME     => 'country_search_data.html';
 use constant FRONT_PAGE_RATINGS_DATA_FILENAME => 'front_page_ratings_data.html';
 use constant TOURNAMENT_FORM_DATA_FILENAME    => 'tournament_form_data.html';
+use constant TOURNAMENT_CGI_FILENAME          => 'find_tournament.pl';
 use constant FRONT_PAGE_RATINGS_CUTOFF        => 10;
 
 use constant HTML_HEADER => "Content-type: text/html\n\n";

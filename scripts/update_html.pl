@@ -166,7 +166,139 @@ sub update_html
 
   update_dynamically_loaded_content($dbh, \@all_countries);
 
+  #update_cgi($dbh);
+
   deploy();
+}
+
+sub update_cgi
+{
+  my $dbh = shift;
+
+  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
+  my $doctype   = Constants::TEMPLATE_DOCTYPE;
+  my $meta      = Constants::TEMPLATE_META;
+  my $lang      = Constants::TEMPLATE_LANG;
+  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
+  my $sources   = Constants::TEMPLATE_SOURCES;
+  my $style     = Constants::TEMPLATE_STYLE;
+  my $scripts   = Constants::TEMPLATE_SCRIPTS;
+  my $nav       = Constants::TEMPLATE_NAV;
+  my $footer    = Constants::TEMPLATE_FOOTER;
+
+
+  my $database_name = Constants::DATABASE_NAME;
+  my $host_name     = Constants::DATABASE_HOST_NAME;
+  my $user_name     = Constants::DATABASE_USER_NAME;
+  my $password      = Constants::DATABASE_PASSWORD;
+
+  my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
+
+  my $cgi_dir  = Constants::CGIBIN_DIR;
+ 
+  my $title = "Tournament Results";
+ 
+  system "mkdir -p $cgi_dir";
+
+  my $filename = Constants::TOURNAMENT_CGI_FILENAME;
+
+  my $tournament_cgi_script = <<CGI
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+use CGI;
+use DBI;
+
+my \$cgi = CGI->new();
+
+my \$startyear = sanitize(\$cgi->param('startyear'));
+my \$endyear   = sanitize(\$cgi->param('endyear'));
+my \$state     = sanitize(\$cgi->param('state'));
+my \$partname  = sanitize(\$cgi->param('partname'));
+
+\$startyear .= '-00-00';
+\$endyear   .= '-00-00';
+
+my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
+                         $user_name, $password,
+                         {'RaiseError' => 1}); 
+
+my \$query =
+"
+  SELECT *
+  FROM $tournaments_tn AS t
+  WHERE
+    t.start_date >= '\$startyear' AND t.end_date <= '\$endyear'    
+";
+
+if (\$state ne 'all')
+{
+  \$query .= " AND t.country = '\$state' ";
+}
+
+if (\$partname)
+{
+  \$query .= " AND t.name LIKE '%\$partname%' ";
+}
+
+my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, "RaiseError" => 1})};
+
+my \$results_html_page .= <<STOP
+$doctype
+<html>
+  <head>
+  $meta
+  <title>$title</title>
+  
+  $sources
+  
+  $style
+  
+  </head>
+  
+  <body id='override'>
+    $wespa_img
+    $nav
+    <div style="background-color:#90D1EF">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
+            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$html_path/../wespafb.jpg" alt="WESPA" />$title</h2>   
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="table-responsive">
+            results!
+          </div>
+        </div>
+      </div>
+      $footer
+    </div>
+  </body>
+</html>
+
+STOP
+;
+
+
+sub sanitize
+{
+  my \$s = shift;
+
+  \$s = substr(\$s, 0, 255);
+  \$s =~ s/\\W//g;
+  return \$s;
+}
+
+1;
+
+CGI
+;
+  write_string_to_file($tournament_cgi_script, $cgi_dir . '/' . $filename);
 }
 
 sub check_country_flag_icons
