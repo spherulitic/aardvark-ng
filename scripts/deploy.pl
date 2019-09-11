@@ -13,6 +13,7 @@ use Constants;
 
 my $working_dir         = Constants::DEFAULT_WORKING_DIR;
 my $html_dir            = Constants::HTML_DIR;
+my $cgibin_dir          = Constants::CGIBIN_DIR;
 my $html_static_dir     = Constants::HTML_STATIC_DIR;
 my $html_data_dir       = Constants::HTML_DATA_DIR;
 my $player_html_dir     = Constants::PLAYER_HTML_DIR;
@@ -35,6 +36,9 @@ sub deploy
   # Copy data html
   system "cp $html_data_dir/* /srv/dev/";
   
+  # Copy the cgi scripts
+  system "cp -r $cgibin_dir $working_dir";
+
   # Copy the flags
   system "cp -r $flags_dir/ $working_dir";
   
