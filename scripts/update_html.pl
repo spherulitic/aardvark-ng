@@ -185,7 +185,8 @@ sub update_cgi
   my $scripts   = Constants::TEMPLATE_SCRIPTS;
   my $nav       = Constants::TEMPLATE_NAV;
   my $footer    = Constants::TEMPLATE_FOOTER;
-
+  my $base_dir  = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
+  my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
 
   my $database_name = Constants::DATABASE_NAME;
   my $host_name     = Constants::DATABASE_HOST_NAME;
@@ -229,7 +230,7 @@ my \$query =
   SELECT *
   FROM $tournaments_tn AS t
   WHERE
-    t.start_date >= '\$startyear' AND t.end_date <= '\$endyear'    
+    t.end_date >= '\$startyear' AND t.start_date <= '\$endyear'    
 ";
 
 if (\$state ne 'all')
@@ -242,7 +243,35 @@ if (\$partname)
   \$query .= " AND t.name LIKE '%\$partname%' ";
 }
 
+\$query .= " ORDER BY t.start_date ";
+
 my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, "RaiseError" => 1})};
+
+my \$title_row = "<tr><th>#</th><th>Tournament</th><th>Date</th></tr>";
+
+my \$table_content = "";
+
+for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
+{
+  my \$item = \$tournaments[\$i];
+  my \$name = \$item->{'name'};
+  my \$date = \$item->{'start_date'};
+  my \$id   = \$item->{'id'};
+
+  my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
+  my \$link = "<a href='/$base_dir/$dir/$filename'>\$name</a>";
+  \$table_content .= "<tr><td>\$i</td>td>\$link</td>td>\$date</td></tr>";
+}
+
+my \$table =
+"
+<table>
+<tbody>
+\$title_row
+\$table_content
+</tbody>
+</table>
+";
 
 my \$results_html_page .= <<STOP
 $doctype
@@ -272,7 +301,7 @@ $doctype
       <div class="container">
         <div class="row">
           <div class="table-responsive">
-            results!
+            \$table
           </div>
         </div>
       </div>
@@ -284,6 +313,8 @@ $doctype
 STOP
 ;
 
+print "Content-Type: text/html\n\n";
+print \$results_html_page;
 
 sub sanitize
 {
