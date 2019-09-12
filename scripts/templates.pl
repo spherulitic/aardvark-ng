@@ -428,6 +428,127 @@ STOP
 
 }
 
+sub get_alltime_template_html_string
+{
+  my $data        = shift;
+  my $div_html    = $data->[$i]->[0];
+  my $div_data    = $data->[$i]->[1];
+  my $div_stats   = $data->[$i]->[2];
+  my $div_ratings = $data->[$i]->[3];
+
+  my @ids_to_click = ();
+  
+  my $display_none_style = "style='display:none;'";
+
+  my @tabdata = ();
+
+  my $stats_content = "";
+  my @stats_tabdata = ();
+
+  my $stats_order_ref = Constants::TOURNAMENT_STATS_ORDER;
+
+  for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
+  {
+    my $cat = $stats_order_ref->[$k];
+    my $stat_id = "division_$i" . "_stats_$cat";
+    push @stats_tabdata, [$cat, $stat_id];
+
+    my $stat_html = $div_stats->{$cat};
+    $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+    if ($k == 0)
+    {
+      push @ids_to_click, "button_$stat_id";
+    }
+  }
+
+  $stats_content = make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
+
+  my $div_stats_id     = "division_$i" . "_stats";
+
+  push @ids_to_click, "button_$div_standings_id";
+
+
+  my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
+
+
+
+  $division_results .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
+
+  my $ids_to_click_javascript_array = "[";
+
+  for (my $i = 0; $i < scalar @ids_to_click; $i++)
+  {
+    my $id = $ids_to_click[$i];
+    $ids_to_click_javascript_array .= "'$id'";
+    if ($i != (scalar @ids_to_click) - 1)
+    {
+      $ids_to_click_javascript_array .= ", ";
+    }
+  }
+
+  $ids_to_click_javascript_array .= "]";
+
+  my $tournament_html_page = "";
+
+  $tournament_html_page .= <<STOP;
+$doctype
+<html>
+  <head>
+  $meta
+  <title>$tournament_name</title>
+  
+  $sources
+  
+  $style
+  
+  <script type="text/javascript">
+ 
+    $scripts
+
+   
+    window.onload = function()
+    { 
+      var ids = $ids_to_click_javascript_array;
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
+  </script>
+
+  </head>
+  
+  <body id='override'>
+    $wespa_img
+    $nav
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <h2>$tournament_name ($tournament_date)</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <br>
+              $tabs
+              <br>    
+            </div>
+            $division_results
+          </div>
+        </div>
+      </div>
+      $footer
+    </div>
+  </div>
+  </body>
+</html>
+
+STOP
+
+  return $tournament_html_page;
+
+}
+
 sub get_rankings_template_html_string
 {
   my $rankings_string = shift;

@@ -30,6 +30,13 @@ unless (caller)
 
 sub update_html
 {
+  update_cgi(); return;
+
+  my $all_time_stats = get_tournament_results_html_string($dbh, 0, Constants::HTML_ID_TOURNAMENT_TYPE);
+  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
+
+  write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
+
   my $tournament_ids_to_create_ref = shift;
 
   my $dbh = connect_to_database();
@@ -166,8 +173,6 @@ sub update_html
 
   update_dynamically_loaded_content($dbh, \@all_countries);
 
-  #update_cgi($dbh);
-
   deploy();
 }
 
@@ -218,11 +223,16 @@ my \$endyear   = sanitize(\$cgi->param('endyear'));
 my \$state     = sanitize(\$cgi->param('state'));
 my \$partname  = sanitize(\$cgi->param('partname'));
 
+\$startyear = 1993;
+\$endyear   = 2019;
+\$state     = 'all';
+\$partname  = '';
+
 \$startyear .= '-00-00';
 \$endyear   .= '-00-00';
 
 my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         $user_name, $password,
+                         '$user_name', '$password',
                          {'RaiseError' => 1}); 
 
 my \$query =
@@ -259,7 +269,7 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
   my \$id   = \$item->{'id'};
 
   my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
-  my \$link = "<a href='/$base_dir/$dir/$filename'>\$name</a>";
+  my \$link = "<a href='\$url'>\$name</a>";
   \$table_content .= "<tr><td>\$i</td>td>\$link</td>td>\$date</td></tr>";
 }
 
@@ -686,7 +696,7 @@ sub get_tournament_results_html_string
   {
     $query .= " tr.player_id = $id";
   }
-  elsif ($type == $tournament_type)
+  elsif ($type == $tournament_type && $id)
   {
     $query .= " tr.division_id = $id";
   }
