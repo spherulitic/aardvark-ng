@@ -430,17 +430,21 @@ STOP
 
 sub get_alltime_template_html_string
 {
-  my $data        = shift;
-  my $div_html    = $data->[$i]->[0];
-  my $div_data    = $data->[$i]->[1];
-  my $div_stats   = $data->[$i]->[2];
-  my $div_ratings = $data->[$i]->[3];
+  my $data = shift;
 
   my @ids_to_click = ();
   
   my $display_none_style = "style='display:none;'";
 
-  my @tabdata = ();
+
+  my $stats_tabclass    = "stats_tab";
+  my $stats_tablink     = "stats_tablink";
+
+
+  # my $html    = $data->[$i]->[0];
+  # my $data    = $data->[$i]->[1];
+  my $stats   = $data->[$i]->[2];
+  # my $ratings = $data->[$i]->[3];
 
   my $stats_content = "";
   my @stats_tabdata = ();
@@ -450,10 +454,10 @@ sub get_alltime_template_html_string
   for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
   {
     my $cat = $stats_order_ref->[$k];
-    my $stat_id = "division_$i" . "_stats_$cat";
+    my $stat_id =  "stats_$cat";
     push @stats_tabdata, [$cat, $stat_id];
 
-    my $stat_html = $div_stats->{$cat};
+    my $stat_html = $stats->{$cat};
     $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
     if ($k == 0)
     {
@@ -463,16 +467,6 @@ sub get_alltime_template_html_string
 
   $stats_content = make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
 
-  my $div_stats_id     = "division_$i" . "_stats";
-
-  push @ids_to_click, "button_$div_standings_id";
-
-
-  my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
-
-
-
-  $division_results .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
 
   my $ids_to_click_javascript_array = "[";
 
@@ -533,7 +527,7 @@ $doctype
               $tabs
               <br>    
             </div>
-            $division_results
+            $stats_content
           </div>
         </div>
       </div>
@@ -546,7 +540,6 @@ $doctype
 STOP
 
   return $tournament_html_page;
-
 }
 
 sub get_rankings_template_html_string

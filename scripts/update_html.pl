@@ -30,11 +30,11 @@ unless (caller)
 
 sub update_html
 {
-  update_cgi(); return;
+  update_cgi(); 
 
   my $all_time_stats = get_tournament_results_html_string($dbh, 0, Constants::HTML_ID_TOURNAMENT_TYPE);
   my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
-
+return;
   write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
 
   my $tournament_ids_to_create_ref = shift;
@@ -270,7 +270,7 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
 
   my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
   my \$link = "<a href='\$url'>\$name</a>";
-  \$table_content .= "<tr><td>\$i</td>td>\$link</td>td>\$date</td></tr>";
+  \$table_content .= "<tr><td>\$i</td><td>\$link</td><td>\$date</td></tr>";
 }
 
 my \$table =
