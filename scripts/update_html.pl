@@ -683,7 +683,7 @@ sub get_alltime_stats_results_html_string
  
   my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1})};
 
-  my $tournament_stats = stat_objects();
+  my $all_stats = stat_objects();
   my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
   my $stat_key_name        = Constants::STAT_KEY_NAME;
 
@@ -693,9 +693,9 @@ sub get_alltime_stats_results_html_string
 
   foreach my $data (@raw_tournament_data)
   {
-      foreach my $key (keys %{$tournament_stats})
+      foreach my $key (keys %{$all_stats})
       {
-        my $statitem = $tournament_stats->{$key};
+        my $statitem = $all_stats->{$key};
         if ($statitem->{'cond'}->($data))
         {
           my $stat = $statitem->{'eval'}->($data);
@@ -718,9 +718,9 @@ sub get_alltime_stats_results_html_string
       }
   }
 
-  foreach my $key (keys %{$tournament_stats})
+  foreach my $key (keys %{$all_stats})
   {
-    my $statitem = $tournament_stats->{$key};
+    my $statitem = $all_stats->{$key};
     my @statlist = @{$statitem->{'list'}};
 
     my $func = $statitem->{'sort'};
@@ -739,7 +739,7 @@ sub get_alltime_stats_results_html_string
 
     foreach my $key (keys %{$all_stats})
     {
-      my $dataitem = $tournament_stats->{$key};
+      my $dataitem = $all_stats->{$key};
       my $html_string = "       <table class='table'>\n";
       $html_string    .=
         make_row
