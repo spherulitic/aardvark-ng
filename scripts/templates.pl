@@ -440,11 +440,7 @@ sub get_alltime_template_html_string
   my $stats_tabclass    = "stats_tab";
   my $stats_tablink     = "stats_tablink";
 
-
-  # my $html    = $data->[$i]->[0];
-  # my $data    = $data->[$i]->[1];
-  my $stats   = $data->[$i]->[2];
-  # my $ratings = $data->[$i]->[3];
+  my $stats   = $data->[2];
 
   my $stats_content = "";
   my @stats_tabdata = ();
@@ -489,7 +485,7 @@ $doctype
 <html>
   <head>
   $meta
-  <title>$tournament_name</title>
+  <title>All Time Stats</title>
   
   $sources
   
@@ -518,13 +514,13 @@ $doctype
     $nav
     <div style="background-color:#90D1EF">
       <div style="background-color:white;padding-top:10px;" class="container">
-        <h2>$tournament_name ($tournament_date)</h2>
+        <h2>All Time Stats</h2>
         <hr>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div>
               <br>
-              $tabs
+              Yeet
               <br>    
             </div>
             $stats_content

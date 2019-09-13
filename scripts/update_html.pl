@@ -32,10 +32,10 @@ sub update_html
 {
   update_cgi(); 
 
-  my $all_time_stats = get_tournament_results_html_string($dbh, 0, Constants::HTML_ID_TOURNAMENT_TYPE);
-  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
+  #my $all_time_stats = get_tournament_results_html_string($dbh, 0, Constants::HTML_ID_TOURNAMENT_TYPE);
+  #my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
+  #write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
 return;
-  write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
 
   my $tournament_ids_to_create_ref = shift;
 
@@ -229,7 +229,7 @@ my \$partname  = sanitize(\$cgi->param('partname'));
 \$partname  = '';
 
 \$startyear .= '-00-00';
-\$endyear   .= '-00-00';
+\$endyear   .= '-12-31';
 
 my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
                          '$user_name', '$password',
@@ -247,6 +247,10 @@ if (\$state ne 'all')
 {
   \$query .= " AND t.country = '\$state' ";
 }
+else
+{
+  \$state = 'All Countries';
+}
 
 if (\$partname)
 {
@@ -259,6 +263,20 @@ my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, "RaiseErr
 
 my \$title_row = "<tr><th>#</th><th>Tournament</th><th>Date</th></tr>";
 
+my \$search_style = 'style="padding: 10px; border-bottom: 1px solid black;"';
+
+my \$search_content =
+"
+<table class='searchparams'>
+<tbody>
+<tr><th \$search_style>Start Date            </th><td \$search_style>\$startyear</td></tr>
+<tr><th \$search_style>End Date              </th><td \$search_style>\$endyear</td></tr>
+<tr><th \$search_style>Country               </th><td \$search_style>\$state</td></tr>
+<tr><th \$search_style>Partial Name          </th><td \$search_style>\$partname</td></tr>
+</tbody>
+</table>
+";
+
 my \$table_content = "";
 
 for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
@@ -268,14 +286,23 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
   my \$date = \$item->{'start_date'};
   my \$id   = \$item->{'id'};
 
+  my \$row_class = 'roweven';
+    
+  if (\$i % 2 == 1)
+  {
+    \$row_class = 'rowodd';
+  }
+  my \$num = \$i + 1;
+
   my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
   my \$link = "<a href='\$url'>\$name</a>";
-  \$table_content .= "<tr><td>\$i</td><td>\$link</td><td>\$date</td></tr>";
+  \$table_content .= "<tr class='\$row_class'><td>\$num</td><td>\$link</td><td>\$date</td></tr>";
 }
 
-my \$table =
+my \$content =
 "
-<table>
+\$search_content
+<table class='table'>
 <tbody>
 \$title_row
 \$table_content
@@ -301,17 +328,17 @@ $doctype
     $nav
     <div style="background-color:#90D1EF">
       
-      <div class="container">
+      <div  class="container">
         <div class="row">
           <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
             <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$html_path/../wespafb.jpg" alt="WESPA" />$title</h2>   
           </div>
         </div>
       </div>
-      <div class="container">
+      <div  style="background-color:white;padding-top:10px;"  class="container">
         <div class="row">
           <div class="table-responsive">
-            \$table
+            \$content
           </div>
         </div>
       </div>

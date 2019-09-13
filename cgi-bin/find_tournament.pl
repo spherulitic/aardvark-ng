@@ -18,7 +18,7 @@ $state     = 'all';
 $partname  = '';
 
 $startyear .= '-00-00';
-$endyear   .= '-00-00';
+$endyear   .= '-12-31';
 
 my $dbh = DBI->connect("DBI:mysql:database=wespa;host=localhost",
                          'wespa', 'nigeltheking',
@@ -36,6 +36,10 @@ if ($state ne 'all')
 {
   $query .= " AND t.country = '$state' ";
 }
+else
+{
+  $state = 'All Countries';
+}
 
 if ($partname)
 {
@@ -48,6 +52,20 @@ my @tournaments = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" 
 
 my $title_row = "<tr><th>#</th><th>Tournament</th><th>Date</th></tr>";
 
+my $search_style = 'style="padding: 10px; border-bottom: 1px solid black;"';
+
+my $search_content =
+"
+<table class='searchparams'>
+<tbody>
+<tr><th $search_style>Start Date            </th><td $search_style>$startyear</td></tr>
+<tr><th $search_style>End Date              </th><td $search_style>$endyear</td></tr>
+<tr><th $search_style>Country               </th><td $search_style>$state</td></tr>
+<tr><th $search_style>Partial Name          </th><td $search_style>$partname</td></tr>
+</tbody>
+</table>
+";
+
 my $table_content = "";
 
 for (my $i = 0; $i < scalar @tournaments; $i++)
@@ -57,14 +75,23 @@ for (my $i = 0; $i < scalar @tournaments; $i++)
   my $date = $item->{'start_date'};
   my $id   = $item->{'id'};
 
+  my $row_class = 'roweven';
+    
+  if ($i % 2 == 1)
+  {
+    $row_class = 'rowodd';
+  }
+  my $num = $i + 1;
+
   my $url = '/' . 'aardvark/html' . '/' . 'tournaments' . '/' . $id . '.html';
   my $link = "<a href='$url'>$name</a>";
-  $table_content .= "<tr><td>$i</td>td>$link</td>td>$date</td></tr>";
+  $table_content .= "<tr class='$row_class'><td>$num</td><td>$link</td><td>$date</td></tr>";
 }
 
-my $table =
+my $content =
 "
-<table>
+$search_content
+<table class='table'>
 <tbody>
 $title_row
 $table_content
@@ -82,9 +109,9 @@ my $results_html_page .= <<STOP
   <title>Tournament Results</title>
   
   
-<script  src="../../js/tabber.js"></script>
+<script  src="/aardvark/js/tabber.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../../aardvark.css">
+<link rel="stylesheet" type="text/css" href="/aardvark/aardvark.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -117,7 +144,7 @@ my $results_html_page .= <<STOP
   <body id='override'>
         <div class="container-topper">
       <div style="margin: auto;width: 80px;">
-        <img class="img-responsive" src="../../../wespafb.jpg" width="80" height="80" alt="WESPA">
+        <img class="img-responsive" src="/wespafb.jpg" width="80" height="80" alt="WESPA">
       </div>
     </div>
 
@@ -167,17 +194,17 @@ my $results_html_page .= <<STOP
 
     <div style="background-color:#90D1EF">
       
-      <div class="container">
+      <div  class="container">
         <div class="row">
           <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
             <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="../../../wespafb.jpg" alt="WESPA" />Tournament Results</h2>   
           </div>
         </div>
       </div>
-      <div class="container">
+      <div  style="background-color:white;padding-top:10px;"  class="container">
         <div class="row">
           <div class="table-responsive">
-            $table
+            $content
           </div>
         </div>
       </div>
