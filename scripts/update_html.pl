@@ -30,16 +30,15 @@ unless (caller)
 
 sub update_html
 {
-  update_cgi(); 
 
-  #my $all_time_stats = get_tournament_results_html_string($dbh, 0, Constants::HTML_ID_TOURNAMENT_TYPE);
-  #my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
-  #write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
-return;
+  my $dbh = connect_to_database();
+  my $all_time_stats = get_alltime_stats_results_html_string($dbh);
+  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
+  write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
+  return;
 
   my $tournament_ids_to_create_ref = shift;
 
-  my $dbh = connect_to_database();
 
   my $working_dir         = Constants::DEFAULT_WORKING_DIR;
   my $html_dir            = Constants::HTML_DIR;
@@ -172,6 +171,8 @@ return;
   update_rankings_html($dbh, \@country_rankings_to_create);
 
   update_dynamically_loaded_content($dbh, \@all_countries);
+
+  update_cgi(); 
 
   deploy();
 }
@@ -647,6 +648,132 @@ sub write_string_to_file
 
 }
 
+sub get_alltime_stats_results_html_string
+{
+  my $dbh = shift;
+  my $player_type       = Constants::HTML_ID_PLAYER_TYPE;
+  my $tournament_type   = Constants::HTML_ID_TOURNAMENT_TYPE;
+  my $head_to_head_type = Constants::HTML_ID_HEAD_TO_HEAD_TYPE;
+
+  my $tr_table_name = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
+  my $g_table_name  = Constants::GAMES_TABLE_NAME;
+  my $pr_table_name = Constants::PLAYER_RESULTS_TABLE_NAME;
+  my $p_table_name  = Constants::PLAYERS_TABLE_NAME;
+  my $t_table_name  = Constants::TOURNAMENTS_TABLE_NAME;
+  my $d_table_name  = Constants::DIVISIONS_TABLE_NAME;
+
+  my $query =
+  "
+  SELECT
+    p1.rating      AS tr_start_rating
+    p1.name        AS tr_player_name
+    pr1.score      AS pr1_score
+    p2.rating      AS opp_rating
+    p2.name        AS opp_name
+    pr2.score      AS pr2_score
+    g.round        AS g_round
+  FROM
+    $g_table_name AS g, $pr_table_name AS pr1, $pr_table_name AS pr2, $p_table_name AS p1, $p_table_name AS p2
+  WHERE
+    g.id = pr1.game_id AND g.id = pr2.game_id       AND
+    pr1.player_id = p1.id AND pr2.player_id = p2.id AND
+    p1.id > p2.id
+  ";
+
+ 
+  my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1})};
+
+  my $tournament_stats = stat_objects();
+  my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
+  my $stat_key_name        = Constants::STAT_KEY_NAME;
+
+  # Associate game results with a tournament result
+
+  my $tournament_results_hashref = {};
+
+  foreach my $data (@raw_tournament_data)
+  {
+      foreach my $key (keys %{$tournament_stats})
+      {
+        my $statitem = $tournament_stats->{$key};
+        if ($statitem->{'cond'}->($data))
+        {
+          my $stat = $statitem->{'eval'}->($data);
+          my @value_list = @{$statitem->{'values'}};
+          my $statdata = {};
+          foreach my $val (@value_list)
+          {
+            my $dataitem = $data->{$val};
+            if ($dataitem)
+            {
+              $statdata->{$val} = $dataitem;
+            }
+          }
+          $statdata->{'tr_player_id'} = $data->{'tr_player_id'};
+          $statdata->{'opp_id'}       = $data->{'opp_id'};
+          $statdata->{$stat_key_name} = $stat;
+
+          push @{$statitem->{'list'}}, $statdata;
+        } 
+      }
+  }
+
+  foreach my $key (keys %{$tournament_stats})
+  {
+    my $statitem = $tournament_stats->{$key};
+    my @statlist = @{$statitem->{'list'}};
+
+    my $func = $statitem->{'sort'};
+
+    @statlist = sort {&$func} @statlist;
+    for (my $i = 0; $i < scalar @statlist; $i++)
+    {
+      $statlist[$i]->{$game_stats_rank_name} = $i + 1;
+    }
+    $statitem->{'list'} = \@statlist;
+  }
+
+
+
+  my $all_stats_html = {};
+
+    foreach my $key (keys %{$all_stats})
+    {
+      my $dataitem = $tournament_stats->{$key};
+      my $html_string = "       <table class='table'>\n";
+      $html_string    .=
+        make_row
+        (
+          0,
+          $dataitem->{'titles'},
+          1,
+          0,
+          0   
+        );
+      my @statlist = @{$dataitem->{'list'}};
+      for (my $i = 0; $i < scalar @statlist; $i++)
+      {
+        my $sub_row_class = 'roweven';
+    
+        if ($i % 2 == 1)
+        {
+          $sub_row_class = 'rowodd';
+        }
+
+        my $statitem = $statlist[$i];
+        $html_string .= make_row($statitem, $dataitem->{'values'}, 0, 0, $sub_row_class);
+      }
+      $html_string .= "        </table>";
+
+      $all_stats_html->{$key} = $html_string;
+    }
+
+
+  return $all_stats_html;
+
+
+
+}
 sub get_tournament_results_html_string
 {
   my $dbh  = shift;
@@ -747,159 +874,7 @@ sub get_tournament_results_html_string
 
   if ($type == $tournament_type)
   {
-    $tournament_stats =
-    {
-
-      'High Win' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} > $data->{'pr2_score'};
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'};
-        },
-        'sort' =>
-        sub
-        {
-          $b->{$stat_key_name} <=> $a->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
-        'list'   => []
-      },
-
-      'High Loss' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} < $data->{'pr2_score'};
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'};
-        },
-        'sort' =>
-        sub
-        {
-          $b->{$stat_key_name} <=> $a->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
-        'list'   => []
-      },
-
-
-      'High Spread' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} > $data->{'pr2_score'}
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} - $data->{'pr2_score'};
-        },
-        'sort' =>
-        sub
-        {
-          $b->{$stat_key_name} <=> $a->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Player', 'Opponent', 'Player Score', 'Opponent Score', 'Spread', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', 'pr1_score', 'pr2_score', $stat_key_name, 'g_round'],
-        'list'   => []
-      },
-
-
-      'High Combined' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          # Ensure only one instance gets reported 
-          return $data->{'tr_player_id'} > $data->{'opp_id'};
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} + $data->{'pr2_score'};
-        },
-        'sort' =>
-        sub
-        {
-          $b->{$stat_key_name} <=> $a->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
-        'list'   => []
-      },
-
-
-      'Low Combined' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          # Ensure only one instance gets reported 
-          return $data->{'tr_player_id'} > $data->{'opp_id'};
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} + $data->{'pr2_score'};
-        },
-        'sort' =>
-        sub
-        {
-          $a->{$stat_key_name} <=> $b->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
-        'list'   => []
-      },
-
-
-      'Upsets' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'tr_start_rating'} && $data->{'opp_rating'} > $data->{'tr_start_rating'};
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'opp_rating'} - $data->{'tr_start_rating'};
-        },
-        'sort' =>
-        sub
-        {
-          $b->{$stat_key_name} <=> $a->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Player', 'Player Rating', 'Opponent', 'Opponent Rating', 'Rating Difference', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'tr_start_rating', 'opp_name', 'opp_rating', $stat_key_name, 'g_round'],
-        'list'   => []
-      }
-    };
+    $tournament_stats = stat_objects();
   }
 
   # Associate game results with a tournament result
@@ -1752,6 +1727,169 @@ sub empty_string_if_nonpositive
   }
   return $num;
 }
+
+sub stat_objects
+{
+
+  my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
+  my $stat_key_name        = Constants::STAT_KEY_NAME;
+
+  my $tournament_stats =
+    {
+
+      'High Win' =>
+      {
+        'cond' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'} > $data->{'pr2_score'};
+        },
+        'eval' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'};
+        },
+        'sort' =>
+        sub
+        {
+          $b->{$stat_key_name} <=> $a->{$stat_key_name}
+        },
+        'titles' => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
+        'list'   => []
+      },
+
+      'High Loss' =>
+      {
+        'cond' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'} < $data->{'pr2_score'};
+        },
+        'eval' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'};
+        },
+        'sort' =>
+        sub
+        {
+          $b->{$stat_key_name} <=> $a->{$stat_key_name}
+        },
+        'titles' => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
+        'list'   => []
+      },
+
+
+      'High Spread' =>
+      {
+        'cond' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'} > $data->{'pr2_score'}
+        },
+        'eval' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'} - $data->{'pr2_score'};
+        },
+        'sort' =>
+        sub
+        {
+          $b->{$stat_key_name} <=> $a->{$stat_key_name}
+        },
+        'titles' => ['Rank', 'Player', 'Opponent', 'Player Score', 'Opponent Score', 'Spread', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', 'pr1_score', 'pr2_score', $stat_key_name, 'g_round'],
+        'list'   => []
+      },
+
+
+      'High Combined' =>
+      {
+        'cond' =>
+        sub
+        {
+          my $data = shift;
+          # Ensure only one instance gets reported 
+          return $data->{'tr_player_id'} > $data->{'opp_id'};
+        },
+        'eval' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'} + $data->{'pr2_score'};
+        },
+        'sort' =>
+        sub
+        {
+          $b->{$stat_key_name} <=> $a->{$stat_key_name}
+        },
+        'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
+        'list'   => []
+      },
+
+
+      'Low Combined' =>
+      {
+        'cond' =>
+        sub
+        {
+          my $data = shift;
+          # Ensure only one instance gets reported 
+          return $data->{'tr_player_id'} > $data->{'opp_id'};
+        },
+        'eval' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'pr1_score'} + $data->{'pr2_score'};
+        },
+        'sort' =>
+        sub
+        {
+          $a->{$stat_key_name} <=> $b->{$stat_key_name}
+        },
+        'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
+        'list'   => []
+      },
+
+
+      'Upsets' =>
+      {
+        'cond' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'tr_start_rating'} && $data->{'opp_rating'} > $data->{'tr_start_rating'};
+        },
+        'eval' =>
+        sub
+        {
+          my $data = shift;
+          return $data->{'opp_rating'} - $data->{'tr_start_rating'};
+        },
+        'sort' =>
+        sub
+        {
+          $b->{$stat_key_name} <=> $a->{$stat_key_name}
+        },
+        'titles' => ['Rank', 'Player', 'Player Rating', 'Opponent', 'Opponent Rating', 'Rating Difference', 'Round'],
+        'values' => [$game_stats_rank_name, 'tr_player_name', 'tr_start_rating', 'opp_name', 'opp_rating', $stat_key_name, 'g_round'],
+        'list'   => []
+      }
+    };
+  return $tournament_stats;
+}
+
 
 1;
 
