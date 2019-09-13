@@ -223,11 +223,6 @@ my \$endyear   = sanitize(\$cgi->param('endyear'));
 my \$state     = sanitize(\$cgi->param('state'));
 my \$partname  = sanitize(\$cgi->param('partname'));
 
-\$startyear = 1993;
-\$endyear   = 2019;
-\$state     = 'all';
-\$partname  = '';
-
 \$startyear .= '-00-00';
 \$endyear   .= '-12-31';
 
