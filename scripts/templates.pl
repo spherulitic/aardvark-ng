@@ -430,7 +430,7 @@ STOP
 
 sub get_alltime_template_html_string
 {
-  my $data = shift;
+  my $stats = shift;
 
   my @ids_to_click = ();
   
@@ -440,7 +440,6 @@ sub get_alltime_template_html_string
   my $stats_tabclass    = "stats_tab";
   my $stats_tablink     = "stats_tablink";
 
-  my $stats   = $data->[2];
 
   my $stats_content = "";
   my @stats_tabdata = ();
@@ -518,11 +517,6 @@ $doctype
         <hr>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
-            <div>
-              <br>
-              Yeet
-              <br>    
-            </div>
             $stats_content
           </div>
         </div>

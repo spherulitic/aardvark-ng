@@ -32,11 +32,6 @@ sub update_html
 {
 
   my $dbh = connect_to_database();
-  my $all_time_stats = get_alltime_stats_results_html_string($dbh);
-  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
-  write_string_to_file(Constants::HTML_DIR . '/alltime_stats.html', $all_time_stats_html_page);
-  return;
-
   my $tournament_ids_to_create_ref = shift;
 
 
@@ -173,6 +168,10 @@ sub update_html
   update_dynamically_loaded_content($dbh, \@all_countries);
 
   update_cgi(); 
+
+  my $all_time_stats = get_alltime_stats_results_html_string($dbh);
+  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
+  write_string_to_file($all_time_stats_html_page,Constants::HTML_DIR . '/alltime_stats.html');
 
   deploy();
 }
@@ -665,23 +664,36 @@ sub get_alltime_stats_results_html_string
   my $query =
   "
   SELECT
-    p1.rating      AS tr_start_rating
-    p1.name        AS tr_player_name
-    pr1.score      AS pr1_score
-    p2.rating      AS opp_rating
-    p2.name        AS opp_name
-    pr2.score      AS pr2_score
-    g.round        AS g_round
+    tr1.start_rating    AS tr_start_rating,
+    p1.name             AS tr_player_name,
+    p1.id               AS tr_player_id,
+    pr1.score           AS pr1_score,
+    tr2.start_rating    AS opp_rating,
+    p2.name             AS opp_name,
+    p2.id               AS opp_id,
+    pr2.score           AS pr2_score,
+    g.round             AS g_round,
+    tr1.tournament_name AS tr_tournament_name,
+    tr1.id              AS tr_id,
+    tr1.division_id     AS tr_division_id,
+    d.id                AS d_id,
+    t.id                AS t_id
   FROM
-    $g_table_name AS g, $pr_table_name AS pr1, $pr_table_name AS pr2, $p_table_name AS p1, $p_table_name AS p2
+    $g_table_name AS g, $pr_table_name AS pr1, $pr_table_name AS pr2, $p_table_name AS p1, $p_table_name AS p2, $tr_table_name AS tr1, $tr_table_name AS tr2, $d_table_name AS d, $t_table_name AS t
   WHERE
     g.id = pr1.game_id AND g.id = pr2.game_id       AND
     pr1.player_id = p1.id AND pr2.player_id = p2.id AND
-    p1.id > p2.id
+    p1.id > p2.id AND
+    p1.id = tr1.player_id AND p2.id = tr2.player_id AND
+      g.division_id   = tr1.division_id AND
+      g.division_id   = tr2.division_id AND
+      g.division_id   = d.id            AND
+      d.tournament_id = t.id
   ";
 
  
   my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1})};
+
 
   my $all_stats = stat_objects();
   my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
@@ -690,7 +702,20 @@ sub get_alltime_stats_results_html_string
   # Associate game results with a tournament result
 
   my $tournament_results_hashref = {};
+  my $alltime_cutoff = Constants::ALLTIME_CUTOFF;
 
+  foreach my $key (keys %{$all_stats})
+  {
+    my $statitem = $all_stats->{$key};
+    # Inject special tournament link for all times stats
+    my @value_list = @{$statitem->{'values'}};
+    push @value_list, 'tr_tournament_name';
+    $statitem->{'values'} = \@value_list;
+
+    my @titles = @{$statitem->{'titles'}};
+    push @titles, 'Tournament';
+    $statitem->{'titles'} = \@titles;
+  }
   foreach my $data (@raw_tournament_data)
   {
       foreach my $key (keys %{$all_stats})
@@ -711,26 +736,33 @@ sub get_alltime_stats_results_html_string
           }
           $statdata->{'tr_player_id'} = $data->{'tr_player_id'};
           $statdata->{'opp_id'}       = $data->{'opp_id'};
+          $statdata->{'t_id'}         = $data->{'t_id'};
+
+
           $statdata->{$stat_key_name} = $stat;
 
           push @{$statitem->{'list'}}, $statdata;
+          my @statlist = @{$statitem->{'list'}};
+
+          my $func = $statitem->{'sort'};
+
+          @statlist = sort {&$func} @statlist;
+          while (scalar @statlist > $alltime_cutoff)
+          {
+            pop @statlist;
+          }
+          $statitem->{'list'} = \@statlist;
         } 
       }
   }
-
   foreach my $key (keys %{$all_stats})
   {
     my $statitem = $all_stats->{$key};
     my @statlist = @{$statitem->{'list'}};
-
-    my $func = $statitem->{'sort'};
-
-    @statlist = sort {&$func} @statlist;
     for (my $i = 0; $i < scalar @statlist; $i++)
     {
       $statlist[$i]->{$game_stats_rank_name} = $i + 1;
     }
-    $statitem->{'list'} = \@statlist;
   }
 
 
@@ -740,6 +772,7 @@ sub get_alltime_stats_results_html_string
     foreach my $key (keys %{$all_stats})
     {
       my $dataitem = $all_stats->{$key};
+
       my $html_string = "       <table class='table'>\n";
       $html_string    .=
         make_row
@@ -761,18 +794,14 @@ sub get_alltime_stats_results_html_string
         }
 
         my $statitem = $statlist[$i];
+
         $html_string .= make_row($statitem, $dataitem->{'values'}, 0, 0, $sub_row_class);
       }
       $html_string .= "        </table>";
 
       $all_stats_html->{$key} = $html_string;
     }
-
-
   return $all_stats_html;
-
-
-
 }
 sub get_tournament_results_html_string
 {
@@ -1869,7 +1898,11 @@ sub stat_objects
         sub
         {
           my $data = shift;
-          return $data->{'tr_start_rating'} && $data->{'opp_rating'} > $data->{'tr_start_rating'};
+          return $data->{'tr_start_rating'}     &&
+                 $data->{'opp_rating'}          &&
+                 $data->{'tr_start_rating'} > 0 &&
+                 $data->{'opp_rating'}      > 0 && 
+                 $data->{'opp_rating'}      > $data->{'tr_start_rating'};
         },
         'eval' =>
         sub
