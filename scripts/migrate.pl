@@ -16,7 +16,7 @@ require './scripts/correct_and_verify.pl';
 require './scripts/update_html.pl';
 require './scripts/utils.pl';
 require './scripts/update_current_players.pl';
-
+require './scripts/drop_all_wespa_tables.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
@@ -73,6 +73,7 @@ sub main
 
   pod2usage(1) if $help;  
   
+  drop_all_wespa_tables();
 
   my $dbh = initialize_database($tables, $creation_order);
   
@@ -95,9 +96,12 @@ sub main
 
   populate_deceased_players_hash();
 
+
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
 
   update_current_players();
+
+  copy_database_to_production();
 
   if ($create_html)
   {

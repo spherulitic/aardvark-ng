@@ -30,10 +30,8 @@ unless (caller)
 
 sub update_html
 {
-
   my $dbh = connect_to_database();
   my $tournament_ids_to_create_ref = shift;
-
 
   my $working_dir         = Constants::DEFAULT_WORKING_DIR;
   my $html_dir            = Constants::HTML_DIR;
@@ -172,8 +170,6 @@ sub update_html
   my $all_time_stats = get_alltime_stats_results_html_string($dbh);
   my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
   write_string_to_file($all_time_stats_html_page,Constants::HTML_DIR . '/alltime_stats.html');
-
-  deploy();
 }
 
 sub update_cgi
@@ -193,7 +189,7 @@ sub update_cgi
   my $base_dir  = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
   my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
 
-  my $database_name = Constants::DATABASE_NAME;
+  my $database_name = Constants::PRODUCTION_DATABASE_NAME;
   my $host_name     = Constants::DATABASE_HOST_NAME;
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;
@@ -353,7 +349,9 @@ sub sanitize
   my \$s = shift;
 
   \$s = substr(\$s, 0, 255);
+  \$s =~ s/ /_/g;
   \$s =~ s/\\W//g;
+  \$s =~ s/_/ /g;
   return \$s;
 }
 
@@ -674,17 +672,14 @@ sub get_alltime_stats_results_html_string
     pr2.score           AS pr2_score,
     g.round             AS g_round,
     tr1.tournament_name AS tr_tournament_name,
-    tr1.id              AS tr_id,
-    tr1.division_id     AS tr_division_id,
-    d.id                AS d_id,
     t.id                AS t_id
   FROM
     $g_table_name AS g, $pr_table_name AS pr1, $pr_table_name AS pr2, $p_table_name AS p1, $p_table_name AS p2, $tr_table_name AS tr1, $tr_table_name AS tr2, $d_table_name AS d, $t_table_name AS t
   WHERE
     g.id = pr1.game_id AND g.id = pr2.game_id       AND
     pr1.player_id = p1.id AND pr2.player_id = p2.id AND
-    p1.id > p2.id AND
     p1.id = tr1.player_id AND p2.id = tr2.player_id AND
+    p1.id > p2.id                       AND
       g.division_id   = tr1.division_id AND
       g.division_id   = tr2.division_id AND
       g.division_id   = d.id            AND
@@ -718,6 +713,15 @@ sub get_alltime_stats_results_html_string
   }
   foreach my $data (@raw_tournament_data)
   {
+    for (my $y = 0; $y < 2; $y++)
+    {
+      if ($y == 1)
+      {
+        swap($data, 'tr_start_rating', 'opp_rating');
+        swap($data, 'tr_player_name',  'opp_name');
+        swap($data, 'tr_player_id',    'opp_id');
+        swap($data, 'pr1_score',       'pr2_score');
+      }
       foreach my $key (keys %{$all_stats})
       {
         my $statitem = $all_stats->{$key};
@@ -754,6 +758,7 @@ sub get_alltime_stats_results_html_string
           $statitem->{'list'} = \@statlist;
         } 
       }
+    }
   }
   foreach my $key (keys %{$all_stats})
   {
@@ -802,6 +807,16 @@ sub get_alltime_stats_results_html_string
       $all_stats_html->{$key} = $html_string;
     }
   return $all_stats_html;
+}
+sub swap
+{
+  my $hashref = shift;
+  my $attr1   = shift;
+  my $attr2   = shift;
+
+  my $tmp = $hashref->{$attr1};
+  $hashref->{$attr1} = $hashref->{$attr2};
+  $hashref->{$attr2} = $tmp;
 }
 sub get_tournament_results_html_string
 {

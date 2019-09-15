@@ -8,6 +8,19 @@ use lib './modules';
 use Constants;
 use DBI;
 
+sub copy_database_to_production
+{
+  my $production_database_name = Constants::PRODUCTION_DATABASE_NAME;
+
+  my $database_name = Constants::DATABASE_NAME;
+  my $user_name     = Constants::DATABASE_USER_NAME;
+  my $password      = Constants::DATABASE_PASSWORD;
+
+  system "echo 'DROP DATABASE IF EXISTS $production_database_name' | mysql -u $user_name --password='$password'";
+  system "echo 'CREATE DATABASE         $production_database_name' | mysql -u $user_name --password='$password'";
+  system "mysqldump -u $user_name --password='$password' $database_name | mysql -u $user_name --password='$password' $production_database_name";
+}
+
 sub uniq
 {
   [ keys { map { $_ => 1 } @{$_[0]} } ]

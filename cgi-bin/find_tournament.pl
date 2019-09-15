@@ -226,7 +226,9 @@ sub sanitize
   my $s = shift;
 
   $s = substr($s, 0, 255);
+  $s =~ s/ /_/g;
   $s =~ s/\W//g;
+  $s =~ s/_/ /g;
   return $s;
 }
 

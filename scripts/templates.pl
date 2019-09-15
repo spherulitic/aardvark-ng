@@ -142,11 +142,8 @@ sub get_player_template_html_string
   my $results_html_id      = 'results';
   my $head_to_head_html_id = 'head_to_head';
 
-  my $no_country_filename = Constants::NO_COUNTRY_FILENAME;
 
   my $country_rankings = "";
-
-  my $country_png      = "$html_path/flags/$no_country_filename";
 
   my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
   my $country_fullname = $trigraph_hashref->{$country};
@@ -157,7 +154,7 @@ sub get_player_template_html_string
   {
     $country_rankings = $country_fullname;
 
-    $country_png = "$html_path/flags/$country.png";
+    my $country_png = "$html_path/flags/$country.png";
     if ($valid_ranking)
     {
       my $country_rankings_link = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . '/' . "$country.html";

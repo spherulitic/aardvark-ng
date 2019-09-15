@@ -35,8 +35,6 @@ use constant HTML_ID_ENTRY_TAG         => 'entry';
 
 use constant HTML_PATH_TO_WORKING_DIR  => "../..";
 
-use constant NO_COUNTRY_FILENAME       => "CAN.png";
-
 use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
 use constant DEFAULT_SHORT_NAME_WORKING_DIR => "aardvark";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
@@ -47,10 +45,11 @@ use constant DEFAULT_BACKUP_DIR             => "/home/jcastellano/aardvark-ng/ba
 
 use constant COUNTRY_FLAGS_DIR              => "flags";
 
-use constant DATABASE_NAME      => 'wespa';
-use constant DATABASE_HOST_NAME => 'localhost';
-use constant DATABASE_USER_NAME => 'wespa';
-use constant DATABASE_PASSWORD  => 'nigeltheking';
+use constant PRODUCTION_DATABASE_NAME      => 'wespa';
+use constant DATABASE_NAME                 => 'wespadev';
+use constant DATABASE_HOST_NAME            => 'localhost';
+use constant DATABASE_USER_NAME            => 'wespa';
+use constant DATABASE_PASSWORD             => 'nigeltheking';
 
 use constant TEXT_FILES_BACKUP_PREFIX => 'tournament_files';
 
@@ -238,7 +237,7 @@ use constant LEXICONS => [
 
 use constant GAME_STATS_RANK_NAME => 'rank';
 use constant STAT_KEY_NAME        => 'stat';
-use constant ALLTIME_CUTOFF       => 50;
+use constant ALLTIME_CUTOFF       => 60;
 
 use constant TOURNAMENT_STATS_ORDER => ['High Win', 'High Loss', 'High Spread', 'High Combined', 'Low Combined', 'Upsets'];
 

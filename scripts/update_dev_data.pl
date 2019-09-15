@@ -17,7 +17,7 @@ my $current_year = $localtime_data[5] + 1900;
 
 for (my $year = $update_start_year; $year <= $current_year; $year++)
 {
-  my $cmd = "cp -r $source_dir/$year $working_dir/";
+  my $cmd = "rm -rf $working_dir/$year && cp -r $source_dir/$year $working_dir/";
   system $cmd;
 }
 
