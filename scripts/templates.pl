@@ -58,6 +58,14 @@ sub special_game_to_html
   my $html_dir    = Constants::HTML_DIR;
   my $players_dir = Constants::PLAYER_HTML_DIR;
 
+  if (
+       ($title eq "Biggest Win"  && $value < 0) ||
+       ($title eq "Biggest Loss" && $value > 0) 
+     )
+  {
+    return "";
+  } 
+
   return "<b>$title:</b> <a href=\"#$game_html_id\" onclick=\"show_tournament_entry('$game_html_id')\">$value</a> (<a href=\"#$player_html_id\" onclick=\"show_head_to_head_entry('$player_html_id')\">vs</a> <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">$player_name</a>)<br>";
   
 }

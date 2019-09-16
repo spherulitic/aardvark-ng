@@ -166,6 +166,7 @@ sub update_html
   update_dynamically_loaded_content($dbh, \@all_countries);
 
   update_cgi(); 
+  print "Calculating All time stats\n";
 
   my $all_time_stats = get_alltime_stats_results_html_string($dbh);
   my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
@@ -693,8 +694,6 @@ sub get_alltime_stats_results_html_string
   my $all_stats = stat_objects();
   my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
   my $stat_key_name        = Constants::STAT_KEY_NAME;
-
-  # Associate game results with a tournament result
 
   my $tournament_results_hashref = {};
   my $alltime_cutoff = Constants::ALLTIME_CUTOFF;
