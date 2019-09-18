@@ -33,11 +33,6 @@ sub update_html
   my $dbh = connect_to_database();
   my $tournament_ids_to_create_ref = shift;
 
-  my $all_time_stats = get_alltime_stats_results_html_string($dbh);
-  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
-  write_string_to_file($all_time_stats_html_page,Constants::HTML_DIR . '/alltime_stats.html');
-  return;
-
   my $working_dir         = Constants::DEFAULT_WORKING_DIR;
   my $html_dir            = Constants::HTML_DIR;
   my $player_html_dir     = Constants::PLAYER_HTML_DIR;
