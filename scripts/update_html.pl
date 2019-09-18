@@ -33,6 +33,11 @@ sub update_html
   my $dbh = connect_to_database();
   my $tournament_ids_to_create_ref = shift;
 
+  my $all_time_stats = get_alltime_stats_results_html_string($dbh);
+  my $all_time_stats_html_page = get_alltime_template_html_string($all_time_stats);
+  write_string_to_file($all_time_stats_html_page,Constants::HTML_DIR . '/alltime_stats.html');
+  return;
+
   my $working_dir         = Constants::DEFAULT_WORKING_DIR;
   my $html_dir            = Constants::HTML_DIR;
   my $player_html_dir     = Constants::PLAYER_HTML_DIR;
@@ -660,7 +665,7 @@ sub get_alltime_stats_results_html_string
   my $t_table_name  = Constants::TOURNAMENTS_TABLE_NAME;
   my $d_table_name  = Constants::DIVISIONS_TABLE_NAME;
 
-  my $query =
+  my $sth = $dbh->prepare(
   "
   SELECT
     tr1.start_rating    AS tr_start_rating,
@@ -685,12 +690,10 @@ sub get_alltime_stats_results_html_string
       g.division_id   = tr2.division_id AND
       g.division_id   = d.id            AND
       d.tournament_id = t.id
-  ";
+  ");
 
+  $sth->execute();
  
-  my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1})};
-
-
   my $all_stats = stat_objects();
   my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
   my $stat_key_name        = Constants::STAT_KEY_NAME;
@@ -710,7 +713,7 @@ sub get_alltime_stats_results_html_string
     push @titles, 'Tournament';
     $statitem->{'titles'} = \@titles;
   }
-  foreach my $data (@raw_tournament_data)
+  while (my $data = $sth->fetchrow_hashref)
   {
     for (my $y = 0; $y < 2; $y++)
     {
