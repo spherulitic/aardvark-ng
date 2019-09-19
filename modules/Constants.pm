@@ -239,7 +239,7 @@ use constant GAME_STATS_RANK_NAME => 'rank';
 use constant STAT_KEY_NAME        => 'stat';
 use constant ALLTIME_CUTOFF       => 60;
 
-use constant TOURNAMENT_STATS_ORDER => ['High Win', 'High Loss', 'High Spread', 'High Combined', 'Low Combined' 'Upsets'];
+use constant TOURNAMENT_STATS_ORDER => ['High Win', 'High Loss', 'High Spread', 'High Combined', 'Low Combined', 'Upsets'];
 
 use constant COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF =>
 {
