@@ -1878,30 +1878,30 @@ sub stat_objects
       },
 
 
-      'Low Combined' =>
-      {
-        'cond' =>
-        sub
-        {
-          my $data = shift;
-          # Ensure only one instance gets reported 
-          return $data->{'tr_player_id'} > $data->{'opp_id'};
-        },
-        'eval' =>
-        sub
-        {
-          my $data = shift;
-          return $data->{'pr1_score'} + $data->{'pr2_score'};
-        },
-        'sort' =>
-        sub
-        {
-          $a->{$stat_key_name} <=> $b->{$stat_key_name}
-        },
-        'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
-        'list'   => []
-      },
+      # 'Low Combined' =>
+      # {
+      #   'cond' =>
+      #   sub
+      #   {
+      #     my $data = shift;
+      #     # Ensure only one instance gets reported 
+      #     return $data->{'tr_player_id'} > $data->{'opp_id'};
+      #   },
+      #   'eval' =>
+      #   sub
+      #   {
+      #     my $data = shift;
+      #     return $data->{'pr1_score'} + $data->{'pr2_score'};
+      #   },
+      #   'sort' =>
+      #   sub
+      #   {
+      #     $a->{$stat_key_name} <=> $b->{$stat_key_name}
+      #   },
+      #   'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
+      #   'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
+      #   'list'   => []
+      # },
 
 
       'Upsets' =>
