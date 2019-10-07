@@ -239,10 +239,10 @@ $doctype
               <b>Draws:</b> $draws ($draw_percentage%)<br><br>
               <b>Average Score:</b> $average_for<br>
               <b>Average Against:</b> $average_against<br><br>
-              <b>300 Games:</b> $over_300 ($over_300_percentage%)<br>
-              <b>400 Games:</b> $over_400 ($over_400_percentage%)<br>
-              <b>500 Games:</b> $over_500 ($over_500_percentage%)<br>
-              <b>600 Games:</b> $over_600 ($over_600_percentage%)<br><br>
+              <b>300  Games:</b> $over_300 ($over_300_percentage%)<br>
+              <b>400  Games:</b> $over_400 ($over_400_percentage%)<br>
+              <b>500  Games:</b> $over_500 ($over_500_percentage%)<br>
+              <b>600+ Games:</b> $over_600 ($over_600_percentage%)<br><br>
               
               
               $special_games_html_string          
