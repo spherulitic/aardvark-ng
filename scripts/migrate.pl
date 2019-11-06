@@ -488,7 +488,7 @@ sub load_tournament_files
       # Convert possible alt name to correct name
 
       $player_name = convert_name($player_name);
-      my $pretty_player_name = $player_name;
+      my $pretty_player_name = make_pretty($player_name);
       $player_name = sanitize($player_name);
       # Error with name appears twice, can happen if a player switches divisions midtournament
 #      if ($st_names{$player_name})
@@ -736,7 +736,7 @@ sub load_tournament_files
         # Convert possible alt name to real name
 
         $player_name = convert_name($player_name);
-        my $pretty_player_name = $player_name;
+        my $pretty_player_name = make_pretty($player_name);
         $player_name = sanitize($player_name);
 
         my $div_player_name = $current_division_name . "-" . $player_name;
@@ -1255,6 +1255,15 @@ sub sanitize
   $name = uc $name;
 
   $name =~ s/[^A-Z]//g;
+
+  return $name;
+}
+
+sub make_pretty
+{
+  my $name = shift;
+
+  $name =~ s/_/ /g;
 
   return $name;
 }
