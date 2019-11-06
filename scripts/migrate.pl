@@ -738,7 +738,7 @@ sub load_tournament_files
         $player_name = convert_name($player_name);
         my $pretty_player_name = make_pretty($player_name);
         $player_name = sanitize($player_name);
-
+        my $og_player_name = $player_name;
         my $div_player_name = $current_division_name . "-" . $player_name;
 
         if ($tou_div_names{$div_player_name})
@@ -775,14 +775,14 @@ sub load_tournament_files
             # "prize_money"    => 0,
             # "prize_currency" => "AAA",
             # "prize_ech_rate" => 1,
-            "start_rating"    => $tournament_results->{$player_name}->{'start_rating'},
-            "end_rating"      => $tournament_results->{$player_name}->{'end_rating'},
+            "start_rating"    => $tournament_results->{$og_player_name}->{'start_rating'},
+            "end_rating"      => $tournament_results->{$og_player_name}->{'end_rating'},
             "date"            => $date,
             "tournament_name" => $tournament_name
           };
         }
  
-        $tou_names{$player_name} = 1;
+        $tou_names{$og_player_name} = 1;
         $tou_div_names{$div_player_name} = 1;
 
         $tournament_results->{$player_name}->{'division_id'} = $current_division_name; # Will be changed later
