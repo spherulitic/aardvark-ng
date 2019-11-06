@@ -1072,7 +1072,14 @@ sub load_tournament_files
                        ["Player ID: ", $tr->{'player_id'}]
                      ]);
       }
-
+      if (!$tr->{'player_id'})
+      {
+        format_error([
+                       ["ERROR:   ", "no player id found for the tournament result"],
+                       ["File:      ", $filename],
+                       ["Object:\n", Dumper($tr)]
+                     ]); 
+      }
       add_games_to_existing_player($dbh, $tr->{'player_id'}, $total_games);
 
       my $division_name = $tr->{"division_id"};
