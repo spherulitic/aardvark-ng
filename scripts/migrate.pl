@@ -488,6 +488,8 @@ sub load_tournament_files
       # Convert possible alt name to correct name
 
       $player_name = convert_name($player_name);
+      my $pretty_player_name = $player_name;
+      $player_name = sanitize($player_name);
       # Error with name appears twice, can happen if a player switches divisions midtournament
 #      if ($st_names{$player_name})
 #      {
@@ -498,14 +500,14 @@ sub load_tournament_files
 #                     ]);
 #        next filename;
 #      }
-      my $sanitized_player_name = sanitize($player_name);
-      $st_names{$sanitized_player_name} = 1;
+ 
+      $st_names{$player_name} = 1;
 
       # Search for this player in the players table
       # If this player already exists in the database, we will need their
       # id for the table to add them properly
 
-      my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$player_name\"";
+      my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$pretty_player_name\"";
 
       my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
 
@@ -519,7 +521,7 @@ sub load_tournament_files
           $dbh,
           $players_tn,
           {
-            "name"        => $player_name,
+            "name"        => $pretty_player_name,
             "country"     => $player_country,
             "photo"       => get_player_photo($player_name),
             "suspended"   => 0,  # Updated later
@@ -607,10 +609,10 @@ sub load_tournament_files
       }
 
       # Still need spread and position
-      $tournament_results->{$sanitized_player_name} = 
+      $tournament_results->{$player_name} = 
       {
         "player_id"         => $player_id,
-        "player_name"       => $player_name,
+        "player_name"       => $pretty_player_name,
         "division_id"       => -1, # This will be replaced with the actual id later
         # Calculations done later because byes are annoying
         "wins"              => 0,
@@ -635,7 +637,7 @@ sub load_tournament_files
     # Now parse the .tou file for game data
 
     my $current_division_number = 0;
-    my $current_division_name   = '';
+    my $current_division_name   = "";
     my $current_player_number   = 1;
 
     my $tou_game_data_hashref = {};
@@ -734,9 +736,10 @@ sub load_tournament_files
         # Convert possible alt name to real name
 
         $player_name = convert_name($player_name);
-        my $sanitized_player_name = sanitize($player_name);
+        my $pretty_player_name = $player_name;
+        $player_name = sanitize($player_name);
 
-        my $div_player_name = $current_division_name . "-" . $sanitized_player_name;
+        my $div_player_name = $current_division_name . "-" . $player_name;
 
         if ($tou_div_names{$div_player_name})
         {
@@ -749,7 +752,7 @@ sub load_tournament_files
           next filename;
         }
 
-        if ($tou_names{$sanitized_player_name})
+        if ($tou_names{$player_name})
         {
           # A player has switched divisions mid tournament which is a massive pain in the ass
           format_error([
@@ -760,10 +763,10 @@ sub load_tournament_files
                        ]);
           $player_names_to_ids->{$div_player_name} = $player_names_to_ids->{$player_name};
           $player_name = $div_player_name;
-          $tournament_results->{$sanitized_player_name} = 
+          $tournament_results->{$player_name} = 
           {
             "player_id"       => $player_names_to_ids->{$div_player_name},
-            "player_name"     => $player_name,
+            "player_name"     => $pretty_player_name,
             "division_id"     => -1, # This will be replaced with the actual id later
             # Calculations done later because byes are annoying
             "wins"            => 0,
@@ -772,19 +775,19 @@ sub load_tournament_files
             # "prize_money"    => 0,
             # "prize_currency" => "AAA",
             # "prize_ech_rate" => 1,
-            "start_rating"    => $tournament_results->{$sanitized_player_name}->{'start_rating'},
-            "end_rating"      => $tournament_results->{$sanitized_player_name}->{'end_rating'},
+            "start_rating"    => $tournament_results->{$player_name}->{'start_rating'},
+            "end_rating"      => $tournament_results->{$player_name}->{'end_rating'},
             "date"            => $date,
             "tournament_name" => $tournament_name
           };
         }
  
-        $tou_names{$sanitized_player_name} = 1;
+        $tou_names{$player_name} = 1;
         $tou_div_names{$div_player_name} = 1;
 
-        $tournament_results->{$sanitized_player_name}->{'division_id'} = $current_division_name; # Will be changed later
+        $tournament_results->{$player_name}->{'division_id'} = $current_division_name; # Will be changed later
 
-        if (!player_name_is_bye($player_name) && !$tournament_results->{$sanitized_player_name})
+        if (!player_name_is_bye($player_name) && !$tournament_results->{$player_name})
         {
           format_error([
                          ["ERROR:", "Player name does not appear in corresponding .STS file"], 
@@ -836,11 +839,10 @@ sub load_tournament_files
       my $player_item   = $tou_game_data_hashref->{$key};
 
       my $player_name   = $player_item->{'name'};
-      my $sanitized_player_name = sanitize($player_name);
 
       if (player_name_is_bye($player_name))
       {
-        $tournament_results->{$sanitized_player_name}->{'is_bye'} = 1;
+        $tournament_results->{$player_name}->{'is_bye'} = 1;
         next;
       }
 
@@ -920,12 +922,10 @@ sub load_tournament_files
           next filename;
         } 
 
-        my $sanitized_opp_name = sanitize($opp_name);
-
         my $is_bye = player_name_is_bye($opp_name) || $opp_number == $player_number;
 
 
-        $tournament_results->{$sanitized_player_name}->{'byes'} += !!$is_bye;
+        $tournament_results->{$player_name}->{'byes'} += !!$is_bye;
 
         my $players_key = $player_number . "-" . $opp_number;
 
@@ -946,10 +946,10 @@ sub load_tournament_files
           }
           else
           {
-            $player_spreads->{$sanitized_opp_name}    += $opp_score    - $player_score;
+            $player_spreads->{$opp_name}    += $opp_score    - $player_score;
           }
 
-          $player_spreads->{$sanitized_player_name} += $player_score - $opp_score;
+          $player_spreads->{$player_name} += $player_score - $opp_score;
 
           my $player_result;
           my $opp_result;
@@ -959,22 +959,22 @@ sub load_tournament_files
             # if ($is_bye){print "$player_score - $opp_score - $player_name - $opp_name\n\n";}
             $player_result = 0;
             $opp_result    = 0;
-            $tournament_results->{$sanitized_player_name}->{'wins'}   += 0.5;
-            $tournament_results->{$sanitized_player_name}->{'losses'} += 0.5;
+            $tournament_results->{$player_name}->{'wins'}   += 0.5;
+            $tournament_results->{$player_name}->{'losses'} += 0.5;
             if (!$is_bye)
             {
-              $tournament_results->{$sanitized_opp_name}->{'wins'}      += 0.5;
-              $tournament_results->{$sanitized_opp_name}->{'losses'}    += 0.5;
+              $tournament_results->{$opp_name}->{'wins'}      += 0.5;
+              $tournament_results->{$opp_name}->{'losses'}    += 0.5;
             }
           }
           elsif ($opp_score > $player_score)
           {
             $player_result = -1;
             $opp_result    = 1;
-            $tournament_results->{$sanitized_player_name}->{'losses'} += 1;
+            $tournament_results->{$player_name}->{'losses'} += 1;
             if (!$is_bye)
             {
-              $tournament_results->{$sanitized_opp_name}->{'wins'}      += 1;
+              $tournament_results->{$opp_name}->{'wins'}      += 1;
             }
           }
           else
@@ -983,8 +983,8 @@ sub load_tournament_files
             $opp_result    = -1;
             if (!$is_bye)
             {
-              $tournament_results->{$sanitized_player_name}->{'wins'} += 1;
-              $tournament_results->{$sanitized_opp_name}->{'losses'}  += 1;
+              $tournament_results->{$player_name}->{'wins'} += 1;
+              $tournament_results->{$opp_name}->{'losses'}  += 1;
             }
           }
 
@@ -1075,14 +1075,7 @@ sub load_tournament_files
                        ["Player ID: ", $tr->{'player_id'}]
                      ]);
       }
-      if (!$tr->{'player_id'})
-      {
-        format_error([
-                       ["ERROR:   ", "no player id found for the tournament result"],
-                       ["File:      ", $filename],
-                       ["Object:\n", Dumper($tr)]
-                     ]); 
-      }
+
       add_games_to_existing_player($dbh, $tr->{'player_id'}, $total_games);
 
       my $division_name = $tr->{"division_id"};
