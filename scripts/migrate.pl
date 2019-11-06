@@ -498,8 +498,8 @@ sub load_tournament_files
 #                     ]);
 #        next filename;
 #      }
- 
-      $st_names{$player_name} = 1;
+      my $sanitized_player_name = sanitize($player_name);
+      $st_names{$sanitized_player_name} = 1;
 
       # Search for this player in the players table
       # If this player already exists in the database, we will need their
@@ -607,7 +607,7 @@ sub load_tournament_files
       }
 
       # Still need spread and position
-      $tournament_results->{$player_name} = 
+      $tournament_results->{$sanitized_player_name} = 
       {
         "player_id"         => $player_id,
         "player_name"       => $player_name,
@@ -635,7 +635,7 @@ sub load_tournament_files
     # Now parse the .tou file for game data
 
     my $current_division_number = 0;
-    my $current_division_name   = "";
+    my $current_division_name   = '';
     my $current_player_number   = 1;
 
     my $tou_game_data_hashref = {};
@@ -734,10 +734,9 @@ sub load_tournament_files
         # Convert possible alt name to real name
 
         $player_name = convert_name($player_name);
+        my $sanitized_player_name = sanitize($player_name);
 
-        my $og_player_name = $player_name;
-
-        my $div_player_name = $current_division_name . "-" . $player_name;
+        my $div_player_name = $current_division_name . "-" . $sanitized_player_name;
 
         if ($tou_div_names{$div_player_name})
         {
@@ -750,7 +749,7 @@ sub load_tournament_files
           next filename;
         }
 
-        if ($tou_names{$player_name})
+        if ($tou_names{$sanitized_player_name})
         {
           # A player has switched divisions mid tournament which is a massive pain in the ass
           format_error([
@@ -761,7 +760,7 @@ sub load_tournament_files
                        ]);
           $player_names_to_ids->{$div_player_name} = $player_names_to_ids->{$player_name};
           $player_name = $div_player_name;
-          $tournament_results->{$player_name} = 
+          $tournament_results->{$sanitized_player_name} = 
           {
             "player_id"       => $player_names_to_ids->{$div_player_name},
             "player_name"     => $player_name,
@@ -773,19 +772,19 @@ sub load_tournament_files
             # "prize_money"    => 0,
             # "prize_currency" => "AAA",
             # "prize_ech_rate" => 1,
-            "start_rating"    => $tournament_results->{$og_player_name}->{'start_rating'},
-            "end_rating"      => $tournament_results->{$og_player_name}->{'end_rating'},
+            "start_rating"    => $tournament_results->{$sanitized_player_name}->{'start_rating'},
+            "end_rating"      => $tournament_results->{$sanitized_player_name}->{'end_rating'},
             "date"            => $date,
             "tournament_name" => $tournament_name
           };
         }
  
-        $tou_names{$og_player_name} = 1;
+        $tou_names{$sanitized_player_name} = 1;
         $tou_div_names{$div_player_name} = 1;
 
-        $tournament_results->{$player_name}->{'division_id'} = $current_division_name; # Will be changed later
+        $tournament_results->{$sanitized_player_name}->{'division_id'} = $current_division_name; # Will be changed later
 
-        if (!player_name_is_bye($player_name) && !$tournament_results->{$player_name})
+        if (!player_name_is_bye($player_name) && !$tournament_results->{$sanitized_player_name})
         {
           format_error([
                          ["ERROR:", "Player name does not appear in corresponding .STS file"], 
