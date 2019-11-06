@@ -836,10 +836,11 @@ sub load_tournament_files
       my $player_item   = $tou_game_data_hashref->{$key};
 
       my $player_name   = $player_item->{'name'};
+      my $sanitized_player_name = sanitize($player_name);
 
       if (player_name_is_bye($player_name))
       {
-        $tournament_results->{$player_name}->{'is_bye'} = 1;
+        $tournament_results->{$sanitized_player_name}->{'is_bye'} = 1;
         next;
       }
 
@@ -919,10 +920,12 @@ sub load_tournament_files
           next filename;
         } 
 
+        my $sanitized_opp_name = sanitize($opp_name);
+
         my $is_bye = player_name_is_bye($opp_name) || $opp_number == $player_number;
 
 
-        $tournament_results->{$player_name}->{'byes'} += !!$is_bye;
+        $tournament_results->{$sanitized_player_name}->{'byes'} += !!$is_bye;
 
         my $players_key = $player_number . "-" . $opp_number;
 
@@ -943,10 +946,10 @@ sub load_tournament_files
           }
           else
           {
-            $player_spreads->{$opp_name}    += $opp_score    - $player_score;
+            $player_spreads->{$sanitized_opp_name}    += $opp_score    - $player_score;
           }
 
-          $player_spreads->{$player_name} += $player_score - $opp_score;
+          $player_spreads->{$sanitized_player_name} += $player_score - $opp_score;
 
           my $player_result;
           my $opp_result;
@@ -956,22 +959,22 @@ sub load_tournament_files
             # if ($is_bye){print "$player_score - $opp_score - $player_name - $opp_name\n\n";}
             $player_result = 0;
             $opp_result    = 0;
-            $tournament_results->{$player_name}->{'wins'}   += 0.5;
-            $tournament_results->{$player_name}->{'losses'} += 0.5;
+            $tournament_results->{$sanitized_player_name}->{'wins'}   += 0.5;
+            $tournament_results->{$sanitized_player_name}->{'losses'} += 0.5;
             if (!$is_bye)
             {
-              $tournament_results->{$opp_name}->{'wins'}      += 0.5;
-              $tournament_results->{$opp_name}->{'losses'}    += 0.5;
+              $tournament_results->{$sanitized_opp_name}->{'wins'}      += 0.5;
+              $tournament_results->{$sanitized_opp_name}->{'losses'}    += 0.5;
             }
           }
           elsif ($opp_score > $player_score)
           {
             $player_result = -1;
             $opp_result    = 1;
-            $tournament_results->{$player_name}->{'losses'} += 1;
+            $tournament_results->{$sanitized_player_name}->{'losses'} += 1;
             if (!$is_bye)
             {
-              $tournament_results->{$opp_name}->{'wins'}      += 1;
+              $tournament_results->{$sanitized_opp_name}->{'wins'}      += 1;
             }
           }
           else
@@ -980,8 +983,8 @@ sub load_tournament_files
             $opp_result    = -1;
             if (!$is_bye)
             {
-              $tournament_results->{$player_name}->{'wins'} += 1;
-              $tournament_results->{$opp_name}->{'losses'}  += 1;
+              $tournament_results->{$sanitized_player_name}->{'wins'} += 1;
+              $tournament_results->{$sanitized_opp_name}->{'losses'}  += 1;
             }
           }
 
