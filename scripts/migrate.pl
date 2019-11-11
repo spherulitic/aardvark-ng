@@ -181,6 +181,41 @@ sub convert_name
   return $name;
 }
 
+sub convert_trigraph
+{
+  my $trigraph = shift;
+  my $trigraph_hash = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $trigraph_correction_hash = Constants::COUNTRY_TRIGRAPH_CONVERSION;
+  
+  # Trigraph is correct
+  if ($trigraph_hash->{$trigraph})
+  {
+    return $trigraph;
+  }
+  # Trigraph is the empty string
+  if (!$trigraph)
+  {
+    return undef;
+  }
+  # Trigraph is incorrect but has correction mapping
+  my $correct_trigraph = $trigraph_correction_hash->{$trigraph};
+  if ($correct_trigraph)
+  {
+    return $correct_trigraph;
+  }
+  # Check for a length of 3 because there are numerous
+  # tournaments where players with no country are denoted
+  # by 'OS' and we don't want to clog up the logs
+  if (length $trigraph == 3)
+  {
+    format_error([
+                   ['WARNING:  ', 'Uncorrected country trigraph'],
+                   ['Trigraph: ', $trigraph],
+                 ]); 
+  }
+  return undef;
+}
+
 sub initialize_database
 {
   my $tables_ref         = shift;
@@ -326,7 +361,7 @@ sub load_tournament_files
       "start_date" => $date, # This is changed later
       "end_date"   => $date, # This is changed later
       "name"       => $tournament_name, 
-      "country"    => $tournament_country, 
+      "country"    => convert_trigraph($tournament_country), 
       # "td"         => "director of tournament",
     };
     my @divisions = ();
@@ -468,23 +503,7 @@ sub load_tournament_files
 
       # Some country trigraphs in the old aardvark are incorrect
       # and need to be converted to valid ISO 3166 trigraphs
-      
-      my $trigraph_conversion_hashref = Constants::COUNTRY_TRIGRAPH_CONVERSION;
-
-      my $new_trigraph = $trigraph_conversion_hashref->{$player_country};
-
-      if ($new_trigraph)
-      {
-        $player_country = $new_trigraph;
-      }
-
-      # Many players have a country code of OS in the tournament data.
-      # This ensures that the country code is valid.
-      if ($player_country !~ /[A-Z][A-Z][A-Z]/)
-      {
-        $player_country = undef;
-      }
-
+      $player_country = convert_trigraph($player_country);      
       # Convert possible alt name to correct name
 
       $player_name = convert_name($player_name);
