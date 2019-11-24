@@ -163,7 +163,7 @@ sub update_html
 
   update_rankings_html($dbh, \@country_rankings_to_create);
 
-  update_dynamically_loaded_content($dbh, \@all_countries);
+  update_dynamically_loaded_content($dbh);
 
   update_cgi(); 
   print "Calculating All time stats\n";
@@ -399,7 +399,6 @@ sub check_country_flag_icons
 sub update_dynamically_loaded_content
 {
   my $dbh               = shift;
-  my $all_countries_ref = shift;
 
   my $players_table = Constants::PLAYERS_TABLE_NAME;
   my @player_data = @{$dbh->selectall_arrayref("SELECT * FROM $players_table"  , {Slice => {}, "RaiseError" => 1})};
@@ -491,7 +490,9 @@ sub update_dynamically_loaded_content
 
   write_string_to_file($country_search_html, $country_search_filename);
 
-  my @all_countries = @{$all_countries_ref};
+  my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
+  my $uniq_country_query = "SELECT DISTINCT country FROM $tournaments_tn WHERE country IS NOT NULL";
+  my @all_countries = map {$_->[0]} @{$dbh->selectall_arrayref($uniq_country_query, {"RaiseError" => 1})};
 
   my @localtime = localtime();
   my $current_year = $localtime[5] + 1900;
@@ -504,12 +505,12 @@ sub update_dynamically_loaded_content
     $year_options .= "<option value='$i'>$i</option>\n";
   }
 
-  @all_countries = sort @all_countries;
+  @all_countries = sort {$a->[1] cmp $b->[1]} (map { [$_, $trigraph_hashref->{$_}]  } @all_countries);
 
   for (my $i = 0; $i < scalar @all_countries; $i++)
   {
-    my $trigraph = $all_countries[$i];
-    my $fullname = $trigraph_hashref->{$trigraph};
+    my $trigraph = $all_countries[$i]->[0];
+    my $fullname = $all_countries[$i]->[1];
     $country_options .= "<option value='$trigraph'>$fullname</option>\n";
   }
 

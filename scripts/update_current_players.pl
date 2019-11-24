@@ -61,7 +61,7 @@ sub update_current_players
   SET p.current =
   (
     CASE
-      WHEN $games_in_last_two_years > $current_games_min
+      WHEN $games_in_last_two_years > 0 AND p.total_games > $current_games_min
         THEN 1
       ELSE 0
     END
