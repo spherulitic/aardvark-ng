@@ -6,10 +6,9 @@
 use strict;
 use warnings;
 use Getopt::Long;
-use Pod::Usage qw(pod2usage);
 use lib './modules';
 use Constants;
-
+use Cwd;
 
 my $working_dir         = Constants::DEFAULT_WORKING_DIR;
 my $html_dir            = Constants::HTML_DIR;
@@ -23,27 +22,34 @@ my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
 
 unless(caller)
 {
-  deploy();
+  deploy('/srv/dev/', $working_dir);
 }
 
 sub deploy
 {
+  my $base_dir    = shift;
+  my $working_dir = shift;
+  my $cwd         = getcwd();
   print "Deploying all HTML files\n"; 
-  # Delete old data in the dev dir
-  system "rm -rf $working_dir/$html_dir";
-  print "Copying html to working\n"; 
+  print "Copying html to $working_dir\n"; 
   # Copy new data to dev dir
   system "cp -r $html_dir $working_dir";
-  print "Copying static html to base\n";
+
+  print "Copying static html to $base_dir\n";
   # Copy static html
-  system "cp -r $html_static_dir/. /srv/dev/";
-  print "Copying html data to to base\n";
+  # Softlinking is much more convenient
+  # in this case
+  system "cp -rf $html_static_dir/* $base_dir";
+
+  print "Copying html data to to $base_dir\n";
   # Copy data html
-  system "cp -r $html_data_dir/. /srv/dev/";
-  print "Copying cgi scripts to working dir\n";
+  system "cp -r $html_data_dir/. $base_dir";
+
+  print "Copying cgi scripts to $base_dir\n";
   # Copy the cgi scripts
   system "cp -r $cgibin_dir $working_dir";
-  print "Copying the flags to the working dir\n";
+
+  print "Copying the flags to the $working_dir\n";
   # Copy the flags
   system "cp -r $flags_dir/ $working_dir";
   

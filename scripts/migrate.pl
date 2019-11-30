@@ -369,7 +369,7 @@ sub load_tournament_files
 
     my $switch_world_and_nation = 0;
     my $no_world                = 1;
-
+    my $begin_player_captures   = 0;
     # Read the .STS file
     open(STS_OR_STA_FILE, "<", $sts_or_sta_file) or die "Cannot open .STS or .STA file $sts_or_sta_file: $!";
     while(<STS_OR_STA_FILE>)
@@ -411,6 +411,10 @@ sub load_tournament_files
       }
       else
       {
+        if ($_ =~ /\+-/)
+        {
+          $begin_player_captures++;
+        }
         if ($_ =~ /World.*Nation/i)
         {
           $switch_world_and_nation = 1;
@@ -419,23 +423,111 @@ sub load_tournament_files
         {
           $no_world = 0;
         }
+        # Remove parentheses from the line because 
+        # they were causing problems
+        $_  =~ s/\(|\)/ /g;
         # Agonizing pattern match for .STA file
         # which is why .STS is preferred
-        if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
+        #if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
+        if ($begin_player_captures >= 2 &&
+            $_ =~ /^\|(.)(\w+)\s+([^\|]+)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|/)
         {
           my $is_new_player  = $1; # Unused for now
           $player_country    = $2;
           $player_name       = $3;
 
-          $old_national_rank = $4;
-          $new_national_rank = $5;
+          my $national_ranks_string = $4;
+          my @nranks = split /\s+/, $national_ranks_string;
+          @nranks = grep {$_} @nranks;
+          if (scalar @nranks == 2)
+          {
+            $old_national_rank = $nranks[0];
+            $new_national_rank = $nranks[1];
+          }
+          elsif (scalar @nranks == 1)
+          {
+            $old_national_rank = undef;
+            $new_national_rank = $nranks[0];
+          }
+          elsif (scalar @nranks > 2) {
+            format_error([
+                           ["ERROR: ", "invalid number of items in STA first rank column"], 
+                           ["File:  ", $sts_or_sta_file], 
+                           ["Line:  ", $_],
+                         ]);
+            next filename;
+          }
 
-          $old_world_rank    = $6;
-          $new_world_rank    = $7;
 
-          $expected_wins     = $8;
-          $start_rating      = $9;
-          $end_rating        = $10;
+          my $world_ranks_string = $5;
+          my @wranks = split /\s+/, $world_ranks_string;
+          @wranks = grep {$_} @wranks;
+          if (scalar @wranks == 2)
+          {
+            $old_world_rank = $wranks[0];
+            $new_world_rank = $wranks[1];
+          }
+          elsif (scalar @wranks == 1)
+          {
+            $old_world_rank = undef;
+            $new_world_rank = $wranks[0];
+          }
+          elsif (scalar @wranks > 2) {
+            format_error([
+                           ["ERROR: ", "invalid number of items in STA second rank column"], 
+                           ["File:  ", $sts_or_sta_file], 
+                           ["Line:  ", $_],
+                         ]);
+            next filename;
+          }
+
+          my $wins_string    = $6;
+          my @ewins = split /\s+/, $wins_string;
+          @ewins = grep {$_} @ewins;
+          if (scalar @ewins == 2)
+          {
+            $expected_wins = $ewins[0];
+          }
+          elsif (scalar @ewins == 1)
+          {
+            $expected_wins = undef;
+          }
+          elsif (scalar @ewins > 2) {
+            format_error([
+                           ["ERROR: ", "invalid number of items in STA wins column"], 
+                           ["File:  ", $sts_or_sta_file], 
+                           ["Line:  ", $_],
+                         ]);
+            next filename;
+          }
+
+          my $ratings_change_string    = $7;
+          my @rchanges = split /\s+/, $ratings_change_string;
+          @rchanges = grep {$_} @rchanges;
+          if (scalar @rchanges == 3)
+          {
+            $start_rating  = $rchanges[0];
+            $end_rating    = $rchanges[2];
+          }
+          elsif (scalar @rchanges == 2)
+          {
+            $start_rating  = $rchanges[0];
+            $end_rating    = $rchanges[1];
+          }
+          elsif (scalar @rchanges == 1)
+          {
+            $start_rating  = undef;
+            $end_rating    = $rchanges[0];
+          }
+          elsif (scalar @rchanges > 3)
+          {
+            format_error([
+                           ["ERROR: ", "invalid number of items in STA ratings column"], 
+                           ["File:  ", $sts_or_sta_file], 
+                           ["Line:  ", $_],
+                         ]);
+            next filename;
+          }
 
           if ($switch_world_and_nation)
           {
