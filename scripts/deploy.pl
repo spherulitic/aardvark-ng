@@ -22,7 +22,8 @@ my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
 
 unless(caller)
 {
-  deploy('/srv/dev/', $working_dir);
+   deploy('/srv/dev/', $working_dir);
+   deploy('/srv/iwi.wespa.org/', '/srv/iwi.wespa.org/aardvark');
 }
 
 sub deploy
@@ -40,6 +41,9 @@ sub deploy
   # Softlinking is much more convenient
   # in this case
   system "cp -rf $html_static_dir/* $base_dir";
+
+  print "Copying css to $working_dir";
+  system "cp -rf css/* $working_dir";
 
   print "Copying html data to to $base_dir\n";
   # Copy data html
