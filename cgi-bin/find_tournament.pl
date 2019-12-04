@@ -45,7 +45,7 @@ $query .= " ORDER BY t.start_date ";
 
 my @tournaments = @{$dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1})};
 
-my $title_row = "<tr><th>#</th><th>Tournament</th><th>Date</th></tr>";
+my $title_row = "<tr><th>#</th><th>Date</th><th>Tournament</th></tr>";
 
 my $search_style = 'style="padding: 10px; border-bottom: 1px solid black;"';
 
@@ -80,7 +80,7 @@ for (my $i = 0; $i < scalar @tournaments; $i++)
 
   my $url = '/' . 'aardvark/html' . '/' . 'tournaments' . '/' . $id . '.html';
   my $link = "<a href='$url'>$name</a>";
-  $table_content .= "<tr class='$row_class'><td>$num</td><td>$link</td><td>$date</td></tr>";
+  $table_content .= "<tr class='$row_class'><td>$num</td><td>$date</td><td>$link</td></tr>";
 }
 
 my $content =

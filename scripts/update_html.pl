@@ -253,7 +253,7 @@ if (\$partname)
 
 my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, "RaiseError" => 1})};
 
-my \$title_row = "<tr><th>#</th><th>Tournament</th><th>Date</th></tr>";
+my \$title_row = "<tr><th>#</th><th>Date</th><th>Tournament</th></tr>";
 
 my \$search_style = 'style="padding: 10px; border-bottom: 1px solid black;"';
 
@@ -288,7 +288,7 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
 
   my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
   my \$link = "<a href='\$url'>\$name</a>";
-  \$table_content .= "<tr class='\$row_class'><td>\$num</td><td>\$link</td><td>\$date</td></tr>";
+  \$table_content .= "<tr class='\$row_class'><td>\$num</td><td>\$date</td><td>\$link</td></tr>";
 }
 
 my \$content =
@@ -1072,8 +1072,8 @@ sub get_tournament_results_html_string
 
   # Move to constants plz
 
-  my $tournament_title_ref = ['Details', '#', 'Tournament', 'Date', 'Wins', 'Losses', 'Byes', 'Spread', 'Place', 'Start Rating', 'End Rating', 'Rating Change'];
-  my $tournament_keys_ref  = ['details', '#', 'tr_tournament_name', 'tr_date', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_position', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
+  my $tournament_title_ref = ['Details', '#', 'Date', 'Tournament', 'Wins', 'Losses', 'Byes', 'Spread', 'Place', 'Start Rating', 'End Rating', 'Rating Change'];
+  my $tournament_keys_ref  = ['details', '#', 'tr_date', 'tr_tournament_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_position', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
 
   my $tournament_standings_title_ref = ['Details', 'Place'      ,    'Seed', 'Name',              'Wins',    'Losses',    'Byes',    'Spread',    'Start Rating', 'End Rating', 'Rating Change'];
   my $tournament_standings_keys_ref  = ['details', 'tr_position', 'tr_seed', 'tr_player_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
@@ -1084,8 +1084,8 @@ sub get_tournament_results_html_string
   my $head_to_head_title_ref = ['Details', '', 'Opponent', 'Rating', 'Games', 'Wins', 'Losses', 'Draws', 'Pct', 'Average For', 'Average Against'];
   my $head_to_head_keys_ref  = ['details', '#', 'opp_name', 'opp_current_rating', 'hh_games', 'hh_wins', 'hh_losses', 'hh_draws', 'hh_pct', 'hh_af', 'hh_aa'];
 
-  my $head_to_head_games_title_ref = ['Tournament', 'Date', 'Round', 'Result', 'Rating', 'Opponent Rating', 'Score', ''];
-  my $head_to_head_games_keys_ref  = ['tr_tournament_name', 'tr_date', 'g_round', 'pr1_result', 'tr_start_rating', 'opp_rating', 'pr1_score', 'pr2_score'];
+  my $head_to_head_games_title_ref = ['Date', 'Tournament', 'Round', 'Result', 'Rating', 'Opponent Rating', 'Score', ''];
+  my $head_to_head_games_keys_ref  = ['tr_date', 'tr_tournament_name','g_round', 'pr1_result', 'tr_start_rating', 'opp_rating', 'pr1_score', 'pr2_score'];
 
 
   my $ratings_super_title_ref = ['Player', 'Wins', 'World rank', 'Nation rank', 'Rating points'];
