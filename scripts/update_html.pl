@@ -1915,14 +1915,14 @@ sub stat_objects
                  $data->{'opp_rating'}          &&
                  $data->{'tr_start_rating'} > 0 &&
                  $data->{'opp_rating'}      > 0 && 
-                 $data->{'opp_rating'}      > $data->{'tr_start_rating'} &&
+                 $data->{'opp_rating'}      < $data->{'tr_start_rating'} &&
                  $data->{'pr2_score'} > $data->{'pr1_score'};
         },
         'eval' =>
         sub
         {
           my $data = shift;
-          return $data->{'opp_rating'} - $data->{'tr_start_rating'};
+          return $data->{'tr_start_rating'} - $data->{'opp_rating'} ;
         },
         'sort' =>
         sub
