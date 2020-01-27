@@ -5,6 +5,8 @@ package Constants;
 use warnings;
 use strict;
 
+use constant DEV_ENV_KEYWORD => 'dev';
+
 use constant INPUT_DIR           => 'inputs';
 use constant LOG_DIR             => 'logs';
 use constant MODULES_DIR         => 'modules';
@@ -45,8 +47,8 @@ use constant DEFAULT_BACKUP_DIR             => "/home/jcastellano/aardvark-ng/ba
 
 use constant COUNTRY_FLAGS_DIR              => "flags";
 
-use constant PRODUCTION_DATABASE_NAME      => 'wespa';
-use constant DATABASE_NAME                 => 'wespadev';
+use constant PRODUCTION_DATABASE_NAME      => 'wespaprod';
+use constant DATABASE_NAME                 => 'wespa';
 use constant DATABASE_HOST_NAME            => 'localhost';
 use constant DATABASE_USER_NAME            => 'wespa';
 use constant DATABASE_PASSWORD             => 'nigeltheking';
@@ -77,6 +79,10 @@ use constant INCORRECT_NAME_MAPPINGS_FILE => 'incorrect_name_mappings.log';
 use constant INPUT_MERGE_FILE             => 'duplicates.txt';
 use constant DECEASED_PLAYERS             => 'removed_people.txt';
 
+use constant WINS_COLUMN_COLOR           => '#bbffbb';
+use constant LOSSES_COLUMN_COLOR         => '#ffdddd';
+use constant DRAWS_COLUMN_COLOR          => '#eeeeee';
+use constant BYES_COLUMN_COLOR           => '#eeeeee';
 
 use constant PROVISIONAL_GAMES_MAX      => 50;
 use constant CURRENT_GAMES_MIN          => 40;
@@ -227,6 +233,11 @@ use constant TABLE_CREATION_ORDER =>
                        Constants::PLAYER_RESULTS_TABLE_NAME,
                        Constants::LOADED_TOURNAMENTS_TABLE_NAME
                      ];
+
+use constant TABLE_DROP_EXCEPTIONS =>
+{
+  Constants::PLAYERS_TABLE_NAME => 1
+};
 
 use constant LEXICONS => [
                  {"name" => "CSW07"},

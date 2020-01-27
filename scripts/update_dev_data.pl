@@ -7,10 +7,11 @@ use Pod::Usage qw(pod2usage);
 use lib './modules';
 use Constants;
 
+require './scripts/utils.pl';
 
 my $update_start_year = Constants::UPDATE_START_YEAR;
 my $source_dir        = Constants::UPDATE_SOURCE_DIR;
-my $working_dir       = Constants::DEFAULT_WORKING_DIR;
+my $working_dir       = get_environment_name(Constants::DEFAULT_WORKING_DIR);
 
 my @localtime_data = localtime();
 my $current_year = $localtime_data[5] + 1900;

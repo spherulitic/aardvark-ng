@@ -190,7 +190,7 @@ sub update_cgi
   my $base_dir  = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
   my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
 
-  my $database_name = Constants::PRODUCTION_DATABASE_NAME;
+  my $database_name = get_environment_name(Constants::PRODUCTION_DATABASE_NAME);
   my $host_name     = Constants::DATABASE_HOST_NAME;
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;
@@ -833,6 +833,8 @@ sub get_tournament_results_html_string
   my $t_table_name  = Constants::TOURNAMENTS_TABLE_NAME;
   my $d_table_name  = Constants::DIVISIONS_TABLE_NAME;
 
+  my $rounding = Constants::ROUNDING_PLACE;
+
   my $query =
   "
   SELECT
@@ -1011,7 +1013,10 @@ sub get_tournament_results_html_string
 
   if ($type == $player_type)
   {
-    @tournament_results = sort {$b->[0]->{'tr_date'} cmp $a->[0]->{'tr_date'}} @tournament_results;
+    @tournament_results = sort {
+                                 $b->[0]->{'tr_date'} cmp $a->[0]->{'tr_date'} ||
+                                 $a->[0]->{'tr_tournament_name'} cmp $b->[0]->{'tr_tournament_name'}
+                               } @tournament_results;
   }
   elsif ($type == $tournament_type)
   {
@@ -1048,11 +1053,21 @@ sub get_tournament_results_html_string
     } 
 
     @tournament_results = sort {$a->[0]->{'tr_position'} <=> $b->[0]->{'tr_position'}} @tournament_results;
+    my $num_players = scalar @tournament_results;
+    foreach my $tr (@tournament_results)
+    {
+      my $l = scalar @{$tr};
+      for (my $n = 0; $n < $l; $n++)
+      {
+        $tr->[$n]->{'tr_position'} = $tr->[$n]->{'tr_position'} . " of $num_players";
+      }
+    }
   }
   elsif ($type == $head_to_head_type)
   {
     @tournament_results = sort {scalar @{$b} <=> scalar @{$a}} @tournament_results;
   }
+
 
   foreach my $games (@tournament_results)
   {
@@ -1166,10 +1181,11 @@ sub get_tournament_results_html_string
     'total_against'   => 0,
     'over'            =>
     {
-      '300' => 0,
-      '400' => 0,
-      '500' => 0,
-      '600' => 0
+      '300-' => 0,
+      '300'  => 0,
+      '400'  => 0,
+      '500'  => 0,
+      '600'  => 0
     },
     'special_games' =>
     {
@@ -1314,25 +1330,26 @@ sub get_tournament_results_html_string
       $game_data->{'total_score'}   += $score;      
       $game_data->{'total_against'} += $opp_score;
 
-      if ($type == $head_to_head_type)
-      {
-        $hh_for += $score;
-        $hh_ag  += $opp_score;
-      }
+      $hh_for += $score;
+      $hh_ag  += $opp_score;
 
-      if ($score >= 300 && $score < 400)
+      if ($score < 300)
+      {
+        $game_data->{'over'}->{'300-'}++;
+      }
+      elsif ($score >= 300 && $score < 400)
       {
         $game_data->{'over'}->{'300'}++;
       }
-      if ($score >= 400 && $score < 500)
+      elsif ($score >= 400 && $score < 500)
       {
         $game_data->{'over'}->{'400'}++;
       }
-      if ($score >= 500 && $score < 600)
+      elsif ($score >= 500 && $score < 600)
       {
         $game_data->{'over'}->{'500'}++;
       }
-      if ($score >= 600)
+      elsif ($score >= 600)
       {
         $game_data->{'over'}->{'600'}++;
       }
@@ -1385,12 +1402,23 @@ sub get_tournament_results_html_string
           0,
           $sub_row_class
         );    
+      if ($k == $num_games - 1)
+      {
+        my $colspan = (scalar @{$games_keys_ref}) - 3;
+        my $af = sprintf ("%.".$rounding."f", $hh_for / $num_games);
+        my $ag = sprintf ("%.".$rounding."f", $hh_ag  / $num_games);
+        $subentries .=
+        "<tr>
+           <td colspan='$colspan'></td>
+           <td><b>Average:</b></td>
+           <td><b>$af</b></td>
+           <td><b>$ag</b></td>
+        </tr>";
+      }
     }
 
     if ($type == $head_to_head_type)
     {
-      my $rounding = Constants::ROUNDING_PLACE;
-
       $games_ref->[0]->{'hh_games'}  = $num_games;
       $games_ref->[0]->{'hh_wins'}   = $hh_wins;
       $games_ref->[0]->{'hh_losses'} = $hh_losses;
@@ -1689,6 +1717,7 @@ sub make_row
   {
     my $key = $key_array[$i];
     my $val = $key;
+    my $class = '';
 
     if (!$is_title)
     {
@@ -1734,12 +1763,28 @@ sub make_row
         }
       }
     }
+    elsif ($key eq 'tr_wins' || $key eq 'hh_wins')
+    {
+      $class = "class='winscolumn'";
+    }
+    elsif ($key eq 'tr_losses' || $key eq 'hh_losses')
+    {
+      $class = "class='lossescolumn'";
+    }
+    elsif ($key eq 'hh_draws')
+    {
+      $class = "class='drawscolumn'";
+    }
+    elsif ($key eq 'tr_byes')
+    {
+      $class = "class='byescolumn'";
+    }
     if (!(defined $val))
     {
       $val = "";
     }
 
-    $row_string .= sprintf "<$el $colspan_attr  >%s</$el>", $val;
+    $row_string .= sprintf "<$el $colspan_attr $class >%s</$el>", $val;
   }
   $row_string .= "</tr>\n";
 

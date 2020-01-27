@@ -7,12 +7,13 @@ use warnings;
 use lib './modules';
 use Constants;
 use DBI;
+use Cwd;
 
 sub copy_database_to_production
 {
-  my $production_database_name = Constants::PRODUCTION_DATABASE_NAME;
+  my $production_database_name = get_environment_name(Constants::PRODUCTION_DATABASE_NAME);
 
-  my $database_name = Constants::DATABASE_NAME;
+  my $database_name = get_environment_name(Constants::DATABASE_NAME);
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;
 
@@ -37,7 +38,7 @@ sub create_html_id
 
 sub connect_to_database
 {
-  my $database_name = Constants::DATABASE_NAME;
+  my $database_name = get_environment_name(Constants::DATABASE_NAME);
   my $host_name     = Constants::DATABASE_HOST_NAME;
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;
@@ -63,8 +64,11 @@ sub get_tournament_data_filenames
     or die "Cannot open $base_directory_name: $!";
   my @year_directory_names = grep(/$year_regex/, readdir($base_directory));
 
-  foreach my $year_directory_name (@year_directory_names)
+  @year_directory_names = sort {$a <=> $b} @year_directory_names;
+
+  for(my $i = 0; $i <  scalar @year_directory_names; $i++)
   {
+    my $year_directory_name = $year_directory_names[$i];
     my $year_directory_full_path_name =
       $base_directory_name . $year_directory_name;
 
@@ -105,7 +109,17 @@ sub make_link
   return $link;
 }
 
-
+sub get_environment_name
+{
+  my $name = shift;
+  my $keyword = Constants::DEV_ENV_KEYWORD;
+  my $dir = getcwd();
+  if ($dir =~ /$keyword/i)
+  {
+    return $name . $keyword;
+  }
+  return $name;
+}
 
 1;
 

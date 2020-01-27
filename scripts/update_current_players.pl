@@ -13,6 +13,8 @@ use Data::Dumper;
 use lib "./modules";
 use Constants;
 
+require './scripts/utils.pl';
+
 unless (caller)
 {
   update_current_players();
@@ -24,7 +26,7 @@ sub update_current_players
   my $players_tn        = Constants::PLAYERS_TABLE_NAME;
   my $current_games_min = Constants::CURRENT_GAMES_MIN;
   
-  my $database_name = Constants::DATABASE_NAME;
+  my $database_name = get_environment_name(Constants::DATABASE_NAME);
   my $host_name     = Constants::DATABASE_HOST_NAME;
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;

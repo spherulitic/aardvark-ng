@@ -17,6 +17,7 @@ require './scripts/update_html.pl';
 require './scripts/utils.pl';
 require './scripts/update_current_players.pl';
 require './scripts/drop_all_wespa_tables.pl';
+require './scripts/record_db.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
@@ -40,7 +41,7 @@ my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
 my $player_results_tn     = Constants::PLAYER_RESULTS_TABLE_NAME;
 my $lexicons_tn           = Constants::LEXICONS_TABLE_NAME;
 
-my $working_directory      = Constants::DEFAULT_WORKING_DIR;
+my $working_directory      = get_environment_name(Constants::DEFAULT_WORKING_DIR);
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
@@ -72,8 +73,12 @@ sub main
              ); 
 
   pod2usage(1) if $help;  
-  
+
   drop_all_wespa_tables();
+
+  # take a backup of the players and print the player id numbers
+
+  record_database();
 
   my $dbh = initialize_database($tables, $creation_order);
   
@@ -580,7 +585,7 @@ sub load_tournament_files
         $player_country,
         $player_name,
         $start_rating,
-        $end_rating,
+        $end_rating
       );
       if (grep {!defined($_)} @required_captures)
       {

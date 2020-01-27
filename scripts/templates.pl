@@ -118,6 +118,7 @@ sub get_player_template_html_string
   my $average_for     = sprintf("%.$rounding"."f",  ($total_score / $games_played));
   my $average_against = sprintf("%.$rounding"."f",  ($total_against / $games_played));
 
+  my $under_300 = $player_tournament_history_data->{'over'}->{'300-'};
   my $over_300 = $player_tournament_history_data->{'over'}->{'300'};
   my $over_400 = $player_tournament_history_data->{'over'}->{'400'};
   my $over_500 = $player_tournament_history_data->{'over'}->{'500'};
@@ -127,6 +128,7 @@ sub get_player_template_html_string
   my $loss_percentage = sprintf("%.$rounding"."f",  100 *   ($losses / $games_played));
   my $draw_percentage = sprintf("%.$rounding"."f",  100 *    ($draws / $games_played));
 
+  my $under_300_percentage = sprintf("%.$rounding"."f",  100 *   ($under_300 / $games_played));
   my $over_300_percentage = sprintf("%.$rounding"."f",  100 *   ($over_300 / $games_played));
   my $over_400_percentage = sprintf("%.$rounding"."f",  100 *   ($over_400 / $games_played));
   my $over_500_percentage = sprintf("%.$rounding"."f",  100 *    ($over_500 / $games_played));
@@ -239,6 +241,7 @@ $doctype
               <b>Draws:</b> $draws ($draw_percentage%)<br><br>
               <b>Average Score:</b> $average_for<br>
               <b>Average Against:</b> $average_against<br><br>
+              <b>300- Games:</b> $under_300 ($under_300_percentage%)<br>
               <b>300  Games:</b> $over_300 ($over_300_percentage%)<br>
               <b>400  Games:</b> $over_400 ($over_400_percentage%)<br>
               <b>500  Games:</b> $over_500 ($over_500_percentage%)<br>

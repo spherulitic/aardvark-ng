@@ -10,7 +10,9 @@ use lib './modules';
 use Constants;
 use Cwd;
 
-my $working_dir         = Constants::DEFAULT_WORKING_DIR;
+require './scripts/utils.pl';
+
+my $working_dir         = get_environment_name(Constants::DEFAULT_WORKING_DIR);
 my $html_dir            = Constants::HTML_DIR;
 my $cgibin_dir          = Constants::CGIBIN_DIR;
 my $html_static_dir     = Constants::HTML_STATIC_DIR;
@@ -42,7 +44,7 @@ sub deploy
   # in this case
   system "cp -rf $html_static_dir/* $base_dir";
 
-  print "Copying css to $working_dir";
+  print "Copying css to $working_dir\n";
   system "cp -rf css/* $working_dir";
 
   print "Copying html data to to $base_dir\n";
