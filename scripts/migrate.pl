@@ -41,6 +41,7 @@ my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
 my $player_results_tn     = Constants::PLAYER_RESULTS_TABLE_NAME;
 my $lexicons_tn           = Constants::LEXICONS_TABLE_NAME;
 
+my $tou_data_directory     = get_environment_name(Constants::TOURNAMENT_DATA_DIR);
 my $working_directory      = get_environment_name(Constants::DEFAULT_WORKING_DIR);
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
@@ -85,7 +86,7 @@ sub main
   my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
                                                 "name");
   
-  my $filenames_array_ref = get_tournament_data_filenames($working_directory,
+  my $filenames_array_ref = get_tournament_data_filenames($tou_data_directory,
                             $year_regex, $country_trigraph_regex, $file_regex);
   
   printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};

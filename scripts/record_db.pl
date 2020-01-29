@@ -17,6 +17,7 @@ unless (caller)
 
 sub record_database
 {
+  my $maybe_dev     = get_environment_name('');
   my $database_name = get_environment_name(Constants::DATABASE_NAME);
   my $host_name     = Constants::DATABASE_HOST_NAME;
   my $user_name     = Constants::DATABASE_USER_NAME;
@@ -49,7 +50,12 @@ sub record_database
   print $fh $player_ids;
   close $fh;
 
-  open(my $fh_cur, '>', "$working_dir/player_ids.txt");
+  if ($maybe_dev)
+  {
+    $maybe_dev = '_' . $maybe_dev;
+  }
+
+  open(my $fh_cur, '>', "$working_dir/player_ids$maybe_dev.txt");
   print $fh_cur $player_ids;
   close $fh_cur;
 }

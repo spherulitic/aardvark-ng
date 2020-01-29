@@ -12,7 +12,7 @@ use Cwd;
 
 require './scripts/utils.pl';
 
-my $working_dir         = get_environment_name(Constants::DEFAULT_WORKING_DIR);
+my $working_dir         = Constants::DEFAULT_WORKING_DIR;
 my $html_dir            = Constants::HTML_DIR;
 my $cgibin_dir          = Constants::CGIBIN_DIR;
 my $html_static_dir     = Constants::HTML_STATIC_DIR;
@@ -24,8 +24,14 @@ my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
 
 unless(caller)
 {
-   deploy('/srv/dev/', $working_dir);
-   deploy('/srv/iwi.wespa.org/', '/srv/iwi.wespa.org/aardvark');
+   if (get_environment_name(''))
+   {
+     deploy('/srv/dev/', $working_dir);
+   }
+   else
+   {
+     deploy('/srv/iwi.wespa.org/', '/srv/iwi.wespa.org/aardvark');
+   }
 }
 
 sub deploy

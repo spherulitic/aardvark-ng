@@ -33,7 +33,6 @@ sub update_html
   my $dbh = connect_to_database();
   my $tournament_ids_to_create_ref = shift;
 
-  my $working_dir         = Constants::DEFAULT_WORKING_DIR;
   my $html_dir            = Constants::HTML_DIR;
   my $player_html_dir     = Constants::PLAYER_HTML_DIR;
   my $tournament_html_dir = Constants::TOURNAMENT_HTML_DIR;

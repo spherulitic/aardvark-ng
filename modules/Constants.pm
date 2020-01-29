@@ -37,6 +37,7 @@ use constant HTML_ID_ENTRY_TAG         => 'entry';
 
 use constant HTML_PATH_TO_WORKING_DIR  => "../..";
 
+use constant TOURNAMENT_DATA_DIR            => '/srv/dev/tournament_data';
 use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
 use constant DEFAULT_SHORT_NAME_WORKING_DIR => "aardvark";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
