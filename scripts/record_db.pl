@@ -24,6 +24,7 @@ sub record_database
   
   my $logs          = Constants::LOG_DIR;
   my $players_tn    = Constants::PLAYERS_TABLE_NAME;
+  my $working_dir   = Constants::DEFAULT_WORKING_DIR;
 
   my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
                          $user_name, $password,
@@ -47,6 +48,10 @@ sub record_database
   open(my $fh, '>', "$logs/player_ids_$database_name" . "$tstamp.txt");
   print $fh $player_ids;
   close $fh;
+
+  open(my $fh_cur, '>', "$working_dir/player_ids.txt");
+  print $fh_cur $player_ids;
+  close $fh_cur;
 }
 
 1;
