@@ -15,7 +15,7 @@ my $partname  = sanitize($cgi->param('partname'));
 $startyear .= '-00-00';
 $endyear   .= '-12-31';
 
-my $dbh = DBI->connect("DBI:mysql:database=wespaproddev;host=localhost",
+my $dbh = DBI->connect("DBI:mysql:database=wespaprod;host=localhost",
                          'wespa', 'nigeltheking',
                          {'RaiseError' => 1}); 
 
