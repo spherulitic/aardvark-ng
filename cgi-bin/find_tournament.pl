@@ -221,7 +221,7 @@ print "Content-Type: text/html
 ";
 print $results_html_page;
 
-sub sanitize
+ sub sanitize
 {
   my $s = shift;
 

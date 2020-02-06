@@ -7,6 +7,37 @@ use strict;
 
 use constant DEV_ENV_KEYWORD => 'dev';
 
+use constant TEST_DIRECTORY              => 'test';
+use constant MODULES_DIRECTORY           => 'modules';
+use constant OBJECTS_DIRECTORY           => 'objects';
+
+use constant TEST_TOU_DIRECTORY               => 'tou';
+use constant TEST_STDOUT_DIRECTORY            => 'stdout';
+use constant TEST_JSON_DIRECTORY              => 'json';
+
+use constant TOU_ERROR_REPORT                 => 'Processing Report';
+use constant TOU_WARNING_REPORT               => 'Warning Report';
+use constant TOU_LOADED                       => 'Loaded';
+use constant TOU_FILENAME                     => 'Filename';
+use constant TOU_VALID                        => 'Valid';
+use constant TOU_NEWED                        => 'Initialized';
+use constant TOU_TOURNAMENT_LENGTH            => 'Tournament Length';
+use constant TOU_DIVISION_DATA                => 'Division Data';
+use constant TOU_DIVISION_MATRIX              => 'Division Matrix';
+use constant TOU_DIVISION_TOURNAMENT_LENGTH   => 'Division Tournament Length';
+use constant TOU_DIVISION_PLAYER_NAMES        => 'Division Player Names';
+use constant TOU_DIVISION_NUM_PLAYERS         => 'Division Number of Players';
+use constant TOU_DIVISION_NUM_MISSING_GAMES   => 'Division Number of Missing Games';
+use constant TOU_DIVISION_VERIFICATION_REPORT => 'Division Verification Report';
+use constant TOU_DIVISION_VALID               => 'Division Valid';
+use constant TOU_REWRITE_NEEDED               => 'Rewrite Needed';
+use constant TOU_EVENT                        => 'Event';
+use constant TOU_TOURNAMENT                   => 'Tournament';
+use constant TOU_DIVISIONS                    => 'Divisions';
+use constant TOU_TOURNAMENT_RESULTS           => 'Tournament Results';
+use constant TOU_GAME_AND_PLAYER_RESULTS      => 'Game and Player Results';
+use constant TOU_PLAYER_SPREADS               => 'Player Spreads';
+
 use constant INPUT_DIR           => 'inputs';
 use constant LOG_DIR             => 'logs';
 use constant MODULES_DIR         => 'modules';
@@ -360,6 +391,7 @@ use constant COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF =>
   'HRV' => 'Croatia',
   'HUN' => 'Hungary',
   'ISL' => 'Iceland',
+  'IMN' => 'Isle of Man',
   'IDN' => 'Indonesia',
   'IND' => 'India',
   'IOT' => 'British Indian Ocean Territory',
