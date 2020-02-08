@@ -65,8 +65,8 @@ sub check_country_flag_icons
     if (!$trigraph_hashref->{$1})
     {   
       Utils::format_error([
-                            ['ERROR: ', 'Invalid flag image name'],
-                            ['File:  ',  $ef]
+                            ['ERROR:', 'Invalid flag image name'],
+                            ['File: ',  $ef]
                           ]);
     }   
   }
@@ -79,9 +79,9 @@ sub check_country_flag_icons
     if (!(-e $flag))
     {   
       Utils::format_error([
-                            ['ERROR:        ', 'missing flag image'],
-                            ['Country:      ', $country],
-                            ['Missing File: ', $flag],
+                            ['ERROR:       ', 'missing flag image'],
+                            ['Country:     ', $country],
+                            ['Missing File:', $flag],
                           ]);
     }   
   }
@@ -153,15 +153,17 @@ sub convert_trigraph
   my $trigraph = shift;
   my $trigraph_hash = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
   my $trigraph_correction_hash = Constants::COUNTRY_TRIGRAPH_CONVERSION;
-  
-  if ($trigraph_hash->{$trigraph})
-  {
-    return $trigraph;
-  }
+
   if (!$trigraph)
   {
     return undef;
   }
+ 
+  if ($trigraph_hash->{$trigraph})
+  {
+    return $trigraph;
+  }
+
   my $correct_trigraph = $trigraph_correction_hash->{$trigraph};
   if ($correct_trigraph)
   {
@@ -289,11 +291,27 @@ sub fetch_local_tournament_data
   }
 }
 
+sub write_file_to_string
+{
+  my $file = shift;
+  my $string = '';
+  if (-e $file)
+  {
+    open (my $fh, '<', $file);
+    while(<$fh>)
+    {
+      $string .= $_;
+    }
+  }
+  return $string;
+}
+
 sub format_error
 {
   my $error_arrayref = shift;
 
   my $l = scalar @{$error_arrayref};
+  my $error_string = '';
 
   for (my $i = 0; $i < $l; $i++)
   {
@@ -303,9 +321,11 @@ sub format_error
     if (!$item1){$item1 = "undef";}
     if (!$item2){$item2 = "undef";}
 
-    printf "%s %s\n", $item1, $item2;
+    $error_string .= sprintf "%s %s\n", $item1, $item2;
   }
-  print "\n";
+  $error_string .= "\n";
+  print $error_string;
+  return $error_string;
 }
 
 sub get_environment_name

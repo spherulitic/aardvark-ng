@@ -26,6 +26,7 @@ sub initialize
   $tou->{Constants::TOU_WARNING_REPORT}    = '';
   $tou->{Constants::TOU_LOADED}            = 0;
   $tou->{Constants::TOU_FILENAME}          = '';
+  $tou->{Constants::TOU_REWRITE_FILENAME}  = '';
   $tou->{Constants::TOU_VALID}             = 1;
   $tou->{Constants::TOU_NEWED}             = 0;
   $tou->{Constants::TOU_TOURNAMENT_LENGTH} = 0;
@@ -74,9 +75,10 @@ sub new
 
   if (!( -e $filename))
   {
+    # Covered by TC 1
     $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                          ["ERROR: ", "Missing .tou file"],
-                          ["File:  ", $filename]
+                          ['ERROR:', 'Missing .tou file'],
+                          ['File: ', $filename]
                         ]);
     return $tou;
   }
@@ -119,10 +121,11 @@ sub new
 
   if (!( -e $sts_file || -e $sta_file))
   {
+    # Covered by TC 2
     $tou->{Constants::TOU_ERROR_REPORT} = 
       Utils::format_error([
-                            ["ERROR: ", "Missing .STS or .STA file"],
-                            ["File:  ", $filename]
+                            ["ERROR:", "Missing .STS or .STA file"],
+                            ["File: ", $filename]
                           ]);
     return $tou;
   }
@@ -152,8 +155,9 @@ sub new
   }
   else
   {
+    # Covered by TC 3
     $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                          ["ERROR:", "malformed .tou header"],
+                          ["ERROR:", "Malformed .tou header"],
                           ["File: ", $tou_file],
                         ]);
     return $tou;
@@ -269,10 +273,11 @@ sub new
           $new_national_rank = $nranks[0];
         }
         elsif (scalar @nranks > 2) {
+          # Covered by TC 4
           $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR: ", "invalid number of items in STA first rank column"], 
-                                ["File:  ", $sts_or_sta_file], 
-                                ["Line:  ", $_],
+                                ["ERROR:", "invalid number of items in STA first rank column"], 
+                                ["File: ", $sts_or_sta_file], 
+                                ["Line: ", $_],
                               ]);
           return $tou;
         }
@@ -292,6 +297,7 @@ sub new
           $new_world_rank = $wranks[0];
         }
         elsif (scalar @wranks > 2) {
+          # Covered by TC 5
           $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
                                 ["ERROR: ", "invalid number of items in STA second rank column"], 
                                 ["File:  ", $sts_or_sta_file], 
@@ -312,6 +318,7 @@ sub new
           $expected_wins = undef;
         }
         elsif (scalar @ewins > 2) {
+          # Covered by TC 6
           $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
                                 ["ERROR: ", "invalid number of items in STA wins column"], 
                                 ["File:  ", $sts_or_sta_file], 
@@ -340,6 +347,7 @@ sub new
         }
         elsif (scalar @rchanges > 3)
         {
+          # Covered by TC 7
           $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
                                 ["ERROR: ", "invalid number of items in STA ratings column"], 
                                 ["File:  ", $sts_or_sta_file], 
@@ -403,6 +411,7 @@ sub new
     );
     if (grep {!defined($_)} @required_captures)
     {
+      # Covered by TC 8
       $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
                             ["ERROR: ", "required values are uncaptured"], 
                             ["File:  ", $sts_or_sta_file], 
@@ -441,7 +450,6 @@ sub new
 
     my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
 
-
     my $player_id;
 
     if (!@player_query_result) # Player does not exist
@@ -462,20 +470,18 @@ sub new
           "rating"      => $end_rating
         }
       );
-      $player_names_to_ids->{$player_name} = $player_id;
     }
     else
     {
       # If the player already exists, the last_played and country fields
       # may need to be updated
 
-      my $player_id = shift @player_query_result;
+      $player_id = shift @player_query_result;
       my $existing_country = shift @player_query_result;
       my $player_last_played = shift @player_query_result;
 
       $player_last_played =~ s/\D//g;
 
-      $player_names_to_ids->{$player_name} = $player_id;
 
       my $newer_tourney_cond = $player_last_played < $date;
 
@@ -511,446 +517,437 @@ sub new
       #                 ["New country:     ", $player_country],
       #               ]);
       #}
-      } 
+    } 
 
-      # Keep an mapping of the names to ids in memory
-      # so we don't have to query the database more than necessary 
-      $player_id = $player_names_to_ids->{$player_name};
+    # Still need spread and position
+    $tournament_results->{$player_name} = 
+    {
+      "player_id"         => $player_id,
+      "player_name"       => $pretty_player_name,
+      "division_id"       => -1, # This will be replaced with the actual id later
+      # Calculations done later because byes are annoying
+      "wins"              => 0,
+      "losses"            => 0,
+      "byes"              => 0,
+      # "prize_money"    => 0,
+      # "prize_currency" => "AAA",
+      # "prize_ech_rate" => 1,
+      "start_rating"      => $start_rating,
+      "end_rating"        => $end_rating,
+      "date"              => $date,
+      "tournament_name"   => $tournament_name,
 
-      if (!$player_id)
+      "expected_wins"     => $expected_wins,
+      "old_world_rank"    => $old_world_rank,
+      "new_world_rank"    => $new_world_rank,
+      "old_national_rank" => $old_national_rank,
+      "new_national_rank" => $new_national_rank,
+    };
+    # Keep an mapping of the names to ids in memory
+    # so we don't have to query the database more than necessary 
+    $player_names_to_ids->{$player_name} = $player_id;
+  }
+
+  # Now parse the .tou file for game data
+  my $current_division_number = 0;
+  my $current_division_name   = "";
+  my $current_player_number   = 1;
+
+  my $tou_game_data_hashref = {};
+
+  my %tou_div_names = ();
+  my $player_spreads = {};
+  my $is_header = 1;
+  # Read the .tou file
+  open(TOU_FILE, "<", $tou_file) or die "Cannot open .tou file $tou_file: $!";
+  while(<TOU_FILE>)
+  {
+    chomp $_;
+    if ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/ && !$is_header)
+    {
+      # Prepare the loop for a new division
+      my $div_name = $1;
+      $div_name =~ s/^\s+|\s+$//g;
+      $current_division_number++;
+      $current_division_name = $div_name;
+      $current_player_number = 1;
+      push @divisions, {"number" => $current_division_number, "name" => $current_division_name, "length" => -1};
+    }
+    elsif ($_ =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/)
+    {
+      if (!$current_division_number || !$current_division_name)
       {
+        # Covered by TC 9
         $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                              ["ERROR: ", "player name does not have id"], 
-                              ["File:  ", $sts_or_sta_file], 
-                              ["Name:  ", $player_name] 
+                              ["ERROR:", "Missing division name"],
+                              ["File: ", $tou_file],
                             ]);
         return $tou;
       }
 
-      # Still need spread and position
-      $tournament_results->{$player_name} = 
+      my @player_game_data = split/\s+/, $_;
+  
+      my @games = ();
+      
+      # The games in the .tou are represented by score/opp_number pairs
+      # This detects how many of those pairs there are
+      my $games_played = () = $_ =~ /(\d+\s+\+?\d+(?:\s+|$))/g;
+
+      my $current_div_hash = $divisions[-1];
+
+      if ($current_div_hash->{'length'} == -1)
       {
-        "player_id"         => $player_id,
-        "player_name"       => $pretty_player_name,
-        "division_id"       => -1, # This will be replaced with the actual id later
-        # Calculations done later because byes are annoying
-        "wins"              => 0,
-        "losses"            => 0,
-        "byes"              => 0,
-        # "prize_money"    => 0,
-        # "prize_currency" => "AAA",
-        # "prize_ech_rate" => 1,
-        "start_rating"      => $start_rating,
-        "end_rating"        => $end_rating,
-        "date"              => $date,
-        "tournament_name"   => $tournament_name,
-
-        "expected_wins"     => $expected_wins,
-        "old_world_rank"    => $old_world_rank,
-        "new_world_rank"    => $new_world_rank,
-        "old_national_rank" => $old_national_rank,
-        "new_national_rank" => $new_national_rank,
-      };
-    }
-
-    # Now parse the .tou file for game data
-    my $current_division_number = 0;
-    my $current_division_name   = "";
-    my $current_player_number   = 1;
-
-    my $tou_game_data_hashref = {};
-
-    my %tou_div_names = ();
-    my $player_spreads = {};
-    my $is_header = 1;
-    # Read the .tou file
-    open(TOU_FILE, "<", $tou_file) or die "Cannot open .tou file $tou_file: $!";
-    while(<TOU_FILE>)
-    {
-      chomp $_;
-      if ($_ =~ /^\*(.*)/ && $_ !~ /END OF FILE/ && !$is_header)
-      {
-        # Prepare the loop for a new division
-        my $div_name = $1;
-        $div_name =~ s/^\s+|\s+$//g;
-        $current_division_number++;
-        $current_division_name = $div_name;
-        $current_player_number = 1;
-        push @divisions, {"number" => $current_division_number, "name" => $current_division_name, "length" => -1};
+        $current_div_hash->{'length'} = $games_played;
       }
-      elsif ($_ =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/)
+      elsif ($current_div_hash->{'length'} != $games_played)
       {
-        if (!$current_division_number || !$current_division_name)
+           # Covered by TC 10
+           $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                                 ["ERROR:    ", "inconsistent number of tournament games"],
+                                 ["File:     ", $tou_file],
+                                 ["Division: ", $current_division_name],
+                                 ["Line:     ", $_]
+                               ]);
+          return $tou;         
+      }
+
+      for(my $i = 0; $i < $games_played; $i++)
+      {
+        my $opp_number  = pop @player_game_data;
+        $opp_number =~ s/\D//g;
+        my $score       = pop @player_game_data;
+
+        if ($opp_number =~ /\D/ || $score !~ /^-?\d+$/)
         {
           $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:", "Missing division name"],
-                                ["File: ", $tou_file],
+                                ["ERROR:        ", "Malformed opponent number or player score"],
+                                ["File:         ", $tou_file],
+                                ["Opp number:   ", $opp_number],
+                                ["Player score: ", $score],
+                                ["Games played: ", $games_played],
+                                ["Line:         ", $_]
                               ]);
           return $tou;
         }
-
-        my @player_game_data = split/\s+/, $_;
-    
-        my @games = ();
-        
-        # The games in the .tou are represented by score/opp_number pairs
-        # This detects how many of those pairs there are
-        my $games_played = () = $_ =~ /(\d+\s+\+?\d+(?:\s+|$))/g;
-
-        my $current_div_hash = $divisions[-1];
-
-        if ($current_div_hash->{'length'} == -1)
+        if ($opp_number == $current_player_number || $score == 1350)
         {
-          $current_div_hash->{'length'} = $games_played;
+          $score = 50;
         }
-        elsif ($current_div_hash->{'length'} != $games_played)
+        # Allow down to -100 in winning score
+        elsif ($score > 1900)
         {
-             $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                   ["ERROR:    ", "inconsistent number of tournament games"],
-                                   ["File:     ", $tou_file],
-                                   ["Division: ", $current_division_name],
-                                   ["Line:     ", $_]
-                                 ]);
-            return $tou;         
+          $score -= 2000;
         }
-
-        for(my $i = 0; $i < $games_played; $i++)
+        elsif ($score > 1000)
         {
-          my $opp_number  = pop @player_game_data;
-          $opp_number =~ s/\D//g;
-          my $score       = pop @player_game_data;
-
-          if ($opp_number =~ /\D/ || $score !~ /^-?\d+$/)
-          {
-            $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                  ["ERROR:        ", "Malformed opponent number or player score"],
-                                  ["File:         ", $tou_file],
-                                  ["Opp number:   ", $opp_number],
-                                  ["Player score: ", $score],
-                                  ["Games played: ", $games_played],
-                                  ["Line:         ", $_]
-                                ]);
-            return $tou;
-          }
-          if ($opp_number == $current_player_number || $score == 1350)
-          {
-            $score = 50;
-          }
-          # Allow down to -100 in winning score
-          elsif ($score > 1900)
-          {
-            $score -= 2000;
-          }
-          elsif ($score > 1000)
-          {
-            $score -= 1000;
-          }
-          unshift @games, [$score, $opp_number];
+          $score -= 1000;
         }
+        unshift @games, [$score, $opp_number];
+      }
 
-        my $player_name = join " ", @player_game_data;
-        $player_name =~ s/^\s+|\s+$//g;
+      my $player_name = join " ", @player_game_data;
+      $player_name =~ s/^\s+|\s+$//g;
 
-        # Convert possible alt name to real name
+      # Convert possible alt name to real name
 
-        $player_name = Utils::convert_name($player_name, $alt_names_hash);
-        my $pretty_player_name = Utils::make_pretty($player_name);
-        $player_name = Utils::sanitize($player_name);
-        my $og_player_name = $player_name;
-        my $div_player_name = $current_division_name . "-" . $player_name;
+      $player_name = Utils::convert_name($player_name, $alt_names_hash);
+      my $pretty_player_name = Utils::make_pretty($player_name);
+      $player_name = Utils::sanitize($player_name);
+      my $og_player_name = $player_name;
+      my $div_player_name = $current_division_name . "-" . $player_name;
 
-        if ($tou_div_names{$div_player_name})
+      if ($tou_div_names{$div_player_name})
+      {
+        $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                              ["ERROR:    ", "player name appears more than once"],
+                              ["File:     ", $tou_file],
+                              ["Division: ", $current_division_name],
+                              ["Player:   ", $player_name]
+                            ]);
+        return $tou;
+      }
+
+      if ($tou_names{$player_name})
+      {
+        # A player has switched divisions mid tournament which is a massive pain in the ass
+        $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                              ["WARNING:  ", "player has switched divisions mid-tournament"],
+                              ["File:     ", $tou_file],
+                              ["Division: ", $current_division_name],
+                              ["Player:   ", $player_name]
+                            ]);
+        $player_names_to_ids->{$div_player_name} = $player_names_to_ids->{$player_name};
+        $player_name = $div_player_name;
+        $tournament_results->{$player_name} = 
         {
-          $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:    ", "player name appears more than once"],
-                                ["File:     ", $tou_file],
-                                ["Division: ", $current_division_name],
-                                ["Player:   ", $player_name]
-                              ]);
-          return $tou;
-        }
-
-        if ($tou_names{$player_name})
-        {
-          # A player has switched divisions mid tournament which is a massive pain in the ass
-          $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["WARNING:  ", "player has switched divisions mid-tournament"],
-                                ["File:     ", $tou_file],
-                                ["Division: ", $current_division_name],
-                                ["Player:   ", $player_name]
-                              ]);
-          $player_names_to_ids->{$div_player_name} = $player_names_to_ids->{$player_name};
-          $player_name = $div_player_name;
-          $tournament_results->{$player_name} = 
-          {
-            "player_id"       => $player_names_to_ids->{$div_player_name},
-            "player_name"     => $pretty_player_name,
-            "division_id"     => -1, # This will be replaced with the actual id later
-            # Calculations done later because byes are annoying
-            "wins"            => 0,
-            "losses"          => 0,
-            "byes"            => 0,
-            # "prize_money"    => 0,
-            # "prize_currency" => "AAA",
-            # "prize_ech_rate" => 1,
-            "start_rating"    => $tournament_results->{$og_player_name}->{'start_rating'},
-            "end_rating"      => $tournament_results->{$og_player_name}->{'end_rating'},
-            "date"            => $date,
-            "tournament_name" => $tournament_name
-          };
-        }
- 
-        $tou_names{$og_player_name} = 1;
-        $tou_div_names{$div_player_name} = 1;
-
-        $tournament_results->{$player_name}->{'division_id'} = $current_division_name; # Will be changed later
-
-        if (!Utils::player_name_is_bye($player_name) && !$tournament_results->{$player_name})
-        {
-          $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:", "Player name does not appear in corresponding .STS file"], 
-                                ["Name: ", $player_name], 
-                                ["File: ", $tou_file], 
-                                ["Line: ", $_],
-                              ]);
-          return $tou;                
-        }
-
-        $player_spreads->{$player_name} = 0;
-
-        $tou_game_data_hashref->{$current_division_name . "-" . $current_player_number} = 
-        {
-          "name"  => $player_name,
-          "games" => \@games
+          "player_id"       => $player_names_to_ids->{$div_player_name},
+          "player_name"     => $pretty_player_name,
+          "division_id"     => -1, # This will be replaced with the actual id later
+          # Calculations done later because byes are annoying
+          "wins"            => 0,
+          "losses"          => 0,
+          "byes"            => 0,
+          # "prize_money"    => 0,
+          # "prize_currency" => "AAA",
+          # "prize_ech_rate" => 1,
+          "start_rating"    => $tournament_results->{$og_player_name}->{'start_rating'},
+          "end_rating"      => $tournament_results->{$og_player_name}->{'end_rating'},
+          "date"            => $date,
+          "tournament_name" => $tournament_name
         };
-
-        $current_player_number++;
-      }
-      $is_header = 0;
-    }
-
-    my $failure_comp = Utils::compare_names(\%tou_names, \%st_names);
-
-    if ($failure_comp)
-    {
-      my $not_in_tou = $failure_comp->[0];
-      my $not_in_st  = $failure_comp->[1];
-
-      $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                            ["ERROR:                ", "names in the .tou and .STS/.STA files do not match" ],
-                            ["File:                 ", $filename],
-                            ["Missing in .tou:      ", $not_in_tou],
-                            ["Missing in .STS/.STA: ", $not_in_st]
-                          ]);
-      return $tou;
-    }
-
-
-    my $game_and_player_results_hashref = {};
-
-    foreach my $key (keys %{$tou_game_data_hashref})
-    {
-      $key =~ /(.*)-(.*)/;
-      my $division      = $1;
-      my $player_number = $2;
-
-      my $player_item   = $tou_game_data_hashref->{$key};
-
-      my $player_name   = $player_item->{'name'};
-
-      if (Utils::player_name_is_bye($player_name))
-      {
-        $tournament_results->{$player_name}->{'is_bye'} = 1;
-        next;
       }
 
-      my @player_games  = @{$player_item->{'games'}};
-      my $num_player_games = scalar @player_games;
+      $tou_names{$og_player_name} = 1;
+      $tou_div_names{$div_player_name} = 1;
 
-      for(my $i = 0; $i < $num_player_games; $i++)
+      $tournament_results->{$player_name}->{'division_id'} = $current_division_name; # Will be changed later
+
+      if (!Utils::player_name_is_bye($player_name) && !$tournament_results->{$player_name})
       {
-        my $player_score = $player_games[$i]->[0];
-        my $opp_number   = $player_games[$i]->[1];
+        $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                              ["ERROR:", "Player name does not appear in corresponding .STS file"], 
+                              ["Name: ", $player_name], 
+                              ["File: ", $tou_file], 
+                              ["Line: ", $_],
+                            ]);
+        return $tou;                
+      }
 
-        my $opp_opp_number = $tou_game_data_hashref->{$division . "-" . $opp_number}->{'games'}->[$i]->[1];
+      $player_spreads->{$player_name} = 0;
 
-        if (!$opp_opp_number || $opp_opp_number != $player_number)
+      $tou_game_data_hashref->{$current_division_name . "-" . $current_player_number} = 
+      {
+        "name"  => $player_name,
+        "games" => \@games
+      };
+
+      $current_player_number++;
+    }
+    $is_header = 0;
+  }
+
+  my $failure_comp = Utils::compare_names(\%tou_names, \%st_names);
+
+  if ($failure_comp)
+  {
+    my $not_in_tou = $failure_comp->[0];
+    my $not_in_st  = $failure_comp->[1];
+
+    $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                          ["ERROR:                ", "names in the .tou and .STS/.STA files do not match" ],
+                          ["File:                 ", $filename],
+                          ["Missing in .tou:      ", $not_in_tou],
+                          ["Missing in .STS/.STA: ", $not_in_st]
+                        ]);
+    return $tou;
+  }
+
+
+  my $game_and_player_results_hashref = {};
+
+  foreach my $key (keys %{$tou_game_data_hashref})
+  {
+    $key =~ /(.*)-(.*)/;
+    my $division      = $1;
+    my $player_number = $2;
+
+    my $player_item   = $tou_game_data_hashref->{$key};
+
+    my $player_name   = $player_item->{'name'};
+
+    if (Utils::player_name_is_bye($player_name))
+    {
+      $tournament_results->{$player_name}->{'is_bye'} = 1;
+      next;
+    }
+
+    my @player_games  = @{$player_item->{'games'}};
+    my $num_player_games = scalar @player_games;
+
+    for(my $i = 0; $i < $num_player_games; $i++)
+    {
+      my $player_score = $player_games[$i]->[0];
+      my $opp_number   = $player_games[$i]->[1];
+
+      my $opp_opp_number = $tou_game_data_hashref->{$division . "-" . $opp_number}->{'games'}->[$i]->[1];
+
+      if (!$opp_opp_number || $opp_opp_number != $player_number)
+      {
+        $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                              ["ERROR:             ", "opponent of opponent is not player"],
+                              ["Files:             ", $filename],
+                              ["Division:          ", $division],
+                              ["Round:             ", $i + 1],
+                              ["Player name:       ", $player_name],
+                              ["Player number:     ", $player_number],
+                              ["Opp number:        ", $opp_number],
+                              ["Opp of opp number: ", $opp_opp_number]
+                            ]);
+        return $tou;
+      }
+
+
+      my $opp_key  = $division . "-" . $opp_number;
+      my $opp_item = $tou_game_data_hashref->{$opp_key};
+
+      my $opp_score;
+      my $opp_name;
+
+
+      if (!(defined $opp_item))
+      {
+      #This assumes invalid player numbers are errors
+      #and is commented so that invalid numbers are treated as byes
+      #format_error([
+      #               ["ERROR:        ", "Undefined opponent item"],
+      #               ["Files:        ", $filename],
+      #               ["Division:     ", $division],
+      #               ["Round:        ", $i + 1],
+      #               ["Num p games   ", $num_player_games],
+      #               ["Round:        ", $i + 1],
+      #               ["Player name:  ", $player_name],
+      #               ["Player score: ", $player_score],
+      #               ["Opp key:      ", $opp_key],
+      #             ]);
+      #return $tou;
+      $opp_score = 0;
+      $opp_name = "BYE";
+      } 
+      else
+      {
+        $opp_score = $opp_item->{'games'}->[$i]->[0];
+        $opp_name  = $opp_item->{'name'};
+      }
+
+      if (!(defined $opp_score) || !(defined $opp_name))
+      {
+        $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
+                              ["ERROR:        ", "Undefined opponent name or score"],
+                              ["Files:        ", $filename],
+                              ["Division:     ", $division],
+                              ["Round:        ", $i + 1],
+                              ["Num p games   ", $num_player_games],
+                              ["Player name:  ", $player_name],
+                              ["Player score: ", $player_score],
+                              ["Num opp games:", scalar @{$opp_item->{'games'}}],
+                              ["Opp name:     ", $opp_name],
+                              ["Opp score:    ", $opp_score],
+                              ["Opp key:      ", $opp_key],
+                            ]);
+        return $tou;
+      } 
+
+      my $is_bye = Utils::player_name_is_bye($opp_name) || $opp_number == $player_number;
+
+      $tournament_results->{$player_name}->{'byes'} += !!$is_bye;
+
+      my $players_key = $player_number . "-" . $opp_number;
+
+      if ($opp_number < $player_number)
+      {
+        $players_key = $opp_number . "-" . $player_number;
+      }
+
+      my $db_struct_key = join "-", ($division, $i, $players_key);
+
+      if (!($game_and_player_results_hashref->{$db_struct_key}))
+      {
+
+        if ($is_bye)
         {
-          $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:             ", "opponent of opponent is not player"],
-                                ["Files:             ", $filename],
-                                ["Division:          ", $division],
-                                ["Round:             ", $i + 1],
-                                ["Player name:       ", $player_name],
-                                ["Player number:     ", $player_number],
-                                ["Opp number:        ", $opp_number],
-                                ["Opp of opp number: ", $opp_opp_number]
-                              ]);
-          return $tou;
+          $player_score = 50;
+          $opp_score    = 0;
         }
-
-
-        my $opp_key  = $division . "-" . $opp_number;
-        my $opp_item = $tou_game_data_hashref->{$opp_key};
-
-        my $opp_score;
-        my $opp_name;
-
-
-        if (!(defined $opp_item))
-        {
-        #This assumes invalid player numbers are errors
-        #and is commented so that invalid numbers are treated as byes
-        #format_error([
-        #               ["ERROR:        ", "Undefined opponent item"],
-        #               ["Files:        ", $filename],
-        #               ["Division:     ", $division],
-        #               ["Round:        ", $i + 1],
-        #               ["Num p games   ", $num_player_games],
-        #               ["Round:        ", $i + 1],
-        #               ["Player name:  ", $player_name],
-        #               ["Player score: ", $player_score],
-        #               ["Opp key:      ", $opp_key],
-        #             ]);
-        #return $tou;
-        $opp_score = 0;
-        $opp_name = "BYE";
-        } 
         else
         {
-          $opp_score = $opp_item->{'games'}->[$i]->[0];
-          $opp_name  = $opp_item->{'name'};
+          $player_spreads->{$opp_name}    += $opp_score    - $player_score;
         }
 
-        if (!(defined $opp_score) || !(defined $opp_name))
+        $player_spreads->{$player_name} += $player_score - $opp_score;
+
+        my $player_result;
+        my $opp_result;
+
+        if ($player_score == $opp_score)
         {
-          $tou->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:        ", "Undefined opponent name or score"],
-                                ["Files:        ", $filename],
-                                ["Division:     ", $division],
-                                ["Round:        ", $i + 1],
-                                ["Num p games   ", $num_player_games],
-                                ["Player name:  ", $player_name],
-                                ["Player score: ", $player_score],
-                                ["Num opp games:", scalar @{$opp_item->{'games'}}],
-                                ["Opp name:     ", $opp_name],
-                                ["Opp score:    ", $opp_score],
-                                ["Opp key:      ", $opp_key],
-                              ]);
-          return $tou;
-        } 
-
-        my $is_bye = Utils::player_name_is_bye($opp_name) || $opp_number == $player_number;
-
-        $tournament_results->{$player_name}->{'byes'} += !!$is_bye;
-
-        my $players_key = $player_number . "-" . $opp_number;
-
-        if ($opp_number < $player_number)
+          # if ($is_bye){print "$player_score - $opp_score - $player_name - $opp_name\n\n";}
+          $player_result = 0;
+          $opp_result    = 0;
+          $tournament_results->{$player_name}->{'wins'}   += 0.5;
+          $tournament_results->{$player_name}->{'losses'} += 0.5;
+          if (!$is_bye)
+          {
+            $tournament_results->{$opp_name}->{'wins'}      += 0.5;
+            $tournament_results->{$opp_name}->{'losses'}    += 0.5;
+          }
+        }
+        elsif ($opp_score > $player_score)
         {
-          $players_key = $opp_number . "-" . $player_number;
+          $player_result = -1;
+          $opp_result    = 1;
+          $tournament_results->{$player_name}->{'losses'} += 1;
+          if (!$is_bye)
+          {
+            $tournament_results->{$opp_name}->{'wins'}      += 1;
+          }
+        }
+        else
+        {
+          $player_result = 1;
+          $opp_result    = -1;
+          if (!$is_bye)
+          {
+            $tournament_results->{$player_name}->{'wins'} += 1;
+            $tournament_results->{$opp_name}->{'losses'}  += 1;
+          }
         }
 
-        my $db_struct_key = join "-", ($division, $i, $players_key);
-
-        if (!($game_and_player_results_hashref->{$db_struct_key}))
+        $game_and_player_results_hashref->{$db_struct_key} = 
         {
-
-          if ($is_bye)
-          {
-            $player_score = 50;
-            $opp_score    = 0;
-          }
-          else
-          {
-            $player_spreads->{$opp_name}    += $opp_score    - $player_score;
-          }
-
-          $player_spreads->{$player_name} += $player_score - $opp_score;
-
-          my $player_result;
-          my $opp_result;
-  
-          if ($player_score == $opp_score)
-          {
-            # if ($is_bye){print "$player_score - $opp_score - $player_name - $opp_name\n\n";}
-            $player_result = 0;
-            $opp_result    = 0;
-            $tournament_results->{$player_name}->{'wins'}   += 0.5;
-            $tournament_results->{$player_name}->{'losses'} += 0.5;
-            if (!$is_bye)
-            {
-              $tournament_results->{$opp_name}->{'wins'}      += 0.5;
-              $tournament_results->{$opp_name}->{'losses'}    += 0.5;
-            }
-          }
-          elsif ($opp_score > $player_score)
-          {
-            $player_result = -1;
-            $opp_result    = 1;
-            $tournament_results->{$player_name}->{'losses'} += 1;
-            if (!$is_bye)
-            {
-              $tournament_results->{$opp_name}->{'wins'}      += 1;
-            }
-          }
-          else
-          {
-            $player_result = 1;
-            $opp_result    = -1;
-            if (!$is_bye)
-            {
-              $tournament_results->{$player_name}->{'wins'} += 1;
-              $tournament_results->{$opp_name}->{'losses'}  += 1;
-            }
-          }
-
-          $game_and_player_results_hashref->{$db_struct_key} = 
-          {
-            "game" => {
-                        "division_id"  => $division, # This will be replaced with actual id later 
-                        "round"        => $i + 1,
-                        "lexicon_id"   => 1, # Unsure how to determine lexicon for game at this point
-                        "gcg_filename" => "example.gcg" # We'll figure this out later
-                      },
-            "player1_result" => {
-                                  "player_id" => $player_names_to_ids->{$player_name}, # This will be replaced with actual id later
-                                  "game_id"   => -1, # This will be replaced with actual id later
-                                  "score"     => $player_score,
-                                  "result"    => $player_result,   
-                                },
-            "player2_result" => {
-                                  "player_id" => $player_names_to_ids->{$opp_name}, # This will be replaced with actual id later
-                                  "game_id"   => -1, # This will be replaced with actual id later
-                                  "score"     => $opp_score,
-                                  "result"    => $opp_result,   
-                                }
-          };
-          if ($is_bye)
-          {
-            $game_and_player_results_hashref->{$db_struct_key}->{"player2_result"}->{"is_bye"} = 1;
-          }
+          "game" => {
+                      "division_id"  => $division, # This will be replaced with actual id later 
+                      "round"        => $i + 1,
+                      "lexicon_id"   => 1, # Unsure how to determine lexicon for game at this point
+                      "gcg_filename" => "example.gcg" # We'll figure this out later
+                    },
+          "player1_result" => {
+                                "player_id" => $player_names_to_ids->{$player_name}, # This will be replaced with actual id later
+                                "game_id"   => -1, # This will be replaced with actual id later
+                                "score"     => $player_score,
+                                "result"    => $player_result,   
+                              },
+          "player2_result" => {
+                                "player_id" => $player_names_to_ids->{$opp_name}, # This will be replaced with actual id later
+                                "game_id"   => -1, # This will be replaced with actual id later
+                                "score"     => $opp_score,
+                                "result"    => $opp_result,   
+                              }
+        };
+        if ($is_bye)
+        {
+          $game_and_player_results_hashref->{$db_struct_key}->{"player2_result"}->{"is_bye"} = 1;
         }
       }
     }
+  }
 
-    # TOU Processing is complete
-    # Store all perl data structures in the TOU object
-    # for database processing. The following needs to be added:
-    #
-    # Event
-    # Tournament
-    # Divisions
-    # Tournament Results
-    # Player Results
-    $tou->{Constants::TOU_EVENT}                   = $event;
-    $tou->{Constants::TOU_TOURNAMENT}              = $tournament;
-    $tou->{Constants::TOU_DIVISIONS}               = \@divisions;
-    $tou->{Constants::TOU_TOURNAMENT_RESULTS}      = $tournament_results;
-    $tou->{Constants::TOU_GAME_AND_PLAYER_RESULTS} = $game_and_player_results_hashref;
-    $tou->{Constants::TOU_PLAYER_SPREADS}          = $player_spreads;
-    $tou->{Constants::TOU_NEWED}                   = 1;
-    return $tou;
+  # TOU Processing is complete
+  # Store all perl data structures in the TOU object
+  # for database processing. The following needs to be added:
+  #
+  # Event
+  # Tournament
+  # Divisions
+  # Tournament Results
+  # Player Results
+  $tou->{Constants::TOU_EVENT}                   = $event;
+  $tou->{Constants::TOU_TOURNAMENT}              = $tournament;
+  $tou->{Constants::TOU_DIVISIONS}               = \@divisions;
+  $tou->{Constants::TOU_TOURNAMENT_RESULTS}      = $tournament_results;
+  $tou->{Constants::TOU_GAME_AND_PLAYER_RESULTS} = $game_and_player_results_hashref;
+  $tou->{Constants::TOU_PLAYER_SPREADS}          = $player_spreads;
+  $tou->{Constants::TOU_NEWED}                   = 1;
+  return $tou;
 }
 
 sub correct_division_pairings
@@ -1368,6 +1365,19 @@ VR
     $division_data->{Constants::TOU_DIVISION_VERIFICATION_REPORT} =
       $verify_info . "\n" . $formatted_report;
   }
+}
+
+sub get_unblessed_ref
+{
+  my $this = shift;
+  
+  my $unblessed = {};
+
+  foreach my $key (keys %{$this})
+  {
+    $unblessed->{$key} = $this->{$key};
+  }
+  return $unblessed;
 }
 
 sub insert_bye
@@ -1829,7 +1839,7 @@ sub verify
   #
   my $this            = shift;
   my $input_filename  = $this->{Constants::TOU_FILENAME};
-  my $output_filename = $this->{Constants::TOU_FILENAME};
+  my $output_filename = $this->{Constants::TOU_REWRITE_FILENAME};
 
   my $line_number = 1;
   my $div_name;
@@ -1954,5 +1964,6 @@ sub verify
     close $fh;
   }
 }
+
 
 1;

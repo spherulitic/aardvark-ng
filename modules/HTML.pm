@@ -869,27 +869,6 @@ STOP
 
 }
 
-sub make_tab_div
-{
-  my $content   = shift;
-  my $tabclass  = shift;
-  my $linkclass = shift;
-
-  my $content_length = scalar @{$content};
-
-  my $div = "<br><div class='tab'>\n";
-
-  for (my $i = 0; $i < $content_length; $i++)
-  {
-    my $text = $content->[$i]->[0];
-    my $id   = $content->[$i]->[1];
-    my $width = 100 / $content_length;
-    $div .= "<button id='button_" . $id . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
-  }
-  $div .= "</div><br>";
-  return $div;
-}
-
 sub special_game_to_html
 {
   my $key  = shift;

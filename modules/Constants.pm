@@ -7,18 +7,49 @@ use strict;
 
 use constant DEV_ENV_KEYWORD => 'dev';
 
-use constant TEST_DIRECTORY              => 'test';
-use constant MODULES_DIRECTORY           => 'modules';
-use constant OBJECTS_DIRECTORY           => 'objects';
+use constant TEST_DIRECTORY     => 'test';
+use constant MODULES_DIRECTORY  => 'modules';
+use constant OBJECTS_DIRECTORY  => 'objects';
+use constant CGIBIN_DIR         => 'cgi-bin';
 
 use constant TEST_TOU_DIRECTORY               => 'tou';
 use constant TEST_STDOUT_DIRECTORY            => 'stdout';
 use constant TEST_JSON_DIRECTORY              => 'json';
 
-use constant TOU_ERROR_REPORT                 => 'Processing Report';
+use constant JSON_FAILURE_TYPE   => 'JSON';
+use constant KEYS_FAILURE_TYPE   => 'KEYS';
+use constant STDOUT_FAILURE_TYPE => 'STDOUT';
+
+use constant PERL_DIRECTORIES =>
+[
+  Constants::TEST_DIRECTORY,
+  Constants::MODULES_DIRECTORY,
+  Constants::OBJECTS_DIRECTORY,
+  Constants::CGIBIN_DIR
+];
+
+use constant FAILURE_REASON           => 'FAILURE';
+use constant FAILURE_TYPE             => 'Result Type';
+use constant FAILURE_TRACEBACK        => 'Traceback';
+use constant FAILURE_EXPECTED_RESULTS => 'Expected Results';
+use constant FAILURE_ACTUAL_RESULTS   => 'Actual Results';
+use constant FAILURE_DIFF             => '              ';
+
+use constant FAILURE_FIELDS =>
+[
+  Constants::FAILURE_REASON,
+  Constants::FAILURE_TYPE,
+  Constants::FAILURE_TRACEBACK,
+  Constants::FAILURE_EXPECTED_RESULTS,
+  Constants::FAILURE_ACTUAL_RESULTS,
+  Constants::FAILURE_DIFF
+];
+
+use constant TOU_ERROR_REPORT                 => 'Error Report';
 use constant TOU_WARNING_REPORT               => 'Warning Report';
 use constant TOU_LOADED                       => 'Loaded';
 use constant TOU_FILENAME                     => 'Filename';
+use constant TOU_REWRITE_FILENAME             => 'Rewrite Filename';
 use constant TOU_VALID                        => 'Valid';
 use constant TOU_NEWED                        => 'Initialized';
 use constant TOU_TOURNAMENT_LENGTH            => 'Tournament Length';
@@ -49,7 +80,6 @@ use constant PLAYER_HTML_DIR     => 'players';
 use constant TOURNAMENT_HTML_DIR => 'tournaments';
 use constant RANKINGS_HTML_DIR   => 'rankings';
 use constant FULL_RANKINGS_NAME  => 'full_rankings';
-use constant CGIBIN_DIR          => 'cgi-bin';
 
 use constant PLAYER_SEARCH_DATA_FILENAME      => 'player_search_data.html';
 use constant COUNTRY_SEARCH_DATA_FILENAME     => 'country_search_data.html';
