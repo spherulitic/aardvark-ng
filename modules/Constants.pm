@@ -20,6 +20,8 @@ use constant JSON_FAILURE_TYPE   => 'JSON';
 use constant KEYS_FAILURE_TYPE   => 'KEYS';
 use constant STDOUT_FAILURE_TYPE => 'STDOUT';
 
+use constant UNDEFINED_STRING => 'undef';
+
 use constant PERL_DIRECTORIES =>
 [
   Constants::TEST_DIRECTORY,
@@ -45,29 +47,49 @@ use constant FAILURE_FIELDS =>
   Constants::FAILURE_DIFF
 ];
 
-use constant TOU_ERROR_REPORT                 => 'Error Report';
-use constant TOU_WARNING_REPORT               => 'Warning Report';
-use constant TOU_LOADED                       => 'Loaded';
-use constant TOU_FILENAME                     => 'Filename';
-use constant TOU_REWRITE_FILENAME             => 'Rewrite Filename';
-use constant TOU_VALID                        => 'Valid';
-use constant TOU_NEWED                        => 'Initialized';
-use constant TOU_TOURNAMENT_LENGTH            => 'Tournament Length';
-use constant TOU_DIVISION_DATA                => 'Division Data';
-use constant TOU_DIVISION_MATRIX              => 'Division Matrix';
-use constant TOU_DIVISION_TOURNAMENT_LENGTH   => 'Division Tournament Length';
-use constant TOU_DIVISION_PLAYER_NAMES        => 'Division Player Names';
-use constant TOU_DIVISION_NUM_PLAYERS         => 'Division Number of Players';
-use constant TOU_DIVISION_NUM_MISSING_GAMES   => 'Division Number of Missing Games';
-use constant TOU_DIVISION_VERIFICATION_REPORT => 'Division Verification Report';
-use constant TOU_DIVISION_VALID               => 'Division Valid';
-use constant TOU_REWRITE_NEEDED               => 'Rewrite Needed';
-use constant TOU_EVENT                        => 'Event';
-use constant TOU_TOURNAMENT                   => 'Tournament';
-use constant TOU_DIVISIONS                    => 'Divisions';
-use constant TOU_TOURNAMENT_RESULTS           => 'Tournament Results';
-use constant TOU_GAME_AND_PLAYER_RESULTS      => 'Game and Player Results';
-use constant TOU_PLAYER_SPREADS               => 'Player Spreads';
+use constant TOU_DBH                          => 'TOU Database Handler';
+use constant TOU_PLAYER_NAMES                 => 'TOU Player Names';
+use constant TOU_CONVERSION_HASH              => 'TOU Player Name Conversion Hash';
+use constant TOU_STS_PLAYER_NAMES             => 'TOU STS Player Names';
+use constant TOU_PLAYER_DATA                  => 'TOU Player Data';
+use constant TOU_ERROR_REPORT                 => 'TOU Error Report';
+use constant TOU_FILENAME                     => 'TOU Filename';
+use constant TOU_LOADED                       => 'TOU Loaded';
+use constant TOU_PROCESSED                    => 'TOU Processed';
+use constant TOU_REWRITE_FILENAME             => 'TOU Rewrite Filename';
+use constant TOU_REWRITE_NEEDED               => 'TOU Rewrite Needed';
+use constant TOU_VALID                        => 'TOU Valid';
+use constant TOU_WARNING_REPORT               => 'TOU Warning Report';
+
+use constant TOU_EVENT                        => 'TOU Event';
+use constant TOU_TOURNAMENT                   => 'TOU Tournament';
+use constant TOU_DIVISION_DATA                => 'TOU Division Data';
+
+use constant DIVISION_TOUFILE                 => 'Division Filename';
+use constant DIVISION_NAME                    => 'Division Name';
+use constant DIVISION_NUMBER                  => 'Division Number';
+use constant DIVISION_NUMBER_OF_ROUNDS        => 'Division Number of Rounds';
+use constant DIVISION_PLAYERS                 => 'Division Players';
+use constant DIVISION_GAME_DATA               => 'Division Game Data';
+use constant DIVISION_MATRIX                  => 'Division Matrix';
+use constant DIVISION_VALID                   => 'Division Valid';
+use constant DIVISION_VERIFICATION_REPORT     => 'Division Verification Report';
+use constant DIVISION_TOURNAMENT_RESULTS      => 'Division Tournament Results';
+use constant DIVISION_GAME_AND_PLAYER_RESULTS => 'Division Game and Player Results';
+
+use constant RESULT_SCORE           => 'Result Score';
+use constant RESULT_PLAYER_NUMBER   => 'Result Player Number';
+use constant RESULT_OPPONENT_NUMBER => 'Result Opponent Number';
+use constant RESULT_TOU_SCORE       => 'Result TOU Score';
+use constant RESULT_FIRST           => 'Result Player is First';
+use constant RESULT_WINS            => 'Result Wins';
+use constant RESULT_LOSSES          => 'Result Losses';
+use constant RESULT_BYES            => 'Result Byes';
+use constant RESULT_BYE_WINS        => 'Result Bye Wins';
+use constant RESULT_SPREAD          => 'Result Spread';
+use constant RESULT_ROUND           => 'Result Round';
+use constant RESULT_CODED           => 'Result Coded';
+use constant RESULT_PLAYER_IS_FIRST => 'Result Player is First';
 
 use constant INPUT_DIR           => 'inputs';
 use constant LOG_DIR             => 'logs';
@@ -182,14 +204,6 @@ use constant TABLES =>
 
                             "PRIMARY KEY (id)"
                           ],
-  Constants::PLAYER_ALT_NAMES_TABLE_NAME   => [
-                            "id                 INT NOT NULL AUTO_INCREMENT",
-                            "alt_name           VARCHAR(255)",
-                            "player_id          INT NOT NULL",
-
-                            "PRIMARY KEY (id)",
-                            "FOREIGN KEY (player_id) REFERENCES players(id)"
-                          ],
   Constants::TOURNAMENTS_TABLE_NAME => [
                             "id         INT NOT NULL AUTO_INCREMENT",
                             "event_id   INT NOT NULL",
@@ -243,6 +257,7 @@ use constant TABLES =>
                             "wins              FLOAT",
                             "losses            FLOAT",
                             "byes              INT",
+                            "bye_wins          FLOAT",
                             "spread            INT",
                             "prize_money       INT",
                             "prize_currency    VARCHAR(255)",
@@ -286,7 +301,6 @@ use constant TABLE_CREATION_ORDER =>
                      [
                        Constants::EVENTS_TABLE_NAME,
                        Constants::PLAYERS_TABLE_NAME,
-                       Constants::PLAYER_ALT_NAMES_TABLE_NAME,
                        Constants::LEXICONS_TABLE_NAME,
                        Constants::TOURNAMENTS_TABLE_NAME,
                        Constants::DIVISIONS_TABLE_NAME,

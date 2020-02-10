@@ -312,6 +312,18 @@ sub format_error
 
   my $l = scalar @{$error_arrayref};
   my $error_string = '';
+  my $max_field_length = 0;
+
+  for (my $i = 0; $i < $l; $i++)
+  {
+    my $item1 =  $error_arrayref->[$i]->[0];
+    my $item1_length = length $item1;
+    
+    if ($item1_length > $max_field_length)
+    {
+      $max_field_length = $item1_length;
+    }
+  }
 
   for (my $i = 0; $i < $l; $i++)
   {
@@ -321,7 +333,7 @@ sub format_error
     if (!$item1){$item1 = "undef";}
     if (!$item2){$item2 = "undef";}
 
-    $error_string .= sprintf "%s %s\n", $item1, $item2;
+    $error_string .=  (sprintf '%-' . ($max_field_length + 2).'s', $item1 . ':') . $item2 . "\n";
   }
   $error_string .= "\n";
   print $error_string;
@@ -822,60 +834,46 @@ sub query_table
   return $query_result;
 }
 
+sub tou_is_loaded
+{
+  my $dbh = shift;
+  my $tou = shift;
+
+  my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+
+  my $tou_query = "SELECT * FROM $loaded_tournaments_tn WHERE filename=\"$tou\"";
+
+  my @tou_query_result = $dbh->selectrow_array($tou_query, {"RaiseError" => 1});
+
+  my $is_loaded = 0;
+
+  if (@tou_query_result)
+  {
+    $is_loaded = 1;
+  }
+
+  return $is_loaded;
+}
+
 sub rank_tournament_results
 {
-  my $tournament_results = shift;
+  my $tournament_results_ref = shift;
 
-  my $divisions = {};
+  my @tournament_results = @{$tournament_results_ref};
 
-  foreach my $key (keys %{$tournament_results})
+  my @ranked_tournament_results =
+    sort
+     { 
+       $b->{wins} + $b->{bye_wins} <=> $a->{wins} + $a->{bye_wins} ||
+       $b->{spread} <=> $a->{spread}
+     } 
+    @tournament_results;
+
+  for (my $i = 0; $i < scalar @ranked_tournament_results; $i++)
   {
-    my $tr = $tournament_results->{$key};
-
-    my $div = $tr->{'division_id'};
-
-    if (!$div)
-    {
-      return [
-               ["Result: ", Dumper($tr)],
-               ["Key:    ", $key],
-             ];
-    }
-
-    my $div_arrayref = $divisions->{$div};
-
-    my $new_item = [$key, $tr->{'wins'}, $tr->{'spread'}];
-
-    if (!$div_arrayref)
-    {
-      $divisions->{$div} = [$new_item];
-    }
-    else
-    {
-      push @$div_arrayref, $new_item;
-    }
+    $ranked_tournament_results[$i]->{'position'} = $i + 1;
   }
-
-  foreach my $key (keys %{$divisions})
-  {
-    my @div_array = @{$divisions->{$key}};
-
-
-    my @ranked_players = sort
-                         { 
-                           if ($b->[1] == $a->[1]) {$b->[2] <=> $a->[2];}
-                           else {$b->[1] <=> $a->[1];}
-                         } 
-                         @div_array;
-
-    for (my $i = 0; $i < scalar @ranked_players; $i++)
-    {
-      my $player_name     = $ranked_players[$i]->[0];
-      my $player_position = $i + 1;
-      $tournament_results->{$player_name}->{'position'} = $player_position;
-    }
-  }
-  return 0;
+  return @ranked_tournament_results;
 }
 
 sub record_database
@@ -1168,6 +1166,13 @@ sub update_record_by_id
     my $update = "UPDATE $table_name SET $key = '$value' WHERE id=$id";
     $dbh->do($update, {"RaiseError" => 1});
   }
+}
+
+sub get_country_from_filename
+{
+  my $filename = shift;
+  my @filename_items = split /\//, $filename;
+  return $filename_items[-2];
 }
 
 sub uniq

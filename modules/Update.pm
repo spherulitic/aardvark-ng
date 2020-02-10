@@ -38,30 +38,22 @@ sub load_all_tou_files
 
   my @filenames_array = @{$filenames_array_ref};
 
+  # Keep some player data in memory
+  # so I don't have to keep searching
+  # the database
+  my $player_data = {};
+
   foreach my $filename (@filenames_array)
   {
     my $tou = TOU->new(
                         $dbh,
                         $filename,
                         $alt_names_hash,
-                        $deceased_players_hash
+                        $deceased_players_hash,
+                        $player_data
                       );
 
-    my $warnings = $tou->{Constants::TOU_WARNING_REPORT};
-    my $errors   = $tou->{Constants::TOU_ERROR_REPORT};
-
-    if ($warnings)
-    {
-      print $warnings; 
-    }
-    if ($errors)
-    {
-      print $errors;
-    }
-    else
-    {
-      $tou->load($dbh);
-    }
+    $tou->load($dbh, $player_data);
     # Testing code:
     last;
   }

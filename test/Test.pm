@@ -5,6 +5,7 @@ package Test;
 use strict;
 use warnings;
 use Data::Dumper;
+use Getopt::Long;
 
 use lib './objects';
 use lib './modules';
@@ -16,12 +17,24 @@ use TOU;
 use Utils;
 use JSON::XS;
 
-run_all();
+my $syntax;
 
-sub run_all
+GetOptions
+(
+  syntax => \$syntax,
+);
+
+run(
+     $syntax
+   );
+
+sub run
 {
+  my $syntax = shift;
+
   Test::print_title("CHECKING SYNTAX");
   Test::check_syntax();
+  if ($syntax) {return;}
   print "\n\n";
   Test::print_title("CHECKING FOR REDUNDANT SUBS");
   Test::check_for_repeat_subs();
@@ -68,6 +81,11 @@ sub compare_lines
   my $actual_line   = shift;
   my $line_number   = shift;
   my $failure_obj   = shift;
+
+  if (! defined $actual_line)
+  {
+    $actual_line = Constants::UNDEFINED_STRING;
+  }
 
   my $min_line = length $expected_line;
   my $max_line = length $actual_line;
@@ -249,6 +267,7 @@ sub testcase
   my $dbh                   = shift;
   my $alt_names_hash        = shift;
   my $deceased_players_hash = shift;
+  my $player_data           = shift;
   my $case                  = shift;
 
   my $padded_case = sprintf "%3s", $case;
@@ -294,17 +313,23 @@ sub testcase
                       $dbh,
                       $toufile,
                       $alt_names_hash,
-                      $deceased_players_hash
+                      $deceased_players_hash,
+                      $player_data
                     );
 
-  $tou->{Constants::TOU_REWRITE_FILENAME} = $toufile . '.rewrite';
-
   select STDOUT;
+
+  if (!defined $actual_stdout)
+  {
+    $actual_stdout = Constants::UNDEFINED_STRING;
+  }
 
   Utils::write_string_to_file($actual_stdout, "$stdout_dir$case.actual.stdout");
 
   # Load the actual json
-  my $actual_json = JSON::XS::encode_json($tou->get_unblessed_ref());
+  my $unblessed_tou = $tou->get_unblessed_ref();
+  #print Dumper($unblessed_tou);
+  my $actual_json = JSON::XS::encode_json($unblessed_tou);
 
   Utils::write_string_to_file($actual_json, "$json_dir$case.actual.json");
 
@@ -345,7 +370,7 @@ sub testrun
   my ($dbh, $alt_names_hash, $deceased_players_hash) = Test::setup_testrun();
 
   my $test_dir = Constants::TEST_DIRECTORY;
-  my $tou_dir  = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY;
+  my $tou_dir  = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . '/aardvark/2020/USA';
 
   opendir (my $dh, $tou_dir) or die "Cannot open directory $tou_dir: $!\n";
 
@@ -362,6 +387,8 @@ sub testrun
   my $json_failure;
   my $expected_stdout;
 
+  my $player_data = {};
+
   for (my $i = 0; $i < scalar @toufiles; $i++)
   {
 
@@ -370,6 +397,7 @@ sub testrun
                       $dbh,
                       $alt_names_hash,
                       $deceased_players_hash,
+                      $player_data,
                       $toufiles[$i]
                     );
 
@@ -388,7 +416,11 @@ sub testrun
     $response_content .= (sprintf "%-17s", ($stdout_failure->get_type() . ' STATUS:')) . Test::convert_to_response($stdout_failure->is_failure()) . "\n";
     $response_content .= (sprintf "%-17s", ($json_failure->get_type() . ' STATUS:')) . Test::convert_to_response($json_failure->is_failure()) . "\n";
     print $response_content;
-    print "\n\n"
+    print "\n\n";
+    if ($stdout_failure->is_failure() || $json_failure->is_failure())
+    {
+      last;
+    }
   }
 }
 
@@ -396,7 +428,7 @@ sub print_title
 {
   my $title = shift;
   $title =~ s/^\s+|\s+$//g;
-  my $border = '***********************************';
+  my $border = '***************************************';
   my $border_length = length $border;
   my $margin = $border_length - (length $title);
   my $left_margin = '*' x (int ($margin / 2 ) - 1);
@@ -440,7 +472,13 @@ sub check_for_repeat_subs
       }
     }
   }
-  
+
+  my $ignore = {
+                 'to_string'  => 1,
+                 'initialize' => 1,
+                 'process'    => 1
+               };
+
   foreach my $f1 (@files)
   {
     my $f1_subs = $file_subs->{$f1};
@@ -453,7 +491,7 @@ sub check_for_repeat_subs
         {
           my $sub1 = $f1_subs->[$i];
           my $sub2 = $f2_subs->[$k];
-          if ($sub1 eq $sub2)
+          if ($sub1 eq $sub2 && !$ignore->{$sub1})
           {
             print "Redundant routine: $sub1\n";
             print "File 1:            $f1\n";
