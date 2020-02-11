@@ -254,9 +254,9 @@ sub new
         {
           # Covered by TC 4
           $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:", "Invalid number of items in STA first rank column"], 
-                                ["File: ", $sts_or_sta_file], 
-                                ["Line: ", $_],
+                                ["ERROR", "Invalid number of items in STA first rank column"], 
+                                ["File", $sts_or_sta_file], 
+                                ["Line", $_],
                               ]);
           return $this;
         }
@@ -278,7 +278,7 @@ sub new
         elsif (scalar @wranks > 2) {
           # Covered by TC 5
           $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR: ", "invalid number of items in STA second rank column"], 
+                                ["ERROR: ", "Invalid number of items in STA second rank column"], 
                                 ["File:  ", $sts_or_sta_file], 
                                 ["Line:  ", $_],
                               ]);
@@ -382,20 +382,21 @@ sub new
     $end_rating        =~ s/^\s+|\s+$//g;    
 
     my @required_captures =
+    grep {!$_}
     (
       $player_country,
       $player_name,
       $start_rating,
       $end_rating
     );
-    if (grep {!defined($_)} @required_captures)
+ 
+    if (@required_captures)
     {
       # Covered by TC 8
       $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
                             ["ERROR: ", "Required values are uncaptured"], 
                             ["File:  ", $sts_or_sta_file], 
-                            ["Name:  ", $player_name],
-                            ["Array: ", Dumper(\@required_captures)]
+                            ["Name:  ", $player_name]
                           ]);
       return $this;
     }
@@ -492,7 +493,8 @@ sub get_unblessed_ref
   my $ignore =
   {
     Constants::TOU_DBH => 1,
-    Constants::TOU_CONVERSION_HASH => 1
+    Constants::TOU_CONVERSION_HASH => 1,
+    Constants::TOU_PLAYER_DATA => 1
   };
 
   foreach my $key (keys %{$this})
@@ -794,28 +796,46 @@ sub compare_sts_and_tou_names
   my $tou_names = $this->{Constants::TOU_PLAYER_NAMES};
   my $sts_names = $this->{Constants::TOU_STS_PLAYER_NAMES};
 
-  foreach my $key (keys %{$tou_names})
+  foreach my $key (keys %{$sts_names})
   {
-    if ($sts_names->{$key})
-    {
-      $sts_names->{$key} = 0;
-      $tou_names->{$key} = 0;
-    }
+    $tou_names->{$key} = 0;
   }
-  my $missing_from_sts = join ",", grep {$_} keys $tou_names;
-  my $missing_from_tou = join ",", grep {$_} keys $sts_names;
 
-  if ($missing_from_sts || $missing_from_tou)
+  my $missing_from_sts = join ",", grep {$tou_names->{$_}} keys $tou_names;
+
+  if ($missing_from_sts)
   {
+    # Covered by TC 9
     $this->{Constants::TOU_ERROR_REPORT} = 
       Utils::format_error([
-                            ['ERROR', 'Names in the corresponding STS/STA file do not match'],
+                            ['ERROR', 'Names names missing in the STS/STA file'],
                             ['File', $this->{Constants::TOU_FILENAME}],
-                            ['Missing from STS', $missing_from_sts],
-                            ['Missing from TOU', $missing_from_tou]
+                            ['Missing from STS', $missing_from_sts]
                           ]);
     $this->{Constants::TOU_VALID} = 0;
   }
+}
+
+sub new_division
+{
+  my $this                    = shift;
+  my $filename                = shift;
+  my $current_division_name   = shift;
+  my $current_division_number = shift;
+  my $players                 = shift;
+  my $game_data               = shift;
+
+  my $division =
+          Division->new(
+                         $filename,
+                         $current_division_name,
+                         $current_division_number,
+                         $players,
+                         $game_data
+                       );
+
+  $division->process();
+  return $this->process_division($division);
 }
 
 sub process
@@ -869,22 +889,22 @@ sub process
       $at_header = 0;
     }
 
-    if ($_ =~ /^\*(.*)/ && !$at_end && !$at_header)
+    if (($_ =~ /^\*(.*)/ || $at_end) && !$at_header)
     {
       # If this is the end of the division, verify the division
       if (@players)
       {
-        my $division =
-          Division->new(
-                         $filename,
-                         $current_division_name,
-                         $current_division_number++,
-                         \@players,
-                         \@game_data
-                       );
+        if (
+             $this->new_division
+                         (
+                           $filename,
+                           $current_division_name,
+                           $current_division_number++,
+                           \@players,
+                           \@game_data
+                         )
+           )
 
-        $division->process();
-        if($this->process_division($division))
         {
           last tou;
         }

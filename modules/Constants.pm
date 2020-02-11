@@ -12,6 +12,7 @@ use constant MODULES_DIRECTORY  => 'modules';
 use constant OBJECTS_DIRECTORY  => 'objects';
 use constant CGIBIN_DIR         => 'cgi-bin';
 
+use constant TEST_TOU_PATH                    => '/aardvark/2020/USA/';
 use constant TEST_TOU_DIRECTORY               => 'tou';
 use constant TEST_STDOUT_DIRECTORY            => 'stdout';
 use constant TEST_JSON_DIRECTORY              => 'json';
@@ -637,6 +638,7 @@ use constant COUNTRY_TRIGRAPH_CONVERSION =>
   'UAE' => 'ARE',
   'NED' => 'NLD',
   'ZAM' => 'ZMB',
+  'SIN' => 'SGP',
   'SUI' => 'CHE',
   'SPA' => 'ESP',
   'SRI' => 'LKA'

@@ -17,21 +17,19 @@ use TOU;
 use Utils;
 use JSON::XS;
 
+my $setexpected;
 my $syntax;
 
 GetOptions
 (
   syntax => \$syntax,
+  setexpected => \$setexpected
 );
 
-run(
-     $syntax
-   );
+run();
 
 sub run
 {
-  my $syntax = shift;
-
   Test::print_title("CHECKING SYNTAX");
   Test::check_syntax();
   if ($syntax) {return;}
@@ -233,6 +231,16 @@ sub compare_strings
   my $actual_string   = shift;
   my $failure_obj     = shift;
 
+  if (! defined $expected_string)
+  {
+    $expected_string = '';
+  }
+
+  if (! defined $actual_string)
+  {
+    $actual_string = '';
+  }
+
   my @expected_string_lines = split/\n/, $expected_string;
   my @actual_string_lines   = split/\n/, $actual_string;
 
@@ -277,32 +285,26 @@ sub testcase
   print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
   my $test_dir   = Constants::TEST_DIRECTORY;
-  my $tou_dir    = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . '/';
+  my $tou_dir    = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . Constants::TEST_TOU_PATH;
   my $stdout_dir = $test_dir . '/' . Constants::TEST_STDOUT_DIRECTORY . '/';
   my $json_dir   = $test_dir . '/' . Constants::TEST_JSON_DIRECTORY . '/';
 
   my $toufile          = "$tou_dir$case.tou";
 
+  my $actual_stdout_file   = "$stdout_dir$case.actual.stdout";
+  my $actual_json_file     = "$json_dir$case.actual.json" ;
   my $expected_stdout_file = "$stdout_dir$case.stdout";
   my $expected_json_file   = "$json_dir$case.json";
 
-  if (! -e $expected_stdout_file)
+  if (!$setexpected && ! -e $expected_stdout_file)
   {
     die "File does not exist: $expected_stdout_file\n";
   }
-  if (! -e $expected_json_file)
+  if (!$setexpected && ! -e $expected_json_file)
   {
     die "File does not exist: $expected_json_file\n";
   }
 
-  # Load expected results
-  my $expected_stdout  = Utils::write_file_to_string(
-                                                $expected_stdout_file
-                                              );
-
-  my $expected_json    = Utils::write_file_to_string(
-                                                $expected_json_file
-                                              );
   # Load the actual stdout
   my $actual_stdout;
   open (my $fhstdout, '>>', \$actual_stdout);
@@ -324,14 +326,30 @@ sub testcase
     $actual_stdout = Constants::UNDEFINED_STRING;
   }
 
-  Utils::write_string_to_file($actual_stdout, "$stdout_dir$case.actual.stdout");
+  Utils::write_string_to_file($actual_stdout, $actual_stdout_file);
 
   # Load the actual json
   my $unblessed_tou = $tou->get_unblessed_ref();
-  #print Dumper($unblessed_tou);
-  my $actual_json = JSON::XS::encode_json($unblessed_tou);
 
-  Utils::write_string_to_file($actual_json, "$json_dir$case.actual.json");
+  my $actual_json = JSON::XS->new->pretty(1)->encode($unblessed_tou);
+
+  Utils::write_string_to_file($actual_json, $actual_json_file);
+
+  if ($setexpected)
+  {
+    Utils::write_string_to_file($actual_stdout, $expected_stdout_file);
+    Utils::write_string_to_file($actual_json,   $expected_json_file);
+  }
+
+  # Load expected results
+  my $expected_stdout  = Utils::write_file_to_string(
+                                                $expected_stdout_file
+                                              );
+
+  my $expected_json    = Utils::write_file_to_string(
+                                                $expected_json_file
+                                              );
+
 
   my $stdout_failure_obj = Failure->new(Constants::STDOUT_FAILURE_TYPE);
   my $json_failure_obj   = Failure->new(Constants::JSON_FAILURE_TYPE);
@@ -370,7 +388,7 @@ sub testrun
   my ($dbh, $alt_names_hash, $deceased_players_hash) = Test::setup_testrun();
 
   my $test_dir = Constants::TEST_DIRECTORY;
-  my $tou_dir  = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . '/aardvark/2020/USA';
+  my $tou_dir  = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . Constants::TEST_TOU_PATH;
 
   opendir (my $dh, $tou_dir) or die "Cannot open directory $tou_dir: $!\n";
 
