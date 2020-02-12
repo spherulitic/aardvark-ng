@@ -253,11 +253,12 @@ sub new
         elsif (scalar @nranks > 2)
         {
           # Covered by TC 4
-          $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR", "Invalid number of items in STA first rank column"], 
-                                ["File", $sts_or_sta_file], 
-                                ["Line", $_],
-                              ]);
+          $this->set_error_report(
+            Utils::format_error([
+                                  ["ERROR", "Invalid number of items in STA first rank column"], 
+                                  ["File", $sts_or_sta_file], 
+                                  ["Line", $_],
+                                ]));
           return $this;
         }
 
@@ -277,11 +278,12 @@ sub new
         }
         elsif (scalar @wranks > 2) {
           # Covered by TC 5
-          $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR: ", "Invalid number of items in STA second rank column"], 
-                                ["File:  ", $sts_or_sta_file], 
-                                ["Line:  ", $_],
-                              ]);
+          $this->set_error_report(
+            Utils::format_error([
+                                  ['ERROR', 'Invalid number of items in STA second rank column'], 
+                                  ['File', $sts_or_sta_file], 
+                                  ['Line', $_],
+                                ]));
           return $this;
         }
 
@@ -298,11 +300,12 @@ sub new
         }
         elsif (scalar @ewins > 2) {
           # Covered by TC 6
-          $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR: ", "Invalid number of items in STA wins column"], 
-                                ["File:  ", $sts_or_sta_file], 
-                                ["Line:  ", $_],
-                              ]);
+          $this->set_error_report(
+            Utils::format_error([
+                                  ['ERROR', 'Invalid number of items in STA wins column'], 
+                                  ['File', $sts_or_sta_file], 
+                                  ['Line', $_],
+                                ]));
           return $this;
         }
 
@@ -327,11 +330,12 @@ sub new
         elsif (scalar @rchanges > 3)
         {
           # Covered by TC 7
-          $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR: ", "invalid number of items in STA ratings column"], 
-                                ["File:  ", $sts_or_sta_file], 
-                                ["Line:  ", $_],
-                              ]);
+          $this->set_error_report(
+            Utils::format_error([
+                                  ['ERROR', 'Invalid number of items in STA ratings column'], 
+                                  ['File', $sts_or_sta_file], 
+                                  ['Line', $_],
+                                ]));
           return $this;
         }
 
@@ -393,11 +397,12 @@ sub new
     if (@required_captures)
     {
       # Covered by TC 8
-      $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                            ["ERROR: ", "Required values are uncaptured"], 
-                            ["File:  ", $sts_or_sta_file], 
-                            ["Name:  ", $player_name]
-                          ]);
+      $this->set_error_report(
+        Utils::format_error([
+                              ['ERROR', 'Required values are uncaptured'], 
+                              ['File', $sts_or_sta_file], 
+                              ['Name', $player_name]
+                            ]));
       return $this;
     }
 
@@ -591,32 +596,23 @@ sub to_string
   return $tou_string;
 }
 
+sub is_valid
+{
+  my $this = shift;
+  return $this->{Constants::TOU_VALID};
+}
+
 sub load
 {
   my $this        = shift;
   my $player_data = shift;
 
+  if (!$this->is_valid())
+  {
+    return 1;
+  }
+
   my $dbh         = $this->{Constants::TOU_DBH};
-
-  if (!$this->{Constants::TOU_PROCESSED})
-  {
-    $this->{Constants::TOU_ERROR_REPORT}
-      = Utils::format_error([
-                              ["ERROR: ", "Cannot load an uninitialized TOU object"],
-                              ["File:  ", $this->{Constants::TOU_FILENAME}]
-                            ]);
-    return;  
-  }
-
-  if (!$this->{Constants::TOU_VALID})
-  {
-    $this->{Constants::TOU_ERROR_REPORT}
-      = Utils::format_error([
-                              ["ERROR: ", "Cannot load an invalid TOU object"],
-                              ["File:  ", $this->{Constants::TOU_FILENAME}]
-                            ]);
-    return;  
-  }
 
   my $filename                        = $this->{Constants::TOU_FILENAME};
   my $event                           = $this->{Constants::TOU_EVENT};
@@ -679,8 +675,8 @@ sub load
 
     foreach my $key (keys %{$gprs})
     {
-      my $gpr = $gprs->{$key};
-      my $game = $gpr->{game};
+      my $gpr     = $gprs->{$key};
+      my $game    = $gpr->{game};
       my @results = @{$gpr->{results}};
 
       $game->{division_id} = $division_id;
@@ -716,6 +712,7 @@ sub process_division
   my $division = shift;
 
   my $verification_report = $division->{Constants::DIVISION_VERIFICATION_REPORT};
+
   if (!$division->is_valid())
   {
     $this->{Constants::TOU_ERROR_REPORT} = $verification_report;
@@ -806,13 +803,12 @@ sub compare_sts_and_tou_names
   if ($missing_from_sts)
   {
     # Covered by TC 9
-    $this->{Constants::TOU_ERROR_REPORT} = 
+    $this->set_error_report(
       Utils::format_error([
-                            ['ERROR', 'Names names missing in the STS/STA file'],
+                            ['ERROR', 'Names missing in the STS/STA file'],
                             ['File', $this->{Constants::TOU_FILENAME}],
                             ['Missing from STS', $missing_from_sts]
-                          ]);
-    $this->{Constants::TOU_VALID} = 0;
+                          ]));
   }
 }
 
@@ -854,7 +850,7 @@ sub process
   open(my $fh, "<", $filename)
     or die "Cannot open .tou file $filename: $!";
 
-  tou: while(<$fh>)
+  while(<$fh>)
   {
     $at_end = $_ =~ /END OF FILE/;
     if ($at_header)
@@ -906,7 +902,7 @@ sub process
            )
 
         {
-          last tou;
+          return 1;
         }
       }
       # Prepare loop for a new division
@@ -922,22 +918,24 @@ sub process
     {
       if (!$current_division_number || !$current_division_name)
       {    
-        $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                              ["ERROR:", "Missing division name"],
-                              ["File: ", $filename],
-                            ]);
-        last tou;
+        # Covered by TC 10
+        $this->set_error_report(
+          Utils::format_error([
+                                ['ERROR', 'Missing division name'],
+                                ['File', $filename],
+                              ]));
+        return 1;
       }   
 
       # If a winning negative score is listed, correct it by adding 2000
       # to ensure compliance with the .tou format
-      if ($_ =~ /2\s?(\-\d+)/)
+      if ($_ =~ /\s2\s?(\-\d+)/)
       {    
         $this->{Constants::TOU_WARNING_REPORT} .= Utils::format_error([
-                              ["WARNING:      ", "Converting negative winning score"],
-                              ["File:         ", $filename],
-                              ["Line:         ", $_."\n"],
-                              ["Rewritten to: ", $this->{Constants::TOU_REWRITE_FILENAME}]
+                              ['WARNING', 'Converting negative winning score'],
+                              ['File', $filename],
+                              ['Line', $_."\n"],
+                              ['Rewritten to', $this->{Constants::TOU_REWRITE_FILENAME}]
                             ]);
         my $neg_score = $1 + 2000;
         $_ =~ s/2\s?\-\d+/$neg_score/g;
@@ -945,7 +943,7 @@ sub process
       }
 
       my @player_game_data = split/\s+/, $_;
-      my $games_played = () = $_ =~ /(\d+\s+\+?\d+(?:\s+|$))/g;
+      my $games_played = () = $_ =~ /(\-?\d+\s+\+?\d+(?:\s+|$))/g;
       my @games = ();
 
       for(my $i = 0; $i < $games_played; $i++)
@@ -961,15 +959,16 @@ sub process
 
         if ($opp_number =~ /\D/ || $score !~ /^-?\d+$/)
         {
-          $this->{Constants::TOU_ERROR_REPORT} = Utils::format_error([
-                                ["ERROR:        ", "Malformed opponent number or player score"],
-                                ["File:         ", $filename],
-                                ["Opp number:   ", $opp_number],
-                                ["Player score: ", $score],
-                                ["Games played: ", $games_played],
-                                ["Line:         ", $_]
-                              ]);
-          last tou;
+          # Covered by TC 11
+          $this->set_error_report(
+            Utils::format_error([
+                                  ['ERROR', "Malformed opponent number or player score"],
+                                  ['File', $filename],
+                                  ['Opponent number', $opp_number],
+                                  ['Player score', $score],
+                                  ['Line', $_]
+                                ]));
+          return 1;
         }
 
         # Convert the 1-indexed opp number in the TOU to the

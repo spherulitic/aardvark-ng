@@ -70,22 +70,9 @@ sub load_all_tournament_data
   my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
   my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
   my $file_regex             = Constants::DEFAULT_FILE_REGEX;
-  my $help                   = '';
-
-  Getopt::Long::GetOptions
-                          (
-                            'directory:s' => \$working_directory,
-                            'year:s'      => \$year_regex,
-                            'country:s'   => \$country_trigraph_regex,
-                            'file:s'      => \$file_regex,
-                            'help|?'      => \$help,
-                          );
-
-  pod2usage(1) if $help;
 
   # This hash is used to consolidate the names that are considered duplciates
   my $alt_names_hash = Utils::populate_alt_names_hash();
-
 
   # This hash designated players that are deceased
   my $deceased_players_hash = Utils::populate_deceased_players_hash($alt_names_hash);
@@ -103,16 +90,6 @@ sub load_all_tournament_data
 
   # Create the necessary tables
   Utils::initialize_database($dbh, $tables, $creation_order);
-
-  # Insert lexicons into the database
-  # These are currently unused
-  my $lexicon_ids = Utils::insert_hash_list_into_table
-                    (
-                      $dbh,
-                      $lexicons_tn,
-                      $lexicons,
-                      'name'
-                    );
 
   # Get the list of every .tou file that needs to be processed
   my $filenames_array_ref = Utils::get_tournament_data_filenames

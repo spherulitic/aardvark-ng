@@ -87,13 +87,6 @@ sub set_verification_report
   $this->{Constants::DIVISION_VERIFICATION_REPORT} = $report;
 }
 
-sub set_not_valid
-{
-  my $this = shift;
-  my $is_valid = shift;
-  $this->{Constants::DIVISION_VALID} = $is_valid;
-}
-
 sub create_matrix
 {
   my $this = shift;
@@ -114,6 +107,7 @@ sub create_matrix
     }
     elsif ($number_of_player_games != $tournament_length)
     {
+      # Covered by TC 12
       $this->set_verification_report(
         Utils::format_error([
                               ['ERROR', 'Inconsistent number of games played'],
@@ -121,7 +115,7 @@ sub create_matrix
                               ['Division', $this->{Constants::DIVISION_NAME}],
                               ['Player', $this->{Constants::DIVISION_PLAYERS}->[$i]]
                             ]));
-      $this->set_not_valid();
+      $this->set_valid(0);
       return;
     }
     for (my $k = 0; $k < $number_of_player_games; $k++)
@@ -175,12 +169,18 @@ sub process
   my $this    = shift;
   my $correct = shift;
 
+  if (!$this->is_valid())
+  {
+    return;
+  }
+
   my $filename      = $this->{Constants::DIVISION_TOUFILE};
   my $division_name = $this->{Constants::DIVISION_NAME};
 
   my $number_of_rounds  = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
   my @players           = @{$this->{Constants::DIVISION_PLAYERS}};
   my $number_of_players = scalar @players;
+
 
   # At this point the matrix is guaranteed to be
   # rectangular with dimensions (number of players x number of games)
@@ -198,61 +198,9 @@ sub process
       my $player_name     = $this->{Constants::DIVISION_PLAYERS}->[$player_number];
       my $opponent_number = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
 
-      $player_result->{Constants::RESULT_ROUND}         = $round;
-      $player_result->{Constants::RESULT_PLAYER_NUMBER} = $player_number;
-
-      if (! defined $player_result->{Constants::RESULT_SCORE})
-      {
-        my $message_type = 'ERROR';
-        my $message      = 'Undefined score';
-        if ($correct)
-        {
-          $message_type = 'WARNING';
-          $message      = 'Undefined score set to zero';
-          $player_result->{Constants::RESULT_SCORE} = 0;
-        }
-        $this->set_verification_report(
-          Utils::format_error([
-                                [$message_type, $message],
-                                ['File', $filename],
-                                ['Division', $division_name],
-                                ['Round', $round + 1],
-                                ['Player', $player_name],
-                              ]));
-        if (!$correct)
-        {
-          $this->set_valid(!$correct);
-          return;
-        }
-      }
-
-      if (! defined $opponent_number)
-      {
-        my $message_type = 'ERROR';
-        my $message      = 'Undefined opponent';
-        if ($correct)
-        {
-          $message_type = 'WARNING';
-          $message      = 'Undefined opponent set to bye';
-          $player_result->{Constants::RESULT_OPPONENT_NUMBER} = $player_number;
-        }
-        $this->set_verification_report(
-          Utils::format_error([
-                                [$message_type, $message],
-                                ['File', $filename],
-                                ['Division', $division_name],
-                                ['Round', $round + 1 ],
-                                ['Player', $player_name],
-                              ]));
-        if (!$correct)
-        {
-          $this->set_valid(!$correct);
-          return;
-        }
-      }
-
       if ($opponent_number < 0 || $opponent_number > $number_of_players - 1)
       {
+        # Covered by TC 13
         my $message_type = 'ERROR';
         my $message      = 'Out of range opponent number';
         if ($correct)
@@ -268,18 +216,23 @@ sub process
                                 ['Division', $division_name],
                                 ['Round', $round + 1],
                                 ['Player', $player_name],
+                                ['Opponent Number', $opponent_number + 1],
                               ]));
         if (!$correct)
         {
-          $this->set_valid(!$correct);
+          $this->set_valid(0);
           return;
         }
       }
+
+      $player_result->{Constants::RESULT_ROUND}         = $round;
+      $player_result->{Constants::RESULT_PLAYER_NUMBER} = $player_number;
 
       my $opponent_result = $this->get_matrix_index($opponent_number, $round);
       my $opponent_opponent_number = $opponent_result->{Constants::RESULT_OPPONENT_NUMBER};
       if ($opponent_opponent_number != $player_number)
       {
+        # Covered by TC 14
         my $message_type = 'ERROR';
         my $message      = 'The opponent of the player\'s opponent is not the player';
         if ($correct)
@@ -295,13 +248,13 @@ sub process
                                 ['File', $filename],
                                 ['Division', $division_name],
                                 ['Round', $round + 1 ],
-                                ['Player', $player_name],
-                                ['Player\'s Opponent', $this->{Constants::DIVISION_PLAYERS}->[$opponent_number] ],
-                                ['Player\'s Opponent\'s Opponent', $this->{Constants::DIVISION_PLAYERS}->[$opponent_opponent_number] ]
+                                ['Player', $player_name . " ($player_number)"],
+                                ['Player\'s Opponent', $this->{Constants::DIVISION_PLAYERS}->[$opponent_number] . " ($opponent_number)" ],
+                                ['Player\'s Opponent\'s Opponent', $this->{Constants::DIVISION_PLAYERS}->[$opponent_opponent_number] . " ($opponent_opponent_number)"]
                               ]));
         if (!$correct)
         {
-          $this->set_valid(!$correct);
+          $this->set_valid(0);
           return;
         }
       }
@@ -357,6 +310,7 @@ sub process
       $player_result->{Constants::RESULT_CODED}         = $coded_result;
     }
   }  
+  return 0;
 }
 
 1;

@@ -65,8 +65,8 @@ sub check_country_flag_icons
     if (!$trigraph_hashref->{$1})
     {   
       Utils::format_error([
-                            ['ERROR:', 'Invalid flag image name'],
-                            ['File: ',  $ef]
+                            ['WARNING', 'Invalid flag image name'],
+                            ['File',  $ef]
                           ]);
     }   
   }
@@ -79,9 +79,9 @@ sub check_country_flag_icons
     if (!(-e $flag))
     {   
       Utils::format_error([
-                            ['ERROR:       ', 'missing flag image'],
-                            ['Country:     ', $country],
-                            ['Missing File:', $flag],
+                            ['WARNING', 'missing flag image'],
+                            ['Country', $country],
+                            ['Missing File', $flag],
                           ]);
     }   
   }
@@ -169,6 +169,7 @@ sub convert_trigraph
   {
     return $correct_trigraph;
   }
+
   if (length $trigraph == 3)
   {
     Utils::format_error([
@@ -484,7 +485,17 @@ sub initialize_database
     $dbh->do($statement);
   }
 
-  return $dbh;
+  my $lexicons               = Constants::LEXICONS;
+  my $lexicons_tn            = Constants::LEXICONS_TABLE_NAME;
+
+  Utils::insert_hash_list_into_table
+  (
+    $dbh,
+    $lexicons_tn,
+    $lexicons,
+    'name'
+  );
+
 }
 
 sub insert_hash_into_table

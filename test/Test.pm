@@ -17,33 +17,50 @@ use TOU;
 use Utils;
 use JSON::XS;
 
+my $alphabetic;
+my $redundant;
 my $setexpected;
 my $syntax;
 
 GetOptions
 (
-  syntax => \$syntax,
+  alphabetic  => \$alphabetic,
+  redundant   => \$redundant,
+  syntax      => \$syntax,
   setexpected => \$setexpected
 );
 
-run();
 
-sub run
+if ($syntax)
 {
-  Test::print_title("CHECKING SYNTAX");
   Test::check_syntax();
-  if ($syntax) {return;}
-  print "\n\n";
-  Test::print_title("CHECKING FOR REDUNDANT SUBS");
-  Test::check_for_repeat_subs();
-  print "\n\n";
-  Test::print_title("RUNNING TESTS");
+}
+elsif ($redundant)
+{
+  Test::check_for_redundant_routines();
+}
+else
+{
+  Test::check_syntax();
+  Test::check_for_redundant_routines();
   Test::Harness();
 }
 
 sub Harness
 {
-  testrun();
+  print Test::make_title('STARTING TEST HARNESS', '%', 40);
+  # Processing Errors
+  testrun('PROCESSING ERRORS', 1, 14);
+
+  # Processing Warnings
+
+  # Create an incorrect and missing flag for testing
+  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
+  system "mv $flag_dir/USA.png $flag_dir/USB.png";
+
+  testrun('PROCESSING WARNINGS', 15, 15);
+
+  system "mv $flag_dir/USB.png $flag_dir/USA.png";
 }
 
 sub setup_testrun
@@ -280,9 +297,7 @@ sub testcase
 
   my $padded_case = sprintf "%3s", $case;
 
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-  print "~~~~~~~~~~~~ TEST CASE $padded_case ~~~~~~~~~~~~\n";
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+  print Test::make_title("TEST CASE $padded_case", '~', 40);
 
   my $test_dir   = Constants::TEST_DIRECTORY;
   my $tou_dir    = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . Constants::TEST_TOU_PATH;
@@ -311,6 +326,8 @@ sub testcase
 
   select $fhstdout;
 
+  Utils::check_country_flag_icons(['USA']);
+
   my $tou = TOU->new(
                       $dbh,
                       $toufile,
@@ -318,6 +335,8 @@ sub testcase
                       $deceased_players_hash,
                       $player_data
                     );
+
+  $tou->load($player_data);
 
   select STDOUT;
 
@@ -385,21 +404,13 @@ sub format_expected_stdout
 
 sub testrun
 {
+  my $run_title = shift;
+  my $first_tc  = shift;
+  my $last_tc   = shift;
+
   my ($dbh, $alt_names_hash, $deceased_players_hash) = Test::setup_testrun();
 
   my $test_dir = Constants::TEST_DIRECTORY;
-  my $tou_dir  = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . Constants::TEST_TOU_PATH;
-
-  opendir (my $dh, $tou_dir) or die "Cannot open directory $tou_dir: $!\n";
-
-  # Only get files ending with 'tou'
-  my @toufiles =  (grep {/tou$/} readdir ($dh));
-
-  # Remove .tou extension and sort in numerical ascending order
-  @toufiles = sort {$a <=> $b} map { s/\.tou//gr;  } @toufiles;
-
-  # Add missing tournament for testing
-  unshift @toufiles, 1;
 
   my $stdout_failure;
   my $json_failure;
@@ -407,7 +418,9 @@ sub testrun
 
   my $player_data = {};
 
-  for (my $i = 0; $i < scalar @toufiles; $i++)
+  print Test::make_title("TEST RUN: $run_title", '*', 40);
+
+  for (my $i = $first_tc; $i <= $last_tc; $i++)
   {
 
     ($stdout_failure, $json_failure, $expected_stdout) = 
@@ -416,7 +429,7 @@ sub testrun
                       $alt_names_hash,
                       $deceased_players_hash,
                       $player_data,
-                      $toufiles[$i]
+                      $i
                     );
 
     my $response_content = '';
@@ -435,37 +448,38 @@ sub testrun
     $response_content .= (sprintf "%-17s", ($json_failure->get_type() . ' STATUS:')) . Test::convert_to_response($json_failure->is_failure()) . "\n";
     print $response_content;
     print "\n\n";
-    if ($stdout_failure->is_failure() || $json_failure->is_failure())
-    {
-      last;
-    }
   }
 }
 
-sub print_title
+sub make_title
 {
-  my $title = shift;
-  $title =~ s/^\s+|\s+$//g;
-  my $border = '***************************************';
+  my $content = shift;
+  my $char    = shift;
+  my $width   = shift;
+
+  my $border        = $char x $width;
   my $border_length = length $border;
-  my $margin = $border_length - (length $title);
-  my $left_margin = '*' x (int ($margin / 2 ) - 1);
-  my $right_margin = '*' x (int ($margin / 2 ) - 1);
+
+  my $margin       = $border_length - (length $content);
+  my $left_margin  = $char x (int ($margin / 2 ) - 1);
+  my $right_margin = $char x (int ($margin / 2 ) - 1);
+
   if ($margin % 2 == 1)
   {
-    $right_margin .= '*';
+    $right_margin .= $char;
   }
-  print <<TITLE
-$border
-$left_margin $title $right_margin
-$border
-TITLE
-;
 
+  my $title =  "$border\n";
+     $title .= "$left_margin $content $right_margin\n";
+     $title .= "$border\n\n";
+
+  return $title;
 }
 
-sub check_for_repeat_subs
+sub check_for_redundant_routines
 {
+  print Test::make_title('CHECKING FOR REDUNDANT ROUTINES', '%', 40);
+
   my $directories = Constants::PERL_DIRECTORIES;
   
   my @files = ();
@@ -494,7 +508,8 @@ sub check_for_repeat_subs
   my $ignore = {
                  'to_string'  => 1,
                  'initialize' => 1,
-                 'process'    => 1
+                 'process'    => 1,
+                 'is_valid'   => 1
                };
 
   foreach my $f1 (@files)
@@ -524,6 +539,8 @@ sub check_for_repeat_subs
 
 sub check_syntax
 {
+  print Test::make_title('CHECKING SYNTAX', '%', 40);
+
   my $directories = Constants::PERL_DIRECTORIES;
   my $dirs = '';
   for (my $i = 0; $i < scalar @{$directories}; $i++)
@@ -538,6 +555,7 @@ sub check_syntax
   {
     system "perl -cw $_";
   }
+  print "\n";
 }
 
 1;
