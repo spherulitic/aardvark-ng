@@ -292,21 +292,6 @@ sub fetch_local_tournament_data
   }
 }
 
-sub write_file_to_string
-{
-  my $file = shift;
-  my $string = '';
-  if (-e $file)
-  {
-    open (my $fh, '<', $file);
-    while(<$fh>)
-    {
-      $string .= $_;
-    }
-  }
-  return $string;
-}
-
 sub format_error
 {
   my $error_arrayref = shift;
@@ -339,6 +324,13 @@ sub format_error
   $error_string .= "\n";
   print $error_string;
   return $error_string;
+}
+
+sub get_country_from_filename
+{
+  my $filename = shift;
+  my @filename_items = split /\//, $filename;
+  return $filename_items[-2];
 }
 
 sub get_environment_name
@@ -845,27 +837,6 @@ sub query_table
   return $query_result;
 }
 
-sub tou_is_loaded
-{
-  my $dbh = shift;
-  my $tou = shift;
-
-  my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
-
-  my $tou_query = "SELECT * FROM $loaded_tournaments_tn WHERE filename=\"$tou\"";
-
-  my @tou_query_result = $dbh->selectrow_array($tou_query, {"RaiseError" => 1});
-
-  my $is_loaded = 0;
-
-  if (@tou_query_result)
-  {
-    $is_loaded = 1;
-  }
-
-  return $is_loaded;
-}
-
 sub rank_tournament_results
 {
   my $tournament_results_ref = shift;
@@ -1164,6 +1135,35 @@ sub swap
   $hashref->{$attr2} = $tmp;
 }
 
+sub tou_is_loaded
+{
+  my $dbh = shift;
+  my $tou = shift;
+
+  my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+
+  my $tou_query = "SELECT * FROM $loaded_tournaments_tn WHERE filename=\"$tou\"";
+
+  my @tou_query_result = $dbh->selectrow_array($tou_query, {"RaiseError" => 1});
+
+  my $is_loaded = 0;
+
+  if (@tou_query_result)
+  {
+    $is_loaded = 1;
+  }
+
+  return $is_loaded;
+}
+
+sub uniq
+{
+  my $array_ref = shift;
+  my @array = @{$array_ref};
+  my $hashref = map { $_ => 1 } @array;
+  return keys %{$hashref};
+}
+
 sub update_record_by_id
 {
   my $dbh             = shift;
@@ -1179,19 +1179,19 @@ sub update_record_by_id
   }
 }
 
-sub get_country_from_filename
+sub write_file_to_string
 {
-  my $filename = shift;
-  my @filename_items = split /\//, $filename;
-  return $filename_items[-2];
-}
-
-sub uniq
-{
-  my $array_ref = shift;
-  my @array = @{$array_ref};
-  my $hashref = map { $_ => 1 } @array;
-  return keys %{$hashref};
+  my $file = shift;
+  my $string = '';
+  if (-e $file)
+  {
+    open (my $fh, '<', $file);
+    while(<$fh>)
+    {
+      $string .= $_;
+    }
+  }
+  return $string;
 }
 
 sub write_string_to_file

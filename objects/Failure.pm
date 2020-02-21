@@ -9,31 +9,6 @@ use Data::Dumper;
 use lib './modules';
 use Constants;
 
-sub new
-{
-  my $this = shift;
-  my $type = shift;
-
-  my $failure = {};
-
-  my $failure_fields = Constants::FAILURE_FIELDS;
-
-  for (my $i = 0; $i < scalar @{$failure_fields}; $i++)
-  {
-    my $field = $failure_fields->[$i];
-    if ($field eq Constants::FAILURE_TYPE)
-    {
-      $failure->{$field} = $type;
-    }
-    else
-    {
-      $failure->{$field} = '';
-    }
-  }
-  my $self = bless $failure, $this;
-  return $self;
-}
-
 sub add_to_traceback
 {
   my $this = shift;
@@ -60,6 +35,31 @@ sub is_failure
 {
   my $this = shift;
   return $this->{Constants::FAILURE_REASON};
+}
+
+sub new
+{
+  my $this = shift;
+  my $type = shift;
+
+  my $failure = {};
+
+  my $failure_fields = Constants::FAILURE_FIELDS;
+
+  for (my $i = 0; $i < scalar @{$failure_fields}; $i++)
+  {
+    my $field = $failure_fields->[$i];
+    if ($field eq Constants::FAILURE_TYPE)
+    {
+      $failure->{$field} = $type;
+    }
+    else
+    {
+      $failure->{$field} = '';
+    }
+  }
+  my $self = bless $failure, $this;
+  return $self;
 }
 
 sub set_failure

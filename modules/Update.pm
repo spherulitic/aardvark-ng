@@ -119,8 +119,7 @@ sub load_all_tournament_data
   Utils::copy_database_to_production();
 }
 
-
-sub push_local_content 
+sub push_local_content
 {
   my $cwd = Cwd::getcwd();
 
@@ -230,18 +229,15 @@ my \$query =
 ";
 
 if (\$state ne 'all')
-{
   \$query .= " AND t.country = '\$state' ";
-}
+  }
 else
-{
   \$state = 'All Countries';
-}
+  }
 
 if (\$partname)
-{
   \$query .= " AND t.name LIKE '%\$partname%' ";
-}
+  }
 
 \$query .= " ORDER BY t.start_date ";
 
@@ -266,7 +262,6 @@ my \$search_content =
 my \$table_content = "";
 
 for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
-{
   my \$item = \$tournaments[\$i];
   my \$name = \$item->{'name'};
   my \$date = \$item->{'start_date'};
@@ -283,7 +278,7 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
   my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
   my \$link = "<a href='\$url'>\$name</a>";
   \$table_content .= "<tr class='\$row_class'><td>\$num</td><td>\$date</td><td>\$link</td></tr>";
-}
+  }
 
 my \$content =
 "
@@ -339,8 +334,7 @@ STOP
 print "Content-Type: text/html\n\n";
 print \$results_html_page;
 
- sub sanitize
-{
+  sub sanitize
   my \$s = shift;
 
   \$s = substr(\$s, 0, 255);
@@ -348,7 +342,7 @@ print \$results_html_page;
   \$s =~ s/\\W//g;
   \$s =~ s/_/ /g;
   return \$s;
-}
+  }
 
 1;
 
@@ -727,7 +721,5 @@ sub update_rankings_html
     HTML::write_string_to_file($country_ranking_html_page, $country_ranking_filename); 
   }
 }
-
-
 
 1;

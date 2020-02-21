@@ -28,8 +28,7 @@ use constant PERL_DIRECTORIES =>
 [
   Constants::TEST_DIRECTORY,
   Constants::MODULES_DIRECTORY,
-  Constants::OBJECTS_DIRECTORY,
-  Constants::CGIBIN_DIR
+  Constants::OBJECTS_DIRECTORY
 ];
 
 use constant FAILURE_REASON           => 'FAILURE';
@@ -850,3 +849,4 @@ FOOTER
 
 1;
 
+1;1;1;1;1;1;

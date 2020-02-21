@@ -382,8 +382,6 @@ FUNCTION
   return $html
 }
 
-
-
 sub get_player_template_html_string
 {
   my $player_info = shift;
@@ -694,239 +692,6 @@ STOP
 ;
   return $rankings_html_page;
 
-}
-
-sub get_tournament_template_html_string
-{
-  my $division_data = shift;
- 
-  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = Constants::TEMPLATE_DOCTYPE;
-  my $meta      = Constants::TEMPLATE_META;
-  my $lang      = Constants::TEMPLATE_LANG;
-  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
-  my $sources   = Constants::TEMPLATE_SOURCES;
-  my $style     = Constants::TEMPLATE_STYLE;
-  my $scripts   = Constants::TEMPLATE_SCRIPTS;
-  my $nav       = Constants::TEMPLATE_NAV;
-  my $footer    = Constants::TEMPLATE_FOOTER;
-
-  my $tournament_name = $division_data->[0]->[1]->{'tournament_name'};
-  my $tournament_date = $division_data->[0]->[1]->{'tournament_date'};
- 
-  my $division_html_class = "division";
-
-  my $ddl = scalar @{$division_data};
-
-  my $division_results   = "";
-
-  my @ids_to_click = ();
-  
-  my $display_none_style = "style='display:none;'";
-
-  my $tourney_tabclass  = "tournament_tab";
-  my $tourney_tablink   = "tournament_tablink";
-
-
-  my @tabdata = ();
-
-  for (my $i = 0; $i < $ddl; $i++)
-  {
-    my $id   = "division_$i";
-    my $text = "Division ". ($i+1);
-
-    push @tabdata, [$text, $id];
-
-    my $stats_tabclass    = "stats_tab_"        . $id ;
-    my $stats_tablink     = "stats_tablink_"    . $id ;
-    my $ratings_tabclass  = "ratings_tab_"      . $id ;
-    my $ratings_tablink   = "ratings_tablink_"  . $id ;
-    my $division_tabclass = "division_tab_"     . $id ;
-    my $division_tablink  = "division_tablink_" . $id ;
- 
-    if ($i == 0)
-    {
-      push @ids_to_click, "button_$id";
-    }
-    my $div_html    = $division_data->[$i]->[0];
-    my $div_data    = $division_data->[$i]->[1];
-    my $div_stats   = $division_data->[$i]->[2];
-    my $div_ratings = $division_data->[$i]->[3];
-
-    my $stats_content = "";
-    my @stats_tabdata = ();
-
-    my $stats_order_ref = Constants::TOURNAMENT_STATS_ORDER;
-
-    for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
-    {
-      my $cat = $stats_order_ref->[$k];
-      my $stat_id = "division_$i" . "_stats_$cat";
-      push @stats_tabdata, [$cat, $stat_id];
-
-      my $stat_html = $div_stats->{$cat};
-      $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
-      if ($k == 0)
-      {
-        push @ids_to_click, "button_$stat_id";
-      }
-    }
-
-    $stats_content = Utils::make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
-
-    my $div_standings_id = "division_$i" . "_standings";
-    my $div_stats_id     = "division_$i" . "_stats";
-    my $div_ratings_id   = "division_$i" . "_ratings";
-
-    push @ids_to_click, "button_$div_standings_id";
-
-    my $div_tabs = Utils::make_tab_div([["Standings", $div_standings_id],["Statistics", $div_stats_id], ["Ratings", $div_ratings_id]], $division_tabclass, $division_tablink);
-
-    my $div_standings_div = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
-    my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
-    my $div_ratings_div   = "<div id='$div_ratings_id'   class='$division_tabclass' $display_none_style>$div_ratings  </div>";
-
-
-    my $div_content = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
-
-    $division_results .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
-  }
-
-  my $tabs = Utils::make_tab_div(\@tabdata, $tourney_tabclass, $tourney_tablink);
-
-  my $ids_to_click_javascript_array = "[";
-
-  for (my $i = 0; $i < scalar @ids_to_click; $i++)
-  {
-    my $id = $ids_to_click[$i];
-    $ids_to_click_javascript_array .= "'$id'";
-    if ($i != (scalar @ids_to_click) - 1)
-    {
-      $ids_to_click_javascript_array .= ", ";
-    }
-  }
-
-  $ids_to_click_javascript_array .= "]";
-
-  my $tournament_html_page = "";
-
-  $tournament_html_page .= <<STOP;
-$doctype
-<html>
-  <head>
-  $meta
-  <title>$tournament_name</title>
-  
-  $sources
-  
-  $style
-  
-  <script type="text/javascript">
- 
-    $scripts
-
-   
-    window.onload = function()
-    { 
-      var ids = $ids_to_click_javascript_array;
-      for (var i = 0; i < ids.length; i++)
-      {
-        var id = ids[i];
-        document.getElementById(id).click();
-      }
-    }
-  </script>
-
-  </head>
-  
-  <body id='override'>
-    $wespa_img
-    $nav
-    <div style="background-color:#90D1EF">
-      <div style="background-color:white;padding-top:10px;" class="container">
-        <h2>$tournament_name ($tournament_date)</h2>
-        <hr>
-        <div class="row">
-          <div class="col-md-12 col-xs-12 col-sm-12">
-            <div>
-              <br>
-              $tabs
-              <br>    
-            </div>
-            $division_results
-          </div>
-        </div>
-      </div>
-      $footer
-    </div>
-  </div>
-  </body>
-</html>
-
-STOP
-
-  return $tournament_html_page;
-
-}
-
-sub special_game_to_html
-{
-  my $key  = shift;
-  my $item = shift;
-
-  if (!$item->{'player_name'} || !$item->{'player_pointer'} || !$item->{'game_pointer'})
-  {
-    return "";
-  }
-
-  my @words = split /_/, $key;
-
-  my @cap_words = ();
-
-  for (my $i = 0; $i < scalar @words; $i++)
-  {
-    my @letters = split //, $words[$i];
-    $letters[0] = uc $letters[0];
-    push @cap_words, (join "", @letters);
-  }
-
-  my $title = join " ", @cap_words;
-
-  my $value          = $item->{'value'};
-  my $player_name    = $item->{'player_name'};
-  my $player_pointer = $item->{'player_pointer'};
-
-
-  my $player_type       = Constants::HTML_ID_PLAYER_TYPE;
-  my $head_to_head_type = Constants::HTML_ID_HEAD_TO_HEAD_TYPE;
-
-  my $game_html_id   = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG, $player_type, $item->{'game_pointer'});
-  my $player_html_id = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG, $head_to_head_type, $item->{'player_pointer'});
-
-  my $working_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR;
-  my $html_dir    = Constants::HTML_DIR;
-  my $players_dir = Constants::PLAYER_HTML_DIR;
-
-  if (
-       ($title eq "Biggest Win"  && $value < 0) ||
-       ($title eq "Biggest Loss" && $value > 0) 
-     )
-  {
-    return "";
-  } 
-
-  return "<b>$title:</b> <a href=\"#$game_html_id\" onclick=\"show_tournament_entry('$game_html_id')\">$value</a> (<a href=\"#$player_html_id\" onclick=\"show_head_to_head_entry('$player_html_id')\">vs</a> <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">$player_name</a>)<br>";
-  
-}
-
-sub populate_special_game_item
-{
-  my $special_item = shift;
-  my $item         = shift;
-
-  $special_item->{'game_pointer'}     = $item->{'tr_id'};
-  $special_item->{'player_pointer'}   = $item->{'opp_id'};
-  $special_item->{'player_name'}      = $item->{'opp_name'};
 }
 
 sub get_tournament_results_html_string
@@ -1584,15 +1349,237 @@ sub get_tournament_results_html_string
   return [$tournament_results_list_html_string, $game_data, $tournament_stats_html, $tournament_ratings_html_string];
 }
 
+sub get_tournament_template_html_string
+{
+  my $division_data = shift;
+ 
+  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
+  my $doctype   = Constants::TEMPLATE_DOCTYPE;
+  my $meta      = Constants::TEMPLATE_META;
+  my $lang      = Constants::TEMPLATE_LANG;
+  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
+  my $sources   = Constants::TEMPLATE_SOURCES;
+  my $style     = Constants::TEMPLATE_STYLE;
+  my $scripts   = Constants::TEMPLATE_SCRIPTS;
+  my $nav       = Constants::TEMPLATE_NAV;
+  my $footer    = Constants::TEMPLATE_FOOTER;
+
+  my $tournament_name = $division_data->[0]->[1]->{'tournament_name'};
+  my $tournament_date = $division_data->[0]->[1]->{'tournament_date'};
+ 
+  my $division_html_class = "division";
+
+  my $ddl = scalar @{$division_data};
+
+  my $division_results   = "";
+
+  my @ids_to_click = ();
+  
+  my $display_none_style = "style='display:none;'";
+
+  my $tourney_tabclass  = "tournament_tab";
+  my $tourney_tablink   = "tournament_tablink";
+
+
+  my @tabdata = ();
+
+  for (my $i = 0; $i < $ddl; $i++)
+  {
+    my $id   = "division_$i";
+    my $text = "Division ". ($i+1);
+
+    push @tabdata, [$text, $id];
+
+    my $stats_tabclass    = "stats_tab_"        . $id ;
+    my $stats_tablink     = "stats_tablink_"    . $id ;
+    my $ratings_tabclass  = "ratings_tab_"      . $id ;
+    my $ratings_tablink   = "ratings_tablink_"  . $id ;
+    my $division_tabclass = "division_tab_"     . $id ;
+    my $division_tablink  = "division_tablink_" . $id ;
+ 
+    if ($i == 0)
+    {
+      push @ids_to_click, "button_$id";
+    }
+    my $div_html    = $division_data->[$i]->[0];
+    my $div_data    = $division_data->[$i]->[1];
+    my $div_stats   = $division_data->[$i]->[2];
+    my $div_ratings = $division_data->[$i]->[3];
+
+    my $stats_content = "";
+    my @stats_tabdata = ();
+
+    my $stats_order_ref = Constants::TOURNAMENT_STATS_ORDER;
+
+    for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
+    {
+      my $cat = $stats_order_ref->[$k];
+      my $stat_id = "division_$i" . "_stats_$cat";
+      push @stats_tabdata, [$cat, $stat_id];
+
+      my $stat_html = $div_stats->{$cat};
+      $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+      if ($k == 0)
+      {
+        push @ids_to_click, "button_$stat_id";
+      }
+    }
+
+    $stats_content = Utils::make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
+
+    my $div_standings_id = "division_$i" . "_standings";
+    my $div_stats_id     = "division_$i" . "_stats";
+    my $div_ratings_id   = "division_$i" . "_ratings";
+
+    push @ids_to_click, "button_$div_standings_id";
+
+    my $div_tabs = Utils::make_tab_div([["Standings", $div_standings_id],["Statistics", $div_stats_id], ["Ratings", $div_ratings_id]], $division_tabclass, $division_tablink);
+
+    my $div_standings_div = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
+    my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
+    my $div_ratings_div   = "<div id='$div_ratings_id'   class='$division_tabclass' $display_none_style>$div_ratings  </div>";
+
+
+    my $div_content = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
+
+    $division_results .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
+  }
+
+  my $tabs = Utils::make_tab_div(\@tabdata, $tourney_tabclass, $tourney_tablink);
+
+  my $ids_to_click_javascript_array = "[";
+
+  for (my $i = 0; $i < scalar @ids_to_click; $i++)
+  {
+    my $id = $ids_to_click[$i];
+    $ids_to_click_javascript_array .= "'$id'";
+    if ($i != (scalar @ids_to_click) - 1)
+    {
+      $ids_to_click_javascript_array .= ", ";
+    }
+  }
+
+  $ids_to_click_javascript_array .= "]";
+
+  my $tournament_html_page = "";
+
+  $tournament_html_page .= <<STOP;
+$doctype
+<html>
+  <head>
+  $meta
+  <title>$tournament_name</title>
+  
+  $sources
+  
+  $style
+  
+  <script type="text/javascript">
+ 
+    $scripts
+
+   
+    window.onload = function()
+    { 
+      var ids = $ids_to_click_javascript_array;
+      for (var i = 0; i < ids.length; i++)
+      {
+        var id = ids[i];
+        document.getElementById(id).click();
+      }
+    }
+  </script>
+
+  </head>
+  
+  <body id='override'>
+    $wespa_img
+    $nav
+    <div style="background-color:#90D1EF">
+      <div style="background-color:white;padding-top:10px;" class="container">
+        <h2>$tournament_name ($tournament_date)</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div>
+              <br>
+              $tabs
+              <br>    
+            </div>
+            $division_results
+          </div>
+        </div>
+      </div>
+      $footer
+    </div>
+  </div>
+  </body>
+</html>
+
+STOP
+
+  return $tournament_html_page;
+
+}
+
+sub populate_special_game_item
+{
+  my $special_item = shift;
+  my $item         = shift;
+
+  $special_item->{'game_pointer'}     = $item->{'tr_id'};
+  $special_item->{'player_pointer'}   = $item->{'opp_id'};
+  $special_item->{'player_name'}      = $item->{'opp_name'};
+}
+
+sub special_game_to_html
+{
+  my $key  = shift;
+  my $item = shift;
+
+  if (!$item->{'player_name'} || !$item->{'player_pointer'} || !$item->{'game_pointer'})
+  {
+    return "";
+  }
+
+  my @words = split /_/, $key;
+
+  my @cap_words = ();
+
+  for (my $i = 0; $i < scalar @words; $i++)
+  {
+    my @letters = split //, $words[$i];
+    $letters[0] = uc $letters[0];
+    push @cap_words, (join "", @letters);
+  }
+
+  my $title = join " ", @cap_words;
+
+  my $value          = $item->{'value'};
+  my $player_name    = $item->{'player_name'};
+  my $player_pointer = $item->{'player_pointer'};
+
+
+  my $player_type       = Constants::HTML_ID_PLAYER_TYPE;
+  my $head_to_head_type = Constants::HTML_ID_HEAD_TO_HEAD_TYPE;
+
+  my $game_html_id   = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG, $player_type, $item->{'game_pointer'});
+  my $player_html_id = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG, $head_to_head_type, $item->{'player_pointer'});
+
+  my $working_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR;
+  my $html_dir    = Constants::HTML_DIR;
+  my $players_dir = Constants::PLAYER_HTML_DIR;
+
+  if (
+       ($title eq "Biggest Win"  && $value < 0) ||
+       ($title eq "Biggest Loss" && $value > 0) 
+     )
+  {
+    return "";
+  } 
+
+  return "<b>$title:</b> <a href=\"#$game_html_id\" onclick=\"show_tournament_entry('$game_html_id')\">$value</a> (<a href=\"#$player_html_id\" onclick=\"show_head_to_head_entry('$player_html_id')\">vs</a> <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">$player_name</a>)<br>";
+  
+}
+
 1;
-
-
-
-
-
-
-
-
-
-
-

@@ -25,7 +25,6 @@ my $syntax;
 GetOptions
 (
   alphabetize => \$alphabetic,
-  redundant   => \$redundant,
   syntax      => \$syntax,
   setexpected => \$setexpected
 );
@@ -34,10 +33,6 @@ if ($syntax)
 {
   Test::check_syntax();
 }
-elsif ($redundant)
-{
-  Test::check_for_redundant_routines();
-}
 elsif ($alphabetic)
 {
   Test::alphabetize_routine_order();
@@ -45,9 +40,25 @@ elsif ($alphabetic)
 else
 {
   Test::check_syntax();
-  Test::check_for_redundant_routines();
-  #Test::alphabetize_routine_order();
+  Test::alphabetize_routine_order();
   Test::Harness();
+}
+
+sub Harness
+{
+  print Test::make_title('STARTING TEST HARNESS', '%', Constants::TEST_TITLE_WIDTH);
+  # Processing Errors
+  testrun('PROCESSING ERRORS', 1, 14);
+
+  # Processing Warnings
+
+  # Create an incorrect and missing flag for testing
+  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
+  system "mv $flag_dir/USA.png $flag_dir/USB.png";
+
+  testrun('PROCESSING WARNINGS', 15, 15);
+
+  system "mv $flag_dir/USB.png $flag_dir/USA.png";
 }
 
 sub alphabetize_routine_order
@@ -70,7 +81,6 @@ sub alphabetize_routine_order
     my $current_routine;
     my $in_current_routine = 0;
     my $file_string = '';
-
     open(my $fh, '<', $f);
     while(<$fh>)
     {
@@ -111,70 +121,6 @@ sub alphabetize_routine_order
     }
     print $write_fh "1;";
     close $write_fh;
-  }
-}
-
-sub check_for_redundant_routines
-{
-  print Test::make_title('CHECKING FOR REDUNDANT ROUTINES', '%', Constants::TEST_TITLE_WIDTH);
-
-  my $directories = Constants::PERL_DIRECTORIES;
-  
-  my @files = ();
-  
-  foreach my $dir (@{$directories})
-  {
-    opendir (my $fh_dir, $dir);
-    push @files, map {$dir . '/' . $_} (grep {/\.p[ml]/} readdir $fh_dir);
-  }
-  
-  my $file_routines = {};
-  
-  foreach my $f (@files)
-  {
-    $file_routines->{$f} = [];
-    open(my $fh, '<', $f);
-    while(<$fh>)
-    {
-      if (/^sub (.*)/)
-      {
-        push @{$file_routines->{$f}}, $1;
-      }
-    }
-  }
-
-  my $ignore = {
-                 'to_string'  => 1,
-                 'initialize' => 1,
-                 'process'    => 1,
-                 'is_valid'   => 1
-               };
-
-  foreach my $f1 (@files)
-  {
-    my $f1_routines = $file_routines->{$f1};
-    foreach my $f2 (@files)
-    {
-      my $f2_routines = $file_routines->{$f2};
-      for (my $i = 0; $i < scalar @{$f1_routines}; $i++)
-      {
-        for (my $k = $i + 1; $k < scalar @{$f2_routines}; $k++)
-        {
-          my $routine1 = $f1_routines->[$i];
-          my $routine2 = $f2_routines->[$k];
-          if ($routine1 eq $routine2 && !$ignore->{$routine1})
-          {
-            Utils::format_error
-            ([
-               ['WARNING', 'Redundant routine name found'],
-               ['File 1', $f1],
-               ['File 2', $f2],
-               ['Routine', $routine1]
-             ]);
-          }
-        }
-      }    
-    }
   }
 }
 
@@ -445,23 +391,6 @@ sub format_expected_stdout
     }
   }
   return $formatted_stdout . "\n";
-}
-
-sub Harness
-{
-  print Test::make_title('STARTING TEST HARNESS', '%', Constants::TEST_TITLE_WIDTH);
-  # Processing Errors
-  testrun('PROCESSING ERRORS', 1, 14);
-
-  # Processing Warnings
-
-  # Create an incorrect and missing flag for testing
-  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
-  system "mv $flag_dir/USA.png $flag_dir/USB.png";
-
-  testrun('PROCESSING WARNINGS', 15, 15);
-
-  system "mv $flag_dir/USB.png $flag_dir/USA.png";
 }
 
 sub make_title

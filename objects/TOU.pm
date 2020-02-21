@@ -20,6 +20,70 @@ use HTML;
 use Result;
 use Utils;
 
+sub compare_sts_and_tou_names
+{
+  my $this                          = shift;
+
+  my $tou_names = $this->{Constants::TOU_PLAYER_NAMES};
+  my $sts_names = $this->{Constants::TOU_STS_PLAYER_NAMES};
+
+  foreach my $key (keys %{$sts_names})
+  {
+    $tou_names->{$key} = 0;
+  }
+
+  my $missing_from_sts = join ",", sort grep {$tou_names->{$_}} keys %{$tou_names};
+
+  if ($missing_from_sts)
+  {
+    # Covered by TC 9
+    $this->set_error_report(
+      Utils::format_error([
+                            ['ERROR', 'Names missing in the STS/STA file'],
+                            ['File', $this->{Constants::TOU_FILENAME}],
+                            ['Missing from STS', $missing_from_sts]
+                          ]));
+  }
+}
+
+sub get_filename
+{
+  my $this = shift;
+  return $this->{Constants::TOU_FILENAME}; 
+}
+
+sub get_unblessed_ref
+{
+  my $obj = shift;
+
+  my $unblessed;
+
+  if (ref($obj) eq 'ARRAY')
+  {
+    $unblessed = [];
+    for (my $i = 0; $i < scalar @{$obj}; $i++)
+    {
+      $unblessed->[$i] = get_unblessed_ref($obj->[$i]);
+    }
+  }
+  elsif (ref($obj))
+  {
+    $unblessed = {};
+    foreach my $key (keys %{$obj})
+    {
+      if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
+      {
+        $unblessed->{$key} = get_unblessed_ref($obj->{$key});
+      }
+    }
+  }
+  else
+  {
+    $unblessed = $obj;
+  }
+  return $unblessed;
+}
+
 sub initialize
 {
   my $this            = shift;
@@ -50,21 +114,117 @@ sub initialize
   return $self;
 }
 
-sub get_filename
+sub is_valid
 {
   my $this = shift;
-  return $this->{Constants::TOU_FILENAME}; 
+  return $this->{Constants::TOU_VALID};
 }
 
-sub set_error_report
+sub load
 {
-  my $this = shift;
-  my $error_report = shift;
-  $this->{Constants::TOU_ERROR_REPORT} = $error_report;
-  $this->{Constants::TOU_VALID} = 0;
+  my $this        = shift;
+  my $player_data = shift;
+
+  if (!$this->is_valid())
+  {
+    return 1;
+  }
+
+  my $dbh         = $this->{Constants::TOU_DBH};
+
+  my $filename                        = $this->{Constants::TOU_FILENAME};
+  my $event                           = $this->{Constants::TOU_EVENT};
+  my $tournament                      = $this->{Constants::TOU_TOURNAMENT};
+  my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
+
+  my $players_tn            = Constants::PLAYERS_TABLE_NAME;
+  my $player_alt_names_tn   = Constants::PLAYER_ALT_NAMES_TABLE_NAME;
+  my $tournaments_tn        = Constants::TOURNAMENTS_TABLE_NAME;
+  my $events_tn             = Constants::EVENTS_TABLE_NAME;
+  my $divisions_tn          = Constants::DIVISIONS_TABLE_NAME;
+  my $games_tn              = Constants::GAMES_TABLE_NAME;
+  my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
+  my $player_results_tn     = Constants::PLAYER_RESULTS_TABLE_NAME;
+
+  # Add to database top down so we can link up the foreign keys
+  my $event_id      = Utils::insert_hash_into_table($dbh, $events_tn, $event);
+
+  $tournament->{event_id} = $event_id;
+
+  my $tournament_name = $tournament->{name};
+  my $tournament_id = Utils::insert_hash_into_table($dbh, $tournaments_tn, $tournament);
+
+  my @division_keys =
+    sort {
+           $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
+           $divisions->{$b}->{Constants::DIVISION_NUMBER}
+         } keys %{$divisions};
+
+  for (my $i = 0; $i < scalar @division_keys; $i++)
+  {
+    my $key = $division_keys[$i];
+    my $division      = $divisions->{$key};
+    my $division_name = $division->{Constants::DIVISION_NAME};
+
+    my $division_id   = Utils::insert_hash_into_table
+    (
+      $dbh,
+      $divisions_tn,
+      {
+        tournament_id => $tournament_id,
+        name          => $division_name,
+        length        => $divisions->{$key}->{Constants::DIVISION_NUMBER_OF_ROUNDS},
+        number        => $divisions->{$key}->{Constants::DIVISION_NUMBER}
+      }
+    );
+
+    my $tournament_results = $division->{Constants::DIVISION_TOURNAMENT_RESULTS};
+
+    foreach my $tr (@{$tournament_results})
+    {
+      my $total_games = $tr->{wins} + $tr->{losses};
+ 
+      Utils::add_games_to_existing_player($dbh, $tr->{player_id}, $total_games);
+      $tr->{division_id} = $division_id;
+      Utils::insert_hash_into_table($dbh, $tournament_results_tn, $tr);
+    }
+
+    my $gprs = $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS};
+
+    foreach my $key (keys %{$gprs})
+    {
+      my $gpr     = $gprs->{$key};
+      my $game    = $gpr->{game};
+      my @results = @{$gpr->{results}};
+
+      $game->{division_id} = $division_id;
+
+      my $game_id = Utils::insert_hash_into_table($dbh, $games_tn, $game);
+  
+      foreach my $result (@results)
+      {
+        $result->{game_id} = $game_id;
+        Utils::insert_hash_into_table($dbh, $player_results_tn, $result);
+      }
+    }
+  }
+
+  my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+  $tournament_name =~ s/"//g;
+
+  my $insert_processed_tou =
+  "
+    INSERT INTO $loaded_tournaments_table_name
+    (name, filename)
+    VALUES (\"$tournament_name\", \"$filename\")
+  ";
+
+  $dbh->do($insert_processed_tou, {"RaiseError" => 1});
+  $this->{Constants::TOU_LOADED} = 1; 
+  return 0;
 }
 
-sub new 
+sub new
 {
   my $tou_type              = shift;
   my $dbh                   = shift;
@@ -489,286 +649,6 @@ sub new
   return $this;
 }
 
-sub get_unblessed_ref
-{
-  my $obj = shift;
-
-  my $unblessed;
-
-  if (ref($obj) eq 'ARRAY')
-  {
-    $unblessed = [];
-    for (my $i = 0; $i < scalar @{$obj}; $i++)
-    {
-      $unblessed->[$i] = get_unblessed_ref($obj->[$i]);
-    }
-  }
-  elsif (ref($obj))
-  {
-    $unblessed = {};
-    foreach my $key (keys %{$obj})
-    {
-      if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
-      {
-        $unblessed->{$key} = get_unblessed_ref($obj->{$key});
-      }
-    }
-  }
-  else
-  {
-    $unblessed = $obj;
-  }
-  return $unblessed;
-}
-
-sub to_string
-{
-  my $this = shift;
-
-  my $event                           = $this->{Constants::TOU_EVENT};
-  my $tournament                      = $this->{Constants::TOU_TOURNAMENT};
-  my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
-
-  my $tournament_name = $tournament->{name};
-  my $tournament_date = $tournament->{date};
-
-  $tournament_date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
-
-  my $tou_date_format = "$3.$2.$1";
-
-  my $tou_string = "*M$tou_date_format $tournament_name\n";
-
-  my @division_keys =
-    sort {
-           $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
-           $divisions->{$b}->{Constants::DIVISION_NUMBER}
-         } keys %{$divisions};
-
-  for (my $i = 0; $i < scalar @division_keys; $i++)
-  {
-    $tou_string .= $divisions->{$division_keys[$i]}->to_string();
-  }
-
-  $tou_string .= '*** END OF FILE ***';
-  return $tou_string;
-}
-
-sub is_valid
-{
-  my $this = shift;
-  return $this->{Constants::TOU_VALID};
-}
-
-sub load
-{
-  my $this        = shift;
-  my $player_data = shift;
-
-  if (!$this->is_valid())
-  {
-    return 1;
-  }
-
-  my $dbh         = $this->{Constants::TOU_DBH};
-
-  my $filename                        = $this->{Constants::TOU_FILENAME};
-  my $event                           = $this->{Constants::TOU_EVENT};
-  my $tournament                      = $this->{Constants::TOU_TOURNAMENT};
-  my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
-
-  my $players_tn            = Constants::PLAYERS_TABLE_NAME;
-  my $player_alt_names_tn   = Constants::PLAYER_ALT_NAMES_TABLE_NAME;
-  my $tournaments_tn        = Constants::TOURNAMENTS_TABLE_NAME;
-  my $events_tn             = Constants::EVENTS_TABLE_NAME;
-  my $divisions_tn          = Constants::DIVISIONS_TABLE_NAME;
-  my $games_tn              = Constants::GAMES_TABLE_NAME;
-  my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
-  my $player_results_tn     = Constants::PLAYER_RESULTS_TABLE_NAME;
-
-  # Add to database top down so we can link up the foreign keys
-  my $event_id      = Utils::insert_hash_into_table($dbh, $events_tn, $event);
-
-  $tournament->{event_id} = $event_id;
-
-  my $tournament_name = $tournament->{name};
-  my $tournament_id = Utils::insert_hash_into_table($dbh, $tournaments_tn, $tournament);
-
-  my @division_keys =
-    sort {
-           $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
-           $divisions->{$b}->{Constants::DIVISION_NUMBER}
-         } keys %{$divisions};
-
-  for (my $i = 0; $i < scalar @division_keys; $i++)
-  {
-    my $key = $division_keys[$i];
-    my $division      = $divisions->{$key};
-    my $division_name = $division->{Constants::DIVISION_NAME};
-
-    my $division_id   = Utils::insert_hash_into_table
-    (
-      $dbh,
-      $divisions_tn,
-      {
-        tournament_id => $tournament_id,
-        name          => $division_name,
-        length        => $divisions->{$key}->{Constants::DIVISION_NUMBER_OF_ROUNDS},
-        number        => $divisions->{$key}->{Constants::DIVISION_NUMBER}
-      }
-    );
-
-    my $tournament_results = $division->{Constants::DIVISION_TOURNAMENT_RESULTS};
-
-    foreach my $tr (@{$tournament_results})
-    {
-      my $total_games = $tr->{wins} + $tr->{losses};
- 
-      Utils::add_games_to_existing_player($dbh, $tr->{player_id}, $total_games);
-      $tr->{division_id} = $division_id;
-      Utils::insert_hash_into_table($dbh, $tournament_results_tn, $tr);
-    }
-
-    my $gprs = $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS};
-
-    foreach my $key (keys %{$gprs})
-    {
-      my $gpr     = $gprs->{$key};
-      my $game    = $gpr->{game};
-      my @results = @{$gpr->{results}};
-
-      $game->{division_id} = $division_id;
-
-      my $game_id = Utils::insert_hash_into_table($dbh, $games_tn, $game);
-  
-      foreach my $result (@results)
-      {
-        $result->{game_id} = $game_id;
-        Utils::insert_hash_into_table($dbh, $player_results_tn, $result);
-      }
-    }
-  }
-
-  my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
-  $tournament_name =~ s/"//g;
-
-  my $insert_processed_tou =
-  "
-    INSERT INTO $loaded_tournaments_table_name
-    (name, filename)
-    VALUES (\"$tournament_name\", \"$filename\")
-  ";
-
-  $dbh->do($insert_processed_tou, {"RaiseError" => 1});
-  $this->{Constants::TOU_LOADED} = 1; 
-  return 0;
-}
-
-sub process_division
-{
-  my $this     = shift;
-  my $division = shift;
-
-  my $verification_report = $division->{Constants::DIVISION_VERIFICATION_REPORT};
-
-  if (!$division->is_valid())
-  {
-    $this->{Constants::TOU_ERROR_REPORT} = $verification_report;
-    $this->{Constants::TOU_VALID} = 0;
-    return 1;
-  }
-
-  $this->{Constants::TOU_WARNING_REPORT} = $verification_report;
-
-  my $number_of_rounds  = $division->{Constants::DIVISION_NUMBER_OF_ROUNDS};
-  my @players           = @{$division->{Constants::DIVISION_PLAYERS}};
-  my $number_of_rows    = scalar @players;
-
-  my @tournament_results      = ();
-  my $game_and_player_results = {};
-  my $player_data_hash        = $this->{Constants::TOU_PLAYER_DATA};
-
-  my $spread   = 0;
-  my $wins     = 0;
-  my $losses   = 0;
-  my $byes     = 0;
-  my $bye_wins = 0;
-
-  for (my $row = 0; $row < $number_of_rows; $row++)
-  {
-    my $player_data = $player_data_hash->{Utils::sanitize($players[$row])};
-    my $player_name = $players[$row];
-    my $sanitized_player_name = Utils::sanitize($player_name); 
-    my $player_id   = $player_data->[1];
-
-    if (!$player_name)
-    {
-      die Dumper(\@players) . Dumper($player_data) . $players[$row];
-    }
-
-    $this->{Constants::TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
-
-    my $tournament_result =
-    {
-      player_id       => $player_id,
-      player_name     => $player_name,
-      position        => 0,
-      wins            => 0,
-      losses          => 0,
-      byes            => 0,
-      bye_wins        => 0,
-      spread          => 0,
-      date            => $this->{Constants::TOU_TOURNAMENT}->{start_date},
-      tournament_name => $this->{Constants::TOU_TOURNAMENT}->{name}
-    };
-
-    for (my $round = 0; $round < $number_of_rounds; $round++)
-    { 
-      my $player_result   = $division->get_matrix_index($row, $round);
-      my $opponent_number = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
-      $tournament_result->{wins}     += $player_result->{Constants::RESULT_WINS};
-      $tournament_result->{losses}   += $player_result->{Constants::RESULT_LOSSES};
-      $tournament_result->{byes}     += $player_result->{Constants::RESULT_BYES};
-      $tournament_result->{bye_wins} += $player_result->{Constants::RESULT_BYE_WINS};
-      $tournament_result->{spread}   += $player_result->{Constants::RESULT_SPREAD};
-      $player_result->add_to_gpr($game_and_player_results, $player_id);
-    }
-    push @tournament_results, $tournament_result;
-  }
-
-  @tournament_results = Utils::rank_tournament_results(\@tournament_results);
-
-  $division->{Constants::DIVISION_TOURNAMENT_RESULTS}      = \@tournament_results;
-  $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS} = $game_and_player_results;
-  $this->{Constants::TOU_DIVISION_DATA}->{$division->{Constants::DIVISION_NAME}} = $division;
-  return 0;
-}
-
-sub compare_sts_and_tou_names
-{
-  my $this                          = shift;
-
-  my $tou_names = $this->{Constants::TOU_PLAYER_NAMES};
-  my $sts_names = $this->{Constants::TOU_STS_PLAYER_NAMES};
-
-  foreach my $key (keys %{$sts_names})
-  {
-    $tou_names->{$key} = 0;
-  }
-
-  my $missing_from_sts = join ",", sort grep {$tou_names->{$_}} keys %{$tou_names};
-
-  if ($missing_from_sts)
-  {
-    # Covered by TC 9
-    $this->set_error_report(
-      Utils::format_error([
-                            ['ERROR', 'Names missing in the STS/STA file'],
-                            ['File', $this->{Constants::TOU_FILENAME}],
-                            ['Missing from STS', $missing_from_sts]
-                          ]));
-  }
-}
-
 sub new_division
 {
   my $this                    = shift;
@@ -945,6 +825,126 @@ sub process
   $this->compare_sts_and_tou_names();
 
   $this->{Constants::TOU_PROCESSED} = 1;
+}
+
+sub process_division
+{
+  my $this     = shift;
+  my $division = shift;
+
+  my $verification_report = $division->{Constants::DIVISION_VERIFICATION_REPORT};
+
+  if (!$division->is_valid())
+  {
+    $this->{Constants::TOU_ERROR_REPORT} = $verification_report;
+    $this->{Constants::TOU_VALID} = 0;
+    return 1;
+  }
+
+  $this->{Constants::TOU_WARNING_REPORT} = $verification_report;
+
+  my $number_of_rounds  = $division->{Constants::DIVISION_NUMBER_OF_ROUNDS};
+  my @players           = @{$division->{Constants::DIVISION_PLAYERS}};
+  my $number_of_rows    = scalar @players;
+
+  my @tournament_results      = ();
+  my $game_and_player_results = {};
+  my $player_data_hash        = $this->{Constants::TOU_PLAYER_DATA};
+
+  my $spread   = 0;
+  my $wins     = 0;
+  my $losses   = 0;
+  my $byes     = 0;
+  my $bye_wins = 0;
+
+  for (my $row = 0; $row < $number_of_rows; $row++)
+  {
+    my $player_data = $player_data_hash->{Utils::sanitize($players[$row])};
+    my $player_name = $players[$row];
+    my $sanitized_player_name = Utils::sanitize($player_name); 
+    my $player_id   = $player_data->[1];
+
+    if (!$player_name)
+    {
+      die Dumper(\@players) . Dumper($player_data) . $players[$row];
+    }
+
+    $this->{Constants::TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
+
+    my $tournament_result =
+    {
+      player_id       => $player_id,
+      player_name     => $player_name,
+      position        => 0,
+      wins            => 0,
+      losses          => 0,
+      byes            => 0,
+      bye_wins        => 0,
+      spread          => 0,
+      date            => $this->{Constants::TOU_TOURNAMENT}->{start_date},
+      tournament_name => $this->{Constants::TOU_TOURNAMENT}->{name}
+    };
+
+    for (my $round = 0; $round < $number_of_rounds; $round++)
+    { 
+      my $player_result   = $division->get_matrix_index($row, $round);
+      my $opponent_number = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
+      $tournament_result->{wins}     += $player_result->{Constants::RESULT_WINS};
+      $tournament_result->{losses}   += $player_result->{Constants::RESULT_LOSSES};
+      $tournament_result->{byes}     += $player_result->{Constants::RESULT_BYES};
+      $tournament_result->{bye_wins} += $player_result->{Constants::RESULT_BYE_WINS};
+      $tournament_result->{spread}   += $player_result->{Constants::RESULT_SPREAD};
+      $player_result->add_to_gpr($game_and_player_results, $player_id);
+    }
+    push @tournament_results, $tournament_result;
+  }
+
+  @tournament_results = Utils::rank_tournament_results(\@tournament_results);
+
+  $division->{Constants::DIVISION_TOURNAMENT_RESULTS}      = \@tournament_results;
+  $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS} = $game_and_player_results;
+  $this->{Constants::TOU_DIVISION_DATA}->{$division->{Constants::DIVISION_NAME}} = $division;
+  return 0;
+}
+
+sub set_error_report
+{
+  my $this = shift;
+  my $error_report = shift;
+  $this->{Constants::TOU_ERROR_REPORT} = $error_report;
+  $this->{Constants::TOU_VALID} = 0;
+}
+
+sub to_string
+{
+  my $this = shift;
+
+  my $event                           = $this->{Constants::TOU_EVENT};
+  my $tournament                      = $this->{Constants::TOU_TOURNAMENT};
+  my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
+
+  my $tournament_name = $tournament->{name};
+  my $tournament_date = $tournament->{date};
+
+  $tournament_date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
+
+  my $tou_date_format = "$3.$2.$1";
+
+  my $tou_string = "*M$tou_date_format $tournament_name\n";
+
+  my @division_keys =
+    sort {
+           $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
+           $divisions->{$b}->{Constants::DIVISION_NUMBER}
+         } keys %{$divisions};
+
+  for (my $i = 0; $i < scalar @division_keys; $i++)
+  {
+    $tou_string .= $divisions->{$division_keys[$i]}->to_string();
+  }
+
+  $tou_string .= '*** END OF FILE ***';
+  return $tou_string;
 }
 
 1;

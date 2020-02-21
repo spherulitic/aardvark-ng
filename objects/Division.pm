@@ -9,84 +9,6 @@ use Data::Dumper;
 use lib './modules';
 use Constants;
 
-sub new
-{
-  my $this = shift;
-
-  my $toufile         = shift;
-  my $division_name   = shift;
-  my $division_number = shift;
-  my $players         = shift;
-  my $game_data       = shift;
-
-  my $division = $this->initialize(
-                                    $toufile,
-                                    $division_name,
-                                    $division_number,
-                                    $players,
-                                    $game_data
-                                  );
-
-  $division->create_matrix();
-  return $division;
-}
-
-sub set_valid
-{
-  my $this        = shift;
-  my $valid_value = shift;
-  $this->{Constants::DIVISION_VALID} = $valid_value;
-}
-
-sub to_string
-{
-  my $this = shift;
-
-  my $number_of_rounds  = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
-  my @players           = @{$this->{Constants::DIVISION_PLAYERS}};
-  my $number_of_players = scalar @players;
-
-  my $division_name = $this->{Constants::DIVISION_NAME};
-
-  my $division_string = "*$division_name\n";
-  $division_string .= "                                      0\n";
-
-  for (my $player_number = 0; $player_number < $number_of_players; $player_number++)
-  {
-    my $player_name = $this->{Constants::DIVISION_PLAYERS}->[$player_number];
-    $division_string .= sprintf "%-30s", $player_name; 
-    for (my $round = 0; $round < $number_of_rounds; $round++)
-    {
-      my $player_result    = $this->get_matrix_index($player_number, $round);
-      my $opponent_number  = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
-      my $player_tou_score = $player_result->{Constants::RESULT_TOU_SCORE};
-      my $player_is_first  = $player_result->{Constants::RESULT_PLAYER_IS_FIRST};
-      my $plus = '';
-      if ($player_is_first)
-      {
-        $plus = '+';
-      }
-      $division_string .= (sprintf "%6s", $player_tou_score) .
-                          (sprintf "%5s", $plus . $opponent_number) . " ";
-    }
-    $division_string .= "\n";
-  }
-  return $division_string;
-}
-
-sub is_valid
-{
-  my $this = shift;
-  return $this->{Constants::DIVISION_VALID};
-}
-
-sub set_verification_report
-{
-  my $this = shift;
-  my $report = shift;
-  $this->{Constants::DIVISION_VERIFICATION_REPORT} = $report;
-}
-
 sub create_matrix
 {
   my $this = shift;
@@ -128,6 +50,18 @@ sub create_matrix
   $this->{Constants::DIVISION_MATRIX} = \@matrix;
 }
 
+sub get_matrix_index
+{
+  my $this          = shift;
+  my $player_number = shift;
+  my $round         = shift;
+
+  my $matrix = $this->{Constants::DIVISION_MATRIX};
+  my $number_of_rounds = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
+
+  return $matrix->[ ($player_number *  $number_of_rounds) + $round ];
+}
+
 sub initialize
 {
   my $this = shift;
@@ -152,16 +86,32 @@ sub initialize
   return $self;
 }
 
-sub get_matrix_index
+sub is_valid
 {
-  my $this          = shift;
-  my $player_number = shift;
-  my $round         = shift;
+  my $this = shift;
+  return $this->{Constants::DIVISION_VALID};
+}
 
-  my $matrix = $this->{Constants::DIVISION_MATRIX};
-  my $number_of_rounds = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
+sub new
+{
+  my $this = shift;
 
-  return $matrix->[ ($player_number *  $number_of_rounds) + $round ];
+  my $toufile         = shift;
+  my $division_name   = shift;
+  my $division_number = shift;
+  my $players         = shift;
+  my $game_data       = shift;
+
+  my $division = $this->initialize(
+                                    $toufile,
+                                    $division_name,
+                                    $division_number,
+                                    $players,
+                                    $game_data
+                                  );
+
+  $division->create_matrix();
+  return $division;
 }
 
 sub process
@@ -311,6 +261,56 @@ sub process
     }
   }  
   return 0;
+}
+
+sub set_valid
+{
+  my $this        = shift;
+  my $valid_value = shift;
+  $this->{Constants::DIVISION_VALID} = $valid_value;
+}
+
+sub set_verification_report
+{
+  my $this = shift;
+  my $report = shift;
+  $this->{Constants::DIVISION_VERIFICATION_REPORT} = $report;
+}
+
+sub to_string
+{
+  my $this = shift;
+
+  my $number_of_rounds  = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
+  my @players           = @{$this->{Constants::DIVISION_PLAYERS}};
+  my $number_of_players = scalar @players;
+
+  my $division_name = $this->{Constants::DIVISION_NAME};
+
+  my $division_string = "*$division_name\n";
+  $division_string .= "                                      0\n";
+
+  for (my $player_number = 0; $player_number < $number_of_players; $player_number++)
+  {
+    my $player_name = $this->{Constants::DIVISION_PLAYERS}->[$player_number];
+    $division_string .= sprintf "%-30s", $player_name; 
+    for (my $round = 0; $round < $number_of_rounds; $round++)
+    {
+      my $player_result    = $this->get_matrix_index($player_number, $round);
+      my $opponent_number  = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
+      my $player_tou_score = $player_result->{Constants::RESULT_TOU_SCORE};
+      my $player_is_first  = $player_result->{Constants::RESULT_PLAYER_IS_FIRST};
+      my $plus = '';
+      if ($player_is_first)
+      {
+        $plus = '+';
+      }
+      $division_string .= (sprintf "%6s", $player_tou_score) .
+                          (sprintf "%5s", $plus . $opponent_number) . " ";
+    }
+    $division_string .= "\n";
+  }
+  return $division_string;
 }
 
 1;
