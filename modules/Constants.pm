@@ -66,6 +66,11 @@ use constant TOU_EVENT                        => 'TOU Event';
 use constant TOU_TOURNAMENT                   => 'TOU Tournament';
 use constant TOU_DIVISION_DATA                => 'TOU Division Data';
 
+use constant UNBLESSED_IGNORE_KEYS =>
+{
+
+};
+
 use constant DIVISION_TOUFILE                 => 'Division Filename';
 use constant DIVISION_NAME                    => 'Division Name';
 use constant DIVISION_NUMBER                  => 'Division Number';

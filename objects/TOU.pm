@@ -438,7 +438,7 @@ sub new
           country     => $player_country,
           photo       => Utils::get_player_photo($player_name),
           suspended   => 0,  # Updated later
-          deceased    => !!$deceased_players_hash->{$player_name},
+          deceased    => $deceased_players_hash->{$player_name} ? 1 : 0,
           provisional => -1, # Updated laster
           total_games => 0,   # Updated later
           last_played => $date, 
@@ -491,75 +491,32 @@ sub new
 
 sub get_unblessed_ref
 {
-  my $this = shift;
-  
-  my $unblessed = {};
+  my $obj = shift;
 
-  my $ignore =
-  {
-    Constants::TOU_DBH => 1,
-    Constants::TOU_CONVERSION_HASH => 1,
-    Constants::TOU_PLAYER_DATA => 1
-  };
+  my $unblessed;
 
-  foreach my $key (keys %{$this})
+  if (ref($obj) eq 'ARRAY')
   {
-    if (!$ignore->{$key})
-    {
-      my $blessed_data   = $this->{$key};
-      my $unblessed_data = {};
-      if ($key eq Constants::TOU_DIVISION_DATA)
-      {
-        foreach my $tou_div_key (keys %{$blessed_data})
-        {
-          my $blessed_division_obj = $blessed_data->{$tou_div_key};
-          my $unblessed_division_obj = {};
-          foreach my $div_key (keys %{$blessed_division_obj})
-          {
-            my $unblessed_division_obj_field = $blessed_division_obj->{$div_key};
-            if ($div_key eq Constants::DIVISION_MATRIX)
-            {
-              for (my $i = 0; $i < scalar @{$unblessed_division_obj_field}; $i++)
-              {
-                my $blessed_result = $unblessed_division_obj_field->[$i];
-                my $unblessed_result = {};
-                foreach my $result_key (keys %{$blessed_result})
-                {
-                  $unblessed_result->{$result_key} = $blessed_result->{$result_key};
-                }
-                $unblessed_division_obj_field->[$i] = $unblessed_result;
-              }
-            }
-            elsif ($div_key eq Constants::DIVISION_GAME_DATA)
-            {
-              for (my $i = 0; $i < scalar @{$unblessed_division_obj_field}; $i++)
-              {
-                my $blessed_array = $unblessed_division_obj_field->[$i];
-                my $unblessed_array = [];
-                for (my $j = 0; $j < scalar @{$blessed_array}; $j++)
-                {
-                  my $blessed_result = $blessed_array->[$j];
-                  my $unblessed_result = {};
-                  foreach my $result_key (keys %{$blessed_result})
-                  {
-                    $unblessed_result->{$result_key} = $blessed_result->{$result_key};
-                  }
-                  $unblessed_array->[$j] = $unblessed_result;
-                }
-                $unblessed_division_obj_field->[$i] = $unblessed_array;
-              }
-            }
-            $unblessed_division_obj->{$div_key} = $unblessed_division_obj_field;
-          }
-          $unblessed_data->{$tou_div_key} = $unblessed_division_obj;
-        }
-      }
-      else
-      {
-        $unblessed_data = $blessed_data;
-      }
-      $unblessed->{$key} = $unblessed_data;
-    }
+    $unblessed = []; 
+    for (my $i = 0; $i < scalar @{$obj}; $I++)
+    {   
+      $unblessed->[$i] = get_unblessed_ref($obj->[$i]);
+    }   
+  }
+  elsif (ref($obj))
+  {
+    $unblessed = {}; 
+    foreach my $key (keys %{$obj})
+    {   
+      if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
+      {   
+        $unblessed->{$key} = get_unblessed_ref($obj->{$key});
+      }   
+    }   
+  }
+  else
+  {
+    $unblessed = $obj;
   }
   return $unblessed;
 }

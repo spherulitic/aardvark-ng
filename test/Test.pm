@@ -24,12 +24,11 @@ my $syntax;
 
 GetOptions
 (
-  alphabetic  => \$alphabetic,
+  alphabetize => \$alphabetic,
   redundant   => \$redundant,
   syntax      => \$syntax,
   setexpected => \$setexpected
 );
-
 
 if ($syntax)
 {
@@ -39,55 +38,241 @@ elsif ($redundant)
 {
   Test::check_for_redundant_routines();
 }
+elsif ($alphabetic)
+{
+  Test::alphabetize_routine_order();
+}
 else
 {
   Test::check_syntax();
   Test::check_for_redundant_routines();
+  Test::alphabetize_routine_order();
   Test::Harness();
 }
 
-sub Harness
+
+sub get_unblessed_ref
 {
-  print Test::make_title('STARTING TEST HARNESS', '%', 40);
-  # Processing Errors
-  testrun('PROCESSING ERRORS', 1, 14);
+  my $obj = shift;
 
-  # Processing Warnings
+  my $unblessed;
 
-  # Create an incorrect and missing flag for testing
-  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
-  system "mv $flag_dir/USA.png $flag_dir/USB.png";
-
-  testrun('PROCESSING WARNINGS', 15, 15);
-
-  system "mv $flag_dir/USB.png $flag_dir/USA.png";
-}
-
-sub setup_testrun
-{
-  my $alt_names_hash        = Utils::populate_alt_names_hash();
-  my $deceased_players_hash = Utils::populate_deceased_players_hash($alt_names_hash);
-  my $dbh                   = Utils::connect_to_database();
-
-  Utils::drop_all_wespa_tables($dbh, $alt_names_hash);
-  Utils::initialize_database($dbh, Constants::TABLES, Constants::TABLE_CREATION_ORDER);
-
-  return ($dbh, $alt_names_hash, $deceased_players_hash);
-}
-
-sub convert_to_response
-{
-  my $boolean = shift;
-  my $response_text;
-  if ($boolean)
+  if (ref($obj) eq 'ARRAY')
   {
-    $response_text = 'FAILED';
+    $unblessed = [];
+    for (my $i = 0; $i < scalar @{$obj}; $I++)
+    {
+      $unblessed->[$i] = get_unblessed_ref($obj->[$i]);
+    }
+  }
+  elsif (ref($obj))
+  {
+    $unblessed = {};
+    foreach my $key (keys %{$obj})
+    {
+      if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
+      {
+        $unblessed->{$key} = get_unblessed_ref($obj->{$key});
+      }
+    }
   }
   else
   {
-    $response_text = 'OK    ';
+    $unblessed = $obj;
   }
-  return $response_text;
+  return $unblessed;
+}
+
+
+sub alphabetize_routine_order
+{
+  print Test::make_title('ALPHABETIZING ROUTINE ORDER', '%', Constants::TEST_TITLE_WIDTH);
+
+  my $directories = Constants::PERL_DIRECTORIES;
+  
+  my @files = ();
+  
+  foreach my $dir (@{$directories})
+  {
+    opendir (my $fh_dir, $dir);
+    push @files, map {$dir . '/' . $_} (grep {/\.p[ml]/} readdir $fh_dir);
+  }
+ 
+  foreach my $f (@files)
+  {
+    my $routine_hash    = {};
+    my $current_routine;
+    my $in_current_routine = 0;
+    my $file_string = '';
+
+    open(my $fh, '<', $f);
+    while(<$fh>)
+    {
+      if (/^sub (.*)/)
+      {
+        $current_routine = $1;
+        $current_routine =~ s/\s//g;
+        $routine_hash->{$current_routine} = '';
+      }
+      elsif (!$current_routine)
+      {
+        $file_string .= $_;
+      }
+      elsif (/^\{\s*/)
+      {
+        $in_current_routine = 1;
+      }
+      elsif (/^\}\s*/)
+      {
+        $in_current_routine = 0;
+      }
+      elsif ($in_current_routine)
+      {
+        $routine_hash->{$current_routine} .= $_;
+      }
+    }
+    my @alphabetized_routine_keys = sort keys %{$routine_hash};
+    open (my $write_fh, '>', $f)
+    print $write_fh $file_string;
+    for (my $i = 0; $i < scalar @alphabetized_routine_keys; $i++)
+    {
+      my $key = $alphabetized_routine_keys[$i];
+      my $routine_content = $routine_hash->{$key};
+      print $write_fh "sub $key\n";
+      print $write_fh "{\n";
+      print $write_fh $routine_content;
+      print $write_fh "}\n\n";
+    }
+    print $write_fh "1;";
+    close $write_fh;
+  }
+}
+
+sub check_for_redundant_routines
+{
+  print Test::make_title('CHECKING FOR REDUNDANT ROUTINES', '%', Constants::TEST_TITLE_WIDTH);
+
+  my $directories = Constants::PERL_DIRECTORIES;
+  
+  my @files = ();
+  
+  foreach my $dir (@{$directories})
+  {
+    opendir (my $fh_dir, $dir);
+    push @files, map {$dir . '/' . $_} (grep {/\.p[ml]/} readdir $fh_dir);
+  }
+  
+  my $file_routines = {};
+  
+  foreach my $f (@files)
+  {
+    $file_routines->{$f} = [];
+    open(my $fh, '<', $f);
+    while(<$fh>)
+    {
+      if (/^sub (.*)/)
+      {
+        push @{$file_routines->{$f}}, $1;
+      }
+    }
+  }
+
+  my $ignore = {
+                 'to_string'  => 1,
+                 'initialize' => 1,
+                 'process'    => 1,
+                 'is_valid'   => 1
+               };
+
+  foreach my $f1 (@files)
+  {
+    my $f1_routines = $file_routines->{$f1};
+    foreach my $f2 (@files)
+    {
+      my $f2_routines = $file_routines->{$f2};
+      for (my $i = 0; $i < scalar @{$f1_routines}; $i++)
+      {
+        for (my $k = $i + 1; $k < scalar @{$f2_routines}; $k++)
+        {
+          my $routine1 = $f1_routines->[$i];
+          my $routine2 = $f2_routines->[$k];
+          if ($routine1 eq $routine2 && !$ignore->{$routine1})
+          {
+            Utils::format_error
+            ([
+               ['WARNING', 'Redundant routine name found'],
+               ['File 1', $f1],
+               ['File 2', $f2],
+               ['Routine', $routine1]
+             ]);
+          }
+        }
+      }    
+    }
+  }
+}
+
+sub check_syntax
+{
+  print Test::make_title('CHECKING SYNTAX', '%', Constants::TEST_TITLE_WIDTH);
+  my $directories = Constants::PERL_DIRECTORIES;
+  my $dirs = '';
+  for (my $i = 0; $i < scalar @{$directories}; $i++)
+  {
+    $dirs .= $directories->[$i] . ' ';
+  }
+
+  my $cmd = "find $dirs -name \"*.p[lm]\" | ";
+
+  open (my $cmd_fh, $cmd) or die "$!\n";
+  while (<$cmd_fh>)
+  {
+    my $file = $_;
+    my $syntax_log = 'syntax_log';
+
+    system "perl -cw $file > $syntax_log 2>&1";
+    open (my $syn_fh, '<', $syntax_log);
+
+    while (<$syn_fh>)
+    {
+      if ($_ =~ /OK/)
+      {
+        last;
+      }
+      # print $_;
+    }
+    system "rm $syntax_log";
+  }
+  print "\n";
+}
+
+sub compare_json
+{
+  my $expected_json = shift;
+  my $actual_json   = shift;
+  my $failure_obj   = shift;
+
+  my $expected_obj = JSON::XS::decode_json($expected_json); 
+  my $actual_obj   = JSON::XS::decode_json($actual_json);
+
+  return compare_objects($expected_obj, $actual_obj, $failure_obj);
+}
+
+sub compare_keys
+{
+  my $expected_keys_ref = shift;
+  my $actual_keys_ref   = shift;
+  my $failure_obj       = shift;
+
+  my $expected_keys   = join ",", sort @{$expected_keys_ref};
+  my $actual_keys     = join ",", sort @{$actual_keys_ref};
+
+  return Test::compare_lines(
+                              $expected_keys,
+                              $actual_keys,
+                              0,
+                              $failure_obj
+                            );
 }
 
 sub compare_lines
@@ -99,7 +284,7 @@ sub compare_lines
 
   if (! defined $actual_line)
   {
-    $actual_line = Constants::UNDEFINED_STRING;
+    $actual_line = '';
   }
 
   my $min_line = length $expected_line;
@@ -137,36 +322,20 @@ sub compare_lines
       $diffs .= ' ';
     }
   }
+
   $diffs .= '^' x ($max_line - $min_line);
 
   if ($failed)
   {
     $failure_obj->set_failure(
                                "Results or keys do not match on line $line_number",
-                               $expected_line,
-                               $actual_line,
-                               $diffs
+                               ">$expected_line<",
+                               ">$actual_line<",
+                               " $diffs"
                              );
   }
 
   return $failure_obj;
-}
-
-sub compare_keys
-{
-  my $expected_keys_ref = shift;
-  my $actual_keys_ref   = shift;
-  my $failure_obj       = shift;
-
-  my $expected_keys   = join ",", sort @{$expected_keys_ref};
-  my $actual_keys     = join ",", sort @{$actual_keys_ref};
-
-  return Test::compare_lines(
-                              $expected_keys,
-                              $actual_keys,
-                              0,
-                              $failure_obj
-                            );
 }
 
 sub compare_objects
@@ -230,18 +399,6 @@ sub compare_objects
   return $failure_obj;
 }
 
-sub compare_json
-{
-  my $expected_json = shift;
-  my $actual_json   = shift;
-  my $failure_obj   = shift;
-
-  my $expected_obj = JSON::XS::decode_json($expected_json); 
-  my $actual_obj   = JSON::XS::decode_json($actual_json);
-
-  return compare_objects($expected_obj, $actual_obj, $failure_obj);
-}
-
 sub compare_strings
 {
   my $expected_string = shift;
@@ -287,6 +444,97 @@ sub compare_strings
   return $failure_obj;
 }
 
+sub convert_to_response
+{
+  my $boolean = shift;
+  my $response_text;
+  if ($boolean)
+  {
+    $response_text = 'FAILED';
+  }
+  else
+  {
+    $response_text = 'OK    ';
+  }
+  return $response_text;
+}
+
+sub format_expected_stdout
+{
+  my $stdout = shift;
+  my @stdout_lines = split /\n/, $stdout;
+  my $title = 'EXPECTED STDOUT: ';
+  my $title_length = length $title;
+
+  my $formatted_stdout = $title;
+  for (my $i = 0; $i < scalar @stdout_lines; $i++)
+  {
+    if ($i == 0)
+    {
+      $formatted_stdout .= $stdout_lines[$i] . "\n";
+    }
+    else
+    {
+      $formatted_stdout .= (' ' x $title_length) . $stdout_lines[$i] . "\n";
+    }
+  }
+  return $formatted_stdout . "\n";
+}
+
+sub Harness
+{
+  print Test::make_title('STARTING TEST HARNESS', '%', Constants::TEST_TITLE_WIDTH);
+  # Processing Errors
+  testrun('PROCESSING ERRORS', 1, 14);
+
+  # Processing Warnings
+
+  # Create an incorrect and missing flag for testing
+  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
+  system "mv $flag_dir/USA.png $flag_dir/USB.png";
+
+  testrun('PROCESSING WARNINGS', 15, 15);
+
+  system "mv $flag_dir/USB.png $flag_dir/USA.png";
+}
+
+sub make_title
+{
+  my $content = shift;
+  my $char    = shift;
+  my $width   = shift;
+
+  my $border        = $char x $width;
+  my $border_length = length $border;
+
+  my $margin       = $border_length - (length $content);
+  my $left_margin  = $char x (int ($margin / 2 ) - 1);
+  my $right_margin = $char x (int ($margin / 2 ) - 1);
+
+  if ($margin % 2 == 1)
+  {
+    $right_margin .= $char;
+  }
+
+  my $title =  "$border\n";
+     $title .= "$left_margin $content $right_margin\n";
+     $title .= "$border\n\n";
+
+  return $title;
+}
+
+sub setup_testrun
+{
+  my $alt_names_hash        = Utils::populate_alt_names_hash();
+  my $deceased_players_hash = Utils::populate_deceased_players_hash($alt_names_hash);
+  my $dbh                   = Utils::connect_to_database();
+
+  Utils::drop_all_wespa_tables($dbh, $alt_names_hash);
+  Utils::initialize_database($dbh, Constants::TABLES, Constants::TABLE_CREATION_ORDER);
+
+  return ($dbh, $alt_names_hash, $deceased_players_hash);
+}
+
 sub testcase
 {
   my $dbh                   = shift;
@@ -297,7 +545,7 @@ sub testcase
 
   my $padded_case = sprintf "%3s", $case;
 
-  print Test::make_title("TEST CASE $padded_case", '~', 40);
+  print Test::make_title("TEST CASE $padded_case", '~', Constants::TEST_TITLE_WIDTH);
 
   my $test_dir   = Constants::TEST_DIRECTORY;
   my $tou_dir    = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . Constants::TEST_TOU_PATH;
@@ -340,9 +588,9 @@ sub testcase
 
   select STDOUT;
 
-  if (!defined $actual_stdout)
+  if (!$actual_stdout)
   {
-    $actual_stdout = Constants::UNDEFINED_STRING;
+    $actual_stdout = '';
   }
 
   Utils::write_string_to_file($actual_stdout, $actual_stdout_file);
@@ -380,28 +628,6 @@ sub testcase
          );
 }
 
-sub format_expected_stdout
-{
-  my $stdout = shift;
-  my @stdout_lines = split /\n/, $stdout;
-  my $title = 'EXPECTED STDOUT: ';
-  my $title_length = length $title;
-
-  my $formatted_stdout = $title;
-  for (my $i = 0; $i < scalar @stdout_lines; $i++)
-  {
-    if ($i == 0)
-    {
-      $formatted_stdout .= $stdout_lines[$i] . "\n";
-    }
-    else
-    {
-      $formatted_stdout .= (' ' x $title_length) . $stdout_lines[$i] . "\n";
-    }
-  }
-  return $formatted_stdout . "\n";
-}
-
 sub testrun
 {
   my $run_title = shift;
@@ -418,7 +644,7 @@ sub testrun
 
   my $player_data = {};
 
-  print Test::make_title("TEST RUN: $run_title", '*', 40);
+  print Test::make_title("TEST RUN: $run_title", '*', Constants::TEST_TITLE_WIDTH);
 
   for (my $i = $first_tc; $i <= $last_tc; $i++)
   {
@@ -451,112 +677,4 @@ sub testrun
   }
 }
 
-sub make_title
-{
-  my $content = shift;
-  my $char    = shift;
-  my $width   = shift;
-
-  my $border        = $char x $width;
-  my $border_length = length $border;
-
-  my $margin       = $border_length - (length $content);
-  my $left_margin  = $char x (int ($margin / 2 ) - 1);
-  my $right_margin = $char x (int ($margin / 2 ) - 1);
-
-  if ($margin % 2 == 1)
-  {
-    $right_margin .= $char;
-  }
-
-  my $title =  "$border\n";
-     $title .= "$left_margin $content $right_margin\n";
-     $title .= "$border\n\n";
-
-  return $title;
-}
-
-sub check_for_redundant_routines
-{
-  print Test::make_title('CHECKING FOR REDUNDANT ROUTINES', '%', 40);
-
-  my $directories = Constants::PERL_DIRECTORIES;
-  
-  my @files = ();
-  
-  foreach my $dir (@{$directories})
-  {
-    opendir (my $fh_dir, $dir);
-    push @files, map {$dir . '/' . $_} (grep {/\.p[ml]/} readdir $fh_dir);
-  }
-  
-  my $file_subs = {};
-  
-  foreach my $f (@files)
-  {
-    $file_subs->{$f} = [];
-    open(my $fh, '<', $f);
-    while(<$fh>)
-    {
-      if (/^sub (.*)/)
-      {
-        push @{$file_subs->{$f}}, $1;
-      }
-    }
-  }
-
-  my $ignore = {
-                 'to_string'  => 1,
-                 'initialize' => 1,
-                 'process'    => 1,
-                 'is_valid'   => 1
-               };
-
-  foreach my $f1 (@files)
-  {
-    my $f1_subs = $file_subs->{$f1};
-    foreach my $f2 (@files)
-    {
-      my $f2_subs = $file_subs->{$f2};
-      for (my $i = 0; $i < scalar @{$f1_subs}; $i++)
-      {
-        for (my $k = $i + 1; $k < scalar @{$f2_subs}; $k++)
-        {
-          my $sub1 = $f1_subs->[$i];
-          my $sub2 = $f2_subs->[$k];
-          if ($sub1 eq $sub2 && !$ignore->{$sub1})
-          {
-            print "Redundant routine: $sub1\n";
-            print "File 1:            $f1\n";
-            print "File 2:            $f2\n";
-          }
-        }
-      }    
-    }
-  }
-  
-}
-
-sub check_syntax
-{
-  print Test::make_title('CHECKING SYNTAX', '%', 40);
-
-  my $directories = Constants::PERL_DIRECTORIES;
-  my $dirs = '';
-  for (my $i = 0; $i < scalar @{$directories}; $i++)
-  {
-    $dirs .= $directories->[$i] . ' ';
-  }
-
-  my $cmd = "find $dirs -name \"*.p[lm]\" | ";
-
-  open (CMDOUT, $cmd) or die "$!\n";
-  while (<CMDOUT>)
-  {
-    system "perl -cw $_";
-  }
-  print "\n";
-}
-
 1;
-
