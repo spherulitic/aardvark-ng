@@ -46,43 +46,9 @@ else
 {
   Test::check_syntax();
   Test::check_for_redundant_routines();
-  Test::alphabetize_routine_order();
+  #Test::alphabetize_routine_order();
   Test::Harness();
 }
-
-
-sub get_unblessed_ref
-{
-  my $obj = shift;
-
-  my $unblessed;
-
-  if (ref($obj) eq 'ARRAY')
-  {
-    $unblessed = [];
-    for (my $i = 0; $i < scalar @{$obj}; $I++)
-    {
-      $unblessed->[$i] = get_unblessed_ref($obj->[$i]);
-    }
-  }
-  elsif (ref($obj))
-  {
-    $unblessed = {};
-    foreach my $key (keys %{$obj})
-    {
-      if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
-      {
-        $unblessed->{$key} = get_unblessed_ref($obj->{$key});
-      }
-    }
-  }
-  else
-  {
-    $unblessed = $obj;
-  }
-  return $unblessed;
-}
-
 
 sub alphabetize_routine_order
 {
@@ -132,7 +98,7 @@ sub alphabetize_routine_order
       }
     }
     my @alphabetized_routine_keys = sort keys %{$routine_hash};
-    open (my $write_fh, '>', $f)
+    open (my $write_fh, '>', $f);
     print $write_fh $file_string;
     for (my $i = 0; $i < scalar @alphabetized_routine_keys; $i++)
     {

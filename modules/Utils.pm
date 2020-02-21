@@ -79,7 +79,7 @@ sub check_country_flag_icons
     if (!(-e $flag))
     {   
       Utils::format_error([
-                            ['WARNING', 'missing flag image'],
+                            ['WARNING', 'Missing flag image'],
                             ['Country', $country],
                             ['Missing File', $flag],
                           ]);
@@ -173,8 +173,8 @@ sub convert_trigraph
   if (length $trigraph == 3)
   {
     Utils::format_error([
-                          ['WARNING:  ', 'Uncorrected country trigraph'],
-                          ['Trigraph: ', $trigraph],
+                          ['WARNING', 'Uncorrected country trigraph'],
+                          ['Trigraph', $trigraph],
                         ]);
   }
   return undef;
@@ -247,7 +247,7 @@ sub drop_all_wespa_tables
   my $reset_last_played =
   "
   UPDATE $players_tn AS p
-  SET p.last_played = '0000-00-00'
+  SET p.last_played = '0001-01-01'
   "; 
   
   $dbh->do($reset_last_played, {"RaiseError" => 1}); 
@@ -1188,7 +1188,10 @@ sub get_country_from_filename
 
 sub uniq
 {
-  [ keys { map { $_ => 1 } @{$_[0]} } ]
+  my $array_ref = shift;
+  my @array = @{$array_ref};
+  my $hashref = map { $_ => 1 } @array;
+  return keys %{$hashref};
 }
 
 sub write_string_to_file

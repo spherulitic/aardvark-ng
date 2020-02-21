@@ -497,22 +497,22 @@ sub get_unblessed_ref
 
   if (ref($obj) eq 'ARRAY')
   {
-    $unblessed = []; 
-    for (my $i = 0; $i < scalar @{$obj}; $I++)
-    {   
+    $unblessed = [];
+    for (my $i = 0; $i < scalar @{$obj}; $i++)
+    {
       $unblessed->[$i] = get_unblessed_ref($obj->[$i]);
-    }   
+    }
   }
   elsif (ref($obj))
   {
-    $unblessed = {}; 
+    $unblessed = {};
     foreach my $key (keys %{$obj})
-    {   
+    {
       if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
-      {   
+      {
         $unblessed->{$key} = get_unblessed_ref($obj->{$key});
-      }   
-    }   
+      }
+    }
   }
   else
   {
@@ -755,7 +755,7 @@ sub compare_sts_and_tou_names
     $tou_names->{$key} = 0;
   }
 
-  my $missing_from_sts = join ",", grep {$tou_names->{$_}} keys $tou_names;
+  my $missing_from_sts = join ",", sort grep {$tou_names->{$_}} keys %{$tou_names};
 
   if ($missing_from_sts)
   {

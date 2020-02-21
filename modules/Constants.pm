@@ -12,6 +12,7 @@ use constant MODULES_DIRECTORY  => 'modules';
 use constant OBJECTS_DIRECTORY  => 'objects';
 use constant CGIBIN_DIR         => 'cgi-bin';
 
+use constant TEST_TITLE_WIDTH                 => 50;
 use constant TEST_TOU_PATH                    => '/aardvark/2020/USA/';
 use constant TEST_TOU_DIRECTORY               => 'tou';
 use constant TEST_STDOUT_DIRECTORY            => 'stdout';
@@ -68,7 +69,12 @@ use constant TOU_DIVISION_DATA                => 'TOU Division Data';
 
 use constant UNBLESSED_IGNORE_KEYS =>
 {
-
+  Constants::TOU_DBH             => 1,
+  Constants::TOU_PLAYER_DATA     => 1,
+  Constants::TOU_CONVERSION_HASH => 1,
+  'lexicon_id'                   => 1,
+  'player_id'                    => 1,
+  'game_id'                      => 1
 };
 
 use constant DIVISION_TOUFILE                 => 'Division Filename';

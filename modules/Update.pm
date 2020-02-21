@@ -427,8 +427,7 @@ sub update_dynamically_loaded_content
 
   my @country_data = map { $_->{'country'}  } @valid_player_data;
 
-  @country_data = @{Utils::uniq(\@country_data)};
-
+  @country_data = Utils::uniq(\@country_data);
 
   my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
@@ -577,14 +576,14 @@ sub update_html
 
   my @all_countries = map { $_->{'country'}  } @all_players;
 
-  @all_countries = @{Utils::uniq(\@all_countries)};
+  @all_countries = Utils::uniq(\@all_countries);
 
   my @country_rankings_to_create = map { $_->{'country'}  } (grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}   } @all_players);
-  @country_rankings_to_create = @{Utils::uniq(\@country_rankings_to_create)};
+  @country_rankings_to_create = Utils::uniq(\@country_rankings_to_create);
 
   my %valid_link_countries = map { $_ => 1 } @country_rankings_to_create;
 
-  @player_ids_to_create = @{Utils::uniq(\@player_ids_to_create)};
+  @player_ids_to_create = Utils::uniq(\@player_ids_to_create);
   @player_ids_to_create = sort {$a <=> $b} @player_ids_to_create;
 
   # Update the player html pages that have been changed
