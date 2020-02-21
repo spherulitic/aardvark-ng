@@ -107,20 +107,33 @@ sub alphabetize_routine_order
         $routine_hash->{$current_routine} .= $_;
       }
     }
-    my @alphabetized_routine_keys = sort keys %{$routine_hash};
-    open (my $write_fh, '>', $f);
-    print $write_fh $file_string;
-    for (my $i = 0; $i < scalar @alphabetized_routine_keys; $i++)
+    if ($current_routine)
     {
-      my $key = $alphabetized_routine_keys[$i];
-      my $routine_content = $routine_hash->{$key};
-      print $write_fh "sub $key\n";
-      print $write_fh "{\n";
-      print $write_fh $routine_content;
-      print $write_fh "}\n\n";
+      my @alphabetized_routine_keys = sort keys %{$routine_hash};
+
+      my $alphabetized_file = '';
+
+
+      $alphabetized_file .= $file_string;
+      for (my $i = 0; $i < scalar @alphabetized_routine_keys; $i++)
+      {
+        my $key = $alphabetized_routine_keys[$i];
+        my $routine_content = $routine_hash->{$key};
+        $alphabetized_file .= "sub $key\n";
+        $alphabetized_file .= "{\n";
+        $alphabetized_file .= $routine_content;
+        $alphabetized_file .= "}\n\n";
+      }
+      $alphabetized_file .= "1;";
+
+      my $original_file = Utils::write_file_to_string($f);
+
+      if ($original_file ne $alphabetized_file)
+      {
+        Utils::write_string_to_file($alphabetized_file, $f);
+        printf "Alphabetized %30s\n", $f;
+      }
     }
-    print $write_fh "1;";
-    close $write_fh;
   }
 }
 

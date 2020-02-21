@@ -844,9 +844,4 @@ use constant TEMPLATE_FOOTER =>
 FOOTER
 ;
 
-
-
-
 1;
-
-1;1;1;1;1;1;
