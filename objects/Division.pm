@@ -306,7 +306,7 @@ sub to_string
         $plus = '+';
       }
       $division_string .= (sprintf "%6s", $player_tou_score) .
-                          (sprintf "%5s", $plus . $opponent_number) . " ";
+                          (sprintf "%5s", $plus . ($opponent_number + 1)) . " ";
     }
     $division_string .= "\n";
   }

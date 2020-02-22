@@ -10,6 +10,7 @@ use DBI;
 use Data::Dumper;
 use Term::ANSIColor;
 use List::Util qw(max);
+use Clone 'clone';
 
 use lib './modules';
 use lib './objects';
@@ -32,7 +33,8 @@ sub compare_sts_and_tou_names
     $tou_names->{$key} = 0;
   }
 
-  my $missing_from_sts = join ",", sort grep {$tou_names->{$_}} keys %{$tou_names};
+  my @nonbye_names     = grep {!Utils::player_name_is_bye($_)} keys %{$tou_names};
+  my $missing_from_sts = join ",", sort grep {$tou_names->{$_}} @nonbye_names;
 
   if ($missing_from_sts)
   {
@@ -114,6 +116,12 @@ sub initialize
   return $self;
 }
 
+sub is_processed
+{
+  my $this = shift;
+  return $this->{Constants::TOU_PROCESSED};
+}
+
 sub is_valid
 {
   my $this = shift;
@@ -163,7 +171,8 @@ sub load
   for (my $i = 0; $i < scalar @division_keys; $i++)
   {
     my $key = $division_keys[$i];
-    my $division      = $divisions->{$key};
+    my $division      = $divisions->{$key};    
+
     my $division_name = $division->{Constants::DIVISION_NAME};
 
     my $division_id   = Utils::insert_hash_into_table
@@ -182,11 +191,15 @@ sub load
 
     foreach my $tr (@{$tournament_results})
     {
-      my $total_games = $tr->{wins} + $tr->{losses};
- 
-      Utils::add_games_to_existing_player($dbh, $tr->{player_id}, $total_games);
-      $tr->{division_id} = $division_id;
-      Utils::insert_hash_into_table($dbh, $tournament_results_tn, $tr);
+      # If I wrote this whole thing correctly,
+      # the only null player_id's should be for 'bye players'
+      if ($tr->{player_id})
+      {
+        my $total_games = $tr->{wins} + $tr->{losses};
+        Utils::add_games_to_existing_player($dbh, $tr->{player_id}, $total_games);
+        $tr->{division_id} = $division_id;
+        Utils::insert_hash_into_table($dbh, $tournament_results_tn, $tr);
+      }
     }
 
     my $gprs = $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS};
@@ -733,8 +746,8 @@ sub process
                            $filename,
                            $current_division_name,
                            $current_division_number++,
-                           \@players,
-                           \@game_data
+                           Clone::clone(\@players),
+                           Clone::clone(\@game_data)
                          )
            )
 
@@ -823,8 +836,8 @@ sub process
   }
 
   $this->compare_sts_and_tou_names();
-
   $this->{Constants::TOU_PROCESSED} = 1;
+  $this->rewrite()
 }
 
 sub process_division
@@ -864,11 +877,6 @@ sub process_division
     my $sanitized_player_name = Utils::sanitize($player_name); 
     my $player_id   = $player_data->[1];
 
-    if (!$player_name)
-    {
-      die Dumper(\@players) . Dumper($player_data) . $players[$row];
-    }
-
     $this->{Constants::TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
 
     my $tournament_result =
@@ -894,7 +902,7 @@ sub process_division
       $tournament_result->{byes}     += $player_result->{Constants::RESULT_BYES};
       $tournament_result->{bye_wins} += $player_result->{Constants::RESULT_BYE_WINS};
       $tournament_result->{spread}   += $player_result->{Constants::RESULT_SPREAD};
-      $player_result->add_to_gpr($game_and_player_results, $player_id);
+      $player_result->add_to_gpr($game_and_player_results, $player_id, $player_name);
     }
     push @tournament_results, $tournament_result;
   }
@@ -904,7 +912,24 @@ sub process_division
   $division->{Constants::DIVISION_TOURNAMENT_RESULTS}      = \@tournament_results;
   $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS} = $game_and_player_results;
   $this->{Constants::TOU_DIVISION_DATA}->{$division->{Constants::DIVISION_NAME}} = $division;
+  
+
   return 0;
+}
+
+sub rewrite
+{
+  my $this = shift;
+  if ($this->is_valid() && $this->rewrite_needed() && $this->is_processed())
+  {
+    Utils::write_string_to_file($this->to_string(), $this->{Constants::TOU_REWRITE_FILENAME});
+  }
+}
+
+sub rewrite_needed
+{
+  my $this = shift;
+  return $this->{Constants::TOU_REWRITE_NEEDED};
 }
 
 sub set_error_report
@@ -924,7 +949,7 @@ sub to_string
   my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
 
   my $tournament_name = $tournament->{name};
-  my $tournament_date = $tournament->{date};
+  my $tournament_date = $tournament->{start_date};
 
   $tournament_date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
 
@@ -937,6 +962,8 @@ sub to_string
            $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
            $divisions->{$b}->{Constants::DIVISION_NUMBER}
          } keys %{$divisions};
+  
+  #die "div keys: " . Dumper(\@division_keys);
 
   for (my $i = 0; $i < scalar @division_keys; $i++)
   {

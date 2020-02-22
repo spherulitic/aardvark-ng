@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use Data::Dumper;
 use Getopt::Long;
+use List::Util;
 
 use lib './objects';
 use lib './modules';
@@ -59,6 +60,8 @@ sub Harness
   testrun('PROCESSING WARNINGS', 15, 15);
 
   system "mv $flag_dir/USB.png $flag_dir/USA.png";
+
+  testrun('BRANCH COVERAGE', 16, 17);
 }
 
 sub alphabetize_routine_order
@@ -212,6 +215,11 @@ sub compare_lines
     $actual_line = '';
   }
 
+  if (! defined $expected_line)
+  {
+    $expected_line = '';
+  }
+  
   my $min_line = length $expected_line;
   my $max_line = length $actual_line;
 
@@ -343,6 +351,8 @@ sub compare_strings
   my @expected_string_lines = split/\n/, $expected_string;
   my @actual_string_lines   = split/\n/, $actual_string;
 
+  my $max_line = List::Util::max(scalar @expected_string_lines, scalar @actual_string_lines);
+
   my $line_count = 0;
   my $expected_line;
   my $actual_line;
@@ -350,11 +360,12 @@ sub compare_strings
   my $failed = 0;
   my $failure_string = '';
 
-  for (my $i = 0; $i < scalar @expected_string_lines; $i++)
+  for (my $i = 0; $i < $max_line; $i++)
   {
     $line_count++;
     $expected_line = $expected_string_lines[$i];
     $actual_line   = $actual_string_lines[$i];
+
     Test::compare_lines(
                          $expected_line,
                          $actual_line,

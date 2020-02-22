@@ -4,16 +4,24 @@ package Result;
 
 use strict;
 use warnings;
-use Data::Dumper;
 
 use lib './modules';
 use Constants;
+use Utils;
 
 sub add_to_gpr
 {
-  my $this      = shift;
-  my $gpr       = shift;
-  my $player_id = shift;
+  my $this        = shift;
+  my $gpr         = shift;
+  my $player_id   = shift;
+  my $player_name = shift;
+
+  # If I did it right, the only
+  # null player_id's should be for 'bye_players'
+  if (Utils::player_name_is_bye($player_name))
+  {
+    return;
+  }
 
   my $opponent_number = $this->{Constants::RESULT_OPPONENT_NUMBER};
   my $player_number   = $this->{Constants::RESULT_PLAYER_NUMBER};

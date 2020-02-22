@@ -750,7 +750,7 @@ sub player_name_is_bye
 
   $name = Utils::sanitize($name);
 
-  if ($name eq "RUSSELLBYERS")
+  if ($name eq 'RUSSELLBYERS')
   {
     return 0;
   }
