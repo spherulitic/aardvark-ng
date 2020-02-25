@@ -1293,8 +1293,8 @@ sub get_tournament_results_html_string
       if ($k == $num_games - 1)
       {
         my $colspan = (scalar @{$games_keys_ref}) - 3;
-        my $af = sprintf ("%.".$rounding."f", $hh_for / $num_games);
-        my $ag = sprintf ("%.".$rounding."f", $hh_ag  / $num_games);
+        my $af = sprintf ("%.$rounding" . q{f}, $hh_for / $num_games);
+        my $ag = sprintf ("%.$rounding" . q{f}, $hh_ag  / $num_games);
         $subentries .=
         "<tr>
            <td colspan='$colspan'></td>
@@ -1311,9 +1311,9 @@ sub get_tournament_results_html_string
       $games_ref->[0]->{hh_wins}   = $hh_wins;
       $games_ref->[0]->{hh_losses} = $hh_losses;
       $games_ref->[0]->{hh_draws}  = $hh_draws;
-      $games_ref->[0]->{hh_pct}    = sprintf ("%.".$rounding."f", ($hh_wins + ($hh_draws / 2)) / $num_games);
-      $games_ref->[0]->{hh_af}     = sprintf ("%.".$rounding."f", $hh_for / $num_games);
-      $games_ref->[0]->{hh_aa}     = sprintf ("%.".$rounding."f", $hh_ag  / $num_games);
+      $games_ref->[0]->{hh_pct}    = sprintf ("%.$rounding" . q{f}, ($hh_wins + ($hh_draws / 2)) / $num_games);
+      $games_ref->[0]->{hh_af}     = sprintf ("%.$rounding" . q{f}, $hh_for / $num_games);
+      $games_ref->[0]->{hh_aa}     = sprintf ("%.$rounding" . q{f}, $hh_ag  / $num_games);
 
       $new_entry .= Utils::make_new_entry_head({games_ref       => $games_ref,
                                                 keys_ref        => $keys_ref,
@@ -1347,7 +1347,7 @@ sub get_tournament_results_html_string
         });
 
       my @statlist = @{$dataitem->{list}};
-      for (my $i = 0; $i < scalar @statlist; $i++)
+      for my $i (0 .. scalar @statlist q{f})
       {
         my $sub_row_class = 'roweven';
     
@@ -1365,7 +1365,7 @@ sub get_tournament_results_html_string
             class    => $sub_row_class
           });
       }
-      $html_string .= "        </table>";
+      $html_string .= '        </table>';
 
       $tournament_stats_html->{$key} = $html_string;
     }
@@ -1391,7 +1391,7 @@ sub get_tournament_template_html_string
   my $tournament_name = $division_data->[0]->[1]->{tournament_name};
   my $tournament_date = $division_data->[0]->[1]->{tournament_date};
  
-  my $division_html_class = "division";
+  my $division_html_class = 'division';
 
   my $ddl = scalar @{$division_data};
 
@@ -1401,25 +1401,25 @@ sub get_tournament_template_html_string
   
   my $display_none_style = "style='display:none;'";
 
-  my $tourney_tabclass  = "tournament_tab";
-  my $tourney_tablink   = "tournament_tablink";
+  my $tourney_tabclass  = 'tournament_tab';
+  my $tourney_tablink   = 'tournament_tablink';
 
 
   my @tabdata = ();
 
-  for (my $i = 0; $i < $ddl; $i++)
+  for my $i (0 .. $ddl - 1)
   {
     my $id   = "division_$i";
     my $text = "Division ". ($i+1);
 
     push @tabdata, [$text, $id];
 
-    my $stats_tabclass    = "stats_tab_"        . $id ;
-    my $stats_tablink     = "stats_tablink_"    . $id ;
-    my $ratings_tabclass  = "ratings_tab_"      . $id ;
-    my $ratings_tablink   = "ratings_tablink_"  . $id ;
-    my $division_tabclass = "division_tab_"     . $id ;
-    my $division_tablink  = "division_tablink_" . $id ;
+    my $stats_tabclass    = "stats_tab_$id"       ;
+    my $stats_tablink     = "stats_tablink_$id"   ;
+    my $ratings_tabclass  = "ratings_tab_$id"     ;
+    my $ratings_tablink   = "ratings_tablink_$id" ;
+    my $division_tabclass = "division_tab_$id"    ;
+    my $division_tablink  = "division_tablink_$id";
  
     if ($i == 0)
     {
@@ -1435,7 +1435,7 @@ sub get_tournament_template_html_string
 
     my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
 
-    for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
+    for my $k (0 .. scalar @{$stats_order_ref} - 1)
     {
       my $cat = $stats_order_ref->[$k];
       my $stat_id = "division_$i" . "_stats_$cat";
@@ -1451,13 +1451,13 @@ sub get_tournament_template_html_string
 
     $stats_content = Utils::make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
 
-    my $div_standings_id = "division_$i" . "_standings";
-    my $div_stats_id     = "division_$i" . "_stats";
-    my $div_ratings_id   = "division_$i" . "_ratings";
+    my $div_standings_id = "division_$i" . '_standings';
+    my $div_stats_id     = "division_$i" . '_stats';
+    my $div_ratings_id   = "division_$i" . '_ratings';
 
     push @ids_to_click, "button_$div_standings_id";
 
-    my $div_tabs = Utils::make_tab_div([["Standings", $div_standings_id],["Statistics", $div_stats_id], ["Ratings", $div_ratings_id]], $division_tabclass, $division_tablink);
+    my $div_tabs = Utils::make_tab_div([['Standings', $div_standings_id],['Statistics', $div_stats_id], ['Ratings', $div_ratings_id]], $division_tabclass, $division_tablink);
 
     my $div_standings_div = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
     my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
@@ -1471,7 +1471,7 @@ sub get_tournament_template_html_string
 
   my $tabs = Utils::make_tab_div(\@tabdata, $tourney_tabclass, $tourney_tablink);
 
-  my $ids_to_click_javascript_array = "[";
+  my $ids_to_click_javascript_array = q{[};
 
   for (my $i = 0; $i < scalar @ids_to_click; $i++)
   {
@@ -1479,13 +1479,13 @@ sub get_tournament_template_html_string
     $ids_to_click_javascript_array .= "'$id'";
     if ($i != (scalar @ids_to_click) - 1)
     {
-      $ids_to_click_javascript_array .= ", ";
+      $ids_to_click_javascript_array .= ', ';
     }
   }
 
-  $ids_to_click_javascript_array .= "]";
+  $ids_to_click_javascript_array .= q{]};
 
-  my $tournament_html_page = "";
+  my $tournament_html_page = $EMPTY_STRING;
 
   $tournament_html_page .= <<"STOP";
 $doctype
@@ -1597,8 +1597,8 @@ sub special_game_to_html
   my $players_dir = $PLAYER_HTML_DIR;
 
   if (
-       ($title eq "Biggest Win"  && $value < 0) ||
-       ($title eq "Biggest Loss" && $value > 0) 
+       ($title eq 'Biggest Win'  && $value < 0) ||
+       ($title eq 'Biggest Loss' && $value > 0) 
      )
   {
     return "";
