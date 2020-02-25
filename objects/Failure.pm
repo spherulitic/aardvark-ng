@@ -2,8 +2,10 @@
 
 package Failure;
 
+
 use strict;
 use warnings;
+use version; our $VERSION = qv('1');
 use Data::Dumper;
 
 use lib './modules';
@@ -14,27 +16,29 @@ sub add_to_traceback
   my $this = shift;
   my $item = shift;
 
-  my $traceback = $this->{Constants::FAILURE_TRACEBACK};
+  my $traceback = $this->{$FAILURE_TRACEBACK};
   if ($traceback)
   {
-    $this->{Constants::FAILURE_TRACEBACK} = $item . ' -> ' . $traceback;
+    $this->{$FAILURE_TRACEBACK} = $item . ' -> ' . $traceback;
   }
   else
   {
-    $this->{Constants::FAILURE_TRACEBACK} = $item;
+    $this->{$FAILURE_TRACEBACK} = $item;
   }
+
+  return 1;
 }
 
 sub get_type
 {
   my $this = shift;
-  return $this->{Constants::FAILURE_TYPE};
+  return $this->{$FAILURE_TYPE};
 }
 
 sub is_failure
 {
   my $this = shift;
-  return $this->{Constants::FAILURE_REASON};
+  return $this->{$FAILURE_REASON};
 }
 
 sub new
@@ -44,12 +48,12 @@ sub new
 
   my $failure = {};
 
-  my $failure_fields = Constants::FAILURE_FIELDS;
+  my $failure_fields = $FAILURE_FIELDS;
 
   for (my $i = 0; $i < scalar @{$failure_fields}; $i++)
   {
     my $field = $failure_fields->[$i];
-    if ($field eq Constants::FAILURE_TYPE)
+    if ($field eq $FAILURE_TYPE)
     {
       $failure->{$field} = $type;
     }
@@ -70,10 +74,12 @@ sub set_failure
   my $actual   = shift;
   my $diffs    = shift;
 
-  $this->{Constants::FAILURE_REASON}           = $reason;
-  $this->{Constants::FAILURE_EXPECTED_RESULTS} = $expected;
-  $this->{Constants::FAILURE_ACTUAL_RESULTS}   = $actual;
-  $this->{Constants::FAILURE_DIFF}             = $diffs;
+  $this->{$FAILURE_REASON}           = $reason;
+  $this->{$FAILURE_EXPECTED_RESULTS} = $expected;
+  $this->{$FAILURE_ACTUAL_RESULTS}   = $actual;
+  $this->{$FAILURE_DIFF}             = $diffs;
+
+  return 1;
 }
 
 sub to_string
@@ -85,7 +91,7 @@ sub to_string
     return '';
   }
 
-  my $failure_fields = Constants::FAILURE_FIELDS;
+  my $failure_fields = $FAILURE_FIELDS;
   my $failure_string = '';
   my $max_length_field = 0;
 
@@ -103,7 +109,7 @@ sub to_string
     my $field = $failure_fields->[$i];
     my $value = $this->{$field};
     my $colon = ':';
-    if ($field eq Constants::FAILURE_DIFF)
+    if ($field eq $FAILURE_DIFF)
     {
       $colon = ' ';
     }

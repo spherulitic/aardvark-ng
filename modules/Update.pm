@@ -4,6 +4,7 @@ package Update;
 
 use strict;
 use warnings;
+use version; our $VERSION = qv('1');
 use DBI;
 use Data::Dumper;
 
@@ -45,18 +46,20 @@ sub load_all_tou_files
 
   foreach my $filename (@filenames_array)
   {
-    my $tou = TOU->new(
-                        $dbh,
-                        $filename,
-                        $alt_names_hash,
-                        $deceased_players_hash,
-                        $player_data
-                      );
+    my $tou = TOU->new({
+                        dbh                   => $dbh,
+                        filename              => $filename,
+                        alt_names_hash        => $alt_names_hash,
+                        deceased_players_hash => $deceased_players_hash,
+                        player_data           => $player_data
+                       });
 
     $tou->load($dbh, $player_data);
     # Testing code:
     last;
   }
+
+  return 1;
 }
 
 sub load_all_tournament_data
@@ -117,6 +120,8 @@ sub load_all_tournament_data
   # database. This now needs to be copied so that
   # CGI requests access the most current data
   Utils::copy_database_to_production();
+
+  return 1;
 }
 
 sub push_local_content
@@ -164,6 +169,7 @@ sub push_local_content
   # Copy the flags
   system "cp -r $flags_dir/ $working_dir";
   
+  return 1;
 }
 
 sub update_cgi
@@ -198,7 +204,7 @@ sub update_cgi
 
   my $filename = Constants::TOURNAMENT_CGI_FILENAME;
 
-  my $tournament_cgi_script = <<CGI
+  my $tournament_cgi_script = <<"CGI"
 #!/usr/bin/perl
 
 use warnings;
@@ -349,6 +355,8 @@ print \$results_html_page;
 CGI
 ;
   Utils::write_string_to_file($tournament_cgi_script, $cgi_dir . '/' . $filename);
+
+  return 1;
 }
 
 sub update_dynamically_loaded_content
@@ -369,14 +377,11 @@ sub update_dynamically_loaded_content
   my $peek_html = "<table class='table'>\n";
   $peek_html .=
     Utils::make_row
-    (
-      0,
-      ['Rank', 'Player', 'Rating'],
-      1,
-      0,
-      'white'
-    );
-
+    ({
+      keys     => ['Rank', 'Player', 'Rating'],
+      is_title => 1,
+      class    => 'white'
+    });
   for (my $i = 0; $i < $cutoff; $i++)
   {
     my $row_class = 'roweven';
@@ -386,7 +391,13 @@ sub update_dynamically_loaded_content
     }
     my $player = $valid_player_data[$i];
     $player->{'rank'} = $i + 1;
-    $peek_html .= Utils::make_row($player, ['rank', 'name', 'rating'], 0, 0, $row_class);
+    $peek_html .=
+      Utils::make_row
+      ({
+        item     => $player,
+        keys     => ['rank', 'name', 'rating'],
+        class    => $row_class
+      });
   }
   $peek_html .= "</table>\n";
 
@@ -402,16 +413,16 @@ sub update_dynamically_loaded_content
 
   my $player_search_html =
     HTML::get_datalist_html
-    (
-      \@player_data,
-      "Player Name:",
-      "/$working_dir/$html_dir/$player_dir",
-      "search_input_players",
-      "datalist_input_element_players",
-      'player_button',
-      'id',
-      'name'
-    );
+    ({
+      data => \@player_data,
+      title => "Player Name:",
+      href => "/$working_dir/$html_dir/$player_dir",
+      html_id => "search_input_players",
+      input_id => "datalist_input_element_players",
+      button_id => 'player_button',
+      data_value_key => 'id',
+      value_key => 'name'
+    });
 
   Utils::write_string_to_file($player_search_html, $player_search_filename);
 
@@ -431,17 +442,16 @@ sub update_dynamically_loaded_content
 
   my $country_search_html =
     HTML::get_datalist_html
-    (
-      \@country_data,
-      "Country:",
-      "/$working_dir/$html_dir/$rankings_dir",
-      "search_input_countries",
-      "datalist_input_element_countries",
-      'country_button',
-      'trigraph',
-      'country'
-    );
-
+    ({
+      data => \@country_data,
+      title => 'Country:',
+      href => "/$working_dir/$html_dir/$rankings_dir",
+      html_id => 'search_input_countries',
+      input_id => 'datalist_input_element_countries',
+      button_id => 'country_button',
+      data_value_key => 'trigraph',
+      value_key => 'country'
+    });
   Utils::write_string_to_file($country_search_html, $country_search_filename);
 
   my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
@@ -488,6 +498,7 @@ sub update_dynamically_loaded_content
 
   Utils::write_string_to_file($tournament_form, $tournament_form_name); 
 
+  return 1;
 }
 
 sub update_html
@@ -602,8 +613,7 @@ sub update_html
     }
     else
     {
-      $photo_filename =~ /\/([^\/]+)$/;
-      $photo_filename = $1;
+      $photo_filename =~ s/.*\/([^\/]+)$/$1/gxms;
     }
 
     my $player_info =
@@ -651,6 +661,8 @@ sub update_html
   my $all_time_stats = HTML::get_alltime_stats_results_html_string($dbh);
   my $all_time_stats_html_page = HTML::get_alltime_template_html_string($all_time_stats);
   Utils::write_string_to_file($all_time_stats_html_page,Constants::HTML_DIR . '/alltime_stats.html');
+
+  return 1;
 }
 
 sub update_rankings_html
@@ -695,8 +707,8 @@ sub update_rankings_html
       print "Unmapped country trigraph: $country\n";
       next;
     }    
-    my $most_recent_tournament = Utils::get_most_recent_tournament($dbh, $country);
 
+    my $most_recent_country_tournament = Utils::get_most_recent_tournament($dbh, $country);
 
     my $rankings_data = 
     {    
@@ -705,8 +717,8 @@ sub update_rankings_html
                                   (
                                     $base_dir,
                                     $tournament_dir,
-                                    $most_recent_tournament->[0] . ".html",
-                                    $most_recent_tournament->[1],
+                                    $most_recent_country_tournament->[0] . ".html",
+                                    $most_recent_country_tournament->[1],
                                   )
     };   
 
@@ -720,6 +732,8 @@ sub update_rankings_html
     my $country_ranking_filename = Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . "/$country.html";
     HTML::write_string_to_file($country_ranking_html_page, $country_ranking_filename); 
   }
+
+  return 1;
 }
 
 1;

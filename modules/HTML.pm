@@ -2,8 +2,10 @@
 
 package HTML;
 
+
 use strict;
 use warnings;
+use version; our $VERSION = qv('1');
 use Data::Dumper;
 
 use lib './modules';
@@ -13,16 +15,16 @@ use Utils;
 sub get_alltime_stats_results_html_string
 {
   my $dbh = shift;
-  my $player_type       = Constants::HTML_ID_PLAYER_TYPE;
-  my $tournament_type   = Constants::HTML_ID_TOURNAMENT_TYPE;
-  my $head_to_head_type = Constants::HTML_ID_HEAD_TO_HEAD_TYPE;
+  my $player_type       = $HTML_ID_PLAYER_TYPE;
+  my $tournament_type   = $HTML_ID_TOURNAMENT_TYPE;
+  my $head_to_head_type = $HTML_ID_HEAD_TO_HEAD_TYPE;
 
-  my $tr_table_name = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
-  my $g_table_name  = Constants::GAMES_TABLE_NAME;
-  my $pr_table_name = Constants::PLAYER_RESULTS_TABLE_NAME;
-  my $p_table_name  = Constants::PLAYERS_TABLE_NAME;
-  my $t_table_name  = Constants::TOURNAMENTS_TABLE_NAME;
-  my $d_table_name  = Constants::DIVISIONS_TABLE_NAME;
+  my $tr_table_name = $TOURNAMENT_RESULTS_TABLE_NAME;
+  my $g_table_name  = $GAMES_TABLE_NAME;
+  my $pr_table_name = $PLAYER_RESULTS_TABLE_NAME;
+  my $p_table_name  = $PLAYERS_TABLE_NAME;
+  my $t_table_name  = $TOURNAMENTS_TABLE_NAME;
+  my $d_table_name  = $DIVISIONS_TABLE_NAME;
 
   my $sth = $dbh->prepare(
   "
@@ -54,11 +56,11 @@ sub get_alltime_stats_results_html_string
   $sth->execute();
  
   my $all_stats = Utils::stat_objects();
-  my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
-  my $stat_key_name        = Constants::STAT_KEY_NAME;
+  my $game_stats_rank_name = $GAME_STATS_RANK_NAME;
+  my $stat_key_name        = $STAT_KEY_NAME;
 
   my $tournament_results_hashref = {};
-  my $alltime_cutoff = Constants::ALLTIME_CUTOFF;
+  my $alltime_cutoff = $ALLTIME_CUTOFF;
 
   foreach my $key (keys %{$all_stats})
   {
@@ -138,14 +140,12 @@ sub get_alltime_stats_results_html_string
 
       my $html_string = "       <table class='table'>\n";
       $html_string    .=
-        Utils::make_row
-        (
-          0,
-          $dataitem->{'titles'},
-          1,
-          0,
-          0   
-        );
+          Utils::make_row
+          ({
+            keys     => $dataitem->{titles},
+            is_title => 1
+          });
+
       my @statlist = @{$dataitem->{'list'}};
       for (my $i = 0; $i < scalar @statlist; $i++)
       {
@@ -158,7 +158,13 @@ sub get_alltime_stats_results_html_string
 
         my $statitem = $statlist[$i];
 
-        $html_string .= Utils::make_row($statitem, $dataitem->{'values'}, 0, 0, $sub_row_class);
+        $html_string .=
+          Utils::make_row
+          ({
+            item => $statitem, 
+            keys => $dataitem->{'values'},
+            class => $sub_row_class
+          });
       }
       $html_string .= "        </table>";
 
@@ -171,16 +177,16 @@ sub get_alltime_template_html_string
 {
   my $stats = shift;
 
-  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = Constants::TEMPLATE_DOCTYPE;
-  my $meta      = Constants::TEMPLATE_META;
-  my $lang      = Constants::TEMPLATE_LANG;
-  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
-  my $sources   = Constants::TEMPLATE_SOURCES;
-  my $style     = Constants::TEMPLATE_STYLE;
-  my $scripts   = Constants::TEMPLATE_SCRIPTS;
-  my $nav       = Constants::TEMPLATE_NAV;
-  my $footer    = Constants::TEMPLATE_FOOTER;
+  my $html_path = $HTML_PATH_TO_WORKING_DIR;
+  my $doctype   = $TEMPLATE_DOCTYPE;
+  my $meta      = $TEMPLATE_META;
+  my $lang      = $TEMPLATE_LANG;
+  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
+  my $sources   = $TEMPLATE_SOURCES;
+  my $style     = $TEMPLATE_STYLE;
+  my $scripts   = $TEMPLATE_SCRIPTS;
+  my $nav       = $TEMPLATE_NAV;
+  my $footer    = $TEMPLATE_FOOTER;
 
   my @ids_to_click = ();
   
@@ -194,7 +200,7 @@ sub get_alltime_template_html_string
   my $stats_content = "";
   my @stats_tabdata = ();
 
-  my $stats_order_ref = Constants::TOURNAMENT_STATS_ORDER;
+  my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
 
   for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
   {
@@ -229,7 +235,7 @@ sub get_alltime_template_html_string
 
   my $tournament_html_page = "";
 
-  $tournament_html_page .= <<STOP;
+  $tournament_html_page .= <<"STOP";
 $doctype
 <html>
   <head>
@@ -284,18 +290,20 @@ STOP
 
 sub get_datalist_html
 {
-  my $data           = shift;
-  my $title          = shift;
-  my $href           = shift;
-  my $html_id        = shift;
-  my $input_id       = shift;
-  my $button_id      = shift;
-  my $data_value_key = shift;
-  my $value_key      = shift;
+  my $arg_ref = @_;
+
+  my $data           = $arg_ref->{data};
+  my $title          = $arg_ref->{title};
+  my $href           = $arg_ref->{href};
+  my $html_id        = $arg_ref->{html_id};
+  my $input_id       = $arg_ref->{input_id};
+  my $button_id      = $arg_ref->{button_id};
+  my $data_value_key = $arg_ref->{data_value_key};
+  my $value_key      = $arg_ref->{value_key};
 
   my $escaped_char = "&quot;";
 
-  my $function = <<FUNCTION
+  my $function = <<"FUNCTION"
 
           var input = document.getElementById('$input_id');
           var options = Array.from(document.getElementById('$html_id').options).map(function(el)
@@ -332,7 +340,7 @@ FUNCTION
 ;
 
 
-  my $input_function = <<FUNCTION
+  my $input_function = <<"FUNCTION"
 
     onkeypress=
     "
@@ -347,7 +355,7 @@ FUNCTION
 FUNCTION
 ;
 
-  my $submit_function = <<FUNCTION
+  my $submit_function = <<"FUNCTION"
     onclick=
       "
         (function ()
@@ -389,16 +397,16 @@ sub get_player_template_html_string
   my $player_head_to_head_history_html = shift;
   my $player_tournament_history_data = shift;
 
-  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = Constants::TEMPLATE_DOCTYPE;
-  my $meta      = Constants::TEMPLATE_META;
-  my $lang      = Constants::TEMPLATE_LANG;
-  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
-  my $sources   = Constants::TEMPLATE_SOURCES;
-  my $style     = Constants::TEMPLATE_STYLE;
-  my $scripts   = Constants::TEMPLATE_SCRIPTS;
-  my $nav       = Constants::TEMPLATE_NAV;
-  my $footer    = Constants::TEMPLATE_FOOTER;
+  my $html_path = $HTML_PATH_TO_WORKING_DIR;
+  my $doctype   = $TEMPLATE_DOCTYPE;
+  my $meta      = $TEMPLATE_META;
+  my $lang      = $TEMPLATE_LANG;
+  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
+  my $sources   = $TEMPLATE_SOURCES;
+  my $style     = $TEMPLATE_STYLE;
+  my $scripts   = $TEMPLATE_SCRIPTS;
+  my $nav       = $TEMPLATE_NAV;
+  my $footer    = $TEMPLATE_FOOTER;
 
   my $player_name      = $player_info->{'player_name'};
   my $country_trigraph = $player_info->{'country_trigraph'};
@@ -415,7 +423,7 @@ sub get_player_template_html_string
   my $total_score   = $player_tournament_history_data->{'total_score'};
   my $total_against = $player_tournament_history_data->{'total_against'};
 
-  my $rounding = Constants::ROUNDING_PLACE;
+  my $rounding = $ROUNDING_PLACE;
 
   my $average_for     = sprintf("%.$rounding"."f",  ($total_score / $games_played));
   my $average_against = sprintf("%.$rounding"."f",  ($total_against / $games_played));
@@ -457,7 +465,7 @@ sub get_player_template_html_string
 
   my $country_rankings = "";
 
-  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
   my $country_fullname = $trigraph_hashref->{$country};
 
   my $valid_country_html      = "";
@@ -469,7 +477,7 @@ sub get_player_template_html_string
     my $country_png = "$html_path/flags/$country.png";
     if ($valid_ranking)
     {
-      my $country_rankings_link = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . '/' . "$country.html";
+      my $country_rankings_link = $DEFAULT_SHORT_NAME_WORKING_DIR . '/' . $HTML_DIR . '/' . $RANKINGS_HTML_DIR . '/' . "$country.html";
       $country_rankings = "<a href='/$country_rankings_link'>$country_fullname</a>";
     }
 
@@ -487,7 +495,7 @@ sub get_player_template_html_string
 
   my $player_html_page = "";
 
-  $player_html_page .= <<STOP;
+  $player_html_page .= <<"STOP";
 $doctype
 <html $lang>
   <head>
@@ -584,11 +592,11 @@ sub get_rankings_html_string
 
   if ($country)
   {
-    @players = @{query_table($dbh, Constants::PLAYERS_TABLE_NAME, 'country', $country)};
+    @players = @{query_table($dbh, $PLAYERS_TABLE_NAME, 'country', $country)};
   }
   else 
   {
-    @players = @{$dbh->selectall_arrayref("SELECT * FROM " . Constants::PLAYERS_TABLE_NAME, {Slice => {}, "RaiseError" => 1})};
+    @players = @{$dbh->selectall_arrayref("SELECT * FROM " . $PLAYERS_TABLE_NAME, {Slice => {}, "RaiseError" => 1})};
   }
 
   @players = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @players;   
@@ -599,7 +607,13 @@ sub get_rankings_html_string
 
   my $titles = ['Ranking', 'Name', 'Country', 'Rating', 'Total Games', 'Last Played'];
 
-  $full_rankings_string .= Utils::make_row(0, $titles, 1, 0, 'white');
+  $full_rankings_string .=
+    Utils::make_row
+    ({
+      keys     => $titles,
+      is_title => 1,
+      class    => 'white'
+    });
 
   for (my $i = 0; $i < scalar @players; $i++)
   {
@@ -612,7 +626,13 @@ sub get_rankings_html_string
 
     my $item = $players[$i];
     $item->{'ranking'} = $i + 1; 
-    $full_rankings_string .= Utils::make_row($item, ['ranking', 'name', 'country', 'rating', 'total_games', 'last_played'], 0, 0, $row_class);
+    $full_rankings_string .=
+      Utils::make_row
+      ({
+        item     => $item, 
+        keys     => ['ranking', 'name', 'country', 'rating', 'total_games', 'last_played'],
+        class    => $row_class
+      }); 
   }
 
   $full_rankings_string    .= "      </table>\n";
@@ -624,16 +644,16 @@ sub get_rankings_template_html_string
   my $rankings_string = shift;
   my $rankings_data   = shift;
 
-  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = Constants::TEMPLATE_DOCTYPE;
-  my $meta      = Constants::TEMPLATE_META;
-  my $lang      = Constants::TEMPLATE_LANG;
-  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
-  my $sources   = Constants::TEMPLATE_SOURCES;
-  my $style     = Constants::TEMPLATE_STYLE;
-  my $scripts   = Constants::TEMPLATE_SCRIPTS;
-  my $nav       = Constants::TEMPLATE_NAV;
-  my $footer    = Constants::TEMPLATE_FOOTER;
+  my $html_path = $HTML_PATH_TO_WORKING_DIR;
+  my $doctype   = $TEMPLATE_DOCTYPE;
+  my $meta      = $TEMPLATE_META;
+  my $lang      = $TEMPLATE_LANG;
+  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
+  my $sources   = $TEMPLATE_SOURCES;
+  my $style     = $TEMPLATE_STYLE;
+  my $scripts   = $TEMPLATE_SCRIPTS;
+  my $nav       = $TEMPLATE_NAV;
+  my $footer    = $TEMPLATE_FOOTER;
 
   my $title                  = $rankings_data->{'title'};
   my $tournament_link        = $rankings_data->{'tournament_link'};
@@ -643,7 +663,7 @@ sub get_rankings_template_html_string
   my $rankings_html_page = "";
 
 
-  $rankings_html_page .= <<STOP
+  $rankings_html_page .= <<"STOP"
 $doctype
 <html>
   <head>
@@ -700,18 +720,18 @@ sub get_tournament_results_html_string
   my $id   = shift;
   my $type = shift;
 
-  my $player_type       = Constants::HTML_ID_PLAYER_TYPE;
-  my $tournament_type   = Constants::HTML_ID_TOURNAMENT_TYPE;
-  my $head_to_head_type = Constants::HTML_ID_HEAD_TO_HEAD_TYPE;
+  my $player_type       = $HTML_ID_PLAYER_TYPE;
+  my $tournament_type   = $HTML_ID_TOURNAMENT_TYPE;
+  my $head_to_head_type = $HTML_ID_HEAD_TO_HEAD_TYPE;
 
-  my $tr_table_name = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
-  my $g_table_name  = Constants::GAMES_TABLE_NAME;
-  my $pr_table_name = Constants::PLAYER_RESULTS_TABLE_NAME;
-  my $p_table_name  = Constants::PLAYERS_TABLE_NAME;
-  my $t_table_name  = Constants::TOURNAMENTS_TABLE_NAME;
-  my $d_table_name  = Constants::DIVISIONS_TABLE_NAME;
+  my $tr_table_name = $TOURNAMENT_RESULTS_TABLE_NAME;
+  my $g_table_name  = $GAMES_TABLE_NAME;
+  my $pr_table_name = $PLAYER_RESULTS_TABLE_NAME;
+  my $p_table_name  = $PLAYERS_TABLE_NAME;
+  my $t_table_name  = $TOURNAMENTS_TABLE_NAME;
+  my $d_table_name  = $DIVISIONS_TABLE_NAME;
 
-  my $rounding = Constants::ROUNDING_PLACE;
+  my $rounding = $ROUNDING_PLACE;
 
   my $query =
   "
@@ -791,8 +811,8 @@ sub get_tournament_results_html_string
   # Prepare tournament stats datastructure
 
   my $tournament_stats;
-  my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
-  my $stat_key_name        = Constants::STAT_KEY_NAME;
+  my $game_stats_rank_name = $GAME_STATS_RANK_NAME;
+  my $stat_key_name        = $STAT_KEY_NAME;
 
   if ($type == $tournament_type)
   {
@@ -1002,46 +1022,39 @@ sub get_tournament_results_html_string
     $keys_ref = $tournament_standings_keys_ref;
     $tournament_ratings_html_string .=
       Utils::make_row
-      (
-        0,
-        $ratings_super_title_ref,
-        1,
-        0,
-        'white',
-        2
-      );
+      ({
+        keys     => $ratings_super_title_ref,
+        is_title => 1,
+        class    => 'white',
+        colspan  => 2
+      });
+    
+
     $tournament_ratings_html_string .=
       Utils::make_row
-      (
-        0,
-        $ratings_title_ref,
-        1,
-        0,
-        'white',
-      );
+      ({
+        keys     => $ratings_super_title_ref,
+        is_title => 1,
+        class    => 'white'
+      });
   }
 
   my $title_length = scalar @{$title_ref};
 
   $tournament_results_list_html_string .=
-    Utils::make_row
-    (
-      0,
-      $title_ref,
-      1,
-      0,
-      'white'
-    );
+      Utils::make_row
+      ({
+        keys     => $ratings_super_title_ref,
+        is_title => 1,
+        class    => 'white'
+      });
 
   my $games_title_row = 
-    Utils::make_row
-    (
-      0,
-      $sub_title_ref,
-      1,
-      0,
-      0
-    );
+      Utils::make_row
+      ({
+        keys     => $ratings_super_title_ref,
+        is_title => 1
+      });
 
   my $game_data =
   {
@@ -1097,8 +1110,8 @@ sub get_tournament_results_html_string
     my $subentries = "";
 
     my $games_ref = $tournament_results[$i];
-    my $button_id = Utils::create_html_id(Constants::HTML_ID_BUTTON_TAG, $type, $games_ref->[0]->{'tr_id'});
-    my $entry_id  = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG,  $type, $games_ref->[0]->{'tr_id'});
+    my $button_id = Utils::create_html_id($HTML_ID_BUTTON_TAG, $type, $games_ref->[0]->{'tr_id'});
+    my $entry_id  = Utils::create_html_id($HTML_ID_ENTRY_TAG,  $type, $games_ref->[0]->{'tr_id'});
     my $row_class = 'roweven';
     
     if ($i % 2 == 1)
@@ -1108,8 +1121,8 @@ sub get_tournament_results_html_string
 
     if ($type == $head_to_head_type)
     {
-      $button_id = Utils::create_html_id(Constants::HTML_ID_BUTTON_TAG, $type, $games_ref->[0]->{'opp_id'});
-      $entry_id = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG,   $type, $games_ref->[0]->{'opp_id'});
+      $button_id = Utils::create_html_id($HTML_ID_BUTTON_TAG, $type, $games_ref->[0]->{'opp_id'});
+      $entry_id = Utils::create_html_id($HTML_ID_ENTRY_TAG,   $type, $games_ref->[0]->{'opp_id'});
     }
 
     $games_ref->[0]->{'#'} = $i + 1;
@@ -1119,20 +1132,23 @@ sub get_tournament_results_html_string
 
     if ($type != $head_to_head_type)
     {
-      $new_entry .= Utils::make_new_entry_head($games_ref, $keys_ref, $row_class, $entry_id, $title_length, $games_title_row);
+      $new_entry .= Utils::make_new_entry_head({games_ref       => $games_ref,
+                                                keys_ref        => $keys_ref,
+                                                row_class       => $row_class,
+                                                entry_id        => $entry_id,
+                                                title_length    => $title_length,
+                                                games_title_row => $games_title_row});
     }
 
     if ($type == $tournament_type)
     {
       $tournament_ratings_html_string .=
         Utils::make_row
-        (
-          $games_ref->[0],
-          $ratings_keys_ref,
-          0,
-          0,
-          $row_class
-        );
+        ({
+          item     => $games_ref->[0],
+          keys     => $ratings_keys_ref,
+          class    => 'white'
+        });
     }
 
 
@@ -1268,13 +1284,12 @@ sub get_tournament_results_html_string
 
       $subentries .=
         Utils::make_row
-        (
-          $item,
-          $games_keys_ref,
-          0,
-          0,
-          $sub_row_class
-        );    
+        ({
+          item     => $item,
+          keys     => $games_keys_ref,
+          class    => $sub_row_class
+        });
+
       if ($k == $num_games - 1)
       {
         my $colspan = (scalar @{$games_keys_ref}) - 3;
@@ -1292,15 +1307,20 @@ sub get_tournament_results_html_string
 
     if ($type == $head_to_head_type)
     {
-      $games_ref->[0]->{'hh_games'}  = $num_games;
-      $games_ref->[0]->{'hh_wins'}   = $hh_wins;
-      $games_ref->[0]->{'hh_losses'} = $hh_losses;
-      $games_ref->[0]->{'hh_draws'}  = $hh_draws;
-      $games_ref->[0]->{'hh_pct'}    = sprintf ("%.".$rounding."f", ($hh_wins + ($hh_draws / 2)) / $num_games);
-      $games_ref->[0]->{'hh_af'}     = sprintf ("%.".$rounding."f", $hh_for / $num_games);
-      $games_ref->[0]->{'hh_aa'}     = sprintf ("%.".$rounding."f", $hh_ag  / $num_games);
+      $games_ref->[0]->{hh_games}  = $num_games;
+      $games_ref->[0]->{hh_wins}   = $hh_wins;
+      $games_ref->[0]->{hh_losses} = $hh_losses;
+      $games_ref->[0]->{hh_draws}  = $hh_draws;
+      $games_ref->[0]->{hh_pct}    = sprintf ("%.".$rounding."f", ($hh_wins + ($hh_draws / 2)) / $num_games);
+      $games_ref->[0]->{hh_af}     = sprintf ("%.".$rounding."f", $hh_for / $num_games);
+      $games_ref->[0]->{hh_aa}     = sprintf ("%.".$rounding."f", $hh_ag  / $num_games);
 
-      $new_entry .= Utils::make_new_entry_head($games_ref, $keys_ref, $row_class, $entry_id, $title_length, $games_title_row);
+      $new_entry .= Utils::make_new_entry_head({games_ref       => $games_ref,
+                                                keys_ref        => $keys_ref,
+                                                row_class       => $row_class,
+                                                entry_id        => $entry_id,
+                                                title_length    => $title_length,
+                                                games_title_row => $games_title_row});
     }
 
     $tournament_results_list_html_string .= $new_entry . $subentries . "</table></div></td></tr>\n";
@@ -1321,13 +1341,11 @@ sub get_tournament_results_html_string
       my $html_string = "       <table class='table'>\n";
       $html_string    .=
         Utils::make_row
-        (
-          0,
-          $dataitem->{'titles'},
-          1,
-          0,
-          0   
-        );
+        ({
+          keys     => $dataitem->{'titles'},
+          is_title => 1
+        });
+
       my @statlist = @{$dataitem->{'list'}};
       for (my $i = 0; $i < scalar @statlist; $i++)
       {
@@ -1339,7 +1357,13 @@ sub get_tournament_results_html_string
         }
 
         my $statitem = $statlist[$i];
-        $html_string .= Utils::make_row($statitem, $dataitem->{'values'}, 0, 0, $sub_row_class);
+        $html_string .=
+          Utils::make_row
+          ({
+            item     => $statitem,
+            keys     => $dataitem->{'values'},
+            class    => $sub_row_class
+          });
       }
       $html_string .= "        </table>";
 
@@ -1353,16 +1377,16 @@ sub get_tournament_template_html_string
 {
   my $division_data = shift;
  
-  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = Constants::TEMPLATE_DOCTYPE;
-  my $meta      = Constants::TEMPLATE_META;
-  my $lang      = Constants::TEMPLATE_LANG;
-  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
-  my $sources   = Constants::TEMPLATE_SOURCES;
-  my $style     = Constants::TEMPLATE_STYLE;
-  my $scripts   = Constants::TEMPLATE_SCRIPTS;
-  my $nav       = Constants::TEMPLATE_NAV;
-  my $footer    = Constants::TEMPLATE_FOOTER;
+  my $html_path = $HTML_PATH_TO_WORKING_DIR;
+  my $doctype   = $TEMPLATE_DOCTYPE;
+  my $meta      = $TEMPLATE_META;
+  my $lang      = $TEMPLATE_LANG;
+  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
+  my $sources   = $TEMPLATE_SOURCES;
+  my $style     = $TEMPLATE_STYLE;
+  my $scripts   = $TEMPLATE_SCRIPTS;
+  my $nav       = $TEMPLATE_NAV;
+  my $footer    = $TEMPLATE_FOOTER;
 
   my $tournament_name = $division_data->[0]->[1]->{'tournament_name'};
   my $tournament_date = $division_data->[0]->[1]->{'tournament_date'};
@@ -1409,7 +1433,7 @@ sub get_tournament_template_html_string
     my $stats_content = "";
     my @stats_tabdata = ();
 
-    my $stats_order_ref = Constants::TOURNAMENT_STATS_ORDER;
+    my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
 
     for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
     {
@@ -1463,7 +1487,7 @@ sub get_tournament_template_html_string
 
   my $tournament_html_page = "";
 
-  $tournament_html_page .= <<STOP;
+  $tournament_html_page .= <<"STOP";
 $doctype
 <html>
   <head>
@@ -1530,6 +1554,8 @@ sub populate_special_game_item
   $special_item->{'game_pointer'}     = $item->{'tr_id'};
   $special_item->{'player_pointer'}   = $item->{'opp_id'};
   $special_item->{'player_name'}      = $item->{'opp_name'};
+
+  return 1;
 }
 
 sub special_game_to_html
@@ -1560,15 +1586,15 @@ sub special_game_to_html
   my $player_pointer = $item->{'player_pointer'};
 
 
-  my $player_type       = Constants::HTML_ID_PLAYER_TYPE;
-  my $head_to_head_type = Constants::HTML_ID_HEAD_TO_HEAD_TYPE;
+  my $player_type       = $HTML_ID_PLAYER_TYPE;
+  my $head_to_head_type = $HTML_ID_HEAD_TO_HEAD_TYPE;
 
-  my $game_html_id   = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG, $player_type, $item->{'game_pointer'});
-  my $player_html_id = Utils::create_html_id(Constants::HTML_ID_ENTRY_TAG, $head_to_head_type, $item->{'player_pointer'});
+  my $game_html_id   = Utils::create_html_id($HTML_ID_ENTRY_TAG, $player_type, $item->{'game_pointer'});
+  my $player_html_id = Utils::create_html_id($HTML_ID_ENTRY_TAG, $head_to_head_type, $item->{'player_pointer'});
 
-  my $working_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR;
-  my $html_dir    = Constants::HTML_DIR;
-  my $players_dir = Constants::PLAYER_HTML_DIR;
+  my $working_dir = $DEFAULT_SHORT_NAME_WORKING_DIR;
+  my $html_dir    = $HTML_DIR;
+  my $players_dir = $PLAYER_HTML_DIR;
 
   if (
        ($title eq "Biggest Win"  && $value < 0) ||

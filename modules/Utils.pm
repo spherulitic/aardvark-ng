@@ -4,12 +4,25 @@ package Utils;
 
 use strict;
 use warnings;
+use version; our $VERSION = qv('1');
 use DBI;
 use Cwd;
 use Data::Dumper;
+use Carp;
+use English qw( -no_match_vars ); 
 
 use lib './modules';
 use Constants;
+
+sub write_file_to_array
+{
+  my $filename = shift;
+
+  open(my $fh, '<', $filename) or croak "Cannot open file $filename: $OS_ERROR\n";
+  my @array = <$fh>;
+  close $fh or croak "Cannot close file $filename: $OS_ERROR\n";;
+  return @array;
+}
 
 sub add_games_to_existing_player
 {
@@ -17,7 +30,7 @@ sub add_games_to_existing_player
   my $player_id    = shift;
   my $games_played = shift;  
 
-  my $players_tn = Constants::PLAYERS_TABLE_NAME;
+  my $players_tn = $PLAYERS_TABLE_NAME;
 
   my $total_games_update = "UPDATE $players_tn SET total_games = total_games + $games_played WHERE id=$player_id";
   $dbh->do($total_games_update, {"RaiseError" => 1});
@@ -29,15 +42,15 @@ sub backup_years
   my $base_directory_name = shift;
   my $backup_dir          = shift;
 
-  my $year_regex = Constants::DEFAULT_YEAR_REGEX;
+  my $year_regex = $DEFAULT_YEAR_REGEX;
   mkdir $backup_dir;
 
-  $base_directory_name .= "/";
+  $base_directory_name .= q{/};
 
   my @tournament_data_filenames = ();
 
-  opendir my $base_directory, $base_directory_name or die "Cannot open $base_directory_name: $!";
-  my @year_directory_names = grep(/$year_regex/, readdir($base_directory));
+  opendir my $base_directory, $base_directory_name or croak "Cannot open $base_directory_name: $OS_ERROR";
+  my @year_directory_names = grep {/$year_regex/xms} readdir($base_directory);
 
   foreach my $year_directory_name (@year_directory_names)
   {
@@ -53,15 +66,15 @@ sub check_country_flag_icons
 
   my @countries = @{$country_ref};
 
-  my $filename_prefix = Constants::COUNTRY_FLAGS_DIR;
-  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $filename_prefix = $COUNTRY_FLAGS_DIR;
+  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
-  opendir my $flag_dir_handle, $filename_prefix or die "Cannot open $filename_prefix: $!\n";
-  my @existing_flags = grep (/[A-Z]{3}/, readdir($flag_dir_handle));
+  opendir my $flag_dir_handle, $filename_prefix or croak "Cannot open $filename_prefix: $OS_ERROR\n";
+  my @existing_flags = grep { /[A-Z]{3}/xms } readdir($flag_dir_handle);
 
   foreach my $ef (@existing_flags)
   {
-    $ef =~ /(([A-Z]{3}))/;
+    $ef =~ /(([A-Z]{3}))/xms;
     if (!$trigraph_hashref->{$1})
     {   
       Utils::format_error([
@@ -75,7 +88,7 @@ sub check_country_flag_icons
 
   foreach my $country (@countries)
   {
-    my $flag = $filename_prefix . '/' . $country . $extension;
+    my $flag = $filename_prefix . q{/} . $country . $extension;
     if (!(-e $flag))
     {   
       Utils::format_error([
@@ -85,6 +98,7 @@ sub check_country_flag_icons
                           ]);
     }   
   }
+  return 1;
 }
 
 sub compare_names
@@ -92,14 +106,14 @@ sub compare_names
   my $tou_ref = shift;
   my $st_ref  = shift;
 
-  my $not_in_tou = "";
-  my $not_in_st  = "";
+  my $not_in_tou = $EMPTY_STRING;
+  my $not_in_st  = $EMPTY_STRING;
 
   foreach my $tou_key (keys %{$tou_ref})
   {
       if (!($st_ref->{$tou_key}) && !Utils::player_name_is_bye($tou_key))
       {
-        $not_in_st .= $tou_key . ", ";
+        $not_in_st .= $tou_key . ', ';
       }
   }
 
@@ -115,16 +129,16 @@ sub compare_names
   {
     return [$not_in_tou,$not_in_st];
   }
-  return 0;
+  return 1;
 
 }
 
 sub connect_to_database
 {
-  my $database_name = Utils::get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
+  my $database_name = Utils::get_environment_name($DATABASE_NAME);
+  my $host_name     = $DATABASE_HOST_NAME;
+  my $user_name     = $DATABASE_USER_NAME;
+  my $password      = $DATABASE_PASSWORD;
 
   my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
                          $user_name, $password,
@@ -137,7 +151,7 @@ sub convert_name
   my $name = shift;
   my $alt_names_hash = shift;
 
-  $name =~ s/^\s+|\s+$//g;
+  $name =~ s/^\s+|\s+$//gxms;
 
   my $true_name = $alt_names_hash->{$name};
 
@@ -151,12 +165,12 @@ sub convert_name
 sub convert_trigraph
 {
   my $trigraph = shift;
-  my $trigraph_hash = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
-  my $trigraph_correction_hash = Constants::COUNTRY_TRIGRAPH_CONVERSION;
+  my $trigraph_hash = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $trigraph_correction_hash = $COUNTRY_TRIGRAPH_CONVERSION;
 
   if (!$trigraph)
   {
-    return undef;
+    return;
   }
  
   if ($trigraph_hash->{$trigraph})
@@ -170,27 +184,28 @@ sub convert_trigraph
     return $correct_trigraph;
   }
 
-  if (length $trigraph == 3)
+  if (length $trigraph == $TRIGRAPH_LENGTH)
   {
     Utils::format_error([
                           ['WARNING', 'Uncorrected country trigraph'],
                           ['Trigraph', $trigraph],
                         ]);
   }
-  return undef;
+  return;
 }
 
 sub copy_database_to_production
 {
-  my $production_database_name = Utils::get_environment_name(Constants::PRODUCTION_DATABASE_NAME);
+  my $production_database_name = Utils::get_environment_name($PRODUCTION_DATABASE_NAME);
 
-  my $database_name = Utils::get_environment_name(Constants::DATABASE_NAME);
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
+  my $database_name = Utils::get_environment_name($DATABASE_NAME);
+  my $user_name     = $DATABASE_USER_NAME;
+  my $password      = $DATABASE_PASSWORD;
 
   system "echo 'DROP DATABASE IF EXISTS $production_database_name' | mysql -u $user_name --password='$password'";
   system "echo 'CREATE DATABASE         $production_database_name' | mysql -u $user_name --password='$password'";
   system "mysqldump -u $user_name --password='$password' $database_name | mysql -u $user_name --password='$password' $production_database_name";
+  return 1;
 }
 
 sub create_html_id
@@ -207,13 +222,13 @@ sub drop_all_wespa_tables
   my $dbh = shift;
   my $alt_names_hash = shift;
 
-  my $database_name = Utils::get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
+  my $database_name = Utils::get_environment_name($DATABASE_NAME);
+  my $host_name     = $DATABASE_HOST_NAME;
+  my $user_name     = $DATABASE_USER_NAME;
+  my $password      = $DATABASE_PASSWORD;
   
-  my $table_ref = Constants::TABLE_CREATION_ORDER;
-  my $exceptions = Constants::TABLE_DROP_EXCEPTIONS;
+  my $table_ref = $TABLE_CREATION_ORDER;
+  my $exceptions = $TABLE_DROP_EXCEPTIONS;
 
     foreach my $t (reverse @{$table_ref})
   {
@@ -223,34 +238,25 @@ sub drop_all_wespa_tables
     }
   }
   
-  my $players_tn = Constants::PLAYERS_TABLE_NAME;
+  my $players_tn = $PLAYERS_TABLE_NAME;
 
   foreach my $key (keys %{$alt_names_hash})
   {
-    $key =~ s/'/''/g;
+    $key =~ s/'/''/gxms;
     my $delete_redundant_players =
-    "   
-    DELETE FROM $players_tn
-    WHERE name = '$key'
-    "; 
+      "DELETE FROM $players_tn WHERE name = '$key'"; 
     $dbh->do($delete_redundant_players, {"RaiseError" => 1}); 
   }
 
-  my $reset_games_played =
-  "
-  UPDATE $players_tn AS p
-  SET p.total_games = 0
-  "; 
+  my $reset_games_played = "UPDATE $players_tn AS p SET p.total_games = 0"; 
   
   $dbh->do($reset_games_played, {"RaiseError" => 1}); 
 
-  my $reset_last_played =
-  "
-  UPDATE $players_tn AS p
-  SET p.last_played = '0001-01-01'
-  "; 
+  my $reset_last_played = "UPDATE $players_tn AS p SET p.last_played = '0001-01-01'"; 
   
-  $dbh->do($reset_last_played, {"RaiseError" => 1}); 
+  $dbh->do($reset_last_played, {"RaiseError" => 1});
+
+  return 1;
 }
 
 sub empty_string_if_nonpositive
@@ -258,7 +264,7 @@ sub empty_string_if_nonpositive
   my $num = shift;
   if (!$num || $num <= 0)
   {
-    return "";
+    return $EMPTY_STRING;
   }
   return $num;
 }
@@ -267,20 +273,21 @@ sub execute_command
 {
   my $cmd = shift;
   system $cmd;
+  return 1;
 }
 
 sub fetch_local_tournament_data
 {
-  my $update_start_year = Constants::UPDATE_START_YEAR;
-  my $source_dir        = Constants::UPDATE_SOURCE_DIR;
-  my $scratch_dir       = Utils::get_environment_name(Constants::TOURNAMENT_DATA_DIR);
+  my $update_start_year = $UPDATE_START_YEAR;
+  my $source_dir        = $UPDATE_SOURCE_DIR;
+  my $scratch_dir       = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
 
   Utils::execute_command("mkdir -p $scratch_dir");
 
   my @localtime_data = localtime();
-  my $current_year = $localtime_data[5] + 1900;
+  my $current_year = $localtime_data[$LOCALTIME_YEAR_INDEX] + $LOCALTIME_YEAR_BASE;
 
-  for (my $year = $update_start_year; $year <= $current_year; $year++)
+  for my $year ($update_start_year .. $current_year)
   {
     my $rf_cmd = "rm -rf $scratch_dir/$year";
     Utils::execute_command($rf_cmd);
@@ -290,6 +297,7 @@ sub fetch_local_tournament_data
       Utils::execute_command($cp_cmd);
     }
   }
+  return 1;
 }
 
 sub format_error
@@ -297,10 +305,10 @@ sub format_error
   my $error_arrayref = shift;
 
   my $l = scalar @{$error_arrayref};
-  my $error_string = '';
+  my $error_string = $EMPTY_STRING;
   my $max_field_length = 0;
 
-  for (my $i = 0; $i < $l; $i++)
+  for my $i (0 .. $l - 1)
   {
     my $item1 =  $error_arrayref->[$i]->[0];
     my $item1_length = length $item1;
@@ -311,15 +319,15 @@ sub format_error
     }
   }
 
-  for (my $i = 0; $i < $l; $i++)
+  for my $i (0 .. $l - 1)
   {
     my $item1 =  $error_arrayref->[$i]->[0];
     my $item2 =  $error_arrayref->[$i]->[1];
 
-    if (!$item1){$item1 = "undef";}
-    if (!$item2){$item2 = "undef";}
+    if (!$item1){$item1 = 'undef';}
+    if (!$item2){$item2 = 'undef';}
 
-    $error_string .=  (sprintf '%-' . ($max_field_length + 2).'s', $item1 . ':') . $item2 . "\n";
+    $error_string .=  (sprintf q{%-} . ($max_field_length + 2) . q{s}, $item1 . q{:}) . $item2 . "\n";
   }
   $error_string .= "\n";
   print $error_string;
@@ -329,16 +337,16 @@ sub format_error
 sub get_country_from_filename
 {
   my $filename = shift;
-  my @filename_items = split /\//, $filename;
-  return $filename_items[-2];
+  my @filename_items = split /\//xms, $filename;
+  return $filename_items[$COUNTRY_IN_FILENAME_INDEX];
 }
 
 sub get_environment_name
 {
   my $name = shift;
-  my $keyword = Constants::DEV_ENV_KEYWORD;
+  my $keyword = $DEV_ENV_KEYWORD;
   my $dir = Cwd::getcwd();
-  if ($dir =~ /$keyword/i)
+  if ($dir =~ /$keyword/ixms)
   {
     return $name . $keyword;
   }
@@ -350,10 +358,10 @@ sub get_most_recent_tournament
   my $dbh      = shift;
   my $trigraph = shift;
 
-  my $tournaments_tn        = Constants::TOURNAMENTS_TABLE_NAME;
-  my $divisions_tn          = Constants::DIVISIONS_TABLE_NAME;
-  my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
-  my $players_tn            = Constants::PLAYERS_TABLE_NAME;
+  my $tournaments_tn        = $TOURNAMENTS_TABLE_NAME;
+  my $divisions_tn          = $DIVISIONS_TABLE_NAME;
+  my $tournament_results_tn = $TOURNAMENT_RESULTS_TABLE_NAME;
+  my $players_tn            = $PLAYERS_TABLE_NAME;
   
   my $query;
   
@@ -393,19 +401,19 @@ sub get_player_photo
 {
   my $name = shift;
 
-  my $photo_dir = Utils::get_environment_name(Constants::DEFAULT_WORKING_DIR) . "/" . Constants::PHOTO_DIR;
+  my $photo_dir = Utils::get_environment_name($DEFAULT_WORKING_DIR) . q{/} . $PHOTO_DIR;
 
-  $name =~ s/\s//g;
+  $name =~ s/\s//gxms;
 
   $name = lc $name;
 
-  my $filename = $photo_dir . "/" . $name . ".jpg";
+  my $filename = $photo_dir . q{/} . $name . '.jpg';
 
   if (-e $filename)
   {
     return $filename;
   }
-  return undef; 
+  return; 
 }
 
 sub get_tournament_data_filenames
@@ -415,40 +423,40 @@ sub get_tournament_data_filenames
   my $country_trigraph_regex = shift;
   my $file_regex             = shift;
 
-  $base_directory_name .= "/";
+  $base_directory_name .= q{/};
 
   my @tournament_data_filenames = (); 
 
   opendir my $base_directory, $base_directory_name
-    or die "Cannot open $base_directory_name: $!";
-  my @year_directory_names = grep(/$year_regex/, readdir($base_directory));
+    or croak "Cannot open $base_directory_name: $OS_ERROR";
+  my @year_directory_names = grep {/$year_regex/xms} readdir($base_directory);
 
   @year_directory_names = sort {$a <=> $b} @year_directory_names;
 
-  for(my $i = 0; $i <  scalar @year_directory_names; $i++)
+  for my $i (0 .. scalar @year_directory_names - 1)
   {
     my $year_directory_name = $year_directory_names[$i];
     my $year_directory_full_path_name =
       $base_directory_name . $year_directory_name;
 
     opendir my $year_directory, $year_directory_full_path_name
-      or die "Cannot open $year_directory_full_path_name: $!";
+      or croak "Cannot open $year_directory_full_path_name: $OS_ERROR";
 
     my @country_trigraphs =
-      grep(/$country_trigraph_regex/, readdir($year_directory));
+      grep { /$country_trigraph_regex/xms } readdir($year_directory);
 
     foreach my $country_trigraph (@country_trigraphs)
     {
       my $trigraph_directory_full_path_name =
-        $year_directory_full_path_name . "/" .  $country_trigraph;
+        $year_directory_full_path_name . q{/} .  $country_trigraph;
 
       opendir my $trigraph_directory, $trigraph_directory_full_path_name
-        or die "Cannot open $trigraph_directory_full_path_name: $!";
+        or croak "Cannot open $trigraph_directory_full_path_name: $OS_ERROR";
 
-      my @filenames = grep(/$file_regex/i, readdir($trigraph_directory));
+      my @filenames = grep { /$file_regex/ixms } readdir($trigraph_directory);
 
       my @full_filenames =
-        map { $trigraph_directory_full_path_name . "/"  . $_} @filenames;
+        map { $trigraph_directory_full_path_name . q{/}  . $_} @filenames;
 
       push @tournament_data_filenames, @full_filenames;
     }
@@ -465,20 +473,20 @@ sub initialize_database
   my %tables = %{$tables_ref};
   my @creation_order = @{$creation_order_ref};
 
-  for(my $i = 0; $i < scalar @creation_order; $i++)
+  for my $i (0 .. scalar @creation_order - 1)
   {
     my $key = $creation_order[$i];
     my @columns = @{$tables{$key}};
     
-    my $columns_string = join ", ", @columns;
+    my $columns_string = join ', ', @columns;
    
     my $statement = "CREATE TABLE IF NOT EXISTS $key ($columns_string)";
     
     $dbh->do($statement);
   }
 
-  my $lexicons               = Constants::LEXICONS;
-  my $lexicons_tn            = Constants::LEXICONS_TABLE_NAME;
+  my $lexicons               = $LEXICONS;
+  my $lexicons_tn            = $LEXICONS_TABLE_NAME;
 
   Utils::insert_hash_list_into_table
   (
@@ -487,7 +495,7 @@ sub initialize_database
     $lexicons,
     'name'
   );
-
+  return 1;
 }
 
 sub insert_hash_into_table
@@ -496,8 +504,8 @@ sub insert_hash_into_table
   my $table   = shift;
   my $hashref = shift;
  
-  my $keys_string   = "(";
-  my $values_string = "(";
+  my $keys_string   = q{(};
+  my $values_string = q{(};
 
   foreach my $key (keys %{$hashref})
   {
@@ -513,12 +521,11 @@ sub insert_hash_into_table
 
   if (!$keys_string || !$values_string)
   {
-
-    return undef;
+    return;
   }
 
-  $keys_string   .= ")";
-  $values_string .= ")";
+  $keys_string   .= q{)};
+  $values_string .= q{)};
 
   $dbh->do("INSERT INTO $table $keys_string VALUE $values_string;", {"RaiseError" => 1}  );
   return $dbh->last_insert_id(undef, undef, undef, undef);
@@ -560,28 +567,28 @@ sub make_link
 
 sub make_new_entry_head
 {
-  my $games_ref       = shift;
-  my $keys_ref        = shift;
-  my $row_class       = shift;
-  my $entry_id        = shift;
-  my $title_length    = shift;
-  my $games_title_row = shift;
+  my ($arg_ref) = @_;
 
-  my $new_entry = "";
+  my $games_ref       = $arg_ref->{games_ref};
+  my $keys_ref        = $arg_ref->{keys_ref};
+  my $row_class       = $arg_ref->{row_class};
+  my $entry_id        = $arg_ref->{entry_id};
+  my $title_length    = $arg_ref->{title_length};
+  my $games_title_row = $arg_ref->{games_row_title};
 
-      $new_entry .=
-          Utils::make_row
-          (
-            $games_ref->[0], 
-            $keys_ref,
-            0,
-            0,
-            $row_class
-          );
+  my $new_entry = $EMPTY_STRING;
 
-      $new_entry .= "<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='" . ( $title_length - 1) . "'><div class='collapse' id='$entry_id'><table class='table'>\n";
+  $new_entry .=
+      Utils::make_row
+      (
+        item => $games_ref->[0], 
+        keys => $keys_ref,
+        class => $row_class
+      );
 
-      $new_entry .= $games_title_row;
+  $new_entry .= "<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='" . ( $title_length - 1) . "'><div class='collapse' id='$entry_id'><table class='table'>\n";
+
+  $new_entry .= $games_title_row;
 
   return $new_entry;
 }
@@ -590,28 +597,30 @@ sub make_pretty
 {
   my $name = shift;
 
-  $name =~ s/_/ /g;
+  $name =~ s/_/ /gxms;
 
   return $name;
 }
 
 sub make_row
 {
-  my $item      = shift;
-  my $keys      = shift;
-  my $is_title  = shift;
-  my $id        = shift;
-  my $class     = shift;
-  my $colspan   = shift;
+  my $arg_ref = @_;
 
-  my $el = "td";
+  my $item      = $arg_ref->{item};
+  my $keys      = $arg_ref->{keys};
+  my $is_title  = $arg_ref->{is_title};
+  my $id        = $arg_ref->{id};
+  my $class     = $arg_ref->{class};
+  my $colspan   = $arg_ref->{colspan};
+
+  my $el = 'td';
 
   if ($is_title)
   {
-    $el = "th";
+    $el = 'th';
   }
 
-  my $colspan_attr = "";
+  my $colspan_attr = $EMPTY_STRING;
 
   if ($colspan)
   {
@@ -620,14 +629,14 @@ sub make_row
 
   my @key_array = @{$keys};
 
-  my $id_string = "";
+  my $id_string = $EMPTY_STRING;
 
   if ($id)
   {
     $id_string = " id='$id'"; 
   }
 
-  my $class_string = "";
+  my $class_string = $EMPTY_STRING;
 
   if ($class)
   {
@@ -635,38 +644,38 @@ sub make_row
   }
 
   my $row_string = "        <tr $class_string $id_string>";
-  for (my $i = 0; $i < scalar @key_array; $i++)
+  for my $i (0 .. scalar @key_array - 1)
   {
     my $key = $key_array[$i];
     my $val = $key;
-    my $class = '';
+    my $class = $EMPTY_STRING;
 
     if (!$is_title)
     {
       $val = $item->{$key};
     }
 
-    my $base_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
-    my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
-    my $player_dir     = Constants::PLAYER_HTML_DIR;
-    my $rankings_dir   = Constants::RANKINGS_HTML_DIR;
-    my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+    my $base_dir = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
+    my $tournament_dir = $TOURNAMENT_HTML_DIR;
+    my $player_dir     = $PLAYER_HTML_DIR;
+    my $rankings_dir   = $RANKINGS_HTML_DIR;
+    my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
     if ($key eq 'tr_tournament_name')
     {
-      $val = Utils::make_link($base_dir, $tournament_dir, $item->{'t_id'} . ".html", $val);
+      $val = Utils::make_link($base_dir, $tournament_dir, $item->{'t_id'} . '.html', $val);
     }
     elsif ($key eq 'opp_name')
     {
-      $val = Utils::make_link($base_dir, $player_dir, $item->{'opp_id'} . ".html", $val);
+      $val = Utils::make_link($base_dir, $player_dir, $item->{'opp_id'} . '.html', $val);
     }
     elsif ($key eq 'tr_player_name')
     {
-      $val = Utils::make_link($base_dir, $player_dir, $item->{'tr_player_id'} . ".html", $val);
+      $val = Utils::make_link($base_dir, $player_dir, $item->{'tr_player_id'} . '.html', $val);
     }
     elsif ($key eq 'name')
     {
-      $val = Utils::make_link($base_dir, $player_dir, $item->{'id'} . ".html", $val);
+      $val = Utils::make_link($base_dir, $player_dir, $item->{'id'} . '.html', $val);
     }
     elsif ($key eq 'p_country' || $key eq 'country')
     {
@@ -703,7 +712,7 @@ sub make_row
     }
     if (!(defined $val))
     {
-      $val = "";
+      $val = $EMPTY_STRING;
     }
 
     $row_string .= sprintf "<$el $colspan_attr $class >%s</$el>", $val;
@@ -723,14 +732,14 @@ sub make_tab_div
 
   my $div = "<br><div class='tab'>\n";
 
-  for (my $i = 0; $i < $content_length; $i++)
+  for my $i (0 .. $content_length - 1)
   {
     my $text = $content->[$i]->[0];
     my $id   = $content->[$i]->[1];
-    my $width = 100 / $content_length;
+    my $width = $FULL_WIDTH / $content_length;
     $div .= "<button id='button_" . $id . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
   }
-  $div .= "</div><br>";
+  $div .= '</div><br>';
   return $div;
 }
 
@@ -741,7 +750,7 @@ sub negative_one_if_false
   {
     return $s;
   }
-  return -1;
+  return $NEGATIVE_ONE;
 }
 
 sub player_name_is_bye
@@ -752,31 +761,31 @@ sub player_name_is_bye
 
   if ($name eq 'RUSSELLBYERS')
   {
-    return 0;
+    return 1;
   }
 
-  return ($name =~ /BYE/);
+  return ($name =~ /BYE/xms);
 }
 
 sub populate_alt_names_hash
 {
-  my $dup_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
+  my $dup_filename = $INPUT_DIR . q{/} . $INPUT_MERGE_FILE;
 
   my $alt_names_hash = {};
 
-  open(DUP, "<", $dup_filename);
-
-  while(<DUP>)
+  my @dup_lines = Utils::write_file_to_array($dup_filename);
+  
+  while (@dup_lines)
   {
-    chomp $_;
+    my $dl = shift @dup_lines;
 
-    $_ =~ s/^\s+|\s+$//g;
+    $dl =~ s/^\s+|\s+$//gxms;
 
-    if ($_ =~ /^#/ || !$_){next;}
+    if ($dl =~ /^#/xms || !$dl){next;}
 
-    my @names = split /,/, $_;
+    my @names = split /,/xms, $dl;
 
-    @names = map { $_ =~ s/^\s+|\s+$//gr  } @names;
+    @names = map { $dl =~ s/^\s+|\s+$//grxms  } @names;
 
     if (!@names){next;}
 
@@ -786,9 +795,10 @@ sub populate_alt_names_hash
     {
       if ($alt_names_hash->{$alt_name})
       {
-        print "ERROR:    alt name already mapped\n";
-        print "Alt name: $alt_name\n";
-        die;
+        croak Utils::format_error([
+                                    ['ERROR',            'alternative name already mapped'],
+                                    ['Alternative name', $alt_name]
+                                  ]);
       }
       $alt_names_hash->{$alt_name} = $true_name;
     }
@@ -799,26 +809,27 @@ sub populate_alt_names_hash
 sub populate_deceased_players_hash
 {
   my $alt_names_hash = shift;
-  my $deceased_players_filename = Constants::INPUT_DIR . "/" .
-                                  Constants::DECEASED_PLAYERS;
+  my $deceased_players_filename = $INPUT_DIR . q{/} .
+                                  $DECEASED_PLAYERS;
   
   my $deceased_players_hash = {};
 
-  open(DECEASED, "<", $deceased_players_filename);
-  while(<DECEASED>)
+  my @deceased_lines = Utils::write_file_to_array($deceased_players_filename);
+  while(@deceased_lines)
   {
-    chomp $_;
-    $_ =~ s/^\s+|\s+$//g;
+    my $dl = shift @deceased_lines;
 
-    my $true_name = $_;
-    my $alt_name  = $alt_names_hash->{$_};
+    $dl =~ s/^\s+|\s+$//gxms;
+
+    my $true_name = $dl;
+    my $alt_name  = $alt_names_hash->{$dl};
 
     if ($alt_name)
     {    
       $true_name = $alt_name;
     }    
 
-    $deceased_players_hash->{$_} = 1; 
+    $deceased_players_hash->{$dl} = 1; 
   }
   return $deceased_players_hash;
 }
@@ -832,7 +843,7 @@ sub query_table
 
   my $query = "SELECT * FROM $table WHERE $table_field='$query_field'";
 
-  my $query_result = $dbh->selectall_arrayref($query, {Slice => {}, "RaiseError" => 1});
+  my $query_result = $dbh->selectall_arrayref($query, {Slice => {}, 'RaiseError' => 1});
 
   return $query_result;
 }
@@ -851,9 +862,9 @@ sub rank_tournament_results
      } 
     @tournament_results;
 
-  for (my $i = 0; $i < scalar @ranked_tournament_results; $i++)
+  for my $i (0 .. scalar @ranked_tournament_results - 1)
   {
-    $ranked_tournament_results[$i]->{'position'} = $i + 1;
+    $ranked_tournament_results[$i]->{position} = $i + 1;
   }
   return @ranked_tournament_results;
 }
@@ -862,21 +873,17 @@ sub record_database
 {
   my $dbh = shift;
 
-  my $maybe_dev     = Utils::get_environment_name('');
-  my $database_name = Utils::get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
+  my $maybe_dev     = Utils::get_environment_name($EMPTY_STRING);
+  my $database_name = Utils::get_environment_name($DATABASE_NAME);
+  my $host_name     = $DATABASE_HOST_NAME;
+  my $user_name     = $DATABASE_USER_NAME;
+  my $password      = $DATABASE_PASSWORD;
   
-  my $logs          = Constants::LOG_DIR;
-  my $players_tn    = Constants::PLAYERS_TABLE_NAME;
-  my $working_dir   = Constants::DEFAULT_WORKING_DIR;
+  my $logs          = $LOG_DIR;
+  my $players_tn    = $PLAYERS_TABLE_NAME;
+  my $working_dir   = $DEFAULT_WORKING_DIR;
 
-  my @t = localtime;
-  $t[5] += 1900;
-  $t[4]++;
-
-  my $tstamp = sprintf "%04d_%02d_%02d", @t[5,4,3];
+  my $tstamp = get_iso_date(time(), q{_});
 
   my $dumpfile = 'mysqldump_' . $database_name . '_' . $tstamp;
 
@@ -887,18 +894,17 @@ sub record_database
   my @players = @{$dbh->selectall_arrayref("SELECT name, id FROM $players_tn", {"RaiseError" => 1} )};
 
   my $player_ids = join "\n", (map {$_->[0] . ', ' . $_->[1]} @players) ;
-  open(my $fh, '>', "$logs/player_ids_$database_name" . "$tstamp.txt");
-  print $fh $player_ids;
-  close $fh;
+  
+  Utils::write_string_to_file($player_ids, "$logs/player_ids_$database_name" . "$tstamp.txt");
 
   if ($maybe_dev)
   {
-    $maybe_dev = '_' . $maybe_dev;
+    $maybe_dev = q{_} . $maybe_dev;
   }
 
-  open(my $fh_cur, '>', "$working_dir/player_ids$maybe_dev.txt");
-  print $fh_cur $player_ids;
-  close $fh_cur;
+  Utils::write_string_to_file($player_ids, "$working_dir/player_ids$maybe_dev.txt");
+
+  return 1;
 }
 
 sub sanitize
@@ -907,32 +913,40 @@ sub sanitize
   
   $name = uc $name;
 
-  $name =~ s/[^A-Z]//g;
+  $name =~ s/[^A-Z]//gxms;
 
   return $name;
+}
+
+sub get_iso_date
+{
+  my $time      = shift;
+  my $separator = shift;
+  
+  my @t = localtime($time);
+  $t[$LOCALTIME_YEAR_INDEX] += $LOCALTIME_YEAR_BASE;
+  $t[$LOCALTIME_MONTH_INDEX]++;
+  
+  return sprintf "%04d$separator%02d$separator%02d", @t[$LOCALTIME_YEAR_INDEX,$LOCALTIME_MONTH_INDEX,$LOCALTIME_DAY_INDEX];
 }
 
 sub set_current_status
 {
   my $dbh = shift;
 
-  my $players_tn        = Constants::PLAYERS_TABLE_NAME;
-  my $current_games_min = Constants::CURRENT_GAMES_MIN;
+  my $players_tn        = $PLAYERS_TABLE_NAME;
+  my $current_games_min = $CURRENT_GAMES_MIN;
   
-  my $database_name = Utils::get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
+  my $database_name = Utils::get_environment_name($DATABASE_NAME);
+  my $host_name     = $DATABASE_HOST_NAME;
+  my $user_name     = $DATABASE_USER_NAME;
+  my $password      = $DATABASE_PASSWORD;
   
   my $datestring = localtime();
-  my $epoc = time();
-  $epoc = $epoc - (24 * 60 * 60 * 365 * 2);   # two years before current date.
+  my $epoc       = time();
+  $epoc         -= $TWO_YEARS_IN_SECONDS;   # two years before current date.
   
-  my @t = localtime($epoc);
-  $t[5] += 1900;
-  $t[4]++;
-  
-  my $date_two_years_ago = sprintf "%04d-%02d-%02d", @t[5,4,3];
+  my $date_two_years_ago = get_iso_date($epoc, q{-});
 
   my $games_in_last_two_years =
   "
@@ -958,14 +972,16 @@ sub set_current_status
   )
   ";
 
-  $dbh->do($update_current, {"RaiseError" => 1});
+  $dbh->do($update_current, {'RaiseError' => 1});
+
+  return 1;
 }
 
 sub set_provisional_status
 {
   my $dbh = shift;
-  my $players_tn            = Constants::PLAYERS_TABLE_NAME;
-  my $provisional_games_max = Constants::PROVISIONAL_GAMES_MAX;
+  my $players_tn            = $PLAYERS_TABLE_NAME;
+  my $provisional_games_max = $PROVISIONAL_GAMES_MAX;
 
   # Update provisional status for all players 
   my $update_provisional =
@@ -980,13 +996,15 @@ sub set_provisional_status
     END
   )
   ";
-  $dbh->do($update_provisional, {"RaiseError" => 1});
+  $dbh->do($update_provisional, {'RaiseError' => 1});
+
+  return 1;
 }
 
 sub stat_objects
 {
-  my $game_stats_rank_name = Constants::GAME_STATS_RANK_NAME;
-  my $stat_key_name        = Constants::STAT_KEY_NAME;
+  my $game_stats_rank_name = $GAME_STATS_RANK_NAME;
+  my $stat_key_name        = $STAT_KEY_NAME;
   my $tournament_stats =
     {
       'High Win' =>
@@ -995,13 +1013,13 @@ sub stat_objects
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'} > $data->{'pr2_score'} && $data->{'opp_rating'} > 500;
+          return $data->{pr1_score} > $data->{pr2_score} && $data->{opp_rating} > $WESPA_START_RATING;
         },
         'eval' =>
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'};
+          return $data->{pr1_score};
         },
         'sort' =>
         sub
@@ -1020,13 +1038,13 @@ sub stat_objects
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'} < $data->{'pr2_score'};
+          return $data->{pr1_score} < $data->{pr2_score};
         },
         'eval' =>
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'};
+          return $data->{pr1_score};
         },
         'sort' =>
         sub
@@ -1045,13 +1063,13 @@ sub stat_objects
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'} > $data->{'pr2_score'}
+          return $data->{pr1_score} > $data->{pr2_score}
         },
         'eval' =>
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'} - $data->{'pr2_score'};
+          return $data->{pr1_score} - $data->{pr2_score};
         },
         'sort' =>
         sub
@@ -1077,7 +1095,7 @@ sub stat_objects
         sub
         {
           my $data = shift;
-          return $data->{'pr1_score'} + $data->{'pr2_score'};
+          return $data->{pr1_score} + $data->{pr2_score};
         },
         'sort' =>
         sub
@@ -1086,7 +1104,7 @@ sub stat_objects
           my $c2 = shift;
           $c2->{$stat_key_name} <=> $c1->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Players', '', 'Combined Score', 'Round'],
+        'titles' => ['Rank', 'Players', $EMPTY_STRING, 'Combined Score', 'Round'],
         'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
         'list'   => []
       },
@@ -1133,6 +1151,8 @@ sub swap
   my $tmp = $hashref->{$attr1};
   $hashref->{$attr1} = $hashref->{$attr2};
   $hashref->{$attr2} = $tmp;
+
+  return 1;
 }
 
 sub tou_is_loaded
@@ -1140,7 +1160,7 @@ sub tou_is_loaded
   my $dbh = shift;
   my $tou = shift;
 
-  my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+  my $loaded_tournaments_tn = $LOADED_TOURNAMENTS_TABLE_NAME;
 
   my $tou_query = "SELECT * FROM $loaded_tournaments_tn WHERE filename=\"$tou\"";
 
@@ -1177,20 +1197,25 @@ sub update_record_by_id
     my $update = "UPDATE $table_name SET $key = '$value' WHERE id=$id";
     $dbh->do($update, {"RaiseError" => 1});
   }
+
+  return 1;
 }
 
 sub write_file_to_string
 {
   my $file = shift;
-  my $string = '';
+  my $string;
+  
   if (-e $file)
   {
-    open (my $fh, '<', $file);
-    while(<$fh>)
+    $string = $EMPTY_STRING;
+    my @file_array = Utils::write_file_to_array($file);
+    while(@file_array)
     {
-      $string .= $_;
+      $string .= shift @file_array;
     }
   }
+  
   return $string;
 }
 
@@ -1199,9 +1224,11 @@ sub write_string_to_file
   my $string   = shift;
   my $filename = shift;
 
-  open(my $fh, '>', $filename);
+  open(my $fh, q{>}, $filename) or croak "Cannot open $filename: $OS_ERROR\n";
   print $fh $string;
-  close $fh; 
+  close $fh or croak "Cannot close $filename: $OS_ERROR\n";
+
+  return 1;
 }
 
 1;

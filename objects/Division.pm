@@ -2,8 +2,10 @@
 
 package Division;
 
+
 use strict;
 use warnings;
+use version; our $VERSION = qv('1');
 use Data::Dumper;
 
 use lib './modules';
@@ -16,7 +18,7 @@ sub create_matrix
   # The division matrix is a 1-d array modeled
   # as a 2-d array
   my $tournament_length;
-  my $game_data = $this->{Constants::DIVISION_GAME_DATA};
+  my $game_data = $this->{$DIVISION_GAME_DATA};
   my @matrix = ();
 
   for (my $i = 0; $i < scalar @{$game_data}; $i++)
@@ -33,21 +35,23 @@ sub create_matrix
       $this->set_verification_report(
         Utils::format_error([
                               ['ERROR', 'Inconsistent number of games played'],
-                              ['File', $this->{Constants::DIVISION_TOUFILE}],
-                              ['Division', $this->{Constants::DIVISION_NAME}],
-                              ['Player', $this->{Constants::DIVISION_PLAYERS}->[$i]]
+                              ['File', $this->{$DIVISION_TOUFILE}],
+                              ['Division', $this->{$DIVISION_NAME}],
+                              ['Player', $this->{$DIVISION_PLAYERS}->[$i]]
                             ]));
       $this->set_valid(0);
       return;
     }
     for (my $k = 0; $k < $number_of_player_games; $k++)
     {
-      $player_games[$k]->{Constants::RESULT_ROUND} = $k + 1;
+      $player_games[$k]->{$RESULT_ROUND} = $k + 1;
       push @matrix, $player_games[$k];
     }
   }
-  $this->{Constants::DIVISION_NUMBER_OF_ROUNDS} = $tournament_length;
-  $this->{Constants::DIVISION_MATRIX} = \@matrix;
+  $this->{$DIVISION_NUMBER_OF_ROUNDS} = $tournament_length;
+  $this->{$DIVISION_MATRIX} = \@matrix;
+
+  return 1;
 }
 
 sub get_matrix_index
@@ -56,31 +60,31 @@ sub get_matrix_index
   my $player_number = shift;
   my $round         = shift;
 
-  my $matrix = $this->{Constants::DIVISION_MATRIX};
-  my $number_of_rounds = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
+  my $matrix = $this->{$DIVISION_MATRIX};
+  my $number_of_rounds = $this->{$DIVISION_NUMBER_OF_ROUNDS};
 
   return $matrix->[ ($player_number *  $number_of_rounds) + $round ];
 }
 
 sub initialize
 {
-  my $this = shift;
+  my ($this, $arg_ref) = @_;
 
-  my $toufile         = shift;
-  my $division_name   = shift;
-  my $division_number = shift;
-  my $players         = shift;
-  my $game_data       = shift;
+  my $filename        = $arg_ref->{filename};
+  my $division_name   = $arg_ref->{division_name};
+  my $division_number = $arg_ref->{division_number};
+  my $players         = $arg_ref->{players};
+  my $game_data       = $arg_ref->{game_data};
 
   my $division = {};
 
-  $division->{Constants::DIVISION_TOUFILE}    = $toufile;
-  $division->{Constants::DIVISION_NAME}       = $division_name;
-  $division->{Constants::DIVISION_NUMBER}     = $division_number;
-  $division->{Constants::DIVISION_PLAYERS}    = $players;
-  $division->{Constants::DIVISION_GAME_DATA}  = $game_data;
-  $division->{Constants::DIVISION_VALID}      = 1;
-  $division->{Constants::DIVISION_MATRIX}     = [];
+  $division->{$DIVISION_TOUFILE}    = $filename;
+  $division->{$DIVISION_NAME}       = $division_name;
+  $division->{$DIVISION_NUMBER}     = $division_number;
+  $division->{$DIVISION_PLAYERS}    = $players;
+  $division->{$DIVISION_GAME_DATA}  = $game_data;
+  $division->{$DIVISION_VALID}      = 1;
+  $division->{$DIVISION_MATRIX}     = [];
 
   my $self = bless $division, $this;
   return $self;
@@ -89,25 +93,25 @@ sub initialize
 sub is_valid
 {
   my $this = shift;
-  return $this->{Constants::DIVISION_VALID};
+  return $this->{$DIVISION_VALID};
 }
 
 sub new
 {
-  my $this = shift;
+  my ($this, $arg_ref) = @_;
 
-  my $toufile         = shift;
-  my $division_name   = shift;
-  my $division_number = shift;
-  my $players         = shift;
-  my $game_data       = shift;
+  my $filename        = $arg_ref->{filename};
+  my $division_name   = $arg_ref->{division_name};
+  my $division_number = $arg_ref->{division_number};
+  my $players         = $arg_ref->{players};
+  my $game_data       = $arg_ref->{game_data};
 
   my $division = $this->initialize(
-                                    $toufile,
-                                    $division_name,
-                                    $division_number,
-                                    $players,
-                                    $game_data
+                                    filename        => $filename,
+                                    division_name   => $division_name,
+                                    division_number => $division_number,
+                                    players         => $players,
+                                    game_data       => $game_data
                                   );
 
   $division->create_matrix();
@@ -124,11 +128,11 @@ sub process
     return;
   }
 
-  my $filename      = $this->{Constants::DIVISION_TOUFILE};
-  my $division_name = $this->{Constants::DIVISION_NAME};
+  my $filename      = $this->{$DIVISION_TOUFILE};
+  my $division_name = $this->{$DIVISION_NAME};
 
-  my $number_of_rounds  = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
-  my @players           = @{$this->{Constants::DIVISION_PLAYERS}};
+  my $number_of_rounds  = $this->{$DIVISION_NUMBER_OF_ROUNDS};
+  my @players           = @{$this->{$DIVISION_PLAYERS}};
   my $number_of_players = scalar @players;
 
 
@@ -145,8 +149,8 @@ sub process
     for (my $player_number = 0; $player_number < $number_of_players; $player_number++)
     {
       my $player_result   = $this->get_matrix_index($player_number, $round);
-      my $player_name     = $this->{Constants::DIVISION_PLAYERS}->[$player_number];
-      my $opponent_number = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
+      my $player_name     = $this->{$DIVISION_PLAYERS}->[$player_number];
+      my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
 
       if ($opponent_number < 0 || $opponent_number > $number_of_players - 1)
       {
@@ -157,7 +161,7 @@ sub process
         {
           $message_type = 'WARNING';
           $message      = 'Out of range opponent number set to bye';
-          $player_result->{Constants::RESULT_OPPONENT_NUMBER} = $player_number;
+          $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
         }
         $this->set_verification_report(
           Utils::format_error([
@@ -175,11 +179,11 @@ sub process
         }
       }
 
-      $player_result->{Constants::RESULT_ROUND}         = $round;
-      $player_result->{Constants::RESULT_PLAYER_NUMBER} = $player_number;
+      $player_result->{$RESULT_ROUND}         = $round;
+      $player_result->{$RESULT_PLAYER_NUMBER} = $player_number;
 
       my $opponent_result = $this->get_matrix_index($opponent_number, $round);
-      my $opponent_opponent_number = $opponent_result->{Constants::RESULT_OPPONENT_NUMBER};
+      my $opponent_opponent_number = $opponent_result->{$RESULT_OPPONENT_NUMBER};
       if ($opponent_opponent_number != $player_number)
       {
         # Covered by TC 14
@@ -189,7 +193,7 @@ sub process
         {
           $message_type = 'WARNING';
           $message     .= ' and was set to a bye';
-          $player_result->{Constants::RESULT_OPPONENT_NUMBER} = $player_number;
+          $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
         }
 
         $this->set_verification_report(
@@ -199,8 +203,8 @@ sub process
                                 ['Division', $division_name],
                                 ['Round', $round + 1 ],
                                 ['Player', $player_name . " ($player_number)"],
-                                ['Player\'s Opponent', $this->{Constants::DIVISION_PLAYERS}->[$opponent_number] . " ($opponent_number)" ],
-                                ['Player\'s Opponent\'s Opponent', $this->{Constants::DIVISION_PLAYERS}->[$opponent_opponent_number] . " ($opponent_opponent_number)"]
+                                ['Player\'s Opponent', $this->{$DIVISION_PLAYERS}->[$opponent_number] . " ($opponent_number)" ],
+                                ['Player\'s Opponent\'s Opponent', $this->{$DIVISION_PLAYERS}->[$opponent_opponent_number] . " ($opponent_opponent_number)"]
                               ]));
         if (!$correct)
         {
@@ -231,7 +235,7 @@ sub process
           $bye_wins = 0.5;
           $coded_result = 0;
         }
-        $player_result->{Constants::RESULT_SCORE} = 0;
+        $player_result->{$RESULT_SCORE} = 0;
       }
       else
       {
@@ -252,12 +256,12 @@ sub process
           $coded_result = -1;
         }
       }
-      $player_result->{Constants::RESULT_WINS}          = $wins;
-      $player_result->{Constants::RESULT_LOSSES}        = $losses;
-      $player_result->{Constants::RESULT_BYES}          = $byes;
-      $player_result->{Constants::RESULT_BYE_WINS}      = $bye_wins;
-      $player_result->{Constants::RESULT_SPREAD}        = $spread;
-      $player_result->{Constants::RESULT_CODED}         = $coded_result;
+      $player_result->{$RESULT_WINS}          = $wins;
+      $player_result->{$RESULT_LOSSES}        = $losses;
+      $player_result->{$RESULT_BYES}          = $byes;
+      $player_result->{$RESULT_BYE_WINS}      = $bye_wins;
+      $player_result->{$RESULT_SPREAD}        = $spread;
+      $player_result->{$RESULT_CODED}         = $coded_result;
     }
   }  
   return 0;
@@ -267,39 +271,43 @@ sub set_valid
 {
   my $this        = shift;
   my $valid_value = shift;
-  $this->{Constants::DIVISION_VALID} = $valid_value;
+  $this->{$DIVISION_VALID} = $valid_value;
+
+  return 1;
 }
 
 sub set_verification_report
 {
   my $this = shift;
   my $report = shift;
-  $this->{Constants::DIVISION_VERIFICATION_REPORT} = $report;
+  $this->{$DIVISION_VERIFICATION_REPORT} = $report;
+
+  return 1;
 }
 
 sub to_string
 {
   my $this = shift;
 
-  my $number_of_rounds  = $this->{Constants::DIVISION_NUMBER_OF_ROUNDS};
-  my @players           = @{$this->{Constants::DIVISION_PLAYERS}};
+  my $number_of_rounds  = $this->{$DIVISION_NUMBER_OF_ROUNDS};
+  my @players           = @{$this->{$DIVISION_PLAYERS}};
   my $number_of_players = scalar @players;
 
-  my $division_name = $this->{Constants::DIVISION_NAME};
+  my $division_name = $this->{$DIVISION_NAME};
 
   my $division_string = "*$division_name\n";
   $division_string .= "                                      0\n";
 
   for (my $player_number = 0; $player_number < $number_of_players; $player_number++)
   {
-    my $player_name = $this->{Constants::DIVISION_PLAYERS}->[$player_number];
+    my $player_name = $this->{$DIVISION_PLAYERS}->[$player_number];
     $division_string .= sprintf "%-30s", $player_name; 
     for (my $round = 0; $round < $number_of_rounds; $round++)
     {
       my $player_result    = $this->get_matrix_index($player_number, $round);
-      my $opponent_number  = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
-      my $player_tou_score = $player_result->{Constants::RESULT_TOU_SCORE};
-      my $player_is_first  = $player_result->{Constants::RESULT_PLAYER_IS_FIRST};
+      my $opponent_number  = $player_result->{$RESULT_OPPONENT_NUMBER};
+      my $player_tou_score = $player_result->{$RESULT_TOU_SCORE};
+      my $player_is_first  = $player_result->{$RESULT_PLAYER_IS_FIRST};
       my $plus = '';
       if ($player_is_first)
       {

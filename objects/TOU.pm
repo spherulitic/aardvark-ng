@@ -2,15 +2,17 @@
 
 package TOU;
 
+
 use strict;
 use warnings;
-use Getopt::Long;
+use version; our $VERSION = qv('1');
 use Pod::Usage qw(pod2usage);
 use DBI;
 use Data::Dumper;
 use Term::ANSIColor;
 use List::Util qw(max);
 use Clone 'clone';
+use Carp;
 
 use lib './modules';
 use lib './objects';
@@ -25,8 +27,8 @@ sub compare_sts_and_tou_names
 {
   my $this                          = shift;
 
-  my $tou_names = $this->{Constants::TOU_PLAYER_NAMES};
-  my $sts_names = $this->{Constants::TOU_STS_PLAYER_NAMES};
+  my $tou_names = $this->{$TOU_PLAYER_NAMES};
+  my $sts_names = $this->{$TOU_STS_PLAYER_NAMES};
 
   foreach my $key (keys %{$sts_names})
   {
@@ -42,16 +44,18 @@ sub compare_sts_and_tou_names
     $this->set_error_report(
       Utils::format_error([
                             ['ERROR', 'Names missing in the STS/STA file'],
-                            ['File', $this->{Constants::TOU_FILENAME}],
+                            ['File', $this->{$TOU_FILENAME}],
                             ['Missing from STS', $missing_from_sts]
                           ]));
   }
+
+  return 1;
 }
 
 sub get_filename
 {
   my $this = shift;
-  return $this->{Constants::TOU_FILENAME}; 
+  return $this->{$TOU_FILENAME}; 
 }
 
 sub get_unblessed_ref
@@ -73,7 +77,7 @@ sub get_unblessed_ref
     $unblessed = {};
     foreach my $key (keys %{$obj})
     {
-      if (!Constants::UNBLESSED_IGNORE_KEYS->{$key})
+      if (!$UNBLESSED_IGNORE_KEYS->{$key})
       {
         $unblessed->{$key} = get_unblessed_ref($obj->{$key});
       }
@@ -96,21 +100,21 @@ sub initialize
 
   my $tou = {};
 
-  $tou->{Constants::TOU_DBH}               = $dbh;
-  $tou->{Constants::TOU_FILENAME}          = $filename;
-  $tou->{Constants::TOU_REWRITE_FILENAME}  = $filename . '.rewrite';
-  $tou->{Constants::TOU_PLAYER_DATA}       = $player_data;
-  $tou->{Constants::TOU_CONVERSION_HASH}   = $conversion_hash;
+  $tou->{$TOU_DBH}               = $dbh;
+  $tou->{$TOU_FILENAME}          = $filename;
+  $tou->{$TOU_REWRITE_FILENAME}  = $filename . '.rewrite';
+  $tou->{$TOU_PLAYER_DATA}       = $player_data;
+  $tou->{$TOU_CONVERSION_HASH}   = $conversion_hash;
 
-  $tou->{Constants::TOU_PLAYER_NAMES}      = {};
-  $tou->{Constants::TOU_STS_PLAYER_NAMES}  = {};
-  $tou->{Constants::TOU_DIVISION_DATA}     = {};
-  $tou->{Constants::TOU_ERROR_REPORT}      = '';
-  $tou->{Constants::TOU_LOADED}            = 0;
-  $tou->{Constants::TOU_PROCESSED}         = 0;
-  $tou->{Constants::TOU_REWRITE_NEEDED}    = 0;
-  $tou->{Constants::TOU_VALID}             = 1;
-  $tou->{Constants::TOU_WARNING_REPORT}    = '';
+  $tou->{$TOU_PLAYER_NAMES}      = {};
+  $tou->{$TOU_STS_PLAYER_NAMES}  = {};
+  $tou->{$TOU_DIVISION_DATA}     = {};
+  $tou->{$TOU_ERROR_REPORT}      = '';
+  $tou->{$TOU_LOADED}            = 0;
+  $tou->{$TOU_PROCESSED}         = 0;
+  $tou->{$TOU_REWRITE_NEEDED}    = 0;
+  $tou->{$TOU_VALID}             = 1;
+  $tou->{$TOU_WARNING_REPORT}    = '';
 
   my $self = bless $tou, $this;
   return $self;
@@ -119,13 +123,13 @@ sub initialize
 sub is_processed
 {
   my $this = shift;
-  return $this->{Constants::TOU_PROCESSED};
+  return $this->{$TOU_PROCESSED};
 }
 
 sub is_valid
 {
   my $this = shift;
-  return $this->{Constants::TOU_VALID};
+  return $this->{$TOU_VALID};
 }
 
 sub load
@@ -138,21 +142,21 @@ sub load
     return 1;
   }
 
-  my $dbh         = $this->{Constants::TOU_DBH};
+  my $dbh         = $this->{$TOU_DBH};
 
-  my $filename                        = $this->{Constants::TOU_FILENAME};
-  my $event                           = $this->{Constants::TOU_EVENT};
-  my $tournament                      = $this->{Constants::TOU_TOURNAMENT};
-  my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
+  my $filename                        = $this->{$TOU_FILENAME};
+  my $event                           = $this->{$TOU_EVENT};
+  my $tournament                      = $this->{$TOU_TOURNAMENT};
+  my $divisions                       = $this->{$TOU_DIVISION_DATA};
 
-  my $players_tn            = Constants::PLAYERS_TABLE_NAME;
-  my $player_alt_names_tn   = Constants::PLAYER_ALT_NAMES_TABLE_NAME;
-  my $tournaments_tn        = Constants::TOURNAMENTS_TABLE_NAME;
-  my $events_tn             = Constants::EVENTS_TABLE_NAME;
-  my $divisions_tn          = Constants::DIVISIONS_TABLE_NAME;
-  my $games_tn              = Constants::GAMES_TABLE_NAME;
-  my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
-  my $player_results_tn     = Constants::PLAYER_RESULTS_TABLE_NAME;
+  my $players_tn            = $PLAYERS_TABLE_NAME;
+  my $player_alt_names_tn   = $PLAYER_ALT_NAMES_TABLE_NAME;
+  my $tournaments_tn        = $TOURNAMENTS_TABLE_NAME;
+  my $events_tn             = $EVENTS_TABLE_NAME;
+  my $divisions_tn          = $DIVISIONS_TABLE_NAME;
+  my $games_tn              = $GAMES_TABLE_NAME;
+  my $tournament_results_tn = $TOURNAMENT_RESULTS_TABLE_NAME;
+  my $player_results_tn     = $PLAYER_RESULTS_TABLE_NAME;
 
   # Add to database top down so we can link up the foreign keys
   my $event_id      = Utils::insert_hash_into_table($dbh, $events_tn, $event);
@@ -164,8 +168,8 @@ sub load
 
   my @division_keys =
     sort {
-           $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
-           $divisions->{$b}->{Constants::DIVISION_NUMBER}
+           $divisions->{$a}->{$DIVISION_NUMBER} <=> 
+           $divisions->{$b}->{$DIVISION_NUMBER}
          } keys %{$divisions};
 
   for (my $i = 0; $i < scalar @division_keys; $i++)
@@ -173,7 +177,7 @@ sub load
     my $key = $division_keys[$i];
     my $division      = $divisions->{$key};    
 
-    my $division_name = $division->{Constants::DIVISION_NAME};
+    my $division_name = $division->{$DIVISION_NAME};
 
     my $division_id   = Utils::insert_hash_into_table
     (
@@ -182,12 +186,12 @@ sub load
       {
         tournament_id => $tournament_id,
         name          => $division_name,
-        length        => $divisions->{$key}->{Constants::DIVISION_NUMBER_OF_ROUNDS},
-        number        => $divisions->{$key}->{Constants::DIVISION_NUMBER}
+        length        => $divisions->{$key}->{$DIVISION_NUMBER_OF_ROUNDS},
+        number        => $divisions->{$key}->{$DIVISION_NUMBER}
       }
     );
 
-    my $tournament_results = $division->{Constants::DIVISION_TOURNAMENT_RESULTS};
+    my $tournament_results = $division->{$DIVISION_TOURNAMENT_RESULTS};
 
     foreach my $tr (@{$tournament_results})
     {
@@ -202,7 +206,7 @@ sub load
       }
     }
 
-    my $gprs = $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS};
+    my $gprs = $division->{$DIVISION_GAME_AND_PLAYER_RESULTS};
 
     foreach my $key (keys %{$gprs})
     {
@@ -222,8 +226,8 @@ sub load
     }
   }
 
-  my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
-  $tournament_name =~ s/"//g;
+  my $loaded_tournaments_table_name = $LOADED_TOURNAMENTS_TABLE_NAME;
+  $tournament_name =~ s/"//gxms;
 
   my $insert_processed_tou =
   "
@@ -233,40 +237,41 @@ sub load
   ";
 
   $dbh->do($insert_processed_tou, {"RaiseError" => 1});
-  $this->{Constants::TOU_LOADED} = 1; 
-  return 0;
+  $this->{$TOU_LOADED} = 1; 
+  return 1;
 }
 
 sub new
 {
-  my $tou_type              = shift;
-  my $dbh                   = shift;
-  my $filename              = shift;
-  my $alt_names_hash        = shift;
-  my $deceased_players_hash = shift;
-  my $player_data           = shift;
+  my ($tou_type, $arg_ref) = @_;
+
+  my $dbh                   = $arg_ref->{dbh};
+  my $filename              = $arg_ref->{filename};
+  my $alt_names_hash        = $arg_ref->{alt_names_hash};
+  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
+  my $player_data           = $arg_ref->{player_data};
 
   my $this = $tou_type->initialize($dbh, $filename, $player_data, $alt_names_hash);
 
-  my $tou_file_extension     = Constants::TOU_FILE_EXTENSION;
-  my $sts_file_extension     = Constants::STS_FILE_EXTENSION;
-  my $sta_file_extension     = Constants::STA_FILE_EXTENSION;
+  my $tou_file_extension     = $TOU_FILE_EXTENSION;
+  my $sts_file_extension     = $STS_FILE_EXTENSION;
+  my $sta_file_extension     = $STA_FILE_EXTENSION;
   
-  my $provisional_games_max  = Constants::PROVISIONAL_GAMES_MAX;
+  my $provisional_games_max  = $PROVISIONAL_GAMES_MAX;
   
-  my $tables                 = Constants::TABLES;
-  my $creation_order         = Constants::TABLE_CREATION_ORDER;
+  my $tables                 = $TABLES;
+  my $creation_order         = $TABLE_CREATION_ORDER;
   
-  my $lexicons               = Constants::LEXICONS;
-  my $players_tn             = Constants::PLAYERS_TABLE_NAME;  
-  my $lexicons_tn            = Constants::LEXICONS_TABLE_NAME;
-  my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
+  my $lexicons               = $LEXICONS;
+  my $players_tn             = $PLAYERS_TABLE_NAME;  
+  my $lexicons_tn            = $LEXICONS_TABLE_NAME;
+  my $loaded_tournaments_tn = $LOADED_TOURNAMENTS_TABLE_NAME;
   
-  my $tou_data_directory     = Utils::get_environment_name(Constants::TOURNAMENT_DATA_DIR);
-  my $working_directory      = Utils::get_environment_name(Constants::DEFAULT_WORKING_DIR);
-  my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
-  my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
-  my $file_regex             = Constants::DEFAULT_FILE_REGEX;
+  my $tou_data_directory     = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
+  my $working_directory      = Utils::get_environment_name($DEFAULT_WORKING_DIR);
+  my $year_regex             = $DEFAULT_YEAR_REGEX;
+  my $country_trigraph_regex = $DEFAULT_COUNTRY_TRIGRAPH_REGEX;
+  my $file_regex             = $DEFAULT_FILE_REGEX;
   my $create_html            = '';
   my $help                   = '';
 
@@ -287,13 +292,13 @@ sub new
 
   if (Utils::tou_is_loaded($dbh, $filename))
   {
-    $this->{Constants::TOU_LOADED} = 1;
+    $this->{$TOU_LOADED} = 1;
     return $this;
   }
 
 
   my $noext_filename = $filename;
-  $noext_filename =~ s/\.(.*)$//;
+  $noext_filename =~ s/\.(.*)$//xms;
 
   my $sts_file = $noext_filename . $sts_file_extension;
   my $sta_file = $noext_filename . $sta_file_extension;
@@ -311,12 +316,12 @@ sub new
 
   my $date;
   my $tournament_name;
-  open(my $tou_read, "<", $filename) or die "Cannot open .tou file $filename: $!";
+  open(my $tou_read, "<", $filename) or croak "Cannot open .tou file $filename: $!";
   my $first_line = <$tou_read>;
   close $tou_read;
   chomp $first_line;
-  $first_line =~ s/\r//g;
-  if ($first_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
+  $first_line =~ s/\r//gxms;
+  if ($first_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms)
   {    
     $date = $3 . $2 . $1;
     $tournament_name = $4;
@@ -346,15 +351,16 @@ sub new
   my $no_world                = 1;
   my $begin_player_captures   = 0;
   # Read the .STS file
-  open(STS_OR_STA_FILE, "<", $sts_or_sta_file) or die "Cannot open .STS or .STA file $sts_or_sta_file: $!";
-  while(<STS_OR_STA_FILE>)
+  my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
+  while(@sts_lines)
   {
-    chomp $_;
+    my $sts_line = shift @sts_lines;
+    chomp $sts_line;
 
     # Remove trailing and leading whitespace from line
-    $_ =~ s/^\s+|\s+$//g;
+    $sts_line =~ s/^\s+|\s+$//gxms;
 
-    if (!$_){next;}
+    if (!$sts_line){next;}
 
     # These are common between both .STS and .STA files
     my $player_country;
@@ -372,7 +378,7 @@ sub new
     # opposed to .STA
     if ($is_sts)
     {
-      my @player_items = split /,/, $_;
+      my @player_items = split /,/xms, $sts_line;
       $player_country    = $player_items[1];
       $player_name       = $player_items[2];
       $expected_wins     = $player_items[4];
@@ -385,33 +391,36 @@ sub new
     }
     else
     {
-      if ($_ =~ /\+-/)
+      if ($sts_line =~ /\+-/xms)
       {
         $begin_player_captures++;
       }
-      if ($_ =~ /World.*Nation/i)
+      if ($sts_line =~ /World.*Nation/ixms)
       {
         $switch_world_and_nation = 1;
       }
-      elsif ($_ =~ /World/)
+      elsif ($sts_line =~ /World/xms)
       {
         $no_world = 0;
       }
       # Remove parentheses from the line because 
       # they were causing problems
-      $_  =~ s/\(|\)/ /g;
+      $sts_line  =~ s/\(|\)/ /gxms;
       # Agonizing pattern match for .STA file
       # which is why .STS is preferred
       #if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
       if ($begin_player_captures >= 2 &&
-          $_ =~ /^\|(.)(\w+)\s+([^\|]+)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|/)
+          $sts_line =~ /^\|(.)(\w+)\s+([^\|]+)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|/xms)
       {
-        my $is_new_player  = $1; # Unused for now
-        $player_country    = $2;
-        $player_name       = $3;
-
+        my $is_new_player         = $1; # Unused for now
+        $player_country           = $2;
+        $player_name              = $3;
         my $national_ranks_string = $4;
-        my @nranks = split /\s+/, $national_ranks_string;
+        my $world_ranks_string    = $5;
+        my $wins_string           = $6;
+        my $ratings_change_string = $7;
+
+        my @nranks = split /\s+/xms, $national_ranks_string;
         @nranks = grep {$_} @nranks;
         if (scalar @nranks == 2)
         {
@@ -430,14 +439,13 @@ sub new
             Utils::format_error([
                                   ["ERROR", "Invalid number of items in STA first rank column"], 
                                   ["File", $sts_or_sta_file], 
-                                  ["Line", $_],
+                                  ["Line", $sts_line],
                                 ]));
           return $this;
         }
 
 
-        my $world_ranks_string = $5;
-        my @wranks = split /\s+/, $world_ranks_string;
+        my @wranks = split /\s+/xms, $world_ranks_string;
         @wranks = grep {$_} @wranks;
         if (scalar @wranks == 2)
         {
@@ -455,13 +463,12 @@ sub new
             Utils::format_error([
                                   ['ERROR', 'Invalid number of items in STA second rank column'], 
                                   ['File', $sts_or_sta_file], 
-                                  ['Line', $_],
+                                  ['Line', $sts_line],
                                 ]));
           return $this;
         }
 
-        my $wins_string    = $6;
-        my @ewins = split /\s+/, $wins_string;
+        my @ewins = split /\s+/xms, $wins_string;
         @ewins = grep {$_} @ewins;
         if (scalar @ewins == 2)
         {
@@ -477,13 +484,12 @@ sub new
             Utils::format_error([
                                   ['ERROR', 'Invalid number of items in STA wins column'], 
                                   ['File', $sts_or_sta_file], 
-                                  ['Line', $_],
+                                  ['Line', $sts_line],
                                 ]));
           return $this;
         }
 
-        my $ratings_change_string    = $7;
-        my @rchanges = split /\s+/, $ratings_change_string;
+        my @rchanges = split /\s+/xms, $ratings_change_string;
         @rchanges = grep {$_} @rchanges;
         if (scalar @rchanges == 3)
         {
@@ -507,7 +513,7 @@ sub new
             Utils::format_error([
                                   ['ERROR', 'Invalid number of items in STA ratings column'], 
                                   ['File', $sts_or_sta_file], 
-                                  ['Line', $_],
+                                  ['Line', $sts_line],
                                 ]));
           return $this;
         }
@@ -548,15 +554,15 @@ sub new
     $old_national_rank = Utils::negative_one_if_false($old_national_rank);
     $new_national_rank = Utils::negative_one_if_false($new_national_rank);
 
-    $player_country    =~ s/^\s+|\s+$//g;
-    $player_name       =~ s/^\s+|\s+$//g;
-    $new_world_rank    =~ s/^\s+|\s+$//g;
-    $old_world_rank    =~ s/^\s+|\s+$//g;
-    $old_national_rank =~ s/^\s+|\s+$//g;
-    $new_national_rank =~ s/^\s+|\s+$//g;
-    $expected_wins     =~ s/^\s+|\s+$//g;
-    $start_rating      =~ s/^\s+|\s+$//g;
-    $end_rating        =~ s/^\s+|\s+$//g;    
+    $player_country    =~ s/^\s+|\s+$//gxms;
+    $player_name       =~ s/^\s+|\s+$//gxms;
+    $new_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_national_rank =~ s/^\s+|\s+$//gxms;
+    $new_national_rank =~ s/^\s+|\s+$//gxms;
+    $expected_wins     =~ s/^\s+|\s+$//gxms;
+    $start_rating      =~ s/^\s+|\s+$//gxms;
+    $end_rating        =~ s/^\s+|\s+$//gxms;   
 
     my @required_captures =
     grep {!$_}
@@ -588,7 +594,7 @@ sub new
     my $pretty_player_name = Utils::make_pretty($player_name);
     $player_name           = Utils::sanitize($player_name);
 
-    $this->{Constants::TOU_STS_PLAYER_NAMES}->{$player_name} = 1;
+    $this->{$TOU_STS_PLAYER_NAMES}->{$player_name} = 1;
 
     # Search for this player in the players table
     # If this player already exists in the database, we will need their
@@ -628,7 +634,7 @@ sub new
       my $existing_country = shift @player_query_result;
       my $player_last_played = shift @player_query_result;
 
-      $player_last_played =~ s/\D//g;
+      $player_last_played =~ s/\D//gxms;
 
 
       my $newer_tourney_cond = $player_last_played < $date;
@@ -657,28 +663,29 @@ sub new
     } 
     $player_data->{$player_name} = [$pretty_player_name, $player_id];
   }
-
   $this->process();
   return $this;
 }
 
 sub new_division
 {
-  my $this                    = shift;
-  my $filename                = shift;
-  my $current_division_name   = shift;
-  my $current_division_number = shift;
-  my $players                 = shift;
-  my $game_data               = shift;
+  my ($this, $arg_ref) = @_;
+
+  my $filename                = $arg_ref->{filename};
+  my $current_division_name   = $arg_ref->{current_division_name};
+  my $current_division_number = $arg_ref->{current_division_number};
+  my $players                 = $arg_ref->{players};
+  my $game_data               = $arg_ref->{game_data};
 
   my $division =
-          Division->new(
-                         $filename,
-                         $current_division_name,
-                         $current_division_number,
-                         $players,
-                         $game_data
-                       );
+             Division->new
+                         ({
+                            filename                => $filename,
+                            current_division_name   => $current_division_name,
+                            current_division_number => $current_division_number++,
+                            players                 => $players,
+                            game_data               => $game_data
+                          });
 
   $division->process();
   return $this->process_division($division);
@@ -688,7 +695,7 @@ sub process
 {
   my $this                          = shift;
 
-  my $filename                      = $this->{Constants::TOU_FILENAME};
+  my $filename                      = $this->{$TOU_FILENAME};
   my @players                       = ();
   my @game_data                     = ();
   my $current_division_number       = 1;
@@ -697,15 +704,14 @@ sub process
   my $at_end    = 0;
   my $at_header = 1;
 
-  open(my $fh, "<", $filename)
-    or die "Cannot open .tou file $filename: $!";
-
-  while(<$fh>)
+  my @tou_lines = Utils::write_file_to_array($filename);
+  while(@tou_lines)
   {
-    $at_end = $_ =~ /END OF FILE/;
+    my $tou_line = shift @tou_lines;
+    $at_end = $tou_line =~ /END OF FILE/;
     if ($at_header)
     {
-      if (/^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
+      if ($tou_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms)
       {
         my $date = $3 . $2 . $1;
         my $tournament_name = $4;
@@ -729,26 +735,26 @@ sub process
           "country"    => Utils::convert_trigraph(Utils::get_country_from_filename($filename)), 
           # "td"         => "director of tournament",
         };
-        $this->{Constants::TOU_EVENT}      = $event;
-        $this->{Constants::TOU_TOURNAMENT} = $tournament;
+        $this->{$TOU_EVENT}      = $event;
+        $this->{$TOU_TOURNAMENT} = $tournament;
       }
       $at_header = 0;
     }
 
-    if (($_ =~ /^\*(.*)/ || $at_end) && !$at_header)
+    if (($tou_line =~ /^\*(.*)/xms || $at_end) && !$at_header)
     {
       # If this is the end of the division, verify the division
       if (@players)
       {
         if (
              $this->new_division
-                         (
-                           $filename,
-                           $current_division_name,
-                           $current_division_number++,
-                           Clone::clone(\@players),
-                           Clone::clone(\@game_data)
-                         )
+                         ({
+                            filename                => $filename,
+                            current_division_name   => $current_division_name,
+                            current_division_number => $current_division_number++,
+                            players                 => Clone::clone(\@players),
+                            game_data               => Clone::clone(\@game_data)
+                          })
            )
 
         {
@@ -761,10 +767,10 @@ sub process
         @players       = ();
         @game_data     = ();
         $current_division_name = $1;
-        $current_division_name =~ s/^\s+|\s+$//g;
+        $current_division_name =~ s/^\s+|\s+$//gxms;
       }
     }
-    elsif ($_ =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/)
+    elsif ($tou_line =~ /\w\s+(\d+\s+\+?\d+(\s+|$))+/xms)
     {
       if (!$current_division_number || !$current_division_name)
       {    
@@ -779,21 +785,21 @@ sub process
 
       # If a winning negative score is listed, correct it by adding 2000
       # to ensure compliance with the .tou format
-      if ($_ =~ /\s2\s?(\-\d+)/)
+      if ($tou_line =~ /\s2\s?(\-\d+)/xms)
       {    
-        $this->{Constants::TOU_WARNING_REPORT} .= Utils::format_error([
+        $this->{$TOU_WARNING_REPORT} .= Utils::format_error([
                               ['WARNING', 'Converting negative winning score'],
                               ['File', $filename],
-                              ['Line', $_."\n"],
-                              ['Rewritten to', $this->{Constants::TOU_REWRITE_FILENAME}]
+                              ['Line', $tou_line."\n"],
+                              ['Rewritten to', $this->{$TOU_REWRITE_FILENAME}]
                             ]);
         my $neg_score = $1 + 2000;
-        $_ =~ s/2\s?\-\d+/$neg_score/g;
-        $this->{Constants::TOU_REWRITE_NEEDED} = 1;
+        $tou_line =~ s/2\s?\-\d+/$neg_score/gxms;
+        $this->{$TOU_REWRITE_NEEDED} = 1;
       }
 
-      my @player_game_data = split/\s+/, $_;
-      my $games_played = () = $_ =~ /(\-?\d+\s+\+?\d+(?:\s+|$))/g;
+      my @player_game_data = split/\s+/xms, $tou_line;
+      my $games_played = () = $tou_line =~ /(\-?\d+\s+\+?\d+(?:\s+|$))/gxms;
       my @games = ();
 
       for(my $i = 0; $i < $games_played; $i++)
@@ -804,10 +810,10 @@ sub process
         {
           $player_is_first = 1;
         }
-        $opp_number =~ s/\D//g;
+        $opp_number =~ s/\D//gxms;
         my $score       = pop @player_game_data;
 
-        if ($opp_number =~ /\D/ || $score !~ /^-?\d+$/)
+        if ($opp_number =~ /\D/xms || $score !~ /^-?\d+$/xms)
         {
           # Covered by TC 11
           $this->set_error_report(
@@ -816,7 +822,7 @@ sub process
                                   ['File', $filename],
                                   ['Opponent number', $opp_number],
                                   ['Player score', $score],
-                                  ['Line', $_]
+                                  ['Line', $tou_line]
                                 ]));
           return 1;
         }
@@ -827,8 +833,8 @@ sub process
       }
 
       my $player_name = join " ", @player_game_data;
-      $player_name    =~ s/^\s+|\s+$//g;
-      $player_name    = Utils::convert_name($player_name, $this->{Constants::TOU_CONVERSION_HASH});
+      $player_name    =~ s/^\s+|\s+$//gxms;
+      $player_name    = Utils::convert_name($player_name, $this->{$TOU_CONVERSION_HASH});
 
       push @players, $player_name;
       push @game_data, \@games;
@@ -836,8 +842,9 @@ sub process
   }
 
   $this->compare_sts_and_tou_names();
-  $this->{Constants::TOU_PROCESSED} = 1;
-  $this->rewrite()
+  $this->{$TOU_PROCESSED} = 1;
+  $this->rewrite();
+  return 1;
 }
 
 sub process_division
@@ -845,24 +852,24 @@ sub process_division
   my $this     = shift;
   my $division = shift;
 
-  my $verification_report = $division->{Constants::DIVISION_VERIFICATION_REPORT};
+  my $verification_report = $division->{$DIVISION_VERIFICATION_REPORT};
 
   if (!$division->is_valid())
   {
-    $this->{Constants::TOU_ERROR_REPORT} = $verification_report;
-    $this->{Constants::TOU_VALID} = 0;
+    $this->{$TOU_ERROR_REPORT} = $verification_report;
+    $this->{$TOU_VALID} = 0;
     return 1;
   }
 
-  $this->{Constants::TOU_WARNING_REPORT} = $verification_report;
+  $this->{$TOU_WARNING_REPORT} = $verification_report;
 
-  my $number_of_rounds  = $division->{Constants::DIVISION_NUMBER_OF_ROUNDS};
-  my @players           = @{$division->{Constants::DIVISION_PLAYERS}};
+  my $number_of_rounds  = $division->{$DIVISION_NUMBER_OF_ROUNDS};
+  my @players           = @{$division->{$DIVISION_PLAYERS}};
   my $number_of_rows    = scalar @players;
 
   my @tournament_results      = ();
   my $game_and_player_results = {};
-  my $player_data_hash        = $this->{Constants::TOU_PLAYER_DATA};
+  my $player_data_hash        = $this->{$TOU_PLAYER_DATA};
 
   my $spread   = 0;
   my $wins     = 0;
@@ -877,7 +884,7 @@ sub process_division
     my $sanitized_player_name = Utils::sanitize($player_name); 
     my $player_id   = $player_data->[1];
 
-    $this->{Constants::TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
+    $this->{$TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
 
     my $tournament_result =
     {
@@ -889,19 +896,19 @@ sub process_division
       byes            => 0,
       bye_wins        => 0,
       spread          => 0,
-      date            => $this->{Constants::TOU_TOURNAMENT}->{start_date},
-      tournament_name => $this->{Constants::TOU_TOURNAMENT}->{name}
+      date            => $this->{$TOU_TOURNAMENT}->{start_date},
+      tournament_name => $this->{$TOU_TOURNAMENT}->{name}
     };
 
     for (my $round = 0; $round < $number_of_rounds; $round++)
     { 
       my $player_result   = $division->get_matrix_index($row, $round);
-      my $opponent_number = $player_result->{Constants::RESULT_OPPONENT_NUMBER};
-      $tournament_result->{wins}     += $player_result->{Constants::RESULT_WINS};
-      $tournament_result->{losses}   += $player_result->{Constants::RESULT_LOSSES};
-      $tournament_result->{byes}     += $player_result->{Constants::RESULT_BYES};
-      $tournament_result->{bye_wins} += $player_result->{Constants::RESULT_BYE_WINS};
-      $tournament_result->{spread}   += $player_result->{Constants::RESULT_SPREAD};
+      my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
+      $tournament_result->{wins}     += $player_result->{$RESULT_WINS};
+      $tournament_result->{losses}   += $player_result->{$RESULT_LOSSES};
+      $tournament_result->{byes}     += $player_result->{$RESULT_BYES};
+      $tournament_result->{bye_wins} += $player_result->{$RESULT_BYE_WINS};
+      $tournament_result->{spread}   += $player_result->{$RESULT_SPREAD};
       $player_result->add_to_gpr($game_and_player_results, $player_id, $player_name);
     }
     push @tournament_results, $tournament_result;
@@ -909,12 +916,11 @@ sub process_division
 
   @tournament_results = Utils::rank_tournament_results(\@tournament_results);
 
-  $division->{Constants::DIVISION_TOURNAMENT_RESULTS}      = \@tournament_results;
-  $division->{Constants::DIVISION_GAME_AND_PLAYER_RESULTS} = $game_and_player_results;
-  $this->{Constants::TOU_DIVISION_DATA}->{$division->{Constants::DIVISION_NAME}} = $division;
+  $division->{$DIVISION_TOURNAMENT_RESULTS}      = \@tournament_results;
+  $division->{$DIVISION_GAME_AND_PLAYER_RESULTS} = $game_and_player_results;
+  $this->{$TOU_DIVISION_DATA}->{$division->{$DIVISION_NAME}} = $division;
   
-
-  return 0;
+  return 1;
 }
 
 sub rewrite
@@ -922,36 +928,38 @@ sub rewrite
   my $this = shift;
   if ($this->is_valid() && $this->rewrite_needed() && $this->is_processed())
   {
-    Utils::write_string_to_file($this->to_string(), $this->{Constants::TOU_REWRITE_FILENAME});
+    Utils::write_string_to_file($this->to_string(), $this->{$TOU_REWRITE_FILENAME});
   }
+  return 1;
 }
 
 sub rewrite_needed
 {
   my $this = shift;
-  return $this->{Constants::TOU_REWRITE_NEEDED};
+  return $this->{$TOU_REWRITE_NEEDED};
 }
 
 sub set_error_report
 {
   my $this = shift;
   my $error_report = shift;
-  $this->{Constants::TOU_ERROR_REPORT} = $error_report;
-  $this->{Constants::TOU_VALID} = 0;
+  $this->{$TOU_ERROR_REPORT} = $error_report;
+  $this->{$TOU_VALID} = 0;
+  return 1;
 }
 
 sub to_string
 {
   my $this = shift;
 
-  my $event                           = $this->{Constants::TOU_EVENT};
-  my $tournament                      = $this->{Constants::TOU_TOURNAMENT};
-  my $divisions                       = $this->{Constants::TOU_DIVISION_DATA};
+  my $event                           = $this->{$TOU_EVENT};
+  my $tournament                      = $this->{$TOU_TOURNAMENT};
+  my $divisions                       = $this->{$TOU_DIVISION_DATA};
 
   my $tournament_name = $tournament->{name};
   my $tournament_date = $tournament->{start_date};
 
-  $tournament_date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
+  $tournament_date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/xms;
 
   my $tou_date_format = "$3.$2.$1";
 
@@ -959,8 +967,8 @@ sub to_string
 
   my @division_keys =
     sort {
-           $divisions->{$a}->{Constants::DIVISION_NUMBER} <=> 
-           $divisions->{$b}->{Constants::DIVISION_NUMBER}
+           $divisions->{$a}->{$DIVISION_NUMBER} <=> 
+           $divisions->{$b}->{$DIVISION_NUMBER}
          } keys %{$divisions};
   
   #die "div keys: " . Dumper(\@division_keys);

@@ -2,8 +2,10 @@
 
 package Result;
 
+
 use strict;
 use warnings;
+use version; our $VERSION = qv('1');
 
 use lib './modules';
 use Constants;
@@ -23,9 +25,9 @@ sub add_to_gpr
     return;
   }
 
-  my $opponent_number = $this->{Constants::RESULT_OPPONENT_NUMBER};
-  my $player_number   = $this->{Constants::RESULT_PLAYER_NUMBER};
-  my $round           = $this->{Constants::RESULT_ROUND};
+  my $opponent_number = $this->{$RESULT_OPPONENT_NUMBER};
+  my $player_number   = $this->{$RESULT_PLAYER_NUMBER};
+  my $round           = $this->{$RESULT_ROUND};
 
   my $n1 = $opponent_number;
   my $n2 = $player_number;
@@ -43,7 +45,7 @@ sub add_to_gpr
   {
     player_id => $player_id,
     score     => $this->get_score(),
-    result    => $this->{Constants::RESULT_CODED}
+    result    => $this->{$RESULT_CODED}
   };
 
   if ($gpr_value)
@@ -66,18 +68,20 @@ sub add_to_gpr
       ]
     }
   }
+
+  return 1;
 }
 
 sub get_score
 {
   my $this = shift;
-  return $this->{Constants::RESULT_SCORE};
+  return $this->{$RESULT_SCORE};
 }
 
 sub get_tou_score
 {
   my $this = shift;
-  return $this->{Constants::RESULT_TOU_SCORE};
+  return $this->{$RESULT_TOU_SCORE};
 }
 
 sub new
@@ -90,9 +94,9 @@ sub new
   my $opponent_number = shift;
   my $player_is_first = shift;
 
-  $result->{Constants::RESULT_TOU_SCORE}       = $tou_score;
-  $result->{Constants::RESULT_OPPONENT_NUMBER} = $opponent_number;
-  $result->{Constants::RESULT_PLAYER_IS_FIRST} = $player_is_first;
+  $result->{$RESULT_TOU_SCORE}       = $tou_score;
+  $result->{$RESULT_OPPONENT_NUMBER} = $opponent_number;
+  $result->{$RESULT_PLAYER_IS_FIRST} = $player_is_first;
 
   my $score = $tou_score;
 
@@ -105,7 +109,7 @@ sub new
     $score -= 1000;
   }
 
-  $result->{Constants::RESULT_SCORE} = $score;
+  $result->{$RESULT_SCORE} = $score;
 
   my $self = bless $result, $this;
   return $self;

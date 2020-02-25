@@ -4,9 +4,15 @@ package Test;
 
 use strict;
 use warnings;
+
+use version; our $VERSION = qv('1');
+
 use Data::Dumper;
 use Getopt::Long;
 use List::Util;
+use Perl::Critic;
+use English qw( -no_match_vars ); 
+use Carp;
 
 use lib './objects';
 use lib './modules';
@@ -18,90 +24,116 @@ use TOU;
 use Utils;
 use JSON::XS;
 
-my $alphabetic;
-my $redundant;
+my $alphabetize;
+my $criticize;
+my $export;
 my $setexpected;
 my $syntax;
 
 GetOptions
 (
-  alphabetize => \$alphabetic,
-  syntax      => \$syntax,
-  setexpected => \$setexpected
+  alphabetize => \$alphabetize,
+  criticize   => \$criticize,
+  export      => \$export,
+  setexpected => \$setexpected,
+  syntax      => \$syntax
 );
 
+
+if ($alphabetize)
+{
+  Test::alphabetize_routine_order();
+}
+if ($criticize)
+{
+  Test::criticize();
+}
+if ($export)
+{
+  Test::export_constants();
+}
 if ($syntax)
 {
   Test::check_syntax();
 }
-elsif ($alphabetic)
-{
-  Test::alphabetize_routine_order();
-}
-else
+if (!$alphabetize && !$criticize && !$export && !$syntax)
 {
   Test::check_syntax();
   Test::alphabetize_routine_order();
-  Test::Harness();
+  Test::harness();
 }
 
-sub Harness
+
+sub export_constants
 {
-  print Test::make_title('STARTING TEST HARNESS', '%', Constants::TEST_TITLE_WIDTH);
-  # Processing Errors
-  testrun('PROCESSING ERRORS', 1, 14);
+  my $constants_filename = './modules/Constants.pm';
 
-  # Processing Warnings
-
-  # Create an incorrect and missing flag for testing
-  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
-  system "mv $flag_dir/USA.png $flag_dir/USB.png";
-
-  testrun('PROCESSING WARNINGS', 15, 15);
-
-  system "mv $flag_dir/USB.png $flag_dir/USA.png";
-
-  testrun('BRANCH COVERAGE', 16, 17);
+  my @lines = Utils::write_file_to_array($constants_filename);
+  my $exporting_comment = 'BEGIN EXPORT';
+  my $exporting_regex   = $exporting_comment;
+     $exporting_regex   =~ s/\s/\\s/gxms;
+  my @exportables = ();
+  my $new_constants_file = $EMPTY_STRING;
+  
+  while (@lines)
+  {
+    my $line = shift @lines;
+    if ($line =~ /$exporting_regex/xms)
+    {
+      $new_constants_file .= q{# } . $exporting_comment . "\n";
+      last;
+    }
+    if ($line =~ /Readonly\sour\s(\$\S+)/xms)
+    {
+      push @exportables, $1;
+    }
+    $new_constants_file .= $line;
+  }
+  $new_constants_file .= "our \@EXPORT = qw(\n" . (join "\n", @exportables) . "\n);\n\n1;";
+  Utils::write_string_to_file($new_constants_file, $constants_filename);
+  return 1;
 }
 
 sub alphabetize_routine_order
 {
-  print Test::make_title('ALPHABETIZING ROUTINE ORDER', '%', Constants::TEST_TITLE_WIDTH);
+  print Test::make_title('ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH);
 
-  my $directories = Constants::PERL_DIRECTORIES;
-  
+  my $directories = $PERL_DIRECTORIES;
+
   my @files = ();
-  
+
   foreach my $dir (@{$directories})
   {
-    opendir (my $fh_dir, $dir);
-    push @files, map {$dir . '/' . $_} (grep {/\.p[ml]/} readdir $fh_dir);
+    my $fh_dir;
+    opendir $fh_dir, $dir;
+    push @files, map {$dir . q{/} . $_} (grep {/\.p[ml]/xms} readdir $fh_dir);
   }
- 
+
   foreach my $f (@files)
   {
     my $routine_hash    = {};
     my $current_routine;
     my $in_current_routine = 0;
-    my $file_string = '';
-    open(my $fh, '<', $f);
-    while(<$fh>)
+    my $file_string = $EMPTY_STRING;
+    my @file_lines = Utils::write_file_to_array($f);
+    while(@file_lines)
     {
-      if (/^sub (.*)/)
+      my $current_line = shift @file_lines;
+      if ($current_line =~ /^sub (.*)/xms)
       {
         $current_routine = $1;
-        $current_routine =~ s/\s//g;
-        $routine_hash->{$current_routine} = '';
+        $current_routine =~ s/\s//gxms;
+        $routine_hash->{$current_routine} = $EMPTY_STRING;
       }
       elsif (!$current_routine)
       {
         $file_string .= $_;
       }
-      elsif (/^\{\s*/)
+      elsif ($current_line =~ /^\{\s*/xms)
       {
         $in_current_routine = 1;
       }
-      elsif (/^\}\s*/)
+      elsif ($current_line =~ /^\}\s*/xms)
       {
         $in_current_routine = 0;
       }
@@ -114,11 +146,11 @@ sub alphabetize_routine_order
     {
       my @alphabetized_routine_keys = sort keys %{$routine_hash};
 
-      my $alphabetized_file = '';
+      my $alphabetized_file = $EMPTY_STRING;
 
 
       $alphabetized_file .= $file_string;
-      for (my $i = 0; $i < scalar @alphabetized_routine_keys; $i++)
+      for my $i (0 .. scalar @alphabetized_routine_keys - 1)
       {
         my $key = $alphabetized_routine_keys[$i];
         my $routine_content = $routine_hash->{$key};
@@ -127,7 +159,7 @@ sub alphabetize_routine_order
         $alphabetized_file .= $routine_content;
         $alphabetized_file .= "}\n\n";
       }
-      $alphabetized_file .= "1;";
+      $alphabetized_file .= '1;';
 
       my $original_file = Utils::write_file_to_string($f);
 
@@ -138,40 +170,29 @@ sub alphabetize_routine_order
       }
     }
   }
+  return 1;
 }
 
 sub check_syntax
 {
-  print Test::make_title('CHECKING SYNTAX', '%', Constants::TEST_TITLE_WIDTH);
-  my $directories = Constants::PERL_DIRECTORIES;
-  my $dirs = '';
-  for (my $i = 0; $i < scalar @{$directories}; $i++)
+  print Test::make_title('CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH);
+  my $directories = $PERL_DIRECTORIES;
+  my $dirs = $EMPTY_STRING;
+  for my $i (0 .. scalar @{$directories} - 1)
   {
-    $dirs .= $directories->[$i] . ' ';
+    $dirs .= $directories->[$i] . q{ };
   }
 
   my $cmd = "find $dirs -name \"*.p[lm]\" | ";
 
-  open (my $cmd_fh, $cmd) or die "$!\n";
-  while (<$cmd_fh>)
+  my @cmd_lines = Utils::write_file_to_array($cmd);
+  while (@cmd_lines)
   {
-    my $file = $_;
-    my $syntax_log = 'syntax_log';
-
-    system "perl -cw $file > $syntax_log 2>&1";
-    open (my $syn_fh, '<', $syntax_log);
-
-    while (<$syn_fh>)
-    {
-      if ($_ =~ /OK/)
-      {
-        last;
-      }
-      # print $_;
-    }
-    system "rm $syntax_log";
+    my $file = shift @cmd_lines;
+    system "perl -cw $file";
   }
   print "\n";
+  return 1;
 }
 
 sub compare_json
@@ -192,8 +213,8 @@ sub compare_keys
   my $actual_keys_ref   = shift;
   my $failure_obj       = shift;
 
-  my $expected_keys   = join ",", sort @{$expected_keys_ref};
-  my $actual_keys     = join ",", sort @{$actual_keys_ref};
+  my $expected_keys   = join q{,}, sort @{$expected_keys_ref};
+  my $actual_keys     = join q{,}, sort @{$actual_keys_ref};
 
   return Test::compare_lines(
                               $expected_keys,
@@ -212,12 +233,12 @@ sub compare_lines
 
   if (! defined $actual_line)
   {
-    $actual_line = '';
+    $actual_line = $EMPTY_STRING;
   }
 
   if (! defined $expected_line)
   {
-    $expected_line = '';
+    $expected_line = $EMPTY_STRING;
   }
   
   my $min_line = length $expected_line;
@@ -241,22 +262,22 @@ sub compare_lines
   my $actual_char;
   my $diffs;
 
-  for (my $k = 0; $k < $min_line; $k++)
+  for my $k (0 .. $min_line - 1)
   {
     $expected_char = substr($expected_line, $k, 1);
     $actual_char   = substr($actual_line, $k, 1);
     if ($expected_char ne $actual_char)
     {
-      $diffs .= '^';
+      $diffs .= q{^};
       $failed = 1;
     }
     else
     {
-      $diffs .= ' ';
+      $diffs .= q{ };
     }
   }
 
-  $diffs .= '^' x ($max_line - $min_line);
+  $diffs .= q{^} x ($max_line - $min_line);
 
   if ($failed)
   {
@@ -267,7 +288,6 @@ sub compare_lines
                                " $diffs"
                              );
   }
-
   return $failure_obj;
 }
 
@@ -282,7 +302,7 @@ sub compare_objects
     my @expected_array = @{$expected_obj};
     my @actual_array   = @{$actual_obj};
 
-    for (my $i = 0; $i < scalar @actual_array; $i++)
+    for my $i (0 .. scalar @actual_array - 1)
     {
       compare_objects(
                        $expected_array[$i],
@@ -340,27 +360,27 @@ sub compare_strings
 
   if (! defined $expected_string)
   {
-    $expected_string = '';
+    $expected_string = $EMPTY_STRING;
   }
 
   if (! defined $actual_string)
   {
-    $actual_string = '';
+    $actual_string = $EMPTY_STRING;
   }
 
-  my @expected_string_lines = split/\n/, $expected_string;
-  my @actual_string_lines   = split/\n/, $actual_string;
+  my @expected_string_lines = split/\n/xms, $expected_string;
+  my @actual_string_lines   = split/\n/xms, $actual_string;
 
   my $max_line = List::Util::max(scalar @expected_string_lines, scalar @actual_string_lines);
 
   my $line_count = 0;
   my $expected_line;
   my $actual_line;
-  my $diffs = '';
+  my $diffs = $EMPTY_STRING;
   my $failed = 0;
-  my $failure_string = '';
+  my $failure_string = $EMPTY_STRING;
 
-  for (my $i = 0; $i < $max_line; $i++)
+  for my $i (0 .. $max_line - 1)
   {
     $line_count++;
     $expected_line = $expected_string_lines[$i];
@@ -395,15 +415,41 @@ sub convert_to_response
   return $response_text;
 }
 
+sub criticize
+{
+  print Test::make_title('CRITIQUING', q{%}, $TEST_TITLE_WIDTH);
+
+  my $directories = $PERL_DIRECTORIES;
+  
+  my @files = ();
+  
+  foreach my $dir (@{$directories})
+  {
+    opendir (my $fh_dir, $dir);
+    push @files, map {$dir . q{/} . $_} (grep {/\.p[ml]/xms} readdir $fh_dir);
+  }
+    
+  my $critic = Perl::Critic->new( -severity => 1);
+  
+  foreach my $f (@files)
+  {
+    print "$f\n\n";
+    print $critic->critique($f);
+    print "\n\n";
+  }
+
+  return 1;
+}
+
 sub format_expected_stdout
 {
   my $stdout = shift;
-  my @stdout_lines = split /\n/, $stdout;
+  my @stdout_lines = split /\n/xms, $stdout;
   my $title = 'EXPECTED STDOUT: ';
   my $title_length = length $title;
 
   my $formatted_stdout = $title;
-  for (my $i = 0; $i < scalar @stdout_lines; $i++)
+  for my $i (0 .. scalar @stdout_lines - 1)
   {
     if ($i == 0)
     {
@@ -411,7 +457,7 @@ sub format_expected_stdout
     }
     else
     {
-      $formatted_stdout .= (' ' x $title_length) . $stdout_lines[$i] . "\n";
+      $formatted_stdout .= (q{ } x $title_length) . $stdout_lines[$i] . "\n";
     }
   }
   return $formatted_stdout . "\n";
@@ -449,7 +495,7 @@ sub setup_testrun
   my $dbh                   = Utils::connect_to_database();
 
   Utils::drop_all_wespa_tables($dbh, $alt_names_hash);
-  Utils::initialize_database($dbh, Constants::TABLES, Constants::TABLE_CREATION_ORDER);
+  Utils::initialize_database($dbh, $TABLES, $TABLE_CREATION_ORDER);
 
   return ($dbh, $alt_names_hash, $deceased_players_hash);
 }
@@ -464,12 +510,12 @@ sub testcase
 
   my $padded_case = sprintf "%3s", $case;
 
-  print Test::make_title("TEST CASE $padded_case", '~', Constants::TEST_TITLE_WIDTH);
+  print Test::make_title("TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH);
 
-  my $test_dir   = Constants::TEST_DIRECTORY;
-  my $tou_dir    = $test_dir . '/' . Constants::TEST_TOU_DIRECTORY . Constants::TEST_TOU_PATH;
-  my $stdout_dir = $test_dir . '/' . Constants::TEST_STDOUT_DIRECTORY . '/';
-  my $json_dir   = $test_dir . '/' . Constants::TEST_JSON_DIRECTORY . '/';
+  my $test_dir   = $TEST_DIRECTORY;
+  my $tou_dir    = $test_dir . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
+  my $stdout_dir = $test_dir . q{/} . $TEST_STDOUT_DIRECTORY . q{/};
+  my $json_dir   = $test_dir . q{/} . $TEST_JSON_DIRECTORY . q{/};
 
   my $toufile          = "$tou_dir$case.tou";
 
@@ -489,27 +535,29 @@ sub testcase
 
   # Load the actual stdout
   my $actual_stdout;
-  open (my $fhstdout, '>>', \$actual_stdout);
+  open (my $fhstdout, '>>', \$actual_stdout) or die "Cannot even: $OS_ERROR\n";
 
   select $fhstdout;
 
   Utils::check_country_flag_icons(['USA']);
 
-  my $tou = TOU->new(
-                      $dbh,
-                      $toufile,
-                      $alt_names_hash,
-                      $deceased_players_hash,
-                      $player_data
-                    );
+  my $tou = TOU->new({
+                      dbh                   => $dbh,
+                      filename              => $toufile,
+                      alt_names_hash        => $alt_names_hash,
+                      deceased_players_hash => $deceased_players_hash,
+                      player_data           => $player_data
+                     });
 
   $tou->load($player_data);
 
   select STDOUT;
+  
+  close $fhstdout or croak "Cannot close file handle: $OS_ERROR\n";
 
   if (!$actual_stdout)
   {
-    $actual_stdout = '';
+    $actual_stdout = $EMPTY_STRING;
   }
 
   Utils::write_string_to_file($actual_stdout, $actual_stdout_file);
@@ -537,8 +585,8 @@ sub testcase
                                               );
 
 
-  my $stdout_failure_obj = Failure->new(Constants::STDOUT_FAILURE_TYPE);
-  my $json_failure_obj   = Failure->new(Constants::JSON_FAILURE_TYPE);
+  my $stdout_failure_obj = Failure->new($STDOUT_FAILURE_TYPE);
+  my $json_failure_obj   = Failure->new($JSON_FAILURE_TYPE);
 
   return (
            Test::compare_strings($expected_stdout, $actual_stdout, $stdout_failure_obj),
@@ -555,7 +603,7 @@ sub testrun
 
   my ($dbh, $alt_names_hash, $deceased_players_hash) = Test::setup_testrun();
 
-  my $test_dir = Constants::TEST_DIRECTORY;
+  my $test_dir = $TEST_DIRECTORY;
 
   my $stdout_failure;
   my $json_failure;
@@ -563,9 +611,9 @@ sub testrun
 
   my $player_data = {};
 
-  print Test::make_title("TEST RUN: $run_title", '*', Constants::TEST_TITLE_WIDTH);
+  print Test::make_title("TEST RUN: $run_title", q{*}, $TEST_TITLE_WIDTH);
 
-  for (my $i = $first_tc; $i <= $last_tc; $i++)
+  for my $i ($first_tc .. $last_tc)
   {
 
     ($stdout_failure, $json_failure, $expected_stdout) = 
@@ -577,7 +625,7 @@ sub testrun
                       $i
                     );
 
-    my $response_content = '';
+    my $response_content = $EMPTY_STRING;
 
     if ($stdout_failure->is_failure())
     {
@@ -594,6 +642,8 @@ sub testrun
     print $response_content;
     print "\n\n";
   }
+
+  return 1;
 }
 
 1;
