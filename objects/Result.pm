@@ -100,13 +100,13 @@ sub new
 
   my $score = $tou_score;
 
-  if ($score > 1950)
+  if ($score > $TOU_MINIMUM_WIN_SCORE)
   {
-    $score -= 2000;
+    $score -= $TOU_BASE_WINNING_SCORE;
   }
-  elsif ($score > 1000)
+  elsif ($score > $TOU_BASE_TIE_SCORE)
   {
-    $score -= 1000;
+    $score -= $TOU_BASE_TIE_SCORE;
   }
 
   $result->{$RESULT_SCORE} = $score;

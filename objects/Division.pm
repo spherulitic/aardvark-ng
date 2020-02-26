@@ -225,15 +225,15 @@ sub process
       {
         $byes = 1;
         my $tou_score = $player_result->get_tou_score();
-        if ($tou_score > 2000)
+        if ($tou_score > $TOU_BASE_WINNING_SCORE )
         {
           $bye_wins = 1;
-          $coded_result = 1;
+          $coded_result = $RESULT_CODED_WIN;
         }
-        elsif ($tou_score == 1350)
+        elsif ($tou_score == $TOU_TIE_SCORE_RESULT)
         {
-          $bye_wins = 0.5;
-          $coded_result = 0;
+          $bye_wins = $TOU_TIE_VALUE ;
+          $coded_result = $RESULT_CODED_TIE;
         }
         $player_result->{$RESULT_SCORE} = 0;
       }
@@ -242,18 +242,18 @@ sub process
         if ($spread > 0)
         {
           $wins = 1;
-          $coded_result = 1;
+          $coded_result = $RESULT_CODED_WIN;
         }
         elsif ($spread == 0)
         {
-          $wins   = 0.5;
-          $losses = 0.5;
-          $coded_result = 0;
+          $wins   = $TOU_TIE_VALUE ;
+          $losses = $TOU_TIE_VALUE ;
+          $coded_result = $RESULT_CODED_TIE;
         }
         else
         {
           $losses = 1;
-          $coded_result = -1;
+          $coded_result = $RESULT_CODED_LOSS;
         }
       }
       $player_result->{$RESULT_WINS}          = $wins;
@@ -296,7 +296,7 @@ sub to_string
   my $division_name = $this->{$DIVISION_NAME};
 
   my $division_string = "*$division_name\n";
-  $division_string .= ( q{ } x 37 ) . "0\n";
+  $division_string .= ( q{ } x $TOU_ZERO_PADDING ) . "0\n";
 
   for my $player_number (0 .. $number_of_players - 1)
   {

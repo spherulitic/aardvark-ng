@@ -81,6 +81,14 @@ Readonly our $TOU_EVENT                        => 'TOU Event';
 Readonly our $TOU_TOURNAMENT                   => 'TOU Tournament';
 Readonly our $TOU_DIVISION_DATA                => 'TOU Division Data';
 
+Readonly our $TOU_REWRITE_EXTENSION            => '.rewrite';
+Readonly our $TOU_BASE_WINNING_SCORE           => 2000;
+Readonly our $TOU_BASE_TIE_SCORE               => 1000;
+Readonly our $TOU_TIE_SCORE_RESULT             => 1350;
+Readonly our $TOU_MINIMUM_WIN_SCORE            => 1950;
+Readonly our $TOU_TIE_VALUE                    => 0.5;
+Readonly our $TOU_ZERO_PADDING                 => 37;
+
 Readonly our $UNBLESSED_IGNORE_KEYS =>
 {
   $TOU_DBH             => 1,
@@ -116,6 +124,11 @@ Readonly our $RESULT_SPREAD          => 'Result Spread';
 Readonly our $RESULT_ROUND           => 'Result Round';
 Readonly our $RESULT_CODED           => 'Result Coded';
 Readonly our $RESULT_PLAYER_IS_FIRST => 'Result Player is First';
+
+Readonly our $RESULT_CODED_WIN       => 1;
+Readonly our $RESULT_CODED_LOSS      => -1;
+Readonly our $RESULT_CODED_TIE       => 0;
+
 
 Readonly our $INPUT_DIR           => 'inputs';
 Readonly our $LOG_DIR             => 'logs';

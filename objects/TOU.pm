@@ -36,7 +36,7 @@ sub compare_sts_and_tou_names
   }
 
   my @nonbye_names     = grep {!Utils::player_name_is_bye($_)} keys %{$tou_names};
-  my $missing_from_sts = join ",", sort grep {$tou_names->{$_}} @nonbye_names;
+  my $missing_from_sts = join q{,}, sort grep {$tou_names->{$_}} @nonbye_names;
 
   if ($missing_from_sts)
   {
@@ -102,19 +102,19 @@ sub initialize
 
   $tou->{$TOU_DBH}               = $dbh;
   $tou->{$TOU_FILENAME}          = $filename;
-  $tou->{$TOU_REWRITE_FILENAME}  = $filename . '.rewrite';
+  $tou->{$TOU_REWRITE_FILENAME}  = $filename . $TOU_REWRITE_EXTENSION;
   $tou->{$TOU_PLAYER_DATA}       = $player_data;
   $tou->{$TOU_CONVERSION_HASH}   = $conversion_hash;
 
   $tou->{$TOU_PLAYER_NAMES}      = {};
   $tou->{$TOU_STS_PLAYER_NAMES}  = {};
   $tou->{$TOU_DIVISION_DATA}     = {};
-  $tou->{$TOU_ERROR_REPORT}      = '';
+  $tou->{$TOU_ERROR_REPORT}      = $EMPTY_STRING;
   $tou->{$TOU_LOADED}            = 0;
   $tou->{$TOU_PROCESSED}         = 0;
   $tou->{$TOU_REWRITE_NEEDED}    = 0;
   $tou->{$TOU_VALID}             = 1;
-  $tou->{$TOU_WARNING_REPORT}    = '';
+  $tou->{$TOU_WARNING_REPORT}    = $EMPTY_STRING;
 
   my $self = bless $tou, $this;
   return $self;
@@ -272,8 +272,8 @@ sub new
   my $year_regex             = $DEFAULT_YEAR_REGEX;
   my $country_trigraph_regex = $DEFAULT_COUNTRY_TRIGRAPH_REGEX;
   my $file_regex             = $DEFAULT_FILE_REGEX;
-  my $create_html            = '';
-  my $help                   = '';
+  my $create_html            = $EMPTY_STRING;
+  my $help                   = $EMPTY_STRING;
 
   my $player_names_to_ids = {};
 
@@ -316,7 +316,7 @@ sub new
 
   my $date;
   my $tournament_name;
-  open(my $tou_read, "<", $filename) or croak "Cannot open .tou file $filename: $!";
+  open(my $tou_read, q{<}, $filename) or croak "Cannot open .tou file $filename: $!";
   my $first_line = <$tou_read>;
   close $tou_read;
   chomp $first_line;
@@ -653,12 +653,11 @@ sub new
 
       if ($newer_tourney_cond)
       {
-        Utils::update_record_by_id($dbh, $players_tn, $player_id, {'last_played' => $date, 'rating' => $end_rating}); 
+        Utils::update_record_by_id($dbh, $players_tn, $player_id, {last_played => $date, rating => $end_rating}); 
       }
-
       if ($no_country_cond || $changed_to_newer_country_cond)
       {
-        Utils::update_record_by_id($dbh, $players_tn, $player_id, {'country' => $player_country}); 
+        Utils::update_record_by_id($dbh, $players_tn, $player_id, {country => $player_country}); 
       }
     } 
     $player_data->{$player_name} = [$pretty_player_name, $player_id];
@@ -720,8 +719,8 @@ sub process
       
         my $event = 
         {
-          "start_date" => $date,
-          "end_date"   => $date,
+          start_date => $date,
+          end_date   => $date,
           # "link"       => "link to event",
           # "sponsor"    => "sponsor of event",
           # "country"    => "AAA",
@@ -729,10 +728,10 @@ sub process
         };
         my $tournament = 
         {
-          "start_date" => $date, # This is changed later
-          "end_date"   => $date, # This is changed later
-          "name"       => $tournament_name, 
-          "country"    => Utils::convert_trigraph(Utils::get_country_from_filename($filename)), 
+          start_date => $date, # This is changed later
+          end_date   => $date, # This is changed later
+          name       => $tournament_name, 
+          country    => Utils::convert_trigraph(Utils::get_country_from_filename($filename)), 
           # "td"         => "director of tournament",
         };
         $this->{$TOU_EVENT}      = $event;
@@ -806,7 +805,7 @@ sub process
       {
         my $opp_number  = pop @player_game_data;
         my $player_is_first = 0;
-        if (substr($opp_number, 0, 1) eq '+')
+        if (substr($opp_number, 0, 1) eq q{+})
         {
           $player_is_first = 1;
         }
@@ -818,7 +817,7 @@ sub process
           # Covered by TC 11
           $this->set_error_report(
             Utils::format_error([
-                                  ['ERROR', "Malformed opponent number or player score"],
+                                  ['ERROR', 'Malformed opponent number or player score'],
                                   ['File', $filename],
                                   ['Opponent number', $opp_number],
                                   ['Player score', $score],
