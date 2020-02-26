@@ -140,7 +140,7 @@ sub push_local_content
 
   my $base_dir;
  
-  if (Utils::get_environment_name(''))
+  if (Utils::get_environment_name($EMPTY_STRING))
   {
     $base_dir = '/srv/dev/'
   }
@@ -186,7 +186,7 @@ sub update_cgi
   my $scripts   = Constants::TEMPLATE_SCRIPTS;
   my $nav       = Constants::TEMPLATE_NAV;
   my $footer    = Constants::TEMPLATE_FOOTER;
-  my $base_dir  = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
+  my $base_dir  = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . Constants::HTML_DIR;
   my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
 
   my $database_name = Utils::get_environment_name(Constants::PRODUCTION_DATABASE_NAME);
@@ -198,7 +198,7 @@ sub update_cgi
 
   my $cgi_dir  = Constants::CGIBIN_DIR;
  
-  my $title = "Tournament Results";
+  my $title = 'Tournament Results';
  
   system "mkdir -p $cgi_dir";
 
@@ -224,7 +224,7 @@ my \$partname  = sanitize(\$cgi->param('partname'));
 
 my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
                          '$user_name', '$password',
-                         {'RaiseError' => 1}); 
+                         {RaiseError => 1}); 
 
 my \$query =
 "
@@ -247,7 +247,7 @@ if (\$partname)
 
 \$query .= " ORDER BY t.start_date ";
 
-my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, "RaiseError" => 1})};
+my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, RaiseError => 1})};
 
 my \$title_row = "<tr><th>#</th><th>Date</th><th>Tournament</th></tr>";
 
@@ -269,9 +269,9 @@ my \$table_content = "";
 
 for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
   my \$item = \$tournaments[\$i];
-  my \$name = \$item->{'name'};
-  my \$date = \$item->{'start_date'};
-  my \$id   = \$item->{'id'};
+  my \$name = \$item->{name};
+  my \$date = \$item->{start_date};
+  my \$id   = \$item->{id};
 
   my \$row_class = 'roweven';
     
@@ -354,7 +354,7 @@ print \$results_html_page;
 
 CGI
 ;
-  Utils::write_string_to_file($tournament_cgi_script, $cgi_dir . '/' . $filename);
+  Utils::write_string_to_file($tournament_cgi_script, $cgi_dir . q{/} . $filename);
 
   return 1;
 }
@@ -364,11 +364,11 @@ sub update_dynamically_loaded_content
   my $dbh               = shift;
 
   my $players_table = Constants::PLAYERS_TABLE_NAME;
-  my @player_data = @{$dbh->selectall_arrayref("SELECT * FROM $players_table"  , {Slice => {}, "RaiseError" => 1})};
+  my @player_data = @{$dbh->selectall_arrayref("SELECT * FROM $players_table"  , {Slice => {}, RaiseError => 1})};
 
-  @player_data = sort {$b->{'rating'} <=> $a->{'rating'}} @player_data;
+  @player_data = sort {$b->{rating} <=> $a->{rating}} @player_data;
 
-  my @valid_player_data = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @player_data;   
+  my @valid_player_data = grep { !$_->{deceased} && !$_->{suspended} && $_->{current}} @player_data;   
 
   my $cutoff = Constants::FRONT_PAGE_RATINGS_CUTOFF;
 
@@ -390,7 +390,7 @@ sub update_dynamically_loaded_content
       $row_class = 'rowodd';
     }
     my $player = $valid_player_data[$i];
-    $player->{'rank'} = $i + 1;
+    $player->{rank} = $i + 1;
     $peek_html .=
       Utils::make_row
       ({
@@ -426,11 +426,11 @@ sub update_dynamically_loaded_content
 
   Utils::write_string_to_file($player_search_html, $player_search_filename);
 
-  my $country_search_filename = Constants::HTML_DATA_DIR . '/' . Constants::COUNTRY_SEARCH_DATA_FILENAME;
+  my $country_search_filename = Constants::HTML_DATA_DIR . q{/} . Constants::COUNTRY_SEARCH_DATA_FILENAME;
 
   my $rankings_dir = Constants::RANKINGS_HTML_DIR;
 
-  my @country_data = map { $_->{'country'}  } @valid_player_data;
+  my @country_data = map { $_->{country}  } @valid_player_data;
 
   @country_data = Utils::uniq(\@country_data);
 
@@ -438,7 +438,7 @@ sub update_dynamically_loaded_content
 
   @country_data = grep {$trigraph_hashref->{$_}} @country_data;
 
-  @country_data = map { {'trigraph' => $_, 'country' => $trigraph_hashref->{$_}}   } @country_data;
+  @country_data = map { {trigraph => $_, country => $trigraph_hashref->{$_}}   } @country_data;
 
   my $country_search_html =
     HTML::get_datalist_html
@@ -456,12 +456,12 @@ sub update_dynamically_loaded_content
 
   my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
   my $uniq_country_query = "SELECT DISTINCT country FROM $tournaments_tn WHERE country IS NOT NULL";
-  my @all_countries = map {$_->[0]} @{$dbh->selectall_arrayref($uniq_country_query, {"RaiseError" => 1})};
+  my @all_countries = map {$_->[0]} @{$dbh->selectall_arrayref($uniq_country_query, {RaiseError => 1})};
 
   my @localtime = localtime();
-  my $current_year = $localtime[5] + 1900;
-  my $year_options = "";
-  my $country_options = "";
+  my $current_year = $localtime[$LOCALTIME_YEAR_INDEX] + $LOCALTIME_YEAR_BASE ;
+  my $year_options = $EMPTY_STRING;
+  my $country_options = $EMPTY_STRING;
   
 
   for (my $i = 2000; $i <= $current_year; $i++)
@@ -471,7 +471,7 @@ sub update_dynamically_loaded_content
 
   @all_countries = sort {$a->[1] cmp $b->[1]} (map { [$_, $trigraph_hashref->{$_}]  } @all_countries);
 
-  for (my $i = 0; $i < scalar @all_countries; $i++)
+  for my $i (0 .. scalar @all_countries - 1)
   {
     my $trigraph = $all_countries[$i]->[0];
     my $fullname = $all_countries[$i]->[1];
@@ -494,7 +494,7 @@ sub update_dynamically_loaded_content
 
   $tournament_form .= "</select>  Partial name: <input name='partname' size='20' value=''> <input type='submit' value='Submit'> <br>";
 
-  my $tournament_form_name = Constants::HTML_DATA_DIR . '/' . Constants::TOURNAMENT_FORM_DATA_FILENAME;
+  my $tournament_form_name = Constants::HTML_DATA_DIR . q{/} . Constants::TOURNAMENT_FORM_DATA_FILENAME;
 
   Utils::write_string_to_file($tournament_form, $tournament_form_name); 
 
@@ -520,7 +520,7 @@ sub update_html
 
   my $query = "SELECT id FROM " . Constants::TOURNAMENTS_TABLE_NAME;
 
-  my @tournament_ids_to_create = map { $_->[0]  }  @{$dbh->selectall_arrayref($query, {"RaiseError" => 1})};
+  my @tournament_ids_to_create = map { $_->[0]  }  @{$dbh->selectall_arrayref($query, {RaiseError => 1})};
 
   # Create new tournament html pages
 
@@ -575,15 +575,15 @@ sub update_html
 
   my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
-  my @all_players = @{$dbh->selectall_arrayref($countries_query, {Slice => {}, "RaiseError" => 1})};
+  my @all_players = @{$dbh->selectall_arrayref($countries_query, {Slice => {}, RaiseError => 1})};
 
-  @all_players = grep {$_->{'country'} && $trigraph_hashref->{$_->{'country'}}} @all_players;
+  @all_players = grep {$_->{country} && $trigraph_hashref->{$_->{country}}} @all_players;
 
-  my @all_countries = map { $_->{'country'}  } @all_players;
+  my @all_countries = map { $_->{country}  } @all_players;
 
   @all_countries = Utils::uniq(\@all_countries);
 
-  my @country_rankings_to_create = map { $_->{'country'}  } (grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}   } @all_players);
+  my @country_rankings_to_create = map { $_->{country}  } (grep { !$_->{deceased} && !$_->{suspended} && $_->{current}   } @all_players);
   @country_rankings_to_create = Utils::uniq(\@country_rankings_to_create);
 
   my %valid_link_countries = map { $_ => 1 } @country_rankings_to_create;
@@ -594,17 +594,17 @@ sub update_html
   # Update the player html pages that have been changed
   foreach my $player_id (@player_ids_to_create)
   {
-    my @player = @{Utils::query_table($dbh, Constants::PLAYERS_TABLE_NAME, "id", $player_id)};
+    my @player = @{Utils::query_table($dbh, Constants::PLAYERS_TABLE_NAME, 'id', $player_id)};
   
-    my $player_name      = $player[0]->{'name'};
-    my $country_trigraph = $player[0]->{'country'};
-    my $games_played     = $player[0]->{'total_games'};
-    my $rating           = $player[0]->{'rating'};
-    my $photo_filename   = $player[0]->{'photo'};
+    my $player_name      = $player[0]->{name};
+    my $country_trigraph = $player[0]->{country};
+    my $games_played     = $player[0]->{total_games};
+    my $rating           = $player[0]->{rating};
+    my $photo_filename   = $player[0]->{photo};
 
     if (!$country_trigraph)
     {
-      $country_trigraph = "";
+      $country_trigraph = $EMPTY_STRING;
     }
 
     if (!$photo_filename)
@@ -618,12 +618,12 @@ sub update_html
 
     my $player_info =
     {
-      'player_name'      => $player_name,
-      'country_trigraph' => $country_trigraph,
-      'games_played'     => $games_played,
-      'rating'           => $rating,
-      'photo_filename'   => $photo_filename,
-      'valid_ranking'    => $valid_link_countries{$country_trigraph}
+      player_name      => $player_name,
+      country_trigraph => $country_trigraph,
+      games_played     => $games_played,
+      rating           => $rating,
+      photo_filename   => $photo_filename,
+      valid_ranking    => $valid_link_countries{$country_trigraph}
     };
 
     my $player_tournament_history   = HTML::get_tournament_results_html_string($dbh, $player_id, Constants::HTML_ID_PLAYER_TYPE);
@@ -643,7 +643,7 @@ sub update_html
     );
   
     # print $html_page;
-    my $filename =  Constants::HTML_DIR . '/' . Constants::PLAYER_HTML_DIR . '/' . $player_id . ".html";
+    my $filename =  Constants::HTML_DIR . q{/} . Constants::PLAYER_HTML_DIR . q{/} . "$player_id.html";
 
     Utils::write_string_to_file($player_html_page, $filename);
   }
@@ -677,12 +677,12 @@ sub update_rankings_html
   my $most_recent_tournament = Utils::get_most_recent_tournament($dbh);
   my $full_rankings_data =
     {
-      'title' => "WESPA RATINGS",
+      'title' => 'WESPA RATINGS',
       'tournament_link'        => Utils::make_link
                                   (
                                     $base_dir,
                                     $tournament_dir,
-                                    $most_recent_tournament->[0] . ".html",
+                                    $most_recent_tournament->[0] . '.html',
                                     $most_recent_tournament->[1],
                                   )
     };
@@ -694,7 +694,7 @@ sub update_rankings_html
       $full_ranking_html_string,
       $full_rankings_data
     );   
-  my $full_ranking_filename = Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . "/full_rankings.html";
+  my $full_ranking_filename = Constants::HTML_DIR . q{/} . Constants::RANKINGS_HTML_DIR . '/full_rankings.html';
   Utils::write_string_to_file($full_ranking_html_page, $full_ranking_filename);
 
   my @countries = @{$countries_ref};
@@ -712,12 +712,12 @@ sub update_rankings_html
 
     my $rankings_data = 
     {    
-      'title' => $country_fullname . " RATINGS",
+      'title' => $country_fullname . ' RATINGS',
       'tournament_link'        => Utils::make_link
                                   (
                                     $base_dir,
                                     $tournament_dir,
-                                    $most_recent_country_tournament->[0] . ".html",
+                                    $most_recent_country_tournament->[0] . '.html',
                                     $most_recent_country_tournament->[1],
                                   )
     };   
@@ -729,7 +729,7 @@ sub update_rankings_html
          $country_ranking_html_string,
          $rankings_data
        );
-    my $country_ranking_filename = Constants::HTML_DIR . '/' . Constants::RANKINGS_HTML_DIR . "/$country.html";
+    my $country_ranking_filename = Constants::HTML_DIR . q{/} . Constants::RANKINGS_HTML_DIR . "/$country.html";
     HTML::write_string_to_file($country_ranking_html_page, $country_ranking_filename); 
   }
 

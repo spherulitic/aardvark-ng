@@ -596,7 +596,7 @@ sub get_rankings_html_string
   }
   else 
   {
-    @players = @{$dbh->selectall_arrayref("SELECT * FROM " . $PLAYERS_TABLE_NAME, {Slice => {}, "RaiseError" => 1})};
+    @players = @{$dbh->selectall_arrayref("SELECT * FROM " . $PLAYERS_TABLE_NAME, {Slice => {}, RaiseError => 1})};
   }
 
   @players = grep { !$_->{deceased} && !$_->{suspended} && $_->{current}} @players;   
@@ -792,7 +792,7 @@ sub get_tournament_results_html_string
     $query .= " tr.division_id = $id";
   }
 
-  my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, 'RaiseError' => 1})};
+  my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, RaiseError => 1})};
 
   foreach my $data (@raw_tournament_data)
   {

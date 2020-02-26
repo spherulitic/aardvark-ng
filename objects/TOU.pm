@@ -236,7 +236,7 @@ sub load
     VALUES (\"$tournament_name\", \"$filename\")
   ";
 
-  $dbh->do($insert_processed_tou, {"RaiseError" => 1});
+  $dbh->do($insert_processed_tou, {RaiseError => 1});
   $this->{$TOU_LOADED} = 1; 
   return 1;
 }
@@ -602,7 +602,7 @@ sub new
 
     my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$pretty_player_name\"";
 
-    my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
+    my @player_query_result = $dbh->selectrow_array($player_query, {RaiseError => 1});
 
     my $player_id;
 

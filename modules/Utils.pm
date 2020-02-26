@@ -18,7 +18,7 @@ sub write_file_to_array
 {
   my $filename = shift;
 
-  open(my $fh, '<', $filename) or croak "Cannot open file $filename: $OS_ERROR\n";
+  open(my $fh, q{<}, $filename) or croak "Cannot open file $filename: $OS_ERROR\n";
   my @array = <$fh>;
   close $fh or croak "Cannot close file $filename: $OS_ERROR\n";;
   return @array;
@@ -33,7 +33,7 @@ sub add_games_to_existing_player
   my $players_tn = $PLAYERS_TABLE_NAME;
 
   my $total_games_update = "UPDATE $players_tn SET total_games = total_games + $games_played WHERE id=$player_id";
-  $dbh->do($total_games_update, {"RaiseError" => 1});
+  $dbh->do($total_games_update, {RaiseError => 1});
   return $dbh->last_insert_id(undef, undef, undef, undef);
 }
 
@@ -84,7 +84,7 @@ sub check_country_flag_icons
     }   
   }
 
-  my $extension = ".png";
+  my $extension = '.png';
 
   foreach my $country (@countries)
   {
@@ -121,7 +121,7 @@ sub compare_names
   {
     if (!$tou_ref->{$st_key} && !Utils::player_name_is_bye($st_key))
     {
-      $not_in_tou .= $st_key . ", ";
+      $not_in_tou .= $st_key . ', ';
     }
   }
 
@@ -142,7 +142,7 @@ sub connect_to_database
 
   my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
                          $user_name, $password,
-                         {'RaiseError' => 1}); 
+                         {RaiseError => 1}); 
   return $dbh;
 }
 
@@ -214,7 +214,7 @@ sub create_html_id
   my $type         = shift;
   my $id           = shift;
 
-  return (join "_", ($html_element, $type, $id));
+  return (join q{_}, ($html_element, $type, $id));
 }
 
 sub drop_all_wespa_tables
@@ -245,16 +245,16 @@ sub drop_all_wespa_tables
     $key =~ s/'/''/gxms;
     my $delete_redundant_players =
       "DELETE FROM $players_tn WHERE name = '$key'"; 
-    $dbh->do($delete_redundant_players, {"RaiseError" => 1}); 
+    $dbh->do($delete_redundant_players, {RaiseError => 1}); 
   }
 
   my $reset_games_played = "UPDATE $players_tn AS p SET p.total_games = 0"; 
   
-  $dbh->do($reset_games_played, {"RaiseError" => 1}); 
+  $dbh->do($reset_games_played, {RaiseError => 1}); 
 
   my $reset_last_played = "UPDATE $players_tn AS p SET p.last_played = '0001-01-01'"; 
   
-  $dbh->do($reset_last_played, {"RaiseError" => 1});
+  $dbh->do($reset_last_played, {RaiseError => 1});
 
   return 1;
 }
@@ -392,7 +392,7 @@ sub get_most_recent_tournament
       GROUP BY end_date DESC
     ";
   }
-  my @tournament_name = @{$dbh->selectall_arrayref($query, {"RaiseError" => 1})};
+  my @tournament_name = @{$dbh->selectall_arrayref($query, {RaiseError => 1})};
   return [$tournament_name[0]->[0],  $tournament_name[0]->[1]];
 
 }
@@ -527,7 +527,7 @@ sub insert_hash_into_table
   $keys_string   .= q{)};
   $values_string .= q{)};
 
-  $dbh->do("INSERT INTO $table $keys_string VALUE $values_string;", {"RaiseError" => 1}  );
+  $dbh->do("INSERT INTO $table $keys_string VALUE $values_string;", {RaiseError => 1}  );
   return $dbh->last_insert_id(undef, undef, undef, undef);
 }
 
@@ -679,11 +679,11 @@ sub make_row
     }
     elsif ($key eq 'p_country' || $key eq 'country')
     {
-      my $trig = $item->{'p_country'};
+      my $trig = $item->{p_country};
 
       if (!$trig)
       {
-        $trig = $item->{'country'};
+        $trig = $item->{country};
       }
       if ($trig)
       {
@@ -843,7 +843,7 @@ sub query_table
 
   my $query = "SELECT * FROM $table WHERE $table_field='$query_field'";
 
-  my $query_result = $dbh->selectall_arrayref($query, {Slice => {}, 'RaiseError' => 1});
+  my $query_result = $dbh->selectall_arrayref($query, {Slice => {}, RaiseError => 1});
 
   return $query_result;
 }
@@ -885,13 +885,13 @@ sub record_database
 
   my $tstamp = get_iso_date(time(), q{_});
 
-  my $dumpfile = 'mysqldump_' . $database_name . '_' . $tstamp;
+  my $dumpfile = 'mysqldump_' . $database_name . q{_} . $tstamp;
 
   my $dump_cmd = "mysqldump -u $user_name --password='$password' $database_name $players_tn > $logs/$dumpfile";
 
   system $dump_cmd;
  
-  my @players = @{$dbh->selectall_arrayref("SELECT name, id FROM $players_tn", {"RaiseError" => 1} )};
+  my @players = @{$dbh->selectall_arrayref("SELECT name, id FROM $players_tn", {RaiseError => 1} )};
 
   my $player_ids = join "\n", (map {$_->[0] . ', ' . $_->[1]} @players) ;
   
@@ -972,7 +972,7 @@ sub set_current_status
   )
   ";
 
-  $dbh->do($update_current, {'RaiseError' => 1});
+  $dbh->do($update_current, {RaiseError => 1});
 
   return 1;
 }
@@ -996,7 +996,7 @@ sub set_provisional_status
     END
   )
   ";
-  $dbh->do($update_provisional, {'RaiseError' => 1});
+  $dbh->do($update_provisional, {RaiseError => 1});
 
   return 1;
 }
@@ -1009,134 +1009,134 @@ sub stat_objects
     {
       'High Win' =>
       {
-        'cond' =>
+        cond =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score} > $data->{pr2_score} && $data->{opp_rating} > $WESPA_START_RATING;
         },
-        'eval' =>
+        eval =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score};
         },
-        'sort' =>
+        sort =>
         sub
         {
           my $c1 = shift;
           my $c2 = shift;
           $c2->{$stat_key_name} <=> $c1->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
-        'list'   => []
+        titles => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
+        values => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
+        list   => []
       },
       'High Loss' =>
       {
-        'cond' =>
+        cond =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score} < $data->{pr2_score};
         },
-        'eval' =>
+        eval =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score};
         },
-        'sort' =>
+        sort =>
         sub
         {
           my $c1 = shift;
           my $c2 = shift;
           $c2->{$stat_key_name} <=> $c1->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
-        'list'   => []
+        titles => ['Rank', 'Player', 'Score', 'Opponent', 'Round'],
+        values => [$game_stats_rank_name, 'tr_player_name', $stat_key_name, 'opp_name', 'g_round'],
+        list   => []
       },
       'High Spread' =>
       {
-        'cond' =>
+        cond =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score} > $data->{pr2_score}
         },
-        'eval' =>
+        eval =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score} - $data->{pr2_score};
         },
-        'sort' =>
+        sort =>
         sub
         {
           my $c1 = shift;
           my $c2 = shift;
           $c2->{$stat_key_name} <=> $c1->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Player', 'Opponent', 'Player Score', 'Opponent Score', 'Spread', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', 'pr1_score', 'pr2_score', $stat_key_name, 'g_round'],
-        'list'   => []
+        titles => ['Rank', 'Player', 'Opponent', 'Player Score', 'Opponent Score', 'Spread', 'Round'],
+        values => [$game_stats_rank_name, 'tr_player_name', 'opp_name', 'pr1_score', 'pr2_score', $stat_key_name, 'g_round'],
+        list   => []
       },
       'High Combined' =>
       {
-        'cond' =>
+        cond =>
         sub
         {
           my $data = shift;
           # Ensure only one instance gets reported 
-          return $data->{'tr_player_id'} > $data->{'opp_id'};
+          return $data->{tr_player_id} > $data->{opp_id};
         },
-        'eval' =>
+        eval =>
         sub
         {
           my $data = shift;
           return $data->{pr1_score} + $data->{pr2_score};
         },
-        'sort' =>
+        sort =>
         sub
         {
           my $c1 = shift;
           my $c2 = shift;
           $c2->{$stat_key_name} <=> $c1->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Players', $EMPTY_STRING, 'Combined Score', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
-        'list'   => []
+        titles => ['Rank', 'Players', $EMPTY_STRING, 'Combined Score', 'Round'],
+        values => [$game_stats_rank_name, 'tr_player_name', 'opp_name', $stat_key_name, 'g_round'],
+        list   => []
       },
       'Upsets' =>
       {
-        'cond' =>
+        cond =>
         sub
         {
           my $data = shift;
-          return $data->{'tr_start_rating'}     &&
-                 $data->{'opp_rating'}          &&
-                 $data->{'tr_start_rating'} > 0 &&
-                 $data->{'opp_rating'}      > 0 && 
-                 $data->{'opp_rating'}      < $data->{'tr_start_rating'} &&
-                 $data->{'pr2_score'} > $data->{'pr1_score'};
+          return $data->{tr_start_rating}     &&
+                 $data->{opp_rating}          &&
+                 $data->{tr_start_rating} > 0 &&
+                 $data->{opp_rating}      > 0 && 
+                 $data->{opp_rating}      < $data->{tr_start_rating} &&
+                 $data->{pr2_score} > $data->{pr1_score};
         },
-        'eval' =>
+        eval =>
         sub
         {
           my $data = shift;
-          return $data->{'tr_start_rating'} - $data->{'opp_rating'} ;
+          return $data->{tr_start_rating} - $data->{opp_rating} ;
         },
-        'sort' =>
+        sort =>
         sub
         {
           my $c1 = shift;
           my $c2 = shift;
           $c2->{$stat_key_name} <=> $c1->{$stat_key_name}
         },
-        'titles' => ['Rank', 'Player', 'Player Rating', 'Opponent', 'Opponent Rating', 'Rating Difference', 'Round'],
-        'values' => [$game_stats_rank_name, 'tr_player_name', 'tr_start_rating', 'opp_name', 'opp_rating', $stat_key_name, 'g_round'],
-        'list'   => []
+        titles => ['Rank', 'Player', 'Player Rating', 'Opponent', 'Opponent Rating', 'Rating Difference', 'Round'],
+        values => [$game_stats_rank_name, 'tr_player_name', 'tr_start_rating', 'opp_name', 'opp_rating', $stat_key_name, 'g_round'],
+        list   => []
       }
     };
   return $tournament_stats;
@@ -1164,7 +1164,7 @@ sub tou_is_loaded
 
   my $tou_query = "SELECT * FROM $loaded_tournaments_tn WHERE filename=\"$tou\"";
 
-  my @tou_query_result = $dbh->selectrow_array($tou_query, {"RaiseError" => 1});
+  my @tou_query_result = $dbh->selectrow_array($tou_query, {RaiseError => 1});
 
   my $is_loaded = 0;
 
@@ -1195,7 +1195,7 @@ sub update_record_by_id
   {
     my $value = $fields_hash_ref->{$key};
     my $update = "UPDATE $table_name SET $key = '$value' WHERE id=$id";
-    $dbh->do($update, {"RaiseError" => 1});
+    $dbh->do($update, {RaiseError => 1});
   }
 
   return 1;
