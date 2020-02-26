@@ -144,7 +144,7 @@ Readonly our $HTML_ID_HEAD_TO_HEAD_TYPE => 2;
 Readonly our $HTML_ID_BUTTON_TAG        => 'button';
 Readonly our $HTML_ID_ENTRY_TAG         => 'entry';
 
-Readonly our $HTML_PATH_TO_WORKING_DIR  => "../..";
+Readonly our $HTML_PATH_TO_WORKING_DIR  => '../..';
 
 Readonly our $TOURNAMENT_DATA_DIR            => '/srv/dev/tournament_data';
 Readonly our $DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
@@ -153,9 +153,9 @@ Readonly our $DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
 Readonly our $DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
 Readonly our $DEFAULT_FILE_REGEX             => '.tou';
 
-Readonly our $DEFAULT_BACKUP_DIR             => "/home/jcastellano/aardvark-ng/backups/backup_original";
+Readonly our $DEFAULT_BACKUP_DIR             => '/home/jcastellano/aardvark-ng/backups/backup_original';
 
-Readonly our $COUNTRY_FLAGS_DIR              => "flags";
+Readonly our $COUNTRY_FLAGS_DIR              => 'flags';
 
 Readonly our $PRODUCTION_DATABASE_NAME      => 'wespaprod';
 Readonly our $DATABASE_NAME                 => 'wespa';
@@ -213,116 +213,116 @@ Readonly our $TABLES =>
 {
   $LOADED_TOURNAMENTS_TABLE_NAME =>
   [
-   "id                 INT NOT NULL AUTO_INCREMENT",
-   "name               VARCHAR(255)",
-   "filename           VARCHAR(255)",
+   'id                 INT NOT NULL AUTO_INCREMENT',
+   'name               VARCHAR(255)',
+   'filename           VARCHAR(255)',
 
-   "PRIMARY KEY (id)"
+   'PRIMARY KEY (id)'
   ],
   $PLAYERS_TABLE_NAME   => [
-                            "id                 INT NOT NULL AUTO_INCREMENT",
-                            "name               VARCHAR(255)",
-                            "country            VARCHAR(3)",
-                            "photo              VARCHAR(255)",
-                            "suspended          BOOLEAN",
-                            "deceased           BOOLEAN",
-                            "current            BOOLEAN",
-                            "provisional        BOOLEAN",
-                            "total_games        INT",
-                            "last_played        DATE",
-                            "rating             INT",
+                            'id                 INT NOT NULL AUTO_INCREMENT',
+                            'name               VARCHAR(255)',
+                            'country            VARCHAR(3)',
+                            'photo              VARCHAR(255)',
+                            'suspended          BOOLEAN',
+                            'deceased           BOOLEAN',
+                            'current            BOOLEAN',
+                            'provisional        BOOLEAN',
+                            'total_games        INT',
+                            'last_played        DATE',
+                            'rating             INT',
 
-                            "PRIMARY KEY (id)"
+                            'PRIMARY KEY (id)'
                           ],
   $TOURNAMENTS_TABLE_NAME => [
-                            "id         INT NOT NULL AUTO_INCREMENT",
-                            "event_id   INT NOT NULL",
-                            "td         VARCHAR(255)",
-                            "start_date DATE",
-                            "end_date   DATE",
-                            "name       VARCHAR(255)",
-                            "country    VARCHAR(3)",
+                            'id         INT NOT NULL AUTO_INCREMENT',
+                            'event_id   INT NOT NULL',
+                            'td         VARCHAR(255)',
+                            'start_date DATE',
+                            'end_date   DATE',
+                            'name       VARCHAR(255)',
+                            'country    VARCHAR(3)',
 
-                            "PRIMARY KEY (id)",
-                            "FOREIGN KEY (event_id) REFERENCES events(id)"
+                            'PRIMARY KEY (id)',
+                            'FOREIGN KEY (event_id) REFERENCES events(id)'
                           ],
   $EVENTS_TABLE_NAME   => [
-                            "id         INT NOT NULL AUTO_INCREMENT",
-                            "start_date DATE",
-                            "end_date   DATE",
-                            "link       VARCHAR(255)",
-                            "sponsor    VARCHAR(255)",
-                            "country    VARCHAR(3)",
-                            "location   VARCHAR(255)",
+                            'id         INT NOT NULL AUTO_INCREMENT',
+                            'start_date DATE',
+                            'end_date   DATE',
+                            'link       VARCHAR(255)',
+                            'sponsor    VARCHAR(255)',
+                            'country    VARCHAR(3)',
+                            'location   VARCHAR(255)',
 
-                            "PRIMARY KEY (id)"
+                            'PRIMARY KEY (id)'
                           ],
   $DIVISIONS_TABLE_NAME =>          [
-                            "id              INT NOT NULL AUTO_INCREMENT",
-                            "tournament_id   INT NOT NULL",
-                            "name            VARCHAR(255)",
-                            "length          INT",
-                            "number          INT",
+                            'id              INT NOT NULL AUTO_INCREMENT',
+                            'tournament_id   INT NOT NULL',
+                            'name            VARCHAR(255)',
+                            'length          INT',
+                            'number          INT',
 
-                            "PRIMARY KEY (id)",
-                            "FOREIGN KEY (tournament_id) REFERENCES tournaments(id)"
+                            'PRIMARY KEY (id)',
+                            'FOREIGN KEY (tournament_id) REFERENCES tournaments(id)'
                           ],
   $GAMES_TABLE_NAME     => [
-                            "id           INT NOT NULL AUTO_INCREMENT",
-                            "division_id  INT NOT NULL",
-                            "round        INT",
-                            "lexicon_id   INT NOT NULL",
-                            "gcg_filename VARCHAR(255)",
+                            'id           INT NOT NULL AUTO_INCREMENT',
+                            'division_id  INT NOT NULL',
+                            'round        INT',
+                            'lexicon_id   INT NOT NULL',
+                            'gcg_filename VARCHAR(255)',
 
-                            "PRIMARY KEY (id)",
-                            "FOREIGN KEY (division_id) REFERENCES divisions(id)",
-                            "FOREIGN KEY (lexicon_id)  REFERENCES lexicons(id)"
+                            'PRIMARY KEY (id)',
+                            'FOREIGN KEY (division_id) REFERENCES divisions(id)',
+                            'FOREIGN KEY (lexicon_id)  REFERENCES lexicons(id)'
                           ],
   $TOURNAMENT_RESULTS_TABLE_NAME => [
-                            "id                INT NOT NULL AUTO_INCREMENT",
-                            "division_id       INT NOT NULL",
-                            "player_id         INT NOT NULL",
-                            "player_name       VARCHAR(255)",
-                            "position          INT",
-                            "wins              FLOAT",
-                            "losses            FLOAT",
-                            "byes              INT",
-                            "bye_wins          FLOAT",
-                            "spread            INT",
-                            "prize_money       INT",
-                            "prize_currency    VARCHAR(255)",
-                            "prize_ech_rate    VARCHAR(255)",
-                            "start_rating      INT",
-                            "end_rating        INT",
-                            "date              DATE",
-                            "tournament_name   VARCHAR(255)",
+                            'id                INT NOT NULL AUTO_INCREMENT',
+                            'division_id       INT NOT NULL',
+                            'player_id         INT NOT NULL',
+                            'player_name       VARCHAR(255)',
+                            'position          INT',
+                            'wins              FLOAT',
+                            'losses            FLOAT',
+                            'byes              INT',
+                            'bye_wins          FLOAT',
+                            'spread            INT',
+                            'prize_money       INT',
+                            'prize_currency    VARCHAR(255)',
+                            'prize_ech_rate    VARCHAR(255)',
+                            'start_rating      INT',
+                            'end_rating        INT',
+                            'date              DATE',
+                            'tournament_name   VARCHAR(255)',
 
-                            "expected_wins     FLOAT",
-                            "old_world_rank    INT",
-                            "new_world_rank    INT",
-                            "old_national_rank INT",
-                            "new_national_rank INT",
+                            'expected_wins     FLOAT',
+                            'old_world_rank    INT',
+                            'new_world_rank    INT',
+                            'old_national_rank INT',
+                            'new_national_rank INT',
 
-                            "PRIMARY KEY (id)",
-                            "FOREIGN KEY (division_id) REFERENCES divisions(id)",
-                            "FOREIGN KEY (player_id)   REFERENCES players(id)"
+                            'PRIMARY KEY (id)',
+                            'FOREIGN KEY (division_id) REFERENCES divisions(id)',
+                            'FOREIGN KEY (player_id)   REFERENCES players(id)'
                           ],
   $PLAYER_RESULTS_TABLE_NAME     => [
-                            "id        INT NOT NULL AUTO_INCREMENT",
-                            "player_id INT NOT NULL",
-                            "game_id   INT NOT NULL",
-                            "score     INT",
-                            "result    INT",
+                            'id        INT NOT NULL AUTO_INCREMENT',
+                            'player_id INT NOT NULL',
+                            'game_id   INT NOT NULL',
+                            'score     INT',
+                            'result    INT',
 
-                            "PRIMARY KEY (id)",
-                            "FOREIGN KEY (player_id) REFERENCES players(id)",
-                            "FOREIGN KEY (game_id) REFERENCES games(id)"
+                            'PRIMARY KEY (id)',
+                            'FOREIGN KEY (player_id) REFERENCES players(id)',
+                            'FOREIGN KEY (game_id) REFERENCES games(id)'
                           ],
   $LEXICONS_TABLE_NAME  => [
-                            "id   INT NOT NULL AUTO_INCREMENT",
-                            "name VARCHAR(255)",
+                            'id   INT NOT NULL AUTO_INCREMENT',
+                            'name VARCHAR(255)',
 
-                            "PRIMARY KEY (id)"
+                            'PRIMARY KEY (id)'
                           ],
 };
 
@@ -346,9 +346,9 @@ Readonly our $TABLE_DROP_EXCEPTIONS =>
 };
 
 Readonly our $LEXICONS => [
-                 {"name" => "CSW07"},
-                 {"name" => "CSW12"},
-                 {"name" => "CSW15"},
+                 {'name' => 'CSW07'},
+                 {'name' => 'CSW12'},
+                 {'name' => 'CSW15'},
                ];
 
 

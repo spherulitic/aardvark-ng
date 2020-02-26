@@ -50,7 +50,7 @@ sub new
 
   my $failure_fields = $FAILURE_FIELDS;
 
-  for (my $i = 0; $i < scalar @{$failure_fields}; $i++)
+  for my $i (0 .. scalar @{$failure_fields} - 1)
   {
     my $field = $failure_fields->[$i];
     if ($field eq $FAILURE_TYPE)
@@ -59,7 +59,7 @@ sub new
     }
     else
     {
-      $failure->{$field} = '';
+      $failure->{$field} = $EMPTY_STRING;
     }
   }
   my $self = bless $failure, $this;
@@ -88,14 +88,14 @@ sub to_string
 
   if (!$this->is_failure())
   {
-    return '';
+    return $EMPTY_STRING;
   }
 
   my $failure_fields = $FAILURE_FIELDS;
-  my $failure_string = '';
+  my $failure_string = $EMPTY_STRING;
   my $max_length_field = 0;
 
-  for (my $i = 0; $i < scalar @{$failure_fields}; $i++)
+  for my $i (0 .. scalar @{$failure_fields} - 1)
   {
     my $field = $failure_fields->[$i];
     my $field_length = length $field;
@@ -104,16 +104,16 @@ sub to_string
       $max_length_field = $field_length;
     }
   }
-  for (my $i = 0; $i < scalar @{$failure_fields}; $i++)
+  for my $i (0 .. scalar @{$failure_fields} - 1)
   {
     my $field = $failure_fields->[$i];
     my $value = $this->{$field};
-    my $colon = ':';
+    my $colon = q{:};
     if ($field eq $FAILURE_DIFF)
     {
-      $colon = ' ';
+      $colon = q{ };
     }
-    $failure_string .= (sprintf "%-" . ($max_length_field + 2)  . 's' , ($field . $colon)) . $value . "\n";
+    $failure_string .= (sprintf '%-' . ($max_length_field + 2)  . q{s} , ($field . $colon)) . $value . "\n";
   }
   $failure_string .= "\n";
   return $failure_string;

@@ -21,7 +21,7 @@ sub create_matrix
   my $game_data = $this->{$DIVISION_GAME_DATA};
   my @matrix = ();
 
-  for (my $i = 0; $i < scalar @{$game_data}; $i++)
+  for my $i (0 .. scalar @{$game_data} - 1)
   {
     my @player_games = @{$game_data->[$i]};
     my $number_of_player_games = scalar @player_games;
@@ -42,7 +42,7 @@ sub create_matrix
       $this->set_valid(0);
       return;
     }
-    for (my $k = 0; $k < $number_of_player_games; $k++)
+    for my $k (0 .. $number_of_player_games - 1)
     {
       $player_games[$k]->{$RESULT_ROUND} = $k + 1;
       push @matrix, $player_games[$k];
@@ -140,13 +140,13 @@ sub process
   # rectangular with dimensions (number of players x number of games)
   # due to the checks in create_matrix
 
-  for (my $round = 0; $round < $number_of_rounds; $round++)
+  for my $round (0 .. $number_of_rounds - 1)
   {
     # The outer loop iterates through each round while the
     # inner loop iterates through each player. For each
     # round we verify that each player is paired exactly
     # once and that the opponent of the opponent is the player
-    for (my $player_number = 0; $player_number < $number_of_players; $player_number++)
+    for my $player_number (0 .. $number_of_players - 1)
     {
       my $player_result   = $this->get_matrix_index($player_number, $round);
       my $player_name     = $this->{$DIVISION_PLAYERS}->[$player_number];
@@ -188,7 +188,7 @@ sub process
       {
         # Covered by TC 14
         my $message_type = 'ERROR';
-        my $message      = 'The opponent of the player\'s opponent is not the player';
+        my $message      = q{The opponent of the player's opponent is not the player};
         if ($correct)
         {
           $message_type = 'WARNING';
@@ -203,8 +203,8 @@ sub process
                                 ['Division', $division_name],
                                 ['Round', $round + 1 ],
                                 ['Player', $player_name . " ($player_number)"],
-                                ['Player\'s Opponent', $this->{$DIVISION_PLAYERS}->[$opponent_number] . " ($opponent_number)" ],
-                                ['Player\'s Opponent\'s Opponent', $this->{$DIVISION_PLAYERS}->[$opponent_opponent_number] . " ($opponent_opponent_number)"]
+                                [q{Player's Opponent}, $this->{$DIVISION_PLAYERS}->[$opponent_number] . " ($opponent_number)" ],
+                                [q{Player's Opponent's Opponent}, $this->{$DIVISION_PLAYERS}->[$opponent_opponent_number] . " ($opponent_opponent_number)"]
                               ]));
         if (!$correct)
         {
@@ -296,25 +296,25 @@ sub to_string
   my $division_name = $this->{$DIVISION_NAME};
 
   my $division_string = "*$division_name\n";
-  $division_string .= "                                      0\n";
+  $division_string .= ( q{ } x 37 ) . "0\n";
 
-  for (my $player_number = 0; $player_number < $number_of_players; $player_number++)
+  for my $player_number (0 .. $number_of_players - 1)
   {
     my $player_name = $this->{$DIVISION_PLAYERS}->[$player_number];
-    $division_string .= sprintf "%-30s", $player_name; 
-    for (my $round = 0; $round < $number_of_rounds; $round++)
+    $division_string .= sprintf '%-30s', $player_name; 
+    for my $round (0 .. $number_of_rounds - 1)
     {
       my $player_result    = $this->get_matrix_index($player_number, $round);
       my $opponent_number  = $player_result->{$RESULT_OPPONENT_NUMBER};
       my $player_tou_score = $player_result->{$RESULT_TOU_SCORE};
       my $player_is_first  = $player_result->{$RESULT_PLAYER_IS_FIRST};
-      my $plus = '';
+      my $plus = $EMPTY_STRING;
       if ($player_is_first)
       {
-        $plus = '+';
+        $plus = q{+};
       }
-      $division_string .= (sprintf "%6s", $player_tou_score) .
-                          (sprintf "%5s", $plus . ($opponent_number + 1)) . " ";
+      $division_string .= (sprintf '%6s', $player_tou_score) .
+                          (sprintf '%5s', $plus . ($opponent_number + 1)) . q{ };
     }
     $division_string .= "\n";
   }
