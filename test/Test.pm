@@ -87,6 +87,8 @@ sub tidy
   {
     system "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f";
   }
+
+  return 1;
 }
 
 sub export_constants
@@ -157,11 +159,11 @@ sub alphabetize_routine_order
       {
         $file_string .= $_;
       }
-      elsif ( $current_line =~ /^\{\s*/xms )
+      elsif ( $current_line =~ /^[{]\s*/xms )
       {
         $in_current_routine = 1;
       }
-      elsif ( $current_line =~ /^\}\s*/xms )
+      elsif ( $current_line =~ /^[}]\s*/xms )
       {
         $in_current_routine = 0;
       }
@@ -433,9 +435,9 @@ sub criticize
 
   foreach my $dir ( @{$directories} )
   {
-    opendir( my $fh_dir, $dir );
+    opendir my $fh_dir, $dir;
     push @files,
-      map { $dir . q{/} . $_ } ( grep {/\.p[ml]/xms} readdir $fh_dir );
+      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
   }
 
   my $critic = Perl::Critic->new( -severity => 1 );
