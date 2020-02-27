@@ -29,6 +29,7 @@ my $criticize;
 my $export;
 my $setexpected;
 my $syntax;
+my $tidy;
 
 GetOptions
 (
@@ -36,7 +37,8 @@ GetOptions
   criticize   => \$criticize,
   export      => \$export,
   setexpected => \$setexpected,
-  syntax      => \$syntax
+  syntax      => \$syntax,
+  tidy        => \$tidy
 );
 
 
@@ -56,13 +58,37 @@ if ($syntax)
 {
   Test::check_syntax();
 }
-if (!$alphabetize && !$criticize && !$export && !$syntax)
+if ($tidy)
+{
+  Test::tidy();
+}
+if (!$alphabetize && !$criticize && !$export && !$syntax && !$tidy)
 {
   Test::check_syntax();
   Test::alphabetize_routine_order();
   Test::harness();
 }
 
+sub tidy
+{
+  print Test::make_title('TIDYING', q{%}, $TEST_TITLE_WIDTH);
+
+  my $directories = $PERL_DIRECTORIES;
+
+  my @files = ();
+
+  foreach my $dir (@{$directories})
+  {
+    my $fh_dir;
+    opendir $fh_dir, $dir;
+    push @files, map {$dir . q{/} . $_} (grep {/[.]p[ml]/xms} readdir $fh_dir);
+  }
+
+  foreach my $f (@files)
+  {
+    print "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f\n";
+  }
+}
 
 sub export_constants
 {
@@ -106,7 +132,7 @@ sub alphabetize_routine_order
   {
     my $fh_dir;
     opendir $fh_dir, $dir;
-    push @files, map {$dir . q{/} . $_} (grep {/\.p[ml]/xms} readdir $fh_dir);
+    push @files, map {$dir . q{/} . $_} (grep {/[.]p[ml]/xms} readdir $fh_dir);
   }
 
   foreach my $f (@files)
@@ -264,8 +290,8 @@ sub compare_lines
 
   for my $k (0 .. $min_line - 1)
   {
-    $expected_char = substr($expected_line, $k, 1);
-    $actual_char   = substr($actual_line, $k, 1);
+    $expected_char = substr $expected_line, $k, 1;
+    $actual_char   = substr $actual_line, $k, 1;
     if ($expected_char ne $actual_char)
     {
       $diffs .= q{^};

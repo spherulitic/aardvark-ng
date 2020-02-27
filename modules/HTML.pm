@@ -2,7 +2,6 @@
 
 package HTML;
 
-
 use strict;
 use warnings;
 use version; our $VERSION = qv('1');
@@ -14,7 +13,7 @@ use Utils;
 
 sub get_alltime_stats_results_html_string
 {
-  my $dbh = shift;
+  my $dbh               = shift;
   my $player_type       = $HTML_ID_PLAYER_TYPE;
   my $tournament_type   = $HTML_ID_TOURNAMENT_TYPE;
   my $head_to_head_type = $HTML_ID_HEAD_TO_HEAD_TYPE;
@@ -26,8 +25,7 @@ sub get_alltime_stats_results_html_string
   my $t_table_name  = $TOURNAMENTS_TABLE_NAME;
   my $d_table_name  = $DIVISIONS_TABLE_NAME;
 
-  my $sth = $dbh->prepare(
-  "
+  my $sth = $dbh->prepare( "
   SELECT
     tr1.start_rating    AS tr_start_rating,
     p1.name             AS tr_player_name,
@@ -51,50 +49,49 @@ sub get_alltime_stats_results_html_string
       g.division_id   = tr2.division_id AND
       g.division_id   = d.id            AND
       d.tournament_id = t.id
-  ");
+  " );
 
   $sth->execute();
- 
-  my $all_stats = Utils::stat_objects();
+
+  my $all_stats            = Utils::stat_objects();
   my $game_stats_rank_name = $GAME_STATS_RANK_NAME;
   my $stat_key_name        = $STAT_KEY_NAME;
 
   my $tournament_results_hashref = {};
-  my $alltime_cutoff = $ALLTIME_CUTOFF;
+  my $alltime_cutoff             = $ALLTIME_CUTOFF;
 
-  foreach my $key (keys %{$all_stats})
+  foreach my $key ( keys %{$all_stats} )
   {
     my $statitem = $all_stats->{$key};
 
-    my @value_list = @{$statitem->{values}};
+    my @value_list = @{ $statitem->{values} };
     push @value_list, 'tr_tournament_name';
     $statitem->{values} = \@value_list;
 
-    my @titles = @{$statitem->{titles}};
+    my @titles = @{ $statitem->{titles} };
     push @titles, 'Tournament';
     $statitem->{titles} = \@titles;
   }
 
-
-  while (my $data = $sth->fetchrow_hashref)
+  while ( my $data = $sth->fetchrow_hashref )
   {
-    for my $y (0 .. 1)
+    for my $y ( 0 .. 1 )
     {
-      if ($y == 1)
+      if ( $y == 1 )
       {
-        Utils::swap($data, 'tr_start_rating', 'opp_rating');
-        Utils::swap($data, 'tr_player_name',  'opp_name');
-        Utils::swap($data, 'tr_player_id',    'opp_id');
-        Utils::swap($data, 'pr1_score',       'pr2_score');
+        Utils::swap( $data, 'tr_start_rating', 'opp_rating' );
+        Utils::swap( $data, 'tr_player_name',  'opp_name' );
+        Utils::swap( $data, 'tr_player_id',    'opp_id' );
+        Utils::swap( $data, 'pr1_score',       'pr2_score' );
       }
-      foreach my $key (keys %{$all_stats})
+      foreach my $key ( keys %{$all_stats} )
       {
         my $statitem = $all_stats->{$key};
-        if ($statitem->{cond}->($data))
+        if ( $statitem->{cond}->($data) )
         {
-          my $stat = $statitem->{eval}->($data);
-          my @value_list = @{$statitem->{values}};
-          my $statdata = {};
+          my $stat       = $statitem->{eval}->($data);
+          my @value_list = @{ $statitem->{values} };
+          my $statdata   = {};
           foreach my $val (@value_list)
           {
             my $dataitem = $data->{$val};
@@ -107,26 +104,25 @@ sub get_alltime_stats_results_html_string
           $statdata->{opp_id}       = $data->{opp_id};
           $statdata->{t_id}         = $data->{t_id};
 
-
           $statdata->{$stat_key_name} = $stat;
 
-          push @{$statitem->{list}}, $statdata;
-          my @statlist = @{$statitem->{list}};
-          @statlist = sort {$statitem->{sort}->($a, $b)} @statlist;
-          while (scalar @statlist > $alltime_cutoff)
+          push @{ $statitem->{list} }, $statdata;
+          my @statlist = @{ $statitem->{list} };
+          @statlist = sort { $statitem->{sort}->( $a, $b ) } @statlist;
+          while ( scalar @statlist > $alltime_cutoff )
           {
             pop @statlist;
           }
           $statitem->{list} = \@statlist;
-        } 
+        }
       }
     }
   }
-  foreach my $key (keys %{$all_stats})
+  foreach my $key ( keys %{$all_stats} )
   {
     my $statitem = $all_stats->{$key};
-    my @statlist = @{$statitem->{list}};
-    for (my $i = 0; $i < scalar @statlist; $i++)
+    my @statlist = @{ $statitem->{list} };
+    for ( my $i = 0; $i < scalar @statlist; $i++ )
     {
       $statlist[$i]->{$game_stats_rank_name} = $i + 1;
     }
@@ -134,42 +130,40 @@ sub get_alltime_stats_results_html_string
 
   my $all_stats_html = {};
 
-    foreach my $key (keys %{$all_stats})
-    {
-      my $dataitem = $all_stats->{$key};
+  foreach my $key ( keys %{$all_stats} )
+  {
+    my $dataitem = $all_stats->{$key};
 
-      my $html_string = "       <table class='table'>\n";
-      $html_string    .=
-          Utils::make_row
-          ({
-            keys     => $dataitem->{titles},
-            is_title => 1
-          });
-
-      my @statlist = @{$dataitem->{list}};
-      for my $i (0 .. scalar @statlist - 1)
-      {
-        my $sub_row_class = 'roweven';
-    
-        if ($i % 2 == 1)
-        {
-          $sub_row_class = 'rowodd';
-        }
-
-        my $statitem = $statlist[$i];
-
-        $html_string .=
-          Utils::make_row
-          ({
-            item => $statitem, 
-            keys => $dataitem->{values},
-            class => $sub_row_class
-          });
+    my $html_string = "       <table class='table'>\n";
+    $html_string .= Utils::make_row(
+      { keys     => $dataitem->{titles},
+        is_title => 1
       }
-      $html_string .= "        </table>";
+    );
 
-      $all_stats_html->{$key} = $html_string;
+    my @statlist = @{ $dataitem->{list} };
+    for my $i ( 0 .. scalar @statlist - 1 )
+    {
+      my $sub_row_class = 'roweven';
+
+      if ( $i % 2 == 1 )
+      {
+        $sub_row_class = 'rowodd';
+      }
+
+      my $statitem = $statlist[$i];
+
+      $html_string .= Utils::make_row(
+        { item  => $statitem,
+          keys  => $dataitem->{values},
+          class => $sub_row_class
+        }
+      );
     }
+    $html_string .= "        </table>";
+
+    $all_stats_html->{$key} = $html_string;
+  }
   return $all_stats_html;
 }
 
@@ -189,43 +183,43 @@ sub get_alltime_template_html_string
   my $footer    = $TEMPLATE_FOOTER;
 
   my @ids_to_click = ();
-  
+
   my $display_none_style = "style='display:none;'";
 
-
-  my $stats_tabclass    = "stats_tab";
-  my $stats_tablink     = "stats_tablink";
-
+  my $stats_tabclass = "stats_tab";
+  my $stats_tablink  = "stats_tablink";
 
   my $stats_content = $EMPTY_STRING;
   my @stats_tabdata = ();
 
   my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
 
-  for (my $k = 0; $k < scalar @{$stats_order_ref}; $k++)
+  for ( my $k = 0; $k < scalar @{$stats_order_ref}; $k++ )
   {
-    my $cat = $stats_order_ref->[$k];
-    my $stat_id =  "stats_$cat";
-    push @stats_tabdata, [$cat, $stat_id];
+    my $cat     = $stats_order_ref->[$k];
+    my $stat_id = "stats_$cat";
+    push @stats_tabdata, [ $cat, $stat_id ];
 
     my $stat_html = $stats->{$cat};
-    $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
-    if ($k == 0)
+    $stats_content
+      .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+    if ( $k == 0 )
     {
       push @ids_to_click, "button_$stat_id";
     }
   }
 
-  $stats_content = Utils::make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
-
+  $stats_content
+    = Utils::make_tab_div( \@stats_tabdata, $stats_tabclass, $stats_tablink )
+    . $stats_content;
 
   my $ids_to_click_javascript_array = q{[};
 
-  for (my $i = 0; $i < scalar @ids_to_click; $i++)
+  for ( my $i = 0; $i < scalar @ids_to_click; $i++ )
   {
     my $id = $ids_to_click[$i];
     $ids_to_click_javascript_array .= "'$id'";
-    if ($i != (scalar @ids_to_click) - 1)
+    if ( $i != ( scalar @ids_to_click ) - 1 )
     {
       $ids_to_click_javascript_array .= ', ';
     }
@@ -337,8 +331,7 @@ sub get_datalist_html
             alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
           }
 FUNCTION
-;
-
+    ;
 
   my $input_function = <<"FUNCTION"
 
@@ -353,7 +346,7 @@ FUNCTION
       })(event)
     "
 FUNCTION
-;
+    ;
 
   my $submit_function = <<"FUNCTION"
     onclick=
@@ -365,10 +358,9 @@ FUNCTION
       " 
 
 FUNCTION
-;
+    ;
 
-  my $html =
-  "
+  my $html = "
   $title
   <input list='$html_id' id='$input_id' $input_function>
     <datalist id='$html_id'>
@@ -385,17 +377,17 @@ FUNCTION
 
   $html .= "    </datalist>\n";
 
-
-  $html .= "<input type='button' value='Submit' id='$button_id' $submit_function>";
-  return $html
+  $html
+    .= "<input type='button' value='Submit' id='$button_id' $submit_function>";
+  return $html;
 }
 
 sub get_player_template_html_string
 {
-  my $player_info = shift;
-  my $player_tournament_history_html = shift;
+  my $player_info                      = shift;
+  my $player_tournament_history_html   = shift;
   my $player_head_to_head_history_html = shift;
-  my $player_tournament_history_data = shift;
+  my $player_tournament_history_data   = shift;
 
   my $html_path = $HTML_PATH_TO_WORKING_DIR;
   my $doctype   = $TEMPLATE_DOCTYPE;
@@ -425,35 +417,49 @@ sub get_player_template_html_string
 
   my $rounding = $ROUNDING_PLACE;
 
-  my $average_for     = sprintf("%.$rounding".q{f},  ($total_score / $games_played));
-  my $average_against = sprintf("%.$rounding".q{f},  ($total_against / $games_played));
+  my $average_for
+    = sprintf( "%.$rounding" . q{f}, ( $total_score / $games_played ) );
+  my $average_against
+    = sprintf( "%.$rounding" . q{f}, ( $total_against / $games_played ) );
 
-  my $under_300 = $player_tournament_history_data->{over}->{300-};
-  my $over_300 = $player_tournament_history_data->{over}->{300};
-  my $over_400 = $player_tournament_history_data->{over}->{400};
-  my $over_500 = $player_tournament_history_data->{over}->{500};
-  my $over_600 = $player_tournament_history_data->{over}->{600};
+  my $under_300 = $player_tournament_history_data->{over}->{'300-'};
+  my $over_300  = $player_tournament_history_data->{over}->{300};
+  my $over_400  = $player_tournament_history_data->{over}->{400};
+  my $over_500  = $player_tournament_history_data->{over}->{500};
+  my $over_600  = $player_tournament_history_data->{over}->{600};
 
-  my $win_percentage  = sprintf("%.$rounding".q{f},  100 *   ($wins / $games_played));
-  my $loss_percentage = sprintf("%.$rounding".q{f},  100 *   ($losses / $games_played));
-  my $draw_percentage = sprintf("%.$rounding".q{f},  100 *    ($draws / $games_played));
+  my $win_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $wins / $games_played ) );
+  my $loss_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $losses / $games_played ) );
+  my $draw_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $draws / $games_played ) );
 
-  my $under_300_percentage = sprintf("%.$rounding".q{f},  100 *   ($under_300 / $games_played));
-  my $over_300_percentage = sprintf("%.$rounding".q{f},   100 *   ($over_300  / $games_played));
-  my $over_400_percentage = sprintf("%.$rounding".q{f},   100 *   ($over_400  / $games_played));
-  my $over_500_percentage = sprintf("%.$rounding".q{f},   100 *   ($over_500  / $games_played));
-  my $over_600_percentage = sprintf("%.$rounding".q{f},   100 *   ($over_600  / $games_played));
+  my $under_300_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $under_300 / $games_played ) );
+  my $over_300_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_300 / $games_played ) );
+  my $over_400_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_400 / $games_played ) );
+  my $over_500_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_500 / $games_played ) );
+  my $over_600_percentage
+    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_600 / $games_played ) );
 
   my $special_games_data = $player_tournament_history_data->{special_games};
 
-  my @special_games_keys = ('high_game', 'low_game', 'biggest_win', 'biggest_loss', 'high_loss', 'low_win');
+  my @special_games_keys = (
+    'high_game', 'low_game', 'biggest_win', 'biggest_loss',
+    'high_loss', 'low_win'
+  );
 
   my $special_games_html_string = "";
 
-  for my $i (0 .. scalar @special_games_keys - 1)
+  for my $i ( 0 .. scalar @special_games_keys - 1 )
   {
     my $key = $special_games_keys[$i];
-    $special_games_html_string .= HTML::special_game_to_html($key, $special_games_data->{$key});
+    $special_games_html_string
+      .= HTML::special_game_to_html( $key, $special_games_data->{$key} );
   }
 
   my $player_tabclass = "player_tab";
@@ -462,13 +468,12 @@ sub get_player_template_html_string
   my $results_html_id      = 'results';
   my $head_to_head_html_id = 'head_to_head';
 
-
   my $country_rankings = $EMPTY_STRING;
 
   my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
   my $country_fullname = $trigraph_hashref->{$country};
 
-  my $valid_country_html      = $EMPTY_STRING;
+  my $valid_country_html = $EMPTY_STRING;
 
   if ($country_fullname)
   {
@@ -477,12 +482,16 @@ sub get_player_template_html_string
     my $country_png = "$html_path/flags/$country.png";
     if ($valid_ranking)
     {
-      my $country_rankings_link = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR . q{/} . $RANKINGS_HTML_DIR . "/$country.html";
-      $country_rankings = "<a href='/$country_rankings_link'>$country_fullname</a>";
+      my $country_rankings_link
+        = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/}
+        . $HTML_DIR . q{/}
+        . $RANKINGS_HTML_DIR
+        . "/$country.html";
+      $country_rankings
+        = "<a href='/$country_rankings_link'>$country_fullname</a>";
     }
 
-    $valid_country_html = 
-    "
+    $valid_country_html = "
             <div>
               <IMG SRC='$country_png' alt='$country'>
               <p>$country_rankings</p>
@@ -491,7 +500,13 @@ sub get_player_template_html_string
 
   }
 
-  my $tabs = Utils::make_tab_div([['Results', $results_html_id], ['Head to Head', $head_to_head_html_id]], $player_tabclass, $player_tablink);
+  my $tabs = Utils::make_tab_div(
+    [ [ 'Results',      $results_html_id ],
+      [ 'Head to Head', $head_to_head_html_id ]
+    ],
+    $player_tabclass,
+    $player_tablink
+  );
 
   my $player_html_page = $EMPTY_STRING;
 
@@ -580,62 +595,70 @@ $doctype
 STOP
 
   return $player_html_page;
-
 }
 
 sub get_rankings_html_string
 {
   my $dbh     = shift;
   my $country = shift;
-  
+
   my @players;
 
   if ($country)
   {
-    @players = @{query_table($dbh, $PLAYERS_TABLE_NAME, 'country', $country)};
+    @players
+      = @{ query_table( $dbh, $PLAYERS_TABLE_NAME, 'country', $country ) };
   }
-  else 
+  else
   {
-    @players = @{$dbh->selectall_arrayref("SELECT * FROM " . $PLAYERS_TABLE_NAME, {Slice => {}, RaiseError => 1})};
+    @players = @{
+      $dbh->selectall_arrayref(
+        "SELECT * FROM " . $PLAYERS_TABLE_NAME,
+        { Slice => {}, RaiseError => 1 }
+      )
+    };
   }
 
-  @players = grep { !$_->{deceased} && !$_->{suspended} && $_->{current}} @players;   
+  @players
+    = grep { !$_->{deceased} && !$_->{suspended} && $_->{current} } @players;
 
   @players = sort { $b->{rating} <=> $a->{rating} } @players;
 
   my $full_rankings_string = "      <table class='table'>\n";
 
-  my $titles = ['Ranking', 'Name', 'Country', 'Rating', 'Total Games', 'Last Played'];
+  my $titles = [ 'Ranking', 'Name', 'Country', 'Rating', 'Total Games',
+    'Last Played' ];
 
-  $full_rankings_string .=
-    Utils::make_row
-    ({
-      keys     => $titles,
+  $full_rankings_string .= Utils::make_row(
+    { keys     => $titles,
       is_title => 1,
       class    => 'white'
-    });
+    }
+  );
 
-  for (my $i = 0; $i < scalar @players; $i++)
+  for ( my $i = 0; $i < scalar @players; $i++ )
   {
     my $row_class = 'roweven';
-    
-    if ($i % 2 == 1)
-    {    
+
+    if ( $i % 2 == 1 )
+    {
       $row_class = 'rowodd';
     }
 
     my $item = $players[$i];
-    $item->{ranking} = $i + 1; 
-    $full_rankings_string .=
-      Utils::make_row
-      ({
-        item     => $item, 
-        keys     => ['ranking', 'name', 'country', 'rating', 'total_games', 'last_played'],
-        class    => $row_class
-      }); 
+    $item->{ranking} = $i + 1;
+    $full_rankings_string .= Utils::make_row(
+      { item => $item,
+        keys => [
+          'ranking',     'name', 'country', 'rating',
+          'total_games', 'last_played'
+        ],
+        class => $row_class
+      }
+    );
   }
 
-  $full_rankings_string    .= "      </table>\n";
+  $full_rankings_string .= "      </table>\n";
   return $full_rankings_string;
 }
 
@@ -655,13 +678,12 @@ sub get_rankings_template_html_string
   my $nav       = $TEMPLATE_NAV;
   my $footer    = $TEMPLATE_FOOTER;
 
-  my $title                  = $rankings_data->{title};
-  my $tournament_link        = $rankings_data->{tournament_link};
+  my $title           = $rankings_data->{title};
+  my $tournament_link = $rankings_data->{tournament_link};
 
   my $localtime = localtime();
- 
-  my $rankings_html_page = $EMPTY_STRING;
 
+  my $rankings_html_page = $EMPTY_STRING;
 
   $rankings_html_page .= <<"STOP"
 $doctype
@@ -709,7 +731,7 @@ $doctype
 </html>
 
 STOP
-;
+    ;
   return $rankings_html_page;
 
 }
@@ -733,8 +755,7 @@ sub get_tournament_results_html_string
 
   my $rounding = $ROUNDING_PLACE;
 
-  my $query =
-  "
+  my $query = "
   SELECT
     tr.player_name                  AS tr_player_name,
     tr.tournament_name              AS tr_tournament_name,
@@ -783,29 +804,37 @@ sub get_tournament_results_html_string
     pr1.player_id  = player.id           AND
   ";
 
-  if ($type == $player_type || $type == $head_to_head_type)
+  if ( $type == $player_type || $type == $head_to_head_type )
   {
     $query .= " tr.player_id = $id";
   }
-  elsif ($type == $tournament_type && $id)
+  elsif ( $type == $tournament_type && $id )
   {
     $query .= " tr.division_id = $id";
   }
 
-  my @raw_tournament_data = @{$dbh->selectall_arrayref($query, {Slice => {}, RaiseError => 1})};
+  my @raw_tournament_data
+    = @{ $dbh->selectall_arrayref( $query, { Slice => {}, RaiseError => 1 } )
+    };
 
   foreach my $data (@raw_tournament_data)
   {
-    if ($data->{tr_start_rating} <= 0)
+    if ( $data->{tr_start_rating} <= 0 )
     {
       $data->{tr_rating_change} = "";
     }
-    $data->{tr_start_rating}      = Utils::empty_string_if_nonpositive($data->{tr_start_rating});
-    $data->{tr_expected_wins}     = Utils::empty_string_if_nonpositive($data->{tr_expected_wins});
-    $data->{tr_old_world_rank}    = Utils::empty_string_if_nonpositive($data->{tr_old_world_rank});
-    $data->{tr_new_world_rank}    = Utils::empty_string_if_nonpositive($data->{tr_new_world_rank});
-    $data->{tr_old_national_rank} = Utils::empty_string_if_nonpositive($data->{tr_old_national_rank});
-    $data->{tr_new_national_rank} = Utils::empty_string_if_nonpositive($data->{tr_new_national_rank});
+    $data->{tr_start_rating}
+      = Utils::empty_string_if_nonpositive( $data->{tr_start_rating} );
+    $data->{tr_expected_wins}
+      = Utils::empty_string_if_nonpositive( $data->{tr_expected_wins} );
+    $data->{tr_old_world_rank}
+      = Utils::empty_string_if_nonpositive( $data->{tr_old_world_rank} );
+    $data->{tr_new_world_rank}
+      = Utils::empty_string_if_nonpositive( $data->{tr_new_world_rank} );
+    $data->{tr_old_national_rank}
+      = Utils::empty_string_if_nonpositive( $data->{tr_old_national_rank} );
+    $data->{tr_new_national_rank}
+      = Utils::empty_string_if_nonpositive( $data->{tr_new_national_rank} );
   }
 
   # Prepare tournament stats datastructure
@@ -814,7 +843,7 @@ sub get_tournament_results_html_string
   my $game_stats_rank_name = $GAME_STATS_RANK_NAME;
   my $stat_key_name        = $STAT_KEY_NAME;
 
-  if ($type == $tournament_type)
+  if ( $type == $tournament_type )
   {
     $tournament_stats = Utils::stat_objects();
   }
@@ -826,16 +855,16 @@ sub get_tournament_results_html_string
   foreach my $data (@raw_tournament_data)
   {
 
-    if ($type == $tournament_type)
+    if ( $type == $tournament_type )
     {
-      foreach my $key (keys %{$tournament_stats})
+      foreach my $key ( keys %{$tournament_stats} )
       {
         my $statitem = $tournament_stats->{$key};
-        if ($statitem->{cond}->($data))
+        if ( $statitem->{cond}->($data) )
         {
-          my $stat = $statitem->{eval}->($data);
-          my @value_list = @{$statitem->{values}};
-          my $statdata = {};
+          my $stat       = $statitem->{eval}->($data);
+          my @value_list = @{ $statitem->{values} };
+          my $statdata   = {};
           foreach my $val (@value_list)
           {
             my $dataitem = $data->{$val};
@@ -844,35 +873,35 @@ sub get_tournament_results_html_string
               $statdata->{$val} = $dataitem;
             }
           }
-          $statdata->{tr_player_id} = $data->{tr_player_id};
-          $statdata->{opp_id}       = $data->{opp_id};
+          $statdata->{tr_player_id}   = $data->{tr_player_id};
+          $statdata->{opp_id}         = $data->{opp_id};
           $statdata->{$stat_key_name} = $stat;
 
-          push @{$statitem->{list}}, $statdata;
-        } 
+          push @{ $statitem->{list} }, $statdata;
+        }
       }
     }
 
     my $key;
-    if ($type == $player_type)
+    if ( $type == $player_type )
     {
       $key = 'tr_division_id';
     }
-    elsif ($type == $tournament_type)
+    elsif ( $type == $tournament_type )
     {
       $key = 'tr_player_id';
     }
-    elsif ($type == $head_to_head_type)
+    elsif ( $type == $head_to_head_type )
     {
       $key = 'opp_id';
     }
 
-    if ($type == $tournament_type)
+    if ( $type == $tournament_type )
     {
-      
+
     }
 
-    my $item = $tournament_results_hashref->{$data->{$key}};
+    my $item = $tournament_results_hashref->{ $data->{$key} };
 
     # Get the tournament stats
 
@@ -882,19 +911,19 @@ sub get_tournament_results_html_string
     }
     else
     {
-      $tournament_results_hashref->{$data->{$key}} = [$data];
+      $tournament_results_hashref->{ $data->{$key} } = [$data];
     }
   }
 
   # Sort everyting
-  if ($type == $tournament_type)
+  if ( $type == $tournament_type )
   {
-    foreach my $key (keys %{$tournament_stats})
+    foreach my $key ( keys %{$tournament_stats} )
     {
       my $statitem = $tournament_stats->{$key};
-      my @statlist = @{$statitem->{list}};
-      @statlist = sort {$statitem->{sort}->($a, $b)} @statlist;
-      for (my $i = 0; $i < scalar @statlist; $i++)
+      my @statlist = @{ $statitem->{list} };
+      @statlist = sort { $statitem->{sort}->( $a, $b ) } @statlist;
+      for ( my $i = 0; $i < scalar @statlist; $i++ )
       {
         $statlist[$i]->{$game_stats_rank_name} = $i + 1;
       }
@@ -904,76 +933,80 @@ sub get_tournament_results_html_string
 
   my @tournament_results = values %{$tournament_results_hashref};
 
-
-  if ($type == $player_type)
+  if ( $type == $player_type )
   {
     @tournament_results = sort {
-                                 $b->[0]->{tr_date} cmp $a->[0]->{tr_date} ||
-                                 $a->[0]->{tr_tournament_name} cmp $b->[0]->{tr_tournament_name}
-                               } @tournament_results;
+           $b->[0]->{tr_date} cmp $a->[0]->{tr_date}
+        || $a->[0]->{tr_tournament_name} cmp $b->[0]->{tr_tournament_name}
+    } @tournament_results;
   }
-  elsif ($type == $tournament_type)
+  elsif ( $type == $tournament_type )
   {
     # First sort to determine the seeding
     @tournament_results = sort {
-                                 if (!$a->[0]->{tr_start_rating} && !$b->[0]->{tr_start_rating})
-                                 {
-                                   $a->[0]->{tr_player_name}         cmp $b->[0]->{tr_player_name};
-                                 }
-                                 elsif (!$a->[0]->{tr_start_rating})
-                                 {
-                                   return 1;
-                                 }
-                                 elsif (!$b->[0]->{tr_start_rating})
-                                 {
-                                   return -1;
-                                 }
-                                 else
-                                 {
-                                   return
-                                   $b->[0]->{tr_start_rating} <=> $a->[0]->{tr_start_rating} ||
-                                   $a->[0]->{tr_player_name}         cmp $b->[0]->{tr_player_name}
-                                 }
-                               }
-                          @tournament_results;
+      if ( !$a->[0]->{tr_start_rating} && !$b->[0]->{tr_start_rating} )
+      {
+        $a->[0]->{tr_player_name} cmp $b->[0]->{tr_player_name};
+      }
+      elsif ( !$a->[0]->{tr_start_rating} )
+      {
+        return 1;
+      }
+      elsif ( !$b->[0]->{tr_start_rating} )
+      {
+        return -1;
+      }
+      else
+      {
+        return $b->[0]->{tr_start_rating} <=> $a->[0]->{tr_start_rating}
+          || $a->[0]->{tr_player_name} cmp $b->[0]->{tr_player_name};
+      }
+    } @tournament_results;
 
-    for (my $i = 0; $i < scalar @tournament_results; $i++)
+    for ( my $i = 0; $i < scalar @tournament_results; $i++ )
     {
-      my @games = @{$tournament_results[$i]};
-      for (my $k = 0; $k < scalar @games; $k++)
+      my @games = @{ $tournament_results[$i] };
+      for ( my $k = 0; $k < scalar @games; $k++ )
       {
         $tournament_results[$i]->[$k]->{tr_seed} = $i + 1;
       }
-    } 
+    }
 
-    @tournament_results = sort {$a->[0]->{tr_position} <=> $b->[0]->{tr_position}} @tournament_results;
+    @tournament_results
+      = sort { $a->[0]->{tr_position} <=> $b->[0]->{tr_position} }
+      @tournament_results;
     my $num_players = scalar @tournament_results;
     foreach my $tr (@tournament_results)
     {
       my $l = scalar @{$tr};
-      for (my $n = 0; $n < $l; $n++)
+      for ( my $n = 0; $n < $l; $n++ )
       {
-        $tr->[$n]->{tr_position} = $tr->[$n]->{tr_position} . " of $num_players";
+        $tr->[$n]->{tr_position}
+          = $tr->[$n]->{tr_position} . " of $num_players";
       }
     }
   }
-  elsif ($type == $head_to_head_type)
+  elsif ( $type == $head_to_head_type )
   {
-    @tournament_results = sort {scalar @{$b} <=> scalar @{$a}} @tournament_results;
+    @tournament_results
+      = sort { scalar @{$b} <=> scalar @{$a} } @tournament_results;
   }
-
 
   foreach my $games (@tournament_results)
   {
     my @unsorted_games = @{$games};
     my @sorted_games;
-    if ($type == $player_type || $type == $tournament_type)
+    if ( $type == $player_type || $type == $tournament_type )
     {
-      @sorted_games = sort {$a->{g_round} <=> $b->{g_round}} @unsorted_games;
+      @sorted_games
+        = sort { $a->{g_round} <=> $b->{g_round} } @unsorted_games;
     }
-    elsif ($type == $head_to_head_type)
+    elsif ( $type == $head_to_head_type )
     {
-      @sorted_games = sort {$a->{tr_date} cmp $b->{tr_date} || $a->{g_round} <=> $b->{g_round}} @unsorted_games;
+      @sorted_games = sort
+      {
+        $a->{tr_date} cmp $b->{tr_date} || $a->{g_round} <=> $b->{g_round}
+      } @unsorted_games;
     }
 
     $games = \@sorted_games;
@@ -981,83 +1014,128 @@ sub get_tournament_results_html_string
 
   # Move to constants plz
 
-  my $tournament_title_ref = ['Details', '#', 'Date', 'Tournament', 'Wins', 'Losses', 'Byes', 'Spread', 'Place', 'Start Rating', 'End Rating', 'Rating Change'];
-  my $tournament_keys_ref  = ['details', '#', 'tr_date', 'tr_tournament_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_position', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
+  my $tournament_title_ref = [
+    'Details', '#',            'Date',       'Tournament',
+    'Wins',    'Losses',       'Byes',       'Spread',
+    'Place',   'Start Rating', 'End Rating', 'Rating Change'
+  ];
+  my $tournament_keys_ref = [
+    'details',       '#',
+    'tr_date',       'tr_tournament_name',
+    'tr_wins',       'tr_losses',
+    'tr_byes',       'tr_spread',
+    'tr_position',   'tr_start_rating',
+    'tr_end_rating', 'tr_rating_change'
+  ];
 
-  my $tournament_standings_title_ref = ['Details', 'Place'      ,    'Seed', 'Name',              'Wins',    'Losses',    'Byes',    'Spread',    'Start Rating', 'End Rating', 'Rating Change'];
-  my $tournament_standings_keys_ref  = ['details', 'tr_position', 'tr_seed', 'tr_player_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
+  my $tournament_standings_title_ref = [
+    'Details',      'Place',      'Seed', 'Name',
+    'Wins',         'Losses',     'Byes', 'Spread',
+    'Start Rating', 'End Rating', 'Rating Change'
+  ];
+  my $tournament_standings_keys_ref = [
+    'details',         'tr_position',
+    'tr_seed',         'tr_player_name',
+    'tr_wins',         'tr_losses',
+    'tr_byes',         'tr_spread',
+    'tr_start_rating', 'tr_end_rating',
+    'tr_rating_change'
+  ];
 
-  my $games_title_ref = ['Round', 'Opponent', 'Opponent Rating', 'Result', 'Scores', ''];
-  my $games_keys_ref  = ['g_round', 'opp_name', 'opp_rating',  'pr1_result', 'pr1_score', 'pr2_score'];
+  my $games_title_ref
+    = [ 'Round', 'Opponent', 'Opponent Rating', 'Result', 'Scores', '' ];
+  my $games_keys_ref = [
+    'g_round',   'opp_name', 'opp_rating', 'pr1_result',
+    'pr1_score', 'pr2_score'
+  ];
 
-  my $head_to_head_title_ref = ['Details', '', 'Opponent', 'Rating', 'Games', 'Wins', 'Losses', 'Draws', 'Pct', 'Average For', 'Average Against'];
-  my $head_to_head_keys_ref  = ['details', '#', 'opp_name', 'opp_current_rating', 'hh_games', 'hh_wins', 'hh_losses', 'hh_draws', 'hh_pct', 'hh_af', 'hh_aa'];
+  my $head_to_head_title_ref = [
+    'Details', '',            'Opponent', 'Rating',
+    'Games',   'Wins',        'Losses',   'Draws',
+    'Pct',     'Average For', 'Average Against'
+  ];
+  my $head_to_head_keys_ref = [
+    'details',  '#',       'opp_name',  'opp_current_rating',
+    'hh_games', 'hh_wins', 'hh_losses', 'hh_draws',
+    'hh_pct',   'hh_af',   'hh_aa'
+  ];
 
-  my $head_to_head_games_title_ref = ['Date', 'Tournament', 'Round', 'Result', 'Rating', 'Opponent Rating', 'Score', ''];
-  my $head_to_head_games_keys_ref  = ['tr_date', 'tr_tournament_name','g_round', 'pr1_result', 'tr_start_rating', 'opp_rating', 'pr1_score', 'pr2_score'];
+  my $head_to_head_games_title_ref = [
+    'Date',   'Tournament',      'Round', 'Result',
+    'Rating', 'Opponent Rating', 'Score', ''
+  ];
+  my $head_to_head_games_keys_ref = [
+    'tr_date',         'tr_tournament_name',
+    'g_round',         'pr1_result',
+    'tr_start_rating', 'opp_rating',
+    'pr1_score',       'pr2_score'
+  ];
 
-
-  my $ratings_super_title_ref = ['Player', 'Wins', 'World rank', 'Nation rank', 'Rating points'];
-  my $ratings_title_ref = ['Country', 'Name', 'Exp', 'Act', 'Old', 'New', 'Old', 'New', 'Old', '+/-', 'New'];
-  my $ratings_keys_ref   = ['p_country', 'tr_player_name', 'tr_expected_wins', 'tr_wins', 'tr_old_world_rank', 'tr_new_world_rank', 'tr_old_national_rank', 'tr_new_national_rank', 'tr_start_rating', 'tr_rating_change', 'tr_end_rating'];
-
+  my $ratings_super_title_ref
+    = [ 'Player', 'Wins', 'World rank', 'Nation rank', 'Rating points' ];
+  my $ratings_title_ref = [
+    'Country', 'Name', 'Exp', 'Act', 'Old', 'New',
+    'Old',     'New',  'Old', '+/-', 'New'
+  ];
+  my $ratings_keys_ref = [
+    'p_country',            'tr_player_name',
+    'tr_expected_wins',     'tr_wins',
+    'tr_old_world_rank',    'tr_new_world_rank',
+    'tr_old_national_rank', 'tr_new_national_rank',
+    'tr_start_rating',      'tr_rating_change',
+    'tr_end_rating'
+  ];
 
   my $tournament_results_list_html_string = "<table class='table'>\n";
   my $tournament_ratings_html_string      = "<table class='table'>\n";
 
-  my $title_ref = $tournament_title_ref;
+  my $title_ref     = $tournament_title_ref;
   my $sub_title_ref = $games_title_ref;
-  my $keys_ref = $tournament_keys_ref;
+  my $keys_ref      = $tournament_keys_ref;
 
-  if ($type == $head_to_head_type)
+  if ( $type == $head_to_head_type )
   {
-    $title_ref = $head_to_head_title_ref;
-    $sub_title_ref = $head_to_head_games_title_ref;
-    $keys_ref = $head_to_head_keys_ref;
+    $title_ref      = $head_to_head_title_ref;
+    $sub_title_ref  = $head_to_head_games_title_ref;
+    $keys_ref       = $head_to_head_keys_ref;
     $games_keys_ref = $head_to_head_games_keys_ref;
   }
-  elsif ($type == $tournament_type)
+  elsif ( $type == $tournament_type )
   {
     $title_ref = $tournament_standings_title_ref;
-    $keys_ref = $tournament_standings_keys_ref;
-    $tournament_ratings_html_string .=
-      Utils::make_row
-      ({
-        keys     => $ratings_super_title_ref,
+    $keys_ref  = $tournament_standings_keys_ref;
+    $tournament_ratings_html_string .= Utils::make_row(
+      { keys     => $ratings_super_title_ref,
         is_title => 1,
         class    => 'white',
         colspan  => 2
-      });
-    
+      }
+    );
 
-    $tournament_ratings_html_string .=
-      Utils::make_row
-      ({
-        keys     => $ratings_super_title_ref,
+    $tournament_ratings_html_string .= Utils::make_row(
+      { keys     => $ratings_super_title_ref,
         is_title => 1,
         class    => 'white'
-      });
+      }
+    );
   }
 
   my $title_length = scalar @{$title_ref};
 
-  $tournament_results_list_html_string .=
-      Utils::make_row
-      ({
-        keys     => $ratings_super_title_ref,
-        is_title => 1,
-        class    => 'white'
-      });
+  $tournament_results_list_html_string .= Utils::make_row(
+    { keys     => $ratings_super_title_ref,
+      is_title => 1,
+      class    => 'white'
+    }
+  );
 
-  my $games_title_row = 
-      Utils::make_row
-      ({
-        keys     => $ratings_super_title_ref,
-        is_title => 1
-      });
+  my $games_title_row = Utils::make_row(
+    { keys     => $ratings_super_title_ref,
+      is_title => 1
+    }
+  );
 
-  my $game_data =
-  {
+  my $game_data = {
     tournament_name => $tournament_results[0]->[0]->{tr_tournament_name},
     tournament_date => $tournament_results[0]->[0]->{tr_date},
     games_played    => 0,
@@ -1066,91 +1144,78 @@ sub get_tournament_results_html_string
     draws           => 0,
     total_score     => 0,
     total_against   => 0,
-    over            =>
-    {
-      300- => 0,
-      300  => 0,
-      400  => 0,
-      500  => 0,
-      600  => 0
+    over            => {
+      '300-' => 0,
+      300    => 0,
+      400    => 0,
+      500    => 0,
+      600    => 0
     },
-    special_games =>
-    {
-      high_game     =>
-      {
-        value => -1000000,
-      },
-      low_game      =>
-      {
-        value => 1000000,
-      },
-      biggest_win   =>
-      {
-        value => -1000000,
-      },
-      biggest_loss  =>
-      {
-        value => -1000000,
-      },
-      high_loss     =>
-      {
-        value => -1000000,
-      },
-      low_win       =>
-      {
-        value =>  1000000,
-      }
+    special_games => {
+      high_game    => { value => -1000000, },
+      low_game     => { value => 1000000, },
+      biggest_win  => { value => -1000000, },
+      biggest_loss => { value => -1000000, },
+      high_loss    => { value => -1000000, },
+      low_win      => { value => 1000000, }
     }
   };
 
-  for my $i (0 .. scalar @tournament_results - 1)
+  for my $i ( 0 .. scalar @tournament_results - 1 )
   {
     my $new_entry = $EMPTY_STRING;
 
     my $subentries = $EMPTY_STRING;
 
     my $games_ref = $tournament_results[$i];
-    my $button_id = Utils::create_html_id($HTML_ID_BUTTON_TAG, $type, $games_ref->[0]->{tr_id});
-    my $entry_id  = Utils::create_html_id($HTML_ID_ENTRY_TAG,  $type, $games_ref->[0]->{tr_id});
+    my $button_id = Utils::create_html_id( $HTML_ID_BUTTON_TAG, $type,
+      $games_ref->[0]->{tr_id} );
+    my $entry_id = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $type,
+      $games_ref->[0]->{tr_id} );
     my $row_class = 'roweven';
-    
-    if ($i % 2 == 1)
+
+    if ( $i % 2 == 1 )
     {
       $row_class = 'rowodd';
     }
 
-    if ($type == $head_to_head_type)
+    if ( $type == $head_to_head_type )
     {
-      $button_id = Utils::create_html_id($HTML_ID_BUTTON_TAG, $type, $games_ref->[0]->{opp_id});
-      $entry_id  = Utils::create_html_id($HTML_ID_ENTRY_TAG,   $type, $games_ref->[0]->{opp_id});
+      $button_id = Utils::create_html_id( $HTML_ID_BUTTON_TAG, $type,
+        $games_ref->[0]->{opp_id} );
+      $entry_id = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $type,
+        $games_ref->[0]->{opp_id} );
     }
 
     $games_ref->[0]->{q{#}} = $i + 1;
 
-    $games_ref->[0]->{details} = "<button type='button' id='$button_id'  class='btn btn-info' data-toggle='collapse' data-target='#" . $entry_id  . "'>+</button>";
+    $games_ref->[0]->{details}
+      = "<button type='button' id='$button_id'  class='btn btn-info' data-toggle='collapse' data-target='#"
+      . $entry_id
+      . "'>+</button>";
 
-
-    if ($type != $head_to_head_type)
+    if ( $type != $head_to_head_type )
     {
-      $new_entry .= Utils::make_new_entry_head({games_ref       => $games_ref,
-                                                keys_ref        => $keys_ref,
-                                                row_class       => $row_class,
-                                                entry_id        => $entry_id,
-                                                title_length    => $title_length,
-                                                games_title_row => $games_title_row});
+      $new_entry .= Utils::make_new_entry_head(
+        { games_ref       => $games_ref,
+          keys_ref        => $keys_ref,
+          row_class       => $row_class,
+          entry_id        => $entry_id,
+          title_length    => $title_length,
+          games_title_row => $games_title_row
+        }
+      );
     }
 
-    if ($type == $tournament_type)
+    if ( $type == $tournament_type )
     {
-      $tournament_ratings_html_string .=
-        Utils::make_row
-        ({
-          item     => $games_ref->[0],
-          keys     => $ratings_keys_ref,
-          class    => 'white'
-        });
+      $tournament_ratings_html_string .= Utils::make_row(
+        { item  => $games_ref->[0],
+          keys  => $ratings_keys_ref,
+          class => 'white'
+        }
+      );
     }
-
 
     my $num_games = scalar @{$games_ref};
 
@@ -1160,7 +1225,7 @@ sub get_tournament_results_html_string
     my $hh_for    = 0;
     my $hh_ag     = 0;
 
-    for my $k (0 .. $num_games - 1)
+    for my $k ( 0 .. $num_games - 1 )
     {
       my $item = $games_ref->[$k];
 
@@ -1182,22 +1247,22 @@ sub get_tournament_results_html_string
 
       $game_data->{games_played}++;
 
-      my $res  = $item->{pr1_result};
+      my $res = $item->{pr1_result};
 
-      if ($res == 1)
+      if ( $res == 1 )
       {
         $res = q{W};
         $game_data->{wins}++;
-        if ($type == $head_to_head_type)
+        if ( $type == $head_to_head_type )
         {
           $hh_wins++;
         }
       }
-      elsif ($res == -1)
+      elsif ( $res == -1 )
       {
         $res = q{L};
         $game_data->{losses}++;
-        if ($type == $head_to_head_type)
+        if ( $type == $head_to_head_type )
         {
           $hh_losses++;
         }
@@ -1206,97 +1271,95 @@ sub get_tournament_results_html_string
       {
         $res = q{T};
         $game_data->{draws}++;
-        if ($type == $head_to_head_type)
+        if ( $type == $head_to_head_type )
         {
           $hh_draws++;
         }
       }
-      
+
       $item->{pr1_result} = $res;
 
       my $score     = $item->{pr1_score};
       my $opp_score = $item->{pr2_score};
 
-      $game_data->{total_score}   += $score;      
+      $game_data->{total_score}   += $score;
       $game_data->{total_against} += $opp_score;
 
       $hh_for += $score;
       $hh_ag  += $opp_score;
 
-      if ($score < 300)
+      if ( $score < 300 )
       {
-        $game_data->{over}->{300-}++;
+        $game_data->{over}->{'300-'}++;
       }
-      elsif ($score >= 300 && $score < 400)
+      elsif ( $score >= 300 && $score < 400 )
       {
         $game_data->{over}->{300}++;
       }
-      elsif ($score >= 400 && $score < 500)
+      elsif ( $score >= 400 && $score < 500 )
       {
         $game_data->{over}->{400}++;
       }
-      elsif ($score >= 500 && $score < 600)
+      elsif ( $score >= 500 && $score < 600 )
       {
         $game_data->{over}->{500}++;
       }
-      elsif ($score >= 600)
+      elsif ( $score >= 600 )
       {
         $game_data->{over}->{600}++;
       }
 
-      if ($score > $high_game_item->{value})
+      if ( $score > $high_game_item->{value} )
       {
         $high_game_item->{value} = $score;
-        HTML::populate_special_game_item($high_game_item, $item);
+        HTML::populate_special_game_item( $high_game_item, $item );
       }
-      if ($score < $low_game_item->{value})
+      if ( $score < $low_game_item->{value} )
       {
         $low_game_item->{value} = $score;
-        HTML::populate_special_game_item($low_game_item, $item);
+        HTML::populate_special_game_item( $low_game_item, $item );
       }
-      if ($score - $opp_score > $biggest_win_item->{value})
+      if ( $score - $opp_score > $biggest_win_item->{value} )
       {
         $biggest_win_item->{value} = $score - $opp_score;
-        HTML::populate_special_game_item($biggest_win_item, $item);
+        HTML::populate_special_game_item( $biggest_win_item, $item );
       }
-      if ($opp_score - $score > $biggest_loss_item->{value})
+      if ( $opp_score - $score > $biggest_loss_item->{value} )
       {
         $biggest_loss_item->{value} = $opp_score - $score;
-        HTML::populate_special_game_item($biggest_loss_item, $item);
+        HTML::populate_special_game_item( $biggest_loss_item, $item );
       }
-      if ($opp_score > $score && $score > $high_loss_item->{value})
+      if ( $opp_score > $score && $score > $high_loss_item->{value} )
       {
         $high_loss_item->{value} = $score;
-        HTML::populate_special_game_item($high_loss_item, $item);
+        HTML::populate_special_game_item( $high_loss_item, $item );
       }
-      if ($score > $opp_score && $score < $low_win_item->{value})
+      if ( $score > $opp_score && $score < $low_win_item->{value} )
       {
         $low_win_item->{value} = $score;
-        HTML::populate_special_game_item($low_win_item, $item);
+        HTML::populate_special_game_item( $low_win_item, $item );
       }
 
       my $sub_row_class = 'roweven';
-    
-      if ($k % 2 == 1)
+
+      if ( $k % 2 == 1 )
       {
         $sub_row_class = 'rowodd';
       }
 
-      $subentries .=
-        Utils::make_row
-        ({
-          item     => $item,
-          keys     => $games_keys_ref,
-          class    => $sub_row_class
-        });
+      $subentries .= Utils::make_row(
+        { item  => $item,
+          keys  => $games_keys_ref,
+          class => $sub_row_class
+        }
+      );
 
-      if ($k == $num_games - 1)
+      if ( $k == $num_games - 1 )
       {
-        my $colspan = (scalar @{$games_keys_ref}) - 3;
-        my $af = sprintf ("%.$rounding" . q{f}, $hh_for / $num_games);
-        my $ag = sprintf ("%.$rounding" . q{f}, $hh_ag  / $num_games);
-        $subentries .=
-        "<tr>
+        my $colspan = ( scalar @{$games_keys_ref} ) - 3;
+        my $af      = sprintf( "%.$rounding" . q{f}, $hh_for / $num_games );
+        my $ag      = sprintf( "%.$rounding" . q{f}, $hh_ag / $num_games );
+        $subentries .= "<tr>
            <td colspan='$colspan'></td>
            <td><b>Average:</b></td>
            <td><b>$af</b></td>
@@ -1305,78 +1368,88 @@ sub get_tournament_results_html_string
       }
     }
 
-    if ($type == $head_to_head_type)
+    if ( $type == $head_to_head_type )
     {
       $games_ref->[0]->{hh_games}  = $num_games;
       $games_ref->[0]->{hh_wins}   = $hh_wins;
       $games_ref->[0]->{hh_losses} = $hh_losses;
       $games_ref->[0]->{hh_draws}  = $hh_draws;
-      $games_ref->[0]->{hh_pct}    = sprintf ("%.$rounding" . q{f}, ($hh_wins + ($hh_draws / 2)) / $num_games);
-      $games_ref->[0]->{hh_af}     = sprintf ("%.$rounding" . q{f}, $hh_for / $num_games);
-      $games_ref->[0]->{hh_aa}     = sprintf ("%.$rounding" . q{f}, $hh_ag  / $num_games);
+      $games_ref->[0]->{hh_pct}    = sprintf(
+        "%.$rounding" . q{f},
+        ( $hh_wins + ( $hh_draws / 2 ) ) / $num_games
+      );
+      $games_ref->[0]->{hh_af}
+        = sprintf( "%.$rounding" . q{f}, $hh_for / $num_games );
+      $games_ref->[0]->{hh_aa}
+        = sprintf( "%.$rounding" . q{f}, $hh_ag / $num_games );
 
-      $new_entry .= Utils::make_new_entry_head({games_ref       => $games_ref,
-                                                keys_ref        => $keys_ref,
-                                                row_class       => $row_class,
-                                                entry_id        => $entry_id,
-                                                title_length    => $title_length,
-                                                games_title_row => $games_title_row});
+      $new_entry .= Utils::make_new_entry_head(
+        { games_ref       => $games_ref,
+          keys_ref        => $keys_ref,
+          row_class       => $row_class,
+          entry_id        => $entry_id,
+          title_length    => $title_length,
+          games_title_row => $games_title_row
+        }
+      );
     }
 
-    $tournament_results_list_html_string .= $new_entry . $subentries . "</table></div></td></tr>\n";
+    $tournament_results_list_html_string
+      .= $new_entry . $subentries . "</table></div></td></tr>\n";
   }
 
   $tournament_results_list_html_string .= "\n</table>\n";
 
   my $tournament_stats_html = {};
 
-  if ($type == $tournament_type)
+  if ( $type == $tournament_type )
   {
 
     $tournament_ratings_html_string .= "\n</table>\n";
 
-    foreach my $key (keys %{$tournament_stats})
+    foreach my $key ( keys %{$tournament_stats} )
     {
-      my $dataitem = $tournament_stats->{$key};
+      my $dataitem    = $tournament_stats->{$key};
       my $html_string = "       <table class='table'>\n";
-      $html_string    .=
-        Utils::make_row
-        ({
-          keys     => $dataitem->{titles},
+      $html_string .= Utils::make_row(
+        { keys     => $dataitem->{titles},
           is_title => 1
-        });
+        }
+      );
 
-      my @statlist = @{$dataitem->{list}};
-      for my $i (0 .. scalar @statlist q{f})
+      my @statlist = @{ $dataitem->{list} };
+      for my $i ( 0 .. scalar @statlist - 1 )
       {
         my $sub_row_class = 'roweven';
-    
-        if ($i % 2 == 1)
+
+        if ( $i % 2 == 1 )
         {
           $sub_row_class = 'rowodd';
         }
 
         my $statitem = $statlist[$i];
-        $html_string .=
-          Utils::make_row
-          ({
-            item     => $statitem,
-            keys     => $dataitem->{values},
-            class    => $sub_row_class
-          });
+        $html_string .= Utils::make_row(
+          { item  => $statitem,
+            keys  => $dataitem->{values},
+            class => $sub_row_class
+          }
+        );
       }
       $html_string .= '        </table>';
 
       $tournament_stats_html->{$key} = $html_string;
     }
   }
-  return [$tournament_results_list_html_string, $game_data, $tournament_stats_html, $tournament_ratings_html_string];
+  return [
+    $tournament_results_list_html_string, $game_data,
+    $tournament_stats_html,               $tournament_ratings_html_string
+  ];
 }
 
 sub get_tournament_template_html_string
 {
   my $division_data = shift;
- 
+
   my $html_path = $HTML_PATH_TO_WORKING_DIR;
   my $doctype   = $TEMPLATE_DOCTYPE;
   my $meta      = $TEMPLATE_META;
@@ -1390,38 +1463,37 @@ sub get_tournament_template_html_string
 
   my $tournament_name = $division_data->[0]->[1]->{tournament_name};
   my $tournament_date = $division_data->[0]->[1]->{tournament_date};
- 
+
   my $division_html_class = 'division';
 
   my $ddl = scalar @{$division_data};
 
-  my $division_results   = $EMPTY_STRING;
+  my $division_results = $EMPTY_STRING;
 
   my @ids_to_click = ();
-  
+
   my $display_none_style = "style='display:none;'";
 
-  my $tourney_tabclass  = 'tournament_tab';
-  my $tourney_tablink   = 'tournament_tablink';
-
+  my $tourney_tabclass = 'tournament_tab';
+  my $tourney_tablink  = 'tournament_tablink';
 
   my @tabdata = ();
 
-  for my $i (0 .. $ddl - 1)
+  for my $i ( 0 .. $ddl - 1 )
   {
     my $id   = "division_$i";
-    my $text = "Division ". ($i+1);
+    my $text = "Division " . ( $i + 1 );
 
-    push @tabdata, [$text, $id];
+    push @tabdata, [ $text, $id ];
 
-    my $stats_tabclass    = "stats_tab_$id"       ;
-    my $stats_tablink     = "stats_tablink_$id"   ;
-    my $ratings_tabclass  = "ratings_tab_$id"     ;
-    my $ratings_tablink   = "ratings_tablink_$id" ;
-    my $division_tabclass = "division_tab_$id"    ;
+    my $stats_tabclass    = "stats_tab_$id";
+    my $stats_tablink     = "stats_tablink_$id";
+    my $ratings_tabclass  = "ratings_tab_$id";
+    my $ratings_tablink   = "ratings_tablink_$id";
+    my $division_tabclass = "division_tab_$id";
     my $division_tablink  = "division_tablink_$id";
- 
-    if ($i == 0)
+
+    if ( $i == 0 )
     {
       push @ids_to_click, "button_$id";
     }
@@ -1435,21 +1507,25 @@ sub get_tournament_template_html_string
 
     my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
 
-    for my $k (0 .. scalar @{$stats_order_ref} - 1)
+    for my $k ( 0 .. scalar @{$stats_order_ref} - 1 )
     {
-      my $cat = $stats_order_ref->[$k];
+      my $cat     = $stats_order_ref->[$k];
       my $stat_id = "division_$i" . "_stats_$cat";
-      push @stats_tabdata, [$cat, $stat_id];
+      push @stats_tabdata, [ $cat, $stat_id ];
 
       my $stat_html = $div_stats->{$cat};
-      $stats_content .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
-      if ($k == 0)
+      $stats_content
+        .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+      if ( $k == 0 )
       {
         push @ids_to_click, "button_$stat_id";
       }
     }
 
-    $stats_content = Utils::make_tab_div(\@stats_tabdata, $stats_tabclass, $stats_tablink) . $stats_content;
+    $stats_content
+      = Utils::make_tab_div( \@stats_tabdata, $stats_tabclass,
+      $stats_tablink )
+      . $stats_content;
 
     my $div_standings_id = "division_$i" . '_standings';
     my $div_stats_id     = "division_$i" . '_stats';
@@ -1457,27 +1533,39 @@ sub get_tournament_template_html_string
 
     push @ids_to_click, "button_$div_standings_id";
 
-    my $div_tabs = Utils::make_tab_div([['Standings', $div_standings_id],['Statistics', $div_stats_id], ['Ratings', $div_ratings_id]], $division_tabclass, $division_tablink);
+    my $div_tabs = Utils::make_tab_div(
+      [ [ 'Standings',  $div_standings_id ],
+        [ 'Statistics', $div_stats_id ],
+        [ 'Ratings',    $div_ratings_id ]
+      ],
+      $division_tabclass,
+      $division_tablink
+    );
 
-    my $div_standings_div = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
-    my $div_stats_div     = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
-    my $div_ratings_div   = "<div id='$div_ratings_id'   class='$division_tabclass' $display_none_style>$div_ratings  </div>";
+    my $div_standings_div
+      = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
+    my $div_stats_div
+      = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
+    my $div_ratings_div
+      = "<div id='$div_ratings_id'   class='$division_tabclass' $display_none_style>$div_ratings  </div>";
 
+    my $div_content
+      = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
 
-    my $div_content = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
-
-    $division_results .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
+    $division_results
+      .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
   }
 
-  my $tabs = Utils::make_tab_div(\@tabdata, $tourney_tabclass, $tourney_tablink);
+  my $tabs
+    = Utils::make_tab_div( \@tabdata, $tourney_tabclass, $tourney_tablink );
 
   my $ids_to_click_javascript_array = q{[};
 
-  for (my $i = 0; $i < scalar @ids_to_click; $i++)
+  for ( my $i = 0; $i < scalar @ids_to_click; $i++ )
   {
     my $id = $ids_to_click[$i];
     $ids_to_click_javascript_array .= "'$id'";
-    if ($i != (scalar @ids_to_click) - 1)
+    if ( $i != ( scalar @ids_to_click ) - 1 )
     {
       $ids_to_click_javascript_array .= ', ';
     }
@@ -1551,9 +1639,9 @@ sub populate_special_game_item
   my $special_item = shift;
   my $item         = shift;
 
-  $special_item->{game_pointer}     = $item->{tr_id};
-  $special_item->{player_pointer}   = $item->{opp_id};
-  $special_item->{player_name}      = $item->{opp_name};
+  $special_item->{game_pointer}   = $item->{tr_id};
+  $special_item->{player_pointer} = $item->{opp_id};
+  $special_item->{player_name}    = $item->{opp_name};
 
   return 1;
 }
@@ -1563,7 +1651,9 @@ sub special_game_to_html
   my $key  = shift;
   my $item = shift;
 
-  if (!$item->{player_name} || !$item->{player_pointer} || !$item->{game_pointer})
+  if ( !$item->{player_name}
+    || !$item->{player_pointer}
+    || !$item->{game_pointer} )
   {
     return $EMPTY_STRING;
   }
@@ -1572,11 +1662,11 @@ sub special_game_to_html
 
   my @cap_words = ();
 
-  for (my $i = 0; $i < scalar @words; $i++)
+  for ( my $i = 0; $i < scalar @words; $i++ )
   {
     my @letters = split //, $words[$i];
     $letters[0] = uc $letters[0];
-    push @cap_words, (join $EMPTY_STRING;, @letters);
+    push @cap_words, ( join $EMPTY_STRING, @letters );
   }
 
   my $title = join q{ }, @cap_words;
@@ -1585,27 +1675,28 @@ sub special_game_to_html
   my $player_name    = $item->{player_name};
   my $player_pointer = $item->{player_pointer};
 
-
   my $player_type       = $HTML_ID_PLAYER_TYPE;
   my $head_to_head_type = $HTML_ID_HEAD_TO_HEAD_TYPE;
 
-  my $game_html_id   = Utils::create_html_id($HTML_ID_ENTRY_TAG, $player_type, $item->{game_pointer});
-  my $player_html_id = Utils::create_html_id($HTML_ID_ENTRY_TAG, $head_to_head_type, $item->{player_pointer});
+  my $game_html_id = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $player_type,
+    $item->{game_pointer} );
+  my $player_html_id
+    = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $head_to_head_type,
+    $item->{player_pointer} );
 
   my $working_dir = $DEFAULT_SHORT_NAME_WORKING_DIR;
   my $html_dir    = $HTML_DIR;
   my $players_dir = $PLAYER_HTML_DIR;
 
-  if (
-       ($title eq 'Biggest Win'  && $value < 0) ||
-       ($title eq 'Biggest Loss' && $value > 0) 
-     )
+  if ( ( $title eq 'Biggest Win' && $value < 0 )
+    || ( $title eq 'Biggest Loss' && $value > 0 ) )
   {
     return "";
-  } 
+  }
 
-  return "<b>$title:</b> <a href=\"#$game_html_id\" onclick=\"show_tournament_entry('$game_html_id')\">$value</a> (<a href=\"#$player_html_id\" onclick=\"show_head_to_head_entry('$player_html_id')\">vs</a> <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">$player_name</a>)<br>";
-  
+  return
+    "<b>$title:</b> <a href=\"#$game_html_id\" onclick=\"show_tournament_entry('$game_html_id')\">$value</a> (<a href=\"#$player_html_id\" onclick=\"show_head_to_head_entry('$player_html_id')\">vs</a> <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">$player_name</a>)<br>";
+
 }
 
 1;
