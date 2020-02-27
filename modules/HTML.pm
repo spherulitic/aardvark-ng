@@ -1003,9 +1003,9 @@ sub get_tournament_results_html_string
     }
     elsif ( $type == $head_to_head_type )
     {
-      @sorted_games = sort
-      {
-        $a->{tr_date} cmp $b->{tr_date} || $a->{g_round} <=> $b->{g_round}
+      @sorted_games = sort {
+             $a->{tr_date} cmp $b->{tr_date}
+          || $a->{g_round} <=> $b->{g_round}
       } @unsorted_games;
     }
 

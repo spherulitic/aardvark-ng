@@ -2,7 +2,6 @@
 
 package Result;
 
-
 use strict;
 use warnings;
 use version; our $VERSION = qv('1');
@@ -20,7 +19,7 @@ sub add_to_gpr
 
   # If I did it right, the only
   # null player_id's should be for 'bye_players'
-  if (Utils::player_name_is_bye($player_name))
+  if ( Utils::player_name_is_bye($player_name) )
   {
     return;
   }
@@ -32,17 +31,16 @@ sub add_to_gpr
   my $n1 = $opponent_number;
   my $n2 = $player_number;
 
-  if ($n1 > $n2)
+  if ( $n1 > $n2 )
   {
     $n1 = $n2;
     $n2 = $opponent_number;
   }
-  
-  my $gpr_key = "$round-$n1-$n2";
+
+  my $gpr_key   = "$round-$n1-$n2";
   my $gpr_value = $gpr->{$gpr_key};
 
-  my $result =
-  {
+  my $result = {
     player_id => $player_id,
     score     => $this->get_score(),
     result    => $this->{$RESULT_CODED}
@@ -50,23 +48,18 @@ sub add_to_gpr
 
   if ($gpr_value)
   {
-    push @{$gpr_value->{results}}, $result;
+    push @{ $gpr_value->{results} }, $result;
   }
   else
   {
-    $gpr->{$gpr_key} =
-    {
-      game =>
-      {
+    $gpr->{$gpr_key} = {
+      game => {
         round        => $round,
-        lexicon_id   => 1,            # Unused for now
-        gcg_filename => 'example.gcg' # Unused for now
+        lexicon_id   => 1,               # Unused for now
+        gcg_filename => 'example.gcg'    # Unused for now
       },
-      results =>
-      [
-        $result
-      ]
-    }
+      results => [$result]
+    };
   }
 
   return 1;
@@ -100,11 +93,11 @@ sub new
 
   my $score = $tou_score;
 
-  if ($score > $TOU_MINIMUM_WIN_SCORE)
+  if ( $score > $TOU_MINIMUM_WIN_SCORE )
   {
     $score -= $TOU_BASE_WINNING_SCORE;
   }
-  elsif ($score > $TOU_BASE_TIE_SCORE)
+  elsif ( $score > $TOU_BASE_TIE_SCORE )
   {
     $score -= $TOU_BASE_TIE_SCORE;
   }

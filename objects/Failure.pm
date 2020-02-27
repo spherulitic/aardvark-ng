@@ -2,7 +2,6 @@
 
 package Failure;
 
-
 use strict;
 use warnings;
 use version; our $VERSION = qv('1');
@@ -50,10 +49,10 @@ sub new
 
   my $failure_fields = $FAILURE_FIELDS;
 
-  for my $i (0 .. scalar @{$failure_fields} - 1)
+  for my $i ( 0 .. scalar @{$failure_fields} - 1 )
   {
     my $field = $failure_fields->[$i];
-    if ($field eq $FAILURE_TYPE)
+    if ( $field eq $FAILURE_TYPE )
     {
       $failure->{$field} = $type;
     }
@@ -86,34 +85,37 @@ sub to_string
 {
   my $this = shift;
 
-  if (!$this->is_failure())
+  if ( !$this->is_failure() )
   {
     return $EMPTY_STRING;
   }
 
-  my $failure_fields = $FAILURE_FIELDS;
-  my $failure_string = $EMPTY_STRING;
+  my $failure_fields   = $FAILURE_FIELDS;
+  my $failure_string   = $EMPTY_STRING;
   my $max_length_field = 0;
 
-  for my $i (0 .. scalar @{$failure_fields} - 1)
+  for my $i ( 0 .. scalar @{$failure_fields} - 1 )
   {
-    my $field = $failure_fields->[$i];
+    my $field        = $failure_fields->[$i];
     my $field_length = length $field;
-    if ($field_length > $max_length_field)
+    if ( $field_length > $max_length_field )
     {
       $max_length_field = $field_length;
     }
   }
-  for my $i (0 .. scalar @{$failure_fields} - 1)
+  for my $i ( 0 .. scalar @{$failure_fields} - 1 )
   {
     my $field = $failure_fields->[$i];
     my $value = $this->{$field};
     my $colon = q{:};
-    if ($field eq $FAILURE_DIFF)
+    if ( $field eq $FAILURE_DIFF )
     {
       $colon = q{ };
     }
-    $failure_string .= (sprintf '%-' . ($max_length_field + 2)  . q{s} , ($field . $colon)) . $value . "\n";
+    $failure_string
+      .= ( sprintf '%-' . ( $max_length_field + 2 ) . q{s},
+      ( $field . $colon ) )
+      . $value . "\n";
   }
   $failure_string .= "\n";
   return $failure_string;
