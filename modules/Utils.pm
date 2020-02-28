@@ -18,7 +18,7 @@ sub write_file_to_array
 {
   my $filename = shift;
 
-  open( my $fh, q{<}, $filename )
+  open my $fh, q{<}, $filename
     or croak "Cannot open file $filename: $OS_ERROR\n";
   my @array = <$fh>;
   close $fh or croak "Cannot close file $filename: $OS_ERROR\n";
@@ -53,7 +53,7 @@ sub backup_years
 
   opendir my $base_directory, $base_directory_name
     or croak "Cannot open $base_directory_name: $OS_ERROR";
-  my @year_directory_names = grep {/$year_regex/xms} readdir($base_directory);
+  my @year_directory_names = grep {/$year_regex/xms} readdir $base_directory;
 
   foreach my $year_directory_name (@year_directory_names)
   {
@@ -75,7 +75,7 @@ sub check_country_flag_icons
 
   opendir my $flag_dir_handle, $filename_prefix
     or croak "Cannot open $filename_prefix: $OS_ERROR\n";
-  my @existing_flags = grep {/[A-Z]{3}/xms} readdir($flag_dir_handle);
+  my @existing_flags = grep {/[A-Z]{3}/xms} readdir $flag_dir_handle;
 
   foreach my $ef (@existing_flags)
   {
@@ -293,7 +293,7 @@ sub fetch_local_tournament_data
 
   Utils::execute_command("mkdir -p $scratch_dir");
 
-  my @localtime_data = localtime();
+  my @localtime_data = localtime;
   my $current_year
     = $localtime_data[$LOCALTIME_YEAR_INDEX] + $LOCALTIME_YEAR_BASE;
 
@@ -379,8 +379,8 @@ sub get_most_recent_tournament
 
   if ($trigraph)
   {
-    $query = "
-      SELECT t.id AS id, t.name AS name
+    $query = 
+     "SELECT t.id AS id, t.name AS name
       FROM $tournament_results_tn AS tr, $players_tn AS p, $divisions_tn AS d, $tournaments_tn AS t
       WHERE
             d.tournament_id = t.id        AND
@@ -391,16 +391,14 @@ sub get_most_recent_tournament
             p.suspended     = 0           AND
             p.current       = 1
             
-      ORDER BY t.end_date DESC
-    ";
+      ORDER BY t.end_date DESC";
   }
   else
   {
-    $query = "
-      SELECT id, name
+    $query = 
+     "SELECT id, name
       FROM $tournaments_tn
-      GROUP BY end_date DESC
-    ";
+      GROUP BY end_date DESC";
   }
   my @tournament_name
     = @{ $dbh->selectall_arrayref( $query, { RaiseError => 1 } ) };
@@ -441,7 +439,7 @@ sub get_tournament_data_filenames
 
   opendir my $base_directory, $base_directory_name
     or croak "Cannot open $base_directory_name: $OS_ERROR";
-  my @year_directory_names = grep {/$year_regex/xms} readdir($base_directory);
+  my @year_directory_names = grep {/$year_regex/xms} readdir $base_directory ;
 
   @year_directory_names = sort { $a <=> $b } @year_directory_names;
 
@@ -455,7 +453,7 @@ sub get_tournament_data_filenames
       or croak "Cannot open $year_directory_full_path_name: $OS_ERROR";
 
     my @country_trigraphs
-      = grep {/$country_trigraph_regex/xms} readdir($year_directory);
+      = grep {/$country_trigraph_regex/xms} readdir $year_directory;
 
     foreach my $country_trigraph (@country_trigraphs)
     {
@@ -465,7 +463,7 @@ sub get_tournament_data_filenames
       opendir my $trigraph_directory, $trigraph_directory_full_path_name
         or croak "Cannot open $trigraph_directory_full_path_name: $OS_ERROR";
 
-      my @filenames = grep {/$file_regex/ixms} readdir($trigraph_directory);
+      my @filenames = grep {/$file_regex/ixms} readdir $trigraph_directory;
 
       my @full_filenames
         = map { $trigraph_directory_full_path_name . q{/} . $_ } @filenames;
@@ -522,8 +520,8 @@ sub insert_hash_into_table
     }
   }
 
-  chop($keys_string);
-  chop($values_string);
+  chop $keys_string;
+  chop $values_string;
 
   if ( !$keys_string || !$values_string )
   {
@@ -592,7 +590,7 @@ sub make_new_entry_head
   );
 
   $new_entry
-    .= "<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='"
+    .= q{<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='}
     . ( $title_length - 1 )
     . "'><div class='collapse' id='$entry_id'><table class='table'>\n";
 
@@ -710,19 +708,19 @@ sub make_row
     }
     elsif ( $key eq 'tr_wins' || $key eq 'hh_wins' )
     {
-      $class = "class='winscolumn'";
+      $class = q{class='winscolumn'};
     }
     elsif ( $key eq 'tr_losses' || $key eq 'hh_losses' )
     {
-      $class = "class='lossescolumn'";
+      $class = q{class='lossescolumn'};
     }
     elsif ( $key eq 'hh_draws' )
     {
-      $class = "class='drawscolumn'";
+      $class = q{class='drawscolumn'};
     }
     elsif ( $key eq 'tr_byes' )
     {
-      $class = "class='byescolumn'";
+      $class = q{class='byescolumn'};
     }
     if ( !( defined $val ) )
     {
@@ -751,10 +749,9 @@ sub make_tab_div
     my $text  = $content->[$i]->[0];
     my $id    = $content->[$i]->[1];
     my $width = $FULL_WIDTH / $content_length;
-    $div
-      .= "<button id='button_"
-      . $id
-      . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
+    $div .= q{<button id='button_}
+            . $id
+            . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
   }
   $div .= '</div><br>';
   return $div;
@@ -873,9 +870,9 @@ sub rank_tournament_results
   my @tournament_results = @{$tournament_results_ref};
 
   my @ranked_tournament_results
-    = sort {
-         $b->{wins} + $b->{bye_wins} <=> $a->{wins} + $a->{bye_wins}
-      || $b->{spread} <=> $a->{spread}
+    = reverse sort {
+          $a->{wins} + $a->{bye_wins} <=> $b->{wins} + $b->{bye_wins}
+      || $a->{spread} <=> $b->{spread} 
     } @tournament_results;
 
   for my $i ( 0 .. scalar @ranked_tournament_results - 1 )
@@ -935,7 +932,7 @@ sub sanitize
 
   $name = uc $name;
 
-  $name =~ s/[^A-Z]//gxms;
+  $name =~ s/\W//gxms;
 
   return $name;
 }
@@ -945,7 +942,7 @@ sub get_iso_date
   my $time      = shift;
   my $separator = shift;
 
-  my @t = localtime($time);
+  my @t = localtime $time ;
   $t[$LOCALTIME_YEAR_INDEX] += $LOCALTIME_YEAR_BASE;
   $t[$LOCALTIME_MONTH_INDEX]++;
 
@@ -965,33 +962,31 @@ sub set_current_status
   my $user_name     = $DATABASE_USER_NAME;
   my $password      = $DATABASE_PASSWORD;
 
-  my $datestring = localtime();
-  my $epoc       = time();
+  my $datestring = localtime;
+  my $epoc       = time;
   $epoc -= $TWO_YEARS_IN_SECONDS;    # two years before current date.
 
   my $date_two_years_ago = get_iso_date( $epoc, q{-} );
 
-  my $games_in_last_two_years = "
-  (
-    SELECT SUM(tr.wins + tr.losses)
-    FROM tournaments AS t, divisions AS d, tournament_results AS tr
-    WHERE p.id = tr.player_id AND
-          tr.division_id = d.id AND
-          d.tournament_id = t.id AND t.end_date > '$date_two_years_ago'
-  )
-  ";
+  my $games_in_last_two_years = "(
+                                  SELECT SUM(tr.wins + tr.losses)
+                                  FROM tournaments AS t, divisions AS d, tournament_results AS tr
+                                  WHERE p.id = tr.player_id AND
+                                        tr.division_id = d.id AND
+                                        d.tournament_id = t.id AND t.end_date > '$date_two_years_ago'
+                                  )
+                                  ";
 
-  my $update_current = "
-  UPDATE $players_tn AS p
-  SET p.current =
-  (
-    CASE
-      WHEN $games_in_last_two_years > 0 AND p.total_games > $current_games_min
-        THEN 1
-      ELSE 0
-    END
-  )
-  ";
+  my $update_current = "UPDATE $players_tn AS p
+                        SET p.current =
+                        (
+                          CASE
+                            WHEN $games_in_last_two_years > 0 AND p.total_games > $current_games_min
+                              THEN 1
+                            ELSE 0
+                          END
+                        )
+                        ";
 
   $dbh->do( $update_current, { RaiseError => 1 } );
 
@@ -1005,17 +1000,16 @@ sub set_provisional_status
   my $provisional_games_max = $PROVISIONAL_GAMES_MAX;
 
   # Update provisional status for all players
-  my $update_provisional = "
-  UPDATE $players_tn AS p
-  SET p.provisional =
-  (
-    CASE
-      WHEN p.total_games < $provisional_games_max
-        THEN 1
-      ELSE 0
-    END
-  )
-  ";
+  my $update_provisional = "UPDATE $players_tn AS p
+                            SET p.provisional =
+                            (
+                              CASE
+                                WHEN p.total_games < $provisional_games_max
+                                  THEN 1
+                                ELSE 0
+                              END
+                            )
+                            ";
   $dbh->do( $update_provisional, { RaiseError => 1 } );
 
   return 1;
@@ -1244,9 +1238,9 @@ sub write_string_to_file
   my $string   = shift;
   my $filename = shift;
 
-  open( my $fh, q{>}, $filename )
+  open my $fh, q{>}, $filename
     or croak "Cannot open $filename: $OS_ERROR\n";
-  print $fh $string;
+  print {$fh} $string;
   close $fh or croak "Cannot close $filename: $OS_ERROR\n";
 
   return 1;

@@ -25,8 +25,7 @@ sub get_alltime_stats_results_html_string
   my $t_table_name  = $TOURNAMENTS_TABLE_NAME;
   my $d_table_name  = $DIVISIONS_TABLE_NAME;
 
-  my $sth = $dbh->prepare( "
-  SELECT
+  my $sth = $dbh->prepare( "SELECT
     tr1.start_rating    AS tr_start_rating,
     p1.name             AS tr_player_name,
     p1.id               AS tr_player_id,
@@ -122,7 +121,7 @@ sub get_alltime_stats_results_html_string
   {
     my $statitem = $all_stats->{$key};
     my @statlist = @{ $statitem->{list} };
-    for ( my $i = 0; $i < scalar @statlist; $i++ )
+    for my $i ( 0 .. scalar @statlist - 1 )
     {
       $statlist[$i]->{$game_stats_rank_name} = $i + 1;
     }
@@ -160,7 +159,7 @@ sub get_alltime_stats_results_html_string
         }
       );
     }
-    $html_string .= "        </table>";
+    $html_string .= '        </table>';
 
     $all_stats_html->{$key} = $html_string;
   }
@@ -184,17 +183,17 @@ sub get_alltime_template_html_string
 
   my @ids_to_click = ();
 
-  my $display_none_style = "style='display:none;'";
+  my $display_none_style = q{style='display:none;'};
 
-  my $stats_tabclass = "stats_tab";
-  my $stats_tablink  = "stats_tablink";
+  my $stats_tabclass = 'stats_tab';
+  my $stats_tablink  = 'stats_tablink';
 
   my $stats_content = $EMPTY_STRING;
   my @stats_tabdata = ();
 
   my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
 
-  for ( my $k = 0; $k < scalar @{$stats_order_ref}; $k++ )
+  for my $k ( 0 .. scalar @{$stats_order_ref} - 1 )
   {
     my $cat     = $stats_order_ref->[$k];
     my $stat_id = "stats_$cat";
@@ -215,7 +214,7 @@ sub get_alltime_template_html_string
 
   my $ids_to_click_javascript_array = q{[};
 
-  for ( my $i = 0; $i < scalar @ids_to_click; $i++ )
+  for my $i ( 0 .. scalar @ids_to_click - 1 )
   {
     my $id = $ids_to_click[$i];
     $ids_to_click_javascript_array .= "'$id'";
@@ -295,8 +294,6 @@ sub get_datalist_html
   my $data_value_key = $arg_ref->{data_value_key};
   my $value_key      = $arg_ref->{value_key};
 
-  my $escaped_char = "&quot;";
-
   my $function = <<"FUNCTION"
 
           var input = document.getElementById('$input_id');
@@ -315,7 +312,7 @@ sub get_datalist_html
           if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
           {
             var pname = document.getElementById('$input_id').value;
-            var pid   = document.querySelector('#$html_id option[value=$escaped_char'+pname+'$escaped_char]').dataset.value;
+            var pid   = document.querySelector('#$html_id option[value=$ESCAPED_QUOTE'+pname+'$ESCAPED_QUOTE]').dataset.value;
 
             if (pid)
             {
@@ -418,9 +415,9 @@ sub get_player_template_html_string
   my $rounding = $ROUNDING_PLACE;
 
   my $average_for
-    = sprintf( "%.$rounding" . q{f}, ( $total_score / $games_played ) );
+    = sprintf "%.$rounding" . q{f},  $total_score   / $games_played  ;
   my $average_against
-    = sprintf( "%.$rounding" . q{f}, ( $total_against / $games_played ) );
+    = sprintf "%.$rounding" . q{f},  $total_against / $games_played  ;
 
   my $under_300 = $player_tournament_history_data->{over}->{'300-'};
   my $over_300  = $player_tournament_history_data->{over}->{300};
@@ -429,22 +426,22 @@ sub get_player_template_html_string
   my $over_600  = $player_tournament_history_data->{over}->{600};
 
   my $win_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $wins / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $wins / $games_played );
   my $loss_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $losses / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $losses / $games_played );
   my $draw_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $draws / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $draws / $games_played );
 
   my $under_300_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $under_300 / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $under_300 / $games_played );
   my $over_300_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_300 / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $over_300 / $games_played );
   my $over_400_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_400 / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $over_400 / $games_played );
   my $over_500_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_500 / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $over_500 / $games_played );
   my $over_600_percentage
-    = sprintf( "%.$rounding" . q{f}, 100 * ( $over_600 / $games_played ) );
+    = sprintf "%.$rounding" . q{f}, $ONE_HUNDRED_PERCENT * ( $over_600 / $games_played );
 
   my $special_games_data = $player_tournament_history_data->{special_games};
 

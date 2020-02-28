@@ -62,8 +62,10 @@ if ($tidy)
 }
 if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
 {
-  Test::check_syntax();
   Test::alphabetize_routine_order();
+  Test::tidy();
+  Test::criticize();
+  Test::check_syntax();
   Test::harness();
 }
 
@@ -435,7 +437,8 @@ sub criticize
 
   foreach my $dir ( @{$directories} )
   {
-    opendir my $fh_dir, $dir;
+    my $fh_dir;
+    opendir $fh_dir, $dir;
     push @files,
       map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
   }
@@ -521,7 +524,7 @@ sub testcase
   my $player_data           = shift;
   my $case                  = shift;
 
-  my $padded_case = sprintf "%3s", $case;
+  my $padded_case = sprintf '%3s', $case;
 
   print Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH );
 
@@ -548,7 +551,7 @@ sub testcase
 
   # Load the actual stdout
   my $actual_stdout;
-  open( my $fhstdout, '>>', \$actual_stdout )
+  open my $fhstdout, '>>', \$actual_stdout
     or die "Cannot even: $OS_ERROR\n";
 
   select $fhstdout;
@@ -646,10 +649,10 @@ sub testrun
 
     $response_content .= $expected_stdout;
     $response_content
-      .= ( sprintf "%-17s", ( $stdout_failure->get_type() . ' STATUS:' ) )
+      .= ( sprintf '%-17s', ( $stdout_failure->get_type() . ' STATUS:' ) )
       . Test::convert_to_response( $stdout_failure->is_failure() ) . "\n";
     $response_content
-      .= ( sprintf "%-17s", ( $json_failure->get_type() . ' STATUS:' ) )
+      .= ( sprintf '%-17s', ( $json_failure->get_type() . ' STATUS:' ) )
       . Test::convert_to_response( $json_failure->is_failure() ) . "\n";
     print $response_content;
     print "\n\n";

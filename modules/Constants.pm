@@ -19,6 +19,8 @@ Readonly our $NEGATIVE_ONE              => -1;
 Readonly our $FULL_WIDTH                => 100;
 Readonly our $WESPA_START_RATING        => 500;
 
+Readonly our $ESCAPED_QUOTE             => '&quot;';
+Readonly our $ONE_HUNDRED_PERCENT       => 100;
 Readonly our $DEV_ENV_KEYWORD => 'dev';
 
 Readonly our $TEST_DIRECTORY    => 'test';
@@ -841,6 +843,8 @@ FOOTER
 
 # BEGIN EXPORT
 our @EXPORT = qw(
+$ESCAPED_QUOTE
+$ONE_HUNDRED_PERCENT
   $RESULT_CODED_WIN
   $RESULT_CODED_LOSS
   $RESULT_CODED_TIE
