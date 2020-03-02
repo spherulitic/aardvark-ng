@@ -15,14 +15,9 @@ use Utils;
 use TOU;
 use HTML;
 
-unless (caller)
+if ( !caller )
 {
-  # Utils::chdir_strict();
-  my @t = localtime();
-  $t[5] += 1900;
-  $t[4]++;
-
-  my $logname = ( sprintf "%04d-%02d-%02d", @t[ 5, 4, 3 ] ) . '_cronjob.log';
+  my $logname = Utils::get_iso_date( time, q{-} ) . '_cronjob.log';
 
   Utils::fetch_local_tournament_data();
   Update::load_all_tournament_data();
@@ -66,17 +61,7 @@ sub load_all_tou_files
 
 sub load_all_tournament_data
 {
-  my $tables         = Constants::TABLES;
-  my $creation_order = Constants::TABLE_CREATION_ORDER;
-  my $lexicons       = Constants::LEXICONS;
-  my $lexicons_tn    = Constants::LEXICONS_TABLE_NAME;
-  my $working_directory
-    = Utils::get_environment_name(Constants::DEFAULT_WORKING_DIR);
-  my $tou_data_directory
-    = Utils::get_environment_name(Constants::TOURNAMENT_DATA_DIR);
-  my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
-  my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
-  my $file_regex             = Constants::DEFAULT_FILE_REGEX;
+  my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
 
   # This hash is used to consolidate the names that are considered duplciates
   my $alt_names_hash = Utils::populate_alt_names_hash();
@@ -97,12 +82,12 @@ sub load_all_tournament_data
   Utils::record_database($dbh);
 
   # Create the necessary tables
-  Utils::initialize_database( $dbh, $tables, $creation_order );
+  Utils::initialize_database( $dbh, $TABLES, $TABLE_CREATION_ORDER );
 
   # Get the list of every .tou file that needs to be processed
   my $filenames_array_ref = Utils::get_tournament_data_filenames(
-    $tou_data_directory,     $year_regex,
-    $country_trigraph_regex, $file_regex
+    $tou_data_directory,             $DEFAULT_YEAR_REGEX,
+    $DEFAULT_COUNTRY_TRIGRAPH_REGEX, $DEFAULT_FILE_REGEX
   );
 
   # Process every .tou file
@@ -124,17 +109,7 @@ sub load_all_tournament_data
 
 sub push_local_content
 {
-  my $cwd = Cwd::getcwd();
-
-  my $working_dir         = Constants::DEFAULT_WORKING_DIR;
-  my $html_dir            = Constants::HTML_DIR;
-  my $cgibin_dir          = Constants::CGIBIN_DIR;
-  my $html_static_dir     = Constants::HTML_STATIC_DIR;
-  my $html_data_dir       = Constants::HTML_DATA_DIR;
-  my $player_html_dir     = Constants::PLAYER_HTML_DIR;
-  my $tournament_html_dir = Constants::TOURNAMENT_HTML_DIR;
-  my $rankings_html_dir   = Constants::RANKINGS_HTML_DIR;
-  my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
+  my $working_dir = $DEFAULT_WORKING_DIR;
 
   my $base_dir;
 
@@ -149,23 +124,23 @@ sub push_local_content
   }
 
   # Copy new data to dev dir
-  system "cp -r $html_dir $working_dir";
+  system "cp -r $HTML_DIR $working_dir";
 
   # Copy static html
   # Softlinking is much more convenient
   # in this case
-  system "cp -rf $html_static_dir/* $base_dir";
+  system "cp -rf $HTML_STATIC_DIR/* $base_dir";
 
   system "cp -rf css/* $working_dir";
 
   # Copy data html
-  system "cp -r $html_data_dir/. $base_dir";
+  system "cp -r $HTML_DATA_DIR/. $base_dir";
 
   # Copy the cgi scripts
-  system "cp -r $cgibin_dir $working_dir";
+  system "cp -r $CGIBIN_DIR $working_dir";
 
   # Copy the flags
-  system "cp -r $flags_dir/ $working_dir";
+  system "cp -r $COUNTRY_FLAGS_DIR/ $working_dir";
 
   return 1;
 }
@@ -174,35 +149,33 @@ sub update_cgi
 {
   my $dbh = shift;
 
-  my $html_path = Constants::HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = Constants::TEMPLATE_DOCTYPE;
-  my $meta      = Constants::TEMPLATE_META;
-  my $lang      = Constants::TEMPLATE_LANG;
-  my $wespa_img = Constants::TEMPLATE_WESPA_IMAGE;
-  my $sources   = Constants::TEMPLATE_SOURCES;
-  my $style     = Constants::TEMPLATE_STYLE;
-  my $scripts   = Constants::TEMPLATE_SCRIPTS;
-  my $nav       = Constants::TEMPLATE_NAV;
-  my $footer    = Constants::TEMPLATE_FOOTER;
-  my $base_dir
-    = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . Constants::HTML_DIR;
-  my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
+  my $html_path      = $HTML_PATH_TO_WORKING_DIR;
+  my $doctype        = $TEMPLATE_DOCTYPE;
+  my $meta           = $TEMPLATE_META;
+  my $lang           = $TEMPLATE_LANG;
+  my $wespa_img      = $TEMPLATE_WESPA_IMAGE;
+  my $sources        = $TEMPLATE_SOURCES;
+  my $style          = $TEMPLATE_STYLE;
+  my $scripts        = $TEMPLATE_SCRIPTS;
+  my $nav            = $TEMPLATE_NAV;
+  my $footer         = $TEMPLATE_FOOTER;
+  my $base_dir       = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
+  my $tournament_dir = $TOURNAMENT_HTML_DIR;
 
-  my $database_name
-    = Utils::get_environment_name(Constants::PRODUCTION_DATABASE_NAME);
-  my $host_name = Constants::DATABASE_HOST_NAME;
-  my $user_name = Constants::DATABASE_USER_NAME;
-  my $password  = Constants::DATABASE_PASSWORD;
+  my $database_name = Utils::get_environment_name($PRODUCTION_DATABASE_NAME);
+  my $host_name     = $DATABASE_HOST_NAME;
+  my $user_name     = $DATABASE_USER_NAME;
+  my $password      = $DATABASE_PASSWORD;
 
-  my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
+  my $tournaments_tn = $TOURNAMENTS_TABLE_NAME;
 
-  my $cgi_dir = Constants::CGIBIN_DIR;
+  my $cgi_dir = $CGIBIN_DIR;
 
   my $title = 'Tournament Results';
 
   system "mkdir -p $cgi_dir";
 
-  my $filename = Constants::TOURNAMENT_CGI_FILENAME;
+  my $filename = $TOURNAMENT_CGI_FILENAME;
 
   my $tournament_cgi_script = <<"CGI"
 #!/usr/bin/perl
@@ -364,19 +337,19 @@ sub update_dynamically_loaded_content
 {
   my $dbh = shift;
 
-  my $players_table = Constants::PLAYERS_TABLE_NAME;
+  my $players_table = $PLAYERS_TABLE_NAME;
   my @player_data   = @{
     $dbh->selectall_arrayref( "SELECT * FROM $players_table",
       { Slice => {}, RaiseError => 1 } )
   };
 
-  @player_data = sort { $b->{rating} <=> $a->{rating} } @player_data;
+  @player_data = reverse sort { $a->{rating} <=> $b->{rating} } @player_data;
 
   my @valid_player_data
     = grep { !$_->{deceased} && !$_->{suspended} && $_->{current} }
     @player_data;
 
-  my $cutoff = Constants::FRONT_PAGE_RATINGS_CUTOFF;
+  my $cutoff = $FRONT_PAGE_RATINGS_CUTOFF;
 
   $cutoff = List::Util::min( $cutoff, scalar @valid_player_data );
 
@@ -387,7 +360,7 @@ sub update_dynamically_loaded_content
       class    => 'white'
     }
   );
-  for ( my $i = 0; $i < $cutoff; $i++ )
+  for my $i ( 0 .. $cutoff - 1 )
   {
     my $row_class = 'roweven';
     if ( $i % 2 == 1 )
@@ -405,24 +378,24 @@ sub update_dynamically_loaded_content
   }
   $peek_html .= "</table>\n";
 
-  my $peek_filename = Constants::HTML_DATA_DIR . '/'
-    . Constants::FRONT_PAGE_RATINGS_DATA_FILENAME;
+  my $peek_filename
+    = $HTML_DATA_DIR . q{/} . $FRONT_PAGE_RATINGS_DATA_FILENAME;
 
   Utils::write_string_to_file( $peek_html, $peek_filename );
 
   my $player_search_filename
-    = Constants::HTML_DATA_DIR . '/' . Constants::PLAYER_SEARCH_DATA_FILENAME;
+    = $HTML_DATA_DIR . q{/} . $PLAYER_SEARCH_DATA_FILENAME;
 
-  my $working_dir = Constants::DEFAULT_SHORT_NAME_WORKING_DIR;
-  my $html_dir    = Constants::HTML_DIR;
-  my $player_dir  = Constants::PLAYER_HTML_DIR;
+  my $working_dir = $DEFAULT_SHORT_NAME_WORKING_DIR;
+  my $html_dir    = $HTML_DIR;
+  my $player_dir  = $PLAYER_HTML_DIR;
 
   my $player_search_html = HTML::get_datalist_html(
     { data           => \@player_data,
-      title          => "Player Name:",
+      title          => 'Player Name:',
       href           => "/$working_dir/$html_dir/$player_dir",
-      html_id        => "search_input_players",
-      input_id       => "datalist_input_element_players",
+      html_id        => 'search_input_players',
+      input_id       => 'datalist_input_element_players',
       button_id      => 'player_button',
       data_value_key => 'id',
       value_key      => 'name'
@@ -431,16 +404,16 @@ sub update_dynamically_loaded_content
 
   Utils::write_string_to_file( $player_search_html, $player_search_filename );
 
-  my $country_search_filename = Constants::HTML_DATA_DIR . q{/}
-    . Constants::COUNTRY_SEARCH_DATA_FILENAME;
+  my $country_search_filename
+    = $HTML_DATA_DIR . q{/} . $COUNTRY_SEARCH_DATA_FILENAME;
 
-  my $rankings_dir = Constants::RANKINGS_HTML_DIR;
+  my $rankings_dir = $RANKINGS_HTML_DIR;
 
   my @country_data = map { $_->{country} } @valid_player_data;
 
   @country_data = Utils::uniq( \@country_data );
 
-  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
   @country_data = grep { $trigraph_hashref->{$_} } @country_data;
 
@@ -462,18 +435,18 @@ sub update_dynamically_loaded_content
   Utils::write_string_to_file( $country_search_html,
     $country_search_filename );
 
-  my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
+  my $tournaments_tn = $TOURNAMENTS_TABLE_NAME;
   my $uniq_country_query
     = "SELECT DISTINCT country FROM $tournaments_tn WHERE country IS NOT NULL";
   my @all_countries = map { $_->[0] }
     @{ $dbh->selectall_arrayref( $uniq_country_query, { RaiseError => 1 } ) };
 
-  my @localtime    = localtime();
+  my @localtime    = localtime;
   my $current_year = $localtime[$LOCALTIME_YEAR_INDEX] + $LOCALTIME_YEAR_BASE;
   my $year_options = $EMPTY_STRING;
   my $country_options = $EMPTY_STRING;
 
-  for ( my $i = 2000; $i <= $current_year; $i++ )
+  for my $i ( $TOURNAMENT_SEARCH_START_YEAR .. $current_year )
   {
     $year_options .= "<option value='$i'>$i</option>\n";
   }
@@ -506,10 +479,10 @@ sub update_dynamically_loaded_content
   $tournament_form .= $country_options;
 
   $tournament_form
-    .= "</select>  Partial name: <input name='partname' size='20' value=''> <input type='submit' value='Submit'> <br>";
+    .= q{</select>  Partial name: <input name='partname' size='20' value=''> <input type='submit' value='Submit'> <br>};
 
-  my $tournament_form_name = Constants::HTML_DATA_DIR . q{/}
-    . Constants::TOURNAMENT_FORM_DATA_FILENAME;
+  my $tournament_form_name
+    = $HTML_DATA_DIR . q{/} . $TOURNAMENT_FORM_DATA_FILENAME;
 
   Utils::write_string_to_file( $tournament_form, $tournament_form_name );
 
@@ -520,11 +493,11 @@ sub update_html
 {
   my $dbh = Utils::connect_to_database();
 
-  my $html_dir            = Constants::HTML_DIR;
-  my $player_html_dir     = Constants::PLAYER_HTML_DIR;
-  my $tournament_html_dir = Constants::TOURNAMENT_HTML_DIR;
-  my $rankings_html_dir   = Constants::RANKINGS_HTML_DIR;
-  my $flags_dir           = Constants::COUNTRY_FLAGS_DIR;
+  my $html_dir            = $HTML_DIR;
+  my $player_html_dir     = $PLAYER_HTML_DIR;
+  my $tournament_html_dir = $TOURNAMENT_HTML_DIR;
+  my $rankings_html_dir   = $RANKINGS_HTML_DIR;
+  my $flags_dir           = $COUNTRY_FLAGS_DIR;
 
   system "mkdir -p $html_dir";
   system "mkdir -p $html_dir/$player_html_dir";
@@ -533,7 +506,7 @@ sub update_html
 
   my @player_ids_to_create = ();
 
-  my $query = "SELECT id FROM " . Constants::TOURNAMENTS_TABLE_NAME;
+  my $query = 'SELECT id FROM ' . $TOURNAMENTS_TABLE_NAME;
 
   my @tournament_ids_to_create = map { $_->[0] }
     @{ $dbh->selectall_arrayref( $query, { RaiseError => 1 } ) };
@@ -545,17 +518,15 @@ sub update_html
     # if ($tournament_id != 38){next;}
     my @division_data = ();
     my @division_rows = @{
-      Utils::query_table(
-        $dbh,            Constants::DIVISIONS_TABLE_NAME,
-        'tournament_id', $tournament_id
-      )
+      Utils::query_table( $dbh, $DIVISIONS_TABLE_NAME,
+        'tournament_id', $tournament_id )
     };
 
     foreach my $division_row (@division_rows)
     {
       my @players_in_division = @{
         Utils::query_table(
-          $dbh,          Constants::TOURNAMENT_RESULTS_TABLE_NAME,
+          $dbh,          $TOURNAMENT_RESULTS_TABLE_NAME,
           'division_id', $division_row->{id}
         )
       };
@@ -565,7 +536,7 @@ sub update_html
 
       push @division_data,
         HTML::get_tournament_results_html_string( $dbh, $division_row->{id},
-        Constants::HTML_ID_TOURNAMENT_TYPE );
+        $HTML_ID_TOURNAMENT_TYPE );
     }
     my $tournament_filename
       = "$html_dir/$tournament_html_dir/$tournament_id.html";
@@ -577,14 +548,11 @@ sub update_html
       $tournament_filename );
   }
 
-  my $players_tn = Constants::PLAYERS_TABLE_NAME;
+  my $players_tn = $PLAYERS_TABLE_NAME;
 
-  my $countries_query = "
-      SELECT *
-      FROM $players_tn
-    ";
+  my $countries_query = "SELECT * FROM $players_tn";
 
-  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
   my @all_players = @{
     $dbh->selectall_arrayref( $countries_query,
@@ -613,10 +581,9 @@ sub update_html
   # Update the player html pages that have been changed
   foreach my $player_id (@player_ids_to_create)
   {
-    my @player = @{
-      Utils::query_table( $dbh, Constants::PLAYERS_TABLE_NAME, 'id',
-        $player_id )
-    };
+    my @player
+      = @{ Utils::query_table( $dbh, $PLAYERS_TABLE_NAME, 'id', $player_id )
+      };
 
     my $player_name      = $player[0]->{name};
     my $country_trigraph = $player[0]->{country};
@@ -649,15 +616,16 @@ sub update_html
 
     my $player_tournament_history
       = HTML::get_tournament_results_html_string( $dbh, $player_id,
-      Constants::HTML_ID_PLAYER_TYPE );
+      $HTML_ID_PLAYER_TYPE );
     my $player_head_to_head_history
       = HTML::get_tournament_results_html_string( $dbh, $player_id,
-      Constants::HTML_ID_HEAD_TO_HEAD_TYPE );
+      $HTML_ID_HEAD_TO_HEAD_TYPE );
 
-    my $player_tournament_history_html = $player_tournament_history->[0];
-    my $player_tournament_history_data = $player_tournament_history->[1];
+    my $player_tournament_history_html = $player_tournament_history->{html};
+    my $player_tournament_history_data = $player_tournament_history->{data};
 
-    my $player_head_to_head_history_html = $player_head_to_head_history->[0];
+    my $player_head_to_head_history_html
+      = $player_head_to_head_history->{html};
 
     my $player_html_page = HTML::get_player_template_html_string(
       $player_info,                      $player_tournament_history_html,
@@ -666,9 +634,7 @@ sub update_html
 
     # print $html_page;
     my $filename
-      = Constants::HTML_DIR . q{/}
-      . Constants::PLAYER_HTML_DIR . q{/}
-      . "$player_id.html";
+      = $HTML_DIR . q{/} . $PLAYER_HTML_DIR . q{/} . "$player_id.html";
 
     Utils::write_string_to_file( $player_html_page, $filename );
   }
@@ -687,7 +653,7 @@ sub update_html
   my $all_time_stats_html_page
     = HTML::get_alltime_template_html_string($all_time_stats);
   Utils::write_string_to_file( $all_time_stats_html_page,
-    Constants::HTML_DIR . '/alltime_stats.html' );
+    $HTML_DIR . '/alltime_stats.html' );
 
   return 1;
 }
@@ -697,10 +663,9 @@ sub update_rankings_html
   my $dbh           = shift;
   my $countries_ref = shift;
 
-  my $trigraph_hashref = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
-  my $base_dir
-    = Constants::DEFAULT_SHORT_NAME_WORKING_DIR . '/' . Constants::HTML_DIR;
-  my $tournament_dir = Constants::TOURNAMENT_HTML_DIR;
+  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $base_dir         = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
+  my $tournament_dir   = $TOURNAMENT_HTML_DIR;
 
   my $most_recent_tournament = Utils::get_most_recent_tournament($dbh);
   my $full_rankings_data     = {
@@ -716,9 +681,7 @@ sub update_rankings_html
     = HTML::get_rankings_template_html_string( $full_ranking_html_string,
     $full_rankings_data );
   my $full_ranking_filename
-    = Constants::HTML_DIR . q{/}
-    . Constants::RANKINGS_HTML_DIR
-    . '/full_rankings.html';
+    = $HTML_DIR . q{/} . $RANKINGS_HTML_DIR . '/full_rankings.html';
   Utils::write_string_to_file( $full_ranking_html_page,
     $full_ranking_filename );
 
@@ -729,7 +692,11 @@ sub update_rankings_html
     my $country_fullname = $trigraph_hashref->{$country};
     if ( !$country_fullname )
     {
-      print "Unmapped country trigraph: $country\n";
+      Utils::format_error(
+        [ [ 'WARNING',  'Unmapped country trigraph' ],
+          [ 'Trigraph', $country ]
+        ]
+      );
       next;
     }
 
@@ -751,9 +718,7 @@ sub update_rankings_html
       = HTML::get_rankings_template_html_string( $country_ranking_html_string,
       $rankings_data );
     my $country_ranking_filename
-      = Constants::HTML_DIR . q{/}
-      . Constants::RANKINGS_HTML_DIR
-      . "/$country.html";
+      = $HTML_DIR . q{/} . $RANKINGS_HTML_DIR . "/$country.html";
     HTML::write_string_to_file( $country_ranking_html_page,
       $country_ranking_filename );
   }

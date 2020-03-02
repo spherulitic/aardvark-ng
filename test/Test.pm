@@ -13,6 +13,7 @@ use List::Util;
 use Perl::Critic;
 use English qw( -no_match_vars );
 use Carp;
+use Perl::Critic::Violation;
 
 use lib './objects';
 use lib './modules';
@@ -71,19 +72,10 @@ if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
 
 sub tidy
 {
-  print Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH );
+  Utils::format_print(
+    Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
 
-  my $directories = $PERL_DIRECTORIES;
-
-  my @files = ();
-
-  foreach my $dir ( @{$directories} )
-  {
-    my $fh_dir;
-    opendir $fh_dir, $dir;
-    push @files,
-      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
-  }
+  my @files = Utils::get_perl_files;
 
   foreach my $f (@files)
   {
@@ -126,20 +118,11 @@ sub export_constants
 
 sub alphabetize_routine_order
 {
-  print Test::make_title( 'ALPHABETIZING ROUTINE ORDER', q{%},
+  Utils::format_print(
+    Test::make_title( 'ALPHABETIZING ROUTINE ORDER', q{%} ),
     $TEST_TITLE_WIDTH );
 
-  my $directories = $PERL_DIRECTORIES;
-
-  my @files = ();
-
-  foreach my $dir ( @{$directories} )
-  {
-    my $fh_dir;
-    opendir $fh_dir, $dir;
-    push @files,
-      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
-  }
+  my @files = Utils::get_perl_files;
 
   foreach my $f (@files)
   {
@@ -151,7 +134,9 @@ sub alphabetize_routine_order
     while (@file_lines)
     {
       my $current_line = shift @file_lines;
-      if ( $current_line =~ /^sub (.*)/xms )
+      if (    ## no critic (ProhibitCascadingIfElse)
+        $current_line =~ /^sub (.*)/xms
+        )
       {
         $current_routine = $1;
         $current_routine =~ s/\s//gxms;
@@ -206,23 +191,17 @@ sub alphabetize_routine_order
 
 sub check_syntax
 {
-  print Test::make_title( 'CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH );
-  my $directories = $PERL_DIRECTORIES;
-  my $dirs        = $EMPTY_STRING;
-  for my $i ( 0 .. scalar @{$directories} - 1 )
-  {
-    $dirs .= $directories->[$i] . q{ };
-  }
+  Utils::format_print(
+    Test::make_title( 'CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH ) );
 
-  my $cmd = "find $dirs -name \"*.p[lm]\" | ";
+  my @files = Utils::get_perl_files;
 
-  my @cmd_lines = Utils::write_file_to_array($cmd);
-  while (@cmd_lines)
+  while (@files)
   {
-    my $file = shift @cmd_lines;
+    my $file = shift @files;
     system "perl -cw $file";
   }
-  print "\n";
+  Utils::format_print($NEWLINE);
   return 1;
 }
 
@@ -320,7 +299,7 @@ sub compare_objects
   my $actual_obj   = shift;
   my $failure_obj  = shift;
 
-  if ( ref($actual_obj) eq 'ARRAY' )
+  if ( ref($actual_obj) eq $PERL_ARRAY_REF_NAME )
   {
     my @expected_array = @{$expected_obj};
     my @actual_array   = @{$actual_obj};
@@ -429,27 +408,29 @@ sub convert_to_response
 
 sub criticize
 {
-  print Test::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH );
+  Utils::format_print(
+    Test::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH ) );
 
-  my $directories = $PERL_DIRECTORIES;
+  my @files = Utils::get_perl_files;
 
-  my @files = ();
+  my $critic = Perl::Critic->new(
+    -severity => $PERL_CRITIC_SEVERITY,
+    -exclude  => ['RequireTidyCode']
+  );
 
-  foreach my $dir ( @{$directories} )
-  {
-    my $fh_dir;
-    opendir $fh_dir, $dir;
-    push @files,
-      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
-  }
-
-  my $critic = Perl::Critic->new( -severity => 1 );
+  Perl::Critic::Violation::set_format("%m at line %l, column %c. %e. (%p)\n");
 
   foreach my $f (@files)
   {
-    print "$f\n\n";
-    print $critic->critique($f);
-    print "\n\n";
+    my @violations           = $critic->critique($f);
+    my $number_of_violations = scalar @violations;
+    if ($number_of_violations)
+    {
+      Utils::format_print(
+        "Violations for $f ($number_of_violations)$NEWLINE$NEWLINE");
+      Utils::format_print( \@violations );
+      Utils::format_print( $NEWLINE . $NEWLINE );
+    }
   }
 
   return 1;
@@ -467,12 +448,12 @@ sub format_expected_stdout
   {
     if ( $i == 0 )
     {
-      $formatted_stdout .= $stdout_lines[$i] . "\n";
+      $formatted_stdout .= $stdout_lines[$i] . $NEWLINE;
     }
     else
     {
       $formatted_stdout
-        .= ( q{ } x $title_length ) . $stdout_lines[$i] . "\n";
+        .= ( q{ } x $title_length ) . $stdout_lines[$i] . $NEWLINE;
     }
   }
   return $formatted_stdout . "\n";
@@ -496,9 +477,9 @@ sub make_title
     $right_margin .= $char;
   }
 
-  my $title = "$border\n";
-  $title .= "$left_margin $content $right_margin\n";
-  $title .= "$border\n\n";
+  my $title = "$border$NEWLINE";
+  $title .= "$left_margin $content $right_margin$NEWLINE";
+  $title .= "$border$NEWLINE$NEWLINE";
 
   return $title;
 }
@@ -526,7 +507,8 @@ sub testcase
 
   my $padded_case = sprintf '%3s', $case;
 
-  print Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH );
+  Utils::format_print(
+    Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH ) );
 
   my $test_dir   = $TEST_DIRECTORY;
   my $tou_dir    = $test_dir . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
@@ -542,19 +524,19 @@ sub testcase
 
   if ( !$setexpected && !-e $expected_stdout_file )
   {
-    die "File does not exist: $expected_stdout_file\n";
+    croak "File does not exist: $expected_stdout_file$NEWLINE";
   }
   if ( !$setexpected && !-e $expected_json_file )
   {
-    die "File does not exist: $expected_json_file\n";
+    croak "File does not exist: $expected_json_file$NEWLINE";
   }
 
   # Load the actual stdout
   my $actual_stdout;
   open my $fhstdout, '>>', \$actual_stdout
-    or die "Cannot even: $OS_ERROR\n";
-
-  select $fhstdout;
+    or croak "Cannot open file handle: $OS_ERROR$NEWLINE";
+  $fhstdout->autoflush();
+  close $fhstdout or croak "Cannot close file handle: $OS_ERROR$NEWLINE";
 
   Utils::check_country_flag_icons( ['USA'] );
 
@@ -569,9 +551,9 @@ sub testcase
 
   $tou->load($player_data);
 
-  select STDOUT;
+  *STDOUT->autoflush();
 
-  close $fhstdout or croak "Cannot close file handle: $OS_ERROR\n";
+  close $fhstdout or croak "Cannot close file handle: $OS_ERROR$NEWLINE";
 
   if ( !$actual_stdout )
   {
@@ -627,7 +609,8 @@ sub testrun
 
   my $player_data = {};
 
-  print Test::make_title( "TEST RUN: $run_title", q{*}, $TEST_TITLE_WIDTH );
+  Utils::format_print(
+    Test::make_title( "TEST RUN: $run_title", q{*}, $TEST_TITLE_WIDTH ) );
 
   for my $i ( $first_tc .. $last_tc )
   {
@@ -650,12 +633,14 @@ sub testrun
     $response_content .= $expected_stdout;
     $response_content
       .= ( sprintf '%-17s', ( $stdout_failure->get_type() . ' STATUS:' ) )
-      . Test::convert_to_response( $stdout_failure->is_failure() ) . "\n";
+      . Test::convert_to_response( $stdout_failure->is_failure() )
+      . $NEWLINE;
     $response_content
       .= ( sprintf '%-17s', ( $json_failure->get_type() . ' STATUS:' ) )
-      . Test::convert_to_response( $json_failure->is_failure() ) . "\n";
-    print $response_content;
-    print "\n\n";
+      . Test::convert_to_response( $json_failure->is_failure() )
+      . $NEWLINE;
+    Utils::format_print($response_content);
+    Utils::format_print("$NEWLINE$NEWLINE");
   }
 
   return 1;

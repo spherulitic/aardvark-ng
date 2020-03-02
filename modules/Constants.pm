@@ -8,7 +8,40 @@ use version; our $VERSION = qv('1');
 use base 'Exporter';
 use Readonly;
 
+Readonly our $STA_MAX_RATING_ITEMS => 3;
+
+Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
+Readonly our $STS_PLAYER_NAME_INDEX       => 2;
+Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
+Readonly our $STS_START_RATING_INDEX      => 8;
+Readonly our $STS_END_RATING_INDEX        => 9;
+Readonly our $STS_OLD_WORLD_RANK_INDEX    => 10;
+Readonly our $STS_NEW_WORLD_RANK_INDEX    => 11;
+Readonly our $STS_OLD_NATIONAL_RANK_INDEX => 12;
+Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
+
+Readonly our $DEFAULT_UNKNOWN_COUNTRY => 'Unknown Country';
+
 Readonly our $EMPTY_STRING => q{};
+
+Readonly our $PERL_CRITIC_SEVERITY => 1;
+
+Readonly our $PERL_ARRAY_REF_NAME => 'ARRAY';
+
+Readonly our $NEWLINE => "\n";
+
+Readonly our $TOURNAMENT_AVERAGE_COLSPAN => 3;
+
+Readonly our $TOURNAMENT_SEARCH_START_YEAR => 2000;
+
+Readonly our $HIGH_SCORE_INITIAL_VALUE => -1_000_000;
+Readonly our $LOW_SCORE_INITIAL_VALUE  => 1_000_000;
+
+Readonly our $ZEROTH_SCORE_THRESHOLD => 'Zero';
+Readonly our $FIRST_SCORE_THRESHOLD  => 300;
+Readonly our $SECOND_SCORE_THRESHOLD => 400;
+Readonly our $THIRD_SCORE_THRESHOLD  => 500;
+Readonly our $FOURTH_SCORE_THRESHOLD => 600;
 
 Readonly our $LOCALTIME_YEAR_INDEX      => 5;
 Readonly our $LOCALTIME_MONTH_INDEX     => 4;
@@ -19,9 +52,9 @@ Readonly our $NEGATIVE_ONE              => -1;
 Readonly our $FULL_WIDTH                => 100;
 Readonly our $WESPA_START_RATING        => 500;
 
-Readonly our $ESCAPED_QUOTE             => '&quot;';
-Readonly our $ONE_HUNDRED_PERCENT       => 100;
-Readonly our $DEV_ENV_KEYWORD => 'dev';
+Readonly our $ESCAPED_QUOTE       => '&quot;';
+Readonly our $ONE_HUNDRED_PERCENT => 100;
+Readonly our $DEV_ENV_KEYWORD     => 'dev';
 
 Readonly our $TEST_DIRECTORY    => 'test';
 Readonly our $MODULES_DIRECTORY => 'modules';
@@ -48,7 +81,7 @@ Readonly our $FAILURE_TYPE             => 'Result Type';
 Readonly our $FAILURE_TRACEBACK        => 'Traceback';
 Readonly our $FAILURE_EXPECTED_RESULTS => 'Expected Results';
 Readonly our $FAILURE_ACTUAL_RESULTS   => 'Actual Results';
-Readonly our $FAILURE_DIFF             => '              ';
+Readonly our $FAILURE_DIFF             => q{ } x 14;
 
 Readonly our $FAILURE_FIELDS => [
   $FAILURE_REASON,         $FAILURE_TYPE,
@@ -153,8 +186,8 @@ Readonly our $HTML_ID_ENTRY_TAG         => 'entry';
 Readonly our $HTML_PATH_TO_WORKING_DIR => '../..';
 
 Readonly our $TOURNAMENT_DATA_DIR            => '/srv/dev/tournament_data';
-Readonly our $DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
-Readonly our $DEFAULT_SHORT_NAME_WORKING_DIR => "aardvark";
+Readonly our $DEFAULT_WORKING_DIR            => '/srv/dev/aardvark';
+Readonly our $DEFAULT_SHORT_NAME_WORKING_DIR => 'aardvark';
 Readonly our $DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
 Readonly our $DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
 Readonly our $DEFAULT_FILE_REGEX             => '.tou';
@@ -843,8 +876,32 @@ FOOTER
 
 # BEGIN EXPORT
 our @EXPORT = qw(
-$ESCAPED_QUOTE
-$ONE_HUNDRED_PERCENT
+  $ZEROTH_SCORE_THRESHOLD
+  $DEFAULT_UNKNOWN_COUNTRY
+  $PERL_ARRAY_REF_NAME
+  $PERL_CRITIC_IGNORE
+  $NEWLINE
+  $STS_PLAYER_COUNTRY_INDEX
+  $STS_PLAYER_NAME_INDEX
+  $STS_EXPECTED_WINS_INDEX
+  $STS_START_RATING_INDEX
+  $STS_END_RATING_INDEX
+  $STS_OLD_WORLD_RANK_INDEX
+  $STS_NEW_WORLD_RANK_INDEX
+  $STS_OLD_NATIONAL_RANK_INDEX
+  $STS_NEW_NATIONAL_RANK_INDEX
+  $STA_MAX_RATING_ITEMS
+  $PERL_CRITIC_SEVERITY
+  $TOURNAMENT_SEARCH_START_YEAR
+  $TOURNAMENT_AVERAGE_COLSPAN
+  $HIGH_SCORE_INITIAL_VALUE
+  $LOW_SCORE_INITIAL_VALUE
+  $FIRST_SCORE_THRESHOLD
+  $SECOND_SCORE_THRESHOLD
+  $THIRD_SCORE_THRESHOLD
+  $FOURTH_SCORE_THRESHOLD
+  $ESCAPED_QUOTE
+  $ONE_HUNDRED_PERCENT
   $RESULT_CODED_WIN
   $RESULT_CODED_LOSS
   $RESULT_CODED_TIE

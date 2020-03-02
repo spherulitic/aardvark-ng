@@ -112,12 +112,14 @@ sub to_string
     {
       $colon = q{ };
     }
-    $failure_string
-      .= ( sprintf '%-' . ( $max_length_field + 2 ) . q{s},
-      ( $field . $colon ) )
-      . $value . "\n";
+    $failure_string .= (
+      sprintf q{%-} . ( $max_length_field + 2 ) . q{s},
+      ( $field . $colon )
+      )
+      . $value
+      . $NEWLINE;
   }
-  $failure_string .= "\n";
+  $failure_string .= $NEWLINE;
   return $failure_string;
 }
 

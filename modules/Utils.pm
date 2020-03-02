@@ -14,15 +14,38 @@ use English qw( -no_match_vars );
 use lib './modules';
 use Constants;
 
+sub get_perl_files
+{
+  my $directories = $PERL_DIRECTORIES;
+
+  my @files = ();
+
+  foreach my $dir ( @{$directories} )
+  {
+    my $fh_dir;
+    opendir $fh_dir, $dir;
+    push @files,
+      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
+  }
+  return @files;
+}
+
 sub write_file_to_array
 {
   my $filename = shift;
-
   open my $fh, q{<}, $filename
     or croak "Cannot open file $filename: $OS_ERROR\n";
   my @array = <$fh>;
   close $fh or croak "Cannot close file $filename: $OS_ERROR\n";
   return @array;
+}
+
+sub is_command
+{
+  my $filename = shift;
+  $filename =~ s/^\s+|\s+$//gxms;
+  my $filename_length = length $filename;
+  return ( substr $filename, $filename_length - 1, $filename_length ) eq q{|};
 }
 
 sub add_games_to_existing_player
@@ -75,11 +98,13 @@ sub check_country_flag_icons
 
   opendir my $flag_dir_handle, $filename_prefix
     or croak "Cannot open $filename_prefix: $OS_ERROR\n";
-  my @existing_flags = grep {/[A-Z]{3}/xms} readdir $flag_dir_handle;
+  my @existing_flags
+    = grep {/[A-Z]{3}/xms}    ## no critic (ProhibitEnumeratedClasses)
+    readdir $flag_dir_handle;
 
   foreach my $ef (@existing_flags)
   {
-    $ef =~ /(([A-Z]{3}))/xms;
+    $ef =~ /(([A-Z]{3}))/xms;    ## no critic (ProhibitEnumeratedClasses)
     if ( !$trigraph_hashref->{$1} )
     {
       Utils::format_error(
@@ -310,6 +335,32 @@ sub fetch_local_tournament_data
   return 1;
 }
 
+sub format_print
+{
+  my $input = shift;
+
+  my @strings;
+
+  if ( ref $input eq $PERL_ARRAY_REF_NAME )
+  {
+    @strings = @{$input};
+  }
+  else
+  {
+    @strings = ($input);
+  }
+
+  my $string = shift @strings;
+
+  while ($string)
+  {
+    print $string or croak "Cannot print to STDOUT: $OS_ERROR\n";
+    $string = shift @strings;
+  }
+
+  return 1;
+}
+
 sub format_error
 {
   my $error_arrayref = shift;
@@ -342,7 +393,7 @@ sub format_error
       . $item2 . "\n";
   }
   $error_string .= "\n";
-  print $error_string;
+  Utils::format_print($error_string);
   return $error_string;
 }
 
@@ -379,26 +430,27 @@ sub get_most_recent_tournament
 
   if ($trigraph)
   {
-    $query = 
-     "SELECT t.id AS id, t.name AS name
-      FROM $tournament_results_tn AS tr, $players_tn AS p, $divisions_tn AS d, $tournaments_tn AS t
-      WHERE
-            d.tournament_id = t.id        AND
-            tr.division_id  = d.id        AND
-            tr.player_id    = p.id        AND
-            p.country       = '$trigraph' AND
-            p.deceased      = 0           AND
-            p.suspended     = 0           AND
-            p.current       = 1
-            
-      ORDER BY t.end_date DESC";
+    $query
+      = 'SELECT t.id AS id, t.name AS name '
+      . "FROM $tournament_results_tn AS tr, "
+      . "$players_tn AS p, "
+      . "$divisions_tn AS d, "
+      . "$tournaments_tn AS t " . 'WHERE'
+      . '      d.tournament_id = t.id        AND '
+      . '      tr.division_id  = d.id        AND '
+      . '      tr.player_id    = p.id        AND '
+      . "      p.country       = '$trigraph' AND "
+      . '      p.deceased      = 0           AND '
+      . '      p.suspended     = 0           AND '
+      . '      p.current       = 1 '
+      . 'ORDER BY t.end_date DESC';
   }
   else
   {
-    $query = 
-     "SELECT id, name
-      FROM $tournaments_tn
-      GROUP BY end_date DESC";
+    $query
+      = 'SELECT id, name '
+      . "FROM $tournaments_tn "
+      . 'GROUP BY end_date DESC';
   }
   my @tournament_name
     = @{ $dbh->selectall_arrayref( $query, { RaiseError => 1 } ) };
@@ -439,7 +491,7 @@ sub get_tournament_data_filenames
 
   opendir my $base_directory, $base_directory_name
     or croak "Cannot open $base_directory_name: $OS_ERROR";
-  my @year_directory_names = grep {/$year_regex/xms} readdir $base_directory ;
+  my @year_directory_names = grep {/$year_regex/xms} readdir $base_directory;
 
   @year_directory_names = sort { $a <=> $b } @year_directory_names;
 
@@ -652,86 +704,106 @@ sub make_row
   my $row_string = "        <tr $class_string $id_string>";
   for my $i ( 0 .. scalar @key_array - 1 )
   {
-    my $key   = $key_array[$i];
-    my $val   = $key;
-    my $class = $EMPTY_STRING;
+    my $key = $key_array[$i];
+    my $val = $key;
 
     if ( !$is_title )
     {
       $val = $item->{$key};
     }
 
-    my $base_dir         = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
-    my $tournament_dir   = $TOURNAMENT_HTML_DIR;
-    my $player_dir       = $PLAYER_HTML_DIR;
-    my $rankings_dir     = $RANKINGS_HTML_DIR;
-    my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
-
-    if ( $key eq 'tr_tournament_name' )
-    {
-      $val = Utils::make_link( $base_dir, $tournament_dir,
-        $item->{'t_id'} . '.html', $val );
-    }
-    elsif ( $key eq 'opp_name' )
-    {
-      $val = Utils::make_link( $base_dir, $player_dir,
-        $item->{'opp_id'} . '.html', $val );
-    }
-    elsif ( $key eq 'tr_player_name' )
-    {
-      $val = Utils::make_link( $base_dir, $player_dir,
-        $item->{'tr_player_id'} . '.html', $val );
-    }
-    elsif ( $key eq 'name' )
-    {
-      $val
-        = Utils::make_link( $base_dir, $player_dir, $item->{'id'} . '.html',
-        $val );
-    }
-    elsif ( $key eq 'p_country' || $key eq 'country' )
-    {
-      my $trig = $item->{p_country};
-
-      if ( !$trig )
-      {
-        $trig = $item->{country};
-      }
-      if ($trig)
-      {
-        my $country_fullname = $trigraph_hashref->{$trig};
-        if ($country_fullname)
-        {
-          $val = Utils::make_link( $base_dir, $rankings_dir, "$trig.html",
-            $country_fullname );
-        }
-      }
-    }
-    elsif ( $key eq 'tr_wins' || $key eq 'hh_wins' )
-    {
-      $class = q{class='winscolumn'};
-    }
-    elsif ( $key eq 'tr_losses' || $key eq 'hh_losses' )
-    {
-      $class = q{class='lossescolumn'};
-    }
-    elsif ( $key eq 'hh_draws' )
-    {
-      $class = q{class='drawscolumn'};
-    }
-    elsif ( $key eq 'tr_byes' )
-    {
-      $class = q{class='byescolumn'};
-    }
-    if ( !( defined $val ) )
-    {
-      $val = $EMPTY_STRING;
-    }
+    $val = Utils::determine_item_value(
+      { key => $key, raw_value => $val, item => $item } );
+    $class = Utils::determine_item_class($key);
 
     $row_string .= sprintf "<$el $colspan_attr $class >%s</$el>", $val;
   }
   $row_string .= "</tr>\n";
 
   return $row_string;
+}
+
+sub determine_item_value
+{
+  my $arg_ref = @_;
+
+  my $key       = $arg_ref->{key};
+  my $raw_value = $arg_ref->{raw_value};
+  my $item      = $arg_ref->{item};
+
+  if ( !defined $raw_value )
+  {
+    return $EMPTY_STRING;
+  }
+
+  my $base_dir = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
+
+  my %value_hash = (
+    tr_tournament_name => [ $TOURNAMENT_HTML_DIR, 't_id' ],
+    opp_name           => [ $PLAYER_HTML_DIR,     'opp_id' ],
+    tr_player_name     => [ $PLAYER_HTML_DIR,     'tr_player_id' ],
+    name               => [ $PLAYER_HTML_DIR,     'id' ],
+  );
+
+  my $value = $raw_value;
+
+  my $link_info = $value_hash{$key};
+
+  if ($link_info)
+  {
+    $value = Utils::make_link( $base_dir, $link_info->[0],
+      $item->{ $link_info->[1] } . '.html', $raw_value );
+  }
+  elsif ( $key eq 'p_country' || $key eq 'country' )
+  {
+    my $trigraph = $item->{$key};
+    my $country  = Utils::convert_trigraph_to_country($trigraph);
+    if ( $country ne $DEFAULT_UNKNOWN_COUNTRY )
+    {
+      $value
+        = Utils::make_link( $base_dir, $RANKINGS_HTML_DIR, "$trigraph.html",
+        $country );
+    }
+  }
+  return $value;
+}
+
+sub determine_item_class
+{
+  my $key = shift;
+
+  my $wins_column   = q{class='winscolumn'};
+  my $losses_column = q{class='lossescolumn'};
+  my $draws_column  = q{class='drawscolumn'};
+  my $byes_column   = q{class='byescolumn'};
+
+  my %class_hash = (
+    tr_wins   => $wins_column,
+    hh_wins   => $wins_column,
+    tr_losses => $losses_column,
+    hh_losses => $losses_column,
+    hh_draws  => $draws_column,
+    tr_byes   => $byes_column,
+  );
+  my $class_string = $class_hash{$key};
+  if ( !$class_string )
+  {
+    $class_string = $EMPTY_STRING;
+  }
+  return $class_string;
+}
+
+sub convert_trigraph_to_country
+{
+  # Assumes a corrected trigraph
+  my $trigraph = shift;
+
+  my $country = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph};
+  if ( !$country )
+  {
+    $country = $DEFAULT_UNKNOWN_COUNTRY;
+  }
+  return $country;
 }
 
 sub make_tab_div
@@ -749,9 +821,10 @@ sub make_tab_div
     my $text  = $content->[$i]->[0];
     my $id    = $content->[$i]->[1];
     my $width = $FULL_WIDTH / $content_length;
-    $div .= q{<button id='button_}
-            . $id
-            . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
+    $div
+      .= q{<button id='button_}
+      . $id
+      . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
   }
   $div .= '</div><br>';
   return $div;
@@ -869,11 +942,10 @@ sub rank_tournament_results
 
   my @tournament_results = @{$tournament_results_ref};
 
-  my @ranked_tournament_results
-    = reverse sort {
-          $a->{wins} + $a->{bye_wins} <=> $b->{wins} + $b->{bye_wins}
-      || $a->{spread} <=> $b->{spread} 
-    } @tournament_results;
+  my @ranked_tournament_results = reverse sort {
+         $a->{wins} + $a->{bye_wins} <=> $b->{wins} + $b->{bye_wins}
+      || $a->{spread} <=> $b->{spread}
+  } @tournament_results;
 
   for my $i ( 0 .. scalar @ranked_tournament_results - 1 )
   {
@@ -942,7 +1014,7 @@ sub get_iso_date
   my $time      = shift;
   my $separator = shift;
 
-  my @t = localtime $time ;
+  my @t = localtime $time;
   $t[$LOCALTIME_YEAR_INDEX] += $LOCALTIME_YEAR_BASE;
   $t[$LOCALTIME_MONTH_INDEX]++;
 
@@ -968,25 +1040,20 @@ sub set_current_status
 
   my $date_two_years_ago = get_iso_date( $epoc, q{-} );
 
-  my $games_in_last_two_years = "(
-                                  SELECT SUM(tr.wins + tr.losses)
-                                  FROM tournaments AS t, divisions AS d, tournament_results AS tr
-                                  WHERE p.id = tr.player_id AND
-                                        tr.division_id = d.id AND
-                                        d.tournament_id = t.id AND t.end_date > '$date_two_years_ago'
-                                  )
-                                  ";
+  my $games_in_last_two_years
+    = '(SELECT SUM(tr.wins + tr.losses) '
+    . 'FROM tournaments AS t, divisions AS d, tournament_results AS tr '
+    . 'WHERE p.id = tr.player_id AND '
+    . '      tr.division_id = d.id AND '
+    . "      d.tournament_id = t.id AND t.end_date > '$date_two_years_ago')";
 
-  my $update_current = "UPDATE $players_tn AS p
-                        SET p.current =
-                        (
-                          CASE
-                            WHEN $games_in_last_two_years > 0 AND p.total_games > $current_games_min
-                              THEN 1
-                            ELSE 0
-                          END
-                        )
-                        ";
+  my $update_current
+    = "UPDATE $players_tn AS p "
+    . 'SET p.current = '
+    . '(CASE '
+    . "WHEN $games_in_last_two_years > 0 AND p.total_games > $current_games_min "
+    . 'THEN 1 '
+    . 'ELSE 0 ' . 'END)';
 
   $dbh->do( $update_current, { RaiseError => 1 } );
 
@@ -1000,16 +1067,14 @@ sub set_provisional_status
   my $provisional_games_max = $PROVISIONAL_GAMES_MAX;
 
   # Update provisional status for all players
-  my $update_provisional = "UPDATE $players_tn AS p
-                            SET p.provisional =
-                            (
-                              CASE
-                                WHEN p.total_games < $provisional_games_max
-                                  THEN 1
-                                ELSE 0
-                              END
-                            )
-                            ";
+  my $update_provisional
+    = "UPDATE $players_tn AS p "
+    . 'SET p.provisional = '
+    . '(CASE '
+    . "WHEN p.total_games < $provisional_games_max "
+    . 'THEN 1 '
+    . 'ELSE 0 ' . 'END)';
+
   $dbh->do( $update_provisional, { RaiseError => 1 } );
 
   return 1;
@@ -1220,14 +1285,11 @@ sub write_file_to_string
   my $file = shift;
   my $string;
 
-  if ( -e $file )
+  $string = $EMPTY_STRING;
+  my @file_array = Utils::write_file_to_array($file);
+  while (@file_array)
   {
-    $string = $EMPTY_STRING;
-    my @file_array = Utils::write_file_to_array($file);
-    while (@file_array)
-    {
-      $string .= shift @file_array;
-    }
+    $string .= shift @file_array;
   }
 
   return $string;
@@ -1240,7 +1302,7 @@ sub write_string_to_file
 
   open my $fh, q{>}, $filename
     or croak "Cannot open $filename: $OS_ERROR\n";
-  print {$fh} $string;
+  print {$fh} $string or croak "Cannot print to $filename: $OS_ERROR\n";
   close $fh or croak "Cannot close $filename: $OS_ERROR\n";
 
   return 1;
