@@ -20,6 +20,8 @@ Readonly our $STS_NEW_WORLD_RANK_INDEX    => 11;
 Readonly our $STS_OLD_NATIONAL_RANK_INDEX => 12;
 Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
 
+Readonly our $HTML_WHITE_CLASS => 'white';
+
 Readonly our $DEFAULT_UNKNOWN_COUNTRY => 'Unknown Country';
 
 Readonly our $EMPTY_STRING => q{};
@@ -876,6 +878,7 @@ FOOTER
 
 # BEGIN EXPORT
 our @EXPORT = qw(
+$HTML_WHITE_CLASS
   $ZEROTH_SCORE_THRESHOLD
   $DEFAULT_UNKNOWN_COUNTRY
   $PERL_ARRAY_REF_NAME

@@ -299,7 +299,7 @@ sub compare_objects
   my $actual_obj   = shift;
   my $failure_obj  = shift;
 
-  if ( ref($actual_obj) eq $PERL_ARRAY_REF_NAME )
+  if ( ref $actual_obj eq $PERL_ARRAY_REF_NAME )
   {
     my @expected_array = @{$expected_obj};
     my @actual_array   = @{$actual_obj};
@@ -314,7 +314,7 @@ sub compare_objects
       }
     }
   }
-  elsif ( ref($actual_obj) eq 'HASH' )
+  elsif ( ref $actual_obj eq 'HASH' )
   {
     my @expected_keys = keys %{$expected_obj};
     my @actual_keys   = keys %{$actual_obj};
