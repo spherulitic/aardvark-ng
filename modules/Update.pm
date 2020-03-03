@@ -42,7 +42,8 @@ sub load_all_tou_files
   foreach my $filename (@filenames_array)
   {
     my $tou = TOU->new(
-      { dbh                   => $dbh,
+      {
+        dbh                   => $dbh,
         filename              => $filename,
         alt_names_hash        => $alt_names_hash,
         deceased_players_hash => $deceased_players_hash,
@@ -349,15 +350,13 @@ sub update_dynamically_loaded_content
     = grep { !$_->{deceased} && !$_->{suspended} && $_->{current} }
     @player_data;
 
-  my $cutoff = $FRONT_PAGE_RATINGS_CUTOFF;
-
-  $cutoff = List::Util::min( $cutoff, scalar @valid_player_data );
+  my $cutoff = List::Util::min( $FRONT_PAGE_RATINGS_CUTOFF, scalar @valid_player_data );
 
   my $peek_html = "<table class='table'>\n";
   $peek_html .= Utils::make_row(
     { keys     => [ 'Rank', 'Player', 'Rating' ],
       is_title => 1,
-      class    => 'white'
+      class    => $HTML_WHITE_CLASS
     }
   );
   for my $i ( 0 .. $cutoff - 1 )
@@ -462,14 +461,14 @@ sub update_dynamically_loaded_content
   }
 
   my $tournament_form
-    = "Between <select name='startyear'>\n<option value='1993'>Before 2000</option>";
+    = "Between <select name='startyear'>\n<option value='1993'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
 
   $tournament_form .= $year_options;
 
   $tournament_form .= "</select> and\n";
 
   $tournament_form
-    .= "<select name='endyear'>\n<option value='1999'>Before 2000</option>";
+    .= "<select name='endyear'>\n<option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
 
   $tournament_form .= $year_options;
 
@@ -493,16 +492,10 @@ sub update_html
 {
   my $dbh = Utils::connect_to_database();
 
-  my $html_dir            = $HTML_DIR;
-  my $player_html_dir     = $PLAYER_HTML_DIR;
-  my $tournament_html_dir = $TOURNAMENT_HTML_DIR;
-  my $rankings_html_dir   = $RANKINGS_HTML_DIR;
-  my $flags_dir           = $COUNTRY_FLAGS_DIR;
-
-  system "mkdir -p $html_dir";
-  system "mkdir -p $html_dir/$player_html_dir";
-  system "mkdir -p $html_dir/$tournament_html_dir";
-  system "mkdir -p $html_dir/$rankings_html_dir";
+  system "mkdir -p $HTML_DIR";
+  system "mkdir -p $HTML_DIR/$PLAYER_HTML_DIR";
+  system "mkdir -p $HTML_DIR/$TOURNAMENT_HTML_DIR";
+  system "mkdir -p $HTML_DIR/$RANKINGS_HTML_DIR";
 
   my @player_ids_to_create = ();
 
@@ -515,7 +508,6 @@ sub update_html
 
   foreach my $tournament_id (@tournament_ids_to_create)
   {
-    # if ($tournament_id != 38){next;}
     my @division_data = ();
     my @division_rows = @{
       Utils::query_table( $dbh, $DIVISIONS_TABLE_NAME,
@@ -539,7 +531,7 @@ sub update_html
         $HTML_ID_TOURNAMENT_TYPE );
     }
     my $tournament_filename
-      = "$html_dir/$tournament_html_dir/$tournament_id.html";
+      = "$HTML_DIR/$TOURNAMENT_HTML_DIR/$tournament_id.html";
 
     my $tournament_html_page
       = HTML::get_tournament_template_html_string( \@division_data );
@@ -598,6 +590,7 @@ sub update_html
 
     if ( !$photo_filename )
     {
+      # Move to constants
       $photo_filename = 'noimage.gif';
     }
     else

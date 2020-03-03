@@ -508,27 +508,14 @@ sub new
 
         my @rchanges = split /\s+/xms, $ratings_change_string;
         @rchanges = grep {$_} @rchanges;
-        if ( scalar @rchanges == $STA_MAX_RATING_ITEMS )
-        {
-          $start_rating = $rchanges[0];
-          $end_rating   = $rchanges[2];
-        }
-        elsif ( scalar @rchanges == 2 )
-        {
-          $start_rating = $rchanges[0];
-          $end_rating   = $rchanges[1];
-        }
-        elsif ( scalar @rchanges == 1 )
-        {
-          $start_rating = undef;
-          $end_rating   = $rchanges[0];
-        }
-        elsif ( scalar @rchanges > $STA_MAX_RATING_ITEMS )
+        my $num_rchange_items = scalar @rchanges;
+
+        if ( $num_rchange_items > $STA_MAX_RATING_ITEMS )
         {
           # Covered by TC 7
           $this->set_error_report(
             Utils::format_error(
-              [ [ 'ERROR', 'Invalid number of items in STA ratings column' ],
+              [ [ 'ERROR', "Invalid number of items in STA ratings column: $num_rchange_items" ],
                 [ 'File',  $sts_or_sta_file ],
                 [ 'Line',  $sts_line ],
               ]
@@ -536,6 +523,16 @@ sub new
           );
           return $this;
         }
+
+        my %rating_changes =
+        (
+          1 => [undef, $rchanges[0]],
+          2 => [$rchanges[0], $rchanges[1]],
+          $STA_MAX_RATING_ITEMS => [$rchanges[0], $rchanges[2]],
+        );
+
+        $start_rating = $rating_changes{$num_rchange_items}->[0];
+        $end_rating   = $rating_changes{$num_rchange_items}->[1];
 
         if ($switch_world_and_nation)
         {

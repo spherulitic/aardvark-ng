@@ -699,6 +699,81 @@ Readonly our $COUNTRY_TRIGRAPH_CONVERSION => {
   'SRI' => 'LKA'
 };
 
+Readonly our $TOURNAMENT_TITLE_REF => [
+  'Details', q{#},           'Date',       'Tournament',
+  'Wins',    'Losses',       'Byes',       'Spread',
+  'Place',   'Start Rating', 'End Rating', 'Rating Change'
+];
+Readonly our $TOURNAMENT_KEYS_REF => [
+  'details',       q{#},
+  'tr_date',       'tr_tournament_name',
+  'tr_wins',       'tr_losses',
+  'tr_byes',       'tr_spread',
+  'tr_position',   'tr_start_rating',
+  'tr_end_rating', 'tr_rating_change'
+];
+
+Readonly our $TOURNAMENT_STANDINGS_TITLE_REF => [
+  'Details',      'Place',      'Seed', 'Name',
+  'Wins',         'Losses',     'Byes', 'Spread',
+  'Start Rating', 'End Rating', 'Rating Change'
+];
+Readonly our $TOURNAMENT_STANDINGS_KEYS_REF => [
+  'details',         'tr_position',
+  'tr_seed',         'tr_player_name',
+  'tr_wins',         'tr_losses',
+  'tr_byes',         'tr_spread',
+  'tr_start_rating', 'tr_end_rating',
+  'tr_rating_change'
+];
+
+Readonly our $GAMES_TITLE_REF => [
+  'Round',  'Opponent', 'Opponent Rating', 'Result',
+  'Scores', $EMPTY_STRING
+];
+Readonly our $GAMES_KEYS_REF => [
+  'g_round',   'opp_name', 'opp_rating', 'pr1_result',
+  'pr1_score', 'pr2_score'
+];
+
+Readonly our $HEAD_TO_HEAD_TITLE_REF => [
+  'Details', $EMPTY_STRING, 'Opponent', 'Rating',
+  'Games',   'Wins',        'Losses',   'Draws',
+  'Pct',     'Average For', 'Average Against'
+];
+Readonly our $HEAD_TO_HEAD_KEYS_REF => [
+  'details',  q{#},      'opp_name',  'opp_current_rating',
+  'hh_games', 'hh_wins', 'hh_losses', 'hh_draws',
+  'hh_pct',   'hh_af',   'hh_aa'
+];
+
+Readonly our $HEAD_TO_HEAD_GAMES_TITLE_REF => [
+  'Date',   'Tournament',      'Round', 'Result',
+  'Rating', 'Opponent Rating', 'Score', $EMPTY_STRING
+];
+Readonly our $HEAD_TO_HEAD_GAMES_KEYS_REF => [
+  'tr_date',         'tr_tournament_name',
+  'g_round',         'pr1_result',
+  'tr_start_rating', 'opp_rating',
+  'pr1_score',       'pr2_score'
+];
+
+Readonly our $RATINGS_SUPER_TITLE_REF => [ 'Player', 'Wins', 'World rank', 'Nation rank', 'Rating points' ];
+
+Readonly our $RATINGS_TITLE_REF => [
+  'Country', 'Name', 'Exp', 'Act', 'Old', 'New',
+  'Old',     'New',  'Old', '+/-', 'New'
+];
+Readonly our $RATINGS_KEYS_REF => [
+  'p_country',            'tr_player_name',
+  'tr_expected_wins',     'tr_wins',
+  'tr_old_world_rank',    'tr_new_world_rank',
+  'tr_old_national_rank', 'tr_new_national_rank',
+  'tr_start_rating',      'tr_rating_change',
+  'tr_end_rating'
+];
+
+
 Readonly our $TEMPLATE_DOCTYPE =>
 
   <<'DOCTYPE'
@@ -878,6 +953,20 @@ FOOTER
 
 # BEGIN EXPORT
 our @EXPORT = qw(
+$TOURNAMENT_TITLE_REF
+$TOURNAMENT_KEYS_REF
+$TOURNAMENT_STANDINGS_TITLE_REF
+$TOURNAMENT_STANDINGS_KEYS_REF
+$GAMES_TITLE_REF
+$GAMES_KEYS_REF
+$HEAD_TO_HEAD_TITLE_REF
+$HEAD_TO_HEAD_KEYS_REF
+$HEAD_TO_HEAD_GAMES_TITLE_REF
+$HEAD_TO_HEAD_GAMES_KEYS_REF
+$RATINGS_SUPER_TITLE_REF
+$RATINGS_TITLE_REF
+$RATINGS_KEYS_REF
+
 $HTML_WHITE_CLASS
   $ZEROTH_SCORE_THRESHOLD
   $DEFAULT_UNKNOWN_COUNTRY
