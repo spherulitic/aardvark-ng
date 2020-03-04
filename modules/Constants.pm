@@ -758,7 +758,8 @@ Readonly our $HEAD_TO_HEAD_GAMES_KEYS_REF => [
   'pr1_score',       'pr2_score'
 ];
 
-Readonly our $RATINGS_SUPER_TITLE_REF => [ 'Player', 'Wins', 'World rank', 'Nation rank', 'Rating points' ];
+Readonly our $RATINGS_SUPER_TITLE_REF =>
+  [ 'Player', 'Wins', 'World rank', 'Nation rank', 'Rating points' ];
 
 Readonly our $RATINGS_TITLE_REF => [
   'Country', 'Name', 'Exp', 'Act', 'Old', 'New',
@@ -772,7 +773,6 @@ Readonly our $RATINGS_KEYS_REF => [
   'tr_start_rating',      'tr_rating_change',
   'tr_end_rating'
 ];
-
 
 Readonly our $TEMPLATE_DOCTYPE =>
 
@@ -952,22 +952,23 @@ FOOTER
   ;
 
 # BEGIN EXPORT
-our @EXPORT = qw(
-$TOURNAMENT_TITLE_REF
-$TOURNAMENT_KEYS_REF
-$TOURNAMENT_STANDINGS_TITLE_REF
-$TOURNAMENT_STANDINGS_KEYS_REF
-$GAMES_TITLE_REF
-$GAMES_KEYS_REF
-$HEAD_TO_HEAD_TITLE_REF
-$HEAD_TO_HEAD_KEYS_REF
-$HEAD_TO_HEAD_GAMES_TITLE_REF
-$HEAD_TO_HEAD_GAMES_KEYS_REF
-$RATINGS_SUPER_TITLE_REF
-$RATINGS_TITLE_REF
-$RATINGS_KEYS_REF
+our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
+  qw(
+  $TOURNAMENT_TITLE_REF
+  $TOURNAMENT_KEYS_REF
+  $TOURNAMENT_STANDINGS_TITLE_REF
+  $TOURNAMENT_STANDINGS_KEYS_REF
+  $GAMES_TITLE_REF
+  $GAMES_KEYS_REF
+  $HEAD_TO_HEAD_TITLE_REF
+  $HEAD_TO_HEAD_KEYS_REF
+  $HEAD_TO_HEAD_GAMES_TITLE_REF
+  $HEAD_TO_HEAD_GAMES_KEYS_REF
+  $RATINGS_SUPER_TITLE_REF
+  $RATINGS_TITLE_REF
+  $RATINGS_KEYS_REF
 
-$HTML_WHITE_CLASS
+  $HTML_WHITE_CLASS
   $ZEROTH_SCORE_THRESHOLD
   $DEFAULT_UNKNOWN_COUNTRY
   $PERL_ARRAY_REF_NAME

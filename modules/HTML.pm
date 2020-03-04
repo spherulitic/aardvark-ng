@@ -13,10 +13,10 @@ use Utils;
 
 sub get_alltime_stats_results_html_string
 {
-  my $dbh               = shift;
-  my $player_type       = $HTML_ID_PLAYER_TYPE;
-  my $HTML_ID_TOURNAMENT_TYPE   = $HTML_ID_TOURNAMENT_TYPE;
-  my $head_to_head_type = $HTML_ID_HEAD_TO_HEAD_TYPE;
+  my $dbh                     = shift;
+  my $player_type             = $HTML_ID_PLAYER_TYPE;
+  my $HTML_ID_TOURNAMENT_TYPE = $HTML_ID_TOURNAMENT_TYPE;
+  my $head_to_head_type       = $HTML_ID_HEAD_TO_HEAD_TYPE;
 
   my $sth
     = $dbh->prepare( 'SELECT '
@@ -87,7 +87,7 @@ sub get_alltime_stats_results_html_string
         my $statitem = $all_stats->{$key};
         if ( $statitem->{cond}->($data) )
         {
-          HTML::add_to_statitem_list($data, $statitem);
+          HTML::add_to_statitem_list( $data, $statitem );
         }
       }
     }
@@ -143,8 +143,8 @@ sub get_alltime_stats_results_html_string
 
 sub add_to_statitem_list
 {
-  my $data     = shift;
-  my $statitem = shift;
+  my $data       = shift;
+  my $statitem   = shift;
   my $stat       = $statitem->{eval}->($data);
   my @value_list = @{ $statitem->{values} };
   my $statdata   = {};
@@ -742,7 +742,7 @@ STOP
 sub sanitize_tournament_data
 {
   my $tournament_data_ref = shift;
-  foreach my $data (@{$tournament_data_ref})
+  foreach my $data ( @{$tournament_data_ref} )
   {
     if ( $data->{tr_start_rating} <= 0 )
     {
@@ -799,14 +799,14 @@ sub correlate_tournament_data
   my $tournament_stats           = $arg_ref->{stats};
   my $type                       = $arg_ref->{type};
 
-  foreach my $data (@{$tournament_data_ref})
+  foreach my $data ( @{$tournament_data_ref} )
   {
-    if ( $type ==  $HTML_ID_TOURNAMENT_TYPE )
+    if ( $type == $HTML_ID_TOURNAMENT_TYPE )
     {
       foreach my $key ( keys %{$tournament_stats} )
       {
         my $statitem = $tournament_stats->{$key};
-        HTML::add_statdata($data, $statitem);
+        HTML::add_statdata( $data, $statitem );
       }
     }
 
@@ -867,7 +867,7 @@ sub sort_tournament_games
 {
   my $tournament_results_ref = shift;
   my $type                   = shift;
-  my @tournament_results = @{$tournament_results_ref};
+  my @tournament_results     = @{$tournament_results_ref};
 
   foreach my $games (@tournament_results)
   {
@@ -969,13 +969,14 @@ sub sort_tournament_data
   my $tournament_stats           = $arg_ref->{stats};
   my $type                       = $arg_ref->{type};
 
-  HTML::sort_tournament_stats($tournament_stats, $type);
+  HTML::sort_tournament_stats( $tournament_stats, $type );
 
   my @tournament_results = values %{$tournament_results_hashref};
 
-  @tournament_results = HTML::sort_tournament_results(\@tournament_results, $type);
+  @tournament_results
+    = HTML::sort_tournament_results( \@tournament_results, $type );
 
-  HTML::sort_tournament_games(\@tournament_results, $type);
+  HTML::sort_tournament_games( \@tournament_results, $type );
 
   return @tournament_results;
 }
@@ -1007,12 +1008,11 @@ sub populate_score_thresholds
 
 sub convert_result_to_letter
 {
-  my $result = shift;
-  my %result_to_letter =
-  (
-    1             =>  q{W},
-    0             =>  q{T},
-    $NEGATIVE_ONE =>  q{L},
+  my $result           = shift;
+  my %result_to_letter = (
+    1             => q{W},
+    0             => q{T},
+    $NEGATIVE_ONE => q{L},
   );
   return $result_to_letter{$result};
 }
@@ -1140,7 +1140,7 @@ sub get_tournament_results_html_string
     = @{ $dbh->selectall_arrayref( $query, { Slice => {}, RaiseError => 1 } )
     };
 
-  HTML::sanitize_tournament_data(\@raw_tournament_data);
+  HTML::sanitize_tournament_data( \@raw_tournament_data );
 
   # Prepare tournament stats datastructure
 
@@ -1151,24 +1151,24 @@ sub get_tournament_results_html_string
     $tournament_stats = Utils::stat_objects();
   }
 
-
   my $tournament_results_hashref = {};
 
   # Correlate game results with a tournament result
 
-  HTML::correlate_tournament_data(results => $tournament_results_hashref,
-                                  data    => \@raw_tournament_data,
-                                  stats   => $tournament_stats,
-                                  type    => $type,
-                                  );
+  HTML::correlate_tournament_data(
+    results => $tournament_results_hashref,
+    data    => \@raw_tournament_data,
+    stats   => $tournament_stats,
+    type    => $type,
+  );
 
   # Sort the games, stats, and results
 
   my @tournament_results = HTML::sort_tournament_data(
-                                  results => $tournament_results_hashref,
-                                  stats   => $tournament_stats,
-                                  type    => $type,
-                            );
+    results => $tournament_results_hashref,
+    stats   => $tournament_stats,
+    type    => $type,
+  );
 
   my $tournament_results_list_html_string = "<table class='table'>\n";
   my $tournament_ratings_html_string      = "<table class='table'>\n";
@@ -1320,9 +1320,10 @@ sub get_tournament_results_html_string
 
       $res = HTML::convert_result_to_letter($res);
 
-      my $res_to_win   = ( ($res + 1) * ($res + 0)      ) / 2;
-      my $res_to_loss  = ( ($res + 1) * ($res + 0)        / 2) * $NEGATIVE_ONE;
-      my $res_to_draw  =   ($res + 1) * ($res + $NEGATIVE_ONE) * $NEGATIVE_ONE;
+      my $res_to_win  = ( ( $res + 1 ) * ( $res + 0 ) ) / 2;
+      my $res_to_loss = ( ( $res + 1 ) * ( $res + 0 ) / 2 ) * $NEGATIVE_ONE;
+      my $res_to_draw
+        = ( $res + 1 ) * ( $res + $NEGATIVE_ONE ) * $NEGATIVE_ONE;
 
       $game_data->{wins}   += $res_to_win;
       $game_data->{losses} += $res_to_loss;
@@ -1346,11 +1347,17 @@ sub get_tournament_results_html_string
       $hh_for += $score;
       $hh_ag  += $opp_score;
 
-      HTML::populate_score_thresholds($game_data, $score);
+      HTML::populate_score_thresholds( $game_data, $score );
 
-      HTML::populate_special_items({score => $score, opp_score => $opp_score, game_data => $game_data, item => $item});
+      HTML::populate_special_items(
+        { score     => $score,
+          opp_score => $opp_score,
+          game_data => $game_data,
+          item      => $item
+        }
+      );
 
-      my $sub_row_class =  $k % 2 == 1 ? 'rowodd' : 'roweven';
+      my $sub_row_class = $k % 2 == 1 ? 'rowodd' : 'roweven';
 
       $subentries .= Utils::make_row(
         { item  => $item,
@@ -1410,9 +1417,9 @@ sub get_tournament_results_html_string
   if ( $type == $HTML_ID_TOURNAMENT_TYPE )
   {
     $tournament_ratings_html_string .= "\n</table>\n";
-    HTML::build_ratings_table($tournament_stats, $tournament_stats_html);
+    HTML::build_ratings_table( $tournament_stats, $tournament_stats_html );
   }
-  
+
   return {
     html    => $tournament_results_list_html_string,
     data    => $game_data,
@@ -1438,7 +1445,7 @@ sub build_ratings_table
     my @statlist = @{ $dataitem->{list} };
     for my $i ( 0 .. scalar @statlist - 1 )
     {
-      my $sub_row_class =  $i % 2 == 1 ? 'rowodd' : 'roweven';
+      my $sub_row_class = $i % 2 == 1 ? 'rowodd' : 'roweven';
 
       my $statitem = $statlist[$i];
       $html_string .= Utils::make_row(
@@ -1454,7 +1461,6 @@ sub build_ratings_table
   }
   return 1;
 }
-
 
 sub get_tournament_template_html_string
 {

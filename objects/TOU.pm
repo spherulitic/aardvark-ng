@@ -95,11 +95,12 @@ sub get_unblessed_ref
 
 sub initialize
 {
-  my $this            = shift;
-  my $dbh             = shift;
-  my $filename        = shift;
-  my $player_data     = shift;
-  my $conversion_hash = shift;
+  my ( $this, $arg_ref ) = shift;
+
+  my $dbh             = $arg_ref->{dbh};
+  my $filename        = $arg_ref->{filename};
+  my $player_data     = $arg_ref->{player_data};
+  my $conversion_hash = $arg_ref->{conversion_hash};
 
   my $tou = {};
 
@@ -241,6 +242,29 @@ sub load
   return 1;
 }
 
+sub parse_tou_header
+{
+  my $filename = shift;
+
+  my $date;
+  my $tournament_name;
+
+  open my $tou_read, q{<}, $filename
+    or croak "Cannot open .tou file $filename: $OS_ERROR";
+  my $first_line = <$tou_read>;
+  close $tou_read or croak "Cannot close .tou file $filename: $OS_ERROR";
+  chomp $first_line;
+  $first_line =~ s/\r//gxms;
+
+  if ( $first_line =~ /^[*].(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms )
+  {
+    $date            = $3 . $2 . $1;
+    $tournament_name = $4;
+  }
+
+  return ( $date, $tournament_name );
+}
+
 sub new
 {
   my ( $tou_type, $arg_ref ) = @_;
@@ -251,8 +275,13 @@ sub new
   my $deceased_players_hash = $arg_ref->{deceased_players_hash};
   my $player_data           = $arg_ref->{player_data};
 
-  my $this
-    = $tou_type->initialize( $dbh, $filename, $player_data, $alt_names_hash );
+  my $this = $tou_type->initialize(
+    { dbh             => $dbh,
+      filname         => $filename,
+      player_data     => $player_data,
+      conversion_hash => $alt_names_hash,
+    }
+  );
 
   my $tou_file_extension = $TOU_FILE_EXTENSION;
   my $sts_file_extension = $STS_FILE_EXTENSION;
@@ -314,21 +343,9 @@ sub new
     return $this;
   }
 
-  my $date;
-  my $tournament_name;
-  open my $tou_read, q{<}, $filename
-    or croak "Cannot open .tou file $filename: $OS_ERROR";
-  my $first_line = <$tou_read>;
-  close $tou_read or croak "Cannot close .tou file $filename: $OS_ERROR";
-  chomp $first_line;
-  $first_line =~ s/\r//gxms;
+  my ( $date, $tournament_name ) = TOU::parse_tou_header($filename);
 
-  if ( $first_line =~ /^[*].(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms )
-  {
-    $date            = $3 . $2 . $1;
-    $tournament_name = $4;
-  }
-  else
+  if ( !$date || !$tournament_name )
   {
     # Covered by TC 3
     $this->set_error_report(
@@ -339,11 +356,29 @@ sub new
     return $this;
   }
 
+  $this->process_sts();
+  $this->process();
+  return $this;
+}
+
+sub process_sts
+{
+  my ( $this, $arg_ref ) = @_;
+
+  my $dbh                   = $arg_ref->{dbh};
+  my $date                  = $arg_ref->{date};
+  my $sts_file              = $arg_ref->{sts_file};
+  my $sta_file              = $arg_ref->{sta_file};
+  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
+
+  my $player_data    = $this->{$TOU_PLAYER_DATA};
+  my $alt_names_hash = $this->{$TOU_CONVERSION_HASH};
+
   # This code prefers to use the .STS file
 
   my $sts_or_sta_file = $sts_file;
   my $is_sts          = 1;
-  if ( !( -e $sts_file ) )
+  if ( !-e $sts_file )
   {
     $sts_or_sta_file = $sta_file;
     $is_sts          = 0;
@@ -365,195 +400,26 @@ sub new
 
     if ( !$sts_line ) { next; }
 
+    my $sts_line_extraction = $this->parse_sts_line(
+      { is_sts                  => $is_sts,
+        sts_line                => $sts_line,
+        no_world                => $no_world,
+        begin_player_captures   => $begin_player_captures,
+        switch_world_and_nation => $switch_world_and_nation
+      }
+    );
+
     # These are common between both .STS and .STA files
-    my $player_country;
-    my $player_name;
-    my $start_rating;
-    my $end_rating;
-
-    my $expected_wins;
-    my $old_world_rank;
-    my $new_world_rank = undef;
-    my $old_national_rank;
-    my $new_national_rank;
-
-    # Player info must be extracted differently if the file is .STS as
-    # opposed to .STA
-    if ($is_sts)
-    {
-      my @player_items = split /,/xms, $sts_line;
-      $player_country    = $player_items[$STS_PLAYER_COUNTRY_INDEX];
-      $player_name       = $player_items[$STS_PLAYER_NAME_INDEX];
-      $expected_wins     = $player_items[$STS_EXPECTED_WINS_INDEX];
-      $start_rating      = $player_items[$STS_START_RATING_INDEX];
-      $end_rating        = $player_items[$STS_END_RATING_INDEX];
-      $old_world_rank    = $player_items[$STS_OLD_WORLD_RANK_INDEX];
-      $new_world_rank    = $player_items[$STS_NEW_WORLD_RANK_INDEX];
-      $old_national_rank = $player_items[$STS_OLD_NATIONAL_RANK_INDEX];
-      $new_national_rank = $player_items[$STS_NEW_NATIONAL_RANK_INDEX];
-    }
-    else
-    {
-      if ( $sts_line =~ /[+]-/xms )
-      {
-        $begin_player_captures++;
-      }
-      if ( $sts_line =~ /World.*Nation/ixms )
-      {
-        $switch_world_and_nation = 1;
-      }
-      elsif ( $sts_line =~ /World/xms )
-      {
-        $no_world = 0;
-      }
-
-      # Remove parentheses from the line because
-      # they were causing problems
-      $sts_line =~ s/[(]|[)]/[ ]/gxms;
-
-# Agonizing pattern match for .STA file
-# which is why .STS is preferred
-#if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
-      if ( $begin_player_captures >= 2
-        && $sts_line
-        =~ /^\|(.)(\w+)\s+([^\|]+)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|([^\|]*)\|/xms
-        )
-      {
-        my $is_new_player = $1;    # Unused for now
-        $player_country = $2;
-        $player_name    = $3;
-        my $national_ranks_string = $4;
-        my $world_ranks_string    = $5;
-        my $wins_string           = $6;
-        my $ratings_change_string = $7;
-
-        my @nranks = split /\s+/xms, $national_ranks_string;
-        @nranks = grep {$_} @nranks;
-        if ( scalar @nranks == 2 )
-        {
-          $old_national_rank = $nranks[0];
-          $new_national_rank = $nranks[1];
-        }
-        elsif ( scalar @nranks == 1 )
-        {
-          $old_national_rank = undef;
-          $new_national_rank = $nranks[0];
-        }
-        elsif ( scalar @nranks > 2 )
-        {
-          # Covered by TC 4
-          $this->set_error_report(
-            Utils::format_error(
-              [ [ 'ERROR', 'Invalid number of items in STA first rank column'
-                ],
-                [ 'File', $sts_or_sta_file ],
-                [ 'Line', $sts_line ],
-              ]
-            )
-          );
-          return $this;
-        }
-
-        my @wranks = split /\s+/xms, $world_ranks_string;
-        @wranks = grep {$_} @wranks;
-        if ( scalar @wranks == 2 )
-        {
-          $old_world_rank = $wranks[0];
-          $new_world_rank = $wranks[1];
-        }
-        elsif ( scalar @wranks == 1 )
-        {
-          $old_world_rank = undef;
-          $new_world_rank = $wranks[0];
-        }
-        elsif ( scalar @wranks > 2 )
-        {
-          # Covered by TC 5
-          $this->set_error_report(
-            Utils::format_error(
-              [ [ 'ERROR',
-                  'Invalid number of items in STA second rank column'
-                ],
-                [ 'File', $sts_or_sta_file ],
-                [ 'Line', $sts_line ],
-              ]
-            )
-          );
-          return $this;
-        }
-
-        my @ewins = split /\s+/xms, $wins_string;
-        @ewins = grep {$_} @ewins;
-        if ( scalar @ewins == 2 )
-        {
-          $expected_wins = $ewins[0];
-        }
-        elsif ( scalar @ewins == 1 )
-        {
-          $expected_wins = undef;
-        }
-        elsif ( scalar @ewins > 2 )
-        {
-          # Covered by TC 6
-          $this->set_error_report(
-            Utils::format_error(
-              [ [ 'ERROR', 'Invalid number of items in STA wins column' ],
-                [ 'File',  $sts_or_sta_file ],
-                [ 'Line',  $sts_line ],
-              ]
-            )
-          );
-          return $this;
-        }
-
-        my @rchanges = split /\s+/xms, $ratings_change_string;
-        @rchanges = grep {$_} @rchanges;
-        my $num_rchange_items = scalar @rchanges;
-
-        if ( $num_rchange_items > $STA_MAX_RATING_ITEMS )
-        {
-          # Covered by TC 7
-          $this->set_error_report(
-            Utils::format_error(
-              [ [ 'ERROR', "Invalid number of items in STA ratings column: $num_rchange_items" ],
-                [ 'File',  $sts_or_sta_file ],
-                [ 'Line',  $sts_line ],
-              ]
-            )
-          );
-          return $this;
-        }
-
-        my %rating_changes =
-        (
-          1 => [undef, $rchanges[0]],
-          2 => [$rchanges[0], $rchanges[1]],
-          $STA_MAX_RATING_ITEMS => [$rchanges[0], $rchanges[2]],
-        );
-
-        $start_rating = $rating_changes{$num_rchange_items}->[0];
-        $end_rating   = $rating_changes{$num_rchange_items}->[1];
-
-        if ($switch_world_and_nation)
-        {
-          my $tmp1 = $old_national_rank;
-          my $tmp2 = $new_national_rank;
-          $old_national_rank = $old_world_rank;
-          $new_national_rank = $new_world_rank;
-          $old_world_rank    = $tmp1;
-          $new_world_rank    = $tmp2;
-        }
-        elsif ($no_world)
-        {
-          $old_world_rank = undef;
-          $new_world_rank = undef;
-        }
-      }
-      else
-      {
-        next;
-      }
-    }
+    my $player_country    = $sts_line_extraction->{player_country};
+    my $player_name       = $sts_line_extraction->{player_name};
+    my $start_rating      = $sts_line_extraction->{start_rating};
+    my $end_rating        = $sts_line_extraction->{end_rating};
+    my $expected_wins     = $sts_line_extraction->{expected_wins};
+    my $old_world_rank    = $sts_line_extraction->{old_world_rank};
+    my $new_world_rank    = $sts_line_extraction->{new_world_rank};
+    my $old_national_rank = $sts_line_extraction->{old_national_rank};
+    my $new_national_rank = $sts_line_extraction->{new_national_rank};
+    $begin_player_captures = $sts_line_extraction->{begin_player_captures};
 
     # Sometimes byes are represented by players named something like
     # Bye A. If this is the case, we do not need to record the info
@@ -614,7 +480,7 @@ sub new
     # id for the table to add them properly
 
     my $player_query
-      = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$pretty_player_name\"";
+      = "SELECT id, country, last_played FROM $PLAYERS_TABLE_NAME WHERE BINARY name=\"$pretty_player_name\"";
 
     my @player_query_result
       = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
@@ -625,7 +491,7 @@ sub new
     {
       $player_id = Utils::insert_hash_into_table(
         $dbh,
-        $players_tn,
+        $PLAYERS_TABLE_NAME,
         { name      => $pretty_player_name,
           country   => $player_country,
           photo     => Utils::get_player_photo($player_name),
@@ -640,8 +506,6 @@ sub new
     }
     else
     {
-      # If the player already exists, the last_played and country fields
-      # may need to be updated
 
       $player_id = shift @player_query_result;
       my $existing_country   = shift @player_query_result;
@@ -667,19 +531,242 @@ sub new
 
       if ($newer_tourney_cond)
       {
-        Utils::update_record_by_id( $dbh, $players_tn, $player_id,
+        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
           { last_played => $date, rating => $end_rating } );
       }
       if ( $no_country_cond || $changed_to_newer_country_cond )
       {
-        Utils::update_record_by_id( $dbh, $players_tn, $player_id,
+        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
           { country => $player_country } );
       }
     }
     $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
   }
-  $this->process();
-  return $this;
+  return 1;
+}
+
+sub parse_sts_line
+{
+  my ( $this, $arg_ref ) = @_;
+
+  my $is_sts                  = $arg_ref->{is_sts};
+  my $sts_line                = $arg_ref->{sts_line};
+  my $no_world                = $arg_ref->{no_world};
+  my $begin_player_captures   = $arg_ref->{begin_player_captures};
+  my $switch_world_and_nation = $arg_ref->{switch_world_and_nation};
+
+  my $filename = $this->{$TOU_FILENAME};
+
+  # These are common between both .STS and .STA files
+  my $player_country;
+  my $player_name;
+  my $start_rating;
+  my $end_rating;
+
+  my $expected_wins;
+  my $old_world_rank;
+  my $new_world_rank;
+  my $old_national_rank;
+  my $new_national_rank;
+
+  # Player info must be extracted differently if the file is .STS as
+  # opposed to .STA
+  if ($is_sts)
+  {
+    my @player_items = split /,/xms, $sts_line;
+    $player_country    = $player_items[$STS_PLAYER_COUNTRY_INDEX];
+    $player_name       = $player_items[$STS_PLAYER_NAME_INDEX];
+    $expected_wins     = $player_items[$STS_EXPECTED_WINS_INDEX];
+    $start_rating      = $player_items[$STS_START_RATING_INDEX];
+    $end_rating        = $player_items[$STS_END_RATING_INDEX];
+    $old_world_rank    = $player_items[$STS_OLD_WORLD_RANK_INDEX];
+    $new_world_rank    = $player_items[$STS_NEW_WORLD_RANK_INDEX];
+    $old_national_rank = $player_items[$STS_OLD_NATIONAL_RANK_INDEX];
+    $new_national_rank = $player_items[$STS_NEW_NATIONAL_RANK_INDEX];
+  }
+  else
+  {
+    if ( $sts_line =~ /[+]-/xms )
+    {
+      $begin_player_captures++;
+    }
+    if ( $sts_line =~ /World.*Nation/ixms )
+    {
+      $switch_world_and_nation = 1;
+    }
+    elsif ( $sts_line =~ /World/xms )
+    {
+      $no_world = 0;
+    }
+
+    # Remove parentheses from the line because
+    # they were causing problems
+    $sts_line =~ s/[(]|[)]/[ ]/gxms;
+
+# Agonizing pattern match for .STA file
+# which is why .STS is preferred
+#if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
+
+    my $is_new_player_pattern  = '(.)';
+    my $player_country_pattern = '(\\w+)';
+    my $player_name_pattern    = '([^|]+)';
+    my $national_ranks_pattern = '([^|]*)';
+    my $world_ranks_pattern    = '([^|]*)';
+    my $wins_pattern           = '([^|]*)';
+    my $ratings_pattern        = '([^|]*)';
+
+    if (
+         $begin_player_captures >= 2
+      && $sts_line =~ m{^[|]$is_new_player_pattern
+              $player_country_pattern\s+
+              $player_name_pattern[|]
+              $national_ranks_pattern[|]
+              $world_ranks_pattern[|]
+              $wins_pattern[|]
+              $ratings_pattern[|]
+         }xms
+      )
+    {
+      my $is_new_player = $1;    # Unused for now
+      $player_country = $2;
+      $player_name    = $3;
+      my $national_ranks_string = $4;
+      my $world_ranks_string    = $5;
+      my $wins_string           = $6;
+      my $ratings_change_string = $7;
+
+      my @nranks = split /\s+/xms, $national_ranks_string;
+      @nranks = grep {$_} @nranks;
+      my $nranks_length = scalar @nranks;
+
+      if ( $nranks_length > 2 )
+      {
+        # Covered by TC 4
+        $this->set_error_report(
+          Utils::format_error(
+            [ [ 'ERROR', 'Invalid number of items in STA first rank column' ],
+              [ 'TOU File', $filename ],
+              [ 'Line',     $sts_line ],
+            ]
+          )
+        );
+        return $this;
+      }
+
+      my %nrank_changes = (
+        1 => [ undef,      $nranks[0] ],
+        2 => [ $nranks[0], $nranks[1] ],
+      );
+
+      $old_national_rank = $nrank_changes{$nranks_length}->[0];
+      $new_national_rank = $nrank_changes{$nranks_length}->[1];
+
+      my @wranks = split /\s+/xms, $world_ranks_string;
+      @wranks = grep {$_} @wranks;
+      my $wranks_length = scalar @wranks;
+
+      if ( scalar @wranks > 2 )
+      {
+        # Covered by TC 5
+        $this->set_error_report(
+          Utils::format_error(
+            [ [ 'ERROR', 'Invalid number of items in STA second rank column'
+              ],
+              [ 'TOU File', $filename ],
+              [ 'Line',     $sts_line ],
+            ]
+          )
+        );
+        return $this;
+      }
+
+      my %wrank_changes = (
+        1 => [ undef,      $wranks[0] ],
+        2 => [ $wranks[0], $wranks[1] ],
+      );
+
+      $old_world_rank = $wrank_changes{$wranks_length}->[0];
+      $new_world_rank = $wrank_changes{$wranks_length}->[1];
+
+      my @ewins = split /\s+/xms, $wins_string;
+      @ewins = grep {$_} @ewins;
+      my $ewins_length = scalar @ewins;
+
+      if ( $ewins_length > 2 )
+      {
+        # Covered by TC 6
+        $this->set_error_report(
+          Utils::format_error(
+            [ [ 'ERROR',    'Invalid number of items in STA wins column' ],
+              [ 'TOU File', $filename ],
+              [ 'Line',     $sts_line ],
+            ]
+          )
+        );
+        return $this;
+      }
+
+      my @ewins_possibilities = ( undef, undef, $ewins[0] );
+
+      $expected_wins = $ewins_possibilities[$ewins_length];
+
+      my @rchanges = split /\s+/xms, $ratings_change_string;
+      @rchanges = grep {$_} @rchanges;
+      my $num_rchange_items = scalar @rchanges;
+
+      if ( $num_rchange_items > $STA_MAX_RATING_ITEMS )
+      {
+        # Covered by TC 7
+        $this->set_error_report(
+          Utils::format_error(
+            [ [ 'ERROR',
+                "Invalid number of items in STA ratings column: $num_rchange_items"
+              ],
+              [ 'TOU File', $filename ],
+              [ 'Line',     $sts_line ],
+            ]
+          )
+        );
+        return $this;
+      }
+
+      my %rating_changes = (
+        1                     => [ undef,        $rchanges[0] ],
+        2                     => [ $rchanges[0], $rchanges[1] ],
+        $STA_MAX_RATING_ITEMS => [ $rchanges[0], $rchanges[2] ],
+      );
+
+      $start_rating = $rating_changes{$num_rchange_items}->[0];
+      $end_rating   = $rating_changes{$num_rchange_items}->[1];
+
+      if ($switch_world_and_nation)
+      {
+        my $tmp1 = $old_national_rank;
+        my $tmp2 = $new_national_rank;
+        $old_national_rank = $old_world_rank;
+        $new_national_rank = $new_world_rank;
+        $old_world_rank    = $tmp1;
+        $new_world_rank    = $tmp2;
+      }
+      elsif ($no_world)
+      {
+        $old_world_rank = undef;
+        $new_world_rank = undef;
+      }
+    }
+  }
+  return {
+    player_country        => $player_country,
+    player_name           => $player_name,
+    start_rating          => $start_rating,
+    end_rating            => $end_rating,
+    expected_wins         => $expected_wins,
+    old_world_rank        => $old_world_rank,
+    new_world_rank        => $new_world_rank,
+    old_national_rank     => $old_national_rank,
+    new_national_rank     => $new_national_rank,
+    begin_player_captures => $begin_player_captures,
+  };
 }
 
 sub new_division

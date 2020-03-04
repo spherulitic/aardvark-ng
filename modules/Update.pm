@@ -42,8 +42,7 @@ sub load_all_tou_files
   foreach my $filename (@filenames_array)
   {
     my $tou = TOU->new(
-      {
-        dbh                   => $dbh,
+      { dbh                   => $dbh,
         filename              => $filename,
         alt_names_hash        => $alt_names_hash,
         deceased_players_hash => $deceased_players_hash,
@@ -350,7 +349,8 @@ sub update_dynamically_loaded_content
     = grep { !$_->{deceased} && !$_->{suspended} && $_->{current} }
     @player_data;
 
-  my $cutoff = List::Util::min( $FRONT_PAGE_RATINGS_CUTOFF, scalar @valid_player_data );
+  my $cutoff = List::Util::min( $FRONT_PAGE_RATINGS_CUTOFF,
+    scalar @valid_player_data );
 
   my $peek_html = "<table class='table'>\n";
   $peek_html .= Utils::make_row(
