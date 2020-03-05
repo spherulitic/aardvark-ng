@@ -1075,7 +1075,7 @@ sub to_string
 
   my $tou_date_format = "$3.$2.$1";
 
-  my $tou_string = "*M$tou_date_format $tournament_name\n";
+  my $tou_string = "*M$tou_date_format $tournament_name$NEWLINE";
 
   my @division_keys = sort {
     $divisions->{$a}->{$DIVISION_NUMBER}

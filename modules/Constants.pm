@@ -177,7 +177,7 @@ Readonly our $TOURNAMENT_FORM_DATA_FILENAME => 'tournament_form_data.html';
 Readonly our $TOURNAMENT_CGI_FILENAME       => 'find_tournament.pl';
 Readonly our $FRONT_PAGE_RATINGS_CUTOFF     => 10;
 
-Readonly our $HTML_HEADER => "Content-type: text/html\n\n";
+Readonly our $HTML_HEADER => "Content-type: text/html$NEWLINE$NEWLINE";
 
 Readonly our $HTML_ID_PLAYER_TYPE       => 0;
 Readonly our $HTML_ID_TOURNAMENT_TYPE   => 1;

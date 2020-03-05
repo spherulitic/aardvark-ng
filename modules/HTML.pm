@@ -76,7 +76,7 @@ sub build_ratings_table
   foreach my $key ( keys %{$tournament_stats} )
   {
     my $dataitem    = $tournament_stats->{$key};
-    my $html_string = "       <table class='table'>\n";
+    my $html_string = "       <table class='table'>$NEWLINE";
     $html_string .= Utils::make_row(
       { keys     => $dataitem->{titles},
         is_title => 1
@@ -256,7 +256,7 @@ sub get_alltime_stats_results_html_string
   {
     my $dataitem = $all_stats->{$key};
 
-    my $html_string = "       <table class='table'>\n";
+    my $html_string = "       <table class='table'>$NEWLINE";
     $html_string .= Utils::make_row(
       { keys     => $dataitem->{titles},
         is_title => 1
@@ -312,7 +312,7 @@ sub get_alltime_template_html_string
 
     my $stat_html = $stats->{$cat};
     $stats_content
-      .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+      .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>$NEWLINE";
     if ( $k == 0 )
     {
       push @ids_to_click, "button_$stat_id";
@@ -479,10 +479,10 @@ FUNCTION
   {
     my $name = $item->{$value_key};
     my $id   = $item->{$data_value_key};
-    $html .= "<option data-value='$id' value=\"$name\"></option>\n";
+    $html .= "<option data-value='$id' value=\"$name\"></option>$NEWLINE";
   }
 
-  $html .= "    </datalist>\n";
+  $html .= "    </datalist>$NEWLINE";
 
   $html
     .= "<input type='button' value='Submit' id='$button_id' $submit_function>";
@@ -720,7 +720,7 @@ sub get_rankings_html_string
 
   @players = reverse sort { $a->{rating} <=> $b->{rating} } @players;
 
-  my $full_rankings_string = "      <table class='table'>\n";
+  my $full_rankings_string = "      <table class='table'>$NEWLINE";
 
   my $titles = [ 'Ranking', 'Name', 'Country', 'Rating', 'Total Games',
     'Last Played' ];
@@ -754,7 +754,7 @@ sub get_rankings_html_string
     );
   }
 
-  $full_rankings_string .= "      </table>\n";
+  $full_rankings_string .= "      </table>$NEWLINE";
   return $full_rankings_string;
 }
 
@@ -925,8 +925,8 @@ sub get_tournament_results_html_string
     type    => $type,
   );
 
-  my $tournament_results_list_html_string = "<table class='table'>\n";
-  my $tournament_ratings_html_string      = "<table class='table'>\n";
+  my $tournament_results_list_html_string = "<table class='table'>$NEWLINE";
+  my $tournament_ratings_html_string      = "<table class='table'>$NEWLINE";
 
   my $title_ref        = $TOURNAMENT_TITLE_REF;
   my $sub_title_ref    = $GAMES_TITLE_REF;
@@ -1162,16 +1162,16 @@ sub get_tournament_results_html_string
     }
 
     $tournament_results_list_html_string
-      .= $new_entry . $subentries . "</table></div></td></tr>\n";
+      .= $new_entry . $subentries . "</table></div></td></tr>$NEWLINE";
   }
 
-  $tournament_results_list_html_string .= "\n</table>\n";
+  $tournament_results_list_html_string .= "$NEWLINE</table>$NEWLINE";
 
   my $tournament_stats_html = {};
 
   if ( $type == $HTML_ID_TOURNAMENT_TYPE )
   {
-    $tournament_ratings_html_string .= "\n</table>\n";
+    $tournament_ratings_html_string .= "$NEWLINE</table>$NEWLINE";
     HTML::build_ratings_table( $tournament_stats, $tournament_stats_html );
   }
 
@@ -1242,7 +1242,7 @@ sub get_tournament_template_html_string
 
       my $stat_html = $div_stats->{$cat};
       $stats_content
-        .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>\n";
+        .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>$NEWLINE";
       if ( $k == 0 )
       {
         push @ids_to_click, "button_$stat_id";
@@ -1280,7 +1280,7 @@ sub get_tournament_template_html_string
       = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
 
     $division_results
-      .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>\n";
+      .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>$NEWLINE";
   }
 
   my $tabs

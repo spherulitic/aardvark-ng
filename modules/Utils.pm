@@ -58,7 +58,7 @@ sub check_country_flag_icons
   my @countries = @{$country_ref};
 
   opendir my $flag_dir_handle, $COUNTRY_FLAGS_DIR
-    or croak "Cannot open  $COUNTRY_FLAGS_DIR: $OS_ERROR\n";
+    or croak "Cannot open  $COUNTRY_FLAGS_DIR: $OS_ERROR$NEWLINE";
   my @existing_flags
     = grep {/[A-Z]{3}/xms}    ## no critic (ProhibitEnumeratedClasses)
     readdir $flag_dir_handle;
@@ -394,9 +394,10 @@ sub format_error
 
     $error_string
       .= ( sprintf q{%-} . ( $max_field_length + 2 ) . q{s}, $item1 . q{:} )
-      . $item2 . "\n";
+      . $item2
+      . "$NEWLINE";
   }
-  $error_string .= "\n";
+  $error_string .= "$NEWLINE";
   Utils::format_print($error_string);
   return $error_string;
 }
@@ -420,7 +421,7 @@ sub format_print
 
   while ($string)
   {
-    print $string or croak "Cannot print to STDOUT: $OS_ERROR\n";
+    print $string or croak "Cannot print to STDOUT: $OS_ERROR$NEWLINE";
     $string = shift @strings;
   }
 
@@ -703,7 +704,7 @@ sub make_new_entry_head
   $new_entry
     .= q{<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='}
     . ( $title_length - 1 )
-    . "'><div class='collapse' id='$entry_id'><table class='table'>\n";
+    . "'><div class='collapse' id='$entry_id'><table class='table'>$NEWLINE";
 
   $new_entry .= $games_title_row;
 
@@ -777,7 +778,7 @@ sub make_row
 
     $row_string .= sprintf "<$el $colspan_attr $class >%s</$el>", $val;
   }
-  $row_string .= "</tr>\n";
+  $row_string .= "</tr>$NEWLINE";
 
   return $row_string;
 }
@@ -790,7 +791,7 @@ sub make_tab_div
 
   my $content_length = scalar @{$content};
 
-  my $div = "<br><div class='tab'>\n";
+  my $div = "<br><div class='tab'>$NEWLINE";
 
   for my $i ( 0 .. $content_length - 1 )
   {
@@ -951,7 +952,8 @@ sub record_database
       { RaiseError => 1 } )
   };
 
-  my $player_ids = join "\n", ( map { $_->[0] . ', ' . $_->[1] } @players );
+  my $player_ids = join "$NEWLINE",
+    ( map { $_->[0] . ', ' . $_->[1] } @players );
 
   Utils::write_string_to_file( $player_ids,
     "$LOG_DIR/player_ids_$database_name" . "$tstamp.txt" );
@@ -1228,9 +1230,9 @@ sub write_file_to_array
 {
   my $filename = shift;
   open my $fh, q{<}, $filename
-    or croak "Cannot open file $filename: $OS_ERROR\n";
+    or croak "Cannot open file $filename: $OS_ERROR$NEWLINE";
   my @array = <$fh>;
-  close $fh or croak "Cannot close file $filename: $OS_ERROR\n";
+  close $fh or croak "Cannot close file $filename: $OS_ERROR$NEWLINE";
   return @array;
 }
 
@@ -1255,9 +1257,9 @@ sub write_string_to_file
   my $filename = shift;
 
   open my $fh, q{>}, $filename
-    or croak "Cannot open $filename: $OS_ERROR\n";
-  print {$fh} $string or croak "Cannot print to $filename: $OS_ERROR\n";
-  close $fh or croak "Cannot close $filename: $OS_ERROR\n";
+    or croak "Cannot open $filename: $OS_ERROR$NEWLINE";
+  print {$fh} $string or croak "Cannot print to $filename: $OS_ERROR$NEWLINE";
+  close $fh or croak "Cannot close $filename: $OS_ERROR$NEWLINE";
 
   return 1;
 }

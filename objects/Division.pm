@@ -309,8 +309,8 @@ sub to_string
 
   my $division_name = $this->{$DIVISION_NAME};
 
-  my $division_string = "*$division_name\n";
-  $division_string .= ( q{ } x $TOU_ZERO_PADDING ) . "0\n";
+  my $division_string = "*$division_name$NEWLINE";
+  $division_string .= ( q{ } x $TOU_ZERO_PADDING ) . "0$NEWLINE";
 
   for my $player_number ( 0 .. $number_of_players - 1 )
   {
@@ -330,7 +330,7 @@ sub to_string
       $division_string .= ( sprintf '%6s', $player_tou_score )
         . ( sprintf '%5s', $plus . ( $opponent_number + 1 ) ) . q{ };
     }
-    $division_string .= "\n";
+    $division_string .= "$NEWLINE";
   }
   return $division_string;
 }

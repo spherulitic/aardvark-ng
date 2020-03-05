@@ -289,7 +289,7 @@ $TEMPLATE_DOCTYPE
 STOP
 ;
 
-print "Content-Type: text/html\n\n";
+print "Content-Type: text/html$NEWLINE$NEWLINE";
 print \$results_html_page;
 
   sub sanitize
@@ -332,7 +332,7 @@ sub update_dynamically_loaded_content
   my $cutoff = List::Util::min( $FRONT_PAGE_RATINGS_CUTOFF,
     scalar @valid_player_data );
 
-  my $peek_html = "<table class='table'>\n";
+  my $peek_html = "<table class='table'>$NEWLINE";
   $peek_html .= Utils::make_row(
     { keys     => [ 'Rank', 'Player', 'Rating' ],
       is_title => 1,
@@ -355,7 +355,7 @@ sub update_dynamically_loaded_content
       }
     );
   }
-  $peek_html .= "</table>\n";
+  $peek_html .= "</table>$NEWLINE";
 
   my $peek_filename
     = $HTML_DATA_DIR . q{/} . $FRONT_PAGE_RATINGS_DATA_FILENAME;
@@ -421,7 +421,7 @@ sub update_dynamically_loaded_content
 
   for my $i ( $TOURNAMENT_SEARCH_START_YEAR .. $current_year )
   {
-    $year_options .= "<option value='$i'>$i</option>\n";
+    $year_options .= "<option value='$i'>$i</option>$NEWLINE";
   }
 
   @all_countries
@@ -433,23 +433,24 @@ sub update_dynamically_loaded_content
   {
     my $trigraph = $all_countries[$i]->[0];
     my $fullname = $all_countries[$i]->[1];
-    $country_options .= "<option value='$trigraph'>$fullname</option>\n";
+    $country_options
+      .= "<option value='$trigraph'>$fullname</option>$NEWLINE";
   }
 
   my $tournament_form
-    = "Between <select name='startyear'>\n<option value='1993'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
+    = "Between <select name='startyear'>$NEWLINE<option value='1993'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
 
   $tournament_form .= $year_options;
 
-  $tournament_form .= "</select> and\n";
+  $tournament_form .= "</select> and$NEWLINE";
 
   $tournament_form
-    .= "<select name='endyear'>\n<option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
+    .= "<select name='endyear'>$NEWLINE<option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
 
   $tournament_form .= $year_options;
 
   $tournament_form
-    .= "</select> in <select name='state'>\n<option selected='selected' value='all'>All countries</option>";
+    .= "</select> in <select name='state'>$NEWLINE<option selected='selected' value='all'>All countries</option>";
 
   $tournament_form .= $country_options;
 

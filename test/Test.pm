@@ -130,17 +130,18 @@ sub alphabetize_routine_order
       {
         my $key             = $alphabetized_routine_keys[$i];
         my $routine_content = $routine_hash->{$key};
-        $alphabetized_file .= "sub $key\n";
-        $alphabetized_file .= "{\n";
+        $alphabetized_file .= "sub $key$NEWLINE";
+        $alphabetized_file .= "{$NEWLINE";
         $alphabetized_file .= $routine_content;
-        $alphabetized_file .= "}\n\n";
+        $alphabetized_file .= "}$NEWLINE$NEWLINE";
       }
       $alphabetized_file .= '1;';
 
       Utils::write_string_to_file( $alphabetized_file, $f );
-      printf "Alphabetized %30s\n", $f;
+      printf "Alphabetized %s$NEWLINE", $f;
     }
   }
+  Utils::format_print($NEWLINE);
   return 1;
 }
 
@@ -156,7 +157,7 @@ sub check_syntax
     my $file = shift @files;
     system "perl -cw $file";
   }
-  Utils::format_print($NEWLINE);
+  Utils::format_print( $NEWLINE . $NEWLINE );
   return 1;
 }
 
@@ -317,8 +318,8 @@ sub compare_strings
     $actual_string = $EMPTY_STRING;
   }
 
-  my @expected_string_lines = split /\n/xms, $expected_string;
-  my @actual_string_lines   = split /\n/xms, $actual_string;
+  my @expected_string_lines = split /$NEWLINE/xms, $expected_string;
+  my @actual_string_lines   = split /$NEWLINE/xms, $actual_string;
 
   my $max_line = List::Util::max( scalar @expected_string_lines,
     scalar @actual_string_lines );
@@ -373,21 +374,21 @@ sub criticize
     -exclude  => ['RequireTidyCode']
   );
 
-  Perl::Critic::Violation::set_format("%m at line %l, column %c. %e. (%p)\n");
+  Perl::Critic::Violation::set_format(
+    "%m at line %l, column %c. %e. (%p)$NEWLINE");
 
   foreach my $f (@files)
   {
     my @violations           = $critic->critique($f);
     my $number_of_violations = scalar @violations;
+    Utils::format_print("Critiquing $f$NEWLINE");
     if ($number_of_violations)
     {
-      Utils::format_print(
-        "Violations for $f ($number_of_violations)$NEWLINE$NEWLINE");
       Utils::format_print( \@violations );
       Utils::format_print( $NEWLINE . $NEWLINE );
     }
   }
-
+  Utils::format_print($NEWLINE);
   return 1;
 }
 
@@ -414,7 +415,10 @@ sub export_constants
     }
     $new_constants_file .= $line;
   }
-  $new_constants_file .= "qw(\n" . ( join "\n", @exportables ) . "\n);\n\n1;";
+  $new_constants_file
+    .= "qw($NEWLINE"
+    . ( join "$NEWLINE", @exportables )
+    . "$NEWLINE);$NEWLINE$NEWLINE 1;";
   Utils::write_string_to_file( $new_constants_file, $constants_filename );
   return 1;
 }
@@ -422,7 +426,7 @@ sub export_constants
 sub format_expected_stdout
 {
   my $stdout       = shift;
-  my @stdout_lines = split /\n/xms, $stdout;
+  my @stdout_lines = split /$NEWLINE/xms, $stdout;
   my $title        = 'EXPECTED STDOUT: ';
   my $title_length = length $title;
 
@@ -439,7 +443,7 @@ sub format_expected_stdout
         .= ( q{ } x $title_length ) . $stdout_lines[$i] . $NEWLINE;
     }
   }
-  return $formatted_stdout . "\n";
+  return $formatted_stdout . "$NEWLINE";
 }
 
 sub make_title
@@ -628,7 +632,7 @@ sub testrun
       && $json_failure->is_failure()
       && $stdout_failure->is_failure() )
     {
-      croak "Croak is set. Exiting on failure.\n";
+      croak "Croak is set. Exiting on failure.$NEWLINE";
     }
   }
 
@@ -644,9 +648,10 @@ sub tidy
 
   foreach my $f (@files)
   {
+    Utils::format_print("Tidying $f$NEWLINE");
     system "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f";
   }
-
+  Utils::format_print($NEWLINE);
   return 1;
 }
 
