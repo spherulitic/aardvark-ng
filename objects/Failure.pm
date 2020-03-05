@@ -47,11 +47,9 @@ sub new
 
   my $failure = {};
 
-  my $failure_fields = $FAILURE_FIELDS;
-
-  for my $i ( 0 .. scalar @{$failure_fields} - 1 )
+  for my $i ( 0 .. scalar @{$FAILURE_FIELDS} - 1 )
   {
-    my $field = $failure_fields->[$i];
+    my $field = $FAILURE_FIELDS->[$i];
     if ( $field eq $FAILURE_TYPE )
     {
       $failure->{$field} = $type;
@@ -90,22 +88,21 @@ sub to_string
     return $EMPTY_STRING;
   }
 
-  my $failure_fields   = $FAILURE_FIELDS;
   my $failure_string   = $EMPTY_STRING;
   my $max_length_field = 0;
 
-  for my $i ( 0 .. scalar @{$failure_fields} - 1 )
+  for my $i ( 0 .. scalar @{$FAILURE_FIELDS} - 1 )
   {
-    my $field        = $failure_fields->[$i];
+    my $field        = $FAILURE_FIELDS->[$i];
     my $field_length = length $field;
     if ( $field_length > $max_length_field )
     {
       $max_length_field = $field_length;
     }
   }
-  for my $i ( 0 .. scalar @{$failure_fields} - 1 )
+  for my $i ( 0 .. scalar @{$FAILURE_FIELDS} - 1 )
   {
-    my $field = $failure_fields->[$i];
+    my $field = $FAILURE_FIELDS->[$i];
     my $value = $this->{$field};
     my $colon = q{:};
     if ( $field eq $FAILURE_DIFF )

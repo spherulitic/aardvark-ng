@@ -13,10 +13,7 @@ use Utils;
 
 sub get_alltime_stats_results_html_string
 {
-  my $dbh                     = shift;
-  my $player_type             = $HTML_ID_PLAYER_TYPE;
-  my $HTML_ID_TOURNAMENT_TYPE = $HTML_ID_TOURNAMENT_TYPE;
-  my $head_to_head_type       = $HTML_ID_HEAD_TO_HEAD_TYPE;
+  my $dbh = shift;
 
   my $sth
     = $dbh->prepare( 'SELECT '
@@ -52,9 +49,7 @@ sub get_alltime_stats_results_html_string
 
   $sth->execute();
 
-  my $all_stats            = Utils::stat_objects();
-  my $GAME_STATS_RANK_NAME = $GAME_STATS_RANK_NAME;
-  my $stat_key_name        = $STAT_KEY_NAME;
+  my $all_stats = Utils::stat_objects();
 
   my $tournament_results_hashref = {};
 
@@ -177,19 +172,7 @@ sub get_alltime_template_html_string
 {
   my $stats = shift;
 
-  my $html_path = $HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = $TEMPLATE_DOCTYPE;
-  my $meta      = $TEMPLATE_META;
-  my $lang      = $TEMPLATE_LANG;
-  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
-  my $sources   = $TEMPLATE_SOURCES;
-  my $style     = $TEMPLATE_STYLE;
-  my $scripts   = $TEMPLATE_SCRIPTS;
-  my $nav       = $TEMPLATE_NAV;
-  my $footer    = $TEMPLATE_FOOTER;
-
-  my @ids_to_click = ();
-
+  my @ids_to_click       = ();
   my $display_none_style = q{style='display:none;'};
 
   my $stats_tabclass = 'stats_tab';
@@ -236,19 +219,19 @@ sub get_alltime_template_html_string
   my $tournament_html_page = $EMPTY_STRING;
 
   $tournament_html_page .= <<"STOP";
-$doctype
+$TEMPLATE_DOCTYPE
 <html>
   <head>
-  $meta
+  $TEMPLATE_META
   <title>All Time Stats</title>
   
-  $sources
+  $TEMPLATE_SOURCES
   
-  $style
+  $TEMPLATE_STYLE
   
   <script type="text/javascript">
  
-    $scripts
+    $TEMPLATE_SCRIPTS
 
    
     window.onload = function()
@@ -265,8 +248,8 @@ $doctype
   </head>
   
   <body id='override'>
-    $wespa_img
-    $nav
+    $TEMPLATE_WESPA_IMAGE
+    $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
       <div style="background-color:white;padding-top:10px;" class="container">
         <h2>All Time Stats</h2>
@@ -277,7 +260,7 @@ $doctype
           </div>
         </div>
       </div>
-      $footer
+      $TEMPLATE_FOOTER
     </div>
   </div>
   </body>
@@ -392,17 +375,6 @@ sub get_player_template_html_string
   my $player_head_to_head_history_html = shift;
   my $player_tournament_history_data   = shift;
 
-  my $html_path = $HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = $TEMPLATE_DOCTYPE;
-  my $meta      = $TEMPLATE_META;
-  my $lang      = $TEMPLATE_LANG;
-  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
-  my $sources   = $TEMPLATE_SOURCES;
-  my $style     = $TEMPLATE_STYLE;
-  my $scripts   = $TEMPLATE_SCRIPTS;
-  my $nav       = $TEMPLATE_NAV;
-  my $footer    = $TEMPLATE_FOOTER;
-
   my $player_name      = $player_info->{player_name};
   my $country_trigraph = $player_info->{country_trigraph};
   my $games_played     = $player_info->{games_played};
@@ -484,7 +456,7 @@ sub get_player_template_html_string
   {
     $country_rankings = $country_fullname;
 
-    my $country_png = "$html_path/flags/$country.png";
+    my $country_png = "$HTML_PATH_TO_WORKING_DIR/flags/$country.png";
     if ($valid_ranking)
     {
       my $country_rankings_link
@@ -514,19 +486,19 @@ sub get_player_template_html_string
   my $player_html_page = $EMPTY_STRING;
 
   $player_html_page .= <<"STOP";
-$doctype
-<html $lang>
+$TEMPLATE_DOCTYPE
+<html $TEMPLATE_LANG>
   <head>
-    $meta
+    $TEMPLATE_META
     <title>$player_name</title>
     
-    $sources
+    $TEMPLATE_SOURCES
     
-    $style
+    $TEMPLATE_STYLE
       
     <script >
 
-      $scripts
+      $TEMPLATE_SCRIPTS
     
       function show_tournament_entry(id)
       {
@@ -545,8 +517,8 @@ $doctype
   </head>
   
   <body id='override'>
-    $wespa_img
-    $nav
+    $TEMPLATE_WESPA_IMAGE
+    $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
       <div style="background-color:white;padding-top:10px;" class="container">
         <div class="row">
@@ -555,7 +527,7 @@ $doctype
             $valid_country_html
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
-            <img src='$html_path/icons/$photo_filename' title='$player_name' alt='$player_name'>
+            <img src='$HTML_PATH_TO_WORKING_DIR/icons/$photo_filename' title='$player_name' alt='$player_name'>
           </div>
         </div>
         <hr>
@@ -590,7 +562,7 @@ $doctype
           </div>
         </div>
       </div>
-      $footer
+      $TEMPLATE_FOOTER
     </div>
   </body>
 </html>
@@ -670,17 +642,6 @@ sub get_rankings_template_html_string
   my $rankings_string = shift;
   my $rankings_data   = shift;
 
-  my $html_path = $HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = $TEMPLATE_DOCTYPE;
-  my $meta      = $TEMPLATE_META;
-  my $lang      = $TEMPLATE_LANG;
-  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
-  my $sources   = $TEMPLATE_SOURCES;
-  my $style     = $TEMPLATE_STYLE;
-  my $scripts   = $TEMPLATE_SCRIPTS;
-  my $nav       = $TEMPLATE_NAV;
-  my $footer    = $TEMPLATE_FOOTER;
-
   my $title           = $rankings_data->{title};
   my $tournament_link = $rankings_data->{tournament_link};
 
@@ -689,27 +650,27 @@ sub get_rankings_template_html_string
   my $rankings_html_page = $EMPTY_STRING;
 
   $rankings_html_page .= <<"STOP"
-$doctype
+$TEMPLATE_DOCTYPE
 <html>
   <head>
-  $meta
+  $TEMPLATE_META
   <title>$title</title>
   
-  $sources
+  $TEMPLATE_SOURCES
   
-  $style
+  $TEMPLATE_STYLE
   
   </head>
   
   <body id='override'>
-    $wespa_img
-    $nav
+    $TEMPLATE_WESPA_IMAGE
+    $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
       
       <div class="container">
         <div class="row">
           <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
-            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$html_path/../wespafb.jpg" alt="WESPA" />$title</h2>	
+            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg" alt="WESPA" />$title</h2>	
           </div>
         </div>
       </div>
@@ -728,7 +689,7 @@ $doctype
           </div>
         </div>
       </div>
-      $footer
+      $TEMPLATE_FOOTER
     </div>
   </body>
 </html>
@@ -1466,17 +1427,6 @@ sub get_tournament_template_html_string
 {
   my $division_data = shift;
 
-  my $html_path = $HTML_PATH_TO_WORKING_DIR;
-  my $doctype   = $TEMPLATE_DOCTYPE;
-  my $meta      = $TEMPLATE_META;
-  my $lang      = $TEMPLATE_LANG;
-  my $wespa_img = $TEMPLATE_WESPA_IMAGE;
-  my $sources   = $TEMPLATE_SOURCES;
-  my $style     = $TEMPLATE_STYLE;
-  my $scripts   = $TEMPLATE_SCRIPTS;
-  my $nav       = $TEMPLATE_NAV;
-  my $footer    = $TEMPLATE_FOOTER;
-
   my $tournament_name = $division_data->[0]->{html}->{tournament_name};
   my $tournament_date = $division_data->[0]->{html}->{tournament_date};
 
@@ -1593,19 +1543,19 @@ sub get_tournament_template_html_string
   my $tournament_html_page = $EMPTY_STRING;
 
   $tournament_html_page .= <<"STOP";
-$doctype
+$TEMPLATE_DOCTYPE
 <html>
   <head>
-  $meta
+  $TEMPLATE_META
   <title>$tournament_name</title>
   
-  $sources
+  $TEMPLATE_SOURCES
   
-  $style
+  $TEMPLATE_STYLE
   
   <script type="text/javascript">
  
-    $scripts
+    $TEMPLATE_SCRIPTS
 
    
     window.onload = function()
@@ -1622,8 +1572,8 @@ $doctype
   </head>
   
   <body id='override'>
-    $wespa_img
-    $nav
+    $TEMPLATE_WESPA_IMAGE
+    $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
       <div style="background-color:white;padding-top:10px;" class="container">
         <h2>$tournament_name ($tournament_date)</h2>
@@ -1639,7 +1589,7 @@ $doctype
           </div>
         </div>
       </div>
-      $footer
+      $TEMPLATE_FOOTER
     </div>
   </div>
   </body>

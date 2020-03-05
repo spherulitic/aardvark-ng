@@ -27,6 +27,7 @@ use JSON::XS;
 
 my $alphabetize;
 my $criticize;
+my $croak;
 my $export;
 my $setexpected;
 my $syntax;
@@ -35,6 +36,7 @@ my $tidy;
 GetOptions(
   alphabetize => \$alphabetize,
   criticize   => \$criticize,
+  croak       => \$croak,
   export      => \$export,
   setexpected => \$setexpected,
   syntax      => \$syntax,
@@ -641,6 +643,12 @@ sub testrun
       . $NEWLINE;
     Utils::format_print($response_content);
     Utils::format_print("$NEWLINE$NEWLINE");
+    if ( $croak
+      && $json_failure->is_failure()
+      && $stdout_failure->is_failure() )
+    {
+      croak "Croak is set. Exiting on failure.\n";
+    }
   }
 
   return 1;

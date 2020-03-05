@@ -149,33 +149,12 @@ sub update_cgi
 {
   my $dbh = shift;
 
-  my $html_path      = $HTML_PATH_TO_WORKING_DIR;
-  my $doctype        = $TEMPLATE_DOCTYPE;
-  my $meta           = $TEMPLATE_META;
-  my $lang           = $TEMPLATE_LANG;
-  my $wespa_img      = $TEMPLATE_WESPA_IMAGE;
-  my $sources        = $TEMPLATE_SOURCES;
-  my $style          = $TEMPLATE_STYLE;
-  my $scripts        = $TEMPLATE_SCRIPTS;
-  my $nav            = $TEMPLATE_NAV;
-  my $footer         = $TEMPLATE_FOOTER;
-  my $base_dir       = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
-  my $tournament_dir = $TOURNAMENT_HTML_DIR;
-
+  my $base_dir      = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
   my $database_name = Utils::get_environment_name($PRODUCTION_DATABASE_NAME);
-  my $host_name     = $DATABASE_HOST_NAME;
-  my $user_name     = $DATABASE_USER_NAME;
-  my $password      = $DATABASE_PASSWORD;
-
-  my $tournaments_tn = $TOURNAMENTS_TABLE_NAME;
-
-  my $cgi_dir = $CGIBIN_DIR;
 
   my $title = 'Tournament Results';
 
   system "mkdir -p $cgi_dir";
-
-  my $filename = $TOURNAMENT_CGI_FILENAME;
 
   my $tournament_cgi_script = <<"CGI"
 #!/usr/bin/perl
@@ -337,8 +316,7 @@ sub update_dynamically_loaded_content
 {
   my $dbh = shift;
 
-  my $players_table = $PLAYERS_TABLE_NAME;
-  my @player_data   = @{
+  my @player_data = @{
     $dbh->selectall_arrayref( "SELECT * FROM $players_table",
       { Slice => {}, RaiseError => 1 } )
   };
@@ -406,13 +384,9 @@ sub update_dynamically_loaded_content
   my $country_search_filename
     = $HTML_DATA_DIR . q{/} . $COUNTRY_SEARCH_DATA_FILENAME;
 
-  my $rankings_dir = $RANKINGS_HTML_DIR;
-
   my @country_data = map { $_->{country} } @valid_player_data;
 
   @country_data = Utils::uniq( \@country_data );
-
-  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
 
   @country_data = grep { $trigraph_hashref->{$_} } @country_data;
 
@@ -434,7 +408,6 @@ sub update_dynamically_loaded_content
   Utils::write_string_to_file( $country_search_html,
     $country_search_filename );
 
-  my $tournaments_tn = $TOURNAMENTS_TABLE_NAME;
   my $uniq_country_query
     = "SELECT DISTINCT country FROM $tournaments_tn WHERE country IS NOT NULL";
   my @all_countries = map { $_->[0] }
@@ -540,11 +513,7 @@ sub update_html
       $tournament_filename );
   }
 
-  my $players_tn = $PLAYERS_TABLE_NAME;
-
-  my $countries_query = "SELECT * FROM $players_tn";
-
-  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
+  my $countries_query = "SELECT * FROM $PLAYERS_TABLE_NAME";
 
   my @all_players = @{
     $dbh->selectall_arrayref( $countries_query,
@@ -656,9 +625,7 @@ sub update_rankings_html
   my $dbh           = shift;
   my $countries_ref = shift;
 
-  my $trigraph_hashref = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
-  my $base_dir         = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
-  my $tournament_dir   = $TOURNAMENT_HTML_DIR;
+  my $base_dir = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
 
   my $most_recent_tournament = Utils::get_most_recent_tournament($dbh);
   my $full_rankings_data     = {
