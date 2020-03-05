@@ -859,7 +859,8 @@ sub get_tournament_results_html_string
     . 'tr.new_world_rank               AS tr_new_world_rank, '
     . 'tr.old_national_rank            AS tr_old_national_rank, '
     . 'tr.new_national_rank            AS tr_new_national_rank, '
-    . 'player.country                  AS p_country ' . 'FROM '
+    . 'player.country                  AS p_country '
+    . 'FROM '
     . "$TOURNAMENT_RESULTS_TABLE_NAME AS tr, "
     . "$TOURNAMENT_RESULTS_TABLE_NAME AS tr_opp, "
     . "$GAMES_TABLE_NAME AS g, "

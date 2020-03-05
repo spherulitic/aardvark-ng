@@ -367,7 +367,7 @@ sub criticize
   Utils::format_print(
     Test::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH ) );
 
-  my @files = Utils::get_perl_files;
+  my @files = Utils::get_perl_files();
 
   my $critic = Perl::Critic->new(
     -severity => $PERL_CRITIC_SEVERITY,
@@ -380,6 +380,21 @@ sub criticize
   foreach my $f (@files)
   {
     my @violations           = $critic->critique($f);
+
+
+    my @file_contents = Utils::write_file_to_array($f);
+    my @line_length_violations = ();
+
+    for my $i (0 .. scalar @file_contents - 1)
+    {
+      if (length $file_contents > $MAX_LINE_LENGTH)
+      {
+        push @line_length_violations, "Line length exceeds $MAX_LINE_LENGTH characters at line " . ($i + 1) '.';
+      }
+    }
+
+    push @violations, @line_length_violations;
+
     my $number_of_violations = scalar @violations;
     Utils::format_print("Critiquing $f$NEWLINE");
     if ($number_of_violations)

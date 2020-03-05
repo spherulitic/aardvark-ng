@@ -10,6 +10,8 @@ use Readonly;
 
 Readonly our $STA_MAX_RATING_ITEMS => 3;
 
+Readonly our $MAX_LINE_LENGTH => 80;
+
 Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
 Readonly our $STS_PLAYER_NAME_INDEX       => 2;
 Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
