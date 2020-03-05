@@ -72,56 +72,10 @@ if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
   Test::harness();
 }
 
-sub tidy
-{
-  Utils::format_print(
-    Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
-
-  my @files = Utils::get_perl_files;
-
-  foreach my $f (@files)
-  {
-    system "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f";
-  }
-
-  return 1;
-}
-
-sub export_constants
-{
-  my $constants_filename = './modules/Constants.pm';
-
-  my @lines             = Utils::write_file_to_array($constants_filename);
-  my $exporting_comment = 'BEGIN EXPORT';
-  my $exporting_regex   = $exporting_comment;
-  $exporting_regex =~ s/\s/\\s/gxms;
-  my @exportables        = ();
-  my $new_constants_file = $EMPTY_STRING;
-
-  while (@lines)
-  {
-    my $line = shift @lines;
-    if ( $line =~ /$exporting_regex/xms )
-    {
-      $new_constants_file .= q{# } . $exporting_comment . "\n";
-      last;
-    }
-    if ( $line =~ /Readonly\sour\s(\$\S+)/xms )
-    {
-      push @exportables, $1;
-    }
-    $new_constants_file .= $line;
-  }
-  $new_constants_file
-    .= "our \@EXPORT = qw(\n" . ( join "\n", @exportables ) . "\n);\n\n1;";
-  Utils::write_string_to_file( $new_constants_file, $constants_filename );
-  return 1;
-}
-
 sub alphabetize_routine_order
 {
   Utils::format_print(
-    Test::make_title( 'ALPHABETIZING ROUTINE ORDER', q{%} ),
+    Test::make_title( 'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH ),
     $TEST_TITLE_WIDTH );
 
   my @files = Utils::get_perl_files;
@@ -146,7 +100,7 @@ sub alphabetize_routine_order
       }
       elsif ( !$current_routine )
       {
-        $file_string .= $_;
+        $file_string .= $current_line;
       }
       elsif ( $current_line =~ /^[{]\s*/xms )
       {
@@ -158,7 +112,7 @@ sub alphabetize_routine_order
       }
       elsif ($in_current_routine)
       {
-        $routine_hash->{$current_routine} .= $_;
+        $routine_hash->{$current_routine} .= $current_line;
       }
     }
     if ($current_routine)
@@ -438,6 +392,37 @@ sub criticize
   return 1;
 }
 
+sub export_constants
+{
+  my $constants_filename = './modules/Constants.pm';
+
+  my @lines             = Utils::write_file_to_array($constants_filename);
+  my $exporting_comment = 'BEGIN EXPORT';
+  my $exporting_regex   = $exporting_comment;
+  $exporting_regex =~ s/\s/\\s/gxms;
+  my @exportables        = ();
+  my $new_constants_file = $EMPTY_STRING;
+
+  while (@lines)
+  {
+    my $line = shift @lines;
+    if ( $line =~ /$exporting_regex/xms )
+    {
+      $new_constants_file .= q{# } . $exporting_comment . "\n";
+      last;
+    }
+    if ( $line =~ /Readonly\sour\s(\$\S+)/xms )
+    {
+      push @exportables, $1;
+    }
+    $new_constants_file .= $line;
+  }
+  $new_constants_file
+    .= "our \@EXPORT = qw(\n" . ( join "\n", @exportables ) . "\n);\n\n1;";
+  Utils::write_string_to_file( $new_constants_file, $constants_filename );
+  return 1;
+}
+
 sub format_expected_stdout
 {
   my $stdout       = shift;
@@ -649,6 +634,21 @@ sub testrun
     {
       croak "Croak is set. Exiting on failure.\n";
     }
+  }
+
+  return 1;
+}
+
+sub tidy
+{
+  Utils::format_print(
+    Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
+
+  my @files = Utils::get_perl_files;
+
+  foreach my $f (@files)
+  {
+    system "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f";
   }
 
   return 1;

@@ -242,29 +242,6 @@ sub load
   return 1;
 }
 
-sub parse_tou_header
-{
-  my $filename = shift;
-
-  my $date;
-  my $tournament_name;
-
-  open my $tou_read, q{<}, $filename
-    or croak "Cannot open .tou file $filename: $OS_ERROR";
-  my $first_line = <$tou_read>;
-  close $tou_read or croak "Cannot close .tou file $filename: $OS_ERROR";
-  chomp $first_line;
-  $first_line =~ s/\r//gxms;
-
-  if ( $first_line =~ /^[*].(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms )
-  {
-    $date            = $3 . $2 . $1;
-    $tournament_name = $4;
-  }
-
-  return ( $date, $tournament_name );
-}
-
 sub new
 {
   my ( $tou_type, $arg_ref ) = @_;
@@ -361,188 +338,27 @@ sub new
   return $this;
 }
 
-sub process_sts
+sub new_division
 {
   my ( $this, $arg_ref ) = @_;
 
-  my $dbh                   = $arg_ref->{dbh};
-  my $date                  = $arg_ref->{date};
-  my $sts_file              = $arg_ref->{sts_file};
-  my $sta_file              = $arg_ref->{sta_file};
-  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
+  my $filename                = $arg_ref->{filename};
+  my $current_division_name   = $arg_ref->{current_division_name};
+  my $current_division_number = $arg_ref->{current_division_number};
+  my $players                 = $arg_ref->{players};
+  my $game_data               = $arg_ref->{game_data};
 
-  my $player_data    = $this->{$TOU_PLAYER_DATA};
-  my $alt_names_hash = $this->{$TOU_CONVERSION_HASH};
-
-  # This code prefers to use the .STS file
-
-  my $sts_or_sta_file = $sts_file;
-  my $is_sts          = 1;
-  if ( !-e $sts_file )
-  {
-    $sts_or_sta_file = $sta_file;
-    $is_sts          = 0;
-  }
-
-  my $switch_world_and_nation = 0;
-  my $no_world                = 1;
-  my $begin_player_captures   = 0;
-
-  # Read the .STS file
-  my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
-  while (@sts_lines)
-  {
-    my $sts_line = shift @sts_lines;
-    chomp $sts_line;
-
-    # Remove trailing and leading whitespace from line
-    $sts_line =~ s/^\s+|\s+$//gxms;
-
-    if ( !$sts_line ) { next; }
-
-    my $sts_line_extraction = $this->parse_sts_line(
-      { is_sts                  => $is_sts,
-        sts_line                => $sts_line,
-        no_world                => $no_world,
-        begin_player_captures   => $begin_player_captures,
-        switch_world_and_nation => $switch_world_and_nation
-      }
-    );
-
-    # These are common between both .STS and .STA files
-    my $player_country    = $sts_line_extraction->{player_country};
-    my $player_name       = $sts_line_extraction->{player_name};
-    my $start_rating      = $sts_line_extraction->{start_rating};
-    my $end_rating        = $sts_line_extraction->{end_rating};
-    my $expected_wins     = $sts_line_extraction->{expected_wins};
-    my $old_world_rank    = $sts_line_extraction->{old_world_rank};
-    my $new_world_rank    = $sts_line_extraction->{new_world_rank};
-    my $old_national_rank = $sts_line_extraction->{old_national_rank};
-    my $new_national_rank = $sts_line_extraction->{new_national_rank};
-    $begin_player_captures = $sts_line_extraction->{begin_player_captures};
-
-    # Sometimes byes are represented by players named something like
-    # Bye A. If this is the case, we do not need to record the info
-    # for this 'player'
-    if ( Utils::player_name_is_bye($player_name) )
-    {
-      next;
+  my $division = Division->new(
+    { filename                => $filename,
+      current_division_name   => $current_division_name,
+      current_division_number => $current_division_number++,
+      players                 => $players,
+      game_data               => $game_data
     }
+  );
 
-    $expected_wins     = Utils::negative_one_if_false($expected_wins);
-    $start_rating      = Utils::negative_one_if_false($start_rating);
-    $old_world_rank    = Utils::negative_one_if_false($old_world_rank);
-    $new_world_rank    = Utils::negative_one_if_false($new_world_rank);
-    $old_national_rank = Utils::negative_one_if_false($old_national_rank);
-    $new_national_rank = Utils::negative_one_if_false($new_national_rank);
-
-    $player_country    =~ s/^\s+|\s+$//gxms;
-    $player_name       =~ s/^\s+|\s+$//gxms;
-    $new_world_rank    =~ s/^\s+|\s+$//gxms;
-    $old_world_rank    =~ s/^\s+|\s+$//gxms;
-    $old_national_rank =~ s/^\s+|\s+$//gxms;
-    $new_national_rank =~ s/^\s+|\s+$//gxms;
-    $expected_wins     =~ s/^\s+|\s+$//gxms;
-    $start_rating      =~ s/^\s+|\s+$//gxms;
-    $end_rating        =~ s/^\s+|\s+$//gxms;
-
-    my @required_captures = grep { !$_ }
-      ( $player_country, $player_name, $start_rating, $end_rating );
-
-    if (@required_captures)
-    {
-      # Covered by TC 8
-      $this->set_error_report(
-        Utils::format_error(
-          [ [ 'ERROR', 'Required values are uncaptured' ],
-            [ 'File',  $sts_or_sta_file ],
-            [ 'Name',  $player_name ]
-          ]
-        )
-      );
-      return $this;
-    }
-
-    # Some country trigraphs in the old aardvark are incorrect
-    # and need to be converted to valid ISO 3166 trigraphs
-    $player_country = Utils::convert_trigraph($player_country);
-
-    # Convert possible alt name to correct name
-
-    $player_name = Utils::convert_name( $player_name, $alt_names_hash );
-    my $pretty_player_name = Utils::make_pretty($player_name);
-    $player_name = Utils::sanitize($player_name);
-
-    $this->{$TOU_STS_PLAYER_NAMES}->{$player_name} = 1;
-
-    # Search for this player in the players table
-    # If this player already exists in the database, we will need their
-    # id for the table to add them properly
-
-    my $player_query
-      = "SELECT id, country, last_played FROM $PLAYERS_TABLE_NAME WHERE BINARY name=\"$pretty_player_name\"";
-
-    my @player_query_result
-      = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
-
-    my $player_id;
-
-    if ( !@player_query_result )    # Player does not exist
-    {
-      $player_id = Utils::insert_hash_into_table(
-        $dbh,
-        $PLAYERS_TABLE_NAME,
-        { name      => $pretty_player_name,
-          country   => $player_country,
-          photo     => Utils::get_player_photo($player_name),
-          suspended => 0,                                      # Updated later
-          deceased => $deceased_players_hash->{$player_name} ? 1 : 0,
-          provisional => -1,           # Updated laster
-          total_games => 0,            # Updated later
-          last_played => $date,
-          rating      => $end_rating
-        }
-      );
-    }
-    else
-    {
-
-      $player_id = shift @player_query_result;
-      my $existing_country   = shift @player_query_result;
-      my $player_last_played = shift @player_query_result;
-
-      $player_last_played =~ s/\D//gxms;
-
-      my $newer_tourney_cond = $player_last_played < $date;
-
-      my $no_country_cond = !$existing_country
-        && $player_country;
-
-      my $changed_to_newer_country_cond
-        = $existing_country
-        && $player_country
-        && $existing_country ne $player_country
-        && $player_last_played < $date;
-
-      my $changed_country_cond
-        = $existing_country
-        && $player_country
-        && $existing_country ne $player_country;
-
-      if ($newer_tourney_cond)
-      {
-        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
-          { last_played => $date, rating => $end_rating } );
-      }
-      if ( $no_country_cond || $changed_to_newer_country_cond )
-      {
-        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
-          { country => $player_country } );
-      }
-    }
-    $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
-  }
-  return 1;
+  $division->process();
+  return $this->process_division($division);
 }
 
 sub parse_sts_line
@@ -769,27 +585,27 @@ sub parse_sts_line
   };
 }
 
-sub new_division
+sub parse_tou_header
 {
-  my ( $this, $arg_ref ) = @_;
+  my $filename = shift;
 
-  my $filename                = $arg_ref->{filename};
-  my $current_division_name   = $arg_ref->{current_division_name};
-  my $current_division_number = $arg_ref->{current_division_number};
-  my $players                 = $arg_ref->{players};
-  my $game_data               = $arg_ref->{game_data};
+  my $date;
+  my $tournament_name;
 
-  my $division = Division->new(
-    { filename                => $filename,
-      current_division_name   => $current_division_name,
-      current_division_number => $current_division_number++,
-      players                 => $players,
-      game_data               => $game_data
-    }
-  );
+  open my $tou_read, q{<}, $filename
+    or croak "Cannot open .tou file $filename: $OS_ERROR";
+  my $first_line = <$tou_read>;
+  close $tou_read or croak "Cannot close .tou file $filename: $OS_ERROR";
+  chomp $first_line;
+  $first_line =~ s/\r//gxms;
 
-  $division->process();
-  return $this->process_division($division);
+  if ( $first_line =~ /^[*].(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms )
+  {
+    $date            = $3 . $2 . $1;
+    $tournament_name = $4;
+  }
+
+  return ( $date, $tournament_name );
 }
 
 sub process
@@ -1031,6 +847,190 @@ sub process_division
   $division->{$DIVISION_GAME_AND_PLAYER_RESULTS} = $game_and_player_results;
   $this->{$TOU_DIVISION_DATA}->{ $division->{$DIVISION_NAME} } = $division;
 
+  return 1;
+}
+
+sub process_sts
+{
+  my ( $this, $arg_ref ) = @_;
+
+  my $dbh                   = $arg_ref->{dbh};
+  my $date                  = $arg_ref->{date};
+  my $sts_file              = $arg_ref->{sts_file};
+  my $sta_file              = $arg_ref->{sta_file};
+  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
+
+  my $player_data    = $this->{$TOU_PLAYER_DATA};
+  my $alt_names_hash = $this->{$TOU_CONVERSION_HASH};
+
+  # This code prefers to use the .STS file
+
+  my $sts_or_sta_file = $sts_file;
+  my $is_sts          = 1;
+  if ( !-e $sts_file )
+  {
+    $sts_or_sta_file = $sta_file;
+    $is_sts          = 0;
+  }
+
+  my $switch_world_and_nation = 0;
+  my $no_world                = 1;
+  my $begin_player_captures   = 0;
+
+  # Read the .STS file
+  my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
+  while (@sts_lines)
+  {
+    my $sts_line = shift @sts_lines;
+    chomp $sts_line;
+
+    # Remove trailing and leading whitespace from line
+    $sts_line =~ s/^\s+|\s+$//gxms;
+
+    if ( !$sts_line ) { next; }
+
+    my $sts_line_extraction = $this->parse_sts_line(
+      { is_sts                  => $is_sts,
+        sts_line                => $sts_line,
+        no_world                => $no_world,
+        begin_player_captures   => $begin_player_captures,
+        switch_world_and_nation => $switch_world_and_nation
+      }
+    );
+
+    # These are common between both .STS and .STA files
+    my $player_country    = $sts_line_extraction->{player_country};
+    my $player_name       = $sts_line_extraction->{player_name};
+    my $start_rating      = $sts_line_extraction->{start_rating};
+    my $end_rating        = $sts_line_extraction->{end_rating};
+    my $expected_wins     = $sts_line_extraction->{expected_wins};
+    my $old_world_rank    = $sts_line_extraction->{old_world_rank};
+    my $new_world_rank    = $sts_line_extraction->{new_world_rank};
+    my $old_national_rank = $sts_line_extraction->{old_national_rank};
+    my $new_national_rank = $sts_line_extraction->{new_national_rank};
+    $begin_player_captures = $sts_line_extraction->{begin_player_captures};
+
+    # Sometimes byes are represented by players named something like
+    # Bye A. If this is the case, we do not need to record the info
+    # for this 'player'
+    if ( Utils::player_name_is_bye($player_name) )
+    {
+      next;
+    }
+
+    $expected_wins     = Utils::negative_one_if_false($expected_wins);
+    $start_rating      = Utils::negative_one_if_false($start_rating);
+    $old_world_rank    = Utils::negative_one_if_false($old_world_rank);
+    $new_world_rank    = Utils::negative_one_if_false($new_world_rank);
+    $old_national_rank = Utils::negative_one_if_false($old_national_rank);
+    $new_national_rank = Utils::negative_one_if_false($new_national_rank);
+
+    $player_country    =~ s/^\s+|\s+$//gxms;
+    $player_name       =~ s/^\s+|\s+$//gxms;
+    $new_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_national_rank =~ s/^\s+|\s+$//gxms;
+    $new_national_rank =~ s/^\s+|\s+$//gxms;
+    $expected_wins     =~ s/^\s+|\s+$//gxms;
+    $start_rating      =~ s/^\s+|\s+$//gxms;
+    $end_rating        =~ s/^\s+|\s+$//gxms;
+
+    my @required_captures = grep { !$_ }
+      ( $player_country, $player_name, $start_rating, $end_rating );
+
+    if (@required_captures)
+    {
+      # Covered by TC 8
+      $this->set_error_report(
+        Utils::format_error(
+          [ [ 'ERROR', 'Required values are uncaptured' ],
+            [ 'File',  $sts_or_sta_file ],
+            [ 'Name',  $player_name ]
+          ]
+        )
+      );
+      return $this;
+    }
+
+    # Some country trigraphs in the old aardvark are incorrect
+    # and need to be converted to valid ISO 3166 trigraphs
+    $player_country = Utils::convert_trigraph($player_country);
+
+    # Convert possible alt name to correct name
+
+    $player_name = Utils::convert_name( $player_name, $alt_names_hash );
+    my $pretty_player_name = Utils::make_pretty($player_name);
+    $player_name = Utils::sanitize($player_name);
+
+    $this->{$TOU_STS_PLAYER_NAMES}->{$player_name} = 1;
+
+    # Search for this player in the players table
+    # If this player already exists in the database, we will need their
+    # id for the table to add them properly
+
+    my $player_query
+      = "SELECT id, country, last_played FROM $PLAYERS_TABLE_NAME WHERE BINARY name=\"$pretty_player_name\"";
+
+    my @player_query_result
+      = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
+
+    my $player_id;
+
+    if ( !@player_query_result )    # Player does not exist
+    {
+      $player_id = Utils::insert_hash_into_table(
+        $dbh,
+        $PLAYERS_TABLE_NAME,
+        { name      => $pretty_player_name,
+          country   => $player_country,
+          photo     => Utils::get_player_photo($player_name),
+          suspended => 0,                                      # Updated later
+          deceased => $deceased_players_hash->{$player_name} ? 1 : 0,
+          provisional => -1,           # Updated laster
+          total_games => 0,            # Updated later
+          last_played => $date,
+          rating      => $end_rating
+        }
+      );
+    }
+    else
+    {
+
+      $player_id = shift @player_query_result;
+      my $existing_country   = shift @player_query_result;
+      my $player_last_played = shift @player_query_result;
+
+      $player_last_played =~ s/\D//gxms;
+
+      my $newer_tourney_cond = $player_last_played < $date;
+
+      my $no_country_cond = !$existing_country
+        && $player_country;
+
+      my $changed_to_newer_country_cond
+        = $existing_country
+        && $player_country
+        && $existing_country ne $player_country
+        && $player_last_played < $date;
+
+      my $changed_country_cond
+        = $existing_country
+        && $player_country
+        && $existing_country ne $player_country;
+
+      if ($newer_tourney_cond)
+      {
+        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
+          { last_played => $date, rating => $end_rating } );
+      }
+      if ( $no_country_cond || $changed_to_newer_country_cond )
+      {
+        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
+          { country => $player_country } );
+      }
+    }
+    $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
+  }
   return 1;
 }
 

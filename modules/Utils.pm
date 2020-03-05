@@ -14,38 +14,6 @@ use English qw( -no_match_vars );
 use lib './modules';
 use Constants;
 
-sub get_perl_files
-{
-  my @files = ();
-
-  foreach my $dir ( @{$PERL_DIRECTORIES} )
-  {
-    my $fh_dir;
-    opendir $fh_dir, $dir;
-    push @files,
-      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
-  }
-  return @files;
-}
-
-sub write_file_to_array
-{
-  my $filename = shift;
-  open my $fh, q{<}, $filename
-    or croak "Cannot open file $filename: $OS_ERROR\n";
-  my @array = <$fh>;
-  close $fh or croak "Cannot close file $filename: $OS_ERROR\n";
-  return @array;
-}
-
-sub is_command
-{
-  my $filename = shift;
-  $filename =~ s/^\s+|\s+$//gxms;
-  my $filename_length = length $filename;
-  return ( substr $filename, $filename_length - 1, $filename_length ) eq q{|};
-}
-
 sub add_games_to_existing_player
 {
   my $dbh          = shift;
@@ -213,6 +181,19 @@ sub convert_trigraph
   return;
 }
 
+sub convert_trigraph_to_country
+{
+  # Assumes a corrected trigraph
+  my $trigraph = shift;
+
+  my $country = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph};
+  if ( !$country )
+  {
+    $country = $DEFAULT_UNKNOWN_COUNTRY;
+  }
+  return $country;
+}
+
 sub copy_database_to_production
 {
   my $production_database_name
@@ -236,6 +217,76 @@ sub create_html_id
   my $id           = shift;
 
   return ( join q{_}, ( $html_element, $type, $id ) );
+}
+
+sub determine_item_class
+{
+  my $key = shift;
+
+  my $wins_column   = q{class='winscolumn'};
+  my $losses_column = q{class='lossescolumn'};
+  my $draws_column  = q{class='drawscolumn'};
+  my $byes_column   = q{class='byescolumn'};
+
+  my %class_hash = (
+    tr_wins   => $wins_column,
+    hh_wins   => $wins_column,
+    tr_losses => $losses_column,
+    hh_losses => $losses_column,
+    hh_draws  => $draws_column,
+    tr_byes   => $byes_column,
+  );
+  my $class_string = $class_hash{$key};
+  if ( !$class_string )
+  {
+    $class_string = $EMPTY_STRING;
+  }
+  return $class_string;
+}
+
+sub determine_item_value
+{
+  my $arg_ref = @_;
+
+  my $key       = $arg_ref->{key};
+  my $raw_value = $arg_ref->{raw_value};
+  my $item      = $arg_ref->{item};
+
+  if ( !defined $raw_value )
+  {
+    return $EMPTY_STRING;
+  }
+
+  my $base_dir = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
+
+  my %value_hash = (
+    tr_tournament_name => [ $TOURNAMENT_HTML_DIR, 't_id' ],
+    opp_name           => [ $PLAYER_HTML_DIR,     'opp_id' ],
+    tr_player_name     => [ $PLAYER_HTML_DIR,     'tr_player_id' ],
+    name               => [ $PLAYER_HTML_DIR,     'id' ],
+  );
+
+  my $value = $raw_value;
+
+  my $link_info = $value_hash{$key};
+
+  if ($link_info)
+  {
+    $value = Utils::make_link( $base_dir, $link_info->[0],
+      $item->{ $link_info->[1] } . '.html', $raw_value );
+  }
+  elsif ( $key eq 'p_country' || $key eq 'country' )
+  {
+    my $trigraph = $item->{$key};
+    my $country  = Utils::convert_trigraph_to_country($trigraph);
+    if ( $country ne $DEFAULT_UNKNOWN_COUNTRY )
+    {
+      $value
+        = Utils::make_link( $base_dir, $RANKINGS_HTML_DIR, "$trigraph.html",
+        $country );
+    }
+  }
+  return $value;
 }
 
 sub drop_all_wespa_tables
@@ -314,32 +365,6 @@ sub fetch_local_tournament_data
   return 1;
 }
 
-sub format_print
-{
-  my $input = shift;
-
-  my @strings;
-
-  if ( ref $input eq $PERL_ARRAY_REF_NAME )
-  {
-    @strings = @{$input};
-  }
-  else
-  {
-    @strings = ($input);
-  }
-
-  my $string = shift @strings;
-
-  while ($string)
-  {
-    print $string or croak "Cannot print to STDOUT: $OS_ERROR\n";
-    $string = shift @strings;
-  }
-
-  return 1;
-}
-
 sub format_error
 {
   my $error_arrayref = shift;
@@ -376,6 +401,32 @@ sub format_error
   return $error_string;
 }
 
+sub format_print
+{
+  my $input = shift;
+
+  my @strings;
+
+  if ( ref $input eq $PERL_ARRAY_REF_NAME )
+  {
+    @strings = @{$input};
+  }
+  else
+  {
+    @strings = ($input);
+  }
+
+  my $string = shift @strings;
+
+  while ($string)
+  {
+    print $string or croak "Cannot print to STDOUT: $OS_ERROR\n";
+    $string = shift @strings;
+  }
+
+  return 1;
+}
+
 sub get_country_from_filename
 {
   my $filename       = shift;
@@ -392,6 +443,19 @@ sub get_environment_name
     return $name . $DEV_ENV_KEYWORD;
   }
   return $name;
+}
+
+sub get_iso_date
+{
+  my $time      = shift;
+  my $separator = shift;
+
+  my @t = localtime $time;
+  $t[$LOCALTIME_YEAR_INDEX] += $LOCALTIME_YEAR_BASE;
+  $t[$LOCALTIME_MONTH_INDEX]++;
+
+  return sprintf "%04d$separator%02d$separator%02d",
+    @t[ $LOCALTIME_YEAR_INDEX, $LOCALTIME_MONTH_INDEX, $LOCALTIME_DAY_INDEX ];
 }
 
 sub get_most_recent_tournament
@@ -429,6 +493,20 @@ sub get_most_recent_tournament
     = @{ $dbh->selectall_arrayref( $query, { RaiseError => 1 } ) };
   return [ $tournament_name[0]->[0], $tournament_name[0]->[1] ];
 
+}
+
+sub get_perl_files
+{
+  my @files = ();
+
+  foreach my $dir ( @{$PERL_DIRECTORIES} )
+  {
+    my $fh_dir;
+    opendir $fh_dir, $dir;
+    push @files,
+      map { $dir . q{/} . $_ } ( grep {/[.]p[ml]/xms} readdir $fh_dir );
+  }
+  return @files;
 }
 
 sub get_player_photo
@@ -584,6 +662,14 @@ sub insert_hash_list_into_table
   return $last_insert_id_hash;
 }
 
+sub is_command
+{
+  my $filename = shift;
+  $filename =~ s/^\s+|\s+$//gxms;
+  my $filename_length = length $filename;
+  return ( substr $filename, $filename_length - 1, $filename_length ) eq q{|};
+}
+
 sub make_link
 {
   my $base_dir = shift;
@@ -694,89 +780,6 @@ sub make_row
   $row_string .= "</tr>\n";
 
   return $row_string;
-}
-
-sub determine_item_value
-{
-  my $arg_ref = @_;
-
-  my $key       = $arg_ref->{key};
-  my $raw_value = $arg_ref->{raw_value};
-  my $item      = $arg_ref->{item};
-
-  if ( !defined $raw_value )
-  {
-    return $EMPTY_STRING;
-  }
-
-  my $base_dir = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
-
-  my %value_hash = (
-    tr_tournament_name => [ $TOURNAMENT_HTML_DIR, 't_id' ],
-    opp_name           => [ $PLAYER_HTML_DIR,     'opp_id' ],
-    tr_player_name     => [ $PLAYER_HTML_DIR,     'tr_player_id' ],
-    name               => [ $PLAYER_HTML_DIR,     'id' ],
-  );
-
-  my $value = $raw_value;
-
-  my $link_info = $value_hash{$key};
-
-  if ($link_info)
-  {
-    $value = Utils::make_link( $base_dir, $link_info->[0],
-      $item->{ $link_info->[1] } . '.html', $raw_value );
-  }
-  elsif ( $key eq 'p_country' || $key eq 'country' )
-  {
-    my $trigraph = $item->{$key};
-    my $country  = Utils::convert_trigraph_to_country($trigraph);
-    if ( $country ne $DEFAULT_UNKNOWN_COUNTRY )
-    {
-      $value
-        = Utils::make_link( $base_dir, $RANKINGS_HTML_DIR, "$trigraph.html",
-        $country );
-    }
-  }
-  return $value;
-}
-
-sub determine_item_class
-{
-  my $key = shift;
-
-  my $wins_column   = q{class='winscolumn'};
-  my $losses_column = q{class='lossescolumn'};
-  my $draws_column  = q{class='drawscolumn'};
-  my $byes_column   = q{class='byescolumn'};
-
-  my %class_hash = (
-    tr_wins   => $wins_column,
-    hh_wins   => $wins_column,
-    tr_losses => $losses_column,
-    hh_losses => $losses_column,
-    hh_draws  => $draws_column,
-    tr_byes   => $byes_column,
-  );
-  my $class_string = $class_hash{$key};
-  if ( !$class_string )
-  {
-    $class_string = $EMPTY_STRING;
-  }
-  return $class_string;
-}
-
-sub convert_trigraph_to_country
-{
-  # Assumes a corrected trigraph
-  my $trigraph = shift;
-
-  my $country = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph};
-  if ( !$country )
-  {
-    $country = $DEFAULT_UNKNOWN_COUNTRY;
-  }
-  return $country;
 }
 
 sub make_tab_div
@@ -973,19 +976,6 @@ sub sanitize
   $name =~ s/\W//gxms;
 
   return $name;
-}
-
-sub get_iso_date
-{
-  my $time      = shift;
-  my $separator = shift;
-
-  my @t = localtime $time;
-  $t[$LOCALTIME_YEAR_INDEX] += $LOCALTIME_YEAR_BASE;
-  $t[$LOCALTIME_MONTH_INDEX]++;
-
-  return sprintf "%04d$separator%02d$separator%02d",
-    @t[ $LOCALTIME_YEAR_INDEX, $LOCALTIME_MONTH_INDEX, $LOCALTIME_DAY_INDEX ];
 }
 
 sub set_current_status
@@ -1232,6 +1222,16 @@ sub update_record_by_id
   }
 
   return 1;
+}
+
+sub write_file_to_array
+{
+  my $filename = shift;
+  open my $fh, q{<}, $filename
+    or croak "Cannot open file $filename: $OS_ERROR\n";
+  my @array = <$fh>;
+  close $fh or croak "Cannot close file $filename: $OS_ERROR\n";
+  return @array;
 }
 
 sub write_file_to_string
