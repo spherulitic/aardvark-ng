@@ -73,14 +73,30 @@ if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
   Test::harness();
 }
 
+sub harness
+{
+  Utils::format_print( Test::make_title('STARTING TEST HARNESS', '%', $TEST_TITLE_WIDTH) );
+  
+  # Processing Errors
+  Test::testrun('PROCESSING ERRORS', $FIRST_PROCESSING_ERRORS_TC, $LAST_PROCESSING_ERRORS_TC);
+
+  # Processing Warnings
+
+  # Create an incorrect and missing flag for testing
+  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
+  system "mv $flag_dir/USA.png $flag_dir/USB.png";
+
+  Test::testrun('PROCESSING WARNINGS', $FIRST_PROCESSING_WARNINGS_TC, $LAST_PROCESSING_WARNINGS_TC);
+
+  system "mv $flag_dir/USB.png $flag_dir/USA.png";
+
+  return 1;
+}
+
+
 sub alphabetize_routine_order
 {
-  Utils::format_print(
-    Test::make_title(
-      'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH
-    ),
-    $TEST_TITLE_WIDTH
-  );
+  Utils::format_print( Test::make_title('ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH ) );
 
   my @files = Utils::get_perl_files;
 
@@ -641,8 +657,8 @@ sub testrun
     Utils::format_print($response_content);
     Utils::format_print("$NEWLINE$NEWLINE");
     if ( $croak
-      && $json_failure->is_failure()
-      && $stdout_failure->is_failure() )
+      && ($json_failure->is_failure() || $stdout_failure->is_failure() )
+       )
     {
       croak "Croak is set. Exiting on failure.$NEWLINE";
     }

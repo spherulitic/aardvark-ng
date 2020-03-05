@@ -12,6 +12,11 @@ Readonly our $STA_MAX_RATING_ITEMS => 3;
 
 Readonly our $MAX_LINE_LENGTH => 80;
 
+Readonly our $FIRST_PROCESSING_ERRORS_TC => 1;
+Readonly our $LAST_PROCESSING_ERRORS_TC => 14;
+Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
+Readonly our $LAST_PROCESSING_WARNINGS_TC => 15;
+
 Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
 Readonly our $STS_PLAYER_NAME_INDEX       => 2;
 Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
