@@ -91,8 +91,8 @@ sub load_all_tournament_data
   );
 
   # Process every .tou file
-  Update::load_all_tou_files( $dbh, $filenames_array_ref, $alt_names_hash,
-    $deceased_players_hash );
+  Update::load_all_tou_files( $dbh, $filenames_array_ref,
+    $alt_names_hash, $deceased_players_hash );
 
   # After all tournaments are loaded into the database,
   # set the 'current' and 'provisional' status for each player
@@ -154,7 +154,7 @@ sub update_cgi
 
   my $title = 'Tournament Results';
 
-  system "mkdir -p $cgi_dir";
+  system "mkdir -p $CGIBIN_DIR";
 
   my $tournament_cgi_script = <<"CGI"
 #!/usr/bin/perl
@@ -174,14 +174,14 @@ my \$partname  = sanitize(\$cgi->param('partname'));
 \$startyear .= '-00-00';
 \$endyear   .= '-12-31';
 
-my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         '$user_name', '$password',
+my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$DATABASE_HOST_NAME",
+                         '$DATABASE_USER_NAME', '$DATABASE_PASSWORD',
                          {RaiseError => 1}); 
 
 my \$query =
 "
   SELECT *
-  FROM $tournaments_tn AS t
+  FROM $TOURNAMENTS_TABLE_NAME AS t
   WHERE
     t.end_date >= '\$startyear' AND t.start_date <= '\$endyear'    
 ";
@@ -233,7 +233,7 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
   }
   my \$num = \$i + 1;
 
-  my \$url = '/' . '$base_dir' . '/' . '$tournament_dir' . '/' . \$id . '.html';
+  my \$url = '/' . '$base_dir' . '/' . '$TOURNAMENT_HTML_DIR' . '/' . \$id . '.html';
   my \$link = "<a href='\$url'>\$name</a>";
   \$table_content .= "<tr class='\$row_class'><td>\$num</td><td>\$date</td><td>\$link</td></tr>";
   }
@@ -250,27 +250,27 @@ my \$content =
 ";
 
 my \$results_html_page .= <<STOP
-$doctype
+$TEMPLATE_DOCTYPE
 <html>
   <head>
-  $meta
+  $TEMPLATE_META
   <title>$title</title>
   
-  $sources
+  $TEMPLATE_SOURCES
   
-  $style
+  $TEMPLATE_STYLE
   
   </head>
   
   <body id='override'>
-    $wespa_img
-    $nav
+    $TEMPLATE_WESPA_IMAGE
+    $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
       
       <div  class="container">
         <div class="row">
           <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
-            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$html_path/../wespafb.jpg" alt="WESPA" />$title</h2>   
+            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg" alt="WESPA" />$title</h2>   
           </div>
         </div>
       </div>
@@ -281,7 +281,7 @@ $doctype
           </div>
         </div>
       </div>
-      $footer
+      $TEMPLATE_FOOTER
     </div>
   </body>
 </html>
@@ -307,7 +307,7 @@ print \$results_html_page;
 CGI
     ;
   Utils::write_string_to_file( $tournament_cgi_script,
-    $cgi_dir . q{/} . $filename );
+    $CGIBIN_DIR . q{/} . $TOURNAMENT_CGI_FILENAME );
 
   return 1;
 }
@@ -317,8 +317,10 @@ sub update_dynamically_loaded_content
   my $dbh = shift;
 
   my @player_data = @{
-    $dbh->selectall_arrayref( "SELECT * FROM $players_table",
-      { Slice => {}, RaiseError => 1 } )
+    $dbh->selectall_arrayref(
+      "SELECT * FROM $PLAYERS_TABLE_NAME",
+      { Slice => {}, RaiseError => 1 }
+    )
   };
 
   @player_data = reverse sort { $a->{rating} <=> $b->{rating} } @player_data;
@@ -363,14 +365,10 @@ sub update_dynamically_loaded_content
   my $player_search_filename
     = $HTML_DATA_DIR . q{/} . $PLAYER_SEARCH_DATA_FILENAME;
 
-  my $working_dir = $DEFAULT_SHORT_NAME_WORKING_DIR;
-  my $html_dir    = $HTML_DIR;
-  my $player_dir  = $PLAYER_HTML_DIR;
-
   my $player_search_html = HTML::get_datalist_html(
-    { data           => \@player_data,
-      title          => 'Player Name:',
-      href           => "/$working_dir/$html_dir/$player_dir",
+    { data  => \@player_data,
+      title => 'Player Name:',
+      href  => "/$DEFAULT_SHORT_NAME_WORKING_DIR/$HTML_DIR/$PLAYER_HTML_DIR",
       html_id        => 'search_input_players',
       input_id       => 'datalist_input_element_players',
       button_id      => 'player_button',
@@ -388,16 +386,19 @@ sub update_dynamically_loaded_content
 
   @country_data = Utils::uniq( \@country_data );
 
-  @country_data = grep { $trigraph_hashref->{$_} } @country_data;
-
   @country_data
-    = map { { trigraph => $_, country => $trigraph_hashref->{$_} } }
-    @country_data;
+    = grep { $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$_} } @country_data;
+
+  @country_data = map {
+    { trigraph => $_,
+      country  => $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$_}
+    }
+  } @country_data;
 
   my $country_search_html = HTML::get_datalist_html(
-    { data           => \@country_data,
-      title          => 'Country:',
-      href           => "/$working_dir/$html_dir/$rankings_dir",
+    { data  => \@country_data,
+      title => 'Country:',
+      href => "/$DEFAULT_SHORT_NAME_WORKING_DIR/$HTML_DIR/$RANKINGS_HTML_DIR",
       html_id        => 'search_input_countries',
       input_id       => 'datalist_input_element_countries',
       button_id      => 'country_button',
@@ -409,7 +410,7 @@ sub update_dynamically_loaded_content
     $country_search_filename );
 
   my $uniq_country_query
-    = "SELECT DISTINCT country FROM $tournaments_tn WHERE country IS NOT NULL";
+    = "SELECT DISTINCT country FROM $TOURNAMENTS_TABLE_NAME WHERE country IS NOT NULL";
   my @all_countries = map { $_->[0] }
     @{ $dbh->selectall_arrayref( $uniq_country_query, { RaiseError => 1 } ) };
 
@@ -423,8 +424,10 @@ sub update_dynamically_loaded_content
     $year_options .= "<option value='$i'>$i</option>\n";
   }
 
-  @all_countries = sort { $a->[1] cmp $b->[1] }
-    ( map { [ $_, $trigraph_hashref->{$_} ] } @all_countries );
+  @all_countries
+    = sort { $a->[1] cmp $b->[1] }
+    ( map { [ $_, $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$_} ] }
+      @all_countries );
 
   for my $i ( 0 .. scalar @all_countries - 1 )
   {
@@ -520,9 +523,10 @@ sub update_html
       { Slice => {}, RaiseError => 1 } )
   };
 
-  @all_players
-    = grep { $_->{country} && $trigraph_hashref->{ $_->{country} } }
-    @all_players;
+  @all_players = grep {
+         $_->{country}
+      && $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{ $_->{country} }
+  } @all_players;
 
   my @all_countries = map { $_->{country} } @all_players;
 
@@ -595,10 +599,10 @@ sub update_html
     );
 
     # print $html_page;
-    my $filename
+    my $player_html_filename
       = $HTML_DIR . q{/} . $PLAYER_HTML_DIR . q{/} . "$player_id.html";
 
-    Utils::write_string_to_file( $player_html_page, $filename );
+    Utils::write_string_to_file( $player_html_page, $player_html_filename );
   }
 
   # Update the full ranking list
@@ -631,7 +635,7 @@ sub update_rankings_html
   my $full_rankings_data     = {
     'title'           => 'WESPA RATINGS',
     'tournament_link' => Utils::make_link(
-      $base_dir,                              $tournament_dir,
+      $base_dir,                              $TOURNAMENT_HTML_DIR,
       $most_recent_tournament->[0] . '.html', $most_recent_tournament->[1],
     )
   };
@@ -649,7 +653,8 @@ sub update_rankings_html
   foreach my $country (@countries)
   {
     if ( !$country ) { next; }
-    my $country_fullname = $trigraph_hashref->{$country};
+    my $country_fullname
+      = $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$country};
     if ( !$country_fullname )
     {
       Utils::format_error(
@@ -666,7 +671,8 @@ sub update_rankings_html
     my $rankings_data = {
       'title'           => $country_fullname . ' RATINGS',
       'tournament_link' => Utils::make_link(
-        $base_dir, $tournament_dir,
+        $base_dir,
+        $TOURNAMENT_HTML_DIR,
         $most_recent_country_tournament->[0] . '.html',
         $most_recent_country_tournament->[1],
       )

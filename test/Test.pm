@@ -47,36 +47,40 @@ if ($alphabetize)
 {
   Test::alphabetize_routine_order();
 }
-if ($criticize)
-{
-  Test::criticize();
-}
 if ($export)
 {
   Test::export_constants();
-}
-if ($syntax)
-{
-  Test::check_syntax();
 }
 if ($tidy)
 {
   Test::tidy();
 }
+if ($syntax)
+{
+  Test::check_syntax();
+}
+if ($criticize)
+{
+  Test::criticize();
+}
 if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
 {
   Test::alphabetize_routine_order();
+  Test::export_constants();
   Test::tidy();
-  Test::criticize();
   Test::check_syntax();
+  Test::criticize();
   Test::harness();
 }
 
 sub alphabetize_routine_order
 {
   Utils::format_print(
-    Test::make_title( 'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH ),
-    $TEST_TITLE_WIDTH );
+    Test::make_title(
+      'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH
+    ),
+    $TEST_TITLE_WIDTH
+  );
 
   my @files = Utils::get_perl_files;
 
@@ -133,13 +137,8 @@ sub alphabetize_routine_order
       }
       $alphabetized_file .= '1;';
 
-      my $original_file = Utils::write_file_to_string($f);
-
-      if ( $original_file ne $alphabetized_file )
-      {
-        Utils::write_string_to_file( $alphabetized_file, $f );
-        printf "Alphabetized %30s\n", $f;
-      }
+      Utils::write_string_to_file( $alphabetized_file, $f );
+      printf "Alphabetized %30s\n", $f;
     }
   }
   return 1;
@@ -396,10 +395,8 @@ sub export_constants
 {
   my $constants_filename = './modules/Constants.pm';
 
-  my @lines             = Utils::write_file_to_array($constants_filename);
-  my $exporting_comment = 'BEGIN EXPORT';
-  my $exporting_regex   = $exporting_comment;
-  $exporting_regex =~ s/\s/\\s/gxms;
+  my @lines              = Utils::write_file_to_array($constants_filename);
+  my $exporting_regex    = 'our..EXPORT';
   my @exportables        = ();
   my $new_constants_file = $EMPTY_STRING;
 
@@ -408,7 +405,7 @@ sub export_constants
     my $line = shift @lines;
     if ( $line =~ /$exporting_regex/xms )
     {
-      $new_constants_file .= q{# } . $exporting_comment . "\n";
+      $new_constants_file .= $line;
       last;
     }
     if ( $line =~ /Readonly\sour\s(\$\S+)/xms )
@@ -417,8 +414,7 @@ sub export_constants
     }
     $new_constants_file .= $line;
   }
-  $new_constants_file
-    .= "our \@EXPORT = qw(\n" . ( join "\n", @exportables ) . "\n);\n\n1;";
+  $new_constants_file .= "qw(\n" . ( join "\n", @exportables ) . "\n);\n\n1;";
   Utils::write_string_to_file( $new_constants_file, $constants_filename );
   return 1;
 }
