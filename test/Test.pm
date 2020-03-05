@@ -389,7 +389,7 @@ sub criticize
     {
       if (length $file_contents > $MAX_LINE_LENGTH)
       {
-        push @line_length_violations, "Line length exceeds $MAX_LINE_LENGTH characters at line " . ($i + 1) '.';
+        push @line_length_violations, "Line length exceeds $MAX_LINE_LENGTH characters at line " . ($i + 1) . ".$NEWLINE";
       }
     }
 
@@ -400,7 +400,7 @@ sub criticize
     if ($number_of_violations)
     {
       Utils::format_print( \@violations );
-      Utils::format_print( $NEWLINE . $NEWLINE );
+      Utils::format_print( $NEWLINE );
     }
   }
   Utils::format_print($NEWLINE);
@@ -458,7 +458,7 @@ sub format_expected_stdout
         .= ( q{ } x $title_length ) . $stdout_lines[$i] . $NEWLINE;
     }
   }
-  return $formatted_stdout . "$NEWLINE";
+  return $formatted_stdout . $NEWLINE;
 }
 
 sub make_title
@@ -512,10 +512,9 @@ sub testcase
   Utils::format_print(
     Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH ) );
 
-  my $test_dir   = $TEST_DIRECTORY;
-  my $tou_dir    = $test_dir . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
-  my $stdout_dir = $test_dir . q{/} . $TEST_STDOUT_DIRECTORY . q{/};
-  my $json_dir   = $test_dir . q{/} . $TEST_JSON_DIRECTORY . q{/};
+  my $tou_dir    = $TEST_DIRECTORY . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
+  my $stdout_dir = $TEST_DIRECTORY . q{/} . $TEST_STDOUT_DIRECTORY . q{/};
+  my $json_dir   = $TEST_DIRECTORY . q{/} . $TEST_JSON_DIRECTORY . q{/};
 
   my $toufile = "$tou_dir$case.tou";
 
@@ -602,8 +601,6 @@ sub testrun
 
   my ( $dbh, $alt_names_hash, $deceased_players_hash )
     = Test::setup_testrun();
-
-  my $test_dir = $TEST_DIRECTORY;
 
   my $stdout_failure;
   my $json_failure;
