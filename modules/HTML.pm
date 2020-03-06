@@ -312,7 +312,11 @@ sub get_alltime_template_html_string
 
     my $stat_html = $stats->{$cat};
     $stats_content
-      .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>$NEWLINE";
+      .= "<div id='$stat_id' "
+      . "class='$stats_tabclass' "
+      . "$display_none_style> "
+      . $stat_html
+      . "</div>$NEWLINE";
     if ( $k == 0 )
     {
       push @ids_to_click, "button_$stat_id";
@@ -372,7 +376,8 @@ $TEMPLATE_DOCTYPE
     $TEMPLATE_WESPA_IMAGE
     $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
-      <div style="background-color:white;padding-top:10px;" class="container">
+      <div style="background-color:white;padding-top:10px;"
+           class="container">
         <h2>All Time Stats</h2>
         <hr>
         <div class="row">
@@ -407,37 +412,43 @@ sub get_datalist_html
 
   my $function = <<"FUNCTION"
 
-          var input = document.getElementById('$input_id');
-          var options = Array.from(document.getElementById('$html_id').options).map(function(el)
-          {
-            return el.value;
-          }); 
-          var relevantOptions = options.filter
-          (
-            function(option)
-            {
-              return option.toLowerCase().includes(input.value.toLowerCase());
-            }
-          );
+  var input = document.getElementById('$input_id');
+  var options = Array.from(
+                  document.getElementById('$html_id'
+                  ).options).map(function(el)
+  {
+    return el.value;
+  }); 
+  var relevantOptions = options.filter
+  (
+    function(option)
+    {
+      return option.toLowerCase().includes(input.value.toLowerCase());
+    }
+  );
 
-          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
-          {
-            var pname = document.getElementById('$input_id').value;
-            var pid   = document.querySelector('#$html_id option[value=$ESCAPED_QUOTE'+pname+'$ESCAPED_QUOTE]').dataset.value;
+  if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+  {
+    var pname = document.getElementById('$input_id').value;
+    var selection = '#$html_id option[value=$ESCAPED_QUOTE' + 
+                     pname +
+                     '$ESCAPED_QUOTE]';
+    var pid   = document.querySelector(selection).dataset.value;
 
-            if (pid)
-            {
-              window.location.href = '$href/' + pid + '.html';
-            }
-          }
-          else if (relevantOptions.length > 0)
-          {
-            input.value = relevantOptions.shift();
-          }
-          else
-          {
-            alert('Choose an option by typing in the box and selecting an option from the pop-up menu.');
-          }
+    if (pid)
+    {
+      window.location.href = '$href/' + pid + '.html';
+    }
+  }
+  else if (relevantOptions.length > 0)
+  {
+    input.value = relevantOptions.shift();
+  }
+  else
+  {
+    alert('Choose an option by typing in the box' + 
+          ' and selecting an option from the pop-up menu.');
+  }
 FUNCTION
     ;
 
@@ -485,7 +496,11 @@ FUNCTION
   $html .= "    </datalist>$NEWLINE";
 
   $html
-    .= "<input type='button' value='Submit' id='$button_id' $submit_function>";
+    .= '<input '
+    . q{type='button' }
+    . q{value='Submit' }
+    . "id='$button_id' "
+    . "$submit_function>";
   return $html;
 }
 
@@ -633,7 +648,11 @@ $TEMPLATE_DOCTYPE
         \$('#' + id).collapse('show');
       }
 
-      window.onload = function() { document.getElementById('button_$results_html_id').click();}
+      window.onload =
+        function()
+        {
+          document.getElementById('button_$results_html_id').click();
+        }
     </script>
   </head>
   
@@ -643,12 +662,14 @@ $TEMPLATE_DOCTYPE
     <div style="background-color:#90D1EF">
       <div style="background-color:white;padding-top:10px;" class="container">
         <div class="row">
-          <div class="col-xs-8 col-md-8" style="margin-top:10px;margin-bottom:0px">
+          <div class="col-xs-8 col-md-8"
+               style="margin-top:10px;margin-bottom:0px">
             <h2>$player_name</h2>
             $valid_country_html
           </div>
           <div class="col-xs-4 col-md-4" style="padding-top:20px;">
-            <img src='$HTML_PATH_TO_WORKING_DIR/icons/$photo_filename' title='$player_name' alt='$player_name'>
+            <img src='$HTML_PATH_TO_WORKING_DIR/icons/$photo_filename'
+                 title='$player_name' alt='$player_name'>
           </div>
         </div>
         <hr>
@@ -790,8 +811,18 @@ $TEMPLATE_DOCTYPE
       
       <div class="container">
         <div class="row">
-          <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
-            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg" alt="WESPA" />$title</h2>	
+          <div class="col-xs-12"
+               style="background-color:white;
+                      margin-top:10px;
+                      margin-bottom:0px">
+
+            <h2><img style="float:right; margin: 2px 2px 2px 20px;"
+                     height="60"
+                     width="60"
+                     src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg"
+                     alt="WESPA" />
+                       $title
+            </h2>	
           </div>
         </div>
       </div>
@@ -799,8 +830,11 @@ $TEMPLATE_DOCTYPE
       <div class="container">
 
         <div class="row">
-          <div class="col-xs-12" style="background-color:white;margin-top:0px;margin-bottom:0px">
-            Most recent tournament: $tournament_link<br> Updated on $localtime
+          <div class="col-xs-12"
+               style="background-color:white;
+                      margin-top:0px;margin-bottom:0px">
+            Most recent tournament: $tournament_link<br>
+            Updated on $localtime
           </div>
         </div>
  
@@ -859,8 +893,7 @@ sub get_tournament_results_html_string
     . 'tr.new_world_rank               AS tr_new_world_rank, '
     . 'tr.old_national_rank            AS tr_old_national_rank, '
     . 'tr.new_national_rank            AS tr_new_national_rank, '
-    . 'player.country                  AS p_country '
-    . 'FROM '
+    . 'player.country                  AS p_country ' . 'FROM '
     . "$TOURNAMENT_RESULTS_TABLE_NAME AS tr, "
     . "$TOURNAMENT_RESULTS_TABLE_NAME AS tr_opp, "
     . "$GAMES_TABLE_NAME AS g, "
@@ -1032,8 +1065,11 @@ sub get_tournament_results_html_string
     $games_ref->[0]->{q{#}} = $i + 1;
 
     $games_ref->[0]->{details}
-      = "<button type='button' id='$button_id'  class='btn btn-info' data-toggle='collapse' data-target='#"
-      . "$entry_id'>+</button>";
+      = '<button '
+      . "type='button' id='$button_id'  class='btn btn-info' "
+      . q{data-toggle='collapse' data-target='#}
+      . "$entry_id'>"
+      . '+</button>';
 
     if ( $type != $HTML_ID_HEAD_TO_HEAD_TYPE )
     {
@@ -1243,7 +1279,12 @@ sub get_tournament_template_html_string
 
       my $stat_html = $div_stats->{$cat};
       $stats_content
-        .= "<div id='$stat_id' class='$stats_tabclass' $display_none_style>$stat_html</div>$NEWLINE";
+        .= "<div id='$stat_id' "
+        . "class='$stats_tabclass' "
+        . "$display_none_style> "
+        . $stat_html
+        . "</div>$NEWLINE";
+
       if ( $k == 0 )
       {
         push @ids_to_click, "button_$stat_id";
@@ -1271,17 +1312,34 @@ sub get_tournament_template_html_string
     );
 
     my $div_standings_div
-      = "<div id='$div_standings_id' class='$division_tabclass' $display_none_style>$div_html     </div>";
+      = "<div id='$div_standings_id' "
+      . "class='$division_tabclass' "
+      . "$display_none_style>"
+      . $div_html
+      . '</div>';
+
     my $div_stats_div
-      = "<div id='$div_stats_id'     class='$division_tabclass' $display_none_style>$stats_content</div>";
+      = "<div id='$div_stats_id' "
+      . "class='$division_tabclass' "
+      . "$display_none_style>"
+      . $stats_content
+      . '</div>';
+
     my $div_ratings_div
-      = "<div id='$div_ratings_id'   class='$division_tabclass' $display_none_style>$div_ratings  </div>";
+      = "<div id='$div_ratings_id' "
+      . "class='$division_tabclass' "
+      . "$display_none_style>"
+      . $div_ratings
+      . '</div>';
 
     my $div_content
       = $div_tabs . $div_standings_div . $div_stats_div . $div_ratings_div;
 
     $division_results
-      .= "<div id='$id' class='$tourney_tabclass'>$div_content</div>$NEWLINE";
+      .= "<div id='$id' "
+      . "class='$tourney_tabclass'>"
+      . $div_content
+      . "</div>$NEWLINE";
   }
 
   my $tabs
@@ -1336,7 +1394,8 @@ $TEMPLATE_DOCTYPE
     $TEMPLATE_WESPA_IMAGE
     $TEMPLATE_NAV
     <div style="background-color:#90D1EF">
-      <div style="background-color:white;padding-top:10px;" class="container">
+      <div style="background-color:white;padding-top:10px;"
+           class="container">
         <h2>$tournament_name ($tournament_date)</h2>
         <hr>
         <div class="row">
@@ -1662,9 +1721,25 @@ sub special_game_to_html
     return $EMPTY_STRING;
   }
 
-  return
-    "<b>$title:</b> <a href=\"#$game_html_id\" onclick=\"show_tournament_entry('$game_html_id')\">$value</a> (<a href=\"#$player_html_id\" onclick=\"show_head_to_head_entry('$player_html_id')\">vs</a> <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">$player_name</a>)<br>";
-
+  my $special_game_line = <<"CONTENT"
+  <b>$title:</b>
+  <a href=\"#$game_html_id\"
+     onclick=\"show_tournament_entry('$game_html_id')\">
+       $value
+  </a>
+  (
+   <a href=\"#$player_html_id\"
+      onclick=\"show_head_to_head_entry('$player_html_id')\">
+      vs
+   </a>
+   <a href=\"/$working_dir/$html_dir/$players_dir/$player_pointer.html\">
+   $player_name
+   </a>
+  )
+  <br>
+CONTENT
+    ;
+  return $special_game_line;
 }
 
 1;

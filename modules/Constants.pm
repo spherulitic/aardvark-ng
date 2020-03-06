@@ -8,24 +8,44 @@ use version; our $VERSION = qv('1');
 use base 'Exporter';
 use Readonly;
 
-Readonly our $STA_MAX_RATING_ITEMS => 3;
+# Integer constants
 
-Readonly our $MAX_LINE_LENGTH => 80;
+Readonly our $STA_MAX_RATING_ITEMS         => 3;
+Readonly our $MAX_LINE_LENGTH              => 80;
 
-Readonly our $FIRST_PROCESSING_ERRORS_TC => 1;
-Readonly our $LAST_PROCESSING_ERRORS_TC => 14;
+Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
+Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
 Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
-Readonly our $LAST_PROCESSING_WARNINGS_TC => 15;
+Readonly our $LAST_PROCESSING_WARNINGS_TC  => 15;
 
-Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
-Readonly our $STS_PLAYER_NAME_INDEX       => 2;
-Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
-Readonly our $STS_START_RATING_INDEX      => 8;
-Readonly our $STS_END_RATING_INDEX        => 9;
-Readonly our $STS_OLD_WORLD_RANK_INDEX    => 10;
-Readonly our $STS_NEW_WORLD_RANK_INDEX    => 11;
-Readonly our $STS_OLD_NATIONAL_RANK_INDEX => 12;
-Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
+Readonly our $STS_PLAYER_COUNTRY_INDEX     => 1;
+Readonly our $STS_PLAYER_NAME_INDEX        => 2;
+Readonly our $STS_EXPECTED_WINS_INDEX      => 3;
+Readonly our $STS_START_RATING_INDEX       => 8;
+Readonly our $STS_END_RATING_INDEX         => 9;
+Readonly our $STS_OLD_WORLD_RANK_INDEX     => 10;
+Readonly our $STS_NEW_WORLD_RANK_INDEX     => 11;
+Readonly our $STS_OLD_NATIONAL_RANK_INDEX  => 12;
+Readonly our $STS_NEW_NATIONAL_RANK_INDEX  => 13;
+
+Readonly our $ZEROTH_SCORE_THRESHOLD => 'Zero';
+Readonly our $FIRST_SCORE_THRESHOLD  => 300;
+Readonly our $SECOND_SCORE_THRESHOLD => 400;
+Readonly our $THIRD_SCORE_THRESHOLD  => 500;
+Readonly our $FOURTH_SCORE_THRESHOLD => 600;
+
+Readonly our $LOCALTIME_YEAR_INDEX      => 5;
+Readonly our $LOCALTIME_MONTH_INDEX     => 4;
+Readonly our $LOCALTIME_DAY_INDEX       => 3;
+Readonly our $LOCALTIME_YEAR_BASE       => 1900;
+
+Readonly our $COUNTRY_IN_FILENAME_INDEX => -2;
+Readonly our $NEGATIVE_ONE              => -1;
+Readonly our $FULL_WIDTH                => 100;
+Readonly our $WESPA_START_RATING        => 500;
+
+Readonly our $PERL_CRITIC_SEVERITY => 1;
+
 
 Readonly our $HTML_WHITE_CLASS => 'white';
 
@@ -33,7 +53,6 @@ Readonly our $DEFAULT_UNKNOWN_COUNTRY => 'Unknown Country';
 
 Readonly our $EMPTY_STRING => q{};
 
-Readonly our $PERL_CRITIC_SEVERITY => 1;
 
 Readonly our $PERL_ARRAY_REF_NAME => 'ARRAY';
 
@@ -46,20 +65,7 @@ Readonly our $TOURNAMENT_SEARCH_START_YEAR => 2000;
 Readonly our $HIGH_SCORE_INITIAL_VALUE => -1_000_000;
 Readonly our $LOW_SCORE_INITIAL_VALUE  => 1_000_000;
 
-Readonly our $ZEROTH_SCORE_THRESHOLD => 'Zero';
-Readonly our $FIRST_SCORE_THRESHOLD  => 300;
-Readonly our $SECOND_SCORE_THRESHOLD => 400;
-Readonly our $THIRD_SCORE_THRESHOLD  => 500;
-Readonly our $FOURTH_SCORE_THRESHOLD => 600;
 
-Readonly our $LOCALTIME_YEAR_INDEX      => 5;
-Readonly our $LOCALTIME_MONTH_INDEX     => 4;
-Readonly our $LOCALTIME_DAY_INDEX       => 3;
-Readonly our $LOCALTIME_YEAR_BASE       => 1900;
-Readonly our $COUNTRY_IN_FILENAME_INDEX => -2;
-Readonly our $NEGATIVE_ONE              => -1;
-Readonly our $FULL_WIDTH                => 100;
-Readonly our $WESPA_START_RATING        => 500;
 
 Readonly our $ESCAPED_QUOTE       => '&quot;';
 Readonly our $ONE_HUNDRED_PERCENT => 100;
@@ -84,6 +90,8 @@ Readonly our $UNDEFINED_STRING => 'undef';
 
 Readonly our $PERL_DIRECTORIES =>
   [ $TEST_DIRECTORY, $MODULES_DIRECTORY, $OBJECTS_DIRECTORY ];
+
+# Objects and modules
 
 Readonly our $FAILURE_REASON           => 'FAILURE';
 Readonly our $FAILURE_TYPE             => 'Result Type';
@@ -392,6 +400,8 @@ Readonly our $ALLTIME_CUTOFF       => 60;
 
 Readonly our $TOURNAMENT_STATS_ORDER =>
   [ 'High Win', 'High Loss', 'High Spread', 'High Combined', 'Upsets' ];
+
+# Country trigraph and naming constants
 
 Readonly our $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF => {
   'ABW' => 'Aruba',
@@ -706,6 +716,8 @@ Readonly our $COUNTRY_TRIGRAPH_CONVERSION => {
   'SRI' => 'LKA'
 };
 
+# HTML titles
+
 Readonly our $TOURNAMENT_TITLE_REF => [
   'Details', q{#},           'Date',       'Tournament',
   'Wins',    'Losses',       'Byes',       'Spread',
@@ -781,6 +793,8 @@ Readonly our $RATINGS_KEYS_REF => [
   'tr_end_rating'
 ];
 
+# HTML templates
+
 Readonly our $TEMPLATE_DOCTYPE =>
 
   <<'DOCTYPE'
@@ -806,26 +820,34 @@ Readonly our $TEMPLATE_WESPA_IMAGE =>
   <<'WESPA_IMG'
     <div class="container-topper">
       <div style="margin: auto;width: 80px;">
-        <img class="img-responsive" src="/wespafb.jpg" width="80" height="80" alt="WESPA">
+        <img class="img-responsive"
+             src="/wespafb.jpg" width="80" height="80" alt="WESPA">
       </div>
     </div>
 WESPA_IMG
 
   ;
 
-Readonly our $TEMPLATE_SOURCES =>
+Readonly our $BOOTSTRAP_ADDRESS => 'https://maxcdn.bootstrapcdn.com';
 
-  <<'SOURCES'
+Readonly our $BOOTSTRAP_STYLESHEET =>
+  "$BOOTSTRAP_ADDRESS/bootstrap/3.3.7/css/bootstrap.min.css";
 
+Readonly our $BOOTSTRAP_FONTS =>
+  "$BOOTSTRAP_ADDRESS/font-awesome/4.7.0/css/font-awesome.min.css";
+
+Readonly our $TEMPLATE_SOURCES => <<'SOURCES'
 <script  src="/aardvark/js/tabber.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/aardvark/aardvark.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+<link rel="stylesheet" href="$BOOTSTRAP_STYLESHEET">
+<link rel="stylesheet" href="$BOOTSTRAP_FONTS">
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+</script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</script>
 SOURCES
   ;
 
@@ -890,7 +912,8 @@ Readonly our $TEMPLATE_SCRIPTS =>
         tablinks = document.getElementsByClassName(links_classname);
         for (i = 0; i < tablinks.length; i++)
         {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
+          tablinks[i].className =
+            tablinks[i].className.replace(" active", "");
         }
         document.getElementById(id).style.display = "block";
         evt.currentTarget.className += " active";
@@ -904,7 +927,10 @@ Readonly our $TEMPLATE_NAV =>
 <div class="navbar navbar-default" style="background:#e8e6e6;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <button type="button"
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -918,7 +944,11 @@ Readonly our $TEMPLATE_NAV =>
       <ul class="nav navbar-nav">
         <li><a href="/index.shtml">Home</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us <span class="caret"></span></a>
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">
+               About Us <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a href="/associations.shtml">Associations</a></li>
             <li><a href="/committees.shtml">Committees</a></li>
@@ -928,7 +958,11 @@ Readonly our $TEMPLATE_NAV =>
         </li>
         <li><a href="/news.shtml">News</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tournaments <span class="caret"></span></a>
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">
+             Tournaments <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a href="/tournaments/index.shtml">Calendar</a></li>
             <li><a href="/ratings.shtml">Ratings</a></li>
@@ -939,7 +973,11 @@ Readonly our $TEMPLATE_NAV =>
         <li><a href="/products.shtml">Products</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/contactus.shtml"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li>
+          <a href="/contactus.shtml">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -951,15 +989,27 @@ Readonly our $TEMPLATE_FOOTER =>
 
   <<'FOOTER'
 <div class="container-fluid" style="background-color:white;">
-     
-        <p class="small">&copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark. All intellectual property rights in and to the game are owned in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and throughout the rest of the world by JW Spear &amp; Sons Ltd of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc. Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.</p>
-     
+  <p class="small">
+    &copy; WESPA <br><br>SCRABBLE&reg; is a registered trademark.
+    All intellectual property rights in and to the game are owned
+    in the US by Hasbro Inc, in Canada by Hasbro Canada Inc and
+    throughout the rest of the world by JW Spear &amp; Sons Ltd
+    of Maidenhead, SL6 4UB, England, a subsidiary of Mattel Inc.
+    Mattel and Spear are not affiliated with Hasbro or Hasbro Canada.
+  </p>
 </div>
 FOOTER
   ;
 
+# Export every constant
+
 our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
+  $MAX_LINE_LENGTH
+  $FIRST_PROCESSING_ERRORS_TC
+  $LAST_PROCESSING_ERRORS_TC
+  $FIRST_PROCESSING_WARNINGS_TC
+  $LAST_PROCESSING_WARNINGS_TC
   $STA_MAX_RATING_ITEMS
   $STS_PLAYER_COUNTRY_INDEX
   $STS_PLAYER_NAME_INDEX

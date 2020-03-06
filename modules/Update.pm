@@ -174,7 +174,8 @@ my \$partname  = sanitize(\$cgi->param('partname'));
 \$startyear .= '-00-00';
 \$endyear   .= '-12-31';
 
-my \$dbh = DBI->connect("DBI:mysql:database=$database_name;host=$DATABASE_HOST_NAME",
+my \$dbh =
+  DBI->connect("DBI:mysql:database=$database_name;host=$DATABASE_HOST_NAME",
                          '$DATABASE_USER_NAME', '$DATABASE_PASSWORD',
                          {RaiseError => 1}); 
 
@@ -199,7 +200,8 @@ if (\$partname)
 
 \$query .= " ORDER BY t.start_date ";
 
-my \@tournaments = \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, RaiseError => 1})};
+my \@tournaments =
+  \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, RaiseError => 1})};
 
 my \$title_row = "<tr><th>#</th><th>Date</th><th>Tournament</th></tr>";
 
@@ -209,10 +211,10 @@ my \$search_content =
 "
 <table class='searchparams'>
 <tbody>
-<tr><th \$search_style>Start Date            </th><td \$search_style>\$startyear</td></tr>
-<tr><th \$search_style>End Date              </th><td \$search_style>\$endyear</td></tr>
-<tr><th \$search_style>Country               </th><td \$search_style>\$state</td></tr>
-<tr><th \$search_style>Partial Name          </th><td \$search_style>\$partname</td></tr>
+<tr><th \$search_style>Start Date</th><td \$search_style>\$startyear</td></tr>
+<tr><th \$search_style>End Date</th><td \$search_style>\$endyear</td></tr>
+<tr><th \$search_style>Country</th><td \$search_style>\$state</td></tr>
+<tr><th \$search_style>Partial Name</th><td \$search_style>\$partname</td></tr>
 </tbody>
 </table>
 ";
@@ -233,9 +235,20 @@ for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
   }
   my \$num = \$i + 1;
 
-  my \$url = '/' . '$base_dir' . '/' . '$TOURNAMENT_HTML_DIR' . '/' . \$id . '.html';
+  my \$url = '/' .
+             '$base_dir' .
+             '/' .
+             '$TOURNAMENT_HTML_DIR' .
+             '/' .
+             \$id .
+             '.html';
   my \$link = "<a href='\$url'>\$name</a>";
-  \$table_content .= "<tr class='\$row_class'><td>\$num</td><td>\$date</td><td>\$link</td></tr>";
+  \$table_content .=
+    "<tr class='\$row_class'>
+       <td>\$num</td>
+       <td>\$date</td>
+       <td>\$link</td>
+     </tr>";
   }
 
 my \$content =
@@ -269,12 +282,21 @@ $TEMPLATE_DOCTYPE
       
       <div  class="container">
         <div class="row">
-          <div class="col-xs-12" style="background-color:white;margin-top:10px;margin-bottom:0px">
-            <h2><img style="float:right ; margin: 2px 2px 2px 20px;" height="60" width="60" src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg" alt="WESPA" />$title</h2>   
+          <div class="col-xs-12"
+               style="background-color:white;
+                      margin-top:10px;margin-bottom:0px">
+            <h2><img style="float:right ; margin: 2px 2px 2px 20px;"
+                     height="60"
+                     width="60"
+                     src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg"
+                     alt="WESPA" />
+                       $title
+            </h2>   
           </div>
         </div>
       </div>
-      <div  style="background-color:white;padding-top:10px;"  class="container">
+      <div  style="background-color:white;padding-top:10px;"
+            class="container">
         <div class="row">
           <div class="table-responsive">
             \$content
@@ -410,7 +432,8 @@ sub update_dynamically_loaded_content
     $country_search_filename );
 
   my $uniq_country_query
-    = "SELECT DISTINCT country FROM $TOURNAMENTS_TABLE_NAME WHERE country IS NOT NULL";
+    = 'SELECT DISTINCT country '
+    . "FROM $TOURNAMENTS_TABLE_NAME WHERE country IS NOT NULL";
   my @all_countries = map { $_->[0] }
     @{ $dbh->selectall_arrayref( $uniq_country_query, { RaiseError => 1 } ) };
 
@@ -437,25 +460,24 @@ sub update_dynamically_loaded_content
       .= "<option value='$trigraph'>$fullname</option>$NEWLINE";
   }
 
-  my $tournament_form
-    = "Between <select name='startyear'>$NEWLINE<option value='1993'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
-
-  $tournament_form .= $year_options;
-
-  $tournament_form .= "</select> and$NEWLINE";
-
-  $tournament_form
-    .= "<select name='endyear'>$NEWLINE<option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>";
-
-  $tournament_form .= $year_options;
-
-  $tournament_form
-    .= "</select> in <select name='state'>$NEWLINE<option selected='selected' value='all'>All countries</option>";
-
-  $tournament_form .= $country_options;
-
-  $tournament_form
-    .= q{</select>  Partial name: <input name='partname' size='20' value=''> <input type='submit' value='Submit'> <br>};
+  my $tournament_form = <<"TOURNAMENT_FORM"
+  Between
+    <select name='startyear'>$NEWLINE
+      <option value='1993'>Before $TOURNAMENT_SEARCH_START_YEAR</option>
+      $year_options
+    </select> and$NEWLINE
+    <select name='endyear'>$NEWLINE
+      <option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>
+    </select> in
+    <select name='state'>$NEWLINE
+      <option selected='selected' value='all'>All countries</option>
+      $country_options;
+    </select>
+  Partial name: <input name='partname' size='20' value=''>
+  <input type='submit' value='Submit'>
+  <br>
+TOURNAMENT_FORM
+    ;
 
   my $tournament_form_name
     = $HTML_DATA_DIR . q{/} . $TOURNAMENT_FORM_DATA_FILENAME;

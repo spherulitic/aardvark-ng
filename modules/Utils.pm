@@ -21,7 +21,8 @@ sub add_games_to_existing_player
   my $games_played = shift;
 
   my $total_games_update
-    = "UPDATE $PLAYERS_TABLE_NAME SET total_games = total_games + $games_played WHERE id=$player_id";
+    = "UPDATE $PLAYERS_TABLE_NAME "
+    . "SET total_games = total_games + $games_played WHERE id=$player_id";
   $dbh->do( $total_games_update, { RaiseError => 1 } );
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
@@ -201,12 +202,13 @@ sub copy_database_to_production
 
   my $database_name = Utils::get_environment_name($DATABASE_NAME);
 
-  system
-    "echo 'DROP DATABASE IF EXISTS $production_database_name' | mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD'";
-  system
-    "echo 'CREATE DATABASE         $production_database_name' | mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD'";
-  system
-    "mysqldump -u  $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' $database_name | mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' $production_database_name";
+  system "echo 'DROP DATABASE IF EXISTS $production_database_name' | "
+    . " mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD'";
+  system "echo 'CREATE DATABASE         $production_database_name' | "
+    . "mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD'";
+  system "mysqldump -u  $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
+    . " $database_name | mysql -u $DATABASE_USER_NAME "
+    . "--password='$DATABASE_PASSWORD' $production_database_name";
   return 1;
 }
 
@@ -702,9 +704,12 @@ sub make_new_entry_head
   );
 
   $new_entry
-    .= q{<tr style='border: none'><td style='padding: 0px; border: 0px'></td><td style='padding: 0px; border: 0px'  colspan='}
+    .= q{<tr style='border: none'>}
+    . q{<td style='padding: 0px; border: 0px'></td>}
+    . q{<td style='padding: 0px; border: 0px'  colspan='}
     . ( $title_length - 1 )
-    . "'><div class='collapse' id='$entry_id'><table class='table'>$NEWLINE";
+    . "'><div class='collapse' id='$entry_id'>"
+    . "<table class='table'>$NEWLINE";
 
   $new_entry .= $games_title_row;
 
@@ -801,7 +806,11 @@ sub make_tab_div
     $div
       .= q{<button id='button_}
       . $id
-      . "' style='width: $width%' class='$linkclass' onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">$text</button>";
+      . "' style='width: $width%' "
+      . "class='$linkclass' "
+      . "onclick=\"showContent(event, '$id', '$tabclass', '$linkclass')\">"
+      . $text
+      . '</button>';
   }
   $div .= '</div><br>';
   return $div;
@@ -943,7 +952,8 @@ sub record_database
   my $dumpfile = 'mysqldump_' . $database_name . q{_} . $tstamp;
 
   my $dump_cmd
-    = "mysqldump -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' $database_name $PLAYERS_TABLE_NAME > $LOG_DIR/$dumpfile";
+    = "mysqldump -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
+    . " $database_name $PLAYERS_TABLE_NAME > $LOG_DIR/$dumpfile";
 
   system $dump_cmd;
 
@@ -1002,8 +1012,9 @@ sub set_current_status
   my $update_current
     = "UPDATE $PLAYERS_TABLE_NAME AS p "
     . 'SET p.current = '
-    . '(CASE '
-    . "WHEN $games_in_last_two_years > 0 AND p.total_games > $CURRENT_GAMES_MIN "
+    . '(CASE ' . 'WHEN '
+    . "$games_in_last_two_years > 0 AND "
+    . "p.total_games > $CURRENT_GAMES_MIN "
     . 'THEN 1 '
     . 'ELSE 0 ' . 'END)';
 

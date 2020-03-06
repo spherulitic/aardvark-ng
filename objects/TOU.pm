@@ -419,10 +419,6 @@ sub parse_sts_line
     # they were causing problems
     $sts_line =~ s/[(]|[)]/[ ]/gxms;
 
-# Agonizing pattern match for .STA file
-# which is why .STS is preferred
-#if ($_ =~ /^\|(.)(\w+)\s+([^\|]+)\|\D+?(\d+)?\D+?(\d+)?\D+?\|\D+?(\d+)?\D+?(\d+)?\D+?\|\s+(\S+)?\s+\S+\s+\|\s+(\d+)\D.* (\d+) \|/)
-
     my $is_new_player_pattern  = '(.)';
     my $player_country_pattern = '(\\w+)';
     my $player_name_pattern    = '([^|]+)';
@@ -536,7 +532,8 @@ sub parse_sts_line
         $this->set_error_report(
           Utils::format_error(
             [ [ 'ERROR',
-                "Invalid number of items in STA ratings column: $num_rchange_items"
+                'Invalid number of items in STA ratings column: '
+                  . $num_rchange_items
               ],
               [ 'TOU File', $filename ],
               [ 'Line',     $sts_line ],
@@ -969,7 +966,9 @@ sub process_sts
     # id for the table to add them properly
 
     my $player_query
-      = "SELECT id, country, last_played FROM $PLAYERS_TABLE_NAME WHERE BINARY name=\"$pretty_player_name\"";
+      = 'SELECT id, country, last_played '
+      . "FROM $PLAYERS_TABLE_NAME "
+      . "WHERE BINARY name=\"$pretty_player_name\"";
 
     my @player_query_result
       = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );

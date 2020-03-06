@@ -75,28 +75,36 @@ if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
 
 sub harness
 {
-  Utils::format_print( Test::make_title('STARTING TEST HARNESS', '%', $TEST_TITLE_WIDTH) );
-  
+  Utils::format_print(
+    Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+
   # Processing Errors
-  Test::testrun('PROCESSING ERRORS', $FIRST_PROCESSING_ERRORS_TC, $LAST_PROCESSING_ERRORS_TC);
+  Test::testrun( 'PROCESSING ERRORS',
+    $FIRST_PROCESSING_ERRORS_TC, $LAST_PROCESSING_ERRORS_TC );
 
   # Processing Warnings
 
   # Create an incorrect and missing flag for testing
-  my $flag_dir = Constants::COUNTRY_FLAGS_DIR;
-  system "mv $flag_dir/USA.png $flag_dir/USB.png";
+  my $valid_flag   = 'USA.png';
+  my $invalid_flag = 'USB.png';
 
-  Test::testrun('PROCESSING WARNINGS', $FIRST_PROCESSING_WARNINGS_TC, $LAST_PROCESSING_WARNINGS_TC);
+  system "mv $COUNTRY_FLAGS_DIR/$valid_flag $COUNTRY_FLAGS_DIR/$invalid_flag";
 
-  system "mv $flag_dir/USB.png $flag_dir/USA.png";
+  Test::testrun( 'PROCESSING WARNINGS',
+    $FIRST_PROCESSING_WARNINGS_TC, $LAST_PROCESSING_WARNINGS_TC );
+
+  system "mv $COUNTRY_FLAGS_DIR/$invalid_flag $COUNTRY_FLAGS_DIR/$valid_flag";
 
   return 1;
 }
 
-
 sub alphabetize_routine_order
 {
-  Utils::format_print( Test::make_title('ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH ) );
+  Utils::format_print(
+    Test::make_title(
+      'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH
+    )
+  );
 
   my @files = Utils::get_perl_files;
 
@@ -395,17 +403,19 @@ sub criticize
 
   foreach my $f (@files)
   {
-    my @violations           = $critic->critique($f);
+    my @violations = $critic->critique($f);
 
-
-    my @file_contents = Utils::write_file_to_array($f);
+    my @file_contents          = Utils::write_file_to_array($f);
     my @line_length_violations = ();
 
-    for my $i (0 .. scalar @file_contents - 1)
+    for my $i ( 0 .. scalar @file_contents - 1 )
     {
-      if (length $file_contents > $MAX_LINE_LENGTH)
+      if ( length $file_contents[$i] > $MAX_LINE_LENGTH )
       {
-        push @line_length_violations, "Line length exceeds $MAX_LINE_LENGTH characters at line " . ($i + 1) . ".$NEWLINE";
+        push @line_length_violations,
+            "Line length exceeds $MAX_LINE_LENGTH characters at line "
+          . ( $i + 1 )
+          . ".$NEWLINE";
       }
     }
 
@@ -415,8 +425,9 @@ sub criticize
     Utils::format_print("Critiquing $f$NEWLINE");
     if ($number_of_violations)
     {
+      Utils::format_print($NEWLINE);
       Utils::format_print( \@violations );
-      Utils::format_print( $NEWLINE );
+      Utils::format_print($NEWLINE);
     }
   }
   Utils::format_print($NEWLINE);
@@ -528,7 +539,7 @@ sub testcase
   Utils::format_print(
     Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH ) );
 
-  my $tou_dir    = $TEST_DIRECTORY . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
+  my $tou_dir = $TEST_DIRECTORY . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
   my $stdout_dir = $TEST_DIRECTORY . q{/} . $TEST_STDOUT_DIRECTORY . q{/};
   my $json_dir   = $TEST_DIRECTORY . q{/} . $TEST_JSON_DIRECTORY . q{/};
 
@@ -657,8 +668,7 @@ sub testrun
     Utils::format_print($response_content);
     Utils::format_print("$NEWLINE$NEWLINE");
     if ( $croak
-      && ($json_failure->is_failure() || $stdout_failure->is_failure() )
-       )
+      && ( $json_failure->is_failure() || $stdout_failure->is_failure() ) )
     {
       croak "Croak is set. Exiting on failure.$NEWLINE";
     }
