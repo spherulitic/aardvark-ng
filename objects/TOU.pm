@@ -61,6 +61,22 @@ sub get_filename
   return $this->{$TOU_FILENAME};
 }
 
+sub get_report
+{
+  my $this = shift;
+
+  my $warning_report = $this->{$TOU_WARNING_REPORT};
+  my $error_report   = $this->{$TOU_ERROR_REPORT};
+  my $separator      = $EMPTY_STRING;
+
+  if ( $warning_report && $error_report )
+  {
+    $separator = $NEWLINE;
+  }
+
+  return $warning_report . $separator . $error_report;
+}
+
 sub get_unblessed_ref
 {
   my $obj = shift;
@@ -95,7 +111,7 @@ sub get_unblessed_ref
 
 sub initialize
 {
-  my ( $this, $arg_ref ) = shift;
+  my ( $this, $arg_ref ) = @_;
 
   my $dbh             = $arg_ref->{dbh};
   my $filename        = $arg_ref->{filename};
@@ -254,7 +270,7 @@ sub new
 
   my $this = $tou_type->initialize(
     { dbh             => $dbh,
-      filname         => $filename,
+      filename        => $filename,
       player_data     => $player_data,
       conversion_hash => $alt_names_hash,
     }
@@ -263,24 +279,6 @@ sub new
   my $tou_file_extension = $TOU_FILE_EXTENSION;
   my $sts_file_extension = $STS_FILE_EXTENSION;
   my $sta_file_extension = $STA_FILE_EXTENSION;
-
-  my $provisional_games_max = $PROVISIONAL_GAMES_MAX;
-
-  my $tables         = $TABLES;
-  my $creation_order = $TABLE_CREATION_ORDER;
-
-  my $lexicons              = $LEXICONS;
-  my $players_tn            = $PLAYERS_TABLE_NAME;
-  my $lexicons_tn           = $LEXICONS_TABLE_NAME;
-  my $loaded_tournaments_tn = $LOADED_TOURNAMENTS_TABLE_NAME;
-
-  my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
-  my $working_directory  = Utils::get_environment_name($DEFAULT_WORKING_DIR);
-  my $year_regex         = $DEFAULT_YEAR_REGEX;
-  my $country_trigraph_regex = $DEFAULT_COUNTRY_TRIGRAPH_REGEX;
-  my $file_regex             = $DEFAULT_FILE_REGEX;
-  my $create_html            = $EMPTY_STRING;
-  my $help                   = $EMPTY_STRING;
 
   my $player_names_to_ids = {};
 
@@ -333,7 +331,14 @@ sub new
     return $this;
   }
 
-  $this->process_sts();
+  $this->process_sts(
+    {
+      dbh => $dbh,
+      date => $date,
+      sts_file => $noext_filename . $sts_file_extension,
+      sta_file => $noext_filename . $sta_file_extension,
+      deceased_players_hash => $deceased_players_hash
+     });
   $this->process();
   return $this;
 }
@@ -365,11 +370,9 @@ sub parse_sts_line
 {
   my ( $this, $arg_ref ) = @_;
 
-  my $is_sts                  = $arg_ref->{is_sts};
-  my $sts_line                = $arg_ref->{sts_line};
-  my $no_world                = $arg_ref->{no_world};
-  my $begin_player_captures   = $arg_ref->{begin_player_captures};
-  my $switch_world_and_nation = $arg_ref->{switch_world_and_nation};
+  my $is_sts       = $arg_ref->{is_sts};
+  my $sts_line     = $arg_ref->{sts_line};
+  my $sts_metadata = $arg_ref->{sts_metadata};
 
   my $filename = $this->{$TOU_FILENAME};
 
@@ -404,15 +407,15 @@ sub parse_sts_line
   {
     if ( $sts_line =~ /[+]-/xms )
     {
-      $begin_player_captures++;
+      $sts_metadata->{begin_player_captures}++;
     }
     if ( $sts_line =~ /World.*Nation/ixms )
     {
-      $switch_world_and_nation = 1;
+      $sts_metadata->{switch_world_and_nation} = 1;
     }
     elsif ( $sts_line =~ /World/xms )
     {
-      $no_world = 0;
+      $sts_metadata->{world_column_present} = 1;
     }
 
     # Remove parentheses from the line because
@@ -428,7 +431,7 @@ sub parse_sts_line
     my $ratings_pattern        = '([^|]*)';
 
     if (
-         $begin_player_captures >= 2
+         $sts_metadata->{begin_player_captures} >= 2
       && $sts_line =~ m{^[|]$is_new_player_pattern
               $player_country_pattern\s+
               $player_name_pattern[|]
@@ -439,9 +442,10 @@ sub parse_sts_line
          }xms
       )
     {
-      my $is_new_player = $1;    # Unused for now
-      $player_country = $2;
-      $player_name    = $3;
+      $sts_metadata->{is_valid} = 1;
+      my $is_new_player         = $1; # Unused for now
+      $player_country           = $2;
+      $player_name              = $3;
       my $national_ranks_string = $4;
       my $world_ranks_string    = $5;
       my $wins_string           = $6;
@@ -462,7 +466,7 @@ sub parse_sts_line
             ]
           )
         );
-        return $this;
+        return {parse_failed => 1};
       }
 
       my %nrank_changes = (
@@ -489,7 +493,7 @@ sub parse_sts_line
             ]
           )
         );
-        return $this;
+        return {parse_failed => 1};
       }
 
       my %wrank_changes = (
@@ -503,7 +507,6 @@ sub parse_sts_line
       my @ewins = split /\s+/xms, $wins_string;
       @ewins = grep {$_} @ewins;
       my $ewins_length = scalar @ewins;
-
       if ( $ewins_length > 2 )
       {
         # Covered by TC 6
@@ -515,7 +518,7 @@ sub parse_sts_line
             ]
           )
         );
-        return $this;
+        return {parse_failed => 1};
       }
 
       my @ewins_possibilities = ( undef, undef, $ewins[0] );
@@ -540,7 +543,7 @@ sub parse_sts_line
             ]
           )
         );
-        return $this;
+        return {parse_failed => 1};
       }
 
       my %rating_changes = (
@@ -552,7 +555,7 @@ sub parse_sts_line
       $start_rating = $rating_changes{$num_rchange_items}->[0];
       $end_rating   = $rating_changes{$num_rchange_items}->[1];
 
-      if ($switch_world_and_nation)
+      if ($sts_metadata->{switch_world_and_nation})
       {
         my $tmp1 = $old_national_rank;
         my $tmp2 = $new_national_rank;
@@ -561,11 +564,15 @@ sub parse_sts_line
         $old_world_rank    = $tmp1;
         $new_world_rank    = $tmp2;
       }
-      elsif ($no_world)
+      elsif ($sts_metadata->{world_column_present})
       {
         $old_world_rank = undef;
         $new_world_rank = undef;
       }
+    }
+    else
+    {
+      $sts_metadata->{is_valid} = 0;
     }
   }
   return {
@@ -578,7 +585,6 @@ sub parse_sts_line
     new_world_rank        => $new_world_rank,
     old_national_rank     => $old_national_rank,
     new_national_rank     => $new_national_rank,
-    begin_player_captures => $begin_player_captures,
   };
 }
 
@@ -608,6 +614,11 @@ sub parse_tou_header
 sub process
 {
   my $this = shift;
+
+  if (!$this->{$TOU_VALID})
+  {
+    return;
+  }
 
   my $filename                = $this->{$TOU_FILENAME};
   my @players                 = ();
@@ -870,9 +881,12 @@ sub process_sts
     $is_sts          = 0;
   }
 
-  my $switch_world_and_nation = 0;
-  my $no_world                = 1;
-  my $begin_player_captures   = 0;
+  my $sts_metadata =
+  {
+    switch_world_and_nation => 0,
+    world_column_present    => 0,
+    begin_player_captures   => 0,  
+  };
 
   # Read the .STS file
   my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
@@ -887,13 +901,21 @@ sub process_sts
     if ( !$sts_line ) { next; }
 
     my $sts_line_extraction = $this->parse_sts_line(
-      { is_sts                  => $is_sts,
-        sts_line                => $sts_line,
-        no_world                => $no_world,
-        begin_player_captures   => $begin_player_captures,
-        switch_world_and_nation => $switch_world_and_nation
+      { is_sts       => $is_sts,
+        sts_line     => $sts_line,
+        sts_metadata => $sts_metadata,
       }
     );
+
+    if ($sts_line_extraction->{parse_failed})
+    {
+      return;
+    }
+
+    if (!$is_sts && !$sts_metadata->{is_valid})
+    {
+      next;
+    }
 
     # These are common between both .STS and .STA files
     my $player_country    = $sts_line_extraction->{player_country};
@@ -905,7 +927,6 @@ sub process_sts
     my $new_world_rank    = $sts_line_extraction->{new_world_rank};
     my $old_national_rank = $sts_line_extraction->{old_national_rank};
     my $new_national_rank = $sts_line_extraction->{new_national_rank};
-    $begin_player_captures = $sts_line_extraction->{begin_player_captures};
 
     # Sometimes byes are represented by players named something like
     # Bye A. If this is the case, we do not need to record the info
@@ -942,7 +963,7 @@ sub process_sts
         Utils::format_error(
           [ [ 'ERROR', 'Required values are uncaptured' ],
             [ 'File',  $sts_or_sta_file ],
-            [ 'Name',  $player_name ]
+            [ 'Line',  $sts_line ]
           ]
         )
       );
@@ -954,7 +975,6 @@ sub process_sts
     $player_country = Utils::convert_trigraph($player_country);
 
     # Convert possible alt name to correct name
-
     $player_name = Utils::convert_name( $player_name, $alt_names_hash );
     my $pretty_player_name = Utils::make_pretty($player_name);
     $player_name = Utils::sanitize($player_name);
@@ -974,19 +994,25 @@ sub process_sts
       = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
 
     my $player_id;
+    
+    my $deceased_status =
+      $deceased_players_hash->{$player_name} ? 1 : 0;
+    
+    my $player_photo = Utils::get_player_photo($player_name);
 
     if ( !@player_query_result )    # Player does not exist
     {
       $player_id = Utils::insert_hash_into_table(
         $dbh,
         $PLAYERS_TABLE_NAME,
-        { name      => $pretty_player_name,
-          country   => $player_country,
-          photo     => Utils::get_player_photo($player_name),
-          suspended => 0,                                      # Updated later
-          deceased => $deceased_players_hash->{$player_name} ? 1 : 0,
-          provisional => -1,           # Updated laster
-          total_games => 0,            # Updated later
+        {
+          name        => $pretty_player_name,
+          country     => $player_country,
+          photo       => $player_photo,
+          suspended   => 0,      
+          deceased    => $deceased_status,
+          provisional => -1,
+          total_games => 0,
           last_played => $date,
           rating      => $end_rating
         }

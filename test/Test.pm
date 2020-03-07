@@ -25,21 +25,27 @@ use TOU;
 use Utils;
 use JSON::XS;
 
+my $all;
 my $alphabetize;
+my $prepare;
 my $criticize;
 my $croak;
 my $export;
 my $setexpected;
 my $syntax;
+my $test;
 my $tidy;
 
 GetOptions(
+  all         => \$all,
   alphabetize => \$alphabetize,
+  prepare     => \$prepare,
   criticize   => \$criticize,
   croak       => \$croak,
   export      => \$export,
   setexpected => \$setexpected,
   syntax      => \$syntax,
+  test        => \$test,
   tidy        => \$tidy
 );
 
@@ -63,39 +69,18 @@ if ($criticize)
 {
   Test::criticize();
 }
-if ( !$alphabetize && !$criticize && !$export && !$syntax && !$tidy )
+if ($test)
 {
-  Test::alphabetize_routine_order();
-  Test::export_constants();
-  Test::tidy();
-  Test::check_syntax();
-  Test::criticize();
   Test::harness();
 }
-
-sub harness
+if ($prepare)
 {
-  Utils::format_print(
-    Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
-
-  # Processing Errors
-  Test::testrun( 'PROCESSING ERRORS',
-    $FIRST_PROCESSING_ERRORS_TC, $LAST_PROCESSING_ERRORS_TC );
-
-  # Processing Warnings
-
-  # Create an incorrect and missing flag for testing
-  my $valid_flag   = 'USA.png';
-  my $invalid_flag = 'USB.png';
-
-  system "mv $COUNTRY_FLAGS_DIR/$valid_flag $COUNTRY_FLAGS_DIR/$invalid_flag";
-
-  Test::testrun( 'PROCESSING WARNINGS',
-    $FIRST_PROCESSING_WARNINGS_TC, $LAST_PROCESSING_WARNINGS_TC );
-
-  system "mv $COUNTRY_FLAGS_DIR/$invalid_flag $COUNTRY_FLAGS_DIR/$valid_flag";
-
-  return 1;
+  Test::prepare();
+}
+if ($all)
+{
+  Test::prepare();
+  Test::harness();
 }
 
 sub alphabetize_routine_order
@@ -342,8 +327,8 @@ sub compare_strings
     $actual_string = $EMPTY_STRING;
   }
 
-  my @expected_string_lines = split /$NEWLINE/xms, $expected_string;
-  my @actual_string_lines   = split /$NEWLINE/xms, $actual_string;
+  my @expected_string_lines = split /[\n]/xms, $expected_string;
+  my @actual_string_lines   = split /[\n]/xms, $actual_string;
 
   my $max_line = List::Util::max( scalar @expected_string_lines,
     scalar @actual_string_lines );
@@ -465,27 +450,57 @@ sub export_constants
   return 1;
 }
 
-sub format_expected_stdout
+sub format_expected_report
 {
-  my $stdout       = shift;
-  my @stdout_lines = split /$NEWLINE/xms, $stdout;
-  my $title        = 'EXPECTED STDOUT: ';
+  my $tou          = shift;
+  my @report_lines = split /[\n]/xms, $tou->get_report();
+  my $title        = $TEST_TOU_REPORT_TITLE . ': ';
   my $title_length = length $title;
 
-  my $formatted_stdout = $title;
-  for my $i ( 0 .. scalar @stdout_lines - 1 )
+  my $formatted_report = $title . ( shift @report_lines ) . $NEWLINE;
+
+  for my $i ( 0 .. scalar @report_lines - 1 )
   {
-    if ( $i == 0 )
-    {
-      $formatted_stdout .= $stdout_lines[$i] . $NEWLINE;
-    }
-    else
-    {
-      $formatted_stdout
-        .= ( q{ } x $title_length ) . $stdout_lines[$i] . $NEWLINE;
-    }
+    $formatted_report
+      .= ( q{ } x $title_length ) . $report_lines[$i] . $NEWLINE;
   }
-  return $formatted_stdout . $NEWLINE;
+
+  return $formatted_report . $NEWLINE;
+}
+
+sub get_status
+{
+  my $failure_object = shift;
+  return
+      ( sprintf '%-17s', ( $failure_object->get_type() . ' STATUS:' ) )
+    . Test::convert_to_response( $failure_object->is_failure() )
+    . $NEWLINE;
+
+}
+
+sub harness
+{
+  Utils::format_print(
+    Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+
+  # Processing Errors
+  Test::testrun( 'PROCESSING ERRORS',
+    $FIRST_PROCESSING_ERRORS_TC, $LAST_PROCESSING_ERRORS_TC );
+
+  # Processing Warnings
+
+  # Create an incorrect and missing flag for testing
+  my $valid_flag   = 'USA.png';
+  my $invalid_flag = 'USB.png';
+
+  system "mv $COUNTRY_FLAGS_DIR/$valid_flag $COUNTRY_FLAGS_DIR/$invalid_flag";
+
+  Test::testrun( 'PROCESSING WARNINGS',
+    $FIRST_PROCESSING_WARNINGS_TC, $LAST_PROCESSING_WARNINGS_TC );
+
+  system "mv $COUNTRY_FLAGS_DIR/$invalid_flag $COUNTRY_FLAGS_DIR/$valid_flag";
+
+  return 1;
 }
 
 sub make_title
@@ -511,6 +526,16 @@ sub make_title
   $title .= "$border$NEWLINE$NEWLINE";
 
   return $title;
+}
+
+sub prepare
+{
+  Test::alphabetize_routine_order();
+  Test::export_constants();
+  Test::tidy();
+  Test::check_syntax();
+  Test::criticize();
+  return 1;
 }
 
 sub setup_testrun
@@ -540,31 +565,17 @@ sub testcase
     Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH ) );
 
   my $tou_dir = $TEST_DIRECTORY . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
-  my $stdout_dir = $TEST_DIRECTORY . q{/} . $TEST_STDOUT_DIRECTORY . q{/};
-  my $json_dir   = $TEST_DIRECTORY . q{/} . $TEST_JSON_DIRECTORY . q{/};
+  my $json_dir = $TEST_DIRECTORY . q{/} . $TEST_JSON_DIRECTORY . q{/};
 
   my $toufile = "$tou_dir$case.tou";
 
-  my $actual_stdout_file   = "$stdout_dir$case.actual.stdout";
-  my $actual_json_file     = "$json_dir$case.actual.json";
-  my $expected_stdout_file = "$stdout_dir$case.stdout";
-  my $expected_json_file   = "$json_dir$case.json";
+  my $actual_json_file   = "$json_dir$case.actual.json";
+  my $expected_json_file = "$json_dir$case.json";
 
-  if ( !$setexpected && !-e $expected_stdout_file )
-  {
-    croak "File does not exist: $expected_stdout_file$NEWLINE";
-  }
   if ( !$setexpected && !-e $expected_json_file )
   {
     croak "File does not exist: $expected_json_file$NEWLINE";
   }
-
-  # Load the actual stdout
-  my $actual_stdout;
-  open my $fhstdout, '>>', \$actual_stdout
-    or croak "Cannot open file handle: $OS_ERROR$NEWLINE";
-  $fhstdout->autoflush();
-  close $fhstdout or croak "Cannot close file handle: $OS_ERROR$NEWLINE";
 
   Utils::check_country_flag_icons( ['USA'] );
 
@@ -579,17 +590,6 @@ sub testcase
 
   $tou->load($player_data);
 
-  *STDOUT->autoflush();
-
-  close $fhstdout or croak "Cannot close file handle: $OS_ERROR$NEWLINE";
-
-  if ( !$actual_stdout )
-  {
-    $actual_stdout = $EMPTY_STRING;
-  }
-
-  Utils::write_string_to_file( $actual_stdout, $actual_stdout_file );
-
   # Load the actual json
   my $unblessed_tou = $tou->get_unblessed_ref();
 
@@ -599,25 +599,17 @@ sub testcase
 
   if ($setexpected)
   {
-    Utils::write_string_to_file( $actual_stdout, $expected_stdout_file );
-    Utils::write_string_to_file( $actual_json,   $expected_json_file );
+    Utils::write_string_to_file( $actual_json, $expected_json_file );
   }
 
   # Load expected results
-  my $expected_stdout = Utils::write_file_to_string($expected_stdout_file);
-
   my $expected_json = Utils::write_file_to_string($expected_json_file);
 
-  my $stdout_failure_obj = Failure->new($STDOUT_FAILURE_TYPE);
-  my $json_failure_obj   = Failure->new($JSON_FAILURE_TYPE);
+  my $json_failure_obj = Failure->new($JSON_FAILURE_TYPE);
 
   return (
-    Test::compare_strings(
-      $expected_stdout, $actual_stdout, $stdout_failure_obj
-    ),
     Test::compare_json( $expected_json, $actual_json, $json_failure_obj ),
-    Test::format_expected_stdout($expected_stdout)
-  );
+    Test::format_expected_report($tou) );
 }
 
 sub testrun
@@ -629,9 +621,8 @@ sub testrun
   my ( $dbh, $alt_names_hash, $deceased_players_hash )
     = Test::setup_testrun();
 
-  my $stdout_failure;
   my $json_failure;
-  my $expected_stdout;
+  my $expected_report;
 
   my $player_data = {};
 
@@ -641,34 +632,23 @@ sub testrun
   for my $i ( $first_tc .. $last_tc )
   {
 
-    ( $stdout_failure, $json_failure, $expected_stdout )
+    ( $json_failure, $expected_report )
       = Test::testcase( $dbh, $alt_names_hash, $deceased_players_hash,
       $player_data, $i );
 
     my $response_content = $EMPTY_STRING;
 
-    if ( $stdout_failure->is_failure() )
-    {
-      $response_content .= $stdout_failure->to_string();
-    }
     if ( $json_failure->is_failure() )
     {
       $response_content .= $json_failure->to_string();
     }
 
-    $response_content .= $expected_stdout;
-    $response_content
-      .= ( sprintf '%-17s', ( $stdout_failure->get_type() . ' STATUS:' ) )
-      . Test::convert_to_response( $stdout_failure->is_failure() )
-      . $NEWLINE;
-    $response_content
-      .= ( sprintf '%-17s', ( $json_failure->get_type() . ' STATUS:' ) )
-      . Test::convert_to_response( $json_failure->is_failure() )
-      . $NEWLINE;
+    $response_content .= $expected_report;
+    $response_content .= Test::get_status($json_failure);
     Utils::format_print($response_content);
     Utils::format_print("$NEWLINE$NEWLINE");
-    if ( $croak
-      && ( $json_failure->is_failure() || $stdout_failure->is_failure() ) )
+
+    if ( $croak && $json_failure->is_failure() )
     {
       croak "Croak is set. Exiting on failure.$NEWLINE";
     }

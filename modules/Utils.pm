@@ -400,7 +400,6 @@ sub format_error
       . "$NEWLINE";
   }
   $error_string .= "$NEWLINE";
-  Utils::format_print($error_string);
   return $error_string;
 }
 
@@ -613,7 +612,7 @@ sub insert_hash_into_table
   my $dbh     = shift;
   my $table   = shift;
   my $hashref = shift;
-
+  print Dumper($hashref);
   my $keys_string   = q{(};
   my $values_string = q{(};
 
@@ -636,8 +635,10 @@ sub insert_hash_into_table
 
   $keys_string   .= q{)};
   $values_string .= q{)};
-
-  $dbh->do( "INSERT INTO $table $keys_string VALUE $values_string;",
+  my $insert_statement =
+    "INSERT INTO $table $keys_string VALUE $values_string;";
+  print "the insert: $insert_statement\n";
+  $dbh->do( $insert_statement,
     { RaiseError => 1 } );
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
@@ -854,11 +855,16 @@ sub populate_alt_names_hash
 
     $dl =~ s/^\s+|\s+$//gxms;
 
-    if ( $dl =~ /^#/xms || !$dl ) { next; }
+    if ( $dl =~ /^[#]/xms || !$dl ) { next; }
 
     my @names = split /,/xms, $dl;
 
-    @names = map { $dl =~ s/^\s+|\s+$//grxms } @names;
+    for my $i (0 .. scalar @names - 1)
+    {
+      my $trimmed_name = $names[$i];
+      $trimmed_name =~ s/^\s+|\s+$//gxms;
+      $names[$i] = $trimmed_name;
+    }
 
     if ( !@names ) { next; }
 
@@ -983,9 +989,11 @@ sub sanitize
 {
   my $name = shift;
 
-  $name = uc $name;
-
-  $name =~ s/\W//gxms;
+  if ($name)
+  {
+    $name = uc $name;
+    $name =~ s/\W//gxms;
+  }
 
   return $name;
 }
