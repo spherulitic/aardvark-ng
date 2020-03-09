@@ -9,15 +9,18 @@ use base 'Exporter';
 use Readonly;
 
 # Integer constants
-
+Readonly our $TEST_CONTENT_PADDING  => 15;
+Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
 Readonly our $TEST_TOU_REPORT_TITLE => 'TOU REPORT';
-Readonly our $STA_MAX_RATING_ITEMS => 3;
-Readonly our $MAX_LINE_LENGTH      => 80;
+Readonly our $STA_MAX_RATING_ITEMS  => 3;
+Readonly our $MAX_LINE_LENGTH       => 80;
 
 Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
 Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
 Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
 Readonly our $LAST_PROCESSING_WARNINGS_TC  => 15;
+
+Readonly our $LAST_TC => $LAST_PROCESSING_WARNINGS_TC;
 
 Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
 Readonly our $STS_PLAYER_NAME_INDEX       => 2;
@@ -116,10 +119,9 @@ Readonly our $TOU_REWRITE_FILENAME => 'TOU Rewrite Filename';
 Readonly our $TOU_REWRITE_NEEDED   => 'TOU Rewrite Needed';
 Readonly our $TOU_VALID            => 'TOU Valid';
 Readonly our $TOU_WARNING_REPORT   => 'TOU Warning Report';
-
-Readonly our $TOU_EVENT         => 'TOU Event';
-Readonly our $TOU_TOURNAMENT    => 'TOU Tournament';
-Readonly our $TOU_DIVISION_DATA => 'TOU Division Data';
+Readonly our $TOU_EVENT            => 'TOU Event';
+Readonly our $TOU_TOURNAMENT       => 'TOU Tournament';
+Readonly our $TOU_DIVISION_DATA    => 'TOU Division Data';
 
 Readonly our $TOU_REWRITE_EXTENSION  => '.rewrite';
 Readonly our $TOU_BASE_WINNING_SCORE => 2000;
@@ -128,6 +130,14 @@ Readonly our $TOU_TIE_SCORE_RESULT   => 1350;
 Readonly our $TOU_MINIMUM_WIN_SCORE  => 1950;
 Readonly our $TOU_TIE_VALUE          => 0.5;
 Readonly our $TOU_ZERO_PADDING       => 37;
+
+Readonly our $TOU_COMPARE_ORDER => [
+  $TOU_FILENAME,       $TOU_REWRITE_FILENAME, $TOU_ERROR_REPORT,
+  $TOU_WARNING_REPORT, $TOU_VALID,            $TOU_REWRITE_NEEDED,
+  $TOU_PLAYER_NAMES,   $TOU_STS_PLAYER_NAMES, $TOU_LOADED,
+  $TOU_PROCESSED,      $TOU_EVENT,            $TOU_TOURNAMENT,
+  $TOU_DIVISION_DATA,
+];
 
 Readonly our $UNBLESSED_IGNORE_KEYS => {
   $TOU_DBH             => 1,
@@ -1002,6 +1012,8 @@ FOOTER
 
 our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
+  $TEST_CONTENT_PADDING
+  $TEST_ARGUMENT_NOT_SET
   $TEST_TOU_REPORT_TITLE
   $STA_MAX_RATING_ITEMS
   $MAX_LINE_LENGTH
@@ -1009,6 +1021,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $LAST_PROCESSING_ERRORS_TC
   $FIRST_PROCESSING_WARNINGS_TC
   $LAST_PROCESSING_WARNINGS_TC
+  $LAST_TC
   $STS_PLAYER_COUNTRY_INDEX
   $STS_PLAYER_NAME_INDEX
   $STS_EXPECTED_WINS_INDEX
@@ -1088,6 +1101,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TOU_MINIMUM_WIN_SCORE
   $TOU_TIE_VALUE
   $TOU_ZERO_PADDING
+  $TOU_COMPARE_ORDER
   $UNBLESSED_IGNORE_KEYS
   $DIVISION_TOUFILE
   $DIVISION_NAME

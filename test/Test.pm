@@ -33,7 +33,7 @@ my $croak;
 my $export;
 my $setexpected;
 my $syntax;
-my $test;
+my $test = $TEST_ARGUMENT_NOT_SET;
 my $tidy;
 
 GetOptions(
@@ -45,7 +45,7 @@ GetOptions(
   export      => \$export,
   setexpected => \$setexpected,
   syntax      => \$syntax,
-  test        => \$test,
+  'test:s'    => \$test,
   tidy        => \$tidy
 );
 
@@ -69,18 +69,13 @@ if ($criticize)
 {
   Test::criticize();
 }
-if ($test)
-{
-  Test::harness();
-}
-if ($prepare)
+if ( $prepare || $all )
 {
   Test::prepare();
 }
-if ($all)
+if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
 {
-  Test::prepare();
-  Test::harness();
+  Test::harness( { test_cases => $test, exit_on_failure => $croak } );
 }
 
 sub alphabetize_routine_order
@@ -450,19 +445,23 @@ sub export_constants
   return 1;
 }
 
-sub format_expected_report
+sub format_actual_report
 {
   my $tou          = shift;
   my @report_lines = split /[\n]/xms, $tou->get_report();
   my $title        = $TEST_TOU_REPORT_TITLE . ': ';
   my $title_length = length $title;
 
-  my $formatted_report = $title . ( shift @report_lines ) . $NEWLINE;
+  my $first_report_line = shift @report_lines;
+  my $formatted_report
+    = ( sprintf "%-$TEST_CONTENT_PADDING" . 's', $title )
+    . $first_report_line
+    . $NEWLINE;
 
   for my $i ( 0 .. scalar @report_lines - 1 )
   {
     $formatted_report
-      .= ( q{ } x $title_length ) . $report_lines[$i] . $NEWLINE;
+      .= ( q{ } x $TEST_CONTENT_PADDING ) . $report_lines[$i] . $NEWLINE;
   }
 
   return $formatted_report . $NEWLINE;
@@ -471,8 +470,10 @@ sub format_expected_report
 sub get_status
 {
   my $failure_object = shift;
-  return
-      ( sprintf '%-17s', ( $failure_object->get_type() . ' STATUS:' ) )
+  return (
+    sprintf "%-$TEST_CONTENT_PADDING" . 's',
+    ( $failure_object->get_type() . ' STATUS:' )
+    )
     . Test::convert_to_response( $failure_object->is_failure() )
     . $NEWLINE;
 
@@ -480,12 +481,35 @@ sub get_status
 
 sub harness
 {
+  my $arg_ref = shift;
+
+  my $test_cases      = $arg_ref->{test_cases};
+  my $exit_on_failure = $arg_ref->{exit_on_failure};
+
+  my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
+  my @active_test_cases  = (1) x $LAST_TC;
+
+  if ($test_cases)
+  {
+    @active_test_cases = ();
+    for my $i ( 0 .. $LAST_TC )
+    {
+      push @active_test_cases, $test_cases_hashref{$i} ? 1 : 0;
+    }
+  }
+
   Utils::format_print(
     Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
 
   # Processing Errors
-  Test::testrun( 'PROCESSING ERRORS',
-    $FIRST_PROCESSING_ERRORS_TC, $LAST_PROCESSING_ERRORS_TC );
+  Test::testrun(
+    { title             => 'PROCESSING ERRORS',
+      first_tc          => $FIRST_PROCESSING_ERRORS_TC,
+      last_tc           => $LAST_PROCESSING_ERRORS_TC,
+      active_test_cases => \@active_test_cases,
+      exit_on_failure   => $exit_on_failure
+    }
+  );
 
   # Processing Warnings
 
@@ -495,8 +519,14 @@ sub harness
 
   system "mv $COUNTRY_FLAGS_DIR/$valid_flag $COUNTRY_FLAGS_DIR/$invalid_flag";
 
-  Test::testrun( 'PROCESSING WARNINGS',
-    $FIRST_PROCESSING_WARNINGS_TC, $LAST_PROCESSING_WARNINGS_TC );
+  Test::testrun(
+    { title             => 'PROCESSING WARNINGS',
+      first_tc          => $FIRST_PROCESSING_WARNINGS_TC,
+      last_tc           => $LAST_PROCESSING_WARNINGS_TC,
+      active_test_cases => \@active_test_cases,
+      exit_on_failure   => $exit_on_failure
+    }
+  );
 
   system "mv $COUNTRY_FLAGS_DIR/$invalid_flag $COUNTRY_FLAGS_DIR/$valid_flag";
 
@@ -553,11 +583,13 @@ sub setup_testrun
 
 sub testcase
 {
-  my $dbh                   = shift;
-  my $alt_names_hash        = shift;
-  my $deceased_players_hash = shift;
-  my $player_data           = shift;
-  my $case                  = shift;
+  my $arg_ref = shift;
+
+  my $dbh                   = $arg_ref->{dbh};
+  my $alt_names_hash        = $arg_ref->{alt_names_hash};
+  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
+  my $player_data           = $arg_ref->{player_data};
+  my $case                  = $arg_ref->{test_case_number};
 
   my $padded_case = sprintf '%3s', $case;
 
@@ -609,14 +641,18 @@ sub testcase
 
   return (
     Test::compare_json( $expected_json, $actual_json, $json_failure_obj ),
-    Test::format_expected_report($tou) );
+    Test::format_actual_report($tou) );
 }
 
 sub testrun
 {
-  my $run_title = shift;
-  my $first_tc  = shift;
-  my $last_tc   = shift;
+  my $arg_ref = shift;
+
+  my $run_title         = $arg_ref->{title};
+  my $first_tc          = $arg_ref->{first_tc};
+  my $last_tc           = $arg_ref->{last_tc};
+  my $active_test_cases = $arg_ref->{active_test_cases};
+  my $exit_on_failure   = $arg_ref->{exit_on_failure};
 
   my ( $dbh, $alt_names_hash, $deceased_players_hash )
     = Test::setup_testrun();
@@ -631,10 +667,19 @@ sub testrun
 
   for my $i ( $first_tc .. $last_tc )
   {
+    if ( !$active_test_cases->[$i] )
+    {
+      next;
+    }
 
-    ( $json_failure, $expected_report )
-      = Test::testcase( $dbh, $alt_names_hash, $deceased_players_hash,
-      $player_data, $i );
+    ( $json_failure, $expected_report ) = Test::testcase(
+      { dbh                   => $dbh,
+        alt_names_hash        => $alt_names_hash,
+        deceased_players_hash => $deceased_players_hash,
+        player_data           => $player_data,
+        test_case_number      => $i
+      }
+    );
 
     my $response_content = $EMPTY_STRING;
 
@@ -648,9 +693,9 @@ sub testrun
     Utils::format_print($response_content);
     Utils::format_print("$NEWLINE$NEWLINE");
 
-    if ( $croak && $json_failure->is_failure() )
+    if ( $exit_on_failure && $json_failure->is_failure() )
     {
-      croak "Croak is set. Exiting on failure.$NEWLINE";
+      croak 'Croak is set: exiting on failure';
     }
   }
 

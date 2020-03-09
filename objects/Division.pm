@@ -108,11 +108,12 @@ sub new
   my $game_data       = $arg_ref->{game_data};
 
   my $division = $this->initialize(
-    filename        => $filename,
-    division_name   => $division_name,
-    division_number => $division_number,
-    players         => $players,
-    game_data       => $game_data
+    { filename        => $filename,
+      division_name   => $division_name,
+      division_number => $division_number,
+      players         => $players,
+      game_data       => $game_data
+    }
   );
 
   $division->create_matrix();
@@ -330,7 +331,7 @@ sub to_string
       $division_string .= ( sprintf '%6s', $player_tou_score )
         . ( sprintf '%5s', $plus . ( $opponent_number + 1 ) ) . q{ };
     }
-    $division_string .= "$NEWLINE";
+    $division_string .= $NEWLINE;
   }
   return $division_string;
 }

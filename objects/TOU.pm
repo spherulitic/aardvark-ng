@@ -81,9 +81,10 @@ sub get_unblessed_ref
 {
   my $obj = shift;
 
+  my $ref_name = ref $obj;
   my $unblessed;
 
-  if ( ref $obj eq 'ARRAY' )
+  if ( $ref_name eq 'ARRAY' )
   {
     $unblessed = [];
     for my $i ( 0 .. scalar @{$obj} - 1 )
@@ -91,11 +92,19 @@ sub get_unblessed_ref
       $unblessed->[$i] = get_unblessed_ref( $obj->[$i] );
     }
   }
-  elsif ( ref $obj )
+  elsif ($ref_name)
   {
     $unblessed = {};
-    foreach my $key ( keys %{$obj} )
+    my @keys = keys %{$obj};
+
+    if ( $ref_name eq 'TOU' )
     {
+      @keys = @{$TOU_COMPARE_ORDER};
+    }
+
+    foreach my $i ( 0 .. scalar @keys - 1 )
+    {
+      my $key = $keys[$i];
       if ( !$UNBLESSED_IGNORE_KEYS->{$key} )
       {
         $unblessed->{$key} = get_unblessed_ref( $obj->{$key} );
@@ -156,7 +165,6 @@ sub load
 {
   my $this        = shift;
   my $player_data = shift;
-
   if ( !$this->is_valid() )
   {
     return 1;
@@ -318,7 +326,7 @@ sub new
     return $this;
   }
 
-  my ( $date, $tournament_name ) = TOU::parse_tou_header($filename);
+  my ( $date, $tournament_name ) = Utils::parse_tou_header($filename);
 
   if ( !$date || !$tournament_name )
   {
@@ -331,14 +339,36 @@ sub new
     return $this;
   }
 
+  my $event = {
+    start_date => $date,
+    end_date   => $date,
+
+    # "link"       => "link to event",
+    # "sponsor"    => "sponsor of event",
+    # "country"    => "AAA",
+    # "location"   => "location of event",
+  };
+  my $tournament = {
+    start_date => $date,              # This is changed later
+    end_date   => $date,              # This is changed later
+    name       => $tournament_name,
+    country =>
+      Utils::convert_trigraph( Utils::get_country_from_filename($filename) ),
+
+    # "td"         => "director of tournament",
+  };
+
+  $this->{$TOU_EVENT}      = $event;
+  $this->{$TOU_TOURNAMENT} = $tournament;
+
   $this->process_sts(
-    {
-      dbh => $dbh,
-      date => $date,
-      sts_file => $noext_filename . $sts_file_extension,
-      sta_file => $noext_filename . $sta_file_extension,
+    { dbh                   => $dbh,
+      date                  => $date,
+      sts_file              => $noext_filename . $sts_file_extension,
+      sta_file              => $noext_filename . $sta_file_extension,
       deceased_players_hash => $deceased_players_hash
-     });
+    }
+  );
   $this->process();
   return $this;
 }
@@ -347,18 +377,18 @@ sub new_division
 {
   my ( $this, $arg_ref ) = @_;
 
-  my $filename                = $arg_ref->{filename};
+  my $filename                = $this->{$TOU_FILENAME};
   my $current_division_name   = $arg_ref->{current_division_name};
   my $current_division_number = $arg_ref->{current_division_number};
   my $players                 = $arg_ref->{players};
   my $game_data               = $arg_ref->{game_data};
 
   my $division = Division->new(
-    { filename                => $filename,
-      current_division_name   => $current_division_name,
-      current_division_number => $current_division_number++,
-      players                 => $players,
-      game_data               => $game_data
+    { filename        => $filename,
+      division_name   => $current_division_name,
+      division_number => $current_division_number++,
+      players         => $players,
+      game_data       => $game_data
     }
   );
 
@@ -443,9 +473,9 @@ sub parse_sts_line
       )
     {
       $sts_metadata->{is_valid} = 1;
-      my $is_new_player         = $1; # Unused for now
-      $player_country           = $2;
-      $player_name              = $3;
+      my $is_new_player = $1;    # Unused for now
+      $player_country = $2;
+      $player_name    = $3;
       my $national_ranks_string = $4;
       my $world_ranks_string    = $5;
       my $wins_string           = $6;
@@ -466,7 +496,7 @@ sub parse_sts_line
             ]
           )
         );
-        return {parse_failed => 1};
+        return { parse_failed => 1 };
       }
 
       my %nrank_changes = (
@@ -493,7 +523,7 @@ sub parse_sts_line
             ]
           )
         );
-        return {parse_failed => 1};
+        return { parse_failed => 1 };
       }
 
       my %wrank_changes = (
@@ -518,7 +548,7 @@ sub parse_sts_line
             ]
           )
         );
-        return {parse_failed => 1};
+        return { parse_failed => 1 };
       }
 
       my @ewins_possibilities = ( undef, undef, $ewins[0] );
@@ -543,7 +573,7 @@ sub parse_sts_line
             ]
           )
         );
-        return {parse_failed => 1};
+        return { parse_failed => 1 };
       }
 
       my %rating_changes = (
@@ -555,7 +585,7 @@ sub parse_sts_line
       $start_rating = $rating_changes{$num_rchange_items}->[0];
       $end_rating   = $rating_changes{$num_rchange_items}->[1];
 
-      if ($sts_metadata->{switch_world_and_nation})
+      if ( $sts_metadata->{switch_world_and_nation} )
       {
         my $tmp1 = $old_national_rank;
         my $tmp2 = $new_national_rank;
@@ -564,7 +594,7 @@ sub parse_sts_line
         $old_world_rank    = $tmp1;
         $new_world_rank    = $tmp2;
       }
-      elsif ($sts_metadata->{world_column_present})
+      elsif ( $sts_metadata->{world_column_present} )
       {
         $old_world_rank = undef;
         $new_world_rank = undef;
@@ -576,46 +606,23 @@ sub parse_sts_line
     }
   }
   return {
-    player_country        => $player_country,
-    player_name           => $player_name,
-    start_rating          => $start_rating,
-    end_rating            => $end_rating,
-    expected_wins         => $expected_wins,
-    old_world_rank        => $old_world_rank,
-    new_world_rank        => $new_world_rank,
-    old_national_rank     => $old_national_rank,
-    new_national_rank     => $new_national_rank,
+    player_country    => $player_country,
+    player_name       => $player_name,
+    start_rating      => $start_rating,
+    end_rating        => $end_rating,
+    expected_wins     => $expected_wins,
+    old_world_rank    => $old_world_rank,
+    new_world_rank    => $new_world_rank,
+    old_national_rank => $old_national_rank,
+    new_national_rank => $new_national_rank,
   };
-}
-
-sub parse_tou_header
-{
-  my $filename = shift;
-
-  my $date;
-  my $tournament_name;
-
-  open my $tou_read, q{<}, $filename
-    or croak "Cannot open .tou file $filename: $OS_ERROR";
-  my $first_line = <$tou_read>;
-  close $tou_read or croak "Cannot close .tou file $filename: $OS_ERROR";
-  chomp $first_line;
-  $first_line =~ s/\r//gxms;
-
-  if ( $first_line =~ /^[*].(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms )
-  {
-    $date            = $3 . $2 . $1;
-    $tournament_name = $4;
-  }
-
-  return ( $date, $tournament_name );
 }
 
 sub process
 {
   my $this = shift;
 
-  if (!$this->{$TOU_VALID})
+  if ( !$this->{$TOU_VALID} )
   {
     return;
   }
@@ -626,66 +633,34 @@ sub process
   my $current_division_number = 1;
   my $current_division_name   = $EMPTY_STRING;
 
-  my $at_end    = 0;
-  my $at_header = 1;
+  my $at_end = 0;
 
   my @tou_lines = Utils::write_file_to_array($filename);
+
+  # Ignore the header line because it has already
+  # been processed
+  shift @tou_lines;
+
   while (@tou_lines)
   {
     my $tou_line = shift @tou_lines;
     $at_end = $tou_line =~ /END OF FILE/ms;
-    if ($at_header)
-    {
-      if ( $tou_line =~ /^[*].(\d\d).(\d\d).(\d\d\d\d) (.*)$/xms )
-      {
-        my $date            = $3 . $2 . $1;
-        my $tournament_name = $4;
-
-        # The commented entries are fields that we want to fill in eventually
-
-        my $event = {
-          start_date => $date,
-          end_date   => $date,
-
-          # "link"       => "link to event",
-          # "sponsor"    => "sponsor of event",
-          # "country"    => "AAA",
-          # "location"   => "location of event",
-        };
-        my $tournament = {
-          start_date => $date,                     # This is changed later
-          end_date   => $date,                     # This is changed later
-          name       => $tournament_name,
-          country    => Utils::convert_trigraph(
-            Utils::get_country_from_filename($filename)
-          ),
-
-          # "td"         => "director of tournament",
-        };
-        $this->{$TOU_EVENT}      = $event;
-        $this->{$TOU_TOURNAMENT} = $tournament;
-      }
-      $at_header = 0;
-    }
-
-    if ( ( $tou_line =~ /^[*](.*)/xms || $at_end ) && !$at_header )
+    if ( $tou_line =~ /^[*](.*)/xms || $at_end )
     {
       # If this is the end of the division, verify the division
       if (@players)
       {
         if (
-          $this->new_division(
-            { filename                => $filename,
-              current_division_name   => $current_division_name,
+          !$this->new_division(
+            { current_division_name   => $current_division_name,
               current_division_number => $current_division_number++,
               players                 => Clone::clone( \@players ),
               game_data               => Clone::clone( \@game_data )
             }
           )
           )
-
         {
-          return 1;
+          return;
         }
       }
 
@@ -708,7 +683,7 @@ sub process
             [ [ 'ERROR', 'Missing division name' ], [ 'File', $filename ], ]
           )
         );
-        return 1;
+        return;
       }
 
       # If a winning negative score is listed, correct it by adding 2000
@@ -755,7 +730,7 @@ sub process
               ]
             )
           );
-          return 1;
+          return;
         }
 
         # Convert the 1-indexed opp number in the TOU to the
@@ -791,10 +766,11 @@ sub process_division
   {
     $this->{$TOU_ERROR_REPORT} = $verification_report;
     $this->{$TOU_VALID}        = 0;
-    return 1;
+    return;
   }
 
-  $this->{$TOU_WARNING_REPORT} = $verification_report;
+  $this->{$TOU_WARNING_REPORT}
+    = $verification_report ? $verification_report : $EMPTY_STRING;
 
   my $number_of_rounds = $division->{$DIVISION_NUMBER_OF_ROUNDS};
   my @players          = @{ $division->{$DIVISION_PLAYERS} };
@@ -881,11 +857,10 @@ sub process_sts
     $is_sts          = 0;
   }
 
-  my $sts_metadata =
-  {
+  my $sts_metadata = {
     switch_world_and_nation => 0,
     world_column_present    => 0,
-    begin_player_captures   => 0,  
+    begin_player_captures   => 0,
   };
 
   # Read the .STS file
@@ -907,12 +882,12 @@ sub process_sts
       }
     );
 
-    if ($sts_line_extraction->{parse_failed})
+    if ( $sts_line_extraction->{parse_failed} )
     {
       return;
     }
 
-    if (!$is_sts && !$sts_metadata->{is_valid})
+    if ( !$is_sts && !$sts_metadata->{is_valid} )
     {
       next;
     }
@@ -994,10 +969,9 @@ sub process_sts
       = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
 
     my $player_id;
-    
-    my $deceased_status =
-      $deceased_players_hash->{$player_name} ? 1 : 0;
-    
+
+    my $deceased_status = $deceased_players_hash->{$player_name} ? 1 : 0;
+
     my $player_photo = Utils::get_player_photo($player_name);
 
     if ( !@player_query_result )    # Player does not exist
@@ -1005,11 +979,10 @@ sub process_sts
       $player_id = Utils::insert_hash_into_table(
         $dbh,
         $PLAYERS_TABLE_NAME,
-        {
-          name        => $pretty_player_name,
+        { name        => $pretty_player_name,
           country     => $player_country,
           photo       => $player_photo,
-          suspended   => 0,      
+          suspended   => 0,
           deceased    => $deceased_status,
           provisional => -1,
           total_games => 0,

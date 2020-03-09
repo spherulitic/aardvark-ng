@@ -612,7 +612,7 @@ sub insert_hash_into_table
   my $dbh     = shift;
   my $table   = shift;
   my $hashref = shift;
-  print Dumper($hashref);
+
   my $keys_string   = q{(};
   my $values_string = q{(};
 
@@ -635,11 +635,10 @@ sub insert_hash_into_table
 
   $keys_string   .= q{)};
   $values_string .= q{)};
-  my $insert_statement =
-    "INSERT INTO $table $keys_string VALUE $values_string;";
-  print "the insert: $insert_statement\n";
-  $dbh->do( $insert_statement,
-    { RaiseError => 1 } );
+  my $insert_statement
+    = "INSERT INTO $table $keys_string VALUE $values_string;";
+
+  $dbh->do( $insert_statement, { RaiseError => 1 } );
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
 
@@ -827,6 +826,29 @@ sub negative_one_if_false
   return $NEGATIVE_ONE;
 }
 
+sub parse_tou_header
+{
+  my $filename = shift;
+
+  my $date;
+  my $tournament_name;
+
+  open my $tou_read, q{<}, $filename
+    or croak "Cannot open .tou file $filename: $OS_ERROR";
+  my $first_line = <$tou_read>;
+  close $tou_read or croak "Cannot close .tou file $filename: $OS_ERROR";
+  chomp $first_line;
+  $first_line =~ s/[\r]//gxms;
+
+  if ( $first_line =~ /^[*] . (\d\d) . (\d\d) . (\d\d\d\d) [ ] (.*)$/xms )
+  {
+    $date            = $3 . $2 . $1;
+    $tournament_name = $4;
+  }
+
+  return ( $date, $tournament_name );
+}
+
 sub player_name_is_bye
 {
   my $name = shift;
@@ -859,7 +881,7 @@ sub populate_alt_names_hash
 
     my @names = split /,/xms, $dl;
 
-    for my $i (0 .. scalar @names - 1)
+    for my $i ( 0 .. scalar @names - 1 )
     {
       my $trimmed_name = $names[$i];
       $trimmed_name =~ s/^\s+|\s+$//gxms;
