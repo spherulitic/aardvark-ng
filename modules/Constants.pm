@@ -18,7 +18,7 @@ Readonly our $MAX_LINE_LENGTH       => 80;
 Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
 Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
 Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
-Readonly our $LAST_PROCESSING_WARNINGS_TC  => 15;
+Readonly our $LAST_PROCESSING_WARNINGS_TC  => 16;
 
 Readonly our $LAST_TC => $LAST_PROCESSING_WARNINGS_TC;
 
@@ -147,7 +147,9 @@ Readonly our $UNBLESSED_IGNORE_KEYS => {
   $TOU_PLAYER_DATA     => 1,
   $TOU_CONVERSION_HASH => 1,
   'lexicon_id'         => 1,
+  'event_id'           => 1,
   'player_id'          => 1,
+  'division_id'        => 1,
   'game_id'            => 1
 };
 
