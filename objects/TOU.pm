@@ -348,14 +348,19 @@ sub new
     # "country"    => "AAA",
     # "location"   => "location of event",
   };
+
+  my ( $trigraph, $trigraph_warnings )
+    = Utils::convert_trigraph( Utils::get_country_from_filename($filename) );
+
+  $this->{$TOU_WARNING_REPORT} .= $trigraph_warnings;
+
   my $tournament = {
     start_date => $date,              # This is changed later
     end_date   => $date,              # This is changed later
     name       => $tournament_name,
-    country =>
-      Utils::convert_trigraph( Utils::get_country_from_filename($filename) ),
+    country    => $trigraph,
 
-    # "td"         => "director of tournament",
+    # "td"     => "director of tournament",
   };
 
   $this->{$TOU_EVENT}      = $event;
@@ -770,7 +775,7 @@ sub process_division
   }
 
   $this->{$TOU_WARNING_REPORT}
-    = $verification_report ? $verification_report : $EMPTY_STRING;
+    .= $verification_report ? $verification_report : $EMPTY_STRING;
 
   my $number_of_rounds = $division->{$DIVISION_NUMBER_OF_ROUNDS};
   my @players          = @{ $division->{$DIVISION_PLAYERS} };
@@ -947,7 +952,11 @@ sub process_sts
 
     # Some country trigraphs in the old aardvark are incorrect
     # and need to be converted to valid ISO 3166 trigraphs
-    $player_country = Utils::convert_trigraph($player_country);
+    my $trigraph_warnings;
+    ( $player_country, $trigraph_warnings )
+      = Utils::convert_trigraph($player_country);
+
+    $this->{$TOU_WARNING_REPORT} .= $trigraph_warnings;
 
     # Convert possible alt name to correct name
     $player_name = Utils::convert_name( $player_name, $alt_names_hash );
@@ -1069,7 +1078,7 @@ sub to_string
   my $tournament_name = $tournament->{name};
   my $tournament_date = $tournament->{start_date};
 
-  $tournament_date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/xms;
+  $tournament_date =~ /(\d\d\d\d)(\d\d)(\d\d)/xms;
 
   my $tou_date_format = "$3.$2.$1";
 

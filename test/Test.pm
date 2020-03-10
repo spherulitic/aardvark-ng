@@ -447,9 +447,9 @@ sub export_constants
 
 sub format_actual_report
 {
-  my $tou          = shift;
-  my @report_lines = split /[\n]/xms, $tou->get_report();
-  my $title        = $TEST_TOU_REPORT_TITLE . ': ';
+  my $report       = shift;
+  my @report_lines = split /[\n]/xms, $report;
+  my $title        = $TEST_REPORT_TITLE . ': ';
   my $title_length = length $title;
 
   my $first_report_line = shift @report_lines;
@@ -487,12 +487,12 @@ sub harness
   my $exit_on_failure = $arg_ref->{exit_on_failure};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
-  my @active_test_cases  = (1) x $LAST_TC;
+  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
 
-  if ($test_cases)
+  if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
   {
     @active_test_cases = ();
-    for my $i ( 0 .. $LAST_TC )
+    for my $i ( 1 .. $LAST_TC + 1 )
     {
       push @active_test_cases, $test_cases_hashref{$i} ? 1 : 0;
     }
@@ -507,28 +507,22 @@ sub harness
       first_tc          => $FIRST_PROCESSING_ERRORS_TC,
       last_tc           => $LAST_PROCESSING_ERRORS_TC,
       active_test_cases => \@active_test_cases,
-      exit_on_failure   => $exit_on_failure
+      exit_on_failure   => $exit_on_failure,
     }
   );
 
   # Processing Warnings
-
-  # Create an incorrect and missing flag for testing
-  my $valid_flag   = 'USA.png';
-  my $invalid_flag = 'USB.png';
-
-  system "mv $COUNTRY_FLAGS_DIR/$valid_flag $COUNTRY_FLAGS_DIR/$invalid_flag";
-
   Test::testrun(
     { title             => 'PROCESSING WARNINGS',
       first_tc          => $FIRST_PROCESSING_WARNINGS_TC,
       last_tc           => $LAST_PROCESSING_WARNINGS_TC,
       active_test_cases => \@active_test_cases,
-      exit_on_failure   => $exit_on_failure
+      exit_on_failure   => $exit_on_failure,
     }
   );
 
-  system "mv $COUNTRY_FLAGS_DIR/$invalid_flag $COUNTRY_FLAGS_DIR/$valid_flag";
+  # Utilities
+  Test::testrun_utils( { active_test_cases => \@active_test_cases } );
 
   return 1;
 }
@@ -590,6 +584,7 @@ sub testcase
   my $deceased_players_hash = $arg_ref->{deceased_players_hash};
   my $player_data           = $arg_ref->{player_data};
   my $case                  = $arg_ref->{test_case_number};
+  my $utilities             = $arg_ref->{utilities};
 
   my $padded_case = sprintf '%3s', $case;
 
@@ -608,8 +603,6 @@ sub testcase
   {
     croak "File does not exist: $expected_json_file$NEWLINE";
   }
-
-  Utils::check_country_flag_icons( ['USA'] );
 
   my $tou = TOU->new(
     { dbh                   => $dbh,
@@ -641,7 +634,7 @@ sub testcase
 
   return (
     Test::compare_json( $expected_json, $actual_json, $json_failure_obj ),
-    Test::format_actual_report($tou) );
+    Test::format_actual_report( $tou->get_report() ) );
 }
 
 sub testrun
@@ -653,6 +646,22 @@ sub testrun
   my $last_tc           = $arg_ref->{last_tc};
   my $active_test_cases = $arg_ref->{active_test_cases};
   my $exit_on_failure   = $arg_ref->{exit_on_failure};
+
+  my $tests_present = 0;
+
+  for my $i ( $first_tc .. $last_tc )
+  {
+    if ( $active_test_cases->[ $i - 1 ] )
+    {
+      $tests_present = 1;
+      last;
+    }
+  }
+
+  if ( !$tests_present )
+  {
+    return 1;
+  }
 
   my ( $dbh, $alt_names_hash, $deceased_players_hash )
     = Test::setup_testrun();
@@ -667,7 +676,7 @@ sub testrun
 
   for my $i ( $first_tc .. $last_tc )
   {
-    if ( !$active_test_cases->[$i] )
+    if ( !$active_test_cases->[ $i - 1 ] )
     {
       next;
     }
@@ -677,7 +686,7 @@ sub testrun
         alt_names_hash        => $alt_names_hash,
         deceased_players_hash => $deceased_players_hash,
         player_data           => $player_data,
-        test_case_number      => $i
+        test_case_number      => $i,
       }
     );
 
@@ -698,6 +707,71 @@ sub testrun
       croak 'Croak is set: exiting on failure';
     }
   }
+
+  return 1;
+}
+
+sub testrun_utils
+{
+  my $arg_ref = shift;
+
+  my $active_test_cases = $arg_ref->{active_test_cases};
+
+  if ( !$active_test_cases->[$LAST_TC] )
+  {
+    return 1;
+  }
+
+  Utils::format_print(
+    Test::make_title( 'TEST RUN: UTILITIES', q{*}, $TEST_TITLE_WIDTH ) );
+
+  Utils::format_print(
+    Test::make_title(
+      'TEST CASE ' . ( $LAST_TC + 1 ),
+      q{~}, $TEST_TITLE_WIDTH
+    )
+  );
+
+  my $actual_utils = $EMPTY_STRING;
+
+  my $valid_flag   = 'USA.png';
+  my $invalid_flag = 'USB.png';
+
+  system "mv $COUNTRY_FLAGS_DIR/$valid_flag $COUNTRY_FLAGS_DIR/$invalid_flag";
+
+  $actual_utils .= Utils::check_country_flag_icons( ['USA'] );
+
+  system "mv $COUNTRY_FLAGS_DIR/$invalid_flag $COUNTRY_FLAGS_DIR/$valid_flag";
+
+  # Load expected results
+  my $utils_dir = $TEST_DIRECTORY . q{/} . $TEST_UTILS_DIRECTORY . q{/};
+  my $expected_utils_file = "$utils_dir/utils.expected";
+  my $actual_utils_file   = "$utils_dir/utils.actual";
+
+  Utils::write_string_to_file( $actual_utils, $actual_utils_file );
+
+  if ($setexpected)
+  {
+    Utils::write_string_to_file( $actual_utils, $expected_utils_file );
+  }
+
+  my $expected_utils = Utils::write_file_to_string($expected_utils_file);
+
+  my $utils_failure_obj = Failure->new($UTILS_FAILURE_TYPE);
+
+  Test::compare_objects( $expected_utils, $actual_utils, $utils_failure_obj );
+
+  my $response_content = $EMPTY_STRING;
+
+  if ( $utils_failure_obj->is_failure() )
+  {
+    $response_content .= $utils_failure_obj->to_string();
+  }
+
+  $response_content .= Test::format_actual_report($actual_utils);
+  $response_content .= Test::get_status($utils_failure_obj);
+  Utils::format_print($response_content);
+  Utils::format_print("$NEWLINE$NEWLINE");
 
   return 1;
 }

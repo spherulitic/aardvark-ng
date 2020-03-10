@@ -54,22 +54,20 @@ sub backup_years
 
 sub check_country_flag_icons
 {
-  my $country_ref = shift;
-
-  my @countries = @{$country_ref};
+  my $country_ref    = shift;
+  my @countries      = @{$country_ref};
+  my $warning_string = $EMPTY_STRING;
 
   opendir my $flag_dir_handle, $COUNTRY_FLAGS_DIR
     or croak "Cannot open  $COUNTRY_FLAGS_DIR: $OS_ERROR$NEWLINE";
-  my @existing_flags
-    = grep {/[A-Z]{3}/xms}    ## no critic (ProhibitEnumeratedClasses)
-    readdir $flag_dir_handle;
+  my @existing_flags = grep {/\w{3}[.]png/xms} readdir $flag_dir_handle;
 
   foreach my $ef (@existing_flags)
   {
-    $ef =~ /(([A-Z]{3}))/xms;    ## no critic (ProhibitEnumeratedClasses)
+    $ef =~ /(\w{3})/xms;
     if ( !$COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$1} )
     {
-      Utils::format_error(
+      $warning_string .= Utils::format_error(
         [ [ 'WARNING', 'Invalid flag image name' ], [ 'File', $ef ] ] );
     }
   }
@@ -81,7 +79,7 @@ sub check_country_flag_icons
     my $flag = $COUNTRY_FLAGS_DIR . q{/} . $country . $extension;
     if ( !( -e $flag ) )
     {
-      Utils::format_error(
+      $warning_string .= Utils::format_error(
         [ [ 'WARNING',      'Missing flag image' ],
           [ 'Country',      $country ],
           [ 'Missing File', $flag ],
@@ -89,7 +87,7 @@ sub check_country_flag_icons
       );
     }
   }
-  return 1;
+  return $warning_string;
 }
 
 sub compare_names
@@ -153,33 +151,37 @@ sub convert_name
 
 sub convert_trigraph
 {
-  my $trigraph = shift;
+  my $trigraph          = shift;
+  my $correct_trigraph  = $EMPTY_STRING;
+  my $trigraph_warnings = $EMPTY_STRING;
 
-  if ( !$trigraph )
+  if ($trigraph)
   {
-    return;
+    if ( $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph} )
+    {
+      $correct_trigraph = $trigraph;
+    }
+    else
+    {
+      $correct_trigraph = $COUNTRY_TRIGRAPH_CONVERSION->{$trigraph};
+    }
+
+    if ( !$correct_trigraph )
+    {
+      $correct_trigraph = $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH;
+    }
   }
 
-  if ( $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph} )
+  if ( !$trigraph || $correct_trigraph eq $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH )
   {
-    return $trigraph;
-  }
-
-  my $correct_trigraph = $COUNTRY_TRIGRAPH_CONVERSION->{$trigraph};
-  if ($correct_trigraph)
-  {
-    return $correct_trigraph;
-  }
-
-  if ( length $trigraph == $TRIGRAPH_LENGTH )
-  {
-    Utils::format_error(
+    $trigraph_warnings .= Utils::format_error(
       [ [ 'WARNING',  'Uncorrected country trigraph' ],
         [ 'Trigraph', $trigraph ],
       ]
     );
   }
-  return;
+
+  return ( $correct_trigraph, $trigraph_warnings );
 }
 
 sub convert_trigraph_to_country

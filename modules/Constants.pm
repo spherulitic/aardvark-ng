@@ -11,7 +11,7 @@ use Readonly;
 # Integer constants
 Readonly our $TEST_CONTENT_PADDING  => 15;
 Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
-Readonly our $TEST_TOU_REPORT_TITLE => 'TOU REPORT';
+Readonly our $TEST_REPORT_TITLE     => 'REPORT';
 Readonly our $STA_MAX_RATING_ITEMS  => 3;
 Readonly our $MAX_LINE_LENGTH       => 80;
 
@@ -52,7 +52,8 @@ Readonly our $PERL_CRITIC_SEVERITY => 1;
 
 Readonly our $HTML_WHITE_CLASS => 'white';
 
-Readonly our $DEFAULT_UNKNOWN_COUNTRY => 'Unknown Country';
+Readonly our $DEFAULT_UNKNOWN_COUNTRY          => 'Unknown Country';
+Readonly our $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH => 'UNK';
 
 Readonly our $EMPTY_STRING => q{};
 
@@ -81,8 +82,10 @@ Readonly our $TEST_TOU_PATH         => '/aardvark/2020/USA/';
 Readonly our $TEST_TOU_DIRECTORY    => 'tou';
 Readonly our $TEST_STDOUT_DIRECTORY => 'stdout';
 Readonly our $TEST_JSON_DIRECTORY   => 'json';
+Readonly our $TEST_UTILS_DIRECTORY  => 'utils';
 
 Readonly our $JSON_FAILURE_TYPE   => 'JSON';
+Readonly our $UTILS_FAILURE_TYPE  => 'UTILS';
 Readonly our $KEYS_FAILURE_TYPE   => 'KEYS';
 Readonly our $STDOUT_FAILURE_TYPE => 'STDOUT';
 
@@ -1014,7 +1017,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
   $TEST_CONTENT_PADDING
   $TEST_ARGUMENT_NOT_SET
-  $TEST_TOU_REPORT_TITLE
+  $TEST_REPORT_TITLE
   $STA_MAX_RATING_ITEMS
   $MAX_LINE_LENGTH
   $FIRST_PROCESSING_ERRORS_TC
@@ -1047,6 +1050,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $PERL_CRITIC_SEVERITY
   $HTML_WHITE_CLASS
   $DEFAULT_UNKNOWN_COUNTRY
+  $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH
   $EMPTY_STRING
   $PERL_ARRAY_REF_NAME
   $NEWLINE
@@ -1066,7 +1070,9 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TEST_TOU_DIRECTORY
   $TEST_STDOUT_DIRECTORY
   $TEST_JSON_DIRECTORY
+  $TEST_UTILS_DIRECTORY
   $JSON_FAILURE_TYPE
+  $UTILS_FAILURE_TYPE
   $KEYS_FAILURE_TYPE
   $STDOUT_FAILURE_TYPE
   $UNDEFINED_STRING
