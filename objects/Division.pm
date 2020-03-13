@@ -153,7 +153,7 @@ sub process
       my $player_name     = $this->{$DIVISION_PLAYERS}->[$player_number];
       my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
 
-      if ( $opponent_number < 0 || $opponent_number > $number_of_players - 1 )
+      if ( $opponent_number > $number_of_players - 1 )
       {
         # Covered by TC 13
         my $message_type = 'ERROR';
@@ -227,8 +227,8 @@ sub process
         }
       }
 
-      my $player_score   = $player_result->get_score();
-      my $opponent_score = $opponent_result->get_score();
+      my $player_score   = $player_result->{$RESULT_SCORE};
+      my $opponent_score = $opponent_result->{$RESULT_SCORE};
       my $spread         = $player_score - $opponent_score;
       my $wins           = 0;
       my $losses         = 0;

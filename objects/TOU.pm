@@ -51,14 +51,7 @@ sub compare_sts_and_tou_names
       )
     );
   }
-
   return 1;
-}
-
-sub get_filename
-{
-  my $this = shift;
-  return $this->{$TOU_FILENAME};
 }
 
 sub get_report
@@ -165,6 +158,9 @@ sub load
 {
   my $this        = shift;
   my $player_data = shift;
+
+  my $filename = $this->{$TOU_FILENAME};
+
   if ( !$this->is_valid() )
   {
     return 1;
@@ -172,7 +168,6 @@ sub load
 
   my $dbh = $this->{$TOU_DBH};
 
-  my $filename   = $this->{$TOU_FILENAME};
   my $event      = $this->{$TOU_EVENT};
   my $tournament = $this->{$TOU_TOURNAMENT};
   my $divisions  = $this->{$TOU_DIVISION_DATA};

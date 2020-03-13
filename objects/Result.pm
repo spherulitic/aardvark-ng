@@ -42,7 +42,7 @@ sub add_to_gpr
 
   my $result = {
     player_id => $player_id,
-    score     => $this->get_score(),
+    score     => $this->{$RESULT_SCORE},
     result    => $this->{$RESULT_CODED}
   };
 
@@ -63,18 +63,6 @@ sub add_to_gpr
   }
 
   return 1;
-}
-
-sub get_score
-{
-  my $this = shift;
-  return $this->{$RESULT_SCORE};
-}
-
-sub get_tou_score
-{
-  my $this = shift;
-  return $this->{$RESULT_TOU_SCORE};
 }
 
 sub new

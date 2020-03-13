@@ -49,29 +49,29 @@ GetOptions(
   tidy        => \$tidy
 );
 
-if ($alphabetize)
+if ($alphabetize)    # uncoverable branch true
 {
-  Test::alphabetize_routine_order();
+  Test::alphabetize_routine_order();    # uncoverable statement
 }
-if ($export)
+if ($export)                            # uncoverable branch true
 {
-  Test::export_constants();
+  Test::export_constants();             # uncoverable statement
 }
-if ($tidy)
+if ($tidy)                              # uncoverable branch true
 {
-  Test::tidy();
+  Test::tidy();                         # uncoverable statement
 }
-if ($syntax)
+if ($syntax)                            # uncoverable branch true
 {
-  Test::check_syntax();
+  Test::check_syntax();                 # uncoverable statement
 }
-if ($criticize)
+if ($criticize)                         # uncoverable branch true
 {
-  Test::criticize();
+  Test::criticize();                    # uncoverable statement
 }
-if ( $prepare || $all )
+if ( $prepare || $all )                 # uncoverable branch true
 {
-  Test::prepare();
+  Test::prepare();                      # uncoverable statement
 }
 if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
 {
@@ -516,6 +516,16 @@ sub harness
     { title             => 'PROCESSING WARNINGS',
       first_tc          => $FIRST_PROCESSING_WARNINGS_TC,
       last_tc           => $LAST_PROCESSING_WARNINGS_TC,
+      active_test_cases => \@active_test_cases,
+      exit_on_failure   => $exit_on_failure,
+    }
+  );
+
+  # Coverage
+  Test::testrun(
+    { title             => 'COVERAGE',
+      first_tc          => $FIRST_COVERAGE_TC,
+      last_tc           => $LAST_COVERAGE_TC,
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
     }

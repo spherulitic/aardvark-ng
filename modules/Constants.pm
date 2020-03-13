@@ -19,8 +19,10 @@ Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
 Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
 Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
 Readonly our $LAST_PROCESSING_WARNINGS_TC  => 16;
+Readonly our $FIRST_COVERAGE_TC            => 17;
+Readonly our $LAST_COVERAGE_TC             => 18;
 
-Readonly our $LAST_TC => $LAST_PROCESSING_WARNINGS_TC;
+Readonly our $LAST_TC => $LAST_COVERAGE_TC;
 
 Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
 Readonly our $STS_PLAYER_NAME_INDEX       => 2;
@@ -1026,6 +1028,8 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $LAST_PROCESSING_ERRORS_TC
   $FIRST_PROCESSING_WARNINGS_TC
   $LAST_PROCESSING_WARNINGS_TC
+  $FIRST_COVERAGE_TC
+  $LAST_COVERAGE_TC
   $LAST_TC
   $STS_PLAYER_COUNTRY_INDEX
   $STS_PLAYER_NAME_INDEX
