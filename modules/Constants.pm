@@ -18,11 +18,15 @@ Readonly our $MAX_LINE_LENGTH       => 80;
 Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
 Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
 Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
-Readonly our $LAST_PROCESSING_WARNINGS_TC  => 16;
-Readonly our $FIRST_COVERAGE_TC            => 17;
-Readonly our $LAST_COVERAGE_TC             => 18;
+Readonly our $LAST_PROCESSING_WARNINGS_TC  => 18;
+Readonly our $FIRST_COVERAGE_TC            => 19;
+Readonly our $LAST_COVERAGE_TC             => 21;
 
 Readonly our $LAST_TC => $LAST_COVERAGE_TC;
+
+Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
+Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
+Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
 
 Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
 Readonly our $STS_PLAYER_NAME_INDEX       => 2;
@@ -114,6 +118,7 @@ Readonly our $FAILURE_FIELDS => [
 Readonly our $TOU_DBH              => 'TOU Database Handler';
 Readonly our $TOU_PLAYER_NAMES     => 'TOU Player Names';
 Readonly our $TOU_CONVERSION_HASH  => 'TOU Player Name Conversion Hash';
+Readonly our $TOU_CORRECT          => 'TOU Attempt Correction';
 Readonly our $TOU_STS_PLAYER_NAMES => 'TOU STS Player Names';
 Readonly our $TOU_PLAYER_DATA      => 'TOU Player Data';
 Readonly our $TOU_ERROR_REPORT     => 'TOU Error Report';
@@ -163,6 +168,7 @@ Readonly our $DIVISION_PLAYERS             => 'Division Players';
 Readonly our $DIVISION_GAME_DATA           => 'Division Game Data';
 Readonly our $DIVISION_MATRIX              => 'Division Matrix';
 Readonly our $DIVISION_VALID               => 'Division Valid';
+Readonly our $DIVISION_CORRECTED           => 'Division Corrected';
 Readonly our $DIVISION_VERIFICATION_REPORT => 'Division Verification Report';
 Readonly our $DIVISION_TOURNAMENT_RESULTS  => 'Division Tournament Results';
 Readonly our $DIVISION_GAME_AND_PLAYER_RESULTS =>
@@ -1031,6 +1037,9 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $FIRST_COVERAGE_TC
   $LAST_COVERAGE_TC
   $LAST_TC
+  $TEST_TC_RETESTS
+  $TEST_PLAYERS_TO_DELETE
+  $TEST_TC_CORRECTIONS
   $STS_PLAYER_COUNTRY_INDEX
   $STS_PLAYER_NAME_INDEX
   $STS_EXPECTED_WINS_INDEX
@@ -1093,6 +1102,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TOU_DBH
   $TOU_PLAYER_NAMES
   $TOU_CONVERSION_HASH
+  $TOU_CORRECT
   $TOU_STS_PLAYER_NAMES
   $TOU_PLAYER_DATA
   $TOU_ERROR_REPORT
@@ -1123,6 +1133,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $DIVISION_GAME_DATA
   $DIVISION_MATRIX
   $DIVISION_VALID
+  $DIVISION_CORRECTED
   $DIVISION_VERIFICATION_REPORT
   $DIVISION_TOURNAMENT_RESULTS
   $DIVISION_GAME_AND_PLAYER_RESULTS

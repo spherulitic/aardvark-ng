@@ -46,7 +46,8 @@ sub load_all_tou_files
         filename              => $filename,
         alt_names_hash        => $alt_names_hash,
         deceased_players_hash => $deceased_players_hash,
-        player_data           => $player_data
+        player_data           => $player_data,
+        correct               => 0,
       }
     );
 

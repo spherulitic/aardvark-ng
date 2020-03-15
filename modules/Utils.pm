@@ -856,13 +856,12 @@ sub player_name_is_bye
   my $name = shift;
 
   $name = Utils::sanitize($name);
-
   if ( $name eq 'RUSSELLBYERS' )
   {
-    return 1;
+    return 0;
   }
-
-  return ( $name =~ /BYE/xms );
+  my $is_bye = $name =~ /BYE/ixms;
+  return $is_bye;
 }
 
 sub populate_alt_names_hash

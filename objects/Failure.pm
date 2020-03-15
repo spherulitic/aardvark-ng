@@ -83,11 +83,6 @@ sub to_string
 {
   my $this = shift;
 
-  if ( !$this->is_failure() )
-  {
-    return $EMPTY_STRING;
-  }
-
   my $failure_string   = $EMPTY_STRING;
   my $max_length_field = 0;
 

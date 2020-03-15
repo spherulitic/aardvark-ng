@@ -119,6 +119,7 @@ sub initialize
   my $filename        = $arg_ref->{filename};
   my $player_data     = $arg_ref->{player_data};
   my $conversion_hash = $arg_ref->{conversion_hash};
+  my $correct         = $arg_ref->{correct};
 
   my $tou = {};
 
@@ -127,6 +128,7 @@ sub initialize
   $tou->{$TOU_REWRITE_FILENAME} = $filename . $TOU_REWRITE_EXTENSION;
   $tou->{$TOU_PLAYER_DATA}      = $player_data;
   $tou->{$TOU_CONVERSION_HASH}  = $conversion_hash;
+  $tou->{$TOU_CORRECT}          = $correct;
 
   $tou->{$TOU_PLAYER_NAMES}     = {};
   $tou->{$TOU_STS_PLAYER_NAMES} = {};
@@ -140,6 +142,12 @@ sub initialize
 
   my $self = bless $tou, $this;
   return $self;
+}
+
+sub is_loaded
+{
+  my $this = shift;
+  return $this->{$TOU_LOADED};
 }
 
 sub is_processed
@@ -161,7 +169,7 @@ sub load
 
   my $filename = $this->{$TOU_FILENAME};
 
-  if ( !$this->is_valid() )
+  if ( !$this->is_valid() || $this->is_loaded() )
   {
     return 1;
   }
@@ -216,16 +224,11 @@ sub load
 
     foreach my $tr ( @{$tournament_results} )
     {
-      # If I wrote this whole thing correctly,
-      # the only null player_id's should be for 'bye players'
-      if ( $tr->{player_id} )
-      {
-        my $total_games = $tr->{wins} + $tr->{losses};
-        Utils::add_games_to_existing_player( $dbh, $tr->{player_id},
-          $total_games );
-        $tr->{division_id} = $division_id;
-        Utils::insert_hash_into_table( $dbh, $tournament_results_tn, $tr );
-      }
+      my $total_games = $tr->{wins} + $tr->{losses};
+      Utils::add_games_to_existing_player( $dbh, $tr->{player_id},
+        $total_games );
+      $tr->{division_id} = $division_id;
+      Utils::insert_hash_into_table( $dbh, $tournament_results_tn, $tr );
     }
 
     my $gprs = $division->{$DIVISION_GAME_AND_PLAYER_RESULTS};
@@ -270,12 +273,14 @@ sub new
   my $alt_names_hash        = $arg_ref->{alt_names_hash};
   my $deceased_players_hash = $arg_ref->{deceased_players_hash};
   my $player_data           = $arg_ref->{player_data};
+  my $correct               = $arg_ref->{correct};
 
   my $this = $tou_type->initialize(
     { dbh             => $dbh,
       filename        => $filename,
       player_data     => $player_data,
       conversion_hash => $alt_names_hash,
+      correct         => $correct,
     }
   );
 
@@ -300,6 +305,10 @@ sub new
 
   if ( Utils::tou_is_loaded( $dbh, $filename ) )
   {
+    $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
+      [ [ 'WARNING', 'TOU file was already loaded' ], [ 'File', $filename ],
+      ]
+    );
     $this->{$TOU_LOADED} = 1;
     return $this;
   }
@@ -392,7 +401,7 @@ sub new_division
     }
   );
 
-  $division->process();
+  $division->process( $this->{$TOU_CORRECT} );
   return $this->process_division($division);
 }
 
@@ -439,14 +448,6 @@ sub parse_sts_line
     {
       $sts_metadata->{begin_player_captures}++;
     }
-    if ( $sts_line =~ /World.*Nation/ixms )
-    {
-      $sts_metadata->{switch_world_and_nation} = 1;
-    }
-    elsif ( $sts_line =~ /World/xms )
-    {
-      $sts_metadata->{world_column_present} = 1;
-    }
 
     # Remove parentheses from the line because
     # they were causing problems
@@ -455,8 +456,8 @@ sub parse_sts_line
     my $is_new_player_pattern  = '(.)';
     my $player_country_pattern = '(\\w+)';
     my $player_name_pattern    = '([^|]+)';
-    my $national_ranks_pattern = '([^|]*)';
     my $world_ranks_pattern    = '([^|]*)';
+    my $national_ranks_pattern = '([^|]*)';
     my $wins_pattern           = '([^|]*)';
     my $ratings_pattern        = '([^|]*)';
 
@@ -465,8 +466,8 @@ sub parse_sts_line
       && $sts_line =~ m{^[|]$is_new_player_pattern
               $player_country_pattern\s+
               $player_name_pattern[|]
-              $national_ranks_pattern[|]
               $world_ranks_pattern[|]
+              $national_ranks_pattern[|]
               $wins_pattern[|]
               $ratings_pattern[|]
          }xms
@@ -476,8 +477,8 @@ sub parse_sts_line
       my $is_new_player = $1;    # Unused for now
       $player_country = $2;
       $player_name    = $3;
-      my $national_ranks_string = $4;
-      my $world_ranks_string    = $5;
+      my $world_ranks_string    = $4;
+      my $national_ranks_string = $5;
       my $wins_string           = $6;
       my $ratings_change_string = $7;
 
@@ -500,6 +501,7 @@ sub parse_sts_line
       }
 
       my %nrank_changes = (
+        0 => [ undef,      undef ],
         1 => [ undef,      $nranks[0] ],
         2 => [ $nranks[0], $nranks[1] ],
       );
@@ -527,6 +529,7 @@ sub parse_sts_line
       }
 
       my %wrank_changes = (
+        0 => [ undef,      undef ],
         1 => [ undef,      $wranks[0] ],
         2 => [ $wranks[0], $wranks[1] ],
       );
@@ -577,6 +580,7 @@ sub parse_sts_line
       }
 
       my %rating_changes = (
+        0                     => [ undef,        undef ],
         1                     => [ undef,        $rchanges[0] ],
         2                     => [ $rchanges[0], $rchanges[1] ],
         $STA_MAX_RATING_ITEMS => [ $rchanges[0], $rchanges[2] ],
@@ -584,21 +588,6 @@ sub parse_sts_line
 
       $start_rating = $rating_changes{$num_rchange_items}->[0];
       $end_rating   = $rating_changes{$num_rchange_items}->[1];
-
-      if ( $sts_metadata->{switch_world_and_nation} )
-      {
-        my $tmp1 = $old_national_rank;
-        my $tmp2 = $new_national_rank;
-        $old_national_rank = $old_world_rank;
-        $new_national_rank = $new_world_rank;
-        $old_world_rank    = $tmp1;
-        $new_world_rank    = $tmp2;
-      }
-      elsif ( $sts_metadata->{world_column_present} )
-      {
-        $old_world_rank = undef;
-        $new_world_rank = undef;
-      }
     }
     else
     {
@@ -744,6 +733,17 @@ sub process
       $player_name
         = Utils::convert_name( $player_name, $this->{$TOU_CONVERSION_HASH} );
 
+      if ( Utils::player_name_is_bye($player_name) )
+      {
+        # Covered by TC 17
+        $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
+          [ [ 'WARNING', 'Player as bye detected in TOU file' ],
+            [ 'File',    $filename ],
+            [ 'Line',    $tou_line ]
+          ]
+        );
+      }
+
       push @players,   $player_name;
       push @game_data, \@games;
     }
@@ -767,6 +767,11 @@ sub process_division
     $this->{$TOU_ERROR_REPORT} = $verification_report;
     $this->{$TOU_VALID}        = 0;
     return;
+  }
+
+  if ( $division->{$DIVISION_CORRECTED} )
+  {
+    $this->{$TOU_REWRITE_NEEDED} = 1;
   }
 
   $this->{$TOU_WARNING_REPORT}
@@ -857,11 +862,7 @@ sub process_sts
     $is_sts          = 0;
   }
 
-  my $sts_metadata = {
-    switch_world_and_nation => 0,
-    world_column_present    => 0,
-    begin_player_captures   => 0,
-  };
+  my $sts_metadata = { begin_player_captures => 0, };
 
   # Read the .STS file
   my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
@@ -902,14 +903,6 @@ sub process_sts
     my $new_world_rank    = $sts_line_extraction->{new_world_rank};
     my $old_national_rank = $sts_line_extraction->{old_national_rank};
     my $new_national_rank = $sts_line_extraction->{new_national_rank};
-
-    # Sometimes byes are represented by players named something like
-    # Bye A. If this is the case, we do not need to record the info
-    # for this 'player'
-    if ( Utils::player_name_is_bye($player_name) )
-    {
-      next;
-    }
 
     $expected_wins     = Utils::negative_one_if_false($expected_wins);
     $start_rating      = Utils::negative_one_if_false($start_rating);
@@ -974,7 +967,8 @@ sub process_sts
 
     my $player_id;
 
-    my $deceased_status = $deceased_players_hash->{$player_name} ? 1 : 0;
+    my $deceased_status
+      = $deceased_players_hash->{$pretty_player_name} ? 1 : 0;
 
     my $player_photo = Utils::get_player_photo($player_name);
 

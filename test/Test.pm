@@ -49,29 +49,29 @@ GetOptions(
   tidy        => \$tidy
 );
 
-if ($alphabetize)    # uncoverable branch true
+if ($alphabetize)
 {
-  Test::alphabetize_routine_order();    # uncoverable statement
+  Test::alphabetize_routine_order();
 }
-if ($export)                            # uncoverable branch true
+if ($export)
 {
-  Test::export_constants();             # uncoverable statement
+  Test::export_constants();
 }
-if ($tidy)                              # uncoverable branch true
+if ($tidy)
 {
-  Test::tidy();                         # uncoverable statement
+  Test::tidy();
 }
-if ($syntax)                            # uncoverable branch true
+if ($syntax)
 {
-  Test::check_syntax();                 # uncoverable statement
+  Test::check_syntax();
 }
-if ($criticize)                         # uncoverable branch true
+if ($criticize)
 {
-  Test::criticize();                    # uncoverable statement
+  Test::criticize();
 }
-if ( $prepare || $all )                 # uncoverable branch true
+if ( $prepare || $all )
 {
-  Test::prepare();                      # uncoverable statement
+  Test::prepare();
 }
 if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
 {
@@ -414,6 +414,18 @@ sub criticize
   return 1;
 }
 
+sub delete_players
+{
+  my $dbh = shift;
+
+  foreach my $player ( @{$TEST_PLAYERS_TO_DELETE} )
+  {
+    my $statement = "DELETE FROM $PLAYERS_TABLE_NAME WHERE name='$player'";
+    $dbh->do($statement);
+  }
+  return 1;
+}
+
 sub export_constants
 {
   my $constants_filename = './modules/Constants.pm';
@@ -453,6 +465,10 @@ sub format_actual_report
   my $title_length = length $title;
 
   my $first_report_line = shift @report_lines;
+
+  $first_report_line
+    = $first_report_line ? $first_report_line : $EMPTY_STRING;
+
   my $formatted_report
     = ( sprintf "%-$TEST_CONTENT_PADDING" . 's', $title )
     . $first_report_line
@@ -581,6 +597,7 @@ sub setup_testrun
 
   Utils::drop_all_wespa_tables( $dbh, $alt_names_hash );
   Utils::initialize_database( $dbh, $TABLES, $TABLE_CREATION_ORDER );
+  Test::delete_players($dbh);
 
   return ( $dbh, $alt_names_hash, $deceased_players_hash );
 }
@@ -604,7 +621,16 @@ sub testcase
   my $tou_dir = $TEST_DIRECTORY . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
   my $json_dir = $TEST_DIRECTORY . q{/} . $TEST_JSON_DIRECTORY . q{/};
 
-  my $toufile = "$tou_dir$case.tou";
+  my $file_number = $case;
+
+  my $retested_file_number = $TEST_TC_RETESTS->{$file_number};
+
+  if ($retested_file_number)
+  {
+    $file_number = $retested_file_number;
+  }
+
+  my $toufile = "$tou_dir$file_number.tou";
 
   my $actual_json_file   = "$json_dir$case.actual.json";
   my $expected_json_file = "$json_dir$case.json";
@@ -619,7 +645,8 @@ sub testcase
       filename              => $toufile,
       alt_names_hash        => $alt_names_hash,
       deceased_players_hash => $deceased_players_hash,
-      player_data           => $player_data
+      player_data           => $player_data,
+      correct               => $TEST_TC_CORRECTIONS->{$case},
     }
   );
 

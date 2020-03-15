@@ -85,6 +85,7 @@ sub initialize
   $division->{$DIVISION_PLAYERS}   = $players;
   $division->{$DIVISION_GAME_DATA} = $game_data;
   $division->{$DIVISION_VALID}     = 1;
+  $division->{$DIVISION_CORRECTED} = 0;
   $division->{$DIVISION_MATRIX}    = [];
 
   my $self = bless $division, $this;
@@ -156,13 +157,17 @@ sub process
       if ( $opponent_number > $number_of_players - 1 )
       {
         # Covered by TC 13
-        my $message_type = 'ERROR';
-        my $message      = 'Out of range opponent number';
+        my $message_type                = 'ERROR';
+        my $message                     = 'Out of range opponent number';
+        my $uncorrected_opponent_number = $opponent_number;
         if ($correct)
         {
+          # Covered by TC 20
           $message_type = 'WARNING';
           $message      = 'Out of range opponent number set to bye';
           $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
+          $opponent_number = $player_number;
+          $this->set_corrected(1);
         }
         $this->set_verification_report(
           Utils::format_error(
@@ -171,13 +176,14 @@ sub process
               [ 'Division',        $division_name ],
               [ 'Round',           $round + 1 ],
               [ 'Player',          $player_name ],
-              [ 'Opponent Number', $opponent_number + 1 ],
+              [ 'Opponent Number', $uncorrected_opponent_number + 1 ],
             ]
           )
         );
         if ( !$correct )
         {
           $this->set_valid(0);
+
           return;
         }
       }
@@ -195,11 +201,15 @@ sub process
         my $message_type = 'ERROR';
         my $message
           = q{The opponent of the player's opponent is not the player};
+        my $uncorrected_opponent_number = $opponent_number;
         if ($correct)
         {
+          # Covered by TC 20
           $message_type = 'WARNING';
           $message .= ' and was set to a bye';
           $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
+          $opponent_number = $player_number;
+          $this->set_corrected(1);
         }
 
         $this->set_verification_report(
@@ -208,14 +218,17 @@ sub process
               [ 'File',        $filename ],
               [ 'Division',    $division_name ],
               [ 'Round',       $round + 1 ],
-              [ 'Player',      $player_name . " ($player_number)" ],
+              [ 'Player', $player_name . ' (' . ( $player_number + 1 ) . ')'
+              ],
               [ q{Player's Opponent},
-                $this->{$DIVISION_PLAYERS}->[$opponent_number]
-                  . " ($opponent_number)"
+                $this->{$DIVISION_PLAYERS}->[$uncorrected_opponent_number]
+                  . ' ('
+                  . ( $uncorrected_opponent_number + 1 ) . ')'
               ],
               [ q{Player's Opponent's Opponent},
                 $this->{$DIVISION_PLAYERS}->[$opponent_opponent_number]
-                  . " ($opponent_opponent_number)"
+                  . ' ('
+                  . ( $opponent_opponent_number + 1 ) . ')'
               ]
             ]
           )
@@ -239,7 +252,7 @@ sub process
       if ( $opponent_number == $player_number )
       {
         $byes = 1;
-        my $tou_score = $player_result->get_tou_score();
+        my $tou_score = $player_result->{$RESULT_TOU_SCORE};
         if ( $tou_score > $TOU_BASE_WINNING_SCORE )
         {
           $bye_wins     = 1;
@@ -282,6 +295,15 @@ sub process
   return 0;
 }
 
+sub set_corrected
+{
+  my $this            = shift;
+  my $corrected_value = shift;
+  $this->{$DIVISION_CORRECTED} = $corrected_value;
+
+  return 1;
+}
+
 sub set_valid
 {
   my $this        = shift;
@@ -295,7 +317,13 @@ sub set_verification_report
 {
   my $this   = shift;
   my $report = shift;
-  $this->{$DIVISION_VERIFICATION_REPORT} = $report;
+
+  if ( $this->{$DIVISION_VERIFICATION_REPORT} )
+  {
+    $this->{$DIVISION_VERIFICATION_REPORT} .= $NEWLINE;
+  }
+
+  $this->{$DIVISION_VERIFICATION_REPORT} .= $report;
 
   return 1;
 }
