@@ -33,6 +33,7 @@ my $croak;
 my $export;
 my $setexpected;
 my $syntax;
+my $standards;
 my $test = $TEST_ARGUMENT_NOT_SET;
 my $tidy;
 
@@ -44,6 +45,7 @@ GetOptions(
   croak       => \$croak,
   export      => \$export,
   setexpected => \$setexpected,
+  standards   => \$standards,
   syntax      => \$syntax,
   'test:s'    => \$test,
   tidy        => \$tidy
@@ -68,6 +70,10 @@ if ($syntax)
 if ($criticize)
 {
   Test::criticize();
+}
+if ($standards)
+{
+  Test::list_standards_exceptions();
 }
 if ( $prepare || $all )
 {
@@ -553,6 +559,49 @@ sub harness
   return 1;
 }
 
+sub list_standards_exceptions
+{
+  Utils::format_print(
+    Test::make_title(
+      'LISTING STANDARDS EXCEPTIONS',
+      q{%}, $TEST_TITLE_WIDTH
+    )
+  );
+
+  my @files = Utils::get_perl_files;
+
+  while (@files)
+  {
+    my $file          = shift @files;
+    my @file_contents = Utils::write_file_to_array($file);
+    my @exceptions    = ();
+
+    for my $i ( 0 .. scalar @file_contents - 1 )
+    {
+      my $line = $file_contents[$i];
+      if ( $line =~ /[#][#][ ] no [ ] critic/xms )
+      {
+        push @exceptions, "$i: $line";
+      }
+    }
+
+    my $number_of_exceptions = scalar @exceptions;
+
+    Utils::format_print(
+      "Listing standards exceptions for $file  ($number_of_exceptions)$NEWLINE"
+    );
+
+    if (@exceptions)
+    {
+      Utils::format_print(
+        $NEWLINE . ( join $EMPTY_STRING, @exceptions ) . $NEWLINE );
+    }
+  }
+
+  Utils::format_print( $NEWLINE . $NEWLINE );
+  return 1;
+}
+
 sub make_title
 {
   my $content = shift;
@@ -585,6 +634,7 @@ sub prepare
   Test::tidy();
   Test::check_syntax();
   Test::criticize();
+  Test::list_standards_exceptions();
   return 1;
 }
 
