@@ -250,7 +250,7 @@ sub determine_item_class
 
 sub determine_item_value
 {
-  my $arg_ref = @_;
+  my $arg_ref = shift;
 
   my $key       = $arg_ref->{key};
   my $raw_value = $arg_ref->{raw_value};
@@ -688,22 +688,22 @@ sub make_link
 
 sub make_new_entry_head
 {
-  my ($arg_ref) = @_;
+  my $arg_ref = shift;
 
   my $games_ref       = $arg_ref->{games_ref};
   my $keys_ref        = $arg_ref->{keys_ref};
   my $row_class       = $arg_ref->{row_class};
   my $entry_id        = $arg_ref->{entry_id};
   my $title_length    = $arg_ref->{title_length};
-  my $games_title_row = $arg_ref->{games_row_title};
+  my $games_title_row = $arg_ref->{games_title_row};
 
   my $new_entry = $EMPTY_STRING;
 
-  $new_entry .= Utils::make_row(
+  $new_entry .= Utils::make_row({
     item  => $games_ref->[0],
     keys  => $keys_ref,
     class => $row_class
-  );
+  });
 
   $new_entry
     .= q{<tr style='border: none'>}
@@ -729,7 +729,7 @@ sub make_pretty
 
 sub make_row
 {
-  my $arg_ref = @_;
+  my $arg_ref = shift;
 
   my $item     = $arg_ref->{item};
   my $keys     = $arg_ref->{keys};
@@ -1246,9 +1246,12 @@ sub tou_is_loaded
 sub uniq
 {
   my $array_ref = shift;
-  my @array     = @{$array_ref};
-  my $hashref   = map { $_ => 1 } @array;
-  return keys %{$hashref};
+  my %hash = ();
+  foreach my $value (@{$array_ref})
+  {
+    $hash{$value} = 1;
+  }
+  return keys %hash;
 }
 
 sub update_record_by_id

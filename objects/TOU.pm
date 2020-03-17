@@ -370,7 +370,7 @@ sub new
   $this->{$TOU_EVENT}      = $event;
   $this->{$TOU_TOURNAMENT} = $tournament;
 
-  $this->process_sts(
+  my $stsa_data = $this->process_sts(
     { dbh                   => $dbh,
       date                  => $date,
       sts_file              => $noext_filename . $sts_file_extension,
@@ -378,7 +378,7 @@ sub new
       deceased_players_hash => $deceased_players_hash
     }
   );
-  $this->process();
+  $this->process($stsa_data);
   return $this;
 }
 
@@ -391,6 +391,7 @@ sub new_division
   my $current_division_number = $arg_ref->{current_division_number};
   my $players                 = $arg_ref->{players};
   my $game_data               = $arg_ref->{game_data};
+  my $stsa_data               = $arg_ref->{stsa_data};
 
   my $division = Division->new(
     { filename        => $filename,
@@ -402,7 +403,7 @@ sub new_division
   );
 
   $division->process( $this->{$TOU_CORRECT} );
-  return $this->process_division($division);
+  return $this->process_division($division, $stsa_data);
 }
 
 sub parse_sts_line
@@ -609,7 +610,8 @@ sub parse_sts_line
 
 sub process
 {
-  my $this = shift;
+  my $this      = shift;
+  my $stsa_data = shift;
 
   if ( !$this->{$TOU_VALID} )
   {
@@ -644,7 +646,8 @@ sub process
             { current_division_name   => $current_division_name,
               current_division_number => $current_division_number++,
               players                 => Clone::clone( \@players ),
-              game_data               => Clone::clone( \@game_data )
+              game_data               => Clone::clone( \@game_data ),
+              stsa_data               => $stsa_data,
             }
           )
           )
@@ -757,8 +760,9 @@ sub process
 
 sub process_division
 {
-  my $this     = shift;
-  my $division = shift;
+  my $this      = shift;
+  my $division  = shift;
+  my $stsa_data = shift;
 
   my $verification_report = $division->{$DIVISION_VERIFICATION_REPORT};
 
@@ -801,17 +805,31 @@ sub process_division
 
     $this->{$TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
 
+    if (!$player_id)
+    {
+      # In this case a player is missing from the STS/STA
+      # file and the error will have already been caught
+      next;
+    }
+
     my $tournament_result = {
-      player_id       => $player_id,
-      player_name     => $player_name,
-      position        => 0,
-      wins            => 0,
-      losses          => 0,
-      byes            => 0,
-      bye_wins        => 0,
-      spread          => 0,
-      date            => $this->{$TOU_TOURNAMENT}->{start_date},
-      tournament_name => $this->{$TOU_TOURNAMENT}->{name}
+      player_id         => $player_id,
+      player_name       => $player_name,
+      position          => 0,
+      wins              => 0,
+      losses            => 0,
+      byes              => 0,
+      bye_wins          => 0,
+      spread            => 0,
+      new_world_rank    => $stsa_data->{$player_id}->{new_world_rank},
+      old_world_rank    => $stsa_data->{$player_id}->{old_world_rank},
+      old_national_rank => $stsa_data->{$player_id}->{old_national_rank},
+      new_national_rank => $stsa_data->{$player_id}->{new_national_rank},
+      expected_wins     => $stsa_data->{$player_id}->{expected_wins},
+      start_rating      => $stsa_data->{$player_id}->{start_rating},
+      end_rating        => $stsa_data->{$player_id}->{end_rating},
+      date              => $this->{$TOU_TOURNAMENT}->{start_date},
+      tournament_name   => $this->{$TOU_TOURNAMENT}->{name}
     };
 
     for my $round ( 0 .. $number_of_rounds - 1 )
@@ -863,6 +881,8 @@ sub process_sts
   }
 
   my $sts_metadata = { begin_player_captures => 0, };
+  
+  my $stsa_data = {};
 
   # Read the .STS file
   my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
@@ -882,12 +902,13 @@ sub process_sts
         sts_metadata => $sts_metadata,
       }
     );
-
     if ( $sts_line_extraction->{parse_failed} )
     {
       return;
     }
 
+    # If the file is an STA file and the line is
+    # not a player line then skip it
     if ( !$is_sts && !$sts_metadata->{is_valid} )
     {
       next;
@@ -1026,8 +1047,18 @@ sub process_sts
       }
     }
     $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
+    $stsa_data->{$player_id} =
+    {
+      new_world_rank => $new_world_rank    ,
+      old_world_rank => $old_world_rank    ,
+      old_national_rank => $old_national_rank ,
+      new_national_rank => $new_national_rank ,
+      expected_wins => $expected_wins     ,
+      start_rating => $start_rating      ,
+      end_rating => $end_rating        ,
+    }
   }
-  return 1;
+  return $stsa_data;
 }
 
 sub rewrite

@@ -116,7 +116,7 @@ sub convert_result_to_letter
 
 sub correlate_tournament_data
 {
-  my $arg_ref = @_;
+  my $arg_ref = shift;
 
   my $tournament_results_hashref = $arg_ref->{results};
   my $tournament_data_ref        = $arg_ref->{data};
@@ -399,7 +399,7 @@ STOP
 
 sub get_datalist_html
 {
-  my $arg_ref = @_;
+  my $arg_ref = shift;
 
   my $data           = $arg_ref->{data};
   my $title          = $arg_ref->{title};
@@ -944,20 +944,20 @@ sub get_tournament_results_html_string
 
   # Correlate game results with a tournament result
 
-  HTML::correlate_tournament_data(
+  HTML::correlate_tournament_data({
     results => $tournament_results_hashref,
     data    => \@raw_tournament_data,
     stats   => $tournament_stats,
     type    => $type,
-  );
+  });
 
   # Sort the games, stats, and results
 
-  my @tournament_results = HTML::sort_tournament_data(
+  my @tournament_results = HTML::sort_tournament_data({
     results => $tournament_results_hashref,
     stats   => $tournament_stats,
     type    => $type,
-  );
+  });
 
   my $tournament_results_list_html_string = "<table class='table'>$NEWLINE";
   my $tournament_ratings_html_string      = "<table class='table'>$NEWLINE";
@@ -1009,7 +1009,7 @@ sub get_tournament_results_html_string
       is_title => 1
     }
   );
-
+  
   my $game_data = {
     tournament_name => $tournament_results[0]->[0]->{tr_tournament_name},
     tournament_date => $tournament_results[0]->[0]->{tr_date},
@@ -1110,7 +1110,7 @@ sub get_tournament_results_html_string
 
       my $res = $item->{pr1_result};
 
-      $res = HTML::convert_result_to_letter($res);
+      my $res_letter = HTML::convert_result_to_letter($res);
 
       my $res_to_win  = ( ( $res + 1 ) * ( $res + 0 ) ) / 2;
       my $res_to_loss = ( ( $res + 1 ) * ( $res + 0 ) / 2 ) * $NEGATIVE_ONE;
@@ -1128,7 +1128,7 @@ sub get_tournament_results_html_string
         $hh_draws  += $res_to_draw;
       }
 
-      $item->{pr1_result} = $res;
+      $item->{pr1_result} = $res_letter;
 
       my $score     = $item->{pr1_score};
       my $opp_score = $item->{pr2_score};
@@ -1224,8 +1224,8 @@ sub get_tournament_template_html_string
 {
   my $division_data = shift;
 
-  my $tournament_name = $division_data->[0]->{html}->{tournament_name};
-  my $tournament_date = $division_data->[0]->{html}->{tournament_date};
+  my $tournament_name = $division_data->[0]->{data}->{tournament_name};
+  my $tournament_date = $division_data->[0]->{data}->{tournament_date};
 
   my $division_html_class = 'division';
 
@@ -1436,8 +1436,16 @@ sub populate_score_thresholds
   {
     my $threshold      = $score_thresholds[$i];
     my $next_threshold = $score_thresholds[ $i + 1 ];
-    if ( $score >= $threshold
-      && ( $score < $next_threshold || !$next_threshold ) )
+
+    my $numeric_threshold = $threshold;
+
+    if ($threshold eq $ZEROTH_SCORE_THRESHOLD)
+    {
+      $numeric_threshold = 0;
+    }
+
+    if ( $score >= $numeric_threshold
+      && ( !$next_threshold || $score < $next_threshold ) )
     {
       $game_data->{over}->{$threshold}++;
       last;
@@ -1460,7 +1468,7 @@ sub populate_special_game_item
 
 sub populate_special_items
 {
-  my $arg_ref = @_;
+  my $arg_ref = shift;
 
   my $score     = $arg_ref->{score};
   my $opp_score = $arg_ref->{opp_score};
@@ -1512,7 +1520,7 @@ sub sanitize_tournament_data
   my $tournament_data_ref = shift;
   foreach my $data ( @{$tournament_data_ref} )
   {
-    if ( $data->{tr_start_rating} <= 0 )
+    if ( !$data->{tr_start_ratings} || $data->{tr_start_rating} <= 0 )
     {
       $data->{tr_rating_change} = $EMPTY_STRING;
     }
@@ -1534,7 +1542,7 @@ sub sanitize_tournament_data
 
 sub sort_tournament_data
 {
-  my $arg_ref = @_;
+  my $arg_ref = shift;
 
   my $tournament_results_hashref = $arg_ref->{results};
   my $tournament_stats           = $arg_ref->{stats};

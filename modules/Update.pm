@@ -19,13 +19,21 @@ if ( !caller )
 {
   my $logname = Utils::get_iso_date( time, q{-} ) . '_cronjob.log';
 
+  my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
+
+  # Get the list of every .tou file that needs to be processed
+  my $filenames_array_ref = Utils::get_tournament_data_filenames(
+    $tou_data_directory,             $DEFAULT_YEAR_REGEX,
+    $DEFAULT_COUNTRY_TRIGRAPH_REGEX, $DEFAULT_FILE_REGEX
+  );
+
   Utils::fetch_local_tournament_data();
-  Update::load_all_tournament_data();
+  Update::load_tournament_data($filenames_array_ref);
   Update::update_html();
   Update::push_local_content();
 }
 
-sub load_all_tou_files
+sub load_tou_files
 {
   my $dbh                   = shift;
   my $filenames_array_ref   = shift;
@@ -60,9 +68,10 @@ sub load_all_tou_files
   return 1;
 }
 
-sub load_all_tournament_data
+sub load_tournament_data
 {
-  my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
+  my $filenames_array_ref = shift;
+
 
   # This hash is used to consolidate the names that are considered duplciates
   my $alt_names_hash = Utils::populate_alt_names_hash();
@@ -84,12 +93,6 @@ sub load_all_tournament_data
 
   # Create the necessary tables
   Utils::initialize_database( $dbh, $TABLES, $TABLE_CREATION_ORDER );
-
-  # Get the list of every .tou file that needs to be processed
-  my $filenames_array_ref = Utils::get_tournament_data_filenames(
-    $tou_data_directory,             $DEFAULT_YEAR_REGEX,
-    $DEFAULT_COUNTRY_TRIGRAPH_REGEX, $DEFAULT_FILE_REGEX
-  );
 
   # Process every .tou file
   Update::load_all_tou_files( $dbh, $filenames_array_ref,

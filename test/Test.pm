@@ -22,15 +22,18 @@ use Constants;
 use Failure;
 use HTML;
 use TOU;
+use Update;
 use Utils;
 use JSON::XS;
 
 my $all;
+my $full;
 my $alphabetize;
 my $prepare;
 my $criticize;
 my $croak;
 my $export;
+my $html;
 my $setexpected;
 my $syntax;
 my $standards;
@@ -44,6 +47,8 @@ GetOptions(
   criticize   => \$criticize,
   croak       => \$croak,
   export      => \$export,
+  full        => \$full,
+  html        => \$html,
   setexpected => \$setexpected,
   standards   => \$standards,
   syntax      => \$syntax,
@@ -543,15 +548,44 @@ sub harness
     }
   );
 
-  # Coverage
+  # TOU Processing Coverage
   Test::testrun(
-    { title             => 'COVERAGE',
+    { title             => 'TOU PROCESSING COVERAGE',
       first_tc          => $FIRST_COVERAGE_TC,
       last_tc           => $LAST_COVERAGE_TC,
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
     }
   );
+
+  if ($html)
+  {
+    Utils::fetch_local_tournament_data();
+    
+    my $filenames_array_ref;
+
+    if ($full)
+    {
+      my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
+
+      # Get the list of every .tou file that needs to be processed
+      $filenames_array_ref = Utils::get_tournament_data_filenames(
+        $tou_data_directory,             $DEFAULT_YEAR_REGEX,
+        $DEFAULT_COUNTRY_TRIGRAPH_REGEX, $DEFAULT_FILE_REGEX
+      );
+
+      Update::load_tournament_data($filenames_array_ref);
+    }
+    else
+    {
+      # We gotta compare database results here
+      # With just these test cases, the comparison
+      # is manageable
+      # Test::compare_database_results 
+    }
+    Update::update_html();
+    Update::push_local_content();
+  }
 
   # Utilities
   Test::testrun_utils( { active_test_cases => \@active_test_cases } );
