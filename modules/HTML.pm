@@ -189,7 +189,7 @@ sub get_alltime_stats_results_html_string
       . "$TOURNAMENT_RESULTS_TABLE_NAME AS tr1, "
       . "$TOURNAMENT_RESULTS_TABLE_NAME AS tr2, "
       . "$DIVISIONS_TABLE_NAME AS d, "
-      . "$TOURNAMENTS_TABLE_NAME AS t ' . "
+      . "$TOURNAMENTS_TABLE_NAME AS t "
       . 'WHERE '
       . 'g.id = pr1.game_id AND g.id = pr2.game_id       AND '
       . 'pr1.player_id = p1.id AND pr2.player_id = p2.id AND '
@@ -303,6 +303,7 @@ sub get_alltime_template_html_string
   my @stats_tabdata = ();
 
   my $stats_order_ref = $TOURNAMENT_STATS_ORDER;
+  my $ids_to_click_javascript_array;
 
   for my $k ( 0 .. scalar @{$stats_order_ref} - 1 )
   {
@@ -319,27 +320,13 @@ sub get_alltime_template_html_string
       . "</div>$NEWLINE";
     if ( $k == 0 )
     {
-      push @ids_to_click, "button_$stat_id";
+      $ids_to_click_javascript_array .= "[button_$stat_id]";
     }
   }
 
   $stats_content
     = Utils::make_tab_div( \@stats_tabdata, $stats_tabclass, $stats_tablink )
     . $stats_content;
-
-  my $ids_to_click_javascript_array = q{[};
-
-  for my $i ( 0 .. scalar @ids_to_click - 1 )
-  {
-    my $id = $ids_to_click[$i];
-    $ids_to_click_javascript_array .= "'$id'";
-    if ( $i != ( scalar @ids_to_click ) - 1 )
-    {
-      $ids_to_click_javascript_array .= ', ';
-    }
-  }
-
-  $ids_to_click_javascript_array .= q{]};
 
   my $tournament_html_page = $EMPTY_STRING;
 
@@ -944,20 +931,22 @@ sub get_tournament_results_html_string
 
   # Correlate game results with a tournament result
 
-  HTML::correlate_tournament_data({
-    results => $tournament_results_hashref,
-    data    => \@raw_tournament_data,
-    stats   => $tournament_stats,
-    type    => $type,
-  });
+  HTML::correlate_tournament_data(
+    { results => $tournament_results_hashref,
+      data    => \@raw_tournament_data,
+      stats   => $tournament_stats,
+      type    => $type,
+    }
+  );
 
   # Sort the games, stats, and results
 
-  my @tournament_results = HTML::sort_tournament_data({
-    results => $tournament_results_hashref,
-    stats   => $tournament_stats,
-    type    => $type,
-  });
+  my @tournament_results = HTML::sort_tournament_data(
+    { results => $tournament_results_hashref,
+      stats   => $tournament_stats,
+      type    => $type,
+    }
+  );
 
   my $tournament_results_list_html_string = "<table class='table'>$NEWLINE";
   my $tournament_ratings_html_string      = "<table class='table'>$NEWLINE";
@@ -1009,7 +998,7 @@ sub get_tournament_results_html_string
       is_title => 1
     }
   );
-  
+
   my $game_data = {
     tournament_name => $tournament_results[0]->[0]->{tr_tournament_name},
     tournament_date => $tournament_results[0]->[0]->{tr_date},
@@ -1439,7 +1428,7 @@ sub populate_score_thresholds
 
     my $numeric_threshold = $threshold;
 
-    if ($threshold eq $ZEROTH_SCORE_THRESHOLD)
+    if ( $threshold eq $ZEROTH_SCORE_THRESHOLD )
     {
       $numeric_threshold = 0;
     }

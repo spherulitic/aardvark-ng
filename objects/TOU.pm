@@ -403,7 +403,7 @@ sub new_division
   );
 
   $division->process( $this->{$TOU_CORRECT} );
-  return $this->process_division($division, $stsa_data);
+  return $this->process_division( $division, $stsa_data );
 }
 
 sub parse_sts_line
@@ -805,7 +805,7 @@ sub process_division
 
     $this->{$TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
 
-    if (!$player_id)
+    if ( !$player_id )
     {
       # In this case a player is missing from the STS/STA
       # file and the error will have already been caught
@@ -881,7 +881,7 @@ sub process_sts
   }
 
   my $sts_metadata = { begin_player_captures => 0, };
-  
+
   my $stsa_data = {};
 
   # Read the .STS file
@@ -1047,16 +1047,15 @@ sub process_sts
       }
     }
     $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
-    $stsa_data->{$player_id} =
-    {
-      new_world_rank => $new_world_rank    ,
-      old_world_rank => $old_world_rank    ,
-      old_national_rank => $old_national_rank ,
-      new_national_rank => $new_national_rank ,
-      expected_wins => $expected_wins     ,
-      start_rating => $start_rating      ,
-      end_rating => $end_rating        ,
-    }
+    $stsa_data->{$player_id}     = {
+      new_world_rank    => $new_world_rank,
+      old_world_rank    => $old_world_rank,
+      old_national_rank => $old_national_rank,
+      new_national_rank => $new_national_rank,
+      expected_wins     => $expected_wins,
+      start_rating      => $start_rating,
+      end_rating        => $end_rating,
+    };
   }
   return $stsa_data;
 }

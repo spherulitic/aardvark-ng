@@ -72,7 +72,6 @@ sub load_tournament_data
 {
   my $filenames_array_ref = shift;
 
-
   # This hash is used to consolidate the names that are considered duplciates
   my $alt_names_hash = Utils::populate_alt_names_hash();
 
@@ -134,6 +133,8 @@ sub push_local_content
   # Softlinking is much more convenient
   # in this case
   system "cp -rf $HTML_STATIC_DIR/* $base_dir";
+
+  system "cp -rf $HTML_STATIC_DIR/js $working_dir";
 
   system "cp -rf css/* $working_dir";
 
@@ -563,6 +564,7 @@ sub update_html
     = map { $_->{country} }
     ( grep { !$_->{deceased} && !$_->{suspended} && $_->{current} }
       @all_players );
+
   @country_rankings_to_create = Utils::uniq( \@country_rankings_to_create );
 
   my %valid_link_countries = map { $_ => 1 } @country_rankings_to_create;

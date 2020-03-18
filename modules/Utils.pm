@@ -491,8 +491,9 @@ sub get_most_recent_tournament
     $query
       = 'SELECT id, name '
       . "FROM $TOURNAMENTS_TABLE_NAME "
-      . 'GROUP BY end_date DESC';
+      . 'ORDER BY end_date DESC';
   }
+
   my @tournament_name
     = @{ $dbh->selectall_arrayref( $query, { RaiseError => 1 } ) };
   return [ $tournament_name[0]->[0], $tournament_name[0]->[1] ];
@@ -699,11 +700,12 @@ sub make_new_entry_head
 
   my $new_entry = $EMPTY_STRING;
 
-  $new_entry .= Utils::make_row({
-    item  => $games_ref->[0],
-    keys  => $keys_ref,
-    class => $row_class
-  });
+  $new_entry .= Utils::make_row(
+    { item  => $games_ref->[0],
+      keys  => $keys_ref,
+      class => $row_class
+    }
+  );
 
   $new_entry
     .= q{<tr style='border: none'>}
@@ -1246,8 +1248,8 @@ sub tou_is_loaded
 sub uniq
 {
   my $array_ref = shift;
-  my %hash = ();
-  foreach my $value (@{$array_ref})
+  my %hash      = ();
+  foreach my $value ( @{$array_ref} )
   {
     $hash{$value} = 1;
   }

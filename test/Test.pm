@@ -561,12 +561,13 @@ sub harness
   if ($html)
   {
     Utils::fetch_local_tournament_data();
-    
+
     my $filenames_array_ref;
 
     if ($full)
     {
-      my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
+      my $tou_data_directory
+        = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
 
       # Get the list of every .tou file that needs to be processed
       $filenames_array_ref = Utils::get_tournament_data_filenames(
@@ -581,7 +582,7 @@ sub harness
       # We gotta compare database results here
       # With just these test cases, the comparison
       # is manageable
-      # Test::compare_database_results 
+      # Test::compare_database_results
     }
     Update::update_html();
     Update::push_local_content();
