@@ -711,7 +711,8 @@ sub get_rankings_html_string
   if ($country)
   {
     @players
-      = @{ query_table( $dbh, $PLAYERS_TABLE_NAME, 'country', $country ) };
+      = @{ Utils::query_table( $dbh, $PLAYERS_TABLE_NAME, 'country',
+        $country ) };
   }
   else
   {
@@ -1032,6 +1033,7 @@ sub get_tournament_results_html_string
     my $subentries = $EMPTY_STRING;
 
     my $games_ref = $tournament_results[$i];
+
     my $button_id = Utils::create_html_id( $HTML_ID_BUTTON_TAG, $type,
       $games_ref->[0]->{tr_id} );
     my $entry_id = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $type,

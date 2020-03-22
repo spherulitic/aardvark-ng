@@ -475,6 +475,7 @@ sub parse_sts_line
       )
     {
       $sts_metadata->{is_valid} = 1;
+
       my $is_new_player = $1;    # Unused for now
       $player_country = $2;
       $player_name    = $3;
@@ -482,6 +483,14 @@ sub parse_sts_line
       my $national_ranks_string = $5;
       my $wins_string           = $6;
       my $ratings_change_string = $7;
+
+      $is_new_player         =~ s/^\s+|\s+$//gxms;
+      $player_country        =~ s/^\s+|\s+$//gxms;
+      $player_name           =~ s/^\s+|\s+$//gxms;
+      $world_ranks_string    =~ s/^\s+|\s+$//gxms;
+      $national_ranks_string =~ s/^\s+|\s+$//gxms;
+      $wins_string           =~ s/^\s+|\s+$//gxms;
+      $ratings_change_string =~ s/^\s+|\s+$//gxms;
 
       my @nranks = split /\s+/xms, $national_ranks_string;
       @nranks = grep {$_} @nranks;
@@ -559,7 +568,7 @@ sub parse_sts_line
 
       $expected_wins = $ewins_possibilities[$ewins_length];
 
-      my @rchanges = split /\s+/xms, $ratings_change_string;
+      my @rchanges = split /\D+/xms, $ratings_change_string;
       @rchanges = grep {$_} @rchanges;
       my $num_rchange_items = scalar @rchanges;
 
@@ -914,9 +923,22 @@ sub process_sts
       next;
     }
 
+    my $player_name = $sts_line_extraction->{player_name};
+
+    if ( Utils::player_name_is_bye($player_name) )
+    {
+      # Not covered by any TC
+      $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
+        [ [ 'WARNING', 'Player as bye detected in STS/STA file' ],
+          [ 'File',    $sts_or_sta_file ],
+          [ 'Line',    $sts_line ]
+        ]
+      );
+      next;
+    }
+
     # These are common between both .STS and .STA files
     my $player_country    = $sts_line_extraction->{player_country};
-    my $player_name       = $sts_line_extraction->{player_name};
     my $start_rating      = $sts_line_extraction->{start_rating};
     my $end_rating        = $sts_line_extraction->{end_rating};
     my $expected_wins     = $sts_line_extraction->{expected_wins};

@@ -61,8 +61,7 @@ sub load_tou_files
 
     $tou->load( $dbh, $player_data );
 
-    # Testing code:
-    last;
+    Utils::format_print( $tou->get_report() );
   }
 
   return 1;
@@ -94,7 +93,7 @@ sub load_tournament_data
   Utils::initialize_database( $dbh, $TABLES, $TABLE_CREATION_ORDER );
 
   # Process every .tou file
-  Update::load_all_tou_files( $dbh, $filenames_array_ref,
+  Update::load_tou_files( $dbh, $filenames_array_ref,
     $alt_names_hash, $deceased_players_hash );
 
   # After all tournaments are loaded into the database,
@@ -659,13 +658,17 @@ sub update_rankings_html
   my $countries_ref = shift;
 
   my $base_dir = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
+  my $tournament_id;
+  my $tournament_name;
 
-  my $most_recent_tournament = Utils::get_most_recent_tournament($dbh);
-  my $full_rankings_data     = {
+  ( $tournament_id, $tournament_name )
+    = Utils::get_most_recent_tournament($dbh);
+
+  my $full_rankings_data = {
     'title'           => 'WESPA RATINGS',
     'tournament_link' => Utils::make_link(
-      $base_dir,                              $TOURNAMENT_HTML_DIR,
-      $most_recent_tournament->[0] . '.html', $most_recent_tournament->[1],
+      $base_dir,                $TOURNAMENT_HTML_DIR,
+      $tournament_id . '.html', $tournament_name,
     )
   };
 
@@ -694,16 +697,20 @@ sub update_rankings_html
       next;
     }
 
-    my $most_recent_country_tournament
+    ( $tournament_id, $tournament_name )
       = Utils::get_most_recent_tournament( $dbh, $country );
+
+    if ( !$tournament_id )
+    {
+      # No tournaments have been played in this country
+      next;
+    }
 
     my $rankings_data = {
       'title'           => $country_fullname . ' RATINGS',
       'tournament_link' => Utils::make_link(
-        $base_dir,
-        $TOURNAMENT_HTML_DIR,
-        $most_recent_country_tournament->[0] . '.html',
-        $most_recent_country_tournament->[1],
+        $base_dir,                $TOURNAMENT_HTML_DIR,
+        $tournament_id . '.html', $tournament_name,
       )
     };
 
@@ -714,7 +721,7 @@ sub update_rankings_html
       $rankings_data );
     my $country_ranking_filename
       = $HTML_DIR . q{/} . $RANKINGS_HTML_DIR . "/$country.html";
-    HTML::write_string_to_file( $country_ranking_html_page,
+    Utils::write_string_to_file( $country_ranking_html_page,
       $country_ranking_filename );
   }
 

@@ -56,27 +56,27 @@ GetOptions(
   tidy        => \$tidy
 );
 
-if ($alphabetize)
+if ( $alphabetize && !$all )
 {
   Test::alphabetize_routine_order();
 }
-if ($export)
+if ( $export && !$all )
 {
   Test::export_constants();
 }
-if ($tidy)
+if ( $tidy && !$all )
 {
   Test::tidy();
 }
-if ($syntax)
+if ( $syntax && !$all )
 {
   Test::check_syntax();
 }
-if ($criticize)
+if ( $criticize && !$all )
 {
   Test::criticize();
 }
-if ($standards)
+if ( $standards && !$all )
 {
   Test::list_standards_exceptions();
 }
@@ -86,7 +86,11 @@ if ( $prepare || $all )
 }
 if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
 {
-  Test::harness( { test_cases => $test, exit_on_failure => $croak } );
+  Test::tou_harness( { test_cases => $test, exit_on_failure => $croak } );
+}
+if ( $html || $all )
+{
+  Test::html_harness();
 }
 
 sub alphabetize_routine_order
@@ -506,90 +510,36 @@ sub get_status
 
 }
 
-sub harness
+sub html_harness
 {
-  my $arg_ref = shift;
 
-  my $test_cases      = $arg_ref->{test_cases};
-  my $exit_on_failure = $arg_ref->{exit_on_failure};
+  Utils::fetch_local_tournament_data();
 
-  my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
-  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
+  my $filenames_array_ref;
 
-  if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
+  if ($full)
   {
-    @active_test_cases = ();
-    for my $i ( 1 .. $LAST_TC + 1 )
-    {
-      push @active_test_cases, $test_cases_hashref{$i} ? 1 : 0;
-    }
+    my $tou_data_directory
+      = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
+
+    # Get the list of every .tou file that needs to be processed
+    $filenames_array_ref = Utils::get_tournament_data_filenames(
+      $tou_data_directory,             $DEFAULT_YEAR_REGEX,
+      $DEFAULT_COUNTRY_TRIGRAPH_REGEX, $DEFAULT_FILE_REGEX
+    );
+
+    Update::load_tournament_data($filenames_array_ref);
+  }
+  else
+  {
+    # We gotta compare database results here
+    # With just these test cases, the comparison
+    # is manageable
+    # Test::compare_database_results
   }
 
-  Utils::format_print(
-    Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
-
-  # Processing Errors
-  Test::testrun(
-    { title             => 'PROCESSING ERRORS',
-      first_tc          => $FIRST_PROCESSING_ERRORS_TC,
-      last_tc           => $LAST_PROCESSING_ERRORS_TC,
-      active_test_cases => \@active_test_cases,
-      exit_on_failure   => $exit_on_failure,
-    }
-  );
-
-  # Processing Warnings
-  Test::testrun(
-    { title             => 'PROCESSING WARNINGS',
-      first_tc          => $FIRST_PROCESSING_WARNINGS_TC,
-      last_tc           => $LAST_PROCESSING_WARNINGS_TC,
-      active_test_cases => \@active_test_cases,
-      exit_on_failure   => $exit_on_failure,
-    }
-  );
-
-  # TOU Processing Coverage
-  Test::testrun(
-    { title             => 'TOU PROCESSING COVERAGE',
-      first_tc          => $FIRST_COVERAGE_TC,
-      last_tc           => $LAST_COVERAGE_TC,
-      active_test_cases => \@active_test_cases,
-      exit_on_failure   => $exit_on_failure,
-    }
-  );
-
-  if ($html)
-  {
-    Utils::fetch_local_tournament_data();
-
-    my $filenames_array_ref;
-
-    if ($full)
-    {
-      my $tou_data_directory
-        = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
-
-      # Get the list of every .tou file that needs to be processed
-      $filenames_array_ref = Utils::get_tournament_data_filenames(
-        $tou_data_directory,             $DEFAULT_YEAR_REGEX,
-        $DEFAULT_COUNTRY_TRIGRAPH_REGEX, $DEFAULT_FILE_REGEX
-      );
-
-      Update::load_tournament_data($filenames_array_ref);
-    }
-    else
-    {
-      # We gotta compare database results here
-      # With just these test cases, the comparison
-      # is manageable
-      # Test::compare_database_results
-    }
-    Update::update_html();
-    Update::push_local_content();
-  }
-
-  # Utilities
-  Test::testrun_utils( { active_test_cases => \@active_test_cases } );
+  Update::update_html();
+  Update::push_local_content();
 
   return 1;
 }
@@ -911,6 +861,64 @@ sub tidy
     system "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f";
   }
   Utils::format_print($NEWLINE);
+  return 1;
+}
+
+sub tou_harness
+{
+  my $arg_ref = shift;
+
+  my $test_cases      = $arg_ref->{test_cases};
+  my $exit_on_failure = $arg_ref->{exit_on_failure};
+
+  my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
+  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
+
+  if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
+  {
+    @active_test_cases = ();
+    for my $i ( 1 .. $LAST_TC + 1 )
+    {
+      push @active_test_cases, $test_cases_hashref{$i} ? 1 : 0;
+    }
+  }
+
+  Utils::format_print(
+    Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+
+  # Processing Errors
+  Test::testrun(
+    { title             => 'PROCESSING ERRORS',
+      first_tc          => $FIRST_PROCESSING_ERRORS_TC,
+      last_tc           => $LAST_PROCESSING_ERRORS_TC,
+      active_test_cases => \@active_test_cases,
+      exit_on_failure   => $exit_on_failure,
+    }
+  );
+
+  # Processing Warnings
+  Test::testrun(
+    { title             => 'PROCESSING WARNINGS',
+      first_tc          => $FIRST_PROCESSING_WARNINGS_TC,
+      last_tc           => $LAST_PROCESSING_WARNINGS_TC,
+      active_test_cases => \@active_test_cases,
+      exit_on_failure   => $exit_on_failure,
+    }
+  );
+
+  # TOU Processing Coverage
+  Test::testrun(
+    { title             => 'TOU PROCESSING COVERAGE',
+      first_tc          => $FIRST_COVERAGE_TC,
+      last_tc           => $LAST_COVERAGE_TC,
+      active_test_cases => \@active_test_cases,
+      exit_on_failure   => $exit_on_failure,
+    }
+  );
+
+  # Utilities
+  Test::testrun_utils( { active_test_cases => \@active_test_cases } );
+
   return 1;
 }
 

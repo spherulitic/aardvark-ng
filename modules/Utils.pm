@@ -155,30 +155,27 @@ sub convert_trigraph
   my $correct_trigraph  = $EMPTY_STRING;
   my $trigraph_warnings = $EMPTY_STRING;
 
-  if ($trigraph)
+  if ( $trigraph && $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph} )
   {
-    if ( $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$trigraph} )
-    {
-      $correct_trigraph = $trigraph;
-    }
-    else
-    {
-      $correct_trigraph = $COUNTRY_TRIGRAPH_CONVERSION->{$trigraph};
-    }
-
-    if ( !$correct_trigraph )
-    {
-      $correct_trigraph = $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH;
-    }
+    $correct_trigraph = $trigraph;
   }
-
-  if ( !$trigraph || $correct_trigraph eq $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH )
+  elsif ( $trigraph && $COUNTRY_TRIGRAPH_CONVERSION->{$trigraph} )
   {
+    $correct_trigraph = $COUNTRY_TRIGRAPH_CONVERSION->{$trigraph};
+  }
+  elsif ( $trigraph && !$UNKNOWN_COUNTRY_TRIGRAPHS->{$trigraph} )
+  {
+    # Covered by TC 18
     $trigraph_warnings .= Utils::format_error(
       [ [ 'WARNING',  'Uncorrected country trigraph' ],
         [ 'Trigraph', $trigraph ],
       ]
     );
+    $correct_trigraph = $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH;
+  }
+  else
+  {
+    $correct_trigraph = $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH;
   }
 
   return ( $correct_trigraph, $trigraph_warnings );
@@ -494,9 +491,19 @@ sub get_most_recent_tournament
       . 'ORDER BY end_date DESC';
   }
 
-  my @tournament_name
+  my @tournament_data
     = @{ $dbh->selectall_arrayref( $query, { RaiseError => 1 } ) };
-  return [ $tournament_name[0]->[0], $tournament_name[0]->[1] ];
+
+  my $tournament_id;
+  my $tournament_name;
+
+  if (@tournament_data)
+  {
+    $tournament_id   = $tournament_data[0]->[0];
+    $tournament_name = $tournament_data[0]->[1];
+  }
+
+  return ( $tournament_id, $tournament_name );
 
 }
 
@@ -641,6 +648,7 @@ sub insert_hash_into_table
   my $insert_statement
     = "INSERT INTO $table $keys_string VALUE $values_string;";
 
+  # print "the insert: $insert_statement\n";
   $dbh->do( $insert_statement, { RaiseError => 1 } );
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
