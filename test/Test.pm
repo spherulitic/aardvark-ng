@@ -21,6 +21,7 @@ use lib './modules';
 use Constants;
 use Failure;
 use HTML;
+use Report;
 use TOU;
 use Update;
 use Utils;
@@ -56,9 +57,11 @@ GetOptions(
   tidy        => \$tidy
 );
 
+my $final_report = Report->new('AARDVARK MAINTAINANCE');
+
 if ( $alphabetize && !$all )
 {
-  Test::alphabetize_routine_order();
+  Test::alphabetize_routine_order($final_report);
 }
 if ( $export && !$all )
 {
@@ -66,35 +69,44 @@ if ( $export && !$all )
 }
 if ( $tidy && !$all )
 {
-  Test::tidy();
+  Test::tidy($final_report);
 }
 if ( $syntax && !$all )
 {
-  Test::check_syntax();
+  Test::check_syntax($final_report);
 }
 if ( $criticize && !$all )
 {
-  Test::criticize();
+  Test::criticize($final_report);
 }
 if ( $standards && !$all )
 {
-  Test::list_standards_exceptions();
+  Test::list_standards_exceptions($final_report);
 }
 if ( $prepare || $all )
 {
-  Test::prepare();
+  Test::prepare($final_report);
 }
 if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
 {
-  Test::tou_harness( { test_cases => $test, exit_on_failure => $croak } );
+  Test::tou_harness(
+    { test_cases      => $test,
+      exit_on_failure => $croak,
+      report          => $final_report
+    }
+  );
 }
 if ( $html || $all )
 {
   Test::html_harness();
 }
 
+Utils::format_print( $final_report->to_string() );
+
 sub alphabetize_routine_order
 {
+  my $report = shift;
+
   Utils::format_print(
     Test::make_title(
       'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH
@@ -102,6 +114,25 @@ sub alphabetize_routine_order
   );
 
   my @files = Utils::get_perl_files;
+
+  my $alphabetized_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'ALPHABETIZED',
+    $REPORT_ITEM_VALUE_NAME    => 0,
+    $REPORT_ITEM_SUBITEMS_NAME => [],
+  };
+
+  my $not_alphabetized_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'NOT ALPHABETIZED',
+    $REPORT_ITEM_VALUE_NAME    => 0,
+    $REPORT_ITEM_SUBITEMS_NAME => [],
+  };
+
+  my $report_item = {
+    $REPORT_ITEM_TITLE_NAME => 'ALPHABETIZATION',
+    $REPORT_ITEM_VALUE_NAME => 0,
+    $REPORT_ITEM_SUBITEMS_NAME =>
+      [ $alphabetized_report, $not_alphabetized_report, ],
+  };
 
   foreach my $f (@files)
   {
@@ -158,16 +189,43 @@ sub alphabetize_routine_order
 
       Utils::write_string_to_file( $alphabetized_file, $f );
       printf "Alphabetized %s$NEWLINE", $f;
+
+      $alphabetized_report->{$REPORT_ITEM_VALUE_NAME}++;
+      push @{ $alphabetized_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+        {
+        $REPORT_ITEM_TITLE_NAME => $f,
+        $REPORT_ITEM_VALUE_NAME => 1,
+        };
     }
+    else
+    {
+      push @{ $not_alphabetized_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+        {
+        $REPORT_ITEM_TITLE_NAME => $f,
+        $REPORT_ITEM_VALUE_NAME => 0,
+        };
+    }
+    $report_item->{$REPORT_ITEM_VALUE_NAME}++;
   }
+
+  $report->add_item($report_item);
+
   Utils::format_print($NEWLINE);
   return 1;
 }
 
 sub check_syntax
 {
+  my $report = shift;
+
   Utils::format_print(
     Test::make_title( 'CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH ) );
+
+  my $syntax_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'SYNTAX',
+    $REPORT_ITEM_VALUE_NAME    => 0,
+    $REPORT_ITEM_SUBITEMS_NAME => [],
+  };
 
   my @files = Utils::get_perl_files;
 
@@ -175,7 +233,16 @@ sub check_syntax
   {
     my $file = shift @files;
     system "perl -cw $file";
+    $syntax_report->{$REPORT_ITEM_VALUE_NAME}++;
+    push @{ $syntax_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+      {
+      $REPORT_ITEM_TITLE_NAME => $file,
+      $REPORT_ITEM_VALUE_NAME => 1,
+      };
   }
+
+  $report->add_item($syntax_report);
+
   Utils::format_print( $NEWLINE . $NEWLINE );
   return 1;
 }
@@ -383,8 +450,16 @@ sub convert_to_response
 
 sub criticize
 {
+  my $report = shift;
+
   Utils::format_print(
     Test::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH ) );
+
+  my $critic_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'CRITIC',
+    $REPORT_ITEM_VALUE_NAME    => 0,
+    $REPORT_ITEM_SUBITEMS_NAME => [],
+  };
 
   my @files = Utils::get_perl_files();
 
@@ -424,7 +499,16 @@ sub criticize
       Utils::format_print( \@violations );
       Utils::format_print($NEWLINE);
     }
+    $critic_report->{$REPORT_ITEM_VALUE_NAME} += $number_of_violations;
+    push @{ $critic_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+      {
+      $REPORT_ITEM_TITLE_NAME => $f,
+      $REPORT_ITEM_VALUE_NAME => $number_of_violations,
+      };
   }
+
+  $report->add_item($critic_report);
+
   Utils::format_print($NEWLINE);
   return 1;
 }
@@ -512,7 +596,6 @@ sub get_status
 
 sub html_harness
 {
-
   Utils::fetch_local_tournament_data();
 
   my $filenames_array_ref;
@@ -546,12 +629,20 @@ sub html_harness
 
 sub list_standards_exceptions
 {
+  my $report = shift;
+
   Utils::format_print(
     Test::make_title(
       'LISTING STANDARDS EXCEPTIONS',
       q{%}, $TEST_TITLE_WIDTH
     )
   );
+
+  my $standards_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'STANDARDS EXCEPTIONS',
+    $REPORT_ITEM_VALUE_NAME    => 0,
+    $REPORT_ITEM_SUBITEMS_NAME => [],
+  };
 
   my @files = Utils::get_perl_files;
 
@@ -581,8 +672,16 @@ sub list_standards_exceptions
       Utils::format_print(
         $NEWLINE . ( join $EMPTY_STRING, @exceptions ) . $NEWLINE );
     }
+    $standards_report->{$REPORT_ITEM_VALUE_NAME} += $number_of_exceptions;
+    push @{ $standards_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+      {
+      $REPORT_ITEM_TITLE_NAME => $file,
+      $REPORT_ITEM_VALUE_NAME => $number_of_exceptions,
+      };
   }
 
+  $report->add_item($standards_report);
+  Utils::format_print($NEWLINE);
   Utils::format_print( $NEWLINE . $NEWLINE );
   return 1;
 }
@@ -614,12 +713,15 @@ sub make_title
 
 sub prepare
 {
-  Test::alphabetize_routine_order();
+  my $report = shift;
+
+  Test::alphabetize_routine_order($report);
   Test::export_constants();
-  Test::tidy();
-  Test::check_syntax();
-  Test::criticize();
-  Test::list_standards_exceptions();
+  Test::tidy($report);
+  Test::check_syntax($report);
+  Test::criticize($report);
+  Test::list_standards_exceptions($report);
+
   return 1;
 }
 
@@ -718,6 +820,7 @@ sub testrun
   my $last_tc           = $arg_ref->{last_tc};
   my $active_test_cases = $arg_ref->{active_test_cases};
   my $exit_on_failure   = $arg_ref->{exit_on_failure};
+  my $result_lists      = $arg_ref->{result_lists};
 
   my $tests_present = 0;
 
@@ -767,6 +870,11 @@ sub testrun
     if ( $json_failure->is_failure() )
     {
       $response_content .= $json_failure->to_string();
+      push @{ $result_lists->{failures} }, $i;
+    }
+    else
+    {
+      push @{ $result_lists->{successes} }, $i;
     }
 
     $response_content .= $expected_report;
@@ -788,6 +896,7 @@ sub testrun_utils
   my $arg_ref = shift;
 
   my $active_test_cases = $arg_ref->{active_test_cases};
+  my $result_lists      = $arg_ref->{result_lists};
 
   if ( !$active_test_cases->[$LAST_TC] )
   {
@@ -838,6 +947,11 @@ sub testrun_utils
   if ( $utils_failure_obj->is_failure() )
   {
     $response_content .= $utils_failure_obj->to_string();
+    push @{ $result_lists->{failures} }, 'Utilities';
+  }
+  else
+  {
+    push @{ $result_lists->{successes} }, 'Utilities';
   }
 
   $response_content .= Test::format_actual_report($actual_utils);
@@ -850,8 +964,16 @@ sub testrun_utils
 
 sub tidy
 {
+  my $report = shift;
+
   Utils::format_print(
     Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
+
+  my $tidy_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'TIDIED',
+    $REPORT_ITEM_VALUE_NAME    => 0,
+    $REPORT_ITEM_SUBITEMS_NAME => [],
+  };
 
   my @files = Utils::get_perl_files;
 
@@ -859,8 +981,17 @@ sub tidy
   {
     Utils::format_print("Tidying $f$NEWLINE");
     system "perltidy -pbp -nst -ci=2 -i=2 -bl -b -bext='/' $f";
+    $tidy_report->{$REPORT_ITEM_VALUE_NAME}++;
+    push @{ $tidy_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+      {
+      $REPORT_ITEM_TITLE_NAME => $f,
+      $REPORT_ITEM_VALUE_NAME => 1,
+      };
   }
   Utils::format_print($NEWLINE);
+
+  $report->add_item($tidy_report);
+
   return 1;
 }
 
@@ -870,6 +1001,7 @@ sub tou_harness
 
   my $test_cases      = $arg_ref->{test_cases};
   my $exit_on_failure = $arg_ref->{exit_on_failure};
+  my $report          = $arg_ref->{report};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
   my @active_test_cases  = (1) x ( $LAST_TC + 1 );
@@ -883,6 +1015,11 @@ sub tou_harness
     }
   }
 
+  my $result_lists = {
+    failures  => [],
+    successes => [],
+  };
+
   Utils::format_print(
     Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
 
@@ -893,6 +1030,7 @@ sub tou_harness
       last_tc           => $LAST_PROCESSING_ERRORS_TC,
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
+      result_lists      => $result_lists,
     }
   );
 
@@ -903,6 +1041,7 @@ sub tou_harness
       last_tc           => $LAST_PROCESSING_WARNINGS_TC,
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
+      result_lists      => $result_lists,
     }
   );
 
@@ -913,11 +1052,47 @@ sub tou_harness
       last_tc           => $LAST_COVERAGE_TC,
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
+      result_lists      => $result_lists,
     }
   );
 
   # Utilities
-  Test::testrun_utils( { active_test_cases => \@active_test_cases } );
+  Test::testrun_utils(
+    { active_test_cases => \@active_test_cases,
+      result_lists      => $result_lists,
+    }
+  );
+
+  my @failures  = @{ $result_lists->{failures} };
+  my @successes = @{ $result_lists->{successes} };
+
+  my @failure_subitems = map {
+    { $REPORT_ITEM_TITLE_NAME => $_ }
+  } @failures;
+  my @success_subitems = map {
+    { $REPORT_ITEM_TITLE_NAME => $_ }
+  } @successes;
+
+  my $tou_success_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'OK',
+    $REPORT_ITEM_VALUE_NAME    => scalar @successes,
+    $REPORT_ITEM_SUBITEMS_NAME => \@success_subitems,
+  };
+
+  my $tou_failure_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'FAILURE',
+    $REPORT_ITEM_VALUE_NAME    => scalar @failures,
+    $REPORT_ITEM_SUBITEMS_NAME => \@failure_subitems,
+  };
+
+  my $tou_report = {
+    $REPORT_ITEM_TITLE_NAME => 'TOU PROCESSING',
+    $REPORT_ITEM_VALUE_NAME => scalar @successes + scalar @failures,
+    $REPORT_ITEM_SUBITEMS_NAME =>
+      [ $tou_success_report, $tou_failure_report, ],
+  };
+
+  $report->add_item($tou_report);
 
   return 1;
 }

@@ -8,7 +8,16 @@ use version; our $VERSION = qv('1');
 use base 'Exporter';
 use Readonly;
 
-# Integer constants
+Readonly our $REPORT_ITEM_SUBITEMS_NAME => 'subitems';
+Readonly our $REPORT_ITEM_TITLE_NAME    => 'title';
+Readonly our $REPORT_ITEM_VALUE_NAME    => 'value';
+Readonly our $REPORT_WIDTH              => 50;
+Readonly our $REPORT_TOP_BORDER         => q{%};
+Readonly our $REPORT_BOTTOM_BORDER      => q{%};
+Readonly our $REPORT_SIDE_BORDER        => q{%};
+Readonly our $REPORT_SPACING            => 30;
+Readonly our $REPORT_LEFT_MARGIN        => 7;
+
 Readonly our $TEST_CONTENT_PADDING  => 15;
 Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
 Readonly our $TEST_REPORT_TITLE     => 'REPORT';
@@ -1030,6 +1039,15 @@ FOOTER
 
 our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
+  $REPORT_ITEM_SUBITEMS_NAME
+  $REPORT_ITEM_TITLE_NAME
+  $REPORT_ITEM_VALUE_NAME
+  $REPORT_WIDTH
+  $REPORT_TOP_BORDER
+  $REPORT_BOTTOM_BORDER
+  $REPORT_SIDE_BORDER
+  $REPORT_SPACING
+  $REPORT_LEFT_MARGIN
   $TEST_CONTENT_PADDING
   $TEST_ARGUMENT_NOT_SET
   $TEST_REPORT_TITLE
