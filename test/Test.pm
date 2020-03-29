@@ -27,9 +27,15 @@ use Update;
 use Utils;
 use JSON::XS;
 
+if ( !Utils::get_environment_name($EMPTY_STRING) )
+{
+  croak "Only run Test.pm in the development environment!\n";
+}
+
 my $all;
 my $full;
 my $alphabetize;
+my $database;
 my $prepare;
 my $criticize;
 my $croak;
@@ -44,6 +50,7 @@ my $tidy;
 GetOptions(
   all         => \$all,
   alphabetize => \$alphabetize,
+  database    => \$database,
   prepare     => \$prepare,
   criticize   => \$criticize,
   croak       => \$croak,
@@ -96,6 +103,14 @@ if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
     }
   );
 }
+if ( $database || $all )
+{
+  Test::database_harness(
+    { exit_on_failure => $croak,
+      report          => $final_report
+    }
+  );
+}
 if ( $html || $all )
 {
   Test::html_harness();
@@ -113,7 +128,7 @@ sub alphabetize_routine_order
     )
   );
 
-  my @files = Utils::get_perl_files;
+  my @files = Utils::get_perl_files();
 
   my $alphabetized_report = {
     $REPORT_ITEM_TITLE_NAME    => 'ALPHABETIZED',
@@ -199,10 +214,11 @@ sub alphabetize_routine_order
     }
     else
     {
+      $not_alphabetized_report->{$REPORT_ITEM_VALUE_NAME}++;
       push @{ $not_alphabetized_report->{$REPORT_ITEM_SUBITEMS_NAME} },
         {
         $REPORT_ITEM_TITLE_NAME => $f,
-        $REPORT_ITEM_VALUE_NAME => 0,
+        $REPORT_ITEM_VALUE_NAME => 1,
         };
     }
     $report_item->{$REPORT_ITEM_VALUE_NAME}++;
@@ -227,7 +243,7 @@ sub check_syntax
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
 
-  my @files = Utils::get_perl_files;
+  my @files = Utils::get_perl_files();
 
   while (@files)
   {
@@ -465,7 +481,7 @@ sub criticize
 
   my $critic = Perl::Critic->new(
     -severity => $PERL_CRITIC_SEVERITY,
-    -exclude  => ['RequireTidyCode']
+    -exclude  => [ 'RequireTidyCode', 'ProhibitExcessMainComplexity' ],
   );
 
   Perl::Critic::Violation::set_format(
@@ -510,6 +526,116 @@ sub criticize
   $report->add_item($critic_report);
 
   Utils::format_print($NEWLINE);
+  return 1;
+}
+
+sub database_harness
+{
+  my $arg_ref = shift;
+
+  my $exit_on_failure = $arg_ref->{exit_on_failure};
+  my $report          = $arg_ref->{report};
+
+  Utils::format_print(
+    Test::make_title( 'STARTING DATABASE HARNESS', q{%}, $TEST_TITLE_WIDTH )
+  );
+
+  my $result_lists = {
+    failures  => [],
+    successes => [],
+  };
+
+  my $dbh = Utils::connect_to_database();
+
+  for my $i ( 0 .. scalar @{$TABLE_CREATION_ORDER} - 1 )
+  {
+    my $table = $TABLE_CREATION_ORDER->[$i];
+    my $actual_database_file
+      = "$TEST_DIRECTORY/$TEST_DATABASE_DIRECTORY/$table.actual.json";
+    my $expected_database_file
+      = "$TEST_DIRECTORY/$TEST_DATABASE_DIRECTORY/$table.json";
+
+    my $actual_query = "SELECT * FROM $table";
+
+    my $actual_query_result
+      = $dbh->selectall_arrayref( $actual_query,
+      { Slice => {}, RaiseError => 1 } );
+
+    my %actual_database_hash = map { $_->{id} => $_ } @{$actual_query_result};
+
+    my $actual_database
+      = JSON::XS->new->pretty(1)->encode( \%actual_database_hash );
+
+    Utils::write_string_to_file( $actual_database, $actual_database_file );
+
+    if ($setexpected)
+    {
+      Utils::write_string_to_file( $actual_database,
+        $expected_database_file );
+    }
+
+    my $expected_database
+      = Utils::write_file_to_string($expected_database_file);
+
+    my $database_failure
+      = Failure->new( $DATABASE_FAILURE_TYPE . q{ } . uc $table );
+
+    $database_failure
+      = Test::compare_json( $expected_database, $actual_database,
+      $database_failure );
+
+    my $response_content = $EMPTY_STRING;
+
+    if ( $database_failure->is_failure() )
+    {
+      $response_content .= $database_failure->to_string();
+      push @{ $result_lists->{failures} }, $table;
+    }
+    else
+    {
+      push @{ $result_lists->{successes} }, $table;
+    }
+
+    $response_content .= Test::get_status($database_failure);
+    Utils::format_print($response_content);
+    Utils::format_print("$NEWLINE$NEWLINE");
+
+    if ( $exit_on_failure && $database_failure->is_failure() )
+    {
+      croak 'Croak is set: exiting on failure';
+    }
+  }
+
+  my @failures  = @{ $result_lists->{failures} };
+  my @successes = @{ $result_lists->{successes} };
+
+  my @failure_subitems = map {
+    { $REPORT_ITEM_TITLE_NAME => $_ }
+  } @failures;
+  my @success_subitems = map {
+    { $REPORT_ITEM_TITLE_NAME => $_ }
+  } @successes;
+
+  my $database_success_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'OK',
+    $REPORT_ITEM_VALUE_NAME    => scalar @successes,
+    $REPORT_ITEM_SUBITEMS_NAME => \@success_subitems,
+  };
+
+  my $database_failure_report = {
+    $REPORT_ITEM_TITLE_NAME    => 'FAILURE',
+    $REPORT_ITEM_VALUE_NAME    => scalar @failures,
+    $REPORT_ITEM_SUBITEMS_NAME => \@failure_subitems,
+  };
+
+  my $database_report = {
+    $REPORT_ITEM_TITLE_NAME => 'DATABASE',
+    $REPORT_ITEM_VALUE_NAME => scalar @successes + scalar @failures,
+    $REPORT_ITEM_SUBITEMS_NAME =>
+      [ $database_success_report, $database_failure_report, ],
+  };
+
+  $report->add_item($database_report);
   return 1;
 }
 
@@ -587,7 +713,7 @@ sub get_status
   my $failure_object = shift;
   return (
     sprintf "%-$TEST_CONTENT_PADDING" . 's',
-    ( $failure_object->get_type() . ' STATUS:' )
+    ( $failure_object->get_type() . ' STATUS: ' )
     )
     . Test::convert_to_response( $failure_object->is_failure() )
     . $NEWLINE;
@@ -596,6 +722,9 @@ sub get_status
 
 sub html_harness
 {
+  Utils::format_print(
+    Test::make_title( 'STARTING HTML HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+
   Utils::fetch_local_tournament_data();
 
   my $filenames_array_ref;
@@ -612,13 +741,6 @@ sub html_harness
     );
 
     Update::load_tournament_data($filenames_array_ref);
-  }
-  else
-  {
-    # We gotta compare database results here
-    # With just these test cases, the comparison
-    # is manageable
-    # Test::compare_database_results
   }
 
   Update::update_html();
@@ -644,7 +766,7 @@ sub list_standards_exceptions
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
 
-  my @files = Utils::get_perl_files;
+  my @files = Utils::get_perl_files();
 
   while (@files)
   {
@@ -727,13 +849,21 @@ sub prepare
 
 sub setup_testrun
 {
+  my $reset_database = shift;
+
   my $alt_names_hash = Utils::populate_alt_names_hash();
   my $deceased_players_hash
     = Utils::populate_deceased_players_hash($alt_names_hash);
+
   my $dbh = Utils::connect_to_database();
 
-  Utils::drop_all_wespa_tables( $dbh, $alt_names_hash );
-  Utils::initialize_database( $dbh, $TABLES, $TABLE_CREATION_ORDER );
+  if ($reset_database)
+  {
+    Utils::drop_all_wespa_tables( $dbh, $alt_names_hash,
+      Utils::get_environment_name($EMPTY_STRING) );
+    Utils::initialize_database( $dbh, $TABLES, $TABLE_CREATION_ORDER );
+  }
+
   Test::delete_players($dbh);
 
   return ( $dbh, $alt_names_hash, $deceased_players_hash );
@@ -821,6 +951,7 @@ sub testrun
   my $active_test_cases = $arg_ref->{active_test_cases};
   my $exit_on_failure   = $arg_ref->{exit_on_failure};
   my $result_lists      = $arg_ref->{result_lists};
+  my $reset_database    = $arg_ref->{reset_database};
 
   my $tests_present = 0;
 
@@ -839,7 +970,7 @@ sub testrun
   }
 
   my ( $dbh, $alt_names_hash, $deceased_players_hash )
-    = Test::setup_testrun();
+    = Test::setup_testrun($reset_database);
 
   my $json_failure;
   my $expected_report;
@@ -975,7 +1106,7 @@ sub tidy
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
 
-  my @files = Utils::get_perl_files;
+  my @files = Utils::get_perl_files();
 
   foreach my $f (@files)
   {
@@ -1021,7 +1152,7 @@ sub tou_harness
   };
 
   Utils::format_print(
-    Test::make_title( 'STARTING TEST HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+    Test::make_title( 'STARTING TOU HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
 
   # Processing Errors
   Test::testrun(
@@ -1031,6 +1162,7 @@ sub tou_harness
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
       result_lists      => $result_lists,
+      reset_database    => 1,
     }
   );
 
@@ -1042,6 +1174,7 @@ sub tou_harness
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
       result_lists      => $result_lists,
+      reset_database    => 0,
     }
   );
 
@@ -1053,6 +1186,7 @@ sub tou_harness
       active_test_cases => \@active_test_cases,
       exit_on_failure   => $exit_on_failure,
       result_lists      => $result_lists,
+      reset_database    => 0,
     }
   );
 

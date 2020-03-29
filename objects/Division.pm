@@ -166,7 +166,8 @@ sub process
           $message_type = 'WARNING';
           $message      = 'Out of range opponent number set to bye';
           $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
-          $opponent_number = $player_number;
+          $player_result->{$RESULT_SCORE}           = 0;
+          $opponent_number                          = $player_number;
           $this->set_corrected(1);
         }
         $this->set_verification_report(
@@ -208,7 +209,8 @@ sub process
           $message_type = 'WARNING';
           $message .= ' and was set to a bye';
           $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
-          $opponent_number = $player_number;
+          $player_result->{$RESULT_SCORE}           = 0;
+          $opponent_number                          = $player_number;
           $this->set_corrected(1);
         }
 
@@ -263,6 +265,12 @@ sub process
           $bye_wins     = $TOU_TIE_VALUE;
           $coded_result = $RESULT_CODED_TIE;
         }
+        else
+        {
+          $bye_wins     = 0;
+          $coded_result = $RESULT_CODED_LOSS;
+        }
+
         $player_result->{$RESULT_SCORE} = 0;
       }
       else

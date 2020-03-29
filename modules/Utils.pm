@@ -292,36 +292,40 @@ sub determine_item_value
 
 sub drop_all_wespa_tables
 {
-  my $dbh            = shift;
-  my $alt_names_hash = shift;
+  my $dbh                      = shift;
+  my $alt_names_hash           = shift;
+  my $override_drop_exceptions = shift;
 
   my $database_name = Utils::get_environment_name($DATABASE_NAME);
 
   foreach my $table ( reverse @{$TABLE_CREATION_ORDER} )
   {
-    if ( !$TABLE_DROP_EXCEPTIONS->{$table} )
+    if ( $override_drop_exceptions || !$TABLE_DROP_EXCEPTIONS->{$table} )
     {
       $dbh->do("DROP TABLE IF EXISTS $table");
     }
   }
 
-  foreach my $key ( keys %{$alt_names_hash} )
+  if ( !$override_drop_exceptions )
   {
-    $key =~ s/'/''/gxms;
-    my $delete_redundant_players
-      = "DELETE FROM $PLAYERS_TABLE_NAME WHERE name = '$key'";
-    $dbh->do( $delete_redundant_players, { RaiseError => 1 } );
+    foreach my $key ( keys %{$alt_names_hash} )
+    {
+      $key =~ s/'/''/gxms;
+      my $delete_redundant_players
+        = "DELETE FROM $PLAYERS_TABLE_NAME WHERE name = '$key'";
+      $dbh->do( $delete_redundant_players, { RaiseError => 1 } );
+    }
+
+    my $reset_games_played
+      = "UPDATE $PLAYERS_TABLE_NAME AS p SET p.total_games = 0";
+
+    $dbh->do( $reset_games_played, { RaiseError => 1 } );
+
+    my $reset_last_played
+      = "UPDATE $PLAYERS_TABLE_NAME AS p SET p.last_played = '0001-01-01'";
+
+    $dbh->do( $reset_last_played, { RaiseError => 1 } );
   }
-
-  my $reset_games_played
-    = "UPDATE $PLAYERS_TABLE_NAME AS p SET p.total_games = 0";
-
-  $dbh->do( $reset_games_played, { RaiseError => 1 } );
-
-  my $reset_last_played
-    = "UPDATE $PLAYERS_TABLE_NAME AS p SET p.last_played = '0001-01-01'";
-
-  $dbh->do( $reset_last_played, { RaiseError => 1 } );
 
   return 1;
 }
@@ -459,6 +463,24 @@ sub get_iso_date
     @t[ $LOCALTIME_YEAR_INDEX, $LOCALTIME_MONTH_INDEX, $LOCALTIME_DAY_INDEX ];
 }
 
+sub get_max_id_from_table
+{
+  my $dbh   = shift;
+  my $table = shift;
+
+  my $query = "SELECT MAX(ID) FROM $table";
+  my $result
+    = $dbh->selectrow_arrayref( $query, { Slice => {}, RaiseError => 1 } );
+  my $id = $result->[0];
+
+  if ( !defined $id )    # No rows exist in the table
+  {
+    $id = 0;
+  }
+
+  return $id;
+}
+
 sub get_most_recent_tournament
 {
   my $dbh      = shift;
@@ -589,38 +611,8 @@ sub get_tournament_data_filenames
   return \@tournament_data_filenames;
 }
 
-sub initialize_database
+sub hashref_to_key_value_strings
 {
-  my $dbh                = shift;
-  my $tables_ref         = shift;
-  my $creation_order_ref = shift;
-
-  my %tables         = %{$tables_ref};
-  my @creation_order = @{$creation_order_ref};
-
-  for my $i ( 0 .. scalar @creation_order - 1 )
-  {
-    my $key     = $creation_order[$i];
-    my @columns = @{ $tables{$key} };
-
-    my $columns_string = join ', ', @columns;
-
-    my $statement = "CREATE TABLE IF NOT EXISTS $key ($columns_string)";
-
-    $dbh->do($statement);
-  }
-
-  my $lexicons    = $LEXICONS;
-  my $lexicons_tn = $LEXICONS_TABLE_NAME;
-
-  Utils::insert_hash_list_into_table( $dbh, $lexicons_tn, $lexicons, 'name' );
-  return 1;
-}
-
-sub insert_hash_into_table
-{
-  my $dbh     = shift;
-  my $table   = shift;
   my $hashref = shift;
 
   my $keys_string   = q{(};
@@ -645,10 +637,49 @@ sub insert_hash_into_table
 
   $keys_string   .= q{)};
   $values_string .= q{)};
+  return ( $keys_string, $values_string );
+}
+
+sub initialize_database
+{
+  my $dbh                = shift;
+  my $tables_ref         = shift;
+  my $creation_order_ref = shift;
+
+  my %tables         = %{$tables_ref};
+  my @creation_order = @{$creation_order_ref};
+
+  for my $i ( 0 .. scalar @creation_order - 1 )
+  {
+    my $key     = $creation_order[$i];
+    my @columns = @{ $tables{$key} };
+
+    my $columns_string = join ', ', @columns;
+
+    my $statement = "CREATE TABLE IF NOT EXISTS $key ($columns_string)";
+
+    $dbh->do($statement);
+  }
+
+  my $lexicons    = $LEXICONS;
+  my $lexicons_tn = $LEXICONS_TABLE_NAME;
+
+  Utils::insert_hash_list_into_table( $dbh, $lexicons_tn, $lexicons );
+  return 1;
+}
+
+sub insert_hash_into_table
+{
+  my $dbh     = shift;
+  my $table   = shift;
+  my $hashref = shift;
+
+  my ( $keys_string, $values_string )
+    = Utils::hashref_to_key_value_strings($hashref);
+
   my $insert_statement
     = "INSERT INTO $table $keys_string VALUE $values_string;";
 
-  # print "the insert: $insert_statement\n";
   $dbh->do( $insert_statement, { RaiseError => 1 } );
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
@@ -659,21 +690,38 @@ sub insert_hash_list_into_table
   my $table   = shift;
   my $listref = shift;
 
-  my $last_insert_id_key_field = shift;
+  my @keys   = ();
+  my @values = ();
 
-  my $last_insert_id_hash = {};
-
-  my @list = @{$listref};
-
-  foreach my $item (@list)
+  foreach my $item ( @{$listref} )
   {
-    my $id = Utils::insert_hash_into_table( $dbh, $table, $item );
-    if ($last_insert_id_key_field)
+    if ( !@keys )
     {
-      $last_insert_id_hash->{ $item->{$last_insert_id_key_field} } = $id;
+      foreach my $key ( keys %{$item} )
+      {
+        push @keys, $key;
+      }
     }
+
+    my @row = ();
+
+    for my $i ( 0 .. scalar @keys - 1 )
+    {
+      push @row, $item->{ $keys[$i] };
+    }
+    @row = map { q{"} . $_ . q{"} } @row;
+
+    push @values, q{(} . ( join q{,}, @row ) . q{)};
   }
-  return $last_insert_id_hash;
+
+  my $keys_string   = q{(} . ( join q{,}, @keys ) . q{)};
+  my $values_string = join ",$NEWLINE", @values;
+
+  my $insert_statement
+    = "INSERT INTO $table $keys_string VALUES $values_string;";
+
+  $dbh->do( $insert_statement, { RaiseError => 1 } );
+  return 1;
 }
 
 sub is_command

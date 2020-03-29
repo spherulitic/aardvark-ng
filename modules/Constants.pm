@@ -92,17 +92,19 @@ Readonly our $MODULES_DIRECTORY => 'modules';
 Readonly our $OBJECTS_DIRECTORY => 'objects';
 Readonly our $CGIBIN_DIR        => 'cgi-bin';
 
-Readonly our $TEST_TITLE_WIDTH      => 50;
-Readonly our $TEST_TOU_PATH         => '/aardvark/2020/USA/';
-Readonly our $TEST_TOU_DIRECTORY    => 'tou';
-Readonly our $TEST_STDOUT_DIRECTORY => 'stdout';
-Readonly our $TEST_JSON_DIRECTORY   => 'json';
-Readonly our $TEST_UTILS_DIRECTORY  => 'utils';
+Readonly our $TEST_TITLE_WIDTH        => 50;
+Readonly our $TEST_TOU_PATH           => '/aardvark/2020/USA/';
+Readonly our $TEST_TOU_DIRECTORY      => 'tou';
+Readonly our $TEST_STDOUT_DIRECTORY   => 'stdout';
+Readonly our $TEST_DATABASE_DIRECTORY => 'database';
+Readonly our $TEST_JSON_DIRECTORY     => 'json';
+Readonly our $TEST_UTILS_DIRECTORY    => 'utils';
 
-Readonly our $JSON_FAILURE_TYPE   => 'JSON';
-Readonly our $UTILS_FAILURE_TYPE  => 'UTILS';
-Readonly our $KEYS_FAILURE_TYPE   => 'KEYS';
-Readonly our $STDOUT_FAILURE_TYPE => 'STDOUT';
+Readonly our $JSON_FAILURE_TYPE     => 'JSON';
+Readonly our $DATABASE_FAILURE_TYPE => 'TABLE';
+Readonly our $UTILS_FAILURE_TYPE    => 'UTILS';
+Readonly our $KEYS_FAILURE_TYPE     => 'KEYS';
+Readonly our $STDOUT_FAILURE_TYPE   => 'STDOUT';
 
 Readonly our $UNDEFINED_STRING => 'undef';
 
@@ -166,7 +168,8 @@ Readonly our $UNBLESSED_IGNORE_KEYS => {
   'event_id'           => 1,
   'player_id'          => 1,
   'division_id'        => 1,
-  'game_id'            => 1
+  'game_id'            => 1,
+  'id'                 => 1,
 };
 
 Readonly our $DIVISION_TOUFILE             => 'Division Filename';
@@ -1107,9 +1110,11 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TEST_TOU_PATH
   $TEST_TOU_DIRECTORY
   $TEST_STDOUT_DIRECTORY
+  $TEST_DATABASE_DIRECTORY
   $TEST_JSON_DIRECTORY
   $TEST_UTILS_DIRECTORY
   $JSON_FAILURE_TYPE
+  $DATABASE_FAILURE_TYPE
   $UTILS_FAILURE_TYPE
   $KEYS_FAILURE_TYPE
   $STDOUT_FAILURE_TYPE

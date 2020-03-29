@@ -144,6 +144,27 @@ sub initialize
   return $self;
 }
 
+sub insert_as_processed
+{
+  my $this = shift;
+
+  my $dbh             = $this->{$TOU_DBH};
+  my $filename        = $this->{$TOU_FILENAME};
+  my $tournament_name = $this->{$TOU_TOURNAMENT}->{name};
+
+  my $loaded_tournaments_table_name = $LOADED_TOURNAMENTS_TABLE_NAME;
+  $tournament_name =~ s/"//gxms;
+
+  my $insert_processed_tou
+    = "INSERT INTO $loaded_tournaments_table_name "
+    . '(name, filename) '
+    . "VALUES (\"$tournament_name\", \"$filename\")";
+
+  $dbh->do( $insert_processed_tou, { RaiseError => 1 } );
+  $this->{$TOU_LOADED} = 1;
+  return 1;
+}
+
 sub is_loaded
 {
   my $this = shift;
@@ -203,6 +224,14 @@ sub load
       <=> $divisions->{$b}->{$DIVISION_NUMBER}
   } keys %{$divisions};
 
+  my $division_id = Utils::get_max_id_from_table( $dbh, $divisions_tn ) + 1;
+  my $game_id     = Utils::get_max_id_from_table( $dbh, $games_tn ) + 1;
+
+  my @division_list           = ();
+  my @tournament_results_list = ();
+  my @games_list              = ();
+  my @results_list            = ();
+
   for my $i ( 0 .. scalar @division_keys - 1 )
   {
     my $key      = $division_keys[$i];
@@ -210,15 +239,14 @@ sub load
 
     my $division_name = $division->{$DIVISION_NAME};
 
-    my $division_id = Utils::insert_hash_into_table(
-      $dbh,
-      $divisions_tn,
-      { tournament_id => $tournament_id,
-        name          => $division_name,
-        length        => $divisions->{$key}->{$DIVISION_NUMBER_OF_ROUNDS},
-        number        => $divisions->{$key}->{$DIVISION_NUMBER}
-      }
-    );
+    push @division_list,
+      {
+      id            => $division_id,
+      tournament_id => $tournament_id,
+      name          => $division_name,
+      length        => $divisions->{$key}->{$DIVISION_NUMBER_OF_ROUNDS},
+      number        => $divisions->{$key}->{$DIVISION_NUMBER}
+      };
 
     my $tournament_results = $division->{$DIVISION_TOURNAMENT_RESULTS};
 
@@ -228,39 +256,41 @@ sub load
       Utils::add_games_to_existing_player( $dbh, $tr->{player_id},
         $total_games );
       $tr->{division_id} = $division_id;
-      Utils::insert_hash_into_table( $dbh, $tournament_results_tn, $tr );
+      push @tournament_results_list, $tr;
     }
 
     my $gprs = $division->{$DIVISION_GAME_AND_PLAYER_RESULTS};
 
-    foreach my $key ( keys %{$gprs} )
+    # Sorting the keys has no effect on the final operational result,
+    # but it makes testing easier
+    foreach my $key ( sort keys %{$gprs} )
     {
       my $gpr     = $gprs->{$key};
       my $game    = $gpr->{game};
       my @results = @{ $gpr->{results} };
 
       $game->{division_id} = $division_id;
-
-      my $game_id = Utils::insert_hash_into_table( $dbh, $games_tn, $game );
+      $game->{id}          = $game_id;
+      push @games_list, $game;
 
       foreach my $result (@results)
       {
         $result->{game_id} = $game_id;
-        Utils::insert_hash_into_table( $dbh, $player_results_tn, $result );
+        push @results_list, $result;
       }
+      $game_id++;
     }
+    $division_id++;
   }
 
-  my $loaded_tournaments_table_name = $LOADED_TOURNAMENTS_TABLE_NAME;
-  $tournament_name =~ s/"//gxms;
+  Utils::insert_hash_list_into_table( $dbh, $divisions_tn, \@division_list );
+  Utils::insert_hash_list_into_table( $dbh, $tournament_results_tn,
+    \@tournament_results_list );
+  Utils::insert_hash_list_into_table( $dbh, $games_tn, \@games_list );
+  Utils::insert_hash_list_into_table( $dbh, $player_results_tn,
+    \@results_list );
+  $this->insert_as_processed();
 
-  my $insert_processed_tou
-    = "INSERT INTO $loaded_tournaments_table_name "
-    . '(name, filename) '
-    . "VALUES (\"$tournament_name\", \"$filename\")";
-
-  $dbh->do( $insert_processed_tou, { RaiseError => 1 } );
-  $this->{$TOU_LOADED} = 1;
   return 1;
 }
 
@@ -1025,7 +1055,6 @@ sub process_sts
           photo       => $player_photo,
           suspended   => 0,
           deceased    => $deceased_status,
-          provisional => -1,
           total_games => 0,
           last_played => $date,
           rating      => $end_rating
@@ -1039,34 +1068,17 @@ sub process_sts
       my $existing_country   = shift @player_query_result;
       my $player_last_played = shift @player_query_result;
 
-      $player_last_played =~ s/\D//gxms;
+      TOU::update_rating_and_country(
+        { dbh                => $dbh,
+          player_id          => $player_id,
+          existing_country   => $existing_country,
+          player_last_played => $player_last_played,
+          date               => $date,
+          player_country     => $player_country,
+          end_rating         => $end_rating,
+        }
 
-      my $newer_tourney_cond = $player_last_played < $date;
-
-      my $no_country_cond = !$existing_country
-        && $player_country;
-
-      my $changed_to_newer_country_cond
-        = $existing_country
-        && $player_country
-        && $existing_country ne $player_country
-        && $player_last_played < $date;
-
-      my $changed_country_cond
-        = $existing_country
-        && $player_country
-        && $existing_country ne $player_country;
-
-      if ($newer_tourney_cond)
-      {
-        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
-          { last_played => $date, rating => $end_rating } );
-      }
-      if ( $no_country_cond || $changed_to_newer_country_cond )
-      {
-        Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
-          { country => $player_country } );
-      }
+      );
     }
     $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
     $stsa_data->{$player_id}     = {
@@ -1130,8 +1142,6 @@ sub to_string
       <=> $divisions->{$b}->{$DIVISION_NUMBER}
   } keys %{$divisions};
 
-  #die "div keys: " . Dumper(\@division_keys);
-
   for my $i ( 0 .. scalar @division_keys - 1 )
   {
     $tou_string .= $divisions->{ $division_keys[$i] }->to_string();
@@ -1139,6 +1149,51 @@ sub to_string
 
   $tou_string .= '*** END OF FILE ***';
   return $tou_string;
+}
+
+sub update_rating_and_country
+{
+  my $arg_ref = shift;
+
+  my $dbh                = $arg_ref->{dbh};
+  my $player_id          = $arg_ref->{player_id};
+  my $existing_country   = $arg_ref->{existing_country};
+  my $player_last_played = $arg_ref->{player_last_played};
+  my $date               = $arg_ref->{date};
+  my $player_country     = $arg_ref->{player_country};
+  my $end_rating         = $arg_ref->{end_rating};
+
+  my $player_query_result_ref = shift;
+
+  $player_last_played =~ s/\D//gxms;
+
+  my $newer_tourney_cond = $player_last_played < $date;
+
+  my $no_country_cond = !$existing_country
+    && $player_country;
+
+  my $changed_to_newer_country_cond
+    = $existing_country
+    && $player_country
+    && $existing_country ne $player_country
+    && $player_last_played < $date;
+
+  my $changed_country_cond
+    = $existing_country
+    && $player_country
+    && $existing_country ne $player_country;
+
+  if ($newer_tourney_cond)
+  {
+    Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
+      { last_played => $date, rating => $end_rating } );
+  }
+  if ( $no_country_cond || $changed_to_newer_country_cond )
+  {
+    Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
+      { country => $player_country } );
+  }
+  return 1;
 }
 
 1;
