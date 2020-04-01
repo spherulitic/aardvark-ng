@@ -27,96 +27,10 @@ use Update;
 use Utils;
 use JSON::XS;
 
-if ( !Utils::get_environment_name($EMPTY_STRING) )
+if ( !caller )
 {
-  croak "Only run Test.pm in the development environment!\n";
+  Test::main();
 }
-
-my $all;
-my $full;
-my $alphabetize;
-my $database;
-my $prepare;
-my $criticize;
-my $croak;
-my $export;
-my $html;
-my $setexpected;
-my $syntax;
-my $standards;
-my $test = $TEST_ARGUMENT_NOT_SET;
-my $tidy;
-
-GetOptions(
-  all         => \$all,
-  alphabetize => \$alphabetize,
-  database    => \$database,
-  prepare     => \$prepare,
-  criticize   => \$criticize,
-  croak       => \$croak,
-  export      => \$export,
-  full        => \$full,
-  html        => \$html,
-  setexpected => \$setexpected,
-  standards   => \$standards,
-  syntax      => \$syntax,
-  'test:s'    => \$test,
-  tidy        => \$tidy
-);
-
-my $final_report = Report->new('AARDVARK MAINTAINANCE');
-
-if ( $alphabetize && !$all )
-{
-  Test::alphabetize_routine_order($final_report);
-}
-if ( $export && !$all )
-{
-  Test::export_constants();
-}
-if ( $tidy && !$all )
-{
-  Test::tidy($final_report);
-}
-if ( $syntax && !$all )
-{
-  Test::check_syntax($final_report);
-}
-if ( $criticize && !$all )
-{
-  Test::criticize($final_report);
-}
-if ( $standards && !$all )
-{
-  Test::list_standards_exceptions($final_report);
-}
-if ( $prepare || $all )
-{
-  Test::prepare($final_report);
-}
-if ( $test ne $TEST_ARGUMENT_NOT_SET || $all )
-{
-  Test::tou_harness(
-    { test_cases      => $test,
-      exit_on_failure => $croak,
-      report          => $final_report
-    }
-  );
-}
-if ( $database || $all )
-{
-  Test::database_harness(
-    { exit_on_failure => $croak,
-      report          => $final_report
-    }
-  );
-}
-if ( $html || $all )
-{
-  Test::html_harness();
-}
-
-Utils::format_print( $final_report->to_string() );
 
 sub alphabetize_routine_order
 {
@@ -481,7 +395,7 @@ sub criticize
 
   my $critic = Perl::Critic->new(
     -severity => $PERL_CRITIC_SEVERITY,
-    -exclude  => [ 'RequireTidyCode', 'ProhibitExcessMainComplexity' ],
+    -exclude  => ['RequireTidyCode'],
   );
 
   Perl::Critic::Violation::set_format(
@@ -534,6 +448,7 @@ sub database_harness
   my $arg_ref = shift;
 
   my $exit_on_failure = $arg_ref->{exit_on_failure};
+  my $set_expected    = $arg_ref->{set_expected};
   my $report          = $arg_ref->{report};
 
   Utils::format_print(
@@ -568,7 +483,7 @@ sub database_harness
 
     Utils::write_string_to_file( $actual_database, $actual_database_file );
 
-    if ($setexpected)
+    if ($set_expected)
     {
       Utils::write_string_to_file( $actual_database,
         $expected_database_file );
@@ -651,6 +566,75 @@ sub delete_players
   return 1;
 }
 
+sub dispatch
+{
+  my $arg_ref = shift;
+
+  my $test_args = $arg_ref->{test_args};
+
+  if ( !Utils::get_environment_name($EMPTY_STRING) )
+  {
+    croak "Only run Test.pm in the development environment!\n";
+  }
+
+  if ( !$test_args->{all} )
+  {
+    if ( $test_args->{alphabetize} )
+    {
+      Test::alphabetize_routine_order( $test_args->{final_report} );
+    }
+    if ( $test_args->{export} )
+    {
+      Test::export_constants();
+    }
+    if ( $test_args->{tidy} )
+    {
+      Test::tidy( $test_args->{final_report} );
+    }
+    if ( $test_args->{syntax} )
+    {
+      Test::check_syntax( $test_args->{final_report} );
+    }
+    if ( $test_args->{criticize} )
+    {
+      Test::criticize( $test_args->{final_report} );
+    }
+    if ( $test_args->{standards} )
+    {
+      Test::list_standards_exceptions( $test_args->{final_report} );
+    }
+  }
+
+  if ( $test_args->{prepare} || $test_args->{all} )
+  {
+    Test::prepare( $test_args->{final_report} );
+  }
+  if ( $test_args->{test} ne $TEST_ARGUMENT_NOT_SET || $test_args->{all} )
+  {
+    Test::tou_harness(
+      { test_cases      => $test_args->{test},
+        exit_on_failure => $test_args->{croak},
+        set_expected    => $test_args->{set_expected},
+        report          => $test_args->{final_report}
+      }
+    );
+  }
+  if ( $test_args->{database} || $test_args->{all} )
+  {
+    Test::database_harness(
+      { exit_on_failure => $test_args->{croak},
+        set_expected    => $test_args->{set_expected},
+        report          => $test_args->{final_report}
+      }
+    );
+  }
+  if ( $test_args->{html} || $test_args->{all} )
+  {
+    Test::html_harness( { full => $test_args->{full} } );
+  }
+  return 1;
+}
+
 sub export_constants
 {
   my $constants_filename = './modules/Constants.pm';
@@ -722,6 +706,10 @@ sub get_status
 
 sub html_harness
 {
+  my $arg_ref = shift;
+
+  my $full = $arg_ref->{full};
+
   Utils::format_print(
     Test::make_title( 'STARTING HTML HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
 
@@ -808,6 +796,44 @@ sub list_standards_exceptions
   return 1;
 }
 
+sub main
+{
+  my $test_args = { test => $TEST_ARGUMENT_NOT_SET, };
+
+  my $executive_key;
+
+  GetOptions(
+    all            => \$test_args->{all},
+    alphabetize    => \$test_args->{alphabetize},
+    database       => \$test_args->{database},
+    prepare        => \$test_args->{prepare},
+    criticize      => \$test_args->{criticize},
+    croak          => \$test_args->{croak},
+    export         => \$test_args->{export},
+    full           => \$test_args->{full},
+    html           => \$test_args->{html},
+    setexpected    => \$test_args->{set_expected},
+    standards      => \$test_args->{standards},
+    syntax         => \$test_args->{syntax},
+    'test:s'       => \$test_args->{test},
+    tidy           => \$test_args->{tidy},
+    $EXECUTIVE_KEY => \$executive_key,
+  );
+
+  if ( !$executive_key )
+  {
+    croak "Do not run Test.pm directly, use Executive.pm$NEWLINE";
+  }
+
+  my $final_report = Report->new($TEST_AARDVARK_TITLE);
+
+  $test_args->{final_report} = $final_report;
+
+  Test::dispatch( { test_args => $test_args } );
+  Utils::format_print( $test_args->{final_report}->to_string() );
+  return 1;
+}
+
 sub make_title
 {
   my $content = shift;
@@ -877,6 +903,7 @@ sub testcase
   my $alt_names_hash        = $arg_ref->{alt_names_hash};
   my $deceased_players_hash = $arg_ref->{deceased_players_hash};
   my $player_data           = $arg_ref->{player_data};
+  my $set_expected          = $arg_ref->{set_expected};
   my $case                  = $arg_ref->{test_case_number};
   my $utilities             = $arg_ref->{utilities};
 
@@ -902,7 +929,7 @@ sub testcase
   my $actual_json_file   = "$json_dir$case.actual.json";
   my $expected_json_file = "$json_dir$case.json";
 
-  if ( !$setexpected && !-e $expected_json_file )
+  if ( !$set_expected && !-e $expected_json_file )
   {
     croak "File does not exist: $expected_json_file$NEWLINE";
   }
@@ -926,7 +953,7 @@ sub testcase
 
   Utils::write_string_to_file( $actual_json, $actual_json_file );
 
-  if ($setexpected)
+  if ($set_expected)
   {
     Utils::write_string_to_file( $actual_json, $expected_json_file );
   }
@@ -949,6 +976,7 @@ sub testrun
   my $first_tc          = $arg_ref->{first_tc};
   my $last_tc           = $arg_ref->{last_tc};
   my $active_test_cases = $arg_ref->{active_test_cases};
+  my $set_expected      = $arg_ref->{set_expected};
   my $exit_on_failure   = $arg_ref->{exit_on_failure};
   my $result_lists      = $arg_ref->{result_lists};
   my $reset_database    = $arg_ref->{reset_database};
@@ -992,6 +1020,7 @@ sub testrun
         alt_names_hash        => $alt_names_hash,
         deceased_players_hash => $deceased_players_hash,
         player_data           => $player_data,
+        set_expected          => $set_expected,
         test_case_number      => $i,
       }
     );
@@ -1027,6 +1056,7 @@ sub testrun_utils
   my $arg_ref = shift;
 
   my $active_test_cases = $arg_ref->{active_test_cases};
+  my $set_expected      = $arg_ref->{set_expected};
   my $result_lists      = $arg_ref->{result_lists};
 
   if ( !$active_test_cases->[$LAST_TC] )
@@ -1062,7 +1092,7 @@ sub testrun_utils
 
   Utils::write_string_to_file( $actual_utils, $actual_utils_file );
 
-  if ($setexpected)
+  if ($set_expected)
   {
     Utils::write_string_to_file( $actual_utils, $expected_utils_file );
   }
@@ -1132,6 +1162,7 @@ sub tou_harness
 
   my $test_cases      = $arg_ref->{test_cases};
   my $exit_on_failure = $arg_ref->{exit_on_failure};
+  my $set_expected    = $arg_ref->{set_expected};
   my $report          = $arg_ref->{report};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
@@ -1160,6 +1191,7 @@ sub tou_harness
       first_tc          => $FIRST_PROCESSING_ERRORS_TC,
       last_tc           => $LAST_PROCESSING_ERRORS_TC,
       active_test_cases => \@active_test_cases,
+      set_expected      => $set_expected,
       exit_on_failure   => $exit_on_failure,
       result_lists      => $result_lists,
       reset_database    => 1,
@@ -1172,6 +1204,7 @@ sub tou_harness
       first_tc          => $FIRST_PROCESSING_WARNINGS_TC,
       last_tc           => $LAST_PROCESSING_WARNINGS_TC,
       active_test_cases => \@active_test_cases,
+      set_expected      => $set_expected,
       exit_on_failure   => $exit_on_failure,
       result_lists      => $result_lists,
       reset_database    => 0,
@@ -1184,6 +1217,7 @@ sub tou_harness
       first_tc          => $FIRST_COVERAGE_TC,
       last_tc           => $LAST_COVERAGE_TC,
       active_test_cases => \@active_test_cases,
+      set_expected      => $set_expected,
       exit_on_failure   => $exit_on_failure,
       result_lists      => $result_lists,
       reset_database    => 0,
@@ -1193,6 +1227,7 @@ sub tou_harness
   # Utilities
   Test::testrun_utils(
     { active_test_cases => \@active_test_cases,
+      set_expected      => $set_expected,
       result_lists      => $result_lists,
     }
   );

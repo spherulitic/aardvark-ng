@@ -119,7 +119,7 @@ sub to_string
     $report_string .= $report_blank_line;
   }
   $report_string .= ( $REPORT_BOTTOM_BORDER x $REPORT_WIDTH ) . $NEWLINE;
-  return $report_string;
+  return $report_string . $NEWLINE;
 }
 
 1;

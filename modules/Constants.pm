@@ -8,6 +8,9 @@ use version; our $VERSION = qv('1');
 use base 'Exporter';
 use Readonly;
 
+Readonly our $COVERAGE_HTML_FILE => 'cover_db/coverage.html';
+Readonly our $EXECUTIVE_KEY      => 'executivekey';
+
 Readonly our $REPORT_ITEM_SUBITEMS_NAME => 'subitems';
 Readonly our $REPORT_ITEM_TITLE_NAME    => 'title';
 Readonly our $REPORT_ITEM_VALUE_NAME    => 'value';
@@ -21,6 +24,7 @@ Readonly our $REPORT_LEFT_MARGIN        => 7;
 Readonly our $TEST_CONTENT_PADDING  => 15;
 Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
 Readonly our $TEST_REPORT_TITLE     => 'REPORT';
+Readonly our $TEST_AARDVARK_TITLE   => 'AARDVARK MAINTAINANCE';
 Readonly our $STA_MAX_RATING_ITEMS  => 3;
 Readonly our $MAX_LINE_LENGTH       => 80;
 
@@ -1042,6 +1046,8 @@ FOOTER
 
 our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
+  $COVERAGE_HTML_FILE
+  $EXECUTIVE_KEY
   $REPORT_ITEM_SUBITEMS_NAME
   $REPORT_ITEM_TITLE_NAME
   $REPORT_ITEM_VALUE_NAME
@@ -1054,6 +1060,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TEST_CONTENT_PADDING
   $TEST_ARGUMENT_NOT_SET
   $TEST_REPORT_TITLE
+  $TEST_AARDVARK_TITLE
   $STA_MAX_RATING_ITEMS
   $MAX_LINE_LENGTH
   $FIRST_PROCESSING_ERRORS_TC

@@ -12,7 +12,9 @@ use Carp;
 use English qw( -no_match_vars );
 
 use lib './modules';
+use lib './objects';
 use Constants;
+use Report;
 
 sub add_games_to_existing_player
 {
@@ -437,6 +439,59 @@ sub get_country_from_filename
   my $filename       = shift;
   my @filename_items = split /\//xms, $filename;
   return $filename_items[$COUNTRY_IN_FILENAME_INDEX];
+}
+
+sub get_coverage_report
+{
+  my $report = shift;
+
+  my @coverage_html = Utils::write_file_to_array($COVERAGE_HTML_FILE);
+
+  @coverage_html = grep {/^<tr><td/xms} @coverage_html;
+
+  while (@coverage_html)
+  {
+    my $line  = shift @coverage_html;
+    my @cells = split /<td/xms, $line;
+    shift @cells;
+
+    my $cell_title = shift @cells;
+    $cell_title =~ /([^>]*[.]pm)|(Total)/xms;
+    my $file_or_total;
+    if ($1)
+    {
+      $file_or_total = $1;
+    }
+    else
+    {
+      $file_or_total = $2;
+    }
+    my $file_coverage_report = {
+      $REPORT_ITEM_TITLE_NAME    => $file_or_total,
+      $REPORT_ITEM_VALUE_NAME    => 0,
+      $REPORT_ITEM_SUBITEMS_NAME => [],
+    };
+    while (@cells)
+    {
+      my $cell = shift @cells;
+      if ( $cell =~ /title="(\w+)\W.*>\s?(\d+[.]\d+)</xms )
+      {
+        my $subtitle = $1;
+        my $subtotal = $2;
+        push @{ $file_coverage_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+          {
+          $REPORT_ITEM_TITLE_NAME => $subtitle,
+          $REPORT_ITEM_VALUE_NAME => $subtotal,
+          };
+        if ( $subtitle eq 'total' )
+        {
+          $file_coverage_report->{$REPORT_ITEM_VALUE_NAME} = $subtotal;
+        }
+      }
+    }
+    $report->add_item($file_coverage_report);
+  }
+  return $report;
 }
 
 sub get_environment_name
