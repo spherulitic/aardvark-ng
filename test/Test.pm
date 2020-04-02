@@ -395,7 +395,7 @@ sub criticize
 
   my $critic = Perl::Critic->new(
     -severity => $PERL_CRITIC_SEVERITY,
-    -exclude  => ['RequireTidyCode'],
+    -exclude  => [ 'RequireTidyCode', 'PodSpelling' ],
   );
 
   Perl::Critic::Violation::set_format(
@@ -822,7 +822,8 @@ sub main
 
   if ( !$executive_key )
   {
-    croak "Do not run Test.pm directly, use Executive.pm$NEWLINE";
+    croak 'Do not run Test.pm directly,  '
+      . "use the top-level aardvark executable$NEWLINE";
   }
 
   my $final_report = Report->new($TEST_AARDVARK_TITLE);

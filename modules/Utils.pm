@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package Utils;
 
 use strict;
@@ -476,16 +474,20 @@ sub get_coverage_report
       my $cell = shift @cells;
       if ( $cell =~ /title="(\w+)\W.*>\s?(\d+[.]\d+)</xms )
       {
-        my $subtitle = $1;
-        my $subtotal = $2;
-        push @{ $file_coverage_report->{$REPORT_ITEM_SUBITEMS_NAME} },
-          {
-          $REPORT_ITEM_TITLE_NAME => $subtitle,
-          $REPORT_ITEM_VALUE_NAME => $subtotal,
-          };
-        if ( $subtitle eq 'total' )
+        my $subtitle = ( uc substr $1, 0, 1 ) . substr $1, 1;
+        my $subtotal = $2 . q{%};
+
+        if ( $subtitle eq 'Total' )
         {
           $file_coverage_report->{$REPORT_ITEM_VALUE_NAME} = $subtotal;
+        }
+        else
+        {
+          push @{ $file_coverage_report->{$REPORT_ITEM_SUBITEMS_NAME} },
+            {
+            $REPORT_ITEM_TITLE_NAME => $subtitle,
+            $REPORT_ITEM_VALUE_NAME => $subtotal,
+            };
         }
       }
     }

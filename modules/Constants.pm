@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package Constants;
 
 use warnings;
@@ -8,235 +6,29 @@ use version; our $VERSION = qv('1');
 use base 'Exporter';
 use Readonly;
 
-Readonly our $COVERAGE_HTML_FILE => 'cover_db/coverage.html';
-Readonly our $EXECUTIVE_KEY      => 'executivekey';
+# General
 
-Readonly our $REPORT_ITEM_SUBITEMS_NAME => 'subitems';
-Readonly our $REPORT_ITEM_TITLE_NAME    => 'title';
-Readonly our $REPORT_ITEM_VALUE_NAME    => 'value';
-Readonly our $REPORT_WIDTH              => 50;
-Readonly our $REPORT_TOP_BORDER         => q{%};
-Readonly our $REPORT_BOTTOM_BORDER      => q{%};
-Readonly our $REPORT_SIDE_BORDER        => q{%};
-Readonly our $REPORT_SPACING            => 30;
-Readonly our $REPORT_LEFT_MARGIN        => 7;
+Readonly our $EMPTY_STRING => q{};
+Readonly our $NEWLINE => "\n";
 
-Readonly our $TEST_CONTENT_PADDING  => 15;
-Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
-Readonly our $TEST_REPORT_TITLE     => 'REPORT';
-Readonly our $TEST_AARDVARK_TITLE   => 'AARDVARK MAINTAINANCE';
-Readonly our $STA_MAX_RATING_ITEMS  => 3;
-Readonly our $MAX_LINE_LENGTH       => 80;
+Readonly our $TOU_FILE_EXTENSION => '.tou';
+Readonly our $STS_FILE_EXTENSION => '.STS';
+Readonly our $STA_FILE_EXTENSION => '.STA';
 
-Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
-Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
-Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
-Readonly our $LAST_PROCESSING_WARNINGS_TC  => 18;
-Readonly our $FIRST_COVERAGE_TC            => 19;
-Readonly our $LAST_COVERAGE_TC             => 21;
+Readonly our $REMOVED_NAMES_FILE           => 'removed_names.log';
+Readonly our $INPUT_MERGE_FILE             => 'duplicates.txt';
+Readonly our $DECEASED_PLAYERS             => 'removed_people.txt';
 
-Readonly our $LAST_TC => $LAST_COVERAGE_TC;
+Readonly our $TWO_YEARS_IN_SECONDS => 24 * 60 * 60 * 365 * 2;
 
-Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
-Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
-Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
+Readonly our $ROUNDING_PLACE => 2;
 
-Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
-Readonly our $STS_PLAYER_NAME_INDEX       => 2;
-Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
-Readonly our $STS_START_RATING_INDEX      => 8;
-Readonly our $STS_END_RATING_INDEX        => 9;
-Readonly our $STS_OLD_WORLD_RANK_INDEX    => 10;
-Readonly our $STS_NEW_WORLD_RANK_INDEX    => 11;
-Readonly our $STS_OLD_NATIONAL_RANK_INDEX => 12;
-Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
-
-Readonly our $ZEROTH_SCORE_THRESHOLD => 'Zero';
-Readonly our $FIRST_SCORE_THRESHOLD  => 300;
-Readonly our $SECOND_SCORE_THRESHOLD => 400;
-Readonly our $THIRD_SCORE_THRESHOLD  => 500;
-Readonly our $FOURTH_SCORE_THRESHOLD => 600;
+Readonly our $PERL_ARRAY_REF_NAME => 'ARRAY';
 
 Readonly our $LOCALTIME_YEAR_INDEX  => 5;
 Readonly our $LOCALTIME_MONTH_INDEX => 4;
 Readonly our $LOCALTIME_DAY_INDEX   => 3;
 Readonly our $LOCALTIME_YEAR_BASE   => 1900;
-
-Readonly our $COUNTRY_IN_FILENAME_INDEX => -2;
-Readonly our $NEGATIVE_ONE              => -1;
-Readonly our $FULL_WIDTH                => 100;
-Readonly our $WESPA_START_RATING        => 500;
-
-Readonly our $PERL_CRITIC_SEVERITY => 1;
-
-Readonly our $HTML_WHITE_CLASS => 'white';
-
-Readonly our $DEFAULT_UNKNOWN_COUNTRY          => 'Unknown Country';
-Readonly our $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH => 'UNK';
-
-Readonly our $EMPTY_STRING => q{};
-
-Readonly our $PERL_ARRAY_REF_NAME => 'ARRAY';
-
-Readonly our $NEWLINE => "\n";
-
-Readonly our $TOURNAMENT_AVERAGE_COLSPAN => 3;
-
-Readonly our $TOURNAMENT_SEARCH_START_YEAR => 2000;
-
-Readonly our $HIGH_SCORE_INITIAL_VALUE => -1_000_000;
-Readonly our $LOW_SCORE_INITIAL_VALUE  => 1_000_000;
-
-Readonly our $ESCAPED_QUOTE       => '&quot;';
-Readonly our $ONE_HUNDRED_PERCENT => 100;
-Readonly our $DEV_ENV_KEYWORD     => 'dev';
-
-Readonly our $TEST_DIRECTORY    => 'test';
-Readonly our $MODULES_DIRECTORY => 'modules';
-Readonly our $OBJECTS_DIRECTORY => 'objects';
-Readonly our $CGIBIN_DIR        => 'cgi-bin';
-
-Readonly our $TEST_TITLE_WIDTH        => 50;
-Readonly our $TEST_TOU_PATH           => '/aardvark/2020/USA/';
-Readonly our $TEST_TOU_DIRECTORY      => 'tou';
-Readonly our $TEST_STDOUT_DIRECTORY   => 'stdout';
-Readonly our $TEST_DATABASE_DIRECTORY => 'database';
-Readonly our $TEST_JSON_DIRECTORY     => 'json';
-Readonly our $TEST_UTILS_DIRECTORY    => 'utils';
-
-Readonly our $JSON_FAILURE_TYPE     => 'JSON';
-Readonly our $DATABASE_FAILURE_TYPE => 'TABLE';
-Readonly our $UTILS_FAILURE_TYPE    => 'UTILS';
-Readonly our $KEYS_FAILURE_TYPE     => 'KEYS';
-Readonly our $STDOUT_FAILURE_TYPE   => 'STDOUT';
-
-Readonly our $UNDEFINED_STRING => 'undef';
-
-Readonly our $PERL_DIRECTORIES =>
-  [ $TEST_DIRECTORY, $MODULES_DIRECTORY, $OBJECTS_DIRECTORY ];
-
-# Objects and modules
-
-Readonly our $FAILURE_REASON           => 'FAILURE';
-Readonly our $FAILURE_TYPE             => 'Result Type';
-Readonly our $FAILURE_TRACEBACK        => 'Traceback';
-Readonly our $FAILURE_EXPECTED_RESULTS => 'Expected Results';
-Readonly our $FAILURE_ACTUAL_RESULTS   => 'Actual Results';
-Readonly our $FAILURE_DIFF             => q{ } x 14;
-
-Readonly our $FAILURE_FIELDS => [
-  $FAILURE_REASON,         $FAILURE_TYPE,
-  $FAILURE_TRACEBACK,      $FAILURE_EXPECTED_RESULTS,
-  $FAILURE_ACTUAL_RESULTS, $FAILURE_DIFF
-];
-
-Readonly our $TOU_DBH              => 'TOU Database Handler';
-Readonly our $TOU_PLAYER_NAMES     => 'TOU Player Names';
-Readonly our $TOU_CONVERSION_HASH  => 'TOU Player Name Conversion Hash';
-Readonly our $TOU_CORRECT          => 'TOU Attempt Correction';
-Readonly our $TOU_STS_PLAYER_NAMES => 'TOU STS Player Names';
-Readonly our $TOU_PLAYER_DATA      => 'TOU Player Data';
-Readonly our $TOU_ERROR_REPORT     => 'TOU Error Report';
-Readonly our $TOU_FILENAME         => 'TOU Filename';
-Readonly our $TOU_LOADED           => 'TOU Loaded';
-Readonly our $TOU_PROCESSED        => 'TOU Processed';
-Readonly our $TOU_REWRITE_FILENAME => 'TOU Rewrite Filename';
-Readonly our $TOU_REWRITE_NEEDED   => 'TOU Rewrite Needed';
-Readonly our $TOU_VALID            => 'TOU Valid';
-Readonly our $TOU_WARNING_REPORT   => 'TOU Warning Report';
-Readonly our $TOU_EVENT            => 'TOU Event';
-Readonly our $TOU_TOURNAMENT       => 'TOU Tournament';
-Readonly our $TOU_DIVISION_DATA    => 'TOU Division Data';
-
-Readonly our $TOU_REWRITE_EXTENSION  => '.rewrite';
-Readonly our $TOU_BASE_WINNING_SCORE => 2000;
-Readonly our $TOU_BASE_TIE_SCORE     => 1000;
-Readonly our $TOU_TIE_SCORE_RESULT   => 1350;
-Readonly our $TOU_MINIMUM_WIN_SCORE  => 1950;
-Readonly our $TOU_TIE_VALUE          => 0.5;
-Readonly our $TOU_ZERO_PADDING       => 37;
-
-Readonly our $TOU_COMPARE_ORDER => [
-  $TOU_FILENAME,       $TOU_REWRITE_FILENAME, $TOU_ERROR_REPORT,
-  $TOU_WARNING_REPORT, $TOU_VALID,            $TOU_REWRITE_NEEDED,
-  $TOU_PLAYER_NAMES,   $TOU_STS_PLAYER_NAMES, $TOU_LOADED,
-  $TOU_PROCESSED,      $TOU_EVENT,            $TOU_TOURNAMENT,
-  $TOU_DIVISION_DATA,
-];
-
-Readonly our $UNBLESSED_IGNORE_KEYS => {
-  $TOU_DBH             => 1,
-  $TOU_PLAYER_DATA     => 1,
-  $TOU_CONVERSION_HASH => 1,
-  'lexicon_id'         => 1,
-  'event_id'           => 1,
-  'player_id'          => 1,
-  'division_id'        => 1,
-  'game_id'            => 1,
-  'id'                 => 1,
-};
-
-Readonly our $DIVISION_TOUFILE             => 'Division Filename';
-Readonly our $DIVISION_NAME                => 'Division Name';
-Readonly our $DIVISION_NUMBER              => 'Division Number';
-Readonly our $DIVISION_NUMBER_OF_ROUNDS    => 'Division Number of Rounds';
-Readonly our $DIVISION_PLAYERS             => 'Division Players';
-Readonly our $DIVISION_GAME_DATA           => 'Division Game Data';
-Readonly our $DIVISION_MATRIX              => 'Division Matrix';
-Readonly our $DIVISION_VALID               => 'Division Valid';
-Readonly our $DIVISION_CORRECTED           => 'Division Corrected';
-Readonly our $DIVISION_VERIFICATION_REPORT => 'Division Verification Report';
-Readonly our $DIVISION_TOURNAMENT_RESULTS  => 'Division Tournament Results';
-Readonly our $DIVISION_GAME_AND_PLAYER_RESULTS =>
-  'Division Game and Player Results';
-
-Readonly our $RESULT_SCORE           => 'Result Score';
-Readonly our $RESULT_PLAYER_NUMBER   => 'Result Player Number';
-Readonly our $RESULT_OPPONENT_NUMBER => 'Result Opponent Number';
-Readonly our $RESULT_TOU_SCORE       => 'Result TOU Score';
-Readonly our $RESULT_FIRST           => 'Result Player is First';
-Readonly our $RESULT_WINS            => 'Result Wins';
-Readonly our $RESULT_LOSSES          => 'Result Losses';
-Readonly our $RESULT_BYES            => 'Result Byes';
-Readonly our $RESULT_BYE_WINS        => 'Result Bye Wins';
-Readonly our $RESULT_SPREAD          => 'Result Spread';
-Readonly our $RESULT_ROUND           => 'Result Round';
-Readonly our $RESULT_CODED           => 'Result Coded';
-Readonly our $RESULT_PLAYER_IS_FIRST => 'Result Player is First';
-
-Readonly our $RESULT_CODED_WIN  => 1;
-Readonly our $RESULT_CODED_LOSS => -1;
-Readonly our $RESULT_CODED_TIE  => 0;
-
-Readonly our $INPUT_DIR           => 'inputs';
-Readonly our $LOG_DIR             => 'logs';
-Readonly our $MODULES_DIR         => 'modules';
-Readonly our $SCRIPTS_DIR         => 'scripts';
-Readonly our $HTML_DIR            => 'html';
-Readonly our $HTML_STATIC_DIR     => 'html_static';
-Readonly our $HTML_DATA_DIR       => 'html_data';
-Readonly our $PLAYER_HTML_DIR     => 'players';
-Readonly our $TOURNAMENT_HTML_DIR => 'tournaments';
-Readonly our $RANKINGS_HTML_DIR   => 'rankings';
-Readonly our $FULL_RANKINGS_NAME  => 'full_rankings';
-
-Readonly our $PLAYER_SEARCH_DATA_FILENAME  => 'player_search_data.html';
-Readonly our $COUNTRY_SEARCH_DATA_FILENAME => 'country_search_data.html';
-Readonly our $FRONT_PAGE_RATINGS_DATA_FILENAME =>
-  'front_page_ratings_data.html';
-Readonly our $TOURNAMENT_FORM_DATA_FILENAME => 'tournament_form_data.html';
-Readonly our $TOURNAMENT_CGI_FILENAME       => 'find_tournament.pl';
-Readonly our $FRONT_PAGE_RATINGS_CUTOFF     => 10;
-
-Readonly our $HTML_HEADER => "Content-type: text/html$NEWLINE$NEWLINE";
-
-Readonly our $HTML_ID_PLAYER_TYPE       => 0;
-Readonly our $HTML_ID_TOURNAMENT_TYPE   => 1;
-Readonly our $HTML_ID_HEAD_TO_HEAD_TYPE => 2;
-Readonly our $HTML_ID_BUTTON_TAG        => 'button';
-Readonly our $HTML_ID_ENTRY_TAG         => 'entry';
-
-Readonly our $HTML_PATH_TO_WORKING_DIR => '../..';
 
 Readonly our $TOURNAMENT_DATA_DIR            => '/srv/dev/tournament_data';
 Readonly our $DEFAULT_WORKING_DIR            => '/srv/dev/aardvark';
@@ -245,22 +37,23 @@ Readonly our $DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
 Readonly our $DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
 Readonly our $DEFAULT_FILE_REGEX             => '.tou';
 
-Readonly our $DEFAULT_BACKUP_DIR =>
-  '/home/jcastellano/aardvark-ng/backups/backup_original';
+Readonly our $PHOTO_DIR           => 'icons';
+Readonly our $INPUT_DIR           => 'inputs';
+Readonly our $LOG_DIR             => 'logs';
+Readonly our $MODULES_DIR         => 'modules';
+Readonly our $OBJECTS_DIR         => 'objects';
+Readonly our $SCRIPTS_DIR         => 'scripts';
+Readonly our $HTML_DIR            => 'html';
+Readonly our $HTML_STATIC_DIR     => 'html_static';
+Readonly our $HTML_DATA_DIR       => 'html_data';
+Readonly our $PLAYER_HTML_DIR     => 'players';
+Readonly our $TOURNAMENT_HTML_DIR => 'tournaments';
+Readonly our $RANKINGS_HTML_DIR   => 'rankings';
+Readonly our $TEST_DIRECTORY      => 'test';
+Readonly our $CGIBIN_DIR          => 'cgi-bin';
+Readonly our $COUNTRY_FLAGS_DIR   => 'flags';
 
-Readonly our $COUNTRY_FLAGS_DIR => 'flags';
-
-Readonly our $PRODUCTION_DATABASE_NAME => 'wespaprod';
-Readonly our $DATABASE_NAME            => 'wespa';
-Readonly our $DATABASE_HOST_NAME       => 'localhost';
-Readonly our $DATABASE_USER_NAME       => 'wespa';
-Readonly our $DATABASE_PASSWORD        => 'nigeltheking';
-
-Readonly our $TEXT_FILES_BACKUP_PREFIX => 'tournament_files';
-
-Readonly our $TOU_FILE_EXTENSION => '.tou';
-Readonly our $STS_FILE_EXTENSION => '.STS';
-Readonly our $STA_FILE_EXTENSION => '.STA';
+# Database
 
 Readonly our $PLAYERS_TABLE_NAME            => 'players';
 Readonly our $PLAYER_ALT_NAMES_TABLE_NAME   => 'player_alt_names';
@@ -273,34 +66,14 @@ Readonly our $PLAYER_RESULTS_TABLE_NAME     => 'player_results';
 Readonly our $LEXICONS_TABLE_NAME           => 'lexicons';
 Readonly our $LOADED_TOURNAMENTS_TABLE_NAME => 'loaded_tournaments';
 
-Readonly our $MASTER_RATINGS_LIST        => 'rating.dat';
-Readonly our $NOT_IN_MASTER_RATINGS_LIST => 'not_in_ratings_list.log';
-
-Readonly our $REMOVED_NAMES_FILE           => 'removed_names.log';
-Readonly our $DUPLICATE_NAMES_FILE         => 'duplicate_names.log';
-Readonly our $INCORRECT_NAME_MAPPINGS_FILE => 'incorrect_name_mappings.log';
-Readonly our $INPUT_MERGE_FILE             => 'duplicates.txt';
-Readonly our $DECEASED_PLAYERS             => 'removed_people.txt';
-
-Readonly our $TRIGRAPH_LENGTH => 3;
-
-Readonly our $WINS_COLUMN_COLOR   => '#bbffbb';
-Readonly our $LOSSES_COLUMN_COLOR => '#ffdddd';
-Readonly our $DRAWS_COLUMN_COLOR  => '#eeeeee';
-Readonly our $BYES_COLUMN_COLOR   => '#eeeeee';
+Readonly our $PRODUCTION_DATABASE_NAME => 'wespaprod';
+Readonly our $DATABASE_NAME            => 'wespa';
+Readonly our $DATABASE_HOST_NAME       => 'localhost';
+Readonly our $DATABASE_USER_NAME       => 'wespa';
+Readonly our $DATABASE_PASSWORD        => 'nigeltheking';
 
 Readonly our $PROVISIONAL_GAMES_MAX => 50;
 Readonly our $CURRENT_GAMES_MIN     => 40;
-Readonly our $PHOTO_DIR             => 'icons';
-
-Readonly our $DEFAULT_BYE_SCORE => 1350;
-
-Readonly our $TWO_YEARS_IN_SECONDS => 24 * 60 * 60 * 365 * 2;
-
-Readonly our $ROUNDING_PLACE => 2;
-
-Readonly our $UPDATE_START_YEAR => 2019;
-Readonly our $UPDATE_SOURCE_DIR => '/srv/iwi.wespa.org/aardvark';
 
 Readonly our $TABLES => {
   $LOADED_TOURNAMENTS_TABLE_NAME => [
@@ -430,14 +203,254 @@ Readonly our $TABLE_DROP_EXCEPTIONS => { $PLAYERS_TABLE_NAME => 1 };
 Readonly our $LEXICONS =>
   [ { 'name' => 'CSW07' }, { 'name' => 'CSW12' }, { 'name' => 'CSW15' }, ];
 
+# Executive.pm
+
+Readonly our $SUBCOMMAND_CRON        => 'cron';
+Readonly our $SUBCOMMAND_MAINTENANCE => 'main';
+
+# Update.pm
+
+Readonly our $TOU_LOAD_LOG_NAME => 'tou_load.log';
+
+Readonly our $TOU_LOAD_IGNORE_ERRORS => {
+  '/srv/dev/tournament_datadev/2006/SWE/behill06.tou' => 1,
+  '/srv/dev/tournament_datadev/2006/THA/kc06r.tou'    => 1,
+  '/srv/dev/tournament_datadev/2009/GBR/ni2009.tou'   => 1,
+};
+
+Readonly our $COVERAGE_HTML_FILE => 'cover_db/coverage.html';
+Readonly our $EXECUTIVE_KEY      => 'executivekey';
+
+Readonly our $UPDATE_START_YEAR => 2019;
+Readonly our $UPDATE_SOURCE_DIR => '/srv/iwi.wespa.org/aardvark';
+
+# Test.pm
+
+Readonly our $TEST_CONTENT_PADDING  => 15;
+Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
+Readonly our $TEST_REPORT_TITLE     => 'REPORT';
+Readonly our $TEST_AARDVARK_TITLE   => 'AARDVARK MAINTENANCE';
+
+Readonly our $TEST_TITLE_WIDTH        => 50;
+Readonly our $TEST_TOU_PATH           => '/aardvark/2020/USA/';
+Readonly our $TEST_TOU_DIRECTORY      => 'tou';
+Readonly our $TEST_STDOUT_DIRECTORY   => 'stdout';
+Readonly our $TEST_DATABASE_DIRECTORY => 'database';
+Readonly our $TEST_JSON_DIRECTORY     => 'json';
+Readonly our $TEST_UTILS_DIRECTORY    => 'utils';
+
+Readonly our $JSON_FAILURE_TYPE     => 'JSON';
+Readonly our $DATABASE_FAILURE_TYPE => 'TABLE';
+Readonly our $UTILS_FAILURE_TYPE    => 'UTILS';
+Readonly our $KEYS_FAILURE_TYPE     => 'KEYS';
+Readonly our $STDOUT_FAILURE_TYPE   => 'STDOUT';
+
+Readonly our $STA_MAX_RATING_ITEMS  => 3;
+Readonly our $MAX_LINE_LENGTH       => 80;
+
+Readonly our $FIRST_PROCESSING_ERRORS_TC   => 1;
+Readonly our $LAST_PROCESSING_ERRORS_TC    => 14;
+Readonly our $FIRST_PROCESSING_WARNINGS_TC => 15;
+Readonly our $LAST_PROCESSING_WARNINGS_TC  => 18;
+Readonly our $FIRST_COVERAGE_TC            => 19;
+Readonly our $LAST_COVERAGE_TC             => 21;
+
+Readonly our $LAST_TC => $LAST_COVERAGE_TC;
+
+Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
+Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
+Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
+
+Readonly our $PERL_CRITIC_SEVERITY => 1;
+
+Readonly our $PERL_DIRECTORIES =>
+  [ $TEST_DIRECTORY, $MODULES_DIR, $OBJECTS_DIR];
+
+# Report.pm
+
+Readonly our $REPORT_ITEM_SUBITEMS_NAME => 'subitems';
+Readonly our $REPORT_ITEM_TITLE_NAME    => 'title';
+Readonly our $REPORT_ITEM_VALUE_NAME    => 'value';
+Readonly our $REPORT_WIDTH              => 50;
+Readonly our $REPORT_TOP_BORDER         => q{%};
+Readonly our $REPORT_BOTTOM_BORDER      => q{%};
+Readonly our $REPORT_SIDE_BORDER        => q{%};
+Readonly our $REPORT_SPACING            => 30;
+Readonly our $REPORT_LEFT_MARGIN        => 7;
+
+# TOU.pm
+
+Readonly our $TOU_DBH              => 'TOU Database Handler';
+Readonly our $TOU_PLAYER_NAMES     => 'TOU Player Names';
+Readonly our $TOU_CONVERSION_HASH  => 'TOU Player Name Conversion Hash';
+Readonly our $TOU_CORRECT          => 'TOU Attempt Correction';
+Readonly our $TOU_STS_PLAYER_NAMES => 'TOU STS Player Names';
+Readonly our $TOU_PLAYER_DATA      => 'TOU Player Data';
+Readonly our $TOU_ERROR_REPORT     => 'TOU Error Report';
+Readonly our $TOU_FILENAME         => 'TOU Filename';
+Readonly our $TOU_LOADED           => 'TOU Loaded';
+Readonly our $TOU_PROCESSED        => 'TOU Processed';
+Readonly our $TOU_REWRITE_FILENAME => 'TOU Rewrite Filename';
+Readonly our $TOU_REWRITE_NEEDED   => 'TOU Rewrite Needed';
+Readonly our $TOU_VALID            => 'TOU Valid';
+Readonly our $TOU_WARNING_REPORT   => 'TOU Warning Report';
+Readonly our $TOU_EVENT            => 'TOU Event';
+Readonly our $TOU_TOURNAMENT       => 'TOU Tournament';
+Readonly our $TOU_DIVISION_DATA    => 'TOU Division Data';
+
+Readonly our $TOU_REWRITE_EXTENSION  => '.rewrite';
+Readonly our $TOU_BASE_WINNING_SCORE => 2000;
+Readonly our $TOU_BASE_TIE_SCORE     => 1000;
+Readonly our $TOU_TIE_SCORE_RESULT   => 1350;
+Readonly our $TOU_MINIMUM_WIN_SCORE  => 1950;
+Readonly our $TOU_TIE_VALUE          => 0.5;
+Readonly our $TOU_ZERO_PADDING       => 37;
+
+Readonly our $TOU_COMPARE_ORDER => [
+  $TOU_FILENAME,       $TOU_REWRITE_FILENAME, $TOU_ERROR_REPORT,
+  $TOU_WARNING_REPORT, $TOU_VALID,            $TOU_REWRITE_NEEDED,
+  $TOU_PLAYER_NAMES,   $TOU_STS_PLAYER_NAMES, $TOU_LOADED,
+  $TOU_PROCESSED,      $TOU_EVENT,            $TOU_TOURNAMENT,
+  $TOU_DIVISION_DATA,
+];
+
+Readonly our $UNBLESSED_IGNORE_KEYS => {
+  $TOU_DBH             => 1,
+  $TOU_PLAYER_DATA     => 1,
+  $TOU_CONVERSION_HASH => 1,
+  'lexicon_id'         => 1,
+  'event_id'           => 1,
+  'player_id'          => 1,
+  'division_id'        => 1,
+  'game_id'            => 1,
+  'id'                 => 1,
+};
+
+Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
+Readonly our $STS_PLAYER_NAME_INDEX       => 2;
+Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
+Readonly our $STS_START_RATING_INDEX      => 8;
+Readonly our $STS_END_RATING_INDEX        => 9;
+Readonly our $STS_OLD_WORLD_RANK_INDEX    => 10;
+Readonly our $STS_NEW_WORLD_RANK_INDEX    => 11;
+Readonly our $STS_OLD_NATIONAL_RANK_INDEX => 12;
+Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
+
+# HTML.pm
+
 Readonly our $GAME_STATS_RANK_NAME => 'rank';
 Readonly our $STAT_KEY_NAME        => 'stat';
 Readonly our $ALLTIME_CUTOFF       => 60;
 
+Readonly our $FULL_RANKINGS_NAME  => 'full_rankings';
+
 Readonly our $TOURNAMENT_STATS_ORDER =>
   [ 'High Win', 'High Loss', 'High Spread', 'High Combined', 'Upsets' ];
 
+Readonly our $HTML_HEADER => "Content-type: text/html$NEWLINE$NEWLINE";
+
+Readonly our $HTML_ID_PLAYER_TYPE       => 0;
+Readonly our $HTML_ID_TOURNAMENT_TYPE   => 1;
+Readonly our $HTML_ID_HEAD_TO_HEAD_TYPE => 2;
+Readonly our $HTML_ID_BUTTON_TAG        => 'button';
+Readonly our $HTML_ID_ENTRY_TAG         => 'entry';
+
+Readonly our $HTML_PATH_TO_WORKING_DIR => '../..';
+
+Readonly our $WINS_COLUMN_COLOR   => '#bbffbb';
+Readonly our $LOSSES_COLUMN_COLOR => '#ffdddd';
+Readonly our $DRAWS_COLUMN_COLOR  => '#eeeeee';
+Readonly our $BYES_COLUMN_COLOR   => '#eeeeee';
+
+Readonly our $ZEROTH_SCORE_THRESHOLD => 'Zero';
+Readonly our $FIRST_SCORE_THRESHOLD  => 300;
+Readonly our $SECOND_SCORE_THRESHOLD => 400;
+Readonly our $THIRD_SCORE_THRESHOLD  => 500;
+Readonly our $FOURTH_SCORE_THRESHOLD => 600;
+
+
+Readonly our $COUNTRY_IN_FILENAME_INDEX => -2;
+Readonly our $NEGATIVE_ONE              => -1;
+Readonly our $FULL_WIDTH                => 100;
+Readonly our $WESPA_START_RATING        => 500;
+
+Readonly our $HTML_WHITE_CLASS => 'white';
+
+Readonly our $TOURNAMENT_AVERAGE_COLSPAN => 3;
+
+Readonly our $TOURNAMENT_SEARCH_START_YEAR => 2000;
+
+Readonly our $HIGH_SCORE_INITIAL_VALUE => -1_000_000;
+Readonly our $LOW_SCORE_INITIAL_VALUE  => 1_000_000;
+
+Readonly our $ESCAPED_QUOTE       => '&quot;';
+Readonly our $ONE_HUNDRED_PERCENT => 100;
+Readonly our $DEV_ENV_KEYWORD     => 'dev';
+
+Readonly our $PLAYER_SEARCH_DATA_FILENAME  => 'player_search_data.html';
+Readonly our $COUNTRY_SEARCH_DATA_FILENAME => 'country_search_data.html';
+Readonly our $FRONT_PAGE_RATINGS_DATA_FILENAME =>
+  'front_page_ratings_data.html';
+Readonly our $TOURNAMENT_FORM_DATA_FILENAME => 'tournament_form_data.html';
+Readonly our $TOURNAMENT_CGI_FILENAME       => 'find_tournament.pl';
+Readonly our $FRONT_PAGE_RATINGS_CUTOFF     => 10;
+
+# Failure.pm
+
+Readonly our $FAILURE_REASON           => 'FAILURE';
+Readonly our $FAILURE_TYPE             => 'Result Type';
+Readonly our $FAILURE_TRACEBACK        => 'Traceback';
+Readonly our $FAILURE_EXPECTED_RESULTS => 'Expected Results';
+Readonly our $FAILURE_ACTUAL_RESULTS   => 'Actual Results';
+Readonly our $FAILURE_DIFF             => q{ } x 14;
+
+Readonly our $FAILURE_FIELDS => [
+  $FAILURE_REASON,         $FAILURE_TYPE,
+  $FAILURE_TRACEBACK,      $FAILURE_EXPECTED_RESULTS,
+  $FAILURE_ACTUAL_RESULTS, $FAILURE_DIFF
+];
+
+# Division.pm
+
+Readonly our $DIVISION_TOUFILE             => 'Division Filename';
+Readonly our $DIVISION_NAME                => 'Division Name';
+Readonly our $DIVISION_NUMBER              => 'Division Number';
+Readonly our $DIVISION_NUMBER_OF_ROUNDS    => 'Division Number of Rounds';
+Readonly our $DIVISION_PLAYERS             => 'Division Players';
+Readonly our $DIVISION_GAME_DATA           => 'Division Game Data';
+Readonly our $DIVISION_MATRIX              => 'Division Matrix';
+Readonly our $DIVISION_VALID               => 'Division Valid';
+Readonly our $DIVISION_CORRECTED           => 'Division Corrected';
+Readonly our $DIVISION_VERIFICATION_REPORT => 'Division Verification Report';
+Readonly our $DIVISION_TOURNAMENT_RESULTS  => 'Division Tournament Results';
+Readonly our $DIVISION_GAME_AND_PLAYER_RESULTS =>
+  'Division Game and Player Results';
+
+# Result.pm
+
+Readonly our $RESULT_SCORE           => 'Result Score';
+Readonly our $RESULT_PLAYER_NUMBER   => 'Result Player Number';
+Readonly our $RESULT_OPPONENT_NUMBER => 'Result Opponent Number';
+Readonly our $RESULT_TOU_SCORE       => 'Result TOU Score';
+Readonly our $RESULT_FIRST           => 'Result Player is First';
+Readonly our $RESULT_WINS            => 'Result Wins';
+Readonly our $RESULT_LOSSES          => 'Result Losses';
+Readonly our $RESULT_BYES            => 'Result Byes';
+Readonly our $RESULT_BYE_WINS        => 'Result Bye Wins';
+Readonly our $RESULT_SPREAD          => 'Result Spread';
+Readonly our $RESULT_ROUND           => 'Result Round';
+Readonly our $RESULT_CODED           => 'Result Coded';
+Readonly our $RESULT_PLAYER_IS_FIRST => 'Result Player is First';
+
+Readonly our $RESULT_CODED_WIN  => 1;
+Readonly our $RESULT_CODED_LOSS => -1;
+Readonly our $RESULT_CODED_TIE  => 0;
+
 # Country trigraph and naming constants
+
+Readonly our $TRIGRAPH_LENGTH => 3;
+Readonly our $DEFAULT_UNKNOWN_COUNTRY          => 'Unknown Country';
+Readonly our $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH => 'UNK';
 
 Readonly our $COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF => {
   'ABW' => 'Aruba',
@@ -1046,6 +1059,10 @@ FOOTER
 
 our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
+  $SUBCOMMAND_MAINTENANCE
+  $SUBCOMMAND_CRON
+  $TOU_LOAD_IGNORE_ERRORS
+  $TOU_LOAD_LOG_NAME
   $COVERAGE_HTML_FILE
   $EXECUTIVE_KEY
   $REPORT_ITEM_SUBITEMS_NAME

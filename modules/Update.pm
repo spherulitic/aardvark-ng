@@ -6,7 +6,9 @@ use strict;
 use warnings;
 use version; our $VERSION = qv('1');
 use DBI;
+use Carp;
 use Data::Dumper;
+use Getopt::Long;
 
 use lib './modules';
 use lib './objects';
@@ -17,7 +19,15 @@ use HTML;
 
 if ( !caller )
 {
-  my $logname = Utils::get_iso_date( time, q{-} ) . '_cronjob.log';
+  my $executive_key;
+
+  GetOptions( $EXECUTIVE_KEY => \$executive_key, );
+
+  if ( !$executive_key )
+  {
+    croak 'Do not run Update.pm directly, '
+      . "use the top-level aardvark executable$NEWLINE";
+  }
 
   my $tou_data_directory = Utils::get_environment_name($TOURNAMENT_DATA_DIR);
 
@@ -47,6 +57,8 @@ sub load_tou_files
   # the database
   my $player_data = {};
 
+  my $loading_log = $EMPTY_STRING;
+
   foreach my $filename (@filenames_array)
   {
     my $tou = TOU->new(
@@ -61,9 +73,22 @@ sub load_tou_files
 
     $tou->load( $dbh, $player_data );
 
-    Utils::format_print( $tou->get_report() );
-  }
+    my $tou_report = $tou->get_report();
 
+    if ( $TOU_LOAD_IGNORE_ERRORS->{ $tou->{$TOU_FILENAME} } )
+    {
+      Utils::format_print("*** IGNORED ***$NEWLINE");
+    }
+    else
+    {
+      $loading_log .= $tou_report;
+    }
+
+    Utils::format_print($tou_report);
+  }
+  my $iso_date = Utils::get_iso_date( time, q{_} );
+  Utils::write_string_to_file( $loading_log,
+    "$LOG_DIR/$iso_date" . q{_} . "$TOU_LOAD_LOG_NAME" );
   return 1;
 }
 

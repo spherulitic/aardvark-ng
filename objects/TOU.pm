@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package TOU;
 
 use strict;
@@ -7,7 +5,6 @@ use warnings;
 use version; our $VERSION = qv('1');
 use DBI;
 use Data::Dumper;
-use Term::ANSIColor;
 use List::Util qw(max);
 use Clone 'clone';
 use Carp;

@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package Report;
 
 use strict;
@@ -15,11 +13,6 @@ sub add_item
 {
   my $this = shift;
   my $item = shift;
-
-  if ( !$item->{$REPORT_ITEM_TITLE_NAME} )
-  {
-    croak 'Report item not given a title: ' . Dumper($item);
-  }
 
   push @{ $this->{items} }, $item;
   return 1;

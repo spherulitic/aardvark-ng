@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package Result;
 
 use strict;
@@ -16,13 +14,6 @@ sub add_to_gpr
   my $gpr         = shift;
   my $player_id   = shift;
   my $player_name = shift;
-
-  # If I did it right, the only
-  # null player_id's should be for 'bye_players'
-  if ( Utils::player_name_is_bye($player_name) )
-  {
-    return;
-  }
 
   my $opponent_number = $this->{$RESULT_OPPONENT_NUMBER};
   my $player_number   = $this->{$RESULT_PLAYER_NUMBER};
