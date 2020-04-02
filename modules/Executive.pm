@@ -68,9 +68,17 @@ if ( !caller )
   }
 }
 
-# Explicitly exit with status 0
-# This might change later
-exit 0;
+sub cron
+{
+  my $logname
+    = "$LOG_DIR/" . Utils::get_iso_date( time, q{_} ) . '_cronjob.log';
+
+  my $cron_command = "./modules/Update.pm -$EXECUTIVE_KEY > $logname 2>&1";
+
+  system $cron_command;
+
+  return 1;
+}
 
 sub maintenance
 {
@@ -102,17 +110,7 @@ sub maintenance
   return 1;
 }
 
-sub cron
-{
-  my $logname
-    = "$LOG_DIR/" . Utils::get_iso_date( time, q{_} ) . '_cronjob.log';
-
-  my $cron_command = "./modules/Update.pm -$EXECUTIVE_KEY > $logname 2>&1";
-
-  system $cron_command;
-
-  return 1;
-}
+1;
 
 __END__
 
@@ -254,7 +252,8 @@ See the README.md for more details.
 
 =head1 EXIT STATUS
 
-Always returns 0.
+There are no expected errors given by the aardvark executable itself.
+The expected exit status is 0.
 
 =head1 DIAGNOSTICS
 

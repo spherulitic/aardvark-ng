@@ -57,7 +57,7 @@ sub alphabetize_routine_order
   };
 
   my $report_item = {
-    $REPORT_ITEM_TITLE_NAME => 'ALPHABETIZATION',
+    $REPORT_ITEM_TITLE_NAME => 'ALPHABETIZATION (PROCESSED)',
     $REPORT_ITEM_VALUE_NAME => 0,
     $REPORT_ITEM_SUBITEMS_NAME =>
       [ $alphabetized_report, $not_alphabetized_report, ],
@@ -68,11 +68,22 @@ sub alphabetize_routine_order
     my $routine_hash = {};
     my $current_routine;
     my $in_current_routine = 0;
+    my $end_reached        = 0;
     my $file_string        = $EMPTY_STRING;
+    my $file_string_end    = $EMPTY_STRING;
     my @file_lines         = Utils::write_file_to_array($f);
     while (@file_lines)
     {
       my $current_line = shift @file_lines;
+      if ( $current_line =~ /$END_FILE_PATTERN/xms )
+      {
+        $end_reached = 1;
+      }
+
+      if ($end_reached)
+      {
+        $file_string_end .= $current_line;
+      }
       if (    ## no critic (ProhibitCascadingIfElse)
         $current_line =~ /^sub (.*)/xms
         )
@@ -116,6 +127,11 @@ sub alphabetize_routine_order
       }
       $alphabetized_file .= '1;';
 
+      if ($file_string_end)
+      {
+        $alphabetized_file .= $NEWLINE . $NEWLINE . $file_string_end;
+      }
+
       Utils::write_string_to_file( $alphabetized_file, $f );
       printf "Alphabetized %s$NEWLINE", $f;
 
@@ -152,7 +168,7 @@ sub check_syntax
     Test::make_title( 'CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH ) );
 
   my $syntax_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'SYNTAX',
+    $REPORT_ITEM_TITLE_NAME    => 'SYNTAX (PROCESSED)',
     $REPORT_ITEM_VALUE_NAME    => 0,
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
@@ -386,7 +402,7 @@ sub criticize
     Test::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH ) );
 
   my $critic_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'CRITIC',
+    $REPORT_ITEM_TITLE_NAME    => 'CRITIC (VIOLATIONS)',
     $REPORT_ITEM_VALUE_NAME    => 0,
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
@@ -544,7 +560,7 @@ sub database_harness
   };
 
   my $database_report = {
-    $REPORT_ITEM_TITLE_NAME => 'DATABASE',
+    $REPORT_ITEM_TITLE_NAME => 'DATABASE (TESTED)',
     $REPORT_ITEM_VALUE_NAME => scalar @successes + scalar @failures,
     $REPORT_ITEM_SUBITEMS_NAME =>
       [ $database_success_report, $database_failure_report, ],
@@ -749,7 +765,7 @@ sub list_standards_exceptions
   );
 
   my $standards_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'STANDARDS EXCEPTIONS',
+    $REPORT_ITEM_TITLE_NAME    => 'STANDARDS (EXCEPTIONS)',
     $REPORT_ITEM_VALUE_NAME    => 0,
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
@@ -1132,7 +1148,7 @@ sub tidy
     Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
 
   my $tidy_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'TIDIED',
+    $REPORT_ITEM_TITLE_NAME    => 'TIDYING (PROCESSED)',
     $REPORT_ITEM_VALUE_NAME    => 0,
     $REPORT_ITEM_SUBITEMS_NAME => [],
   };
@@ -1256,7 +1272,7 @@ sub tou_harness
   };
 
   my $tou_report = {
-    $REPORT_ITEM_TITLE_NAME => 'TOU PROCESSING',
+    $REPORT_ITEM_TITLE_NAME => 'TOU PROCESSING (TESTED)',
     $REPORT_ITEM_VALUE_NAME => scalar @successes + scalar @failures,
     $REPORT_ITEM_SUBITEMS_NAME =>
       [ $tou_success_report, $tou_failure_report, ],
