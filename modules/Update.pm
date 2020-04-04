@@ -86,9 +86,19 @@ sub load_tou_files
 
     Utils::format_print($tou_report);
   }
-  my $iso_date = Utils::get_iso_date( time, q{_} );
-  Utils::write_string_to_file( $loading_log,
-    "$LOG_DIR/$iso_date" . q{_} . "$TOU_LOAD_LOG_NAME" );
+  if ($loading_log)
+  {
+    my $iso_date = Utils::get_iso_date( time, $LOG_DATE_SEPARATOR );
+    my $loading_log_filename = "$LOG_DIR/$iso_date" . "_$TOU_LOAD_LOG_NAME";
+    my $date_string          = localtime;
+    $loading_log
+      = Utils::make_log_header("TOU Error Log$NEWLINE$date_string")
+      . $loading_log;
+    Utils::write_string_to_file( $loading_log, $loading_log_filename );
+    Utils::send_email_notification( "TOU Error Log for $date_string",
+      $loading_log_filename, $TOU_ERROR_SUBSCRIBERS );
+  }
+
   return 1;
 }
 

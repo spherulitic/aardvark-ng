@@ -37,8 +37,9 @@ sub alphabetize_routine_order
   my $report = shift;
 
   Utils::format_print(
-    Test::make_title(
-      'ALPHABETIZING ROUTINE ORDER', q{%}, $TEST_TITLE_WIDTH
+    Utils::make_title(
+      'ALPHABETIZING ROUTINE ORDER',
+      q{%}, $TEST_TITLE_WIDTH
     )
   );
 
@@ -165,7 +166,7 @@ sub check_syntax
   my $report = shift;
 
   Utils::format_print(
-    Test::make_title( 'CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( 'CHECKING SYNTAX', q{%}, $TEST_TITLE_WIDTH ) );
 
   my $syntax_report = {
     $REPORT_ITEM_TITLE_NAME    => 'SYNTAX (PROCESSED)',
@@ -389,7 +390,7 @@ sub convert_to_response
   }
   else
   {
-    $response_text = 'OK    ';
+    $response_text = $TEST_SUCCESS_TEXT;
   }
   return $response_text;
 }
@@ -399,7 +400,7 @@ sub criticize
   my $report = shift;
 
   Utils::format_print(
-    Test::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( 'CRITIQUING', q{%}, $TEST_TITLE_WIDTH ) );
 
   my $critic_report = {
     $REPORT_ITEM_TITLE_NAME    => 'CRITIC (VIOLATIONS)',
@@ -468,7 +469,7 @@ sub database_harness
   my $report          = $arg_ref->{report};
 
   Utils::format_print(
-    Test::make_title( 'STARTING DATABASE HARNESS', q{%}, $TEST_TITLE_WIDTH )
+    Utils::make_title( 'STARTING DATABASE HARNESS', q{%}, $TEST_TITLE_WIDTH )
   );
 
   my $result_lists = {
@@ -548,13 +549,13 @@ sub database_harness
   } @successes;
 
   my $database_success_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'OK',
+    $REPORT_ITEM_TITLE_NAME    => $TEST_SUCCESS_TEXT,
     $REPORT_ITEM_VALUE_NAME    => scalar @successes,
     $REPORT_ITEM_SUBITEMS_NAME => \@success_subitems,
   };
 
   my $database_failure_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'FAILURE',
+    $REPORT_ITEM_TITLE_NAME    => $TEST_FAILURE_TEXT,
     $REPORT_ITEM_VALUE_NAME    => scalar @failures,
     $REPORT_ITEM_SUBITEMS_NAME => \@failure_subitems,
   };
@@ -727,7 +728,7 @@ sub html_harness
   my $full = $arg_ref->{full};
 
   Utils::format_print(
-    Test::make_title( 'STARTING HTML HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( 'STARTING HTML HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
 
   Utils::fetch_local_tournament_data();
 
@@ -758,7 +759,7 @@ sub list_standards_exceptions
   my $report = shift;
 
   Utils::format_print(
-    Test::make_title(
+    Utils::make_title(
       'LISTING STANDARDS EXCEPTIONS',
       q{%}, $TEST_TITLE_WIDTH
     )
@@ -851,31 +852,6 @@ sub main
   return 1;
 }
 
-sub make_title
-{
-  my $content = shift;
-  my $char    = shift;
-  my $width   = shift;
-
-  my $border        = $char x $width;
-  my $border_length = length $border;
-
-  my $margin       = $border_length - ( length $content );
-  my $left_margin  = $char x ( int( $margin / 2 ) - 1 );
-  my $right_margin = $char x ( int( $margin / 2 ) - 1 );
-
-  if ( $margin % 2 == 1 )
-  {
-    $right_margin .= $char;
-  }
-
-  my $title = "$border$NEWLINE";
-  $title .= "$left_margin $content $right_margin$NEWLINE";
-  $title .= "$border$NEWLINE$NEWLINE";
-
-  return $title;
-}
-
 sub prepare
 {
   my $report = shift;
@@ -927,7 +903,7 @@ sub testcase
   my $padded_case = sprintf '%3s', $case;
 
   Utils::format_print(
-    Test::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( "TEST CASE $padded_case", q{~}, $TEST_TITLE_WIDTH ) );
 
   my $tou_dir = $TEST_DIRECTORY . q{/} . $TEST_TOU_DIRECTORY . $TEST_TOU_PATH;
   my $json_dir = $TEST_DIRECTORY . q{/} . $TEST_JSON_DIRECTORY . q{/};
@@ -1023,7 +999,7 @@ sub testrun
   my $player_data = {};
 
   Utils::format_print(
-    Test::make_title( "TEST RUN: $run_title", q{*}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( "TEST RUN: $run_title", q{*}, $TEST_TITLE_WIDTH ) );
 
   for my $i ( $first_tc .. $last_tc )
   {
@@ -1082,10 +1058,10 @@ sub testrun_utils
   }
 
   Utils::format_print(
-    Test::make_title( 'TEST RUN: UTILITIES', q{*}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( 'TEST RUN: UTILITIES', q{*}, $TEST_TITLE_WIDTH ) );
 
   Utils::format_print(
-    Test::make_title(
+    Utils::make_title(
       'TEST CASE ' . ( $LAST_TC + 1 ),
       q{~}, $TEST_TITLE_WIDTH
     )
@@ -1145,7 +1121,7 @@ sub tidy
   my $report = shift;
 
   Utils::format_print(
-    Test::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( 'TIDYING', q{%}, $TEST_TITLE_WIDTH ) );
 
   my $tidy_report = {
     $REPORT_ITEM_TITLE_NAME    => 'TIDYING (PROCESSED)',
@@ -1200,7 +1176,7 @@ sub tou_harness
   };
 
   Utils::format_print(
-    Test::make_title( 'STARTING TOU HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
+    Utils::make_title( 'STARTING TOU HARNESS', q{%}, $TEST_TITLE_WIDTH ) );
 
   # Processing Errors
   Test::testrun(
@@ -1260,13 +1236,13 @@ sub tou_harness
   } @successes;
 
   my $tou_success_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'OK',
+    $REPORT_ITEM_TITLE_NAME    => $TEST_SUCCESS_TEXT,
     $REPORT_ITEM_VALUE_NAME    => scalar @successes,
     $REPORT_ITEM_SUBITEMS_NAME => \@success_subitems,
   };
 
   my $tou_failure_report = {
-    $REPORT_ITEM_TITLE_NAME    => 'FAILURE',
+    $REPORT_ITEM_TITLE_NAME    => $TEST_FAILURE_TEXT,
     $REPORT_ITEM_VALUE_NAME    => scalar @failures,
     $REPORT_ITEM_SUBITEMS_NAME => \@failure_subitems,
   };

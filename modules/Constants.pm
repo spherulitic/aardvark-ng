@@ -26,6 +26,8 @@ Readonly our $ROUNDING_PLACE => 2;
 
 Readonly our $PERL_ARRAY_REF_NAME => 'ARRAY';
 
+Readonly our $LOG_DATE_SEPARATOR => q{_};
+
 Readonly our $LOCALTIME_YEAR_INDEX  => 5;
 Readonly our $LOCALTIME_MONTH_INDEX => 4;
 Readonly our $LOCALTIME_DAY_INDEX   => 3;
@@ -53,6 +55,8 @@ Readonly our $RANKINGS_HTML_DIR   => 'rankings';
 Readonly our $TEST_DIRECTORY      => 'test';
 Readonly our $CGIBIN_DIR          => 'cgi-bin';
 Readonly our $COUNTRY_FLAGS_DIR   => 'flags';
+
+Readonly our $TOU_ERROR_SUBSCRIBERS => [ 'joshuacastellano7@gmail.com', ];
 
 # Database
 
@@ -226,6 +230,9 @@ Readonly our $UPDATE_START_YEAR => 2019;
 Readonly our $UPDATE_SOURCE_DIR => '/srv/iwi.wespa.org/aardvark';
 
 # Test.pm
+
+Readonly our $TEST_SUCCESS_TEXT => 'PASSED';
+Readonly our $TEST_FAILURE_TEXT => 'FAILED';
 
 Readonly our $TEST_CONTENT_PADDING  => 15;
 Readonly our $TEST_ARGUMENT_NOT_SET => 'Argument Not Set';
@@ -1071,6 +1078,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TWO_YEARS_IN_SECONDS
   $ROUNDING_PLACE
   $PERL_ARRAY_REF_NAME
+  $LOG_DATE_SEPARATOR
   $LOCALTIME_YEAR_INDEX
   $LOCALTIME_MONTH_INDEX
   $LOCALTIME_DAY_INDEX
@@ -1096,6 +1104,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TEST_DIRECTORY
   $CGIBIN_DIR
   $COUNTRY_FLAGS_DIR
+  $TOU_ERROR_SUBSCRIBERS
   $PLAYERS_TABLE_NAME
   $PLAYER_ALT_NAMES_TABLE_NAME
   $TOURNAMENTS_TABLE_NAME
@@ -1125,6 +1134,8 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $EXECUTIVE_KEY
   $UPDATE_START_YEAR
   $UPDATE_SOURCE_DIR
+  $TEST_SUCCESS_TEXT
+  $TEST_FAILURE_TEXT
   $TEST_CONTENT_PADDING
   $TEST_ARGUMENT_NOT_SET
   $TEST_REPORT_TITLE

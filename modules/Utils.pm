@@ -27,6 +27,14 @@ sub add_games_to_existing_player
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
 
+sub backup_directory
+{
+  my $dir = shift;
+
+  Utils::format_print("Can't back up $dir, function unimplemented.$NEWLINE");
+  return 1;
+}
+
 sub backup_years
 {
   my $base_directory_name = shift;
@@ -800,6 +808,12 @@ sub make_link
   return $link;
 }
 
+sub make_log_header
+{
+  my $title = shift;
+  return Utils::make_title( $title, q{%}, $TEST_TITLE_WIDTH );
+}
+
 sub make_new_entry_head
 {
   my $arg_ref = shift;
@@ -931,6 +945,36 @@ sub make_tab_div
   }
   $div .= '</div><br>';
   return $div;
+}
+
+sub make_title
+{
+  my $content = shift;
+  my $char    = shift;
+  my $width   = shift;
+
+  my $border        = $char x $width;
+  my $border_length = length $border;
+
+  my @content_lines = split /\n/xms, $content;
+
+  my $title = "$border$NEWLINE";
+  for my $i ( 0 .. scalar @content_lines - 1 )
+  {
+    my $content_line = $content_lines[$i];
+    my $margin       = $border_length - ( length $content_line );
+    my $left_margin  = $char x ( int( $margin / 2 ) - 1 );
+    my $right_margin = $char x ( int( $margin / 2 ) - 1 );
+
+    if ( $margin % 2 == 1 )
+    {
+      $right_margin .= $char;
+    }
+    $title .= "$left_margin $content_line $right_margin$NEWLINE";
+  }
+  $title .= "$border$NEWLINE$NEWLINE";
+
+  return $title;
 }
 
 sub negative_one_if_false
@@ -1091,9 +1135,9 @@ sub record_database
   my $maybe_dev     = Utils::get_environment_name($EMPTY_STRING);
   my $database_name = Utils::get_environment_name($DATABASE_NAME);
 
-  my $tstamp = get_iso_date( time(), q{_} );
+  my $tstamp = get_iso_date( time, $LOG_DATE_SEPARATOR );
 
-  my $dumpfile = 'mysqldump_' . $database_name . q{_} . $tstamp;
+  my $dumpfile = $tstamp . '_mysqldump_' . $database_name;
 
   my $dump_cmd
     = "mysqldump -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
@@ -1110,7 +1154,7 @@ sub record_database
     ( map { $_->[0] . ', ' . $_->[1] } @players );
 
   Utils::write_string_to_file( $player_ids,
-    "$LOG_DIR/player_ids_$database_name" . "$tstamp.txt" );
+    "$LOG_DIR/$tstamp" . "_player_ids_$database_name.txt" );
 
   if ($maybe_dev)
   {
@@ -1136,12 +1180,25 @@ sub sanitize
   return $name;
 }
 
+sub send_email_notification
+{
+  my $subject         = shift;
+  my $filename        = shift;
+  my $subscriber_list = shift;
+
+  my $subscribers = join q{ }, @{$subscriber_list};
+
+  my $mail_command = "cat $filename | mail -s '$subject' $subscribers";
+
+  system $mail_command;
+  return 1;
+}
+
 sub set_current_status
 {
   my $dbh = shift;
 
   my $database_name = Utils::get_environment_name($DATABASE_NAME);
-  my $datestring    = localtime;
   my $epoc          = time;
 
   $epoc -= $TWO_YEARS_IN_SECONDS;    # two years before current date.

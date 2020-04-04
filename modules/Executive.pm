@@ -70,12 +70,23 @@ if ( !caller )
 
 sub cron
 {
-  my $logname
-    = "$LOG_DIR/" . Utils::get_iso_date( time, q{_} ) . '_cronjob.log';
+
+  my $date_prefix = Utils::get_iso_date( time, $LOG_DATE_SEPARATOR );
+
+  my $logname = "$LOG_DIR/$date_prefix" . '_cronjob.log';
 
   my $cron_command = "./modules/Update.pm -$EXECUTIVE_KEY > $logname 2>&1";
 
   system $cron_command;
+
+  my $cronjob_log_dir = $date_prefix;
+
+  system "mkdir -p $cronjob_log_dir";
+  system "mv $LOG_DIR/$date_prefix* $cronjob_log_dir";
+
+  Utils::backup_directory($log_dir);
+
+  system "mv $cronjob_log_dir $LOG_DIR";
 
   return 1;
 }
@@ -309,8 +320,3 @@ Joshua Castellano (joshuacastellano7@gmail.com)
 =head1 LICENSE AND COPYRIGHT
 
 Copyright (c) 2020 WESPA. All rights reserved.
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
