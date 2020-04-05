@@ -70,7 +70,6 @@ if ( !caller )
 
 sub cron
 {
-
   my $date_prefix = Utils::get_iso_date( time, $LOG_DATE_SEPARATOR );
 
   my $logname = "$LOG_DIR/$date_prefix" . '_cronjob.log';
@@ -84,7 +83,7 @@ sub cron
   system "mkdir -p $cronjob_log_dir";
   system "mv $LOG_DIR/$date_prefix* $cronjob_log_dir";
 
-  Utils::backup_directory($log_dir);
+  Utils::backup_directory($cronjob_log_dir);
 
   system "mv $cronjob_log_dir $LOG_DIR";
 

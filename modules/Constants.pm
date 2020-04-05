@@ -16,9 +16,9 @@ Readonly our $TOU_FILE_EXTENSION => '.tou';
 Readonly our $STS_FILE_EXTENSION => '.STS';
 Readonly our $STA_FILE_EXTENSION => '.STA';
 
-Readonly our $REMOVED_NAMES_FILE => 'removed_names.log';
-Readonly our $INPUT_MERGE_FILE   => 'duplicates.txt';
-Readonly our $DECEASED_PLAYERS   => 'removed_people.txt';
+Readonly our $INPUT_MERGE_FILE       => 'duplicates.txt';
+Readonly our $DECEASED_PLAYERS       => 'removed_people.txt';
+Readonly our $TOU_IGNORE_ERRORS_FILE => 'tou_ignore_errors.txt';
 
 Readonly our $TWO_YEARS_IN_SECONDS => 24 * 60 * 60 * 365 * 2;
 
@@ -1072,9 +1072,9 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TOU_FILE_EXTENSION
   $STS_FILE_EXTENSION
   $STA_FILE_EXTENSION
-  $REMOVED_NAMES_FILE
   $INPUT_MERGE_FILE
   $DECEASED_PLAYERS
+  $TOU_IGNORE_ERRORS_FILE
   $TWO_YEARS_IN_SECONDS
   $ROUNDING_PLACE
   $PERL_ARRAY_REF_NAME

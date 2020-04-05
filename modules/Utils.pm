@@ -628,6 +628,21 @@ sub get_player_photo
   return;
 }
 
+sub get_tou_ignore_errors
+{
+  my $tou_ignore_errors_file = $INPUT_DIR . q{/} . $TOU_IGNORE_ERRORS_FILE;
+  my @tou_ignore_errors_array
+    = Utils::write_file_to_array($tou_ignore_errors_file);
+  my $tou_ignore_errors_hashref = {};
+  while (@tou_ignore_errors_array)
+  {
+    my $tou_file = shift @tou_ignore_errors_array;
+    $tou_file =~ s/^\s+|\s+$//gxms;
+    $tou_ignore_errors_hashref->{$tou_file} = 1;
+  }
+  return $tou_ignore_errors_hashref;
+}
+
 sub get_tournament_data_filenames
 {
   my $base_directory_name    = shift;

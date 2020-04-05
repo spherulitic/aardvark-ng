@@ -57,7 +57,8 @@ sub load_tou_files
   # the database
   my $player_data = {};
 
-  my $loading_log = $EMPTY_STRING;
+  my $loading_log       = $EMPTY_STRING;
+  my $tou_ignore_errors = Utils::get_tou_ignore_errors();
 
   foreach my $filename (@filenames_array)
   {
@@ -75,7 +76,7 @@ sub load_tou_files
 
     my $tou_report = $tou->get_report();
 
-    if ( $TOU_LOAD_IGNORE_ERRORS->{ $tou->{$TOU_FILENAME} } )
+    if ( $tou_ignore_errors->{ $tou->{$TOU_FILENAME} } )
     {
       Utils::format_print("*** IGNORED ***$NEWLINE");
     }
