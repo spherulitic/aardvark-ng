@@ -71,8 +71,8 @@ Readonly our $PLAYER_RESULTS_TABLE_NAME     => 'player_results';
 Readonly our $LEXICONS_TABLE_NAME           => 'lexicons';
 Readonly our $LOADED_TOURNAMENTS_TABLE_NAME => 'loaded_tournaments';
 
-Readonly our $PRODUCTION_DATABASE_NAME => 'wespatestprod';
-Readonly our $DATABASE_NAME            => 'wespatest';
+Readonly our $PRODUCTION_DATABASE_NAME => 'wespaprod';
+Readonly our $DATABASE_NAME            => 'wespa';
 Readonly our $DATABASE_HOST_NAME       => 'localhost';
 Readonly our $DATABASE_USER_NAME       => 'wespa';
 Readonly our $DATABASE_PASSWORD        => 'nigeltheking';
