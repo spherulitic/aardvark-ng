@@ -1159,7 +1159,7 @@ sub tou_harness
   my $report          = $arg_ref->{report};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
-  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
+  my @active_test_cases = (1) x ( $LAST_TC + 1 );
 
   if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
   {
