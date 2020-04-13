@@ -621,7 +621,7 @@ sub get_player_photo
 
   my $filename = $photo_dir . q{/} . $name . '.jpg';
 
-  if ( ! -e $filename)
+  if ( !-e $filename )
   {
     $filename = $EMPTY_STRING;
   }
