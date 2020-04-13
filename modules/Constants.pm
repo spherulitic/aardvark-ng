@@ -71,8 +71,8 @@ Readonly our $PLAYER_RESULTS_TABLE_NAME     => 'player_results';
 Readonly our $LEXICONS_TABLE_NAME           => 'lexicons';
 Readonly our $LOADED_TOURNAMENTS_TABLE_NAME => 'loaded_tournaments';
 
-Readonly our $PRODUCTION_DATABASE_NAME => 'wespaprod';
-Readonly our $DATABASE_NAME            => 'wespa';
+Readonly our $PRODUCTION_DATABASE_NAME => 'wespatestprod';
+Readonly our $DATABASE_NAME            => 'wespatest';
 Readonly our $DATABASE_HOST_NAME       => 'localhost';
 Readonly our $DATABASE_USER_NAME       => 'wespa';
 Readonly our $DATABASE_PASSWORD        => 'nigeltheking';
@@ -336,7 +336,7 @@ Readonly our $UNBLESSED_IGNORE_KEYS => {
 
 Readonly our $STS_PLAYER_COUNTRY_INDEX    => 1;
 Readonly our $STS_PLAYER_NAME_INDEX       => 2;
-Readonly our $STS_EXPECTED_WINS_INDEX     => 3;
+Readonly our $STS_EXPECTED_WINS_INDEX     => 4;
 Readonly our $STS_START_RATING_INDEX      => 8;
 Readonly our $STS_END_RATING_INDEX        => 9;
 Readonly our $STS_OLD_WORLD_RANK_INDEX    => 10;
@@ -349,6 +349,12 @@ Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
 Readonly our $GAME_STATS_RANK_NAME => 'rank';
 Readonly our $STAT_KEY_NAME        => 'stat';
 Readonly our $ALLTIME_CUTOFF       => 60;
+
+Readonly our $RESULT_TO_WIN_VALUE => {
+  1  => 1,
+  0  => 0.5,
+  -1 => 0,
+};
 
 Readonly our $FULL_RANKINGS_NAME => 'full_rankings';
 
@@ -381,7 +387,9 @@ Readonly our $NEGATIVE_ONE              => -1;
 Readonly our $FULL_WIDTH                => 100;
 Readonly our $WESPA_START_RATING        => 500;
 
-Readonly our $HTML_WHITE_CLASS => 'white';
+Readonly our $HTML_WHITE_CLASS   => 'white';
+Readonly our $HTML_ROWODD_CLASS  => 'rowodd';
+Readonly our $HTML_ROWEVEN_CLASS => 'roweven';
 
 Readonly our $TOURNAMENT_AVERAGE_COLSPAN => 3;
 
@@ -897,7 +905,7 @@ Readonly our $BOOTSTRAP_STYLESHEET =>
 Readonly our $BOOTSTRAP_FONTS =>
   "$BOOTSTRAP_ADDRESS/font-awesome/4.7.0/css/font-awesome.min.css";
 
-Readonly our $TEMPLATE_SOURCES => <<'SOURCES'
+Readonly our $TEMPLATE_SOURCES => <<"SOURCES"
 <script  src="/aardvark/js/tabber.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/aardvark/aardvark.css">
@@ -1066,6 +1074,8 @@ FOOTER
 
 our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
+  $HTML_ROWODD_CLASS
+  $HTML_ROWEVEN_CLASS
   $EMPTY_STRING
   $NEWLINE
   $END_FILE_PATTERN
@@ -1213,6 +1223,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $GAME_STATS_RANK_NAME
   $STAT_KEY_NAME
   $ALLTIME_CUTOFF
+  $RESULT_TO_WIN_VALUE
   $FULL_RANKINGS_NAME
   $TOURNAMENT_STATS_ORDER
   $HTML_HEADER

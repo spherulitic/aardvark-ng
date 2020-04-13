@@ -621,11 +621,11 @@ sub get_player_photo
 
   my $filename = $photo_dir . q{/} . $name . '.jpg';
 
-  if ( -e $filename )
+  if ( ! -e $filename)
   {
-    return $filename;
+    $filename = $EMPTY_STRING;
   }
-  return;
+  return $filename;
 }
 
 sub get_tou_ignore_errors

@@ -67,7 +67,7 @@ sub add_to_statitem_list
   return 1;
 }
 
-sub build_ratings_table
+sub build_stats_table
 {
   my $tournament_stats      = shift;
   my $tournament_stats_html = shift;
@@ -84,7 +84,12 @@ sub build_ratings_table
     my @statlist = @{ $dataitem->{list} };
     for my $i ( 0 .. scalar @statlist - 1 )
     {
-      my $sub_row_class = $i % 2 == 1 ? 'rowodd' : 'roweven';
+      my $sub_row_class = $HTML_ROWEVEN_CLASS;
+
+      if ( $i % 2 == 1 )
+      {
+        $sub_row_class = $HTML_ROWODD_CLASS;
+      }
 
       my $statitem = $statlist[$i];
       $html_string .= Utils::make_row(
@@ -264,11 +269,11 @@ sub get_alltime_stats_results_html_string
     my @statlist = @{ $dataitem->{list} };
     for my $i ( 0 .. scalar @statlist - 1 )
     {
-      my $sub_row_class = 'roweven';
+      my $sub_row_class = $HTML_ROWEVEN_CLASS;
 
       if ( $i % 2 == 1 )
       {
-        $sub_row_class = 'rowodd';
+        $sub_row_class = $HTML_ROWODD_CLASS;
       }
 
       my $statitem = $statlist[$i];
@@ -741,11 +746,11 @@ sub get_rankings_html_string
 
   for my $i ( 0 .. scalar @players - 1 )
   {
-    my $row_class = 'roweven';
+    my $row_class = $HTML_ROWEVEN_CLASS;
 
     if ( $i % 2 == 1 )
     {
-      $row_class = 'rowodd';
+      $row_class = $HTML_ROWODD_CLASS;
     }
 
     my $item = $players[$i];
@@ -976,7 +981,7 @@ sub get_tournament_results_html_string
     );
 
     $tournament_ratings_html_string .= Utils::make_row(
-      { keys     => $RATINGS_SUPER_TITLE_REF,
+      { keys     => $RATINGS_TITLE_REF,
         is_title => 1,
         class    => $HTML_WHITE_CLASS
       }
@@ -986,14 +991,14 @@ sub get_tournament_results_html_string
   my $title_length = scalar @{$title_ref};
 
   $tournament_results_list_html_string .= Utils::make_row(
-    { keys     => $RATINGS_SUPER_TITLE_REF,
+    { keys     => $title_ref,
       is_title => 1,
       class    => $HTML_WHITE_CLASS
     }
   );
 
   my $games_title_row = Utils::make_row(
-    { keys     => $RATINGS_SUPER_TITLE_REF,
+    { keys     => $sub_title_ref,
       is_title => 1
     }
   );
@@ -1036,11 +1041,11 @@ sub get_tournament_results_html_string
       $games_ref->[0]->{tr_id} );
     my $entry_id = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $type,
       $games_ref->[0]->{tr_id} );
-    my $row_class = 'roweven';
+    my $row_class = $HTML_ROWEVEN_CLASS;
 
     if ( $i % 2 == 1 )
     {
-      $row_class = 'rowodd';
+      $row_class = $HTML_ROWODD_CLASS;
     }
 
     if ( $type == $HTML_ID_HEAD_TO_HEAD_TYPE )
@@ -1078,7 +1083,7 @@ sub get_tournament_results_html_string
       $tournament_ratings_html_string .= Utils::make_row(
         { item  => $games_ref->[0],
           keys  => $ratings_keys_ref,
-          class => $HTML_WHITE_CLASS
+          class => $row_class
         }
       );
     }
@@ -1101,10 +1106,22 @@ sub get_tournament_results_html_string
 
       my $res_letter = HTML::convert_result_to_letter($res);
 
-      my $res_to_win  = ( ( $res + 1 ) * ( $res + 0 ) ) / 2;
-      my $res_to_loss = ( ( $res + 1 ) * ( $res + 0 ) / 2 ) * $NEGATIVE_ONE;
-      my $res_to_draw
-        = ( $res + 1 ) * ( $res + $NEGATIVE_ONE ) * $NEGATIVE_ONE;
+      my $res_to_win  = 0;
+      my $res_to_loss = 0;
+      my $res_to_draw = 0;
+
+      if ( $res == 1 )
+      {
+        $res_to_win = 1;
+      }
+      elsif ( $res == $NEGATIVE_ONE )
+      {
+        $res_to_loss = 1;
+      }
+      else
+      {
+        $res_to_draw = 1;
+      }
 
       $game_data->{wins}   += $res_to_win;
       $game_data->{losses} += $res_to_loss;
@@ -1138,7 +1155,8 @@ sub get_tournament_results_html_string
         }
       );
 
-      my $sub_row_class = $k % 2 == 1 ? 'rowodd' : 'roweven';
+      my $sub_row_class
+        = $k % 2 == 1 ? $HTML_ROWODD_CLASS : $HTML_ROWEVEN_CLASS;
 
       $subentries .= Utils::make_row(
         { item  => $item,
@@ -1198,7 +1216,7 @@ sub get_tournament_results_html_string
   if ( $type == $HTML_ID_TOURNAMENT_TYPE )
   {
     $tournament_ratings_html_string .= "$NEWLINE</table>$NEWLINE";
-    HTML::build_ratings_table( $tournament_stats, $tournament_stats_html );
+    HTML::build_stats_table( $tournament_stats, $tournament_stats_html );
   }
 
   return {
@@ -1509,7 +1527,7 @@ sub sanitize_tournament_data
   my $tournament_data_ref = shift;
   foreach my $data ( @{$tournament_data_ref} )
   {
-    if ( !$data->{tr_start_ratings} || $data->{tr_start_rating} <= 0 )
+    if ( !$data->{tr_start_rating} || $data->{tr_start_rating} <= 0 )
     {
       $data->{tr_rating_change} = $EMPTY_STRING;
     }

@@ -228,13 +228,16 @@ my \$query =
 ";
 
 if (\$state ne 'all')
+  {
   \$query .= " AND t.country = '\$state' ";
   }
 else
+  {
   \$state = 'All Countries';
   }
 
 if (\$partname)
+  {
   \$query .= " AND t.name LIKE '%\$partname%' ";
   }
 
@@ -262,16 +265,17 @@ my \$search_content =
 my \$table_content = "";
 
 for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
+  {
   my \$item = \$tournaments[\$i];
   my \$name = \$item->{name};
   my \$date = \$item->{start_date};
   my \$id   = \$item->{id};
 
-  my \$row_class = 'roweven';
+  my \$row_class = '$HTML_ROWEVEN_CLASS';
     
   if (\$i % 2 == 1)
   {
-    \$row_class = 'rowodd';
+    \$row_class = '$HTML_ROWODD_CLASS';
   }
   my \$num = \$i + 1;
 
@@ -355,6 +359,7 @@ print "Content-Type: text/html$NEWLINE$NEWLINE";
 print \$results_html_page;
 
   sub sanitize
+  {
   my \$s = shift;
 
   \$s = substr(\$s, 0, 255);
@@ -403,10 +408,10 @@ sub update_dynamically_loaded_content
   );
   for my $i ( 0 .. $cutoff - 1 )
   {
-    my $row_class = 'roweven';
+    my $row_class = $HTML_ROWEVEN_CLASS;
     if ( $i % 2 == 1 )
     {
-      $row_class = 'rowodd';
+      $row_class = $HTML_ROWODD_CLASS;
     }
     my $player = $valid_player_data[$i];
     $player->{rank} = $i + 1;
@@ -508,6 +513,7 @@ sub update_dynamically_loaded_content
     </select> and$NEWLINE
     <select name='endyear'>$NEWLINE
       <option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>
+      $year_options
     </select> in
     <select name='state'>$NEWLINE
       <option selected='selected' value='all'>All countries</option>
