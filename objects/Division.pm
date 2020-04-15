@@ -353,7 +353,7 @@ sub to_string
     $division_string .= sprintf '%-30s', $player_name;
     for my $round ( 0 .. $number_of_rounds - 1 )
     {
-      my $player_result = $this->get_matrix_index( $player_number, $round );
+      my $player_result   = $this->get_matrix_index( $player_number, $round );
       my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
       my $player_tou_score = $player_result->{$RESULT_TOU_SCORE};
       my $player_is_first  = $player_result->{$RESULT_PLAYER_IS_FIRST};

@@ -477,7 +477,7 @@ sub database_harness
     successes => [],
   };
 
-  my $dbh = Utils::connect_to_database();
+  my $dbh = Utils::connect_to_database($DATABASE_NAME);
 
   for my $i ( 0 .. scalar @{$TABLE_CREATION_ORDER} - 1 )
   {
@@ -874,7 +874,7 @@ sub setup_testrun
   my $deceased_players_hash
     = Utils::populate_deceased_players_hash($alt_names_hash);
 
-  my $dbh = Utils::connect_to_database();
+  my $dbh = Utils::connect_to_database($DATABASE_NAME);
 
   if ($reset_database)
   {
@@ -1159,7 +1159,7 @@ sub tou_harness
   my $report          = $arg_ref->{report};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
-  my @active_test_cases = (1) x ( $LAST_TC + 1 );
+  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
 
   if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
   {

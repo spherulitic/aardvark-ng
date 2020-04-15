@@ -56,6 +56,23 @@ if ( !caller )
   if ( lc $subcommand eq $SUBCOMMAND_MAINTENANCE )
   {
     my $argument_string = join q{ }, @ARGV;
+
+    my $no_argument_specified = 1;
+
+    foreach my $key ( keys %{$command_arguments} )
+    {
+      if ( $command_arguments->{$key} )
+      {
+        $no_argument_specified = 0;
+      }
+    }
+
+    if ($no_argument_specified)
+    {
+      $argument_string = ' --all ';
+      $command_arguments->{coverage} = 1;
+    }
+
     Executive::maintenance(
       { argument_string => $argument_string,
         coverage        => $command_arguments->{coverage}

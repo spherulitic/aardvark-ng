@@ -58,6 +58,21 @@ Readonly our $COUNTRY_FLAGS_DIR   => 'flags';
 
 Readonly our $TOU_ERROR_SUBSCRIBERS => [ 'joshuacastellano7@gmail.com', ];
 
+# CGI
+
+Readonly our $CGI_START_YEAR_NAME   => 'startyear';
+Readonly our $CGI_END_YEAR_NAME     => 'endyear';
+Readonly our $CGI_COUNTRY_NAME      => 'country';
+Readonly our $CGI_PARTNAME_NAME     => 'partname';
+Readonly our $CGI_ALL_COUNTRY_TITLE => 'All Countries';
+Readonly our $CGI_ALL_COUNTRIES     => 'all_countries';
+Readonly our $CGI_END_YEAR_SUFFIX   => '-12-31';
+Readonly our $CGI_START_YEAR_SUFFIX => '-00-00';
+Readonly our $CGI_SEARCH_STYLE =>
+  'style="padding: 10px; border-bottom: 1px solid black;"';
+Readonly our $CGI_HEADER => "Content-Type: text/html$NEWLINE$NEWLINE";
+Readonly our $CGI_MAX_PARAMETER_LENGTH => 255;
+
 # Database
 
 Readonly our $PLAYERS_TABLE_NAME            => 'players';
@@ -71,8 +86,8 @@ Readonly our $PLAYER_RESULTS_TABLE_NAME     => 'player_results';
 Readonly our $LEXICONS_TABLE_NAME           => 'lexicons';
 Readonly our $LOADED_TOURNAMENTS_TABLE_NAME => 'loaded_tournaments';
 
-Readonly our $PRODUCTION_DATABASE_NAME => 'wespatestprod';
-Readonly our $DATABASE_NAME            => 'wespatest';
+Readonly our $PRODUCTION_DATABASE_NAME => 'wespaprod';
+Readonly our $DATABASE_NAME            => 'wespa';
 Readonly our $DATABASE_HOST_NAME       => 'localhost';
 Readonly our $DATABASE_USER_NAME       => 'wespa';
 Readonly our $DATABASE_PASSWORD        => 'nigeltheking';
@@ -265,14 +280,14 @@ Readonly our $LAST_COVERAGE_TC             => 21;
 
 Readonly our $LAST_TC => $LAST_COVERAGE_TC;
 
-Readonly our $TEST_TC_RETESTS => { 17 => 16 };
+Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
 Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
-Readonly our $TEST_TC_CORRECTIONS => { 20 => 1 };
+Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
 
 Readonly our $PERL_CRITIC_SEVERITY => 1;
 
 Readonly our $PERL_DIRECTORIES =>
-  [ $TEST_DIRECTORY, $MODULES_DIR, $OBJECTS_DIR ];
+  [ $TEST_DIRECTORY, $MODULES_DIR, $OBJECTS_DIR, $CGIBIN_DIR ];
 
 # Report.pm
 
@@ -1113,6 +1128,17 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $CGIBIN_DIR
   $COUNTRY_FLAGS_DIR
   $TOU_ERROR_SUBSCRIBERS
+  $CGI_START_YEAR_NAME
+  $CGI_END_YEAR_NAME
+  $CGI_COUNTRY_NAME
+  $CGI_PARTNAME_NAME
+  $CGI_ALL_COUNTRY_TITLE
+  $CGI_ALL_COUNTRIES
+  $CGI_END_YEAR_SUFFIX
+  $CGI_START_YEAR_SUFFIX
+  $CGI_SEARCH_STYLE
+  $CGI_HEADER
+  $CGI_MAX_PARAMETER_LENGTH
   $PLAYERS_TABLE_NAME
   $PLAYER_ALT_NAMES_TABLE_NAME
   $TOURNAMENTS_TABLE_NAME

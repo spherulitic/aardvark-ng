@@ -114,7 +114,7 @@ sub load_tournament_data
   my $deceased_players_hash
     = Utils::populate_deceased_players_hash($alt_names_hash);
 
-  my $dbh = Utils::connect_to_database();
+  my $dbh = Utils::connect_to_database($DATABASE_NAME);
 
   # Every TOU file is reprocessed from raw .tou files every day,
   # so most of the database is deleted. Only the players table
@@ -181,200 +181,6 @@ sub push_local_content
 
   # Copy the flags
   system "cp -r $COUNTRY_FLAGS_DIR/ $working_dir";
-
-  return 1;
-}
-
-sub update_cgi
-{
-  my $dbh = shift;
-
-  my $base_dir      = $DEFAULT_SHORT_NAME_WORKING_DIR . q{/} . $HTML_DIR;
-  my $database_name = Utils::get_environment_name($PRODUCTION_DATABASE_NAME);
-
-  my $title = 'Tournament Results';
-
-  system "mkdir -p $CGIBIN_DIR";
-
-  my $tournament_cgi_script = <<"CGI"
-#!/usr/bin/perl
-
-use warnings;
-use strict;
-use CGI;
-use DBI;
-
-my \$cgi = CGI->new();
-
-my \$startyear = sanitize(\$cgi->param('startyear'));
-my \$endyear   = sanitize(\$cgi->param('endyear'));
-my \$state     = sanitize(\$cgi->param('state'));
-my \$partname  = sanitize(\$cgi->param('partname'));
-
-\$startyear .= '-00-00';
-\$endyear   .= '-12-31';
-
-my \$dbh =
-  DBI->connect("DBI:mysql:database=$database_name;host=$DATABASE_HOST_NAME",
-                         '$DATABASE_USER_NAME', '$DATABASE_PASSWORD',
-                         {RaiseError => 1}); 
-
-my \$query =
-"
-  SELECT *
-  FROM $TOURNAMENTS_TABLE_NAME AS t
-  WHERE
-    t.end_date >= '\$startyear' AND t.start_date <= '\$endyear'    
-";
-
-if (\$state ne 'all')
-  {
-  \$query .= " AND t.country = '\$state' ";
-  }
-else
-  {
-  \$state = 'All Countries';
-  }
-
-if (\$partname)
-  {
-  \$query .= " AND t.name LIKE '%\$partname%' ";
-  }
-
-\$query .= " ORDER BY t.start_date ";
-
-my \@tournaments =
-  \@{\$dbh->selectall_arrayref(\$query, {Slice => {}, RaiseError => 1})};
-
-my \$title_row = "<tr><th>#</th><th>Date</th><th>Tournament</th></tr>";
-
-my \$search_style = 'style="padding: 10px; border-bottom: 1px solid black;"';
-
-my \$search_content =
-"
-<table class='searchparams'>
-<tbody>
-<tr><th \$search_style>Start Date</th><td \$search_style>\$startyear</td></tr>
-<tr><th \$search_style>End Date</th><td \$search_style>\$endyear</td></tr>
-<tr><th \$search_style>Country</th><td \$search_style>\$state</td></tr>
-<tr><th \$search_style>Partial Name</th><td \$search_style>\$partname</td></tr>
-</tbody>
-</table>
-";
-
-my \$table_content = "";
-
-for (my \$i = 0; \$i < scalar \@tournaments; \$i++)
-  {
-  my \$item = \$tournaments[\$i];
-  my \$name = \$item->{name};
-  my \$date = \$item->{start_date};
-  my \$id   = \$item->{id};
-
-  my \$row_class = '$HTML_ROWEVEN_CLASS';
-    
-  if (\$i % 2 == 1)
-  {
-    \$row_class = '$HTML_ROWODD_CLASS';
-  }
-  my \$num = \$i + 1;
-
-  my \$url = '/' .
-             '$base_dir' .
-             '/' .
-             '$TOURNAMENT_HTML_DIR' .
-             '/' .
-             \$id .
-             '.html';
-  my \$link = "<a href='\$url'>\$name</a>";
-  \$table_content .=
-    "<tr class='\$row_class'>
-       <td>\$num</td>
-       <td>\$date</td>
-       <td>\$link</td>
-     </tr>";
-  }
-
-my \$content =
-"
-\$search_content
-<table class='table'>
-<tbody>
-\$title_row
-\$table_content
-</tbody>
-</table>
-";
-
-my \$results_html_page .= <<STOP
-$TEMPLATE_DOCTYPE
-<html>
-  <head>
-  $TEMPLATE_META
-  <title>$title</title>
-  
-  $TEMPLATE_SOURCES
-  
-  $TEMPLATE_STYLE
-  
-  </head>
-  
-  <body id='override'>
-    $TEMPLATE_WESPA_IMAGE
-    $TEMPLATE_NAV
-    <div style="background-color:#90D1EF">
-      
-      <div  class="container">
-        <div class="row">
-          <div class="col-xs-12"
-               style="background-color:white;
-                      margin-top:10px;margin-bottom:0px">
-            <h2><img style="float:right ; margin: 2px 2px 2px 20px;"
-                     height="60"
-                     width="60"
-                     src="$HTML_PATH_TO_WORKING_DIR/../wespafb.jpg"
-                     alt="WESPA" />
-                       $title
-            </h2>   
-          </div>
-        </div>
-      </div>
-      <div  style="background-color:white;padding-top:10px;"
-            class="container">
-        <div class="row">
-          <div class="table-responsive">
-            \$content
-          </div>
-        </div>
-      </div>
-      $TEMPLATE_FOOTER
-    </div>
-  </body>
-</html>
-
-STOP
-;
-
-print "Content-Type: text/html$NEWLINE$NEWLINE";
-print \$results_html_page;
-
-  sub sanitize
-  {
-  my \$s = shift;
-
-  \$s = substr(\$s, 0, 255);
-  \$s =~ s/ /_/g;
-  \$s =~ s/\\W//g;
-  \$s =~ s/_/ /g;
-  return \$s;
-  }
-
-1;
-
-CGI
-    ;
-  Utils::write_string_to_file( $tournament_cgi_script,
-    $CGIBIN_DIR . q{/} . $TOURNAMENT_CGI_FILENAME );
 
   return 1;
 }
@@ -507,19 +313,21 @@ sub update_dynamically_loaded_content
 
   my $tournament_form = <<"TOURNAMENT_FORM"
   Between
-    <select name='startyear'>$NEWLINE
+    <select name='$CGI_START_YEAR_NAME'>$NEWLINE
       <option value='1993'>Before $TOURNAMENT_SEARCH_START_YEAR</option>
       $year_options
     </select> and$NEWLINE
-    <select name='endyear'>$NEWLINE
+    <select name='$CGI_END_YEAR_NAME'>$NEWLINE
       <option value='1999'>Before $TOURNAMENT_SEARCH_START_YEAR</option>
       $year_options
     </select> in
-    <select name='state'>$NEWLINE
-      <option selected='selected' value='all'>All countries</option>
+    <select name='$CGI_COUNTRY_NAME'>$NEWLINE
+      <option selected='selected' value='$CGI_ALL_COUNTRIES'>
+        $CGI_ALL_COUNTRY_TITLE
+      </option>
       $country_options;
     </select>
-  Partial name: <input name='partname' size='20' value=''>
+  Partial name: <input name='$CGI_PARTNAME_NAME' size='20' value=''>
   <input type='submit' value='Submit'>
   <br>
 TOURNAMENT_FORM
@@ -535,7 +343,7 @@ TOURNAMENT_FORM
 
 sub update_html
 {
-  my $dbh = Utils::connect_to_database();
+  my $dbh = Utils::connect_to_database($DATABASE_NAME);
 
   system "mkdir -p $HTML_DIR";
   system "mkdir -p $HTML_DIR/$PLAYER_HTML_DIR";
@@ -682,8 +490,6 @@ sub update_html
   Update::update_rankings_html( $dbh, \@country_rankings_to_create );
 
   Update::update_dynamically_loaded_content($dbh);
-
-  Update::update_cgi();
 
   my $all_time_stats = HTML::get_alltime_stats_results_html_string($dbh);
   my $all_time_stats_html_page

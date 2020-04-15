@@ -60,6 +60,16 @@ sub backup_years
   return \@tournament_data_filenames;
 }
 
+sub cgi_sanitize
+{
+  my $s = shift;
+  $s = substr $s, 0, $CGI_MAX_PARAMETER_LENGTH;
+  $s =~ s/ /_/gxms;
+  $s =~ s/\W//gxms;
+  $s =~ s/_/ /gxms;
+  return $s;
+}
+
 sub check_country_flag_icons
 {
   my $country_ref    = shift;
@@ -132,7 +142,9 @@ sub compare_names
 
 sub connect_to_database
 {
-  my $database_name = Utils::get_environment_name($DATABASE_NAME);
+  my $database_name = shift;
+
+  $database_name = Utils::get_environment_name($database_name);
 
   my $dbh
     = DBI->connect(
@@ -155,6 +167,30 @@ sub convert_name
     return $true_name;
   }
   return $name;
+}
+
+sub convert_result_to_values
+{
+  my $result = shift;
+
+  my $res_to_win  = 0;
+  my $res_to_loss = 0;
+  my $res_to_draw = 0;
+
+  if ( $result == 1 )
+  {
+    $res_to_win = 1;
+  }
+  elsif ( $result == $NEGATIVE_ONE )
+  {
+    $res_to_loss = 1;
+  }
+  else
+  {
+    $res_to_draw = 1;
+  }
+
+  return ( $res_to_win, $res_to_loss, $res_to_draw );
 }
 
 sub convert_trigraph
@@ -442,7 +478,7 @@ sub format_print
 
 sub get_country_from_filename
 {
-  my $filename = shift;
+  my $filename       = shift;
   my @filename_items = split /\//xms, $filename;
   return $filename_items[$COUNTRY_IN_FILENAME_INDEX];
 }
@@ -457,7 +493,7 @@ sub get_coverage_report
 
   while (@coverage_html)
   {
-    my $line = shift @coverage_html;
+    my $line  = shift @coverage_html;
     my @cells = split /<td/xms, $line;
     shift @cells;
 
@@ -691,6 +727,42 @@ sub get_tournament_data_filenames
   return \@tournament_data_filenames;
 }
 
+sub get_tournaments
+{
+  my $arg_ref = shift;
+
+  my $dbh       = $arg_ref->{dbh};
+  my $startyear = $arg_ref->{startyear};
+  my $endyear   = $arg_ref->{endyear};
+  my $country   = $arg_ref->{country};
+  my $partname  = $arg_ref->{partname};
+
+  $startyear .= $CGI_START_YEAR_SUFFIX;
+  $endyear   .= $CGI_END_YEAR_SUFFIX;
+
+  my $query
+    = 'SELECT * '
+    . "FROM $TOURNAMENTS_TABLE_NAME AS t "
+    . 'WHERE '
+    . "t.end_date >= '$startyear' AND t.start_date <= '$endyear'";
+
+  if ( $country ne $CGI_ALL_COUNTRIES )
+  {
+    $query .= " AND t.country = '$country' ";
+  }
+
+  if ($partname)
+  {
+    $query .= " AND t.name LIKE '%$partname%' ";
+  }
+
+  $query .= ' ORDER BY t.start_date ';
+
+  return
+    @{ $dbh->selectall_arrayref( $query, { Slice => {}, RaiseError => 1 } ) };
+
+}
+
 sub hashref_to_key_value_strings
 {
   my $hashref = shift;
@@ -794,7 +866,7 @@ sub insert_hash_list_into_table
     push @values, q{(} . ( join q{,}, @row ) . q{)};
   }
 
-  my $keys_string = q{(} . ( join q{,}, @keys ) . q{)};
+  my $keys_string   = q{(} . ( join q{,}, @keys ) . q{)};
   my $values_string = join ",$NEWLINE", @values;
 
   my $insert_statement

@@ -1041,12 +1041,8 @@ sub get_tournament_results_html_string
       $games_ref->[0]->{tr_id} );
     my $entry_id = Utils::create_html_id( $HTML_ID_ENTRY_TAG, $type,
       $games_ref->[0]->{tr_id} );
-    my $row_class = $HTML_ROWEVEN_CLASS;
 
-    if ( $i % 2 == 1 )
-    {
-      $row_class = $HTML_ROWODD_CLASS;
-    }
+    my $row_class = $i % 2 == 1 ? $HTML_ROWODD_CLASS : $HTML_ROWEVEN_CLASS;
 
     if ( $type == $HTML_ID_HEAD_TO_HEAD_TYPE )
     {
@@ -1106,22 +1102,8 @@ sub get_tournament_results_html_string
 
       my $res_letter = HTML::convert_result_to_letter($res);
 
-      my $res_to_win  = 0;
-      my $res_to_loss = 0;
-      my $res_to_draw = 0;
-
-      if ( $res == 1 )
-      {
-        $res_to_win = 1;
-      }
-      elsif ( $res == $NEGATIVE_ONE )
-      {
-        $res_to_loss = 1;
-      }
-      else
-      {
-        $res_to_draw = 1;
-      }
+      my ( $res_to_win, $res_to_loss, $res_to_draw )
+        = Utils::convert_result_to_values($res);
 
       $game_data->{wins}   += $res_to_win;
       $game_data->{losses} += $res_to_loss;
@@ -1251,7 +1233,7 @@ sub get_tournament_template_html_string
 
   for my $i ( 0 .. $ddl - 1 )
   {
-    my $id = "division_$i";
+    my $id   = "division_$i";
     my $text = 'Division ' . ( $i + 1 );
 
     push @tabdata, [ $text, $id ];

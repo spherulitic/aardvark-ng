@@ -511,12 +511,12 @@ sub parse_sts_line
       my $wins_string           = $6;
       my $ratings_change_string = $7;
 
-      $is_new_player =~ s/^\s+|\s+$//gxms;
-      $player_country =~ s/^\s+|\s+$//gxms;
-      $player_name =~ s/^\s+|\s+$//gxms;
-      $world_ranks_string =~ s/^\s+|\s+$//gxms;
+      $is_new_player         =~ s/^\s+|\s+$//gxms;
+      $player_country        =~ s/^\s+|\s+$//gxms;
+      $player_name           =~ s/^\s+|\s+$//gxms;
+      $world_ranks_string    =~ s/^\s+|\s+$//gxms;
       $national_ranks_string =~ s/^\s+|\s+$//gxms;
-      $wins_string =~ s/^\s+|\s+$//gxms;
+      $wins_string           =~ s/^\s+|\s+$//gxms;
       $ratings_change_string =~ s/^\s+|\s+$//gxms;
 
       my @nranks = split /\s+/xms, $national_ranks_string;
@@ -732,7 +732,7 @@ sub process
 
       my @player_game_data = split /\s+/xms, $tou_line;
       my $games_played = () = $tou_line =~ /([-]?\d+\s+[+]?\d+(?:\s+|$))/gxms;
-      my @games = ();
+      my @games        = ();
 
       for my $i ( 0 .. $games_played - 1 )
       {
@@ -870,7 +870,7 @@ sub process_division
 
     for my $round ( 0 .. $number_of_rounds - 1 )
     {
-      my $player_result = $division->get_matrix_index( $row, $round );
+      my $player_result   = $division->get_matrix_index( $row, $round );
       my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
       $tournament_result->{wins}     += $player_result->{$RESULT_WINS};
       $tournament_result->{losses}   += $player_result->{$RESULT_LOSSES};
@@ -981,15 +981,15 @@ sub process_sts
     $old_national_rank = Utils::negative_one_if_false($old_national_rank);
     $new_national_rank = Utils::negative_one_if_false($new_national_rank);
 
-    $player_country =~ s/^\s+|\s+$//gxms;
-    $player_name =~ s/^\s+|\s+$//gxms;
-    $new_world_rank =~ s/^\s+|\s+$//gxms;
-    $old_world_rank =~ s/^\s+|\s+$//gxms;
+    $player_country    =~ s/^\s+|\s+$//gxms;
+    $player_name       =~ s/^\s+|\s+$//gxms;
+    $new_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_world_rank    =~ s/^\s+|\s+$//gxms;
     $old_national_rank =~ s/^\s+|\s+$//gxms;
     $new_national_rank =~ s/^\s+|\s+$//gxms;
-    $expected_wins =~ s/^\s+|\s+$//gxms;
-    $start_rating =~ s/^\s+|\s+$//gxms;
-    $end_rating =~ s/^\s+|\s+$//gxms;
+    $expected_wins     =~ s/^\s+|\s+$//gxms;
+    $start_rating      =~ s/^\s+|\s+$//gxms;
+    $end_rating        =~ s/^\s+|\s+$//gxms;
 
     my @required_captures = grep { !$_ }
       ( $player_country, $player_name, $start_rating, $end_rating );
@@ -1078,7 +1078,7 @@ sub process_sts
       );
     }
     $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
-    $stsa_data->{$player_id} = {
+    $stsa_data->{$player_id}     = {
       new_world_rank    => $new_world_rank,
       old_world_rank    => $old_world_rank,
       old_national_rank => $old_national_rank,
