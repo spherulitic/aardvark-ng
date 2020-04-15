@@ -176,9 +176,6 @@ sub push_local_content
   # Copy data html
   system "cp -r $HTML_DATA_DIR/. $base_dir";
 
-  # Copy the cgi scripts
-  system "cp -r $CGIBIN_DIR $working_dir";
-
   # Copy the flags
   system "cp -r $COUNTRY_FLAGS_DIR/ $working_dir";
 

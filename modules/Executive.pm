@@ -57,20 +57,9 @@ if ( !caller )
   {
     my $argument_string = join q{ }, @ARGV;
 
-    my $no_argument_specified = 1;
-
-    foreach my $key ( keys %{$command_arguments} )
-    {
-      if ( $command_arguments->{$key} )
-      {
-        $no_argument_specified = 0;
-      }
-    }
-
-    if ($no_argument_specified)
+    if ( !$argument_string )
     {
       $argument_string = ' --all ';
-      $command_arguments->{coverage} = 1;
     }
 
     Executive::maintenance(

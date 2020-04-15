@@ -6,8 +6,9 @@ use strict;
 use version; our $VERSION = qv('1');
 
 use CGI;
+use CGI::Carp qw(fatalsToBrowser);
 
-use lib './modules';
+use lib '/home/jcastellano/aardvark-ngdev/modules';
 use Constants;
 use Utils;
 
@@ -17,6 +18,11 @@ my $startyear = Utils::cgi_sanitize( $cgi->param($CGI_START_YEAR_NAME) );
 my $endyear   = Utils::cgi_sanitize( $cgi->param($CGI_END_YEAR_NAME) );
 my $country   = Utils::cgi_sanitize( $cgi->param($CGI_COUNTRY_NAME) );
 my $partname  = Utils::cgi_sanitize( $cgi->param($CGI_PARTNAME_NAME) );
+
+#my $startyear = Utils::cgi_sanitize(2019);
+#my $endyear   = Utils::cgi_sanitize(2020);
+#my $country   = Utils::cgi_sanitize('USA');
+#my $partname  = Utils::cgi_sanitize('');
 
 my $dbh = Utils::connect_to_database($PRODUCTION_DATABASE_NAME);
 
@@ -29,7 +35,7 @@ my @tournaments = Utils::get_tournaments(
   }
 );
 
-if ( $country ne $CGI_ALL_COUNTRIES )
+if ( $country eq $CGI_ALL_COUNTRIES )
 {
   $country = $CGI_ALL_COUNTRY_TITLE;
 }

@@ -65,7 +65,7 @@ Readonly our $CGI_END_YEAR_NAME     => 'endyear';
 Readonly our $CGI_COUNTRY_NAME      => 'country';
 Readonly our $CGI_PARTNAME_NAME     => 'partname';
 Readonly our $CGI_ALL_COUNTRY_TITLE => 'All Countries';
-Readonly our $CGI_ALL_COUNTRIES     => 'all_countries';
+Readonly our $CGI_ALL_COUNTRIES     => 'allcountries';
 Readonly our $CGI_END_YEAR_SUFFIX   => '-12-31';
 Readonly our $CGI_START_YEAR_SUFFIX => '-00-00';
 Readonly our $CGI_SEARCH_STYLE =>
@@ -280,9 +280,9 @@ Readonly our $LAST_COVERAGE_TC             => 21;
 
 Readonly our $LAST_TC => $LAST_COVERAGE_TC;
 
-Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
+Readonly our $TEST_TC_RETESTS => { 17 => 16 };
 Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
-Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
+Readonly our $TEST_TC_CORRECTIONS => { 20 => 1 };
 
 Readonly our $PERL_CRITIC_SEVERITY => 1;
 
