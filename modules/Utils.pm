@@ -1550,6 +1550,12 @@ sub write_file_to_array
     or croak "Cannot open file $filename: $OS_ERROR$NEWLINE";
   my @array = <$fh>;
   close $fh or croak "Cannot close file $filename: $OS_ERROR$NEWLINE";
+
+  for my $i ( 0 .. scalar @array - 1 )
+  {
+    $array[$i] =~ s/\r//g;
+  }
+
   return @array;
 }
 
