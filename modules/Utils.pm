@@ -491,7 +491,7 @@ sub format_print
 
 sub get_country_from_filename
 {
-  my $filename       = shift;
+  my $filename = shift;
   my @filename_items = split /\//xms, $filename;
   return $filename_items[$COUNTRY_IN_FILENAME_INDEX];
 }
@@ -506,7 +506,7 @@ sub get_coverage_report
 
   while (@coverage_html)
   {
-    my $line  = shift @coverage_html;
+    my $line = shift @coverage_html;
     my @cells = split /<td/xms, $line;
     shift @cells;
 
@@ -879,7 +879,7 @@ sub insert_hash_list_into_table
     push @values, q{(} . ( join q{,}, @row ) . q{)};
   }
 
-  my $keys_string   = q{(} . ( join q{,}, @keys ) . q{)};
+  my $keys_string = q{(} . ( join q{,}, @keys ) . q{)};
   my $values_string = join ",$NEWLINE", @values;
 
   my $insert_statement
@@ -1553,7 +1553,7 @@ sub write_file_to_array
 
   for my $i ( 0 .. scalar @array - 1 )
   {
-    $array[$i] =~ s/\r//g;
+    $array[$i] =~ s/\r//gxms;
   }
 
   return @array;

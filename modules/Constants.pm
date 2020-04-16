@@ -282,9 +282,9 @@ Readonly our $LAST_COVERAGE_TC             => 21;
 
 Readonly our $LAST_TC => $LAST_COVERAGE_TC;
 
-Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
+Readonly our $TEST_TC_RETESTS => { 17 => 16 };
 Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
-Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
+Readonly our $TEST_TC_CORRECTIONS => { 20 => 1 };
 
 Readonly our $PERL_CRITIC_SEVERITY => 1;
 
