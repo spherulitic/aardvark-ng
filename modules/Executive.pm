@@ -103,7 +103,9 @@ sub maintenance
   my $argument_string = $arg_ref->{argument_string};
   my $coverage        = $arg_ref->{coverage};
 
-  my $test_command = "./test/Test.pm -$EXECUTIVE_KEY $argument_string";
+  my $test_command
+    = "./test/Test.pm -$EXECUTIVE_KEY $argument_string "
+    . " 2>&1 | tee $AARDVARK_MAINTENANCE_REPORT";
 
   if ($coverage)
   {
@@ -120,7 +122,10 @@ sub maintenance
   {
     my $coverage_report = Report->new('COVERAGE REPORT');
     Utils::get_coverage_report($coverage_report);
-    Utils::format_print( $coverage_report->to_string() );
+    my $coverage_report_string = $coverage_report->to_string();
+    Utils::format_print($coverage_report_string);
+    Utils::append_string_to_file( $coverage_report_string,
+      $AARDVARK_MAINTENANCE_REPORT );
   }
 
   return 1;
@@ -289,6 +294,7 @@ Aardvark requires the following perl modules:
   Cwd
   Data::Dumper
   DBI
+  Devel::Cover
   English
   Getopt::Long
   List::Util

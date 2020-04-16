@@ -85,8 +85,11 @@ sub new
   my $this  = shift;
   my $title = shift;
 
+  my $date_string = localtime;
+
   my $report = {
     title => $title,
+    date  => $date_string,
     items => []
   };
   my $self = bless $report, $this;
@@ -98,9 +101,10 @@ sub to_string
   my $this = shift;
 
   my $report_blank_line = Report::make_report_line( 0, $EMPTY_STRING );
-  my $report_string = ( $REPORT_TOP_BORDER x $REPORT_WIDTH ) . $NEWLINE;
+  my $report_string     = ( $REPORT_TOP_BORDER x $REPORT_WIDTH ) . $NEWLINE;
   $report_string .= $report_blank_line;
   $report_string .= Report::make_report_line( 0, $this->{title} );
+  $report_string .= Report::make_report_line( 0, $this->{date} );
   $report_string .= $report_blank_line;
 
   my @items = @{ $this->{items} };

@@ -919,6 +919,33 @@ sub testcase
 
   my $toufile = "$tou_dir$file_number.tou";
 
+  my $tou_string;
+  my $stsa_string;
+  my $stsa_filename;
+
+  if ( $case % 2 == 0 )
+  {
+    $tou_string = Utils::write_file_to_string($toufile);
+
+    my $noext_filename = $toufile;
+    $noext_filename =~ s/[.](.*)$//xms;
+
+    my $sts_file = $noext_filename . $STS_FILE_EXTENSION;
+    my $sta_file = $noext_filename . $STA_FILE_EXTENSION;
+
+    $stsa_filename = $sts_file;
+
+    if ( !-e $stsa_filename )
+    {
+      $stsa_filename = $sta_file;
+    }
+
+    if ( -e $stsa_filename )
+    {
+      $stsa_string = Utils::write_file_to_string($stsa_filename);
+    }
+  }
+
   my $actual_json_file   = "$json_dir$case.actual.json";
   my $expected_json_file = "$json_dir$case.json";
 
@@ -934,6 +961,9 @@ sub testcase
       deceased_players_hash => $deceased_players_hash,
       player_data           => $player_data,
       correct               => $TEST_TC_CORRECTIONS->{$case},
+      tou_string            => $tou_string,
+      stsa_string           => $stsa_string,
+      stsa_filename         => $stsa_filename,
     }
   );
 
@@ -1159,7 +1189,7 @@ sub tou_harness
   my $report          = $arg_ref->{report};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
-  my @active_test_cases = (1) x ( $LAST_TC + 1 );
+  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
 
   if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
   {

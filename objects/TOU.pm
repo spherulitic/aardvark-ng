@@ -41,9 +41,12 @@ sub compare_sts_and_tou_names
     # Covered by TC 9
     $this->set_error_report(
       Utils::format_error(
-        [ [ 'ERROR',            'Names missing in the STS/STA file' ],
-          [ 'File',             $this->{$TOU_FILENAME} ],
-          [ 'Missing from STS', $missing_from_sts ]
+        [ [ $TOU_ERROR_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_MISSING_STSA_NAMES}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MISSING_STSA_NAMES ],
+          [ 'File',                $this->{$TOU_FILENAME} ],
+          [ 'Missing from STS',    $missing_from_sts ]
         ]
       )
     );
@@ -118,6 +121,10 @@ sub initialize
   my $conversion_hash = $arg_ref->{conversion_hash};
   my $correct         = $arg_ref->{correct};
 
+  my $tou_string    = $arg_ref->{tou_string};
+  my $stsa_string   = $arg_ref->{stsa_string};
+  my $stsa_filename = $arg_ref->{stsa_filename};
+
   my $tou = {};
 
   $tou->{$TOU_DBH}              = $dbh;
@@ -136,6 +143,39 @@ sub initialize
   $tou->{$TOU_REWRITE_NEEDED}   = 0;
   $tou->{$TOU_VALID}            = 1;
   $tou->{$TOU_WARNING_REPORT}   = $EMPTY_STRING;
+
+  # Initialize TOU string
+  if ( !$tou_string && -e $filename )
+  {
+    $tou_string = Utils::write_file_to_string($filename);
+  }
+
+  # The STS/STA filename is always provided with the
+  # file content string
+  if ( !$stsa_filename )
+  {
+    my $noext_filename = $filename;
+    $noext_filename =~ s/[.](.*)$//xms;
+
+    my $sts_file = $noext_filename . $STS_FILE_EXTENSION;
+    my $sta_file = $noext_filename . $STA_FILE_EXTENSION;
+
+    $stsa_filename = $sts_file;
+
+    if ( !-e $stsa_filename )
+    {
+      $stsa_filename = $sta_file;
+    }
+
+    if ( -e $stsa_filename )
+    {
+      $stsa_string = Utils::write_file_to_string($stsa_filename);
+    }
+  }
+
+  $tou->{$TOU_FILE_STRING}   = $tou_string;
+  $tou->{$TOU_STSA_STRING}   = $stsa_string;
+  $tou->{$TOU_STSA_FILENAME} = $stsa_filename;
 
   my $self = bless $tou, $this;
   return $self;
@@ -302,29 +342,36 @@ sub new
   my $player_data           = $arg_ref->{player_data};
   my $correct               = $arg_ref->{correct};
 
+  my $tou_string    = $arg_ref->{tou_string};
+  my $stsa_string   = $arg_ref->{stsa_string};
+  my $stsa_filename = $arg_ref->{stsa_filename};
+
   my $this = $tou_type->initialize(
     { dbh             => $dbh,
       filename        => $filename,
       player_data     => $player_data,
       conversion_hash => $alt_names_hash,
       correct         => $correct,
+      tou_string      => $tou_string,
+      stsa_string     => $stsa_string,
+      stsa_filename   => $stsa_filename
     }
   );
 
-  my $tou_file_extension = $TOU_FILE_EXTENSION;
-  my $sts_file_extension = $STS_FILE_EXTENSION;
-  my $sta_file_extension = $STA_FILE_EXTENSION;
-
-  my $player_names_to_ids = {};
-
+  my $player_names_to_ids               = {};
   my @tournament_ids_to_convert_to_html = ();
 
-  if ( !-e $filename )
+  if ( !$this->{$TOU_FILE_STRING} )
   {
     # Covered by TC 1
     $this->set_error_report(
       Utils::format_error(
-        [ [ 'ERROR', 'Missing .tou file' ], [ 'File', $filename ] ]
+        [ [ $TOU_ERROR_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_MISSING_TOU}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MISSING_TOU ],
+          [ 'File',                $filename ]
+        ]
       )
     );
     return $this;
@@ -332,26 +379,31 @@ sub new
 
   if ( Utils::tou_is_loaded( $dbh, $filename ) )
   {
-    $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
-      [ [ 'WARNING', 'TOU file was already loaded' ], [ 'File', $filename ],
-      ]
+    $this->set_error_report(
+      Utils::format_error(
+        [ [ $TOU_ERROR_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_ALREADY_LOADED}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_ALREADY_LOADED ],
+          [ 'File',                $filename ],
+        ]
+      )
     );
     $this->{$TOU_LOADED} = 1;
     return $this;
   }
 
-  my $noext_filename = $filename;
-  $noext_filename =~ s/[.](.*)$//xms;
-
-  my $sts_file = $noext_filename . $sts_file_extension;
-  my $sta_file = $noext_filename . $sta_file_extension;
-
-  if ( !( -e $sts_file || -e $sta_file ) )
+  if ( !$this->{$TOU_STSA_STRING} )
   {
     # Covered by TC 2
     $this->set_error_report(
       Utils::format_error(
-        [ [ 'ERROR', 'Missing .STS or .STA file' ], [ 'File', $filename ] ]
+        [ [ $TOU_ERROR_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_MISSING_STSA}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MISSING_STSA ],
+          [ 'File',                $filename ]
+        ]
       )
     );
     return $this;
@@ -364,7 +416,12 @@ sub new
     # Covered by TC 3
     $this->set_error_report(
       Utils::format_error(
-        [ [ 'ERROR', 'Malformed .tou header' ], [ 'File', $filename ], ]
+        [ [ $TOU_ERROR_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_MALFORMED_HEADER}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MALFORMED_HEADER ],
+          [ 'File',                $filename ],
+        ]
       )
     );
     return $this;
@@ -400,8 +457,6 @@ sub new
   my $stsa_data = $this->process_sts(
     { dbh                   => $dbh,
       date                  => $date,
-      sts_file              => $noext_filename . $sts_file_extension,
-      sta_file              => $noext_filename . $sta_file_extension,
       deceased_players_hash => $deceased_players_hash
     }
   );
@@ -437,9 +492,9 @@ sub parse_sts_line
 {
   my ( $this, $arg_ref ) = @_;
 
-  my $is_sts       = $arg_ref->{is_sts};
-  my $sts_line     = $arg_ref->{sts_line};
-  my $sts_metadata = $arg_ref->{sts_metadata};
+  my $is_sts        = $arg_ref->{is_sts};
+  my $sts_line      = $arg_ref->{sts_line};
+  my $stsa_metadata = $arg_ref->{sts_metadata};
 
   my $filename = $this->{$TOU_FILENAME};
 
@@ -474,7 +529,7 @@ sub parse_sts_line
   {
     if ( $sts_line =~ /[+]-/xms )
     {
-      $sts_metadata->{begin_player_captures}++;
+      $stsa_metadata->{begin_player_captures}++;
     }
 
     # Remove parentheses from the line because
@@ -490,7 +545,7 @@ sub parse_sts_line
     my $ratings_pattern        = '([^|]*)';
 
     if (
-         $sts_metadata->{begin_player_captures} >= 2
+         $stsa_metadata->{begin_player_captures} >= 2
       && $sts_line =~ m{^[|]$is_new_player_pattern
               $player_country_pattern\s+
               $player_name_pattern[|]
@@ -501,7 +556,7 @@ sub parse_sts_line
          }xms
       )
     {
-      $sts_metadata->{is_valid} = 1;
+      $stsa_metadata->{is_valid} = 1;
 
       my $is_new_player = $1;    # Unused for now
       $player_country = $2;
@@ -511,12 +566,12 @@ sub parse_sts_line
       my $wins_string           = $6;
       my $ratings_change_string = $7;
 
-      $is_new_player =~ s/^\s+|\s+$//gxms;
-      $player_country =~ s/^\s+|\s+$//gxms;
-      $player_name =~ s/^\s+|\s+$//gxms;
-      $world_ranks_string =~ s/^\s+|\s+$//gxms;
+      $is_new_player         =~ s/^\s+|\s+$//gxms;
+      $player_country        =~ s/^\s+|\s+$//gxms;
+      $player_name           =~ s/^\s+|\s+$//gxms;
+      $world_ranks_string    =~ s/^\s+|\s+$//gxms;
       $national_ranks_string =~ s/^\s+|\s+$//gxms;
-      $wins_string =~ s/^\s+|\s+$//gxms;
+      $wins_string           =~ s/^\s+|\s+$//gxms;
       $ratings_change_string =~ s/^\s+|\s+$//gxms;
 
       my @nranks = split /\s+/xms, $national_ranks_string;
@@ -528,9 +583,15 @@ sub parse_sts_line
         # Covered by TC 4
         $this->set_error_report(
           Utils::format_error(
-            [ [ 'ERROR', 'Invalid number of items in STA first rank column' ],
-              [ 'TOU File', $filename ],
-              [ 'Line',     $sts_line ],
+            [ [ $TOU_ERROR_TITLE,
+                $TOU_REPORT_CODE_MAPPING
+                  ->{$TOU_REPORT_CODE_INVALID_STA_FIRST_RANK}
+              ],
+              [ $TOU_ERROR_CODE_TITLE,
+                $TOU_REPORT_CODE_INVALID_STA_FIRST_RANK
+              ],
+              [ 'File', $this->{$TOU_STSA_FILENAME} ],
+              [ 'Line', $sts_line ],
             ]
           )
         );
@@ -555,10 +616,15 @@ sub parse_sts_line
         # Covered by TC 5
         $this->set_error_report(
           Utils::format_error(
-            [ [ 'ERROR', 'Invalid number of items in STA second rank column'
+            [ [ $TOU_ERROR_TITLE,
+                $TOU_REPORT_CODE_MAPPING
+                  ->{$TOU_REPORT_CODE_INVALID_STA_SECOND_RANK}
               ],
-              [ 'TOU File', $filename ],
-              [ 'Line',     $sts_line ],
+              [ $TOU_ERROR_CODE_TITLE,
+                $TOU_REPORT_CODE_INVALID_STA_SECOND_RANK
+              ],
+              [ 'File', $this->{$TOU_STSA_FILENAME} ],
+              [ 'Line', $sts_line ],
             ]
           )
         );
@@ -582,9 +648,12 @@ sub parse_sts_line
         # Covered by TC 6
         $this->set_error_report(
           Utils::format_error(
-            [ [ 'ERROR',    'Invalid number of items in STA wins column' ],
-              [ 'TOU File', $filename ],
-              [ 'Line',     $sts_line ],
+            [ [ $TOU_ERROR_TITLE,
+                $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_INVALID_STA_WINS}
+              ],
+              [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_INVALID_STA_WINS ],
+              [ 'File',                $this->{$TOU_STSA_FILENAME} ],
+              [ 'Line',                $sts_line ],
             ]
           )
         );
@@ -604,12 +673,17 @@ sub parse_sts_line
         # Covered by TC 7
         $this->set_error_report(
           Utils::format_error(
-            [ [ 'ERROR',
-                'Invalid number of items in STA ratings column: '
-                  . $num_rchange_items
+            [ [ $TOU_ERROR_TITLE,
+                $TOU_REPORT_CODE_MAPPING
+                  ->{$TOU_REPORT_CODE_INVALID_STA_RATINGS}
               ],
-              [ 'TOU File', $filename ],
-              [ 'Line',     $sts_line ],
+
+              [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_INVALID_STA_RATINGS ],
+              [ 'Number of items',     $num_rchange_items ],
+
+              [ 'File', $this->{$TOU_STSA_FILENAME} ],
+
+              [ 'Line', $sts_line ],
             ]
           )
         );
@@ -628,7 +702,7 @@ sub parse_sts_line
     }
     else
     {
-      $sts_metadata->{is_valid} = 0;
+      $stsa_metadata->{is_valid} = 0;
     }
   }
   return {
@@ -662,7 +736,7 @@ sub process
 
   my $at_end = 0;
 
-  my @tou_lines = Utils::write_file_to_array($filename);
+  my @tou_lines = split /\n/xms, $this->{$TOU_FILE_STRING};
 
   # Ignore the header line because it has already
   # been processed
@@ -708,7 +782,14 @@ sub process
         # Covered by TC 10
         $this->set_error_report(
           Utils::format_error(
-            [ [ 'ERROR', 'Missing division name' ], [ 'File', $filename ], ]
+            [ [ $TOU_ERROR_TITLE,
+                $TOU_REPORT_CODE_MAPPING
+                  ->{$TOU_REPORT_CODE_MISSING_DIVISION_NAME}
+              ],
+              [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MISSING_DIVISION_NAME
+              ],
+              [ 'File', $filename ],
+            ]
           )
         );
         return;
@@ -719,9 +800,14 @@ sub process
       if ( $tou_line =~ /\s2\s?([-]\d+)/xms )
       {
         $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
-          [ [ 'WARNING',      'Converting negative winning score' ],
+          [ [ $TOU_WARNING_TITLE,
+              $TOU_REPORT_CODE_MAPPING
+                ->{$TOU_REPORT_CODE_NEGATIVE_WINNING_SCORE}
+            ],
+            [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_NEGATIVE_WINNING_SCORE
+            ],
             [ 'File',         $filename ],
-            [ 'Line',         $tou_line . $NEWLINE ],
+            [ 'Line',         $tou_line ],
             [ 'Rewritten to', $this->{$TOU_REWRITE_FILENAME} ]
           ]
         );
@@ -732,7 +818,7 @@ sub process
 
       my @player_game_data = split /\s+/xms, $tou_line;
       my $games_played = () = $tou_line =~ /([-]?\d+\s+[+]?\d+(?:\s+|$))/gxms;
-      my @games = ();
+      my @games        = ();
 
       for my $i ( 0 .. $games_played - 1 )
       {
@@ -750,8 +836,14 @@ sub process
           # Covered by TC 11
           $this->set_error_report(
             Utils::format_error(
-              [ [ 'ERROR', 'Malformed opponent number or player score' ],
-                [ 'File',  $filename ],
+              [ [ $TOU_ERROR_TITLE,
+                  $TOU_REPORT_CODE_MAPPING
+                    ->{$TOU_REPORT_CODE_MALFORMED_OPPONENT_DATA}
+                ],
+                [ $TOU_ERROR_CODE_TITLE,
+                  $TOU_REPORT_CODE_MALFORMED_OPPONENT_DATA
+                ],
+                [ 'File',            $filename ],
                 [ 'Opponent number', $opp_number ],
                 [ 'Player score',    $score ],
                 [ 'Line',            $tou_line ]
@@ -776,9 +868,13 @@ sub process
       {
         # Covered by TC 17
         $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
-          [ [ 'WARNING', 'Player as bye detected in TOU file' ],
-            [ 'File',    $filename ],
-            [ 'Line',    $tou_line ]
+          [ [ $TOU_WARNING_TITLE,
+              $TOU_REPORT_CODE_MAPPING
+                ->{$TOU_REPORT_CODE_PLAYER_AS_BYE_IN_TOU}
+            ],
+            [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_TOU ],
+            [ 'File',                $filename ],
+            [ 'Line',                $tou_line ]
           ]
         );
       }
@@ -870,7 +966,7 @@ sub process_division
 
     for my $round ( 0 .. $number_of_rounds - 1 )
     {
-      my $player_result = $division->get_matrix_index( $row, $round );
+      my $player_result   = $division->get_matrix_index( $row, $round );
       my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
       $tournament_result->{wins}     += $player_result->{$RESULT_WINS};
       $tournament_result->{losses}   += $player_result->{$RESULT_LOSSES};
@@ -899,29 +995,17 @@ sub process_sts
 
   my $dbh                   = $arg_ref->{dbh};
   my $date                  = $arg_ref->{date};
-  my $sts_file              = $arg_ref->{sts_file};
-  my $sta_file              = $arg_ref->{sta_file};
   my $deceased_players_hash = $arg_ref->{deceased_players_hash};
 
   my $player_data    = $this->{$TOU_PLAYER_DATA};
   my $alt_names_hash = $this->{$TOU_CONVERSION_HASH};
 
-  # This code prefers to use the .STS file
+  my $stsa_metadata = { begin_player_captures => 0, };
+  my $stsa_data     = {};
+  my $is_sts        = $this->{$TOU_STSA_FILENAME} =~ /[.]STS/ixms;
 
-  my $sts_or_sta_file = $sts_file;
-  my $is_sts          = 1;
-  if ( !-e $sts_file )
-  {
-    $sts_or_sta_file = $sta_file;
-    $is_sts          = 0;
-  }
+  my @sts_lines = split /\n/xms, $this->{$TOU_STSA_STRING};
 
-  my $sts_metadata = { begin_player_captures => 0, };
-
-  my $stsa_data = {};
-
-  # Read the .STS file
-  my @sts_lines = Utils::write_file_to_array($sts_or_sta_file);
   while (@sts_lines)
   {
     my $sts_line = shift @sts_lines;
@@ -935,7 +1019,7 @@ sub process_sts
     my $sts_line_extraction = $this->parse_sts_line(
       { is_sts       => $is_sts,
         sts_line     => $sts_line,
-        sts_metadata => $sts_metadata,
+        sts_metadata => $stsa_metadata,
       }
     );
     if ( $sts_line_extraction->{parse_failed} )
@@ -945,7 +1029,7 @@ sub process_sts
 
     # If the file is an STA file and the line is
     # not a player line then skip it
-    if ( !$is_sts && !$sts_metadata->{is_valid} )
+    if ( !$is_sts && !$stsa_metadata->{is_valid} )
     {
       next;
     }
@@ -956,9 +1040,12 @@ sub process_sts
     {
       # Not covered by any TC
       $this->{$TOU_WARNING_REPORT} .= Utils::format_error(
-        [ [ 'WARNING', 'Player as bye detected in STS/STA file' ],
-          [ 'File',    $sts_or_sta_file ],
-          [ 'Line',    $sts_line ]
+        [ [ $TOU_WARNING_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_PLAYER_AS_BYE_IN_STSA}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_STSA ],
+          [ 'File',                $this->{$TOU_STSA_FILENAME} ],
+          [ 'Line',                $sts_line ]
         ]
       );
       next;
@@ -981,15 +1068,15 @@ sub process_sts
     $old_national_rank = Utils::negative_one_if_false($old_national_rank);
     $new_national_rank = Utils::negative_one_if_false($new_national_rank);
 
-    $player_country =~ s/^\s+|\s+$//gxms;
-    $player_name =~ s/^\s+|\s+$//gxms;
-    $new_world_rank =~ s/^\s+|\s+$//gxms;
-    $old_world_rank =~ s/^\s+|\s+$//gxms;
+    $player_country    =~ s/^\s+|\s+$//gxms;
+    $player_name       =~ s/^\s+|\s+$//gxms;
+    $new_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_world_rank    =~ s/^\s+|\s+$//gxms;
     $old_national_rank =~ s/^\s+|\s+$//gxms;
     $new_national_rank =~ s/^\s+|\s+$//gxms;
-    $expected_wins =~ s/^\s+|\s+$//gxms;
-    $start_rating =~ s/^\s+|\s+$//gxms;
-    $end_rating =~ s/^\s+|\s+$//gxms;
+    $expected_wins     =~ s/^\s+|\s+$//gxms;
+    $start_rating      =~ s/^\s+|\s+$//gxms;
+    $end_rating        =~ s/^\s+|\s+$//gxms;
 
     my @required_captures = grep { !$_ }
       ( $player_country, $player_name, $start_rating, $end_rating );
@@ -999,9 +1086,15 @@ sub process_sts
       # Covered by TC 8
       $this->set_error_report(
         Utils::format_error(
-          [ [ 'ERROR', 'Required values are uncaptured' ],
-            [ 'File',  $sts_or_sta_file ],
-            [ 'Line',  $sts_line ]
+          [ [ $TOU_ERROR_TITLE,
+              $TOU_REPORT_CODE_MAPPING
+                ->{$TOU_REPORT_CODE_MISSING_STSA_REQUIRED_VALUES}
+            ],
+            [ $TOU_ERROR_CODE_TITLE,
+              $TOU_REPORT_CODE_MISSING_STSA_REQUIRED_VALUES
+            ],
+            [ 'File', $this->{$TOU_STSA_FILENAME} ],
+            [ 'Line', $sts_line ]
           ]
         )
       );
@@ -1078,7 +1171,7 @@ sub process_sts
       );
     }
     $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
-    $stsa_data->{$player_id} = {
+    $stsa_data->{$player_id}     = {
       new_world_rank    => $new_world_rank,
       old_world_rank    => $old_world_rank,
       old_national_rank => $old_national_rank,

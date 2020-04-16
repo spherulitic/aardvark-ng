@@ -8,6 +8,7 @@ use version; our $VERSION = qv('1');
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
 
+use lib './modules';
 use lib '/home/jcastellano/aardvark-ngdev/modules';
 use Constants;
 use Utils;

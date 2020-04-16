@@ -8,8 +8,10 @@ use Readonly;
 
 # General
 
-Readonly our $EMPTY_STRING     => q{};
-Readonly our $NEWLINE          => "\n";
+Readonly our $EMPTY_STRING                => q{};
+Readonly our $NEWLINE                     => "\n";
+Readonly our $AARDVARK_MAINTENANCE_REPORT => 'aardvark_maintenance_report';
+
 Readonly our $END_FILE_PATTERN => '__END__';
 
 Readonly our $TOU_FILE_EXTENSION => '.tou';
@@ -280,9 +282,9 @@ Readonly our $LAST_COVERAGE_TC             => 21;
 
 Readonly our $LAST_TC => $LAST_COVERAGE_TC;
 
-Readonly our $TEST_TC_RETESTS => { 17 => 16 };
+Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
 Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
-Readonly our $TEST_TC_CORRECTIONS => { 20 => 1 };
+Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
 
 Readonly our $PERL_CRITIC_SEVERITY => 1;
 
@@ -303,6 +305,11 @@ Readonly our $REPORT_LEFT_MARGIN        => 7;
 
 # TOU.pm
 
+Readonly our $TOU_FILENAME      => 'TOU Filename';
+Readonly our $TOU_FILE_STRING   => 'TOU File Contents';
+Readonly our $TOU_STSA_FILENAME => 'TOU STS or STA Filename';
+Readonly our $TOU_STSA_STRING   => 'TOU STS or STA File Contents';
+
 Readonly our $TOU_DBH              => 'TOU Database Handler';
 Readonly our $TOU_PLAYER_NAMES     => 'TOU Player Names';
 Readonly our $TOU_CONVERSION_HASH  => 'TOU Player Name Conversion Hash';
@@ -310,7 +317,7 @@ Readonly our $TOU_CORRECT          => 'TOU Attempt Correction';
 Readonly our $TOU_STS_PLAYER_NAMES => 'TOU STS Player Names';
 Readonly our $TOU_PLAYER_DATA      => 'TOU Player Data';
 Readonly our $TOU_ERROR_REPORT     => 'TOU Error Report';
-Readonly our $TOU_FILENAME         => 'TOU Filename';
+
 Readonly our $TOU_LOADED           => 'TOU Loaded';
 Readonly our $TOU_PROCESSED        => 'TOU Processed';
 Readonly our $TOU_REWRITE_FILENAME => 'TOU Rewrite Filename';
@@ -358,6 +365,76 @@ Readonly our $STS_OLD_WORLD_RANK_INDEX    => 10;
 Readonly our $STS_NEW_WORLD_RANK_INDEX    => 11;
 Readonly our $STS_OLD_NATIONAL_RANK_INDEX => 12;
 Readonly our $STS_NEW_NATIONAL_RANK_INDEX => 13;
+
+Readonly our $TOU_ERROR_TITLE      => 'Error';
+Readonly our $TOU_WARNING_TITLE    => 'Warning';
+Readonly our $TOU_ERROR_CODE_TITLE => 'Error/Warning Code';
+
+Readonly our $TOU_REPORT_CODE         => 'TOU Report Code';
+Readonly our $TOU_REPORT_CODE_MESSAGE => 'TOU Report Code Message';
+
+Readonly our $TOU_REPORT_CODE_OK                           => 0;
+Readonly our $TOU_REPORT_CODE_MISSING_TOU                  => 1;
+Readonly our $TOU_REPORT_CODE_MISSING_STSA                 => 2;
+Readonly our $TOU_REPORT_CODE_MALFORMED_HEADER             => 3;
+Readonly our $TOU_REPORT_CODE_INVALID_STA_SECOND_RANK      => 4;
+Readonly our $TOU_REPORT_CODE_INVALID_STA_FIRST_RANK       => 5;
+Readonly our $TOU_REPORT_CODE_INVALID_STA_WINS             => 6;
+Readonly our $TOU_REPORT_CODE_INVALID_STA_RATINGS          => 7;
+Readonly our $TOU_REPORT_CODE_MISSING_STSA_REQUIRED_VALUES => 8;
+Readonly our $TOU_REPORT_CODE_MISSING_STSA_NAMES           => 9;
+Readonly our $TOU_REPORT_CODE_MISSING_DIVISION_NAME        => 10;
+Readonly our $TOU_REPORT_CODE_MALFORMED_OPPONENT_DATA      => 11;
+Readonly our $TOU_REPORT_CODE_INCONSISTENT_NUMBER_OF_GAMES => 12;
+Readonly our $TOU_REPORT_CODE_OUT_OF_RANGE_OPPONENT_NUMBER => 13;
+Readonly our $TOU_REPORT_CODE_INVALID_PAIRING              => 14;
+Readonly our $TOU_REPORT_CODE_INVALID_COUNTRY_TRIGRAPH     => 15;
+Readonly our $TOU_REPORT_CODE_NEGATIVE_WINNING_SCORE       => 16;
+Readonly our $TOU_REPORT_CODE_ALREADY_LOADED               => 17;
+Readonly our $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_STSA        => 18;
+Readonly our $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_TOU         => 19;
+
+Readonly our $TOU_WARNING_REPORT_CODES => {
+  $TOU_REPORT_CODE_INVALID_COUNTRY_TRIGRAPH,
+  $TOU_REPORT_CODE_NEGATIVE_WINNING_SCORE,
+  $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_STSA,
+  $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_TOU,
+};
+
+Readonly our $TOU_REPORT_CODE_MAPPING => {
+  $TOU_REPORT_CODE_OK               => 'No errors or warnings',
+  $TOU_REPORT_CODE_MISSING_TOU      => 'Missing TOU file',
+  $TOU_REPORT_CODE_MISSING_STSA     => 'Missing STS or STA file',
+  $TOU_REPORT_CODE_MALFORMED_HEADER => 'Malformed TOU header',
+  $TOU_REPORT_CODE_INVALID_STA_SECOND_RANK =>
+    'Invalid number of items in STA second rank column',
+  $TOU_REPORT_CODE_INVALID_STA_FIRST_RANK =>
+    'Invalid number of items in STA first rank column',
+  $TOU_REPORT_CODE_INVALID_STA_WINS =>
+    'Invalid number of items in STA wins column',
+  $TOU_REPORT_CODE_INVALID_STA_RATINGS =>
+    'Invalid number of items in STA ratings column',
+  $TOU_REPORT_CODE_MISSING_STSA_REQUIRED_VALUES =>
+    'Required values are uncaptured',
+  $TOU_REPORT_CODE_MISSING_STSA_NAMES => 'Names missing in the STS/STA file',
+  $TOU_REPORT_CODE_MISSING_DIVISION_NAME => 'Missing division name',
+  $TOU_REPORT_CODE_MALFORMED_OPPONENT_DATA =>
+    'Malformed opponent number or player score',
+  $TOU_REPORT_CODE_INCONSISTENT_NUMBER_OF_GAMES =>
+    'Inconsistent number of games played',
+  $TOU_REPORT_CODE_OUT_OF_RANGE_OPPONENT_NUMBER =>
+    'Out of range opponent number',
+  $TOU_REPORT_CODE_INVALID_PAIRING =>
+    'The opponent of the player\'s opponent is not the player',
+  $TOU_REPORT_CODE_INVALID_COUNTRY_TRIGRAPH => 'Uncorrected country trigraph',
+  $TOU_REPORT_CODE_NEGATIVE_WINNING_SCORE =>
+    'Converted negative winning score',
+  $TOU_REPORT_CODE_ALREADY_LOADED => 'TOU file was already loaded',
+  $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_STSA =>
+    'Player as bye detected in STS/STA file',
+  $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_TOU =>
+    'Player as bye detected in TOU file',
+};
 
 # HTML.pm
 
@@ -1091,6 +1168,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   qw(
   $EMPTY_STRING
   $NEWLINE
+  $AARDVARK_MAINTENANCE_REPORT
   $END_FILE_PATTERN
   $TOU_FILE_EXTENSION
   $STS_FILE_EXTENSION
@@ -1209,6 +1287,10 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $REPORT_SIDE_BORDER
   $REPORT_SPACING
   $REPORT_LEFT_MARGIN
+  $TOU_FILENAME
+  $TOU_FILE_STRING
+  $TOU_STSA_FILENAME
+  $TOU_STSA_STRING
   $TOU_DBH
   $TOU_PLAYER_NAMES
   $TOU_CONVERSION_HASH
@@ -1216,7 +1298,6 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TOU_STS_PLAYER_NAMES
   $TOU_PLAYER_DATA
   $TOU_ERROR_REPORT
-  $TOU_FILENAME
   $TOU_LOADED
   $TOU_PROCESSED
   $TOU_REWRITE_FILENAME
@@ -1244,6 +1325,33 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $STS_NEW_WORLD_RANK_INDEX
   $STS_OLD_NATIONAL_RANK_INDEX
   $STS_NEW_NATIONAL_RANK_INDEX
+  $TOU_ERROR_TITLE
+  $TOU_WARNING_TITLE
+  $TOU_ERROR_CODE_TITLE
+  $TOU_REPORT_CODE
+  $TOU_REPORT_CODE_MESSAGE
+  $TOU_REPORT_CODE_OK
+  $TOU_REPORT_CODE_MISSING_TOU
+  $TOU_REPORT_CODE_MISSING_STSA
+  $TOU_REPORT_CODE_MALFORMED_HEADER
+  $TOU_REPORT_CODE_INVALID_STA_SECOND_RANK
+  $TOU_REPORT_CODE_INVALID_STA_FIRST_RANK
+  $TOU_REPORT_CODE_INVALID_STA_WINS
+  $TOU_REPORT_CODE_INVALID_STA_RATINGS
+  $TOU_REPORT_CODE_MISSING_STSA_REQUIRED_VALUES
+  $TOU_REPORT_CODE_MISSING_STSA_NAMES
+  $TOU_REPORT_CODE_MISSING_DIVISION_NAME
+  $TOU_REPORT_CODE_MALFORMED_OPPONENT_DATA
+  $TOU_REPORT_CODE_INCONSISTENT_NUMBER_OF_GAMES
+  $TOU_REPORT_CODE_OUT_OF_RANGE_OPPONENT_NUMBER
+  $TOU_REPORT_CODE_INVALID_PAIRING
+  $TOU_REPORT_CODE_INVALID_COUNTRY_TRIGRAPH
+  $TOU_REPORT_CODE_NEGATIVE_WINNING_SCORE
+  $TOU_REPORT_CODE_ALREADY_LOADED
+  $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_STSA
+  $TOU_REPORT_CODE_PLAYER_AS_BYE_IN_TOU
+  $TOU_WARNING_REPORT_CODES
+  $TOU_REPORT_CODE_MAPPING
   $GAME_STATS_RANK_NAME
   $STAT_KEY_NAME
   $ALLTIME_CUTOFF

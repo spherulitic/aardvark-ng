@@ -1,0 +1,700 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% ALPHABETIZING ROUTINE ORDER %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Alphabetized test/Test.pm
+Alphabetized modules/Utils.pm
+Alphabetized modules/HTML.pm
+Alphabetized modules/Update.pm
+Alphabetized modules/Executive.pm
+Alphabetized objects/Report.pm
+Alphabetized objects/Failure.pm
+Alphabetized objects/TOU.pm
+Alphabetized objects/Result.pm
+Alphabetized objects/Division.pm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% TIDYING %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tidying test/Test.pm
+Tidying modules/Utils.pm
+Tidying modules/HTML.pm
+Tidying modules/Update.pm
+Tidying modules/Constants.pm
+Tidying modules/Executive.pm
+Tidying objects/Report.pm
+Tidying objects/Failure.pm
+Tidying objects/TOU.pm
+Tidying objects/Result.pm
+Tidying objects/Division.pm
+Tidying cgi-bin/find_tournament.pl
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% CHECKING SYNTAX %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+test/Test.pm syntax OK
+modules/Utils.pm syntax OK
+modules/HTML.pm syntax OK
+modules/Update.pm syntax OK
+modules/Constants.pm syntax OK
+modules/Executive.pm syntax OK
+objects/Report.pm syntax OK
+objects/Failure.pm syntax OK
+objects/TOU.pm syntax OK
+objects/Result.pm syntax OK
+objects/Division.pm syntax OK
+cgi-bin/find_tournament.pl syntax OK
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% CRITIQUING %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Critiquing test/Test.pm
+Critiquing modules/Utils.pm
+Critiquing modules/HTML.pm
+Critiquing modules/Update.pm
+Critiquing modules/Constants.pm
+Critiquing modules/Executive.pm
+Critiquing objects/Report.pm
+Critiquing objects/Failure.pm
+Critiquing objects/TOU.pm
+Critiquing objects/Result.pm
+Critiquing objects/Division.pm
+Critiquing cgi-bin/find_tournament.pl
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% LISTING STANDARDS EXCEPTIONS %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Listing standards exceptions for test/Test.pm  (1)
+
+87:       if (    ## no critic (ProhibitCascadingIfElse)
+
+Listing standards exceptions for modules/Utils.pm  (0)
+Listing standards exceptions for modules/HTML.pm  (2)
+
+1588:     @tournament_results = sort {    ## no critic (ProhibitReverseSortBlock)
+1597:       = reverse sort {              ## no critic (ProhibitReverseSortBlock)
+
+Listing standards exceptions for modules/Update.pm  (0)
+Listing standards exceptions for modules/Constants.pm  (1)
+
+1166: our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
+
+Listing standards exceptions for modules/Executive.pm  (0)
+Listing standards exceptions for objects/Report.pm  (0)
+Listing standards exceptions for objects/Failure.pm  (0)
+Listing standards exceptions for objects/TOU.pm  (0)
+Listing standards exceptions for objects/Result.pm  (0)
+Listing standards exceptions for objects/Division.pm  (0)
+Listing standards exceptions for cgi-bin/find_tournament.pl  (1)
+
+145: print    ## no critic (InputOutput::RequireCheckedSyscalls)
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% STARTING TOU HARNESS %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+**************************************************
+********** TEST RUN: PROCESSING ERRORS ***********
+**************************************************
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   1 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Missing TOU file
+               Error/Warning Code: 1
+               File:               test/tou/aardvark/2020/USA/1.tou
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   2 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Missing STS or STA file
+               Error/Warning Code: 2
+               File:               test/tou/aardvark/2020/USA/2.tou
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   3 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Malformed TOU header
+               Error/Warning Code: 3
+               File:               test/tou/aardvark/2020/USA/3.tou
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   4 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Invalid number of items in STA second rank column
+               Error/Warning Code: 4
+               File:               test/tou/aardvark/2020/USA/4.STA
+               Line:               | NZL Nigel Richards       |   4 1  3  |  1   1  | 28.4 30.0 | 2081  +16 2097 |
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   5 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Invalid number of items in STA first rank column
+               Error/Warning Code: 5
+               File:               test/tou/aardvark/2020/USA/5.STA
+               Line:               | NGA Chinedu Okwelogu     |  23   40  |  6 3 7  | 24.9 22.0 | 2016  -37 1979 |
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   6 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Invalid number of items in STA wins column
+               Error/Warning Code: 6
+               File:               test/tou/aardvark/2020/USA/6.STA
+               Line:               | PAK Waseem Khatri        | 169  193  |  2   3  | 25.2 3.0   24.0 | 1843  -19 1824 |
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   7 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Invalid number of items in STA ratings column
+               Error/Warning Code: 7
+               Number of items:    4
+               File:               test/tou/aardvark/2020/USA/7.STA
+               Line:               | OMN Marie Fernandes      | 453  403  |  4   2  | 21.8 27.0 | 1451 +103 9 1554 |
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   8 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Required values are uncaptured
+               Error/Warning Code: 8
+               File:               test/tou/aardvark/2020/USA/8.STS
+               Line:               C,MYS,,20,9.821, 9.0,408,+20,1659,1643,273,291,10,11
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE   9 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Names missing in the STS/STA file
+               Error/Warning Code: 9
+               File:               test/tou/aardvark/2020/USA/9.tou
+               Missing from STS:   DAVIDKOENIG,GUYINGRAM
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  10 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Missing division name
+               Error/Warning Code: 10
+               File:               test/tou/aardvark/2020/USA/10.tou
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  11 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Malformed opponent number or player score
+               Error/Warning Code: 11
+               File:               test/tou/aardvark/2020/USA/11.tou
+               Opponent number:    4
+               Player score:       25-28
+               Line:               Tim Weiss            2460  16 2400 +26  363 +19 25-28   4  369   3 2498  +8  428  +2  363  10 2473  +1  350  18 2550   5  373  13 2445 +14 2458  +9 2432 +24 2564  24 2465  +6  362   7  379   2 2512  12
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  12 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Inconsistent number of games played
+               Error/Warning Code: 12
+               File:               test/tou/aardvark/2020/USA/12.tou
+               Division:           C
+               Player:             Austin Shin
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  13 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              Out of range opponent number
+               Error/Warning Code: 13
+               File:               test/tou/aardvark/2020/USA/13.tou
+               Division:           C
+               Round:              1
+               Player:             Michael McKenna
+               Opponent Number:    27
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  14 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:                        The opponent of the player's opponent is not the player
+               Error/Warning Code:           14
+               File:                         test/tou/aardvark/2020/USA/14.tou
+               Division:                     C
+               Round:                        1
+               Player:                       Michael McKenna (1)
+               Player's Opponent:            Will Anderson (2)
+               Player's Opponent's Opponent: David Wiegand (3)
+
+JSON STATUS:   PASSED
+
+
+**************************************************
+********* TEST RUN: PROCESSING WARNINGS **********
+**************************************************
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  15 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        WARNING:  Uncorrected country trigraph
+               Trigraph: USB
+               
+               Warning:            Converted negative winning score
+               Error/Warning Code: 16
+               File:               test/tou/aardvark/2020/USA/15.tou
+               Line:               Jeremy Jeffers        309  13 2507  +9 2430 +16  324   5  387   1 2-10  +2  242   8  285   6 2459  +4 2472 +10 2368   3  364  14  401  +7 2425 +15  344  11 2427 +13 2535  13 2457  13 2408  +4 2482 +14
+               Rewritten to:       test/tou/aardvark/2020/USA/15.tou.rewrite
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  16 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        WARNING:  Uncorrected country trigraph
+               Trigraph: USB
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  17 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Error:              TOU file was already loaded
+               Error/Warning Code: 17
+               File:               test/tou/aardvark/2020/USA/16.tou
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  18 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        WARNING:  Uncorrected country trigraph
+               Trigraph: USB
+               
+               Warning:            Player as bye detected in STS/STA file
+               Error/Warning Code: 18
+               File:               test/tou/aardvark/2020/USA/18.STS
+               Line:               C,USA,Bye Player,20,10.763,12.0,1541,+20,1905,1925,75,63,18,15
+               
+               Warning:            Player as bye detected in TOU file
+               Error/Warning Code: 19
+               File:               test/tou/aardvark/2020/USA/18.tou
+               Line:               Bye Player           2447 +21 1381  20  379  +2 2538  12 2553 +19  397  +3 2549   8 2500   9 2400   4  434  +5 2439   7  384 +14  397  10 1494  +5 2409  +9 2495  14  349  11 2561  +4  419  14 2522  +3
+               
+               Warning:            Converted negative winning score
+               Error/Warning Code: 16
+               File:               test/tou/aardvark/2020/USA/18.tou
+               Line:               Jeremy Jeffers        309  13 2507  +9 2430 +16  324   5  387   1 2-10  +2  242   8  285   6 2459  +4 2472 +10 2368   3  364  14  401  +7 2425 +15  344  11 2427 +13 2535  13 2457  13 2408  +4 2482 +14
+               Rewritten to:       test/tou/aardvark/2020/USA/18.tou.rewrite
+               
+               
+               Error:              Malformed opponent number or player score
+               Error/Warning Code: 11
+               File:               test/tou/aardvark/2020/USA/18.tou
+               Opponent number:    354
+               Player score:       +13
+               Line:               Ifedayo Obisesan      371   1 2389 +13  354  12  45
+
+JSON STATUS:   PASSED
+
+
+**************************************************
+******* TEST RUN: TOU PROCESSING COVERAGE ********
+**************************************************
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  19 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        WARNING:  Uncorrected country trigraph
+               Trigraph: ZZZ
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  20 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Warning:                      The opponent of the player's opponent is not the player and was set to a bye
+               Error/Warning Code:           14
+               File:                         test/tou/aardvark/2020/USA/20.tou
+               Division:                     C
+               Round:                        1
+               Player:                       Michael McKenna (1)
+               Player's Opponent:            Jason Tsang Wai Yin (26)
+               Player's Opponent's Opponent: Will Anderson (2)
+               
+               
+               Warning:                      The opponent of the player's opponent is not the player and was set to a bye
+               Error/Warning Code:           14
+               File:                         test/tou/aardvark/2020/USA/20.tou
+               Division:                     C
+               Round:                        1
+               Player:                       Will Anderson (2)
+               Player's Opponent:            Michael McKenna (1)
+               Player's Opponent's Opponent: Michael McKenna (1)
+               
+               
+               Warning:                      The opponent of the player's opponent is not the player and was set to a bye
+               Error/Warning Code:           14
+               File:                         test/tou/aardvark/2020/USA/20.tou
+               Division:                     C
+               Round:                        1
+               Player:                       KC Frodyma (25)
+               Player's Opponent:            Will Anderson (2)
+               Player's Opponent's Opponent: Will Anderson (2)
+               
+               
+               Warning:                      The opponent of the player's opponent is not the player and was set to a bye
+               Error/Warning Code:           14
+               File:                         test/tou/aardvark/2020/USA/20.tou
+               Division:                     C
+               Round:                        1
+               Player:                       Jason Tsang Wai Yin (26)
+               Player's Opponent:            Will Anderson (2)
+               Player's Opponent's Opponent: Will Anderson (2)
+               
+               
+               Warning:            Out of range opponent number set to bye
+               Error/Warning Code: 13
+               File:               test/tou/aardvark/2020/USA/20.tou
+               Division:           C
+               Round:              2
+               Player:             Michael McKenna
+               Opponent Number:    38
+               
+               
+               Warning:                      The opponent of the player's opponent is not the player and was set to a bye
+               Error/Warning Code:           14
+               File:                         test/tou/aardvark/2020/USA/20.tou
+               Division:                     C
+               Round:                        2
+               Player:                       Becky Dyer (15)
+               Player's Opponent:            Michael McKenna (1)
+               Player's Opponent's Opponent: Michael McKenna (1)
+
+JSON STATUS:   PASSED
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~ TEST CASE  21 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        
+
+JSON STATUS:   PASSED
+
+
+**************************************************
+************** TEST RUN: UTILITIES ***************
+**************************************************
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~ TEST CASE 22 ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+REPORT:        Warning: Invalid flag image name
+               File:    USB.png
+               
+               Warning:      Missing flag image
+               Country:      USA
+               Missing File: flags/USA.png
+
+UTILS STATUS:  PASSED
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% STARTING DATABASE HARNESS %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+TABLE EVENTS STATUS: PASSED
+
+
+FAILURE:          Results or keys do not match on line 1
+Result Type:      TABLE PLAYERS
+Traceback:        { 32 } -> { photo }
+Expected Results: >/srv/dev/aardvarkdev/icons/ronhoekstra.jpg<
+Actual Results:   ><
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TABLE PLAYERS STATUS: FAILED
+
+
+TABLE LEXICONS STATUS: PASSED
+
+
+TABLE TOURNAMENTS STATUS: PASSED
+
+
+TABLE DIVISIONS STATUS: PASSED
+
+
+TABLE GAMES STATUS: PASSED
+
+
+TABLE TOURNAMENT_RESULTS STATUS: PASSED
+
+
+TABLE PLAYER_RESULTS STATUS: PASSED
+
+
+TABLE LOADED_TOURNAMENTS STATUS: PASSED
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% STARTING HTML HARNESS %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                          %
+%                   AARDVARK MAINTENANCE                   %
+%                 Thu Apr 16 11:52:25 2020                 %
+%                                                          %
+%       ALPHABETIZATION (PROCESSED)...........12           %
+%         ALPHABETIZED..........................10         %
+%           test/Test.pm...........................1       %
+%           modules/Utils.pm.......................1       %
+%           modules/HTML.pm........................1       %
+%           modules/Update.pm......................1       %
+%           modules/Executive.pm...................1       %
+%           objects/Report.pm......................1       %
+%           objects/Failure.pm.....................1       %
+%           objects/TOU.pm.........................1       %
+%           objects/Result.pm......................1       %
+%           objects/Division.pm....................1       %
+%         NOT ALPHABETIZED.......................2         %
+%           modules/Constants.pm...................1       %
+%           cgi-bin/find_tournament.pl.............1       %
+%                                                          %
+%       TIDYING (PROCESSED)...................12           %
+%         test/Test.pm...........................1         %
+%         modules/Utils.pm.......................1         %
+%         modules/HTML.pm........................1         %
+%         modules/Update.pm......................1         %
+%         modules/Constants.pm...................1         %
+%         modules/Executive.pm...................1         %
+%         objects/Report.pm......................1         %
+%         objects/Failure.pm.....................1         %
+%         objects/TOU.pm.........................1         %
+%         objects/Result.pm......................1         %
+%         objects/Division.pm....................1         %
+%         cgi-bin/find_tournament.pl.............1         %
+%                                                          %
+%       SYNTAX (PROCESSED)....................12           %
+%         test/Test.pm...........................1         %
+%         modules/Utils.pm.......................1         %
+%         modules/HTML.pm........................1         %
+%         modules/Update.pm......................1         %
+%         modules/Constants.pm...................1         %
+%         modules/Executive.pm...................1         %
+%         objects/Report.pm......................1         %
+%         objects/Failure.pm.....................1         %
+%         objects/TOU.pm.........................1         %
+%         objects/Result.pm......................1         %
+%         objects/Division.pm....................1         %
+%         cgi-bin/find_tournament.pl.............1         %
+%                                                          %
+%       CRITIC (VIOLATIONS)....................0           %
+%         test/Test.pm...........................0         %
+%         modules/Utils.pm.......................0         %
+%         modules/HTML.pm........................0         %
+%         modules/Update.pm......................0         %
+%         modules/Constants.pm...................0         %
+%         modules/Executive.pm...................0         %
+%         objects/Report.pm......................0         %
+%         objects/Failure.pm.....................0         %
+%         objects/TOU.pm.........................0         %
+%         objects/Result.pm......................0         %
+%         objects/Division.pm....................0         %
+%         cgi-bin/find_tournament.pl.............0         %
+%                                                          %
+%       STANDARDS (EXCEPTIONS).................5           %
+%         test/Test.pm...........................1         %
+%         modules/Utils.pm.......................0         %
+%         modules/HTML.pm........................2         %
+%         modules/Update.pm......................0         %
+%         modules/Constants.pm...................1         %
+%         modules/Executive.pm...................0         %
+%         objects/Report.pm......................0         %
+%         objects/Failure.pm.....................0         %
+%         objects/TOU.pm.........................0         %
+%         objects/Result.pm......................0         %
+%         objects/Division.pm....................0         %
+%         cgi-bin/find_tournament.pl.............1         %
+%                                                          %
+%       TOU PROCESSING (TESTED)...............22           %
+%         PASSED................................22         %
+%           1                                              %
+%           2                                              %
+%           3                                              %
+%           4                                              %
+%           5                                              %
+%           6                                              %
+%           7                                              %
+%           8                                              %
+%           9                                              %
+%           10                                             %
+%           11                                             %
+%           12                                             %
+%           13                                             %
+%           14                                             %
+%           15                                             %
+%           16                                             %
+%           17                                             %
+%           18                                             %
+%           19                                             %
+%           20                                             %
+%           21                                             %
+%           Utilities                                      %
+%         FAILED.................................0         %
+%                                                          %
+%       DATABASE (TESTED)......................9           %
+%         PASSED.................................8         %
+%           events                                         %
+%           lexicons                                       %
+%           tournaments                                    %
+%           divisions                                      %
+%           games                                          %
+%           tournament_results                             %
+%           player_results                                 %
+%           loaded_tournaments                             %
+%         FAILED.................................1         %
+%           players                                        %
+%                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                          %
+%                     COVERAGE REPORT                      %
+%                 Thu Apr 16 11:53:41 2020                 %
+%                                                          %
+%       modules/Constants.pm..............100.0%           %
+%         Statement.........................100.0%         %
+%         Subroutine........................100.0%         %
+%                                                          %
+%       modules/HTML.pm....................92.9%           %
+%         Statement..........................98.0%         %
+%         Branch.............................88.6%         %
+%         Condition..........................76.6%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       modules/Update.pm..................68.4%           %
+%         Statement..........................72.0%         %
+%         Branch.............................33.3%         %
+%         Condition..........................66.6%         %
+%         Subroutine.........................89.4%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       modules/Utils.pm...................65.8%           %
+%         Statement..........................72.5%         %
+%         Branch.............................57.0%         %
+%         Condition..........................48.7%         %
+%         Subroutine.........................81.3%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       objects/Division.pm................95.9%           %
+%         Statement.........................100.0%         %
+%         Branch............................100.0%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       objects/Failure.pm.................93.6%           %
+%         Statement.........................100.0%         %
+%         Branch............................100.0%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       objects/Report.pm..................94.7%           %
+%         Statement.........................100.0%         %
+%         Branch............................100.0%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       objects/Result.pm..................97.1%           %
+%         Statement.........................100.0%         %
+%         Branch............................100.0%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       objects/TOU.pm.....................96.0%           %
+%         Statement.........................100.0%         %
+%         Branch............................100.0%         %
+%         Condition..........................77.7%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       test/Test.pm.......................84.3%           %
+%         Statement..........................92.3%         %
+%         Branch.............................68.1%         %
+%         Condition..........................33.3%         %
+%         Subroutine........................100.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%       Total..............................83.8%           %
+%         Statement..........................89.7%         %
+%         Branch.............................76.4%         %
+%         Condition..........................63.3%         %
+%         Subroutine.........................93.0%         %
+%         Pod.................................0.0%         %
+%                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

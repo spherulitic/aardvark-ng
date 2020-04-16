@@ -1233,7 +1233,7 @@ sub get_tournament_template_html_string
 
   for my $i ( 0 .. $ddl - 1 )
   {
-    my $id = "division_$i";
+    my $id   = "division_$i";
     my $text = 'Division ' . ( $i + 1 );
 
     push @tabdata, [ $text, $id ];

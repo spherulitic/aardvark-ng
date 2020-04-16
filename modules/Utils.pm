@@ -26,6 +26,20 @@ sub add_games_to_existing_player
   return $dbh->last_insert_id( undef, undef, undef, undef );
 }
 
+sub append_string_to_file
+{
+  my $string   = shift;
+  my $filename = shift;
+
+  open my $fh, q{>>}, $filename
+    or croak "Cannot open $filename: $OS_ERROR$NEWLINE";
+  print {$fh} $string
+    or croak "Cannot append to $filename: $OS_ERROR$NEWLINE";
+  close $fh or croak "Cannot close $filename: $OS_ERROR$NEWLINE";
+
+  return 1;
+}
+
 sub backup_directory
 {
   my $dir = shift;
@@ -63,7 +77,7 @@ sub cgi_sanitize
 {
   my $s = shift;
   $s = substr $s, 0, $CGI_MAX_PARAMETER_LENGTH;
-  $s =~ s/[^a-zA-Z0-9_\s]//gxms;
+  $s =~ s/[^\w\s]//gxms;
   return $s;
 }
 
@@ -83,7 +97,9 @@ sub check_country_flag_icons
     if ( !$COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF->{$1} )
     {
       $warning_string .= Utils::format_error(
-        [ [ 'WARNING', 'Invalid flag image name' ], [ 'File', $ef ] ] );
+        [ [ $TOU_WARNING_TITLE, 'Invalid flag image name' ], [ 'File', $ef ]
+        ]
+      );
     }
   }
 
@@ -95,9 +111,9 @@ sub check_country_flag_icons
     if ( !( -e $flag ) )
     {
       $warning_string .= Utils::format_error(
-        [ [ 'WARNING',      'Missing flag image' ],
-          [ 'Country',      $country ],
-          [ 'Missing File', $flag ],
+        [ [ $TOU_WARNING_TITLE, 'Missing flag image' ],
+          [ 'Country',          $country ],
+          [ 'Missing File',     $flag ],
         ]
       );
     }
@@ -475,7 +491,7 @@ sub format_print
 
 sub get_country_from_filename
 {
-  my $filename = shift;
+  my $filename       = shift;
   my @filename_items = split /\//xms, $filename;
   return $filename_items[$COUNTRY_IN_FILENAME_INDEX];
 }
@@ -490,7 +506,7 @@ sub get_coverage_report
 
   while (@coverage_html)
   {
-    my $line = shift @coverage_html;
+    my $line  = shift @coverage_html;
     my @cells = split /<td/xms, $line;
     shift @cells;
 
@@ -863,7 +879,7 @@ sub insert_hash_list_into_table
     push @values, q{(} . ( join q{,}, @row ) . q{)};
   }
 
-  my $keys_string = q{(} . ( join q{,}, @keys ) . q{)};
+  my $keys_string   = q{(} . ( join q{,}, @keys ) . q{)};
   my $values_string = join ",$NEWLINE", @values;
 
   my $insert_statement

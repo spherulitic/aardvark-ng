@@ -31,7 +31,13 @@ sub create_matrix
       # Covered by TC 12
       $this->set_verification_report(
         Utils::format_error(
-          [ [ 'ERROR',    'Inconsistent number of games played' ],
+          [ [ $TOU_ERROR_TITLE,
+              $TOU_REPORT_CODE_MAPPING
+                ->{$TOU_REPORT_CODE_INCONSISTENT_NUMBER_OF_GAMES}
+            ],
+            [ $TOU_ERROR_CODE_TITLE,
+              $TOU_REPORT_CODE_INCONSISTENT_NUMBER_OF_GAMES
+            ],
             [ 'File',     $this->{$DIVISION_TOUFILE} ],
             [ 'Division', $this->{$DIVISION_NAME} ],
             [ 'Player',   $this->{$DIVISION_PLAYERS}->[$i] ]
@@ -155,14 +161,15 @@ sub process
       if ( $opponent_number > $number_of_players - 1 )
       {
         # Covered by TC 13
-        my $message_type                = 'ERROR';
-        my $message                     = 'Out of range opponent number';
+        my $message_type = $TOU_ERROR_TITLE;
+        my $message      = $TOU_REPORT_CODE_MAPPING
+          ->{$TOU_REPORT_CODE_OUT_OF_RANGE_OPPONENT_NUMBER};
         my $uncorrected_opponent_number = $opponent_number;
         if ($correct)
         {
           # Covered by TC 20
-          $message_type = 'WARNING';
-          $message      = 'Out of range opponent number set to bye';
+          $message_type = $TOU_WARNING_TITLE;
+          $message .= ' set to bye';
           $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
           $player_result->{$RESULT_SCORE}           = 0;
           $opponent_number                          = $player_number;
@@ -170,7 +177,10 @@ sub process
         }
         $this->set_verification_report(
           Utils::format_error(
-            [ [ $message_type,     $message ],
+            [ [ $message_type, $message ],
+              [ $TOU_ERROR_CODE_TITLE,
+                $TOU_REPORT_CODE_OUT_OF_RANGE_OPPONENT_NUMBER
+              ],
               [ 'File',            $filename ],
               [ 'Division',        $division_name ],
               [ 'Round',           $round + 1 ],
@@ -197,14 +207,14 @@ sub process
       if ( $opponent_opponent_number != $player_number )
       {
         # Covered by TC 14
-        my $message_type = 'ERROR';
+        my $message_type = $TOU_ERROR_TITLE;
         my $message
-          = q{The opponent of the player's opponent is not the player};
+          = $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_INVALID_PAIRING};
         my $uncorrected_opponent_number = $opponent_number;
         if ($correct)
         {
           # Covered by TC 20
-          $message_type = 'WARNING';
+          $message_type = $TOU_WARNING_TITLE;
           $message .= ' and was set to a bye';
           $player_result->{$RESULT_OPPONENT_NUMBER} = $player_number;
           $player_result->{$RESULT_SCORE}           = 0;
@@ -214,10 +224,11 @@ sub process
 
         $this->set_verification_report(
           Utils::format_error(
-            [ [ $message_type, $message ],
-              [ 'File',        $filename ],
-              [ 'Division',    $division_name ],
-              [ 'Round',       $round + 1 ],
+            [ [ $message_type,         $message ],
+              [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_INVALID_PAIRING ],
+              [ 'File',                $filename ],
+              [ 'Division',            $division_name ],
+              [ 'Round',               $round + 1 ],
               [ 'Player', $player_name . ' (' . ( $player_number + 1 ) . ')'
               ],
               [ q{Player's Opponent},
@@ -353,7 +364,7 @@ sub to_string
     $division_string .= sprintf '%-30s', $player_name;
     for my $round ( 0 .. $number_of_rounds - 1 )
     {
-      my $player_result = $this->get_matrix_index( $player_number, $round );
+      my $player_result   = $this->get_matrix_index( $player_number, $round );
       my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
       my $player_tou_score = $player_result->{$RESULT_TOU_SCORE};
       my $player_is_first  = $player_result->{$RESULT_PLAYER_IS_FIRST};
