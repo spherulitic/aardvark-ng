@@ -871,8 +871,6 @@ sub setup_testrun
   my $reset_database = shift;
 
   my $alt_names_hash = Utils::populate_alt_names_hash();
-  my $deceased_players_hash
-    = Utils::populate_deceased_players_hash($alt_names_hash);
 
   my $dbh = Utils::connect_to_database($DATABASE_NAME);
 
@@ -885,20 +883,19 @@ sub setup_testrun
 
   Test::delete_players($dbh);
 
-  return ( $dbh, $alt_names_hash, $deceased_players_hash );
+  return ( $dbh, $alt_names_hash );
 }
 
 sub testcase
 {
   my $arg_ref = shift;
 
-  my $dbh                   = $arg_ref->{dbh};
-  my $alt_names_hash        = $arg_ref->{alt_names_hash};
-  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
-  my $player_data           = $arg_ref->{player_data};
-  my $set_expected          = $arg_ref->{set_expected};
-  my $case                  = $arg_ref->{test_case_number};
-  my $utilities             = $arg_ref->{utilities};
+  my $dbh            = $arg_ref->{dbh};
+  my $alt_names_hash = $arg_ref->{alt_names_hash};
+  my $player_data    = $arg_ref->{player_data};
+  my $set_expected   = $arg_ref->{set_expected};
+  my $case           = $arg_ref->{test_case_number};
+  my $utilities      = $arg_ref->{utilities};
 
   my $padded_case = sprintf '%3s', $case;
 
@@ -955,15 +952,14 @@ sub testcase
   }
 
   my $tou = TOU->new(
-    { dbh                   => $dbh,
-      filename              => $toufile,
-      alt_names_hash        => $alt_names_hash,
-      deceased_players_hash => $deceased_players_hash,
-      player_data           => $player_data,
-      correct               => $TEST_TC_CORRECTIONS->{$case},
-      tou_string            => $tou_string,
-      stsa_string           => $stsa_string,
-      stsa_filename         => $stsa_filename,
+    { dbh            => $dbh,
+      filename       => $toufile,
+      alt_names_hash => $alt_names_hash,
+      player_data    => $player_data,
+      correct        => $TEST_TC_CORRECTIONS->{$case},
+      tou_string     => $tou_string,
+      stsa_string    => $stsa_string,
+      stsa_filename  => $stsa_filename,
     }
   );
 
@@ -1020,8 +1016,7 @@ sub testrun
     return 1;
   }
 
-  my ( $dbh, $alt_names_hash, $deceased_players_hash )
-    = Test::setup_testrun($reset_database);
+  my ( $dbh, $alt_names_hash ) = Test::setup_testrun($reset_database);
 
   my $json_failure;
   my $expected_report;
@@ -1039,12 +1034,11 @@ sub testrun
     }
 
     ( $json_failure, $expected_report ) = Test::testcase(
-      { dbh                   => $dbh,
-        alt_names_hash        => $alt_names_hash,
-        deceased_players_hash => $deceased_players_hash,
-        player_data           => $player_data,
-        set_expected          => $set_expected,
-        test_case_number      => $i,
+      { dbh              => $dbh,
+        alt_names_hash   => $alt_names_hash,
+        player_data      => $player_data,
+        set_expected     => $set_expected,
+        test_case_number => $i,
       }
     );
 
@@ -1189,7 +1183,7 @@ sub tou_harness
   my $report          = $arg_ref->{report};
 
   my %test_cases_hashref = map { $_ => 1 } ( split /,/xms, $test_cases );
-  my @active_test_cases = (1) x ( $LAST_TC + 1 );
+  my @active_test_cases  = (1) x ( $LAST_TC + 1 );
 
   if ( $test_cases && $test_cases ne $TEST_ARGUMENT_NOT_SET )
   {

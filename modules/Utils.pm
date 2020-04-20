@@ -489,9 +489,27 @@ sub format_print
   return 1;
 }
 
+sub get_base_and_working_directories
+{
+  my $working_dir = $DEFAULT_WORKING_DIR;
+
+  my $base_dir;
+
+  if ( Utils::get_environment_name($EMPTY_STRING) )
+  {
+    $base_dir = '/srv/dev/';
+  }
+  else
+  {
+    $base_dir    = '/srv/iwi.wespa.org/';
+    $working_dir = '/srv/iwi.wespa.org/aardvark';
+  }
+  return ( $base_dir, $working_dir );
+}
+
 sub get_country_from_filename
 {
-  my $filename = shift;
+  my $filename       = shift;
   my @filename_items = split /\//xms, $filename;
   return $filename_items[$COUNTRY_IN_FILENAME_INDEX];
 }
@@ -506,7 +524,7 @@ sub get_coverage_report
 
   while (@coverage_html)
   {
-    my $line = shift @coverage_html;
+    my $line  = shift @coverage_html;
     my @cells = split /<td/xms, $line;
     shift @cells;
 
@@ -661,10 +679,11 @@ sub get_player_photo
 {
   my $name = shift;
 
-  my $photo_dir
-    = Utils::get_environment_name($DEFAULT_WORKING_DIR) . q{/} . $PHOTO_DIR;
+  my ( $base_dir, $working_dir ) = Utils::get_base_and_working_directories();
 
-  $name =~ s/\s//gxms;
+  my $photo_dir = "$working_dir/$PHOTO_DIR";
+
+  $name =~ s/\W//gxms;
 
   $name = lc $name;
 
@@ -879,7 +898,7 @@ sub insert_hash_list_into_table
     push @values, q{(} . ( join q{,}, @row ) . q{)};
   }
 
-  my $keys_string = q{(} . ( join q{,}, @keys ) . q{)};
+  my $keys_string   = q{(} . ( join q{,}, @keys ) . q{)};
   my $values_string = join ",$NEWLINE", @values;
 
   my $insert_statement
@@ -1232,6 +1251,8 @@ sub record_database
 {
   my $dbh = shift;
 
+  my ( $base_dir, $working_dir ) = Utils::get_base_and_working_directories();
+
   my $maybe_dev     = Utils::get_environment_name($EMPTY_STRING);
   my $database_name = Utils::get_environment_name($DATABASE_NAME);
 
@@ -1262,7 +1283,7 @@ sub record_database
   }
 
   Utils::write_string_to_file( $player_ids,
-    "$DEFAULT_WORKING_DIR/player_ids$maybe_dev.txt" );
+    "$working_dir/player_ids$maybe_dev.txt" );
 
   return 1;
 }
@@ -1524,6 +1545,118 @@ sub uniq
     $hash{$value} = 1;
   }
   return keys %hash;
+}
+
+sub update_player_data
+{
+  my $arg_ref = shift;
+
+  my $dbh             = $arg_ref->{dbh};
+  my $player_name     = $arg_ref->{player_name};
+  my $player_country  = $arg_ref->{player_country};
+  my $end_rating      = $arg_ref->{end_rating};
+  my $player_data     = $arg_ref->{player_data};
+  my $date            = $arg_ref->{date};
+  my $deceased_status = $arg_ref->{deceased_status};
+
+  # Search for this player in the players table
+  # If this player already exists in the database, we will need their
+  # id for the table to add them properly
+
+  my $player_query
+    = 'SELECT id, country, last_played '
+    . "FROM $PLAYERS_TABLE_NAME "
+    . "WHERE BINARY name=\"$player_name\"";
+
+  my @player_query_result
+    = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
+
+  my $player_id;
+
+  my $player_photo = Utils::get_player_photo($player_name);
+
+  if ( !@player_query_result )    # Player does not exist
+  {
+    $player_id = Utils::insert_hash_into_table(
+      $dbh,
+      $PLAYERS_TABLE_NAME,
+      { name        => $player_name,
+        country     => $player_country,
+        photo       => $player_photo,
+        suspended   => 0,
+        deceased    => $deceased_status,
+        total_games => 0,
+        last_played => $date,
+        rating      => $end_rating
+      }
+    );
+  }
+  else
+  {
+    $player_id = shift @player_query_result;
+    my $existing_country   = shift @player_query_result;
+    my $player_last_played = shift @player_query_result;
+
+    Utils::update_rating_and_country(
+      { dbh                => $dbh,
+        player_id          => $player_id,
+        existing_country   => $existing_country,
+        player_last_played => $player_last_played,
+        date               => $date,
+        player_country     => $player_country,
+        end_rating         => $end_rating,
+      }
+
+    );
+  }
+  $player_data->{ Utils::sanitize($player_name) }
+    = [ $player_name, $player_id ];
+  return $player_id;
+}
+
+sub update_rating_and_country
+{
+  my $arg_ref = shift;
+
+  my $dbh                = $arg_ref->{dbh};
+  my $player_id          = $arg_ref->{player_id};
+  my $existing_country   = $arg_ref->{existing_country};
+  my $player_last_played = $arg_ref->{player_last_played};
+  my $date               = $arg_ref->{date};
+  my $player_country     = $arg_ref->{player_country};
+  my $end_rating         = $arg_ref->{end_rating};
+
+  my $player_query_result_ref = shift;
+
+  $player_last_played =~ s/\D//gxms;
+
+  my $newer_tourney_cond = $player_last_played < $date;
+
+  my $no_country_cond = !$existing_country
+    && $player_country;
+
+  my $changed_to_newer_country_cond
+    = $existing_country
+    && $player_country
+    && $existing_country ne $player_country
+    && $player_last_played < $date;
+
+  my $changed_country_cond
+    = $existing_country
+    && $player_country
+    && $existing_country ne $player_country;
+
+  if ($newer_tourney_cond)
+  {
+    Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
+      { last_played => $date, rating => $end_rating } );
+  }
+  if ( $no_country_cond || $changed_to_newer_country_cond )
+  {
+    Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
+      { country => $player_country } );
+  }
+  return 1;
 }
 
 sub update_record_by_id

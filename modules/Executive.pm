@@ -28,6 +28,7 @@ if ( !caller )
 
   GetOptions(
     coverage => \$command_arguments->{coverage},
+    report   => \$command_arguments->{report},
     help     => \$command_arguments->{help},
     man      => \$command_arguments->{man},
   ) or pod2usage( -verbose => 0 );
@@ -64,7 +65,8 @@ if ( !caller )
 
     Executive::maintenance(
       { argument_string => $argument_string,
-        coverage        => $command_arguments->{coverage}
+        coverage        => $command_arguments->{coverage},
+        report          => $command_arguments->{report},
       }
     );
   }
@@ -102,10 +104,14 @@ sub maintenance
 
   my $argument_string = $arg_ref->{argument_string};
   my $coverage        = $arg_ref->{coverage};
+  my $report          = $arg_ref->{report};
 
-  my $test_command
-    = "./test/Test.pm -$EXECUTIVE_KEY $argument_string "
-    . " 2>&1 | tee $AARDVARK_MAINTENANCE_REPORT";
+  my $test_command = "./test/Test.pm -$EXECUTIVE_KEY $argument_string ";
+
+  if ($report)
+  {
+    $test_command .= " 2>&1 | tee $AARDVARK_MAINTENANCE_REPORT";
+  }
 
   if ($coverage)
   {

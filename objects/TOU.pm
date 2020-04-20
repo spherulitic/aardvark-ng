@@ -16,6 +16,7 @@ use lib './objects';
 use Constants;
 use Division;
 use HTML;
+use Ratings;
 use Result;
 use Utils;
 
@@ -31,10 +32,8 @@ sub compare_sts_and_tou_names
     $tou_names->{$key} = 0;
   }
 
-  my @nonbye_names
-    = grep { !Utils::player_name_is_bye($_) } keys %{$tou_names};
   my $missing_from_sts = join q{,},
-    sort grep { $tou_names->{$_} } @nonbye_names;
+    sort grep { $tou_names->{$_} } keys %{$tou_names};
 
   if ($missing_from_sts)
   {
@@ -335,12 +334,11 @@ sub new
 {
   my ( $tou_type, $arg_ref ) = @_;
 
-  my $dbh                   = $arg_ref->{dbh};
-  my $filename              = $arg_ref->{filename};
-  my $alt_names_hash        = $arg_ref->{alt_names_hash};
-  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
-  my $player_data           = $arg_ref->{player_data};
-  my $correct               = $arg_ref->{correct};
+  my $dbh            = $arg_ref->{dbh};
+  my $filename       = $arg_ref->{filename};
+  my $alt_names_hash = $arg_ref->{alt_names_hash};
+  my $player_data    = $arg_ref->{player_data};
+  my $correct        = $arg_ref->{correct};
 
   my $tou_string    = $arg_ref->{tou_string};
   my $stsa_string   = $arg_ref->{stsa_string};
@@ -393,22 +391,6 @@ sub new
     return $this;
   }
 
-  if ( !$this->{$TOU_STSA_STRING} )
-  {
-    # Covered by TC 2
-    $this->set_error_report(
-      Utils::format_error(
-        [ [ $TOU_ERROR_TITLE,
-            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_MISSING_STSA}
-          ],
-          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MISSING_STSA ],
-          [ 'File',                $filename ]
-        ]
-      )
-    );
-    return $this;
-  }
-
   my ( $date, $tournament_name ) = Utils::parse_tou_header($filename);
 
   if ( !$date || !$tournament_name )
@@ -425,6 +407,27 @@ sub new
       )
     );
     return $this;
+  }
+
+  if ( !$this->{$TOU_STSA_STRING} && !Ratings::is_ratable($date) )
+  {
+    # Covered by TC 2
+    $this->set_error_report(
+      Utils::format_error(
+        [ [ $TOU_ERROR_TITLE,
+            $TOU_REPORT_CODE_MAPPING->{$TOU_REPORT_CODE_MISSING_STSA}
+          ],
+          [ $TOU_ERROR_CODE_TITLE, $TOU_REPORT_CODE_MISSING_STSA ],
+          [ 'File',                $filename ]
+        ]
+      )
+    );
+    return $this;
+  }
+
+  if ( !$this->{$TOU_STSA_STRING} )
+  {
+    $this->{$TOU_CALCULATE_RATINGS} = 1;
   }
 
   my $event = {
@@ -454,12 +457,17 @@ sub new
   $this->{$TOU_EVENT}      = $event;
   $this->{$TOU_TOURNAMENT} = $tournament;
 
-  my $stsa_data = $this->process_sts(
-    { dbh                   => $dbh,
-      date                  => $date,
-      deceased_players_hash => $deceased_players_hash
-    }
-  );
+  my $stsa_data;
+
+  if ( !$this->{$TOU_CALCULATE_RATINGS} )
+  {
+    $stsa_data = $this->process_sts(
+      { dbh  => $dbh,
+        date => $date,
+      }
+    );
+  }
+
   $this->process($stsa_data);
   return $this;
 }
@@ -566,12 +574,12 @@ sub parse_sts_line
       my $wins_string           = $6;
       my $ratings_change_string = $7;
 
-      $is_new_player =~ s/^\s+|\s+$//gxms;
-      $player_country =~ s/^\s+|\s+$//gxms;
-      $player_name =~ s/^\s+|\s+$//gxms;
-      $world_ranks_string =~ s/^\s+|\s+$//gxms;
+      $is_new_player         =~ s/^\s+|\s+$//gxms;
+      $player_country        =~ s/^\s+|\s+$//gxms;
+      $player_name           =~ s/^\s+|\s+$//gxms;
+      $world_ranks_string    =~ s/^\s+|\s+$//gxms;
       $national_ranks_string =~ s/^\s+|\s+$//gxms;
-      $wins_string =~ s/^\s+|\s+$//gxms;
+      $wins_string           =~ s/^\s+|\s+$//gxms;
       $ratings_change_string =~ s/^\s+|\s+$//gxms;
 
       my @nranks = split /\s+/xms, $national_ranks_string;
@@ -818,7 +826,7 @@ sub process
 
       my @player_game_data = split /\s+/xms, $tou_line;
       my $games_played = () = $tou_line =~ /([-]?\d+\s+[+]?\d+(?:\s+|$))/gxms;
-      my @games = ();
+      my @games        = ();
 
       for my $i ( 0 .. $games_played - 1 )
       {
@@ -884,7 +892,11 @@ sub process
     }
   }
 
-  $this->compare_sts_and_tou_names();
+  if ( !$this->{$TOU_CALCULATE_RATINGS} )
+  {
+    $this->compare_sts_and_tou_names();
+  }
+
   $this->{$TOU_PROCESSED} = 1;
   $this->rewrite();
   return 1;
@@ -913,60 +925,117 @@ sub process_division
   $this->{$TOU_WARNING_REPORT}
     .= $verification_report ? $verification_report : $EMPTY_STRING;
 
-  my $number_of_rounds = $division->{$DIVISION_NUMBER_OF_ROUNDS};
-  my @players          = @{ $division->{$DIVISION_PLAYERS} };
-  my $number_of_rows   = scalar @players;
-
+  my $number_of_rounds        = $division->{$DIVISION_NUMBER_OF_ROUNDS};
+  my @players                 = @{ $division->{$DIVISION_PLAYERS} };
+  my $number_of_rows          = scalar @players;
   my @tournament_results      = ();
   my $game_and_player_results = {};
-  my $player_data_hash        = $this->{$TOU_PLAYER_DATA};
+  my $dbh;
+  my $deceased_players_hash;
+  my $ranking_info = {};
 
-  my $spread   = 0;
-  my $wins     = 0;
-  my $losses   = 0;
-  my $byes     = 0;
-  my $bye_wins = 0;
+  if ( $this->{$TOU_CALCULATE_RATINGS} )
+  {
+    Ratings::rate_division( $division, $ranking_info );
+    $dbh = Utils::connect_to_database();
+    $deceased_players_hash
+      = populate_deceased_players_hash( $this->{$TOU_CONVERSION_HASH} );
+  }
 
   for my $row ( 0 .. $number_of_rows - 1 )
   {
-    my $player_data
-      = $player_data_hash->{ Utils::sanitize( $players[$row] ) };
-    my $player_name           = $players[$row];
-    my $sanitized_player_name = Utils::sanitize($player_name);
-    my $player_id             = $player_data->[1];
-
-    $this->{$TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
-
-    if ( !$player_id )
+    if ( Utils::player_name_is_bye( $players[$row] ) )
     {
-      # In this case a player is missing from the STS/STA
-      # file and the error will have already been caught
       next;
     }
 
-    my $tournament_result = {
-      player_id         => $player_id,
-      player_name       => $player_name,
-      position          => 0,
-      wins              => 0,
-      losses            => 0,
-      byes              => 0,
-      bye_wins          => 0,
-      spread            => 0,
-      new_world_rank    => $stsa_data->{$player_id}->{new_world_rank},
-      old_world_rank    => $stsa_data->{$player_id}->{old_world_rank},
-      old_national_rank => $stsa_data->{$player_id}->{old_national_rank},
-      new_national_rank => $stsa_data->{$player_id}->{new_national_rank},
-      expected_wins     => $stsa_data->{$player_id}->{expected_wins},
-      start_rating      => $stsa_data->{$player_id}->{start_rating},
-      end_rating        => $stsa_data->{$player_id}->{end_rating},
-      date              => $this->{$TOU_TOURNAMENT}->{start_date},
-      tournament_name   => $this->{$TOU_TOURNAMENT}->{name}
-    };
+    my $tournament_result = {};
+    my $player_name;
+    my $player_id;
+
+    if ( !$this->{$TOU_CALCULATE_RATINGS} )
+    {
+      my $sanitized_player_name = Utils::sanitize( $players[$row] );
+      my $player_data = $this->{$TOU_PLAYER_DATA}->{$sanitized_player_name};
+      $player_name = $player_data->[0];
+      $player_id   = $player_data->[1];
+
+      $this->{$TOU_PLAYER_NAMES}->{$sanitized_player_name} = 1;
+
+      if ( !$player_id )
+      {
+        # In this case a player is missing from the STS/STA
+        # file and the error will have already been caught
+        next;
+      }
+
+      $tournament_result->{player_name} = $player_name;
+      $tournament_result->{player_id}   = $player_id;
+      $tournament_result->{new_world_rank}
+        = $stsa_data->{$player_id}->{new_world_rank};
+      $tournament_result->{old_world_rank}
+        = $stsa_data->{$player_id}->{old_world_rank};
+      $tournament_result->{new_national_rank}
+        = $stsa_data->{$player_id}->{new_national_rank};
+      $tournament_result->{old_national_rank}
+        = $stsa_data->{$player_id}->{old_national_rank};
+      $tournament_result->{expected_wins}
+        = $stsa_data->{$player_id}->{expected_wins};
+      $tournament_result->{start_rating}
+        = $stsa_data->{$player_id}->{start_rating};
+      $tournament_result->{end_rating}
+        = $stsa_data->{$player_id}->{end_rating};
+    }
+    else
+    {
+      # Update if no STS/STA file:
+      #  World and Nationa Rank new and old
+      #  expected wins
+      #  end rating
+      # Update player records and stsa_data here if no STS/STA file
+      $player_name = $players[$row];
+      $player_id   = Utils::update_player_data(
+        { dbh            => $dbh,
+          player_name    => $player_name,
+          player_country => $DEFAULT_UNKNOWN_COUNTRY_TRIGRAPH
+          ,    # This is an unknown for new players
+          end_rating      => $ranking_info->{$player_name}->{end_rating},
+          player_data     => $this->{$TOU_PLAYER_DATA},
+          date            => $this->{$TOU_TOURNAMENT}->{start_date},
+          deceased_status => $deceased_players_hash->{$player_name} ? 1 : 0,
+        }
+      );
+
+      $tournament_result->{player_name} = $player_name;
+      $tournament_result->{player_id}   = $player_id;
+      $tournament_result->{new_world_rank}
+        = $ranking_info->{$player_name}->{new_world_rank};
+      $tournament_result->{old_world_rank}
+        = $ranking_info->{$player_name}->{old_world_rank};
+      $tournament_result->{new_national_rank}
+        = $ranking_info->{$player_name}->{new_national_rank};
+      $tournament_result->{old_national_rank}
+        = $ranking_info->{$player_name}->{old_national_rank};
+      $tournament_result->{expected_wins}
+        = $ranking_info->{$player_name}->{expected_wins};
+      $tournament_result->{start_rating}
+        = $ranking_info->{$player_name}->{start_rating};
+      $tournament_result->{end_rating}
+        = $ranking_info->{$player_name}->{end_rating};
+    }
+
+    $tournament_result->{position} = 0;
+    $tournament_result->{wins}     = 0;
+    $tournament_result->{losses}   = 0;
+    $tournament_result->{byes}     = 0;
+    $tournament_result->{bye_wins} = 0;
+    $tournament_result->{spread}   = 0;
+    $tournament_result->{date}     = $this->{$TOU_TOURNAMENT}->{start_date};
+    $tournament_result->{tournament_name} = $this->{$TOU_TOURNAMENT}->{name};
 
     for my $round ( 0 .. $number_of_rounds - 1 )
     {
-      my $player_result = $division->get_matrix_index( $row, $round );
+      my $player_result   = $division->get_matrix_index( $row, $round );
       my $opponent_number = $player_result->{$RESULT_OPPONENT_NUMBER};
       $tournament_result->{wins}     += $player_result->{$RESULT_WINS};
       $tournament_result->{losses}   += $player_result->{$RESULT_LOSSES};
@@ -993,12 +1062,13 @@ sub process_sts
 {
   my ( $this, $arg_ref ) = @_;
 
-  my $dbh                   = $arg_ref->{dbh};
-  my $date                  = $arg_ref->{date};
-  my $deceased_players_hash = $arg_ref->{deceased_players_hash};
+  my $dbh  = $arg_ref->{dbh};
+  my $date = $arg_ref->{date};
 
   my $player_data    = $this->{$TOU_PLAYER_DATA};
   my $alt_names_hash = $this->{$TOU_CONVERSION_HASH};
+  my $deceased_players_hash
+    = Utils::populate_deceased_players_hash($alt_names_hash);
 
   my $stsa_metadata = { begin_player_captures => 0, };
   my $stsa_data     = {};
@@ -1022,6 +1092,7 @@ sub process_sts
         sts_metadata => $stsa_metadata,
       }
     );
+
     if ( $sts_line_extraction->{parse_failed} )
     {
       return;
@@ -1035,6 +1106,9 @@ sub process_sts
     }
 
     my $player_name = $sts_line_extraction->{player_name};
+
+    # Convert possible alt name to correct name
+    $player_name = Utils::convert_name( $player_name, $alt_names_hash );
 
     if ( Utils::player_name_is_bye($player_name) )
     {
@@ -1068,15 +1142,15 @@ sub process_sts
     $old_national_rank = Utils::negative_one_if_false($old_national_rank);
     $new_national_rank = Utils::negative_one_if_false($new_national_rank);
 
-    $player_country =~ s/^\s+|\s+$//gxms;
-    $player_name =~ s/^\s+|\s+$//gxms;
-    $new_world_rank =~ s/^\s+|\s+$//gxms;
-    $old_world_rank =~ s/^\s+|\s+$//gxms;
+    $player_country    =~ s/^\s+|\s+$//gxms;
+    $player_name       =~ s/^\s+|\s+$//gxms;
+    $new_world_rank    =~ s/^\s+|\s+$//gxms;
+    $old_world_rank    =~ s/^\s+|\s+$//gxms;
     $old_national_rank =~ s/^\s+|\s+$//gxms;
     $new_national_rank =~ s/^\s+|\s+$//gxms;
-    $expected_wins =~ s/^\s+|\s+$//gxms;
-    $start_rating =~ s/^\s+|\s+$//gxms;
-    $end_rating =~ s/^\s+|\s+$//gxms;
+    $expected_wins     =~ s/^\s+|\s+$//gxms;
+    $start_rating      =~ s/^\s+|\s+$//gxms;
+    $end_rating        =~ s/^\s+|\s+$//gxms;
 
     my @required_captures = grep { !$_ }
       ( $player_country, $player_name, $start_rating, $end_rating );
@@ -1109,68 +1183,20 @@ sub process_sts
 
     $this->{$TOU_WARNING_REPORT} .= $trigraph_warnings;
 
-    # Convert possible alt name to correct name
-    $player_name = Utils::convert_name( $player_name, $alt_names_hash );
-    my $pretty_player_name = Utils::make_pretty($player_name);
-    $player_name = Utils::sanitize($player_name);
+    $this->{$TOU_STS_PLAYER_NAMES}->{ Utils::sanitize($player_name) } = 1;
 
-    $this->{$TOU_STS_PLAYER_NAMES}->{$player_name} = 1;
+    my $deceased_status = $deceased_players_hash->{$player_name} ? 1 : 0;
+    my $player_id       = Utils::update_player_data(
+      { dbh             => $dbh,
+        player_name     => $player_name,
+        player_country  => $player_country,
+        end_rating      => $end_rating,
+        player_data     => $player_data,
+        date            => $date,
+        deceased_status => $deceased_status,
+      }
+    );
 
-    # Search for this player in the players table
-    # If this player already exists in the database, we will need their
-    # id for the table to add them properly
-
-    my $player_query
-      = 'SELECT id, country, last_played '
-      . "FROM $PLAYERS_TABLE_NAME "
-      . "WHERE BINARY name=\"$pretty_player_name\"";
-
-    my @player_query_result
-      = $dbh->selectrow_array( $player_query, { RaiseError => 1 } );
-
-    my $player_id;
-
-    my $deceased_status
-      = $deceased_players_hash->{$pretty_player_name} ? 1 : 0;
-
-    my $player_photo = Utils::get_player_photo($player_name);
-
-    if ( !@player_query_result )    # Player does not exist
-    {
-      $player_id = Utils::insert_hash_into_table(
-        $dbh,
-        $PLAYERS_TABLE_NAME,
-        { name        => $pretty_player_name,
-          country     => $player_country,
-          photo       => $player_photo,
-          suspended   => 0,
-          deceased    => $deceased_status,
-          total_games => 0,
-          last_played => $date,
-          rating      => $end_rating
-        }
-      );
-    }
-    else
-    {
-
-      $player_id = shift @player_query_result;
-      my $existing_country   = shift @player_query_result;
-      my $player_last_played = shift @player_query_result;
-
-      TOU::update_rating_and_country(
-        { dbh                => $dbh,
-          player_id          => $player_id,
-          existing_country   => $existing_country,
-          player_last_played => $player_last_played,
-          date               => $date,
-          player_country     => $player_country,
-          end_rating         => $end_rating,
-        }
-
-      );
-    }
-    $player_data->{$player_name} = [ $pretty_player_name, $player_id ];
     $stsa_data->{$player_id} = {
       new_world_rank    => $new_world_rank,
       old_world_rank    => $old_world_rank,
@@ -1239,51 +1265,6 @@ sub to_string
 
   $tou_string .= '*** END OF FILE ***';
   return $tou_string;
-}
-
-sub update_rating_and_country
-{
-  my $arg_ref = shift;
-
-  my $dbh                = $arg_ref->{dbh};
-  my $player_id          = $arg_ref->{player_id};
-  my $existing_country   = $arg_ref->{existing_country};
-  my $player_last_played = $arg_ref->{player_last_played};
-  my $date               = $arg_ref->{date};
-  my $player_country     = $arg_ref->{player_country};
-  my $end_rating         = $arg_ref->{end_rating};
-
-  my $player_query_result_ref = shift;
-
-  $player_last_played =~ s/\D//gxms;
-
-  my $newer_tourney_cond = $player_last_played < $date;
-
-  my $no_country_cond = !$existing_country
-    && $player_country;
-
-  my $changed_to_newer_country_cond
-    = $existing_country
-    && $player_country
-    && $existing_country ne $player_country
-    && $player_last_played < $date;
-
-  my $changed_country_cond
-    = $existing_country
-    && $player_country
-    && $existing_country ne $player_country;
-
-  if ($newer_tourney_cond)
-  {
-    Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
-      { last_played => $date, rating => $end_rating } );
-  }
-  if ( $no_country_cond || $changed_to_newer_country_cond )
-  {
-    Utils::update_record_by_id( $dbh, $PLAYERS_TABLE_NAME, $player_id,
-      { country => $player_country } );
-  }
-  return 1;
 }
 
 1;

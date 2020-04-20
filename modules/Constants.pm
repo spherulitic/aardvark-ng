@@ -230,6 +230,31 @@ Readonly our $LEXICONS =>
 Readonly our $SUBCOMMAND_CRON        => 'cron';
 Readonly our $SUBCOMMAND_MAINTENANCE => 'main';
 
+# Ratings.pm
+
+# Readonly our $RATINGS_K_FACTOR   = 'Ratings K Factor';
+# Readonly our $RATINGS_MULTIPLIER = 'Ratings Multiplier';
+# Readonly our $RATINGS_RATING_DIFFERENCE = 'Ratings Difference'
+
+# Readonly our $RATINGS_CONFIGURATION =>
+# {
+#   20200601 =>
+#   {
+#     $RATINGS_K_FACTOR =>
+#     {
+#       0 => 20,
+#       1800 => 16,
+#       2000 => 8
+#     },
+#     $RATINGS_MULTIPLIER => 10,
+#     $RATINGS_RATING_DIFFERENCE => 400,
+#   },
+#   30000101 =>
+#   {
+
+#   }
+# }
+
 # Update.pm
 
 Readonly our $TOU_LOAD_LOG_NAME => 'tou_load.log';
@@ -282,9 +307,9 @@ Readonly our $LAST_COVERAGE_TC             => 21;
 
 Readonly our $LAST_TC => $LAST_COVERAGE_TC;
 
-Readonly our $TEST_TC_RETESTS => { 17 => 16 };
+Readonly our $TEST_TC_RETESTS        => { 17 => 16 };
 Readonly our $TEST_PLAYERS_TO_DELETE => ['Deleted Player'];
-Readonly our $TEST_TC_CORRECTIONS => { 20 => 1 };
+Readonly our $TEST_TC_CORRECTIONS    => { 20 => 1 };
 
 Readonly our $PERL_CRITIC_SEVERITY => 1;
 
@@ -318,15 +343,16 @@ Readonly our $TOU_STS_PLAYER_NAMES => 'TOU STS Player Names';
 Readonly our $TOU_PLAYER_DATA      => 'TOU Player Data';
 Readonly our $TOU_ERROR_REPORT     => 'TOU Error Report';
 
-Readonly our $TOU_LOADED           => 'TOU Loaded';
-Readonly our $TOU_PROCESSED        => 'TOU Processed';
-Readonly our $TOU_REWRITE_FILENAME => 'TOU Rewrite Filename';
-Readonly our $TOU_REWRITE_NEEDED   => 'TOU Rewrite Needed';
-Readonly our $TOU_VALID            => 'TOU Valid';
-Readonly our $TOU_WARNING_REPORT   => 'TOU Warning Report';
-Readonly our $TOU_EVENT            => 'TOU Event';
-Readonly our $TOU_TOURNAMENT       => 'TOU Tournament';
-Readonly our $TOU_DIVISION_DATA    => 'TOU Division Data';
+Readonly our $TOU_LOADED            => 'TOU Loaded';
+Readonly our $TOU_PROCESSED         => 'TOU Processed';
+Readonly our $TOU_REWRITE_FILENAME  => 'TOU Rewrite Filename';
+Readonly our $TOU_REWRITE_NEEDED    => 'TOU Rewrite Needed';
+Readonly our $TOU_CALCULATE_RATINGS => 'TOU Calculate Ratings';
+Readonly our $TOU_VALID             => 'TOU Valid';
+Readonly our $TOU_WARNING_REPORT    => 'TOU Warning Report';
+Readonly our $TOU_EVENT             => 'TOU Event';
+Readonly our $TOU_TOURNAMENT        => 'TOU Tournament';
+Readonly our $TOU_DIVISION_DATA     => 'TOU Division Data';
 
 Readonly our $TOU_REWRITE_EXTENSION  => '.rewrite';
 Readonly our $TOU_BASE_WINNING_SCORE => 2000;
@@ -1240,6 +1266,10 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $LEXICONS
   $SUBCOMMAND_CRON
   $SUBCOMMAND_MAINTENANCE
+  $RATINGS_K_FACTOR
+  $RATINGS_MULTIPLIER
+  $RATINGS_RATING_DIFFERENCE
+  $RATINGS_CONFIGURATION
   $TOU_LOAD_LOG_NAME
   $TOU_LOAD_IGNORE_ERRORS
   $COVERAGE_HTML_FILE
@@ -1302,6 +1332,7 @@ our @EXPORT =    ## no critic (ProhibitAutomaticExportation)
   $TOU_PROCESSED
   $TOU_REWRITE_FILENAME
   $TOU_REWRITE_NEEDED
+  $TOU_CALCULATE_RATINGS
   $TOU_VALID
   $TOU_WARNING_REPORT
   $TOU_EVENT

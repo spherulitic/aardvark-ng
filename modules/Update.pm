@@ -147,19 +147,7 @@ sub load_tournament_data
 
 sub push_local_content
 {
-  my $working_dir = $DEFAULT_WORKING_DIR;
-
-  my $base_dir;
-
-  if ( Utils::get_environment_name($EMPTY_STRING) )
-  {
-    $base_dir = '/srv/dev/';
-  }
-  else
-  {
-    $base_dir    = '/srv/iwi.wespa.org/';
-    $working_dir = '/srv/iwi.wespa.org/aardvark';
-  }
+  my ( $base_dir, $working_dir ) = Utils::get_base_and_working_directories();
 
   # Copy new data to dev dir
   system "cp -r $HTML_DIR $working_dir";
