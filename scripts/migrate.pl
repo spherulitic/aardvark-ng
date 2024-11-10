@@ -408,8 +408,8 @@ sub load_tournament_files
       my $old_national_rank;
       my $new_national_rank;
       # Rating deviations
-      my $old_rd = undef;
-      my $new_rd = undef;
+      my $old_rating_dev = undef;
+      my $new_rating_dev = undef;
 
       # Player info must be extracted differently if the file is .STS as
       # opposed to .STA
@@ -450,8 +450,8 @@ sub load_tournament_files
         $new_national_rank = $player_items[13];
 	if ($player_items_length == 16)
 	{
-	  $old_rd = $player_items[14];
-	  $new_rd = $player_items[15];
+	  $old_rating_dev = $player_items[14];
+	  $new_rating_dev = $player_items[15];
 	  $sts_has_rds = 1;
 	}
       }
@@ -790,8 +790,8 @@ sub load_tournament_files
         "new_world_rank"    => $new_world_rank,
         "old_national_rank" => $old_national_rank,
         "new_national_rank" => $new_national_rank,
-	"old_rating_dev"    => $old_rd,
-	"new_rating_dev"    => $new_rd,
+	"old_rating_dev"    => $old_rating_dev,
+	"new_rating_dev"    => $new_rating_dev,
       };
     }
 
