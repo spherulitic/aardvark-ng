@@ -54,7 +54,7 @@ my %deceased_players_hash = ();
 
 my %alt_names_hash = ();
 
-my $photo_dir = Constants::PHOTO_DIR;
+my $photo_dir = $working_directory . "/" . Constants::PHOTO_DIR;
 
 unless (caller)
 {
@@ -308,7 +308,7 @@ sub load_tournament_files
     if (!( -e $sts_file || -e $sta_file))
     {
       format_error([
-                     ["ERROR: ", "Missing .STS file and .STA file and .ST4 file"],
+                     ["ERROR: ", "Missing .STS or .STA file"],
                      ["File:  ", $filename]
                    ]);
       next filename;
@@ -408,8 +408,8 @@ sub load_tournament_files
       my $old_national_rank;
       my $new_national_rank;
       # Rating deviations
-      my $old_rating_dev = undef;
-      my $new_rating_dev = undef;
+      my $old_rd = undef;
+      my $new_rd = undef;
 
       # Player info must be extracted differently if the file is .STS as
       # opposed to .STA
@@ -450,8 +450,8 @@ sub load_tournament_files
         $new_national_rank = $player_items[13];
 	if ($player_items_length == 16)
 	{
-	  $old_rating_dev = $player_items[14];
-	  $new_rating_dev = $player_items[15];
+	  $old_rd = $player_items[14];
+	  $new_rd = $player_items[15];
 	  $sts_has_rds = 1;
 	}
       }
@@ -790,8 +790,8 @@ sub load_tournament_files
         "new_world_rank"    => $new_world_rank,
         "old_national_rank" => $old_national_rank,
         "new_national_rank" => $new_national_rank,
-	"old_rating_dev"    => $old_rating_dev,
-	"new_rating_dev"    => $new_rating_dev,
+	"old_rating_dev"    => $old_rd,
+	"new_rating_dev"    => $new_rd,
       };
     }
 
@@ -813,7 +813,6 @@ sub load_tournament_files
         if ($begin_rd_captures >= 2 && $line =~ /^\|.\w+\s+([^\|]+)\|[^\|]*\|[^\|]*\|[^\|]*\|([^\|]*)\|/)
 	{
 	  my $player_name = sanitize(convert_name($1));
-	  $st4_names{$player_name} = 1;
 	  my $old_rd;
 	  my $new_rd;
           my $rds_string = $2;
