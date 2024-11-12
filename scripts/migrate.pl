@@ -813,6 +813,7 @@ sub load_tournament_files
         if ($begin_rd_captures >= 2 && $line =~ /^\|.\w+\s+([^\|]+)\|[^\|]*\|[^\|]*\|[^\|]*\|([^\|]*)\|/)
 	{
 	  my $player_name = sanitize(convert_name($1));
+	  $st4_names{$player_name} = 1;
 	  my $old_rd;
 	  my $new_rd;
           my $rds_string = $2;
