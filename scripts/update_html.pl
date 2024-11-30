@@ -1093,11 +1093,11 @@ sub get_tournament_results_html_string
 
   # Move to constants plz
 
-  my $tournament_title_ref = ['Details', '#', 'Date', 'Tournament', 'Wins', 'Losses', 'Byes', 'Spread', 'Place', 'Start Rating', 'End Rating', 'Rating Change'];
-  my $tournament_keys_ref  = ['details', '#', 'tr_date', 'tr_tournament_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_position', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
+  my $tournament_title_ref = ['Details', '#', 'Date', 'Tournament', 'Wins', 'Losses', 'Byes', 'Spread', 'Place', 'Start Rating', 'End Rating', 'Rating Change', 'Start Deviation', 'End Deviation'];
+  my $tournament_keys_ref  = ['details', '#', 'tr_date', 'tr_tournament_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_position', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change', 'tr_old_rating_dev', 'tr_new_rating_dev'];
 
-  my $tournament_standings_title_ref = ['Details', 'Place'      ,    'Seed', 'Name',              'Wins',    'Losses',    'Byes',    'Spread',    'Start Rating', 'End Rating', 'Rating Change'];
-  my $tournament_standings_keys_ref  = ['details', 'tr_position', 'tr_seed', 'tr_player_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change'];
+  my $tournament_standings_title_ref = ['Details', 'Place'      ,    'Seed', 'Name',              'Wins',    'Losses',    'Byes',    'Spread',    'Start Rating', 'End Rating', 'Rating Change', 'Start Deviation', 'End Deviation'];
+  my $tournament_standings_keys_ref  = ['details', 'tr_position', 'tr_seed', 'tr_player_name', 'tr_wins', 'tr_losses', 'tr_byes', 'tr_spread', 'tr_start_rating', 'tr_end_rating', 'tr_rating_change', 'tr_old_rating_dev', 'tr_new_rating_dev'];
 
   my $games_title_ref = ['Round', 'Opponent', 'Opponent Rating', 'Result', 'Scores', ''];
   my $games_keys_ref  = ['g_round', 'opp_name', 'opp_rating',  'pr1_result', 'pr1_score', 'pr2_score'];
