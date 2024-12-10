@@ -566,7 +566,7 @@ sub get_datalist_html
             }
           );
 
-          if (relevantOptions.length == 1 && relevantOptions[0] === input.value)
+          if (relevantOptions.length == 1 || relevantOptions[0] === input.value)
           {
             var pname = document.getElementById('$input_id').value;
             var pid   = document.querySelector('#$html_id option[value=$escaped_char'+pname+'$escaped_char]').dataset.value;
