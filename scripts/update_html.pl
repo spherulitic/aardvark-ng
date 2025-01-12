@@ -301,7 +301,7 @@ my \$content =
 </table>
 ";
 
-my \$results_html_page .= <<STOP
+my \$results_html_page .= <<'STOP';
 $doctype
 <html>
   <head>
@@ -329,7 +329,11 @@ $doctype
       <div  style="background-color:white;padding-top:10px;"  class="container">
         <div class="row">
           <div class="table-responsive">
-            \$content
+STOP
+
+\$results_html_page .= \$content; 
+
+\$results_html_page .= <<'STOP';
           </div>
         </div>
       </div>
@@ -339,7 +343,6 @@ $doctype
 </html>
 
 STOP
-;
 
 print "Content-Type: text/html\n\n";
 print \$results_html_page;
@@ -516,17 +519,17 @@ sub update_dynamically_loaded_content
     $country_options .= "<option value='$trigraph'>$fullname</option>\n";
   }
 
-  my $tournament_form = "Between <select name='startyear'>\n<option value='1993'>Before 2000</option>";
+  my $tournament_form = "Between <select name='startyear'>";
 
   $tournament_form .= $year_options;
  
-  $tournament_form .= "</select> and\n";
+  $tournament_form .= "\n<option value='1993'>Before 2000</option>\n</select> and\n";
 
-  $tournament_form .= "<select name='endyear'>\n<option value='1999'>Before 2000</option>";
+  $tournament_form .= "<select name='endyear'>";
   
   $tournament_form .= $year_options;
 
-  $tournament_form .= "</select> in <select name='state'>\n<option selected='selected' value='all'>All countries</option>";
+  $tournament_form .= "\n<option value='1999'>Before 2000</option>\n</select> in <select name='state'>\n<option selected='selected' value='all'>All countries</option>";
 
   $tournament_form .= $country_options;
 
