@@ -1657,7 +1657,7 @@ sub get_rankings_html_string
 
   @players = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @players;   
 
-  @players = sort { $b->{'rating'} <=> $a->{'rating'} } @players;
+  @players = sort { $b->{'rating'} <=> $a->{'rating'} || $b->{'total_games'} <=> $a->{'total_games'} } @players;
 
   my $full_rankings_string = "      <table class='table'>\n";
 

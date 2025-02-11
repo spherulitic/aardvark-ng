@@ -35,7 +35,7 @@ def copy_year_dirs(src, dst, execute):
                 relative_path = sub_item.relative_to(src_dir)
                 dst_file = dst_dir / relative_path
 
-                if sub_item.is_file() and not dst_file.exists():
+                if sub_item.is_file():
                     print(f"Copying {sub_item} to {dst_file}")
                     if execute:
                         dst_file.parent.mkdir(parents=True, exist_ok=True)
