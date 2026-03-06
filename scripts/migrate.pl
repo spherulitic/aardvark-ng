@@ -54,7 +54,7 @@ my %deceased_players_hash = ();
 
 my %alt_names_hash = ();
 
-my $photo_dir = $working_directory . "/" . Constants::PHOTO_DIR;
+my $photo_dir = Constants::PHOTO_DIR;
 
 unless (caller)
 {
@@ -308,7 +308,7 @@ sub load_tournament_files
     if (!( -e $sts_file || -e $sta_file))
     {
       format_error([
-                     ["ERROR: ", "Missing .STS or .STA file"],
+                     ["ERROR: ", "Missing .STS file and .STA file and .ST4 file"],
                      ["File:  ", $filename]
                    ]);
       next filename;

@@ -405,7 +405,7 @@ sub update_dynamically_loaded_content
   my $players_table = Constants::PLAYERS_TABLE_NAME;
   my @player_data = @{$dbh->selectall_arrayref("SELECT * FROM $players_table"  , {Slice => {}, "RaiseError" => 1})};
 
-  @player_data = sort {$b->{'rating'} <=> $a->{'rating'}} @player_data;
+  @player_data = sort { $b->{'rating'} <=> $a->{'rating'} || $b->{'total_games'} <=> $a->{'total_games'} } @player_data;
 
   my @valid_player_data = grep { !$_->{'deceased'} && !$_->{'suspended'} && $_->{'current'}} @player_data;   
 

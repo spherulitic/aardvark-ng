@@ -4,8 +4,8 @@ import argparse
 from pathlib import Path
 
 def is_valid_year_dir(directory_name):
-    """Check if the directory name is a year >= 2025."""
-    return directory_name.isdigit() and int(directory_name) >= 2025
+    """Check if the directory name is a valid year."""
+    return directory_name.isdigit() and int(directory_name) >= 1993 
 
 def copy_year_dirs(src, dst, execute):
     """Copy year-based directories from src to dst."""
@@ -46,7 +46,7 @@ def copy_year_dirs(src, dst, execute):
         print("Finished dry run")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Copy year-based directories >= 2024 from src to dst.")
+    parser = argparse.ArgumentParser(description="Copy year-based directories >= 1993 from src to dst.")
     parser.add_argument("src", type=str, help="Source directory")
     parser.add_argument("dst", type=str, help="Destination directory")
     parser.add_argument("--execute", action="store_true", help="Actually perform the copying.")
