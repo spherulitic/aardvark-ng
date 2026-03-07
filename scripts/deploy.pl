@@ -30,7 +30,7 @@ unless(caller)
    }
    else
    {
-     deploy('/var/www/html/wordpress/', '/var/www/html/wordpress/aardvark');
+     deploy('/app', '/app/html_data');
    }
 }
 
