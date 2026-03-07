@@ -1360,7 +1360,7 @@ sub load_tournament_files
 
     # print Dumper($game_and_player_results_hashref);
  
-    foreach my $key (keys $game_and_player_results_hashref)
+    foreach my $key (keys %$game_and_player_results_hashref)
     {
       my $gapr = $game_and_player_results_hashref->{$key};
 
