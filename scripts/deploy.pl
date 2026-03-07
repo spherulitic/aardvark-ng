@@ -30,7 +30,7 @@ unless(caller)
    }
    else
    {
-     deploy('/app', '/app/html_data');
+     deploy('/app/', '/app/html_data');
    }
 }
 

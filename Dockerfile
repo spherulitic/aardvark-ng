@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . .
 RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN mkdir -p /app/tournament_data /app/html_data
+RUN mkdir -p /app/tournament_data /app/html_data /app/working /app/backups
 RUN chmod +x /app/scripts/update_tournament_data.sh
 
 CMD ["/app/scripts/update_tournament_data.sh"]
