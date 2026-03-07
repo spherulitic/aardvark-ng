@@ -37,20 +37,20 @@ use constant HTML_ID_ENTRY_TAG         => 'entry';
 
 use constant HTML_PATH_TO_WORKING_DIR  => "../..";
 
-use constant TOURNAMENT_DATA_DIR            => '/srv/dev/tournament_data';
-use constant DEFAULT_WORKING_DIR            => "/srv/dev/aardvark";
-use constant DEFAULT_SHORT_NAME_WORKING_DIR => "aardvark";
+use constant TOURNAMENT_DATA_DIR            => '/app/tournament_data';
+use constant DEFAULT_WORKING_DIR            => "/app/working";
+use constant DEFAULT_SHORT_NAME_WORKING_DIR => "working";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
 use constant DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
 use constant DEFAULT_FILE_REGEX             => '.tou';
 
-use constant DEFAULT_BACKUP_DIR             => "/app/aardvark-ng/backups/backup_original";
+use constant DEFAULT_BACKUP_DIR             => "/app/backups";
 
 use constant COUNTRY_FLAGS_DIR              => "flags";
 
 use constant PRODUCTION_DATABASE_NAME      => $ENV{AARDVARK_PROD_DB_NAME} // 'wespaprod';
 use constant DATABASE_NAME                 => $ENV{AARDVARK_DB_NAME} // 'wespa';
-use constant DATABASE_HOST_NAME            => $ENV{AARDVARK_DB_HOST} // 'localhost';
+use constant DATABASE_HOST_NAME            => $ENV{AARDVARK_DB_HOST} // '127.0.0.1';
 use constant DATABASE_USER_NAME            => $ENV{AARDVARK_DB_USER} // 'wespa';
 use constant DATABASE_PASSWORD             => $ENV{AARDVARK_DB_PASSWORD} // 'xxx';
 
