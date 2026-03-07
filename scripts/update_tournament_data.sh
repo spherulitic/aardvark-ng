@@ -1,14 +1,21 @@
+#!/bin/bash
 
-cd /home/jcastellano/aardvark-ng
+cd /app
 
 LOGNAME=$(date --iso-8601)
-LOGFULLNAME="./logs/daily-cronjob-$LOGNAME.log"
+LOGFULLNAME="/app/logs/daily-cronjob-$LOGNAME.log"
 
-echo "Processing Beginning " && date >> "$LOGFULLNAME" 2>&1
+# Ensure log directory exists
+mkdir -p /app/logs
 
-python3 ./scripts/copy_tournament_files.py /var/www/html/wordpress/aardvark /srv/dev/tournament_data --execute
-perl ./scripts/migrate.pl --html  >> "$LOGFULLNAME" 2>&1
-perl ./scripts/deploy.pl          >> "$LOGFULLNAME" 2>&1
+echo "Processing Beginning " && date | tee -a "$LOGFULLNAME"
+echo "Using mounted tournament data from /app/tournament_data" | tee -a "$LOGFULLNAME"
 
-echo "Processing Complete " && date >> "$LOGFULLNAME" 2>&1
+# Rename .STA to .ST4 files (now with write access to mounted volume)
+python3 ./scripts/rename_sta_to_st4.py /app/tournament_data/ --execute 2>&1 | tee -a "$LOGFULLNAME"
 
+# Run Perl scripts
+perl ./scripts/migrate.pl --html 2>&1 | tee -a "$LOGFULLNAME"
+perl ./scripts/deploy.pl 2>&1 | tee -a "$LOGFULLNAME"
+
+echo "Processing Complete " && date | tee -a "$LOGFULLNAME"
