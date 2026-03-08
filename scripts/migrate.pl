@@ -408,8 +408,8 @@ sub load_tournament_files
       my $old_national_rank;
       my $new_national_rank;
       # Rating deviations
-      my $old_rd = undef;
-      my $new_rd = undef;
+      my $old_rating_dev = undef;
+      my $new_rating_dev = undef;
 
       # Player info must be extracted differently if the file is .STS as
       # opposed to .STA
@@ -450,8 +450,8 @@ sub load_tournament_files
         $new_national_rank = $player_items[13];
 	if ($player_items_length == 16)
 	{
-	  $old_rd = $player_items[14];
-	  $new_rd = $player_items[15];
+	  $old_rating_dev = $player_items[14];
+	  $new_rating_dev = $player_items[15];
 	  $sts_has_rds = 1;
 	}
       }
@@ -713,6 +713,12 @@ sub load_tournament_files
         my $existing_country = shift @player_query_result;
         my $player_last_played = shift @player_query_result;
 
+        # Handle undef values
+        if (!defined $player_last_played) {
+          $player_last_played = '0000-00-00';
+          warn "Player $player_name had NULL last_played, set to default\n";
+        }
+
         $player_last_played =~ s/\D//g;
 
         $player_names_to_ids->{$player_name} = $player_id;
@@ -790,8 +796,8 @@ sub load_tournament_files
         "new_world_rank"    => $new_world_rank,
         "old_national_rank" => $old_national_rank,
         "new_national_rank" => $new_national_rank,
-	"old_rating_dev"    => $old_rd,
-	"new_rating_dev"    => $new_rd,
+	"old_rating_dev"    => $old_rating_dev,
+	"new_rating_dev"    => $new_rating_dev,
       };
     }
 
@@ -813,15 +819,15 @@ sub load_tournament_files
         if ($begin_rd_captures >= 2 && $line =~ /^\|.\w+\s+([^\|]+)\|[^\|]*\|[^\|]*\|[^\|]*\|([^\|]*)\|/)
 	{
 	  my $player_name = sanitize(convert_name($1));
-	  my $old_rd;
-	  my $new_rd;
+	  my $old_rating_dev;
+	  my $new_rating_dev;
           my $rds_string = $2;
           my @rd_values = split /\s+/, $rds_string;
           @rd_values = grep {$_} @rd_values;
           if (scalar @rd_values == 2)
           {
-            $old_rd = $rd_values[0];
-            $new_rd = $rd_values[1];
+            $old_rating_dev = $rd_values[0];
+            $new_rating_dev = $rd_values[1];
           }
 	  else 
 	  {
@@ -833,8 +839,8 @@ sub load_tournament_files
                          ]);
             next filename;
 	  }
-	  $tournament_results->{$player_name}->{'old_rating_dev'} = $old_rd;
-	  $tournament_results->{$player_name}->{'new_rating_dev'} = $new_rd;
+	  $tournament_results->{$player_name}->{'old_rating_dev'} = $old_rating_dev;
+	  $tournament_results->{$player_name}->{'new_rating_dev'} = $new_rating_dev;
 	}	
       }
     }
