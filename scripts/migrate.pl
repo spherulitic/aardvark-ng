@@ -299,9 +299,6 @@ sub load_tournament_files
   my $dbh = shift;
   my $filenames_array_ref = shift;
 
-  my $timer = Devel::Timer->new();
-  $timer->mark("load_tournament_files START");
-
   my @filenames_array = @{$filenames_array_ref};
 
   my $player_names_to_ids = {};
@@ -312,8 +309,6 @@ sub load_tournament_files
 
   filename: foreach my $filename (@filenames_array)
   {
-    $timer->mark("START file: $filename") if $. % 200 == 0; # Mark every 200 files
-
     if($dbh->{AutoCommit}) {
       # Start transaction for this file
       $dbh->begin_work();
@@ -882,7 +877,6 @@ sub load_tournament_files
       };
     }
 
-    $timer->mark("Finished process STS/STA for: $filename") if $. % 200 == 0; # Mark every 200 files
     # If the STS file did not have rating deviations, try to
     # get the rating deviations from the .ST4 file, if one exists
     my $used_st4_file = 0;
@@ -929,7 +923,6 @@ sub load_tournament_files
       }
 
     }
-    $timer->mark("Finished processing ST4 for: $filename") if $. % 200 == 0; # Mark every 200 files
     # Now parse the .tou file for game data
 
     my $current_division_number = 0;
@@ -1108,7 +1101,6 @@ sub load_tournament_files
       $is_header = 0;
     }
 
-    $timer->mark("Finished processing .TOU for: $filename") if $. % 200 == 0; # Mark every 200 files
      my $failure_comp = compare_names(\%tou_names, \%st_names);
      
      if ($failure_comp)
@@ -1351,7 +1343,6 @@ sub load_tournament_files
         }
       }
     }
-    $timer->mark("Finish game and player results for: $filename") if $. % 200 == 0; # Mark every 200 files
     # Add to database top down so we can link up the foreign keys
     my $event_id      = insert_hash_into_table($dbh, $events_tn, $event);
 
@@ -1429,7 +1420,6 @@ sub load_tournament_files
       format_error($failure);
       die "SKIP: $filename";
     }
-    $timer->mark("FINISH results processing for: $filename") if $. % 200 == 0; # Mark every 200 files
 
     foreach my $key (keys %{$tournament_results})
     {
@@ -1451,8 +1441,6 @@ sub load_tournament_files
       insert_hash_into_table($dbh, $tournament_results_tn, $tournament_results->{$key});
     }
    
-    $timer->mark("FINISH inserting results for: $filename") if $. % 200 == 0; # Mark every 200 files
-
     foreach my $key (keys %$game_and_player_results_hashref)
     {
       my $gapr = $game_and_player_results_hashref->{$key};
@@ -1469,7 +1457,6 @@ sub load_tournament_files
         insert_hash_into_table($dbh, $player_results_tn, $gapr->{"player2_result"});
       }
     }
-    $timer->mark("FINISH player result inserts for: $filename") if $. % 200 == 0; # Mark every 200 files
 
 
     my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
@@ -1485,7 +1472,6 @@ sub load_tournament_files
     $dbh->do($insert_processed_tou, {"RaiseError" => 1});
 
   $dbh->commit();
-    $timer->mark("FINISH file: $filename") if $. % 200 == 0; # Mark every 200 files
   # end eval block
    };
 
@@ -1507,7 +1493,6 @@ sub load_tournament_files
     next filename;
    }
   }
-    $timer->mark("FINISH processing all files");
 
   # Update ratings for all players
   # Legacy code, last played is now updated on the fly
@@ -1539,9 +1524,6 @@ sub load_tournament_files
   )
   "; 
   $dbh->do($update_provisional, {"RaiseError" => 1});
-
-  $timer->mark("load_tournament_files END");
-  $timer->report();
 
   return \@tournament_ids_to_convert_to_html;
 }
