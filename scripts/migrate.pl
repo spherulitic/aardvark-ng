@@ -78,6 +78,7 @@ sub main
 
   # This hash is used to consolidate the names that are considered duplciates
   populate_alt_names_hash();
+  populate_deceased_players_hash();
 
   drop_all_wespa_tables(\%alt_names_hash);
 
@@ -93,15 +94,13 @@ sub main
   my $filenames_array_ref = get_tournament_data_filenames($tou_data_directory,
                             $year_regex, $country_trigraph_regex, $file_regex);
   
-  printf "Filnames found: %s\n\n", scalar @{$filenames_array_ref};
+  printf "Filenames found: %s\n\n", scalar @{$filenames_array_ref};
 
   # print Dumper($filenames_array_ref);
 
   # check_for_duplicate_files($filenames_array_ref);
 
   # print Dumper(\%alt_names_hash);
-
-  populate_deceased_players_hash();
 
 
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
@@ -116,28 +115,57 @@ sub main
   }
 }
 
-sub populate_deceased_players_hash
-{
-  my $deceased_players_filename = Constants::INPUT_DIR . "/" .
-                                  Constants::DECEASED_PLAYERS;
-  
-  open(DECEASED, "<", $deceased_players_filename);
-  while(<DECEASED>)
-  {
-    chomp $_;
-    $_ =~ s/^\s+|\s+$//g;
+ sub populate_deceased_players_hash
+ {
+   my $deceased_players_filename = Constants::INPUT_DIR . "/" .
+                                   Constants::DECEASED_PLAYERS;
+   
+   # Initialize a counter
+   my $deceased_count = 0;
+   my @deceased_list;
+   
+   open(DECEASED, "<", $deceased_players_filename) 
+       or die "ERROR: Cannot open deceased players file: $!";
+   
+   while(<DECEASED>)
+   {
+     chomp $_;
+     $_ =~ s/^\s+|\s+$//g;
+     
+     # Skip empty lines
+     next unless $_;
+     
+     my $true_name = $_;
+     my $alt_name  = $alt_names_hash{$_};
+     
+     if ($alt_name)
+     {
+       $true_name = $alt_name;
+     }
+     
+     $deceased_players_hash{$_} = 1;
+     $deceased_count++;
+     push @deceased_list, $true_name;
+   }
+   
+   close(DECEASED);
+   
+#   # Print summary
+#   print "Found $deceased_count deceased players\n";
+#   if ($deceased_count > 0)
+#   {
+#     print "Deceased players list:\n";
+#     foreach my $player (sort @deceased_list)
+#     {
+#       print " - $player\n";
+#     }
+#   }
+#   else
+#   {
+#     print " WARNING - No deceased players found!\n";
+#   }
+ }
 
-    my $true_name = $_;
-    my $alt_name  = $alt_names_hash{$_};
-
-    if ($alt_name)
-    {
-      $true_name = $alt_name;
-    }
-
-    $deceased_players_hash{$_} = 1;
-  }
-}
 sub populate_alt_names_hash
 {
   my $dup_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
@@ -684,7 +712,7 @@ sub load_tournament_files
             "country"     => $player_country,
             "photo"       => get_player_photo($player_name),
             "suspended"   => 0,  # Updated later
-            "deceased"    => !!$deceased_players_hash{$player_name},
+            "deceased"    => exists $deceased_players_hash{$player_name} ? 1 : 0,
             "provisional" => -1, # Updated later
             "total_games" => 0,   # Updated later
             "last_played" => $date, 
@@ -712,6 +740,11 @@ sub load_tournament_files
         my $player_id = shift @player_query_result;
         my $existing_country = shift @player_query_result;
         my $player_last_played = shift @player_query_result;
+
+        # Handle undef values
+        if (!defined $player_last_played) {
+          $player_last_played = '0000-00-00';
+        }
 
         $player_last_played =~ s/\D//g;
 
@@ -813,16 +846,16 @@ sub load_tournament_files
         if ($begin_rd_captures >= 2 && $line =~ /^\|.\w+\s+([^\|]+)\|[^\|]*\|[^\|]*\|[^\|]*\|([^\|]*)\|/)
 	{
 	  my $player_name = sanitize(convert_name($1));
-	  $st4_names{$player_name} = 1;
-	  my $old_rd;
-	  my $new_rd;
+
+	  my $old_rating_dev;
+	  my $new_rating_dev;
           my $rds_string = $2;
           my @rd_values = split /\s+/, $rds_string;
           @rd_values = grep {$_} @rd_values;
           if (scalar @rd_values == 2)
           {
-            $old_rd = $rd_values[0];
-            $new_rd = $rd_values[1];
+            $old_rating_dev = $rd_values[0];
+            $new_rating_dev = $rd_values[1];
           }
 	  else 
 	  {
@@ -834,10 +867,12 @@ sub load_tournament_files
                          ]);
             next filename;
 	  }
-	  $tournament_results->{$player_name}->{'old_rating_dev'} = $old_rd;
-	  $tournament_results->{$player_name}->{'new_rating_dev'} = $new_rd;
+	  $tournament_results->{$player_name}->{'old_rating_dev'} = $old_rating_dev;
+	  $tournament_results->{$player_name}->{'new_rating_dev'} = $new_rating_dev;
+          $st4_names{$player_name} = 1;
 	}	
       }
+
     }
     # Now parse the .tou file for game data
 
@@ -1017,40 +1052,40 @@ sub load_tournament_files
       $is_header = 0;
     }
 
-    my $failure_comp = compare_names(\%tou_names, \%st_names);
-
-    if ($failure_comp)
-    {
-      my $not_in_tou = $failure_comp->[0];
-      my $not_in_st  = $failure_comp->[1];
-
-      format_error([
-                     ["ERROR:                ", "names in the .tou and .STS/.STA files do not match" ],
-                     ["File:                 ", $filename],
-                     ["Missing in .tou:      ", $not_in_tou],
-                     ["Missing in .STS/.STA: ", $not_in_st]
-                   ]);
-      next filename;
-    }
-
-    if ($used_st4_file)
-    {
-      $failure_comp = compare_names(\%tou_names, \%st4_names);
-  
-      if ($failure_comp)
-      {
-        my $not_in_tou = $failure_comp->[0];
-        my $not_in_st4  = $failure_comp->[1];
-  
-        format_error([
-                       ["ERROR:                ", "names in the .tou and .ST4 files do not match" ],
-                       ["File:                 ", $filename],
-                       ["Missing in .tou:      ", $not_in_tou],
-                       ["Missing in .ST4:      ", $not_in_st4]
-                     ]);
-        next filename;
-      }
-    }
+     my $failure_comp = compare_names(\%tou_names, \%st_names);
+     
+     if ($failure_comp)
+     {
+       my $not_in_tou = $failure_comp->[0];
+       my $not_in_st  = $failure_comp->[1];
+       
+       format_error([
+                      ["ERROR:                ", "names in the .tou and .STS/.STA files do not match" ],
+                      ["File:                 ", $filename],
+                      ["Missing in .tou:      ", $not_in_tou],
+                      ["Missing in .STS/.STA: ", $not_in_st]
+                    ]);
+       next filename;
+     }
+     
+     if ($used_st4_file)
+     {
+       $failure_comp = compare_names(\%tou_names, \%st4_names);
+       
+       if ($failure_comp)
+       {
+       my $not_in_tou = $failure_comp->[0];
+       my $not_in_st4  = $failure_comp->[1];
+       
+         format_error([
+                        ["ERROR:                ", "names in the .tou and .ST4 files do not match" ],
+                        ["File:                 ", $filename],
+                        ["Missing in .tou:      ", $not_in_tou],
+                        ["Missing in .ST4:      ", $not_in_st4]
+                      ]);
+         next filename;
+       }
+     }
 
     my $game_and_player_results_hashref = {};
 
@@ -1361,7 +1396,7 @@ sub load_tournament_files
 
     # print Dumper($game_and_player_results_hashref);
  
-    foreach my $key (keys $game_and_player_results_hashref)
+    foreach my $key (keys %$game_and_player_results_hashref)
     {
       my $gapr = $game_and_player_results_hashref->{$key};
 
@@ -1659,6 +1694,10 @@ sub insert_hash_into_table
 
   $keys_string   .= ")";
   $values_string .= ")";
+ 
+ foreach my $key (keys %{$hashref}) {
+     my $val = defined $hashref->{$key} ? $hashref->{$key} : 'UNDEF';
+ }
 
   $dbh->do("INSERT INTO $table $keys_string VALUE $values_string;", {"RaiseError" => 1}  );
   return $dbh->last_insert_id(undef, undef, undef, undef);

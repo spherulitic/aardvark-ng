@@ -63,7 +63,7 @@ sub drop_all_wespa_tables
   my $reset_last_played =
   "
   UPDATE $players_tn AS p
-  SET p.last_played = '0000-00-00'
+  SET p.last_played = NULL
   "; 
   
   $dbh->do($reset_last_played, {"RaiseError" => 1}); 
