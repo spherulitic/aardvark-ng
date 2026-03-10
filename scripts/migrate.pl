@@ -8,6 +8,7 @@ use Getopt::Long;
 use Pod::Usage qw(pod2usage);
 use DBI;
 use Data::Dumper;
+use Devel::Timer;
 
 use lib './modules';
 use Constants;
@@ -65,6 +66,8 @@ unless (caller)
 sub main
 {
   
+  my $timer = Devel::Timer->new();
+
   GetOptions (
                'directory:s' => \$working_directory,
                'year:s'      => \$year_regex,
@@ -74,26 +77,33 @@ sub main
                'help|?'      => \$help,
              ); 
 
+  $timer->mark("option parsing");
   pod2usage(1) if $help;  
 
   # This hash is used to consolidate the names that are considered duplciates
   populate_alt_names_hash();
   populate_deceased_players_hash();
+  $timer->mark("name hashes populated");
 
   drop_all_wespa_tables(\%alt_names_hash);
+  $timer->mark("wespa tables dropped");
 
   # take a backup of the players and print the player id numbers
 
   record_database();
+  $timer->mark("record database - backup players");
 
   my $dbh = initialize_database($tables, $creation_order);
+  $timer->mark("database initialized");
   
   my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
                                                 "name");
+  $timer->mark("lexicons inserted");
   
   my $filenames_array_ref = get_tournament_data_filenames($tou_data_directory,
                             $year_regex, $country_trigraph_regex, $file_regex);
   
+  $timer->mark("file list gathered");
   printf "Filenames found: %s\n\n", scalar @{$filenames_array_ref};
 
   # print Dumper($filenames_array_ref);
@@ -104,15 +114,20 @@ sub main
 
 
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
+  $timer->mark("tournament files processed (BIG ONE)");
 
   update_current_players();
+  $timer->mark("current players updated");
 
   copy_database_to_production();
+  $timer->mark("database copied to production");
 
   if ($create_html)
   {
     update_html($tournament_ids_to_create);
+    $timer->mark("HTML generated");
   }
+  $timer->report();
 }
 
  sub populate_deceased_players_hash
@@ -284,14 +299,32 @@ sub load_tournament_files
   my $dbh = shift;
   my $filenames_array_ref = shift;
 
+  my $timer = Devel::Timer->new();
+  $timer->mark("load_tournament_files START");
+
   my @filenames_array = @{$filenames_array_ref};
 
   my $player_names_to_ids = {};
 
   my @tournament_ids_to_convert_to_html = ();
 
+  my %player_cache;
+
   filename: foreach my $filename (@filenames_array)
   {
+    $timer->mark("START file: $filename") if $. % 200 == 0; # Mark every 200 files
+
+    if($dbh->{AutoCommit}) {
+      # Start transaction for this file
+      $dbh->begin_work();
+    } else {
+      # Already in a transaction
+      print "DEBUG: Already in transaction for $filename\n";
+    }
+
+    # Wrap file processing in an eval for error handling
+    eval {
+
     my $tou_file = $filename;
 
     $filename =~ s/\.(.*)$//;
@@ -310,7 +343,7 @@ sub load_tournament_files
                      ["ERROR: ", "Missing .tou file"],
                      ["File:  ", $tou_file]
                    ]);
-      next filename;
+      die "SKIP: $filename";
     }
 
     my $loaded_tournaments_tn = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
@@ -321,7 +354,7 @@ sub load_tournament_files
     if (@tou_query_result)
     {
       # print "Tournament already processed: $tou_file (Skipping)\n";
-      next filename;
+      die "SKIP: $filename";
     }
 
     # First validate and maybe correct the .tou file
@@ -339,7 +372,7 @@ sub load_tournament_files
                      ["ERROR: ", "Missing .STS file and .STA file and .ST4 file"],
                      ["File:  ", $filename]
                    ]);
-      next filename;
+      die "SKIP: $filename";
     }
 
     # This code prefers to use the .STS file
@@ -372,7 +405,7 @@ sub load_tournament_files
                      ["ERROR:", "malformed .tou header"],
                      ["File: ", $tou_file],
                    ]);
-      next filename;
+      die "SKIP: $filename";
     }
 
     # These hashes of .STS/.STA names and .tou names will be used to check
@@ -455,7 +488,7 @@ sub load_tournament_files
                            ["File:  ", $sts_or_sta_file], 
                            ["Line:  ", $_],
                          ]);
-            next filename;  
+            die "SKIP: $filename";  
   
 	  }
 	} elsif ($player_items_length != scalar @player_items)
@@ -465,7 +498,7 @@ sub load_tournament_files
                            ["File:  ", $sts_or_sta_file], 
                            ["Line:  ", $_],
                          ]);
-            next filename;  
+            die "SKIP: $filename";  
 	}
         $player_country    = $player_items[1];
         $player_name       = $player_items[2];
@@ -529,7 +562,7 @@ sub load_tournament_files
                            ["File:  ", $sts_or_sta_file], 
                            ["Line:  ", $_],
                          ]);
-            next filename;
+            die "SKIP: $filename";
           }
 
 
@@ -552,7 +585,7 @@ sub load_tournament_files
                            ["File:  ", $sts_or_sta_file], 
                            ["Line:  ", $_],
                          ]);
-            next filename;
+            die "SKIP: $filename";
           }
 
           my $wins_string    = $6;
@@ -572,7 +605,7 @@ sub load_tournament_files
                            ["File:  ", $sts_or_sta_file], 
                            ["Line:  ", $_],
                          ]);
-            next filename;
+            die "SKIP: $filename";
           }
 
           my $ratings_change_string    = $7;
@@ -600,7 +633,7 @@ sub load_tournament_files
                            ["File:  ", $sts_or_sta_file], 
                            ["Line:  ", $_],
                          ]);
-            next filename;
+            die "SKIP: $filename";
           }
 
           if ($switch_world_and_nation)
@@ -666,7 +699,7 @@ sub load_tournament_files
                        ["Name:  ", $player_name],
                        ["Array: ", Dumper(\@required_captures)]
                      ]);
-        next filename;
+        die "SKIP: $filename";
       }
 
       # Some country trigraphs in the old aardvark are incorrect
@@ -685,7 +718,7 @@ sub load_tournament_files
 #                       ["File:   ", $sts_or_sta_file],
 #                       ["Player: ", $player_name]
 #                     ]);
-#        next filename;
+#        die "SKIP: $filename";
 #      }
  
       $st_names{$player_name} = 1;
@@ -694,10 +727,31 @@ sub load_tournament_files
       # If this player already exists in the database, we will need their
       # id for the table to add them properly
 
-      my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$pretty_player_name\"";
+#      my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=\"$pretty_player_name\"";
 
-      my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
+#      my @player_query_result = $dbh->selectrow_array($player_query, {"RaiseError" => 1});
 
+      my @player_query_result;
+      if (exists $player_cache{$pretty_player_name}) {
+         # Found in cache
+         my $cached = $player_cache{$pretty_player_name};
+         @player_query_result = ($cached->{id}, $cached->{country}, $cached->{last_played});
+     } else {
+         # Not in cache, query database
+         my $player_query = "SELECT id, country, last_played FROM $players_tn WHERE BINARY name=?";
+         my $sth = $dbh->prepare($player_query);
+         $sth->execute($pretty_player_name);
+         @player_query_result = $sth->fetchrow_array();
+
+         # Store in cache for next time
+         if (@player_query_result) {
+           $player_cache{$pretty_player_name} = {
+             id => $player_query_result[0],
+             country => $player_query_result[1],
+             last_played => $player_query_result[2]
+           };
+         }
+       }
 
       my $player_id;
 
@@ -797,7 +851,7 @@ sub load_tournament_files
                        ["File:  ", $sts_or_sta_file], 
                        ["Name:  ", $player_name] 
                      ]);
-        next filename;
+        die "SKIP: $filename";
       }
 
       # Still need spread and position
@@ -828,6 +882,7 @@ sub load_tournament_files
       };
     }
 
+    $timer->mark("Finished process STS/STA for: $filename") if $. % 200 == 0; # Mark every 200 files
     # If the STS file did not have rating deviations, try to
     # get the rating deviations from the .ST4 file, if one exists
     my $used_st4_file = 0;
@@ -865,7 +920,7 @@ sub load_tournament_files
                            ["Name:  ", $player_name],
                            ["Line:  ", $line]
                          ]);
-            next filename;
+            die "SKIP: $filename";
 	  }
 	  $tournament_results->{$player_name}->{'old_rating_dev'} = $old_rating_dev;
 	  $tournament_results->{$player_name}->{'new_rating_dev'} = $new_rating_dev;
@@ -874,6 +929,7 @@ sub load_tournament_files
       }
 
     }
+    $timer->mark("Finished processing ST4 for: $filename") if $. % 200 == 0; # Mark every 200 files
     # Now parse the .tou file for game data
 
     my $current_division_number = 0;
@@ -908,7 +964,7 @@ sub load_tournament_files
                          ["ERROR:", "Missing division name"],
                          ["File: ", $tou_file],
                        ]);
-          next filename;
+          die "SKIP: $filename";
         }
 
         my @player_game_data = split/\s+/, $_;
@@ -933,7 +989,7 @@ sub load_tournament_files
                            ["Division: ", $current_division_name],
                            ["Line:     ", $_]
                          ]);
-            next filename;         
+            die "SKIP: $filename";         
         }
 
         for(my $i = 0; $i < $games_played; $i++)
@@ -953,7 +1009,7 @@ sub load_tournament_files
                            ["Games played: ", $games_played],
                            ["Line:         ", $_]
                          ]);
-            next filename;
+            die "SKIP: $filename";
           }
           if ($opp_number == $current_player_number || $score == 1350)
           {
@@ -990,7 +1046,7 @@ sub load_tournament_files
                          ["Division: ", $current_division_name],
                          ["Player:   ", $player_name]
                        ]);
-          next filename;
+          die "SKIP: $filename";
         }
 
         if ($tou_names{$player_name})
@@ -1036,7 +1092,7 @@ sub load_tournament_files
                          ["File: ", $tou_file], 
                          ["Line: ", $_],
                        ]);
-          next filename;                
+          die "SKIP: $filename";                
         }
 
         $player_spreads->{$player_name} = 0;
@@ -1052,6 +1108,7 @@ sub load_tournament_files
       $is_header = 0;
     }
 
+    $timer->mark("Finished processing .TOU for: $filename") if $. % 200 == 0; # Mark every 200 files
      my $failure_comp = compare_names(\%tou_names, \%st_names);
      
      if ($failure_comp)
@@ -1065,7 +1122,7 @@ sub load_tournament_files
                       ["Missing in .tou:      ", $not_in_tou],
                       ["Missing in .STS/.STA: ", $not_in_st]
                     ]);
-       next filename;
+       die "SKIP: $filename";
      }
      
      if ($used_st4_file)
@@ -1083,7 +1140,7 @@ sub load_tournament_files
                         ["Missing in .tou:      ", $not_in_tou],
                         ["Missing in .ST4:      ", $not_in_st4]
                       ]);
-         next filename;
+         die "SKIP: $filename";
        }
      }
 
@@ -1128,7 +1185,7 @@ sub load_tournament_files
                          ["Opp number:        ", $opp_number],
                          ["Opp of opp number: ", $opp_opp_number]
                        ]);
-          next filename;
+          die "SKIP: $filename";
         }
 
 
@@ -1154,7 +1211,7 @@ sub load_tournament_files
 #                         ["Player score: ", $player_score],
 #                         ["Opp key:      ", $opp_key],
 #                       ]);
-#          next filename;
+#          die "SKIP: $filename";
           $opp_score = 0;
           $opp_name = "BYE";
         } 
@@ -1179,7 +1236,7 @@ sub load_tournament_files
                          ["Opp score:    ", $opp_score],
                          ["Opp key:      ", $opp_key],
                        ]);
-          next filename;
+          die "SKIP: $filename";
         } 
 
         my $is_bye = player_name_is_bye($opp_name) || $opp_number == $player_number;
@@ -1294,6 +1351,7 @@ sub load_tournament_files
         }
       }
     }
+    $timer->mark("Finish game and player results for: $filename") if $. % 200 == 0; # Mark every 200 files
     # Add to database top down so we can link up the foreign keys
     my $event_id      = insert_hash_into_table($dbh, $events_tn, $event);
 
@@ -1305,7 +1363,7 @@ sub load_tournament_files
                        ["Table: ", $events_tn],
                        ["Hash:  ", Dumper($event)],
                    ]);
-      next filename;  
+      die "SKIP: $filename";  
     }
 
     $tournament->{"event_id"} = $event_id;
@@ -1320,7 +1378,7 @@ sub load_tournament_files
                        ["Table: ", $tournaments_tn],
                        ["Hash:  ", Dumper($tournament)],
                    ]);
-      next filename;  
+      die "SKIP: $filename";  
     }
 
 
@@ -1362,7 +1420,6 @@ sub load_tournament_files
       $tr->{"division_id"} = $division_id;
       $tr->{"spread"}      = $player_spreads->{$key};
     }
-    # print "the reses:\n" . Dumper($tournament_results);
     # Position must be derived at this point
     my $failure = rank_tournament_results($tournament_results);
     if ($failure)
@@ -1370,8 +1427,9 @@ sub load_tournament_files
       unshift @$failure, ["Files:  ", $filename];
       unshift @$failure, ["ERROR:  ", "Ranking tournament results failed"];
       format_error($failure);
-      next filename;
+      die "SKIP: $filename";
     }
+    $timer->mark("FINISH results processing for: $filename") if $. % 200 == 0; # Mark every 200 files
 
     foreach my $key (keys %{$tournament_results})
     {
@@ -1393,9 +1451,8 @@ sub load_tournament_files
       insert_hash_into_table($dbh, $tournament_results_tn, $tournament_results->{$key});
     }
    
+    $timer->mark("FINISH inserting results for: $filename") if $. % 200 == 0; # Mark every 200 files
 
-    # print Dumper($game_and_player_results_hashref);
- 
     foreach my $key (keys %$game_and_player_results_hashref)
     {
       my $gapr = $game_and_player_results_hashref->{$key};
@@ -1412,6 +1469,7 @@ sub load_tournament_files
         insert_hash_into_table($dbh, $player_results_tn, $gapr->{"player2_result"});
       }
     }
+    $timer->mark("FINISH player result inserts for: $filename") if $. % 200 == 0; # Mark every 200 files
 
 
     my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
@@ -1426,8 +1484,30 @@ sub load_tournament_files
 
     $dbh->do($insert_processed_tou, {"RaiseError" => 1});
 
+  $dbh->commit();
+    $timer->mark("FINISH file: $filename") if $. % 200 == 0; # Mark every 200 files
+  # end eval block
+   };
 
+   if ($@) {
+    # Something went wrong parsing a tournament
+    my $error = $@;
+    $dbh->rollback();
+    if ($error =~ /^SKIP: (.*)/) {
+      # Planned skip (previously next filename)
+      print "Skipping file $1 due to $error\n";
+    } else {
+    # Real error
+    format_error([
+      ["ERROR: ", "Transaction failed for file"],
+      ["File: ", $filename],
+      ["Error: ", $error]
+    ]); 
+    }
+    next filename;
+   }
   }
+    $timer->mark("FINISH processing all files");
 
   # Update ratings for all players
   # Legacy code, last played is now updated on the fly
@@ -1459,6 +1539,9 @@ sub load_tournament_files
   )
   "; 
   $dbh->do($update_provisional, {"RaiseError" => 1});
+
+  $timer->mark("load_tournament_files END");
+  $timer->report();
 
   return \@tournament_ids_to_convert_to_html;
 }
@@ -1668,9 +1751,6 @@ sub insert_hash_into_table
   my $table   = shift;
   my $hashref = shift;
  
-  #print "the hashref: " . Dumper($hashref);
- 
-
   my $keys_string   = "(";
   my $values_string = "(";
 

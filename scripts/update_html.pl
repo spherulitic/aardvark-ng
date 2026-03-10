@@ -98,16 +98,23 @@ sub update_html
   @player_ids_to_create = @{uniq(\@player_ids_to_create)};
   @player_ids_to_create = sort {$a <=> $b} @player_ids_to_create;
 
+  my $player_data = $dbh->selectall_hashref(
+                       "SELECT id, name, country, total_games, rating, photo
+                        FROM " . Constants::PLAYERS_TABLE_NAME,
+                        "id" # Key the hash by player id
+                    );
+
   # Update the player html pages that have been changed
   foreach my $player_id (@player_ids_to_create)
   {
-    my @player = @{query_table($dbh, Constants::PLAYERS_TABLE_NAME, "id", $player_id)};
+    my $player = $player_data->{$player_id};
+    next unless $player;
   
-    my $player_name      = $player[0]->{'name'};
-    my $country_trigraph = $player[0]->{'country'};
-    my $games_played     = $player[0]->{'total_games'};
-    my $rating           = $player[0]->{'rating'};
-    my $photo_filename   = $player[0]->{'photo'};
+    my $player_name      = $player->{'name'};
+    my $country_trigraph = $player->{'country'};
+    my $games_played     = $player->{'total_games'};
+    my $rating           = $player->{'rating'};
+    my $photo_filename   = $player->{'photo'};
 
     if (!$country_trigraph)
     {

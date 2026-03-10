@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
+RUN cpan -i Devel::Timer
+
 WORKDIR /app
 COPY . .
 RUN ln -s /usr/bin/python3 /usr/bin/python
