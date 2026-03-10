@@ -165,20 +165,6 @@ sub main
    
    close(DECEASED);
    
-#   # Print summary
-#   print "Found $deceased_count deceased players\n";
-#   if ($deceased_count > 0)
-#   {
-#     print "Deceased players list:\n";
-#     foreach my $player (sort @deceased_list)
-#     {
-#       print " - $player\n";
-#     }
-#   }
-#   else
-#   {
-#     print " WARNING - No deceased players found!\n";
-#   }
  }
 
 sub populate_alt_names_hash
@@ -233,10 +219,10 @@ sub convert_name
 
 sub convert_trigraph
 {
-  my $trigraph = shift;
+  my ($trigraph, $context) = @_;  # $context is a hashref with any additional info
   my $trigraph_hash = Constants::COUNTRY_TRIGRAPH_TO_COUNTRY_NAME_HASHREF;
   my $trigraph_correction_hash = Constants::COUNTRY_TRIGRAPH_CONVERSION;
-  
+ 
   # Trigraph is correct
   if ($trigraph_hash->{$trigraph})
   {
@@ -258,10 +244,28 @@ sub convert_trigraph
   # by 'OS' and we don't want to clog up the logs
   if (length $trigraph == 3)
   {
-    format_error([
-                   ['WARNING:  ', 'Uncorrected country trigraph'],
-                   ['Trigraph: ', $trigraph],
-                 ]); 
+    my @error_details = (['WARNING:  ', 'Uncorrected country trigraph'],
+                         ['Trigraph: ', $trigraph]);
+    
+    # Add any context that was provided
+    if ($context) {
+      # Player context
+      push @error_details, ['Player:   ', $context->{player_name}] if $context->{player_name};
+      push @error_details, ['Tournament:', $context->{tournament_name}] if $context->{tournament_name};
+      
+      # File context
+      push @error_details, ['File:     ', $context->{filename}] if $context->{filename};
+      push @error_details, ['Line:     ', $context->{line}] if $context->{line};
+      
+      # Location context
+      push @error_details, ['Country:  ', $context->{country}] if $context->{country};
+      push @error_details, ['Division: ', $context->{division}] if $context->{division};
+      
+      # Generic additional info
+      push @error_details, ['Info:     ', $context->{info}] if $context->{info};
+    }
+    
+    format_error(\@error_details);
   }
   return undef;
 }
@@ -326,7 +330,7 @@ sub load_tournament_files
 
     my @filename_items = split /\//, $filename;
 
-    my $tournament_country = $filename_items[5];
+    my $tournament_country = $filename_items[-2];
 
     my $sts_file = $filename . $sts_file_extension;
     my $sta_file = $filename . $sta_file_extension;
@@ -389,6 +393,7 @@ sub load_tournament_files
     close $tou_read;
     chomp $first_line;
     $first_line =~ s/\r//g;
+
     if ($first_line =~ /^\*.(\d\d).(\d\d).(\d\d\d\d) (.*)$/)
     {
       $date = $3 . $2 . $1;
@@ -429,7 +434,9 @@ sub load_tournament_files
       "start_date" => $date, # This is changed later
       "end_date"   => $date, # This is changed later
       "name"       => $tournament_name, 
-      "country"    => convert_trigraph($tournament_country), 
+      "country"    => convert_trigraph($tournament_country, {tournament_name => $tournament_name,
+                                                             filename => $tou_file,
+                                                             info => "$date"} ), 
       # "td"         => "director of tournament",
     };
     my @divisions = ();
@@ -697,14 +704,20 @@ sub load_tournament_files
         die "SKIP: $filename";
       }
 
-      # Some country trigraphs in the old aardvark are incorrect
-      # and need to be converted to valid ISO 3166 trigraphs
-      $player_country = convert_trigraph($player_country);      
       # Convert possible alt name to correct name
 
       $player_name = convert_name($player_name);
       my $pretty_player_name = make_pretty($player_name);
       $player_name = sanitize($player_name);
+
+      # Some country trigraphs in the old aardvark are incorrect
+      # and need to be converted to valid ISO 3166 trigraphs
+      $player_country = convert_trigraph($player_country, {
+                                                player_name => $pretty_player_name,
+                                                filename => $sts_or_sta_file,
+                                                line => $_,
+                                                info => "Processing player in tournament $tournament_name on $date"});      
+
       # Error with name appears twice, can happen if a player switches divisions midtournament
 #      if ($st_names{$player_name})
 #      {

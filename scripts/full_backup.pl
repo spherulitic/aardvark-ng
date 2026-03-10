@@ -130,7 +130,7 @@ sub full_backup
     my $remote_files_cmd = "scp -r $local_backup_fullname $remote_user\@$remote_host:$remote_backup_location";
     system $remote_files_cmd;
 
-    my $remote_database_cmd = "mysqldump -u $user_name -p'$password' $database_name | ssh $remote_user\@$remote_host mysql -u $remote_db_user -p'$remote_db_password' $database_backup_name";
+    my $remote_database_cmd = "mysqldump -h 127.0.0.1 -u $user_name -p'$password' $database_name | ssh $remote_user\@$remote_host mysql -u $remote_db_user -p'$remote_db_password' $database_backup_name";
 
     system $remote_database_cmd;
   }

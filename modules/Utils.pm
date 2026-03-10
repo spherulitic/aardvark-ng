@@ -262,7 +262,7 @@ sub copy_database_to_production
     . " mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD'";
   system "echo 'CREATE DATABASE         $production_database_name' | "
     . "mysql -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD'";
-  system "mysqldump -u  $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
+  system "mysqldump -h 127.0.0.1 -u  $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
     . " $database_name | mysql -u $DATABASE_USER_NAME "
     . "--password='$DATABASE_PASSWORD' $production_database_name";
   return 1;
@@ -1261,7 +1261,7 @@ sub record_database
   my $dumpfile = $tstamp . '_mysqldump_' . $database_name;
 
   my $dump_cmd
-    = "mysqldump -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
+    = "mysqldump -h 127.0.0.1 -u $DATABASE_USER_NAME --password='$DATABASE_PASSWORD' "
     . " $database_name $PLAYERS_TABLE_NAME > $LOG_DIR/$dumpfile";
 
   system $dump_cmd;
