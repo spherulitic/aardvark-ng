@@ -116,8 +116,8 @@ sub full_backup
   backup_years($working_directory, $local_backup_fullname);
   my $local_database_cmd =
   "
-    mysql --user=$user_name --password=$password -e 'CREATE DATABASE $database_backup_name;'
-    mysqldump -h 127.0.0.1 --no-tablespaces --user=$user_name --password=$password $database_name | mysql --user=$user_name --password=$password $database_backup_name
+    mysql -h 127.0.0.1 --user=$user_name --password=$password -e 'CREATE DATABASE $database_backup_name;'
+    mysqldump -h 127.0.0.1 --no-tablespaces --user=$user_name --password=$password $database_name | mysql -h 127.0.0.1 --user=$user_name --password=$password $database_backup_name
 
   ";
 
@@ -130,7 +130,7 @@ sub full_backup
     my $remote_files_cmd = "scp -r $local_backup_fullname $remote_user\@$remote_host:$remote_backup_location";
     system $remote_files_cmd;
 
-    my $remote_database_cmd = "mysqldump -h 127.0.0.1 -u $user_name -p'$password' $database_name | ssh $remote_user\@$remote_host mysql -u $remote_db_user -p'$remote_db_password' $database_backup_name";
+    my $remote_database_cmd = "mysqldump -h 127.0.0.1 -u $user_name -p'$password' $database_name | ssh $remote_user\@$remote_host mysql -h 127.0.0.1 -u $remote_db_user -p'$remote_db_password' $database_backup_name";
 
     system $remote_database_cmd;
   }

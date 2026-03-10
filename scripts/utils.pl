@@ -19,7 +19,7 @@ sub copy_database_to_production
 
   system "echo 'DROP DATABASE IF EXISTS $production_database_name' | mysql -u $user_name --password='$password'";
   system "echo 'CREATE DATABASE         $production_database_name' | mysql -u $user_name --password='$password'";
-  system "mysqldump -h 127.0.0.1 --no-tablespaces -u $user_name --password='$password' $database_name | mysql -u $user_name --password='$password' $production_database_name";
+  system "mysqldump -h 127.0.0.1 --no-tablespaces -u $user_name --password='$password' $database_name | mysql -h 127.0.0.1 -u $user_name --password='$password' $production_database_name";
 }
 
 sub uniq {
