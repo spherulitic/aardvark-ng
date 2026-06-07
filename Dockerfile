@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     libdbd-mysql-perl \
     default-mysql-client \
+    libtext-csv-xs-perl \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cpan -i Devel::Timer

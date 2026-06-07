@@ -14,11 +14,12 @@ use lib './modules';
 use Constants;
 
 require './scripts/correct_and_verify.pl';
-require './scripts/update_html.pl';
-require './scripts/utils.pl';
+
 require './scripts/update_current_players.pl';
+require './scripts/utils.pl';
 require './scripts/drop_all_wespa_tables.pl';
 require './scripts/record_db.pl';
+require './scripts/update_player_titles.pl';
 
 my $tou_file_extension = Constants::TOU_FILE_EXTENSION;
 my $sts_file_extension = Constants::STS_FILE_EXTENSION;
@@ -116,17 +117,25 @@ sub main
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
   $timer->mark("tournament files processed (BIG ONE)");
 
+  # Remove players that have 0 total games — they were created as alt-name
+  # stubs but their canonical name became a different player's alt name.
+  my $orphans_deleted = $dbh->do("DELETE FROM $players_tn WHERE total_games=0",
+                                  {"RaiseError" => 1});
+  printf "Cleaned up %s orphaned player(s) with 0 games\n",
+         ($orphans_deleted // 0);
+
+  populate_player_alt_names($dbh);
+  $timer->mark("player alt names populated from duplicates.txt");
+
   update_current_players();
   $timer->mark("current players updated");
+
+  update_player_titles();
+  $timer->mark("player titles updated");
 
   copy_database_to_production();
   $timer->mark("database copied to production");
 
-  if ($create_html)
-  {
-    update_html($tournament_ids_to_create);
-    $timer->mark("HTML generated");
-  }
   $timer->report();
 }
 
@@ -151,7 +160,8 @@ sub main
      next unless $_;
      
      my $true_name = $_;
-     my $alt_name  = $alt_names_hash{$_};
+     my $sanitized_name = sanitize($_);
+     my $alt_name  = $alt_names_hash{$sanitized_name};
      
      if ($alt_name)
      {
@@ -191,15 +201,72 @@ sub populate_alt_names_hash
 
     foreach my $alt_name (@names)
     {
-      if ($alt_names_hash{$alt_name})
+      my $sanitized_alt = sanitize($alt_name);
+      my $existing_canonical = $alt_names_hash{$sanitized_alt};
+      if ($existing_canonical)
       {
-        print "ERROR:    alt name already mapped\n";
-        print "Alt name: $alt_name\n";
-        die;
+        if ($existing_canonical eq $true_name)
+        {
+          # Same alt-to-canonical mapping already exists; silently skip
+          next;
+        }
+        else
+        {
+          print "ERROR:    alt name mapped to multiple canonical names\n";
+          print "Alt name:              $alt_name (sanitized: $sanitized_alt)\n";
+          print "Existing canonical:    $existing_canonical\n";
+          print "New canonical:         $true_name\n";
+          die;
+        }
       }
-      $alt_names_hash{$alt_name} = $true_name;
+      $alt_names_hash{$sanitized_alt} = $true_name;
     }
   }
+}
+
+sub populate_player_alt_names
+{
+  my $dbh = shift;
+
+  # Truncate the table first
+  $dbh->do("TRUNCATE TABLE $player_alt_names_tn", {"RaiseError" => 1});
+
+  # Read duplicates.txt and insert each alt_name mapped to its canonical player_id
+  my $dup_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
+
+  open(my $dup_fh, "<", $dup_filename) or die "ERROR: Cannot open $dup_filename: $!";
+
+  my $sth = $dbh->prepare("SELECT id FROM $players_tn WHERE BINARY name=?");
+  my $insert_sth = $dbh->prepare("INSERT INTO $player_alt_names_tn (alt_name, player_id) VALUES (?, ?)");
+
+  while (<$dup_fh>)
+  {
+    chomp;
+    s/^\s+|\s+$//g;
+    next if /^#/ || !$_;
+
+    my @names = split /,/, $_;
+    @names = map { s/^\s+|\s+$//gr } @names;
+    next if !@names;
+
+    my $canonical_name = shift @names;
+
+    $sth->execute($canonical_name);
+    my ($player_id) = $sth->fetchrow_array();
+    if (!$player_id)
+    {
+      print "WARNING: canonical name '$canonical_name' not found in players table, skipping\n";
+      next;
+    }
+
+    foreach my $alt_name (@names)
+    {
+      my $sanitized_name = sanitize($alt_name);
+      $insert_sth->execute($sanitized_name, $player_id);
+    }
+  }
+
+  close($dup_fh);
 }
 
 sub convert_name
@@ -208,7 +275,8 @@ sub convert_name
 
   $name =~ s/^\s+|\s+$//g;
 
-  my $true_name = $alt_names_hash{$name};
+  my $sanitized_name = sanitize($name);
+  my $true_name = $alt_names_hash{$sanitized_name};
 
   if ($true_name)
   {
@@ -782,17 +850,6 @@ sub load_tournament_files
           }
         );
         $player_names_to_ids->{$player_name} = $player_id;
-
-        # Insert player into an PLAYER_ALT_NAMES table
-        insert_hash_into_table
-        (
-          $dbh,
-          $player_alt_names_tn,
-          {
-            "alt_name"  => $player_name,
-            "player_id" => $player_id
-          }
-        );
       }
       else
       {
@@ -1521,6 +1578,40 @@ sub load_tournament_files
 #  "; 
 #  $dbh->do($update_last_played, {"RaiseError" => 1});
 
+  # Update p.rating to match the most recent tournament end_rating for each player.
+  # Tournaments are not processed in chronological order, so the per-tournament
+  # inline update may set p.rating to a stale value.  This bulk pass fixes that.
+  my $update_ratings =
+  "
+  UPDATE $players_tn AS p
+  JOIN (
+    SELECT tr.player_id, tr.end_rating
+    FROM tournament_results tr
+    INNER JOIN (
+      SELECT player_id, MAX(date) AS max_date
+      FROM tournament_results
+      WHERE end_rating IS NOT NULL
+      GROUP BY player_id
+    ) latest ON tr.player_id = latest.player_id AND tr.date = latest.max_date
+    WHERE tr.end_rating IS NOT NULL
+  ) latest_rating ON p.id = latest_rating.player_id
+  SET p.rating = latest_rating.end_rating
+  ";
+  $dbh->do($update_ratings, {"RaiseError" => 1});
+
+  # Also update last_played to match the actual latest tournament date
+  my $update_last_played_bulk =
+  "
+  UPDATE $players_tn AS p
+  JOIN (
+    SELECT tr.player_id, MAX(tr.date) AS max_date
+    FROM tournament_results tr
+    GROUP BY tr.player_id
+  ) latest ON p.id = latest.player_id
+  SET p.last_played = latest.max_date
+  ";
+  $dbh->do($update_last_played_bulk, {"RaiseError" => 1});
+
 
   # Update provisional status for all players
 
@@ -1553,7 +1644,7 @@ sub get_player_photo
 
   if (-e $filename)
   {
-    return $filename;
+    return $name . ".jpg";
   }
   return undef; 
 }
