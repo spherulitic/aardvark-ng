@@ -32,7 +32,7 @@ unless (caller)
 
 sub open_log
 {
-  my $log_file = 'photo_updates.log';
+  my $log_file = '/app/logs/photo_updates.log';
   open my $lfh, '>', $log_file or die "Cannot open $log_file for writing: $!";
   return $lfh;
 }

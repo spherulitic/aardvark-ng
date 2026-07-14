@@ -135,12 +135,18 @@ sub update_player_titles
     }
 
     # Validate title
-    if ($file_title ne 'M' && $file_title ne 'IM' && $file_title ne 'GM')
+    if ($file_title ne 'M' && $file_title ne 'IM' && $file_title ne 'GM' && $file_title ne '--' && $file_title)
     {
       printf "WARNING:  Invalid title '%s' for '%s' at line %d (skipping)\n",
              $file_title, $file_name, $line_num;
       $skipped++;
       next;
+    }
+
+    # Convert title: '--' or blank becomes undef (NULL)
+    if ($file_title eq '--' || !$file_title)
+    {
+      $file_title = undef;
     }
 
     # Convert norms: '--' becomes undef (NULL), '*' and '**' stay as-is
@@ -222,6 +228,25 @@ sub update_player_titles
              $file_name, $line_num;
       $not_found++;
       next;
+    }
+
+    # Skip the update if both title and norms are NULL in the file
+    # and already NULL in the database — no change needed
+    # First, need to prepare the check statement (done after the update_sth)
+
+    if (!$file_title && !$db_norms)
+    {
+      # Both are NULL from the file; check if DB already has NULL,NULL
+      my $check_sth = $dbh->prepare(
+        "SELECT title, norms FROM $players_tn WHERE id = ?"
+      );
+      $check_sth->execute($player_id);
+      my ($db_title, $db_norms_val) = $check_sth->fetchrow_array();
+      if (!$db_title && !$db_norms_val)
+      {
+        # Already NULL,NULL in DB — nothing to do
+        next;
+      }
     }
 
     # Execute the update

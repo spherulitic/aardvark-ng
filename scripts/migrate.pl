@@ -117,12 +117,6 @@ sub main
   my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
   $timer->mark("tournament files processed (BIG ONE)");
 
-  # Remove players that have 0 total games — they were created as alt-name
-  # stubs but their canonical name became a different player's alt name.
-  my $orphans_deleted = $dbh->do("DELETE FROM $players_tn WHERE total_games=0",
-                                  {"RaiseError" => 1});
-  printf "Cleaned up %s orphaned player(s) with 0 games\n",
-         ($orphans_deleted // 0);
 
   populate_player_alt_names($dbh);
   $timer->mark("player alt names populated from duplicates.txt");
@@ -833,22 +827,49 @@ sub load_tournament_files
 
       if (!@player_query_result) # Player does not exist
       {
-        $player_id = insert_hash_into_table
-        (
-          $dbh,
-          $players_tn,
-          {
-            "name"        => $pretty_player_name,
+        # Check if there's an orphan stub (0 total_games) with this name
+        # that can be resurrected instead of creating a new ID.
+        # This preserves player_id across spelling/name changes.
+        my $stub_query = "SELECT id FROM $players_tn WHERE BINARY name=? AND total_games=0";
+        my $sth_stub = $dbh->prepare($stub_query);
+        $sth_stub->execute($pretty_player_name);
+        my ($stub_id) = $sth_stub->fetchrow_array();
+
+        if ($stub_id) {
+          $player_id = $stub_id;
+          update_record_by_id($dbh, $players_tn, $player_id, {
             "country"     => $player_country,
             "photo"       => get_player_photo($player_name),
-            "suspended"   => 0,  # Updated later
+            "suspended"   => 0,
             "deceased"    => exists $deceased_players_hash{$player_name} ? 1 : 0,
-            "provisional" => -1, # Updated later
-            "total_games" => 0,   # Updated later
-            "last_played" => $date, 
+            "provisional" => -1,
+            "total_games" => 0,
+            "last_played" => $date,
             "rating"      => $end_rating
-          }
-        );
+          });
+          $player_cache{$pretty_player_name} = {
+            id => $player_id,
+            country => $player_country,
+            last_played => $date
+          };
+        } else {
+          $player_id = insert_hash_into_table
+          (
+            $dbh,
+            $players_tn,
+            {
+              "name"        => $pretty_player_name,
+              "country"     => $player_country,
+              "photo"       => get_player_photo($player_name),
+              "suspended"   => 0,  # Updated later
+              "deceased"    => exists $deceased_players_hash{$player_name} ? 1 : 0,
+              "provisional" => -1, # Updated later
+              "total_games" => 0,   # Updated later
+              "last_played" => $date,
+              "rating"      => $end_rating
+            }
+          );
+        }
         $player_names_to_ids->{$player_name} = $player_id;
       }
       else
@@ -868,41 +889,6 @@ sub load_tournament_files
         $player_last_played =~ s/\D//g;
 
         $player_names_to_ids->{$player_name} = $player_id;
-
-        my $newer_tourney_cond = $player_last_played < $date;
-
-        my $no_country_cond = !$existing_country &&
-                               $player_country;
-
-        my $changed_to_newer_country_cond = $existing_country &&
-                                            $player_country &&
-                                            $existing_country ne $player_country &&
-                                            $player_last_played < $date;
-
-        my $changed_country_cond = $existing_country &&
-                                   $player_country &&
-                                   $existing_country ne $player_country;
-
-        if ($newer_tourney_cond)
-        {
-          update_record_by_id($dbh, $players_tn, $player_id, {'last_played' => $date, 'rating' => $end_rating}); 
-        }
-
-        if ($no_country_cond || $changed_to_newer_country_cond)
-        {
-          update_record_by_id($dbh, $players_tn, $player_id, {'country' => $player_country}); 
-        }
-#       Warning if someone switches countries
-#       if ($changed_country_cond)
-#       {
-#         format_error([
-#                        ["WARNING:         ", "player switched countries"],
-#                        ["File:            ", $filename],
-#                        ["Player:          ", $player_name],
-#                        ["Current country: ", $existing_country],
-#                        ["New country:     ", $player_country],
-#                      ]);
-#       }
       } 
 
       # Keep an mapping of the names to ids in memory
