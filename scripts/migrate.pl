@@ -103,14 +103,11 @@ sub main
   my $dbh = initialize_database($tables, $creation_order);
   $timer->mark("database initialized");
 
-  if ($incremental) {
-    drop_derived_tables($dbh);
-    $timer->mark("derived tables dropped (incremental)");
+  if (!$incremental) {
+    my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
+                                                  "name");
+    $timer->mark("lexicons inserted");
   }
-  
-  my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
-                                                "name");
-  $timer->mark("lexicons inserted");
   
   my $filenames_array_ref = get_tournament_data_filenames($tou_data_directory,
                             $year_regex, $country_trigraph_regex, $file_regex);
@@ -228,26 +225,6 @@ sub populate_alt_names_hash
       }
       $alt_names_hash{$sanitized_alt} = $true_name;
     }
-  }
-}
-
-sub drop_derived_tables
-{
-  my $dbh = shift;
-
-  my @tables_to_drop = (
-    $tournament_results_tn,
-    $games_tn,
-    $player_results_tn,
-    $divisions_tn,
-    $events_tn,
-    $tournaments_tn,
-    $lexicons_tn,
-  );
-
-  foreach my $table (@tables_to_drop)
-  {
-    $dbh->do("DROP TABLE IF EXISTS $table");
   }
 }
 
