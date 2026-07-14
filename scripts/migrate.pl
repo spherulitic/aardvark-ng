@@ -50,6 +50,7 @@ my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
 my $create_html            = '';
+my $incremental            = '';
 my $help                   = '';
 
 my %deceased_players_hash = ();
@@ -75,6 +76,7 @@ sub main
                'country:s'   => \$country_trigraph_regex,
                'file:s'      => \$file_regex,
                'html'        => \$create_html,
+               'incremental' => \$incremental,
                'help|?'      => \$help,
              ); 
 
@@ -86,16 +88,25 @@ sub main
   populate_deceased_players_hash();
   $timer->mark("name hashes populated");
 
-  drop_all_wespa_tables(\%alt_names_hash);
-  $timer->mark("wespa tables dropped");
+  if ($incremental) {
+    # Do not drop tables; we will clear derived tables after dbh is ready
+    $timer->mark("incremental mode: skipping drop_all_wespa_tables");
+  } else {
+    drop_all_wespa_tables(\%alt_names_hash);
+    $timer->mark("wespa tables dropped");
 
-  # take a backup of the players and print the player id numbers
-
-  record_database();
-  $timer->mark("record database - backup players");
+    # take a backup of the players and print the player id numbers
+    record_database();
+    $timer->mark("record database - backup players");
+  }
 
   my $dbh = initialize_database($tables, $creation_order);
   $timer->mark("database initialized");
+
+  if ($incremental) {
+    drop_derived_tables($dbh);
+    $timer->mark("derived tables dropped (incremental)");
+  }
   
   my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
                                                 "name");
@@ -215,6 +226,27 @@ sub populate_alt_names_hash
       }
       $alt_names_hash{$sanitized_alt} = $true_name;
     }
+  }
+}
+
+sub drop_derived_tables
+{
+  my $dbh = shift;
+
+  my @tables_to_drop = (
+    $tournament_results_tn,
+    $games_tn,
+    $player_results_tn,
+    $divisions_tn,
+    $events_tn,
+    $tournaments_tn,
+    $player_alt_names_tn,
+    $lexicons_tn,
+  );
+
+  foreach my $table (@tables_to_drop)
+  {
+    $dbh->do("DROP TABLE IF EXISTS $table");
   }
 }
 
@@ -1882,7 +1914,7 @@ __END__
 
 
 
- ./scripts/migrate.pl [-h] [-i] [-a] [-d=<dir>] [-y=<year_regex>] [-c=<country_trigraph_regex>] [-f=<file_regex>] 
+ ./scripts/migrate.pl [-h] [-i] [-a] [-d=<dir>] [-y=<year_regex>] [-c=<country_trigraph_regex>] [-f=<file_regex>] [--incremental]
 
  Options:
    -h, --help       brief help message
@@ -1894,6 +1926,7 @@ __END__
    -f, --file       specifies the filename regex for which tournament files to migrate
                     (for example -f atlanta16.tou would migrate tournament data from files
                     with "atlant16.tou" in the filename and their corresponding .STS/.STA files)
+   --incremental    only process tournament files that have not been loaded yet (skips dropping and rebuilding the entire database)
 =cut
 
 
