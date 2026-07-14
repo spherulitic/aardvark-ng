@@ -129,8 +129,10 @@ sub main
   $timer->mark("tournament files processed (BIG ONE)");
 
 
-  populate_player_alt_names($dbh);
-  $timer->mark("player alt names populated from duplicates.txt");
+  if (!$incremental) {
+    populate_player_alt_names($dbh);
+    $timer->mark("player alt names populated from duplicates.txt");
+  }
 
   update_current_players();
   $timer->mark("current players updated");
@@ -240,7 +242,6 @@ sub drop_derived_tables
     $divisions_tn,
     $events_tn,
     $tournaments_tn,
-    $player_alt_names_tn,
     $lexicons_tn,
   );
 
