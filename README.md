@@ -36,3 +36,22 @@ When `--incremental` is used:
 
 This mode is safe for daily or weekly updates and avoids reprocessing decades of historical data.
 
+## Running in incremental mode
+
+By default, the migration script (`scripts/migrate.pl`) processes every tournament file found in the data directory, dropping and rebuilding the entire database (except player profiles). This is necessary when duplicate player profiles are discovered or when historical corrections are needed.
+
+For routine updates (adding new tournament data), you can use the `--incremental` option to skip already‑loaded files and avoid dropping any tables:
+
+```bash
+perl scripts/migrate.pl --incremental
+```
+
+When `--incremental` is used:
+
+- The `players`, `player_alt_names`, and `loaded_tournaments` tables are **not** dropped.
+- The `lexicons` table is **not** re‑inserted (it already exists).
+- Only tournament files that are **not** already recorded in the `loaded_tournaments` table are processed.
+- The `duplicates.txt` file is **not** re‑read; any name‑mapping changes require a full (non‑incremental) run.
+
+This mode is safe for daily or weekly updates and avoids reprocessing decades of historical data.
+
