@@ -36,6 +36,24 @@ When `--incremental` is used:
 
 This mode is safe for daily or weekly updates and avoids reprocessing decades of historical data.
 
+### Using environment variable in container
+
+When running the container, set the environment variable `AARDVARK_INCREMENTAL=1` to enable incremental mode:
+
+```bash
+podman run --rm \
+  --name aardvark-updater \
+  --env-file aardvark.env \
+  -e AARDVARK_INCREMENTAL=1 \
+  -v /srv/wespa/tournament_data:/app/tournament_data \
+  -v /var/www/html/aardvark:/app/html_data \
+  -v /var/log/aardvark:/app/logs \
+  --network host \
+  aardvark-ng:latest
+```
+
+If `AARDVARK_INCREMENTAL` is not set or is set to any value other than `1`, the container runs the full (whole‑hog) migration as before.
+
 ## Running in incremental mode
 
 By default, the migration script (`scripts/migrate.pl`) processes every tournament file found in the data directory, dropping and rebuilding the entire database (except player profiles). This is necessary when duplicate player profiles are discovered or when historical corrections are needed.
