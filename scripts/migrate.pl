@@ -425,7 +425,7 @@ sub load_tournament_files
     if (@tou_query_result)
     {
       # print "Tournament already processed: $tou_file (Skipping)\n";
-      die "SKIP: $filename";
+      die "SKIP_ALREADY_LOADED: $filename";
     }
 
     # First validate and maybe correct the .tou file
@@ -1548,6 +1548,8 @@ sub load_tournament_files
     if ($error =~ /^SKIP: (.*)/) {
       # Planned skip (previously next filename)
       print "Skipping file $1 due to $error\n";
+    } elsif ($error =~ /^SKIP_ALREADY_LOADED: (.*)/) {
+      # Already loaded – skip silently
     } else {
     # Real error
     format_error([
