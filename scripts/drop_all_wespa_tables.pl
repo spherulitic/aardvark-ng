@@ -38,7 +38,20 @@ sub drop_all_wespa_tables
       $dbh->do("DROP TABLE IF EXISTS $t");
     }
   }
-  
+
+  # Tournament identity tables (events, tournaments) are preserved so that
+  # tournament ids stay stable between full runs. Their child data is rebuilt
+  # from scratch, so wipe it here. TRUNCATE requires FOREIGN_KEY_CHECKS off
+  # because the child tables are still referenced by FK constraints in the
+  # schema; child ids are regenerated on reload and nothing references them
+  # externally.
+  $dbh->do("SET FOREIGN_KEY_CHECKS = 0");
+  $dbh->do("TRUNCATE TABLE " . Constants::PLAYER_RESULTS_TABLE_NAME);
+  $dbh->do("TRUNCATE TABLE " . Constants::GAMES_TABLE_NAME);
+  $dbh->do("TRUNCATE TABLE " . Constants::TOURNAMENT_RESULTS_TABLE_NAME);
+  $dbh->do("TRUNCATE TABLE " . Constants::DIVISIONS_TABLE_NAME);
+  $dbh->do("SET FOREIGN_KEY_CHECKS = 1");
+
   my $players_tn = Constants::PLAYERS_TABLE_NAME;
 
   foreach my $key (keys %{$alt_names_hash})

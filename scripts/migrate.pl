@@ -57,6 +57,8 @@ my %deceased_players_hash = ();
 
 my %alt_names_hash = ();
 
+my %canonical_to_alt_names_hash = ();
+
 my $photo_dir = Constants::PHOTO_DIR;
 
 unless (caller)
@@ -103,9 +105,11 @@ sub main
   my $dbh = initialize_database($tables, $creation_order);
   $timer->mark("database initialized");
 
+  ensure_tournament_filename_column($dbh);
+  $timer->mark("tournament filename column ensured");
+
   if (!$incremental) {
-    my $lexicon_ids = insert_hash_list_into_table($dbh, $lexicons_tn, $lexicons,
-                                                  "name");
+    insert_missing_lexicons($dbh, $lexicons_tn, $lexicons);
     $timer->mark("lexicons inserted");
   }
   
@@ -224,6 +228,7 @@ sub populate_alt_names_hash
         }
       }
       $alt_names_hash{$sanitized_alt} = $true_name;
+      push @{$canonical_to_alt_names_hash{sanitize($true_name)}}, $sanitized_alt;
     }
   }
 }
@@ -369,6 +374,40 @@ sub initialize_database
   return $dbh;
 }
 
+sub ensure_tournament_filename_column
+{
+  my $dbh = shift;
+
+  my $tournaments_tn = Constants::TOURNAMENTS_TABLE_NAME;
+
+  my $has_column = $dbh->selectrow_array(
+    "SELECT COUNT(*) FROM information_schema.columns " .
+    "WHERE table_schema = DATABASE() AND table_name = '$tournaments_tn' " .
+    "AND column_name = 'filename'"
+  );
+
+  if (!$has_column)
+  {
+    $dbh->do("ALTER TABLE $tournaments_tn ADD COLUMN filename VARCHAR(255)");
+    $dbh->do("ALTER TABLE $tournaments_tn " .
+             "ADD INDEX idx_tournaments_filename (filename)");
+  }
+}
+
+sub insert_missing_lexicons
+{
+  my $dbh          = shift;
+  my $lexicons_tn  = shift;
+  my $lexicons_ref = shift;
+
+  foreach my $lexicon (@{$lexicons_ref})
+  {
+    $dbh->do("INSERT INTO $lexicons_tn (name) " .
+             "SELECT ? WHERE NOT EXISTS " .
+             "(SELECT 1 FROM $lexicons_tn WHERE name = ?)",
+             undef, $lexicon->{"name"}, $lexicon->{"name"});
+  }
+}
 
 sub load_tournament_files
 {
@@ -382,6 +421,29 @@ sub load_tournament_files
   my @tournament_ids_to_convert_to_html = ();
 
   my %player_cache;
+
+  # Map of legacy tournaments (loaded before the filename column existed) to
+  # their ids, keyed by name|start_date|country. Multiple legacy rows can
+  # share a key (e.g. the same tournament loaded from duplicate files), so
+  # each key holds a list of candidate ids. Used to adopt existing ids on the
+  # first full run after this change instead of renumbering them.
+  my $backfill_map = {};
+  {
+    my $rows = $dbh->selectall_arrayref(
+      "SELECT id, event_id, name, start_date, country " .
+      "FROM $tournaments_tn WHERE filename IS NULL",
+      {"Slice" => {}});
+    foreach my $row (@{$rows})
+    {
+      my $start_date = $row->{"start_date"};
+      $start_date =~ s/\D//g if defined $start_date;
+      my $key = join "|", $row->{"name"} // "", $start_date // "",
+                        $row->{"country"} // "";
+      $backfill_map->{$key} = []
+        unless $backfill_map->{$key};
+      push @{$backfill_map->{$key}}, [$row->{"id"}, $row->{"event_id"}];
+    }
+  }
 
   filename: foreach my $filename (@filenames_array)
   {
@@ -1409,35 +1471,88 @@ sub load_tournament_files
         }
       }
     }
-    # Add to database top down so we can link up the foreign keys
-    my $event_id      = insert_hash_into_table($dbh, $events_tn, $event);
+    # Add to database top down so we can link up the foreign keys.
+    # Tournaments are identified by their .tou file path so that the same
+    # tournament reloaded on a later run keeps the same id (the front end
+    # deep-links to /html/tournaments/<id>.html).
+    my $tournament_id;
+    my $event_id;
 
-    if (!$event_id)
+    my $existing = $dbh->selectrow_arrayref(
+      "SELECT id, event_id FROM $tournaments_tn WHERE filename = ?",
+      undef, $tou_file);
+
+    if ($existing)
     {
-      format_error([
-                       ["ERROR: ", "hash insert failed"],
-                       ["File:  ", $filename],
-                       ["Table: ", $events_tn],
-                       ["Hash:  ", Dumper($event)],
-                   ]);
-      die "SKIP: $filename";  
+      ($tournament_id, $event_id) = @{$existing};
+
+      my %tournament_fields = map { $_ => $tournament->{$_} }
+        qw(name country start_date end_date);
+      update_record_by_id($dbh, $tournaments_tn, $tournament_id,
+                          \%tournament_fields);
+
+      if ($event_id)
+      {
+        my %event_fields = map { $_ => $event->{$_} }
+          qw(start_date end_date);
+        update_record_by_id($dbh, $events_tn, $event_id, \%event_fields);
+      }
     }
-
-    $tournament->{"event_id"} = $event_id;
-
-    my $tournament_id = insert_hash_into_table($dbh, $tournaments_tn, $tournament);
-
-    if (!$tournament_id)
+    else
     {
-      format_error([
-                       ["ERROR: ", "hash insert failed"],
-                       ["File:  ", $filename],
-                       ["Table: ", $tournaments_tn],
-                       ["Hash:  ", Dumper($tournament)],
-                   ]);
-      die "SKIP: $filename";  
-    }
+      # One-time adoption of tournaments loaded before the filename column
+      # existed, matched by name/start_date/country.
+      my $start_date = $tournament->{"start_date"};
+      $start_date =~ s/\D//g if defined $start_date;
+      my $backfill_key = join "|", $tournament->{"name"} // "",
+                                  $start_date // "",
+                                  $tournament->{"country"} // "";
+      my $adopted;
+      if ($backfill_map->{$backfill_key})
+      {
+        $adopted = shift @{$backfill_map->{$backfill_key}};
+        delete $backfill_map->{$backfill_key}
+          unless @{$backfill_map->{$backfill_key}};
+      }
 
+      if ($adopted)
+      {
+        ($tournament_id, $event_id) = @{$adopted};
+        update_record_by_id($dbh, $tournaments_tn, $tournament_id,
+                            { filename => $tou_file });
+      }
+      else
+      {
+        $event_id = insert_hash_into_table($dbh, $events_tn, $event);
+
+        if (!$event_id)
+        {
+          format_error([
+                           ["ERROR: ", "hash insert failed"],
+                           ["File:  ", $filename],
+                           ["Table: ", $events_tn],
+                           ["Hash:  ", Dumper($event)],
+                       ]);
+          die "SKIP: $filename";  
+        }
+
+        $tournament->{"event_id"} = $event_id;
+        $tournament->{"filename"} = $tou_file;
+
+        $tournament_id = insert_hash_into_table($dbh, $tournaments_tn, $tournament);
+
+        if (!$tournament_id)
+        {
+          format_error([
+                           ["ERROR: ", "hash insert failed"],
+                           ["File:  ", $filename],
+                           ["Table: ", $tournaments_tn],
+                           ["Hash:  ", Dumper($tournament)],
+                       ]);
+          die "SKIP: $filename";  
+        }
+      }
+    }
 
     push @tournament_ids_to_convert_to_html, $tournament_id;
 
@@ -1562,6 +1677,44 @@ sub load_tournament_files
    }
   }
 
+  if (!$incremental)
+  {
+    # Delete tournament rows whose .tou file is no longer in the data
+    # directory, preserving the rebuild-from-scratch semantics of a full run.
+    # Children were already wiped by drop_all_wespa_tables, so only the rows
+    # themselves need removing. Files that exist but failed to parse keep
+    # their (empty-shell) tournament row so its id stays valid.
+    $dbh->do(
+      "CREATE TEMPORARY TABLE _processed_tours " .
+      "(filename VARCHAR(255) PRIMARY KEY)",
+      {"RaiseError" => 1});
+
+    my $insert_processed = $dbh->prepare(
+      "INSERT INTO _processed_tours (filename) VALUES (?)");
+    # NOTE: iterate the original file list, not @filenames_array, whose
+    # entries had their extension stripped by the processing loop (foreach
+    # aliases @filenames_array elements to $filename).
+    foreach my $file (@{$filenames_array_ref})
+    {
+      $insert_processed->execute($file);
+    }
+
+    $dbh->do(
+      "DELETE t FROM $tournaments_tn t " .
+      "LEFT JOIN _processed_tours p ON t.filename = p.filename " .
+      "WHERE p.filename IS NULL",
+      {"RaiseError" => 1});
+
+    $dbh->do("DROP TEMPORARY TABLE IF EXISTS _processed_tours",
+             {"RaiseError" => 1});
+
+    # Remove events that no longer have any tournaments
+    $dbh->do(
+      "DELETE FROM $events_tn WHERE id NOT IN " .
+      "(SELECT DISTINCT event_id FROM $tournaments_tn)",
+      {"RaiseError" => 1});
+  }
+
   # Update ratings for all players
   # Legacy code, last played is now updated on the fly
 #  my $update_last_played =
@@ -1644,6 +1797,21 @@ sub get_player_photo
   {
     return $name . ".jpg";
   }
+
+  # Check alternate spellings of the name for a photo
+  my $alt_names = $canonical_to_alt_names_hash{sanitize($name)};
+  if ($alt_names)
+  {
+    foreach my $alt_name (@{$alt_names})
+    {
+      my $alt_filename = $photo_dir . "/" . lc($alt_name) . ".jpg";
+      if (-e $alt_filename)
+      {
+        return lc($alt_name) . ".jpg";
+      }
+    }
+  }
+
   return undef; 
 }
 
@@ -1744,6 +1912,8 @@ sub update_record_by_id
   foreach my $key (keys %{$fields_hash_ref})
   {
     my $value = $fields_hash_ref->{$key};
+    next unless defined $value;
+    $value =~ s/'/''/g;
     my $update = "UPDATE $table_name SET $key = '$value' WHERE id=$id";
     $dbh->do($update, {"RaiseError" => 1});
   }

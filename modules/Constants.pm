@@ -140,9 +140,11 @@ use constant TABLES =>
                             "end_date   DATE",
                             "name       VARCHAR(255)",
                             "country    VARCHAR(3)",
+                            "filename   VARCHAR(255)",
 
                             "PRIMARY KEY (id)",
-                            "FOREIGN KEY (event_id) REFERENCES events(id)"
+                            "FOREIGN KEY (event_id) REFERENCES events(id)",
+                            "INDEX idx_tournaments_filename (filename)"
                           ],
   Constants::EVENTS_TABLE_NAME   => [
                             "id         INT NOT NULL AUTO_INCREMENT",
@@ -245,7 +247,15 @@ use constant TABLE_CREATION_ORDER =>
 
 use constant TABLE_DROP_EXCEPTIONS =>
 {
-  Constants::PLAYERS_TABLE_NAME => 1
+  Constants::PLAYERS_TABLE_NAME             => 1,
+  Constants::PLAYER_ALT_NAMES_TABLE_NAME    => 1,
+  Constants::EVENTS_TABLE_NAME              => 1,
+  Constants::TOURNAMENTS_TABLE_NAME         => 1,
+  Constants::DIVISIONS_TABLE_NAME           => 1,
+  Constants::GAMES_TABLE_NAME               => 1,
+  Constants::TOURNAMENT_RESULTS_TABLE_NAME  => 1,
+  Constants::PLAYER_RESULTS_TABLE_NAME      => 1,
+  Constants::LEXICONS_TABLE_NAME            => 1
 };
 
 use constant LEXICONS => [
