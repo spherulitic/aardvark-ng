@@ -1,17 +1,15 @@
-# Use a modern Debian base with both Perl and Python
-FROM debian:bullseye-slim
+# Use a supported Debian base with Perl and Python
+FROM debian:bookworm-slim
 
-# Install both Perl and Python from current repos, plus MySQL client
+# Install Perl, Python, and the MySQL/MariaDB client + DBD drivers
 RUN apt-get update && apt-get install -y \
     perl \
     python3 \
-    python3-pip \
     libdbd-mysql-perl \
     default-mysql-client \
     libtext-csv-xs-perl \
+    libdevel-timer-perl \
     && rm -rf /var/lib/apt/lists/*
-
-RUN cpan -i Devel::Timer
 
 WORKDIR /app
 COPY . .
