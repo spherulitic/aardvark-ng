@@ -4,13 +4,14 @@
 
 use strict;
 use warnings;
+use lib './modules';
+
 use Getopt::Long;
 use Pod::Usage qw(pod2usage);
 use DBI;
 use Data::Dumper;
 use Devel::Timer;
 
-use lib './modules';
 use Constants;
 
 require './scripts/correct_and_verify.pl';
