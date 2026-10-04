@@ -40,6 +40,13 @@ sub connect_to_database
     "DBI:mysql:database=$database_name;host=$host_name;port=$port",
     $user_name, $password, \%attributes);
 
+  # The managed MySQL server enables ANSI_QUOTES (double quotes become
+  # identifiers), but the codebase uses double-quoted string literals. Reset
+  # the session to the standard MySQL 8 default used in development.
+  $dbh->do("SET SESSION sql_mode = "
+    . "'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,"
+    . "NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'");
+
   return $dbh;
 }
 
