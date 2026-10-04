@@ -5,12 +5,17 @@
 # Builds the tournament database into the staging schema, verifies it, takes a
 # rollback snapshot of production, then promotes staging -> production.
 #
+# Safety: the promote step is gated on several checks. A structurally broken
+# staging schema (empty/zero tables or orphan rows) or one that has lost data
+# relative to the current production baseline will abort BEFORE promotion, so
+# production can never be overwritten by a failed build.
+#
 # Usage:
 #   deploy/update.sh [--full] [--no-promote] [--verify-only]
 #
 #   --full          full rebuild (AARDVARK_INCREMENTAL=0); default is incremental
 #   --no-promote    build + verify only; do not snapshot or promote
-#   --verify-only   skip build/run; only sanity-check the current staging schema
+#   --verify-only   skip build/run; only run the verification gates on staging
 #
 # Config (secrets) live outside the repo:
 #   /etc/aardvark/aardvark.env   - AARDVARK_* env for the container
@@ -66,28 +71,61 @@ dump_checksum() {
     | sha256sum | awk '{print $1}'
 }
 
+# One line of 9 tab-separated counts:
+# tournaments players divisions games player_results tournament_results
+# orphan_divisions orphan_tr_div orphan_pr_game
 sanity_check() {
   local db="$1"
-  local sql
-  sql="SELECT (SELECT COUNT(*) FROM tournaments) AS tournaments,
-               (SELECT COUNT(*) FROM players) AS players,
-               (SELECT COUNT(*) FROM divisions) AS divisions,
-               (SELECT COUNT(*) FROM games) AS games,
-               (SELECT COUNT(*) FROM player_results) AS player_results,
-               (SELECT COUNT(*) FROM tournament_results) AS tournament_results,
-               (SELECT COUNT(*) FROM divisions d LEFT JOIN tournaments t ON d.tournament_id=t.id WHERE t.id IS NULL) AS orphan_divisions,
-               (SELECT COUNT(*) FROM tournament_results tr LEFT JOIN divisions d ON tr.division_id=d.id WHERE d.id IS NULL) AS orphan_tr_div,
-               (SELECT COUNT(*) FROM player_results pr LEFT JOIN games g ON pr.game_id=g.id WHERE g.id IS NULL) AS orphan_pr_game;"
-  mysql --defaults-extra-file="$MYSQL_CNF" --batch --raw -N -e "$sql" "$db"
+  mysql --defaults-extra-file="$MYSQL_CNF" --batch --raw -N -e \
+    "SELECT (SELECT COUNT(*) FROM tournaments),
+            (SELECT COUNT(*) FROM players),
+            (SELECT COUNT(*) FROM divisions),
+            (SELECT COUNT(*) FROM games),
+            (SELECT COUNT(*) FROM player_results),
+            (SELECT COUNT(*) FROM tournament_results),
+            (SELECT COUNT(*) FROM divisions d LEFT JOIN tournaments t ON d.tournament_id=t.id WHERE t.id IS NULL),
+            (SELECT COUNT(*) FROM tournament_results tr LEFT JOIN divisions d ON tr.division_id=d.id WHERE d.id IS NULL),
+            (SELECT COUNT(*) FROM player_results pr LEFT JOIN games g ON pr.game_id=g.id WHERE g.id IS NULL);" \
+    "$db"
 }
+
+counts()  { sanity_check "$1" | awk '{print $1, $2, $3, $4, $5, $6}'; }
+orphans() { sanity_check "$1" | awk '{print $7, $8, $9}'; }
+
+# Structural gate: every core table must be non-empty and have no orphans.
+verify_struct() {
+  local db="$1"
+  local c o
+  c="$(counts "$db")" || return 1
+  o="$(orphans "$db")" || return 1
+  local t p d g pr tr odiv otrd oprg
+  read -r t p d g pr tr <<< "$c"
+  read -r odiv otrd oprg <<< "$o"
+  log "  $db: tournaments=$t players=$p divisions=$d games=$g player_results=$pr tournament_results=$tr orphans=$odiv/$otrd/$oprg"
+
+  local bad=0
+  [ "${t:-0}"  -gt 0 ] || { log "  ERROR: tournaments=$t"; bad=1; }
+  [ "${p:-0}"  -gt 0 ] || { log "  ERROR: players=$p"; bad=1; }
+  [ "${d:-0}"  -gt 0 ] || { log "  ERROR: divisions=$d"; bad=1; }
+  [ "${g:-0}"  -gt 0 ] || { log "  ERROR: games=$g"; bad=1; }
+  [ "${pr:-0}" -gt 0 ] || { log "  ERROR: player_results=$pr"; bad=1; }
+  [ "${tr:-0}" -gt 0 ] || { log "  ERROR: tournament_results=$tr"; bad=1; }
+  [ "${odiv:-0}" -eq 0 ] || { log "  ERROR: orphan divisions=$odiv"; bad=1; }
+  [ "${otrd:-0}" -eq 0 ] || { log "  ERROR: orphan tournament_results=$otrd"; bad=1; }
+  [ "${oprg:-0}" -eq 0 ] || { log "  ERROR: orphan player_results=$oprg"; bad=1; }
+  return "$bad"
+}
+
+STAGING_DB="$(get_env AARDVARK_DB_NAME)"
+PROD_DB="$(get_env AARDVARK_PROD_DB_NAME)"
+[ -n "$STAGING_DB" ] && [ -n "$PROD_DB" ] || fail "DB names not set in $ENV_FILE"
 
 # --verify-only ------------------------------------------------------------
 if [ "$VERIFY_ONLY" = "1" ]; then
-  STAGING_DB="$(get_env AARDVARK_DB_NAME)"
-  [ -n "$STAGING_DB" ] || fail "AARDVARK_DB_NAME not set in $ENV_FILE"
-  log "verify-only: staging=$STAGING_DB"
-  sanity_check "$STAGING_DB"
-  log "staging checksum: $(dump_checksum "$STAGING_DB")"
+  log "verify-only: staging=$STAGING_DB prod=$PROD_DB"
+  PROD_BASE="$(counts "$PROD_DB")"
+  verify_struct "$PROD_DB" || fail "production schema is broken"
+  verify_struct "$STAGING_DB" || log "staging schema is broken (expected if no build yet)"
   exit 0
 fi
 
@@ -114,6 +152,10 @@ else
   log "WARN: duplicates.txt not found at $DUP_FILE"
 fi
 
+# Capture the current production baseline BEFORE the build, for drift checks.
+log "production baseline (t p d g pr tr):"
+PROD_BASE="$(counts "$PROD_DB")"
+
 # 3. Build image -----------------------------------------------------------
 log "building image $IMAGE"
 podman build . -t "$IMAGE" >>"$RUN_LOG" 2>&1 || fail "podman build failed"
@@ -136,23 +178,28 @@ set -e
 [ "$RUN_RC" -eq 0 ] || fail "container run exited $RUN_RC"
 grep -q "Processing Complete" "$RUN_LOG" || fail "build did not complete"
 
-STAGING_DB="$(get_env AARDVARK_DB_NAME)"
-PROD_DB="$(get_env AARDVARK_PROD_DB_NAME)"
-[ -n "$STAGING_DB" ] && [ -n "$PROD_DB" ] || fail "DB names not set in $ENV_FILE"
-
-# 5. Verify staging --------------------------------------------------------
+# 5. Verify staging (structural + drift gates) -----------------------------
 log "verifying staging $STAGING_DB"
-sanity_check "$STAGING_DB" | tee -a "$RUN_LOG"
+verify_struct "$STAGING_DB" || fail "staging schema failed structural checks -- NOT promoting"
 
-if [ "$MODE" = "full" ]; then
-  staging_sum="$(dump_checksum "$STAGING_DB")"
-  if [ -f "$LAST_GOOD" ]; then
-    want="$(awk '{print $1}' "$LAST_GOOD")"
-    [ "$staging_sum" = "$want" ] || fail "staging checksum mismatch (got $staging_sum, want $want)"
-    log "full-run checksum matches last_good"
-  else
-    log "no last_good yet; will bootstrap after promote"
-  fi
+read -r pt pp pd pg ppr ptr <<< "$PROD_BASE"
+read -r t p d g pr tr <<< "$(counts "$STAGING_DB")"
+
+# Drift gate: staging must not have lost tournaments or a large share of games
+# relative to the production baseline it is about to replace.
+[ "${t:-0}" -ge "${pt:-0}" ] \
+  || fail "staging tournaments $t < production $pt -- NOT promoting"
+min_games=$(( ${pg:-0} * 95 / 100 ))
+[ "${g:-0}" -ge "$min_games" ] \
+  || fail "staging games $g < 95% of production ($min_games) -- NOT promoting"
+
+staging_sum="$(dump_checksum "$STAGING_DB")"
+log "staging checksum: $staging_sum"
+
+if [ "$MODE" = "full" ] && [ -f "$LAST_GOOD" ]; then
+  want="$(awk '{print $1}' "$LAST_GOOD")"
+  [ "$staging_sum" = "$want" ] || fail "staging checksum mismatch (got $staging_sum, want $want)"
+  log "full-run checksum matches last_good"
 fi
 
 if [ "$PROMOTE" = "0" ]; then
@@ -178,6 +225,7 @@ mysqldump --defaults-extra-file="$MYSQL_CNF" \
 log "post-promote verification"
 prod_sum="$(dump_checksum "$PROD_DB")"
 [ "$prod_sum" = "$staging_sum" ] || fail "prod checksum != staging checksum"
+log "prod checksum matches staging"
 
 if [ "$MODE" = "full" ]; then
   printf '%s  %s\n' "$staging_sum" "$(date -Iseconds)" > "$LAST_GOOD"
