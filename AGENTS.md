@@ -21,8 +21,12 @@ API on top of the production database.
 Everything runs inside the `aardvark-ng` container image (podman/docker) — the
 host Perl lacks `DBI`, `Devel::Timer`, `Perl::Critic`, etc. MySQL runs on the
 host and the container uses `--network host` (see README.md run command). DB
-credentials come from the `AARDVARK_*` env vars in `aardvark.env` (gitignored;
-`Constants.pm` defaults: `wespa` / `wespaprod` / `127.0.0.1` / `wespa` / `xxx`).
+config comes from `AARDVARK_*` env vars (gitignored `aardvark.env`):
+`AARDVARK_DB_NAME` (staging, default `wespa_dev`), `AARDVARK_PROD_DB_NAME`
+(production, default `wespa`), `AARDVARK_DB_HOST`/`_PORT`,
+`AARDVARK_DB_USER`/`_PASSWORD`, and optional `AARDVARK_DB_SSL_MODE`
+(e.g. `VERIFY_CA`) + `AARDVARK_DB_SSL_CA`. `Constants.pm` refuses to run if the
+staging and production database names are identical.
 
 Entry points:
 - `scripts/update_tournament_data.sh` — full daily flow: rename `.STA`→`.ST4`
@@ -37,21 +41,22 @@ Entry points:
 The `.tou` file format (game/score/bye/forfeit encoding) is documented in
 `TOU_spec.md` at the repo root.
 
-## DB naming gotcha
+## Database connection
 
-`get_environment_name()` (in `scripts/utils.pl`) appends `dev` to the DB name
-if the current working directory path contains `dev` (`DEV_ENV_KEYWORD` in
-`Constants.pm`). Running from a path like `~/dev/aardvark-ng` silently targets
-`wespa_dev`/`wespadev`. The repo dir `/home/spherulitic/aardvark-ng` is safe;
-inside the container cwd is `/app`.
+All scripts connect through `connect_to_database()` (`scripts/utils.pl`), which
+reads the `AARDVARK_DB_*` vars and supports TLS (`AARDVARK_DB_SSL_MODE` +
+`AARDVARK_DB_SSL_CA`). Shelled-out `mysqldump`/`mysql` calls use
+`database_cli_options()` for the same host/port/TLS settings. The old
+cwd-based `get_environment_name()` dev-suffix magic has been removed; database
+names are explicit in the environment.
 
 ## Database flow
 
 `migrate.pl` builds tables (schema in `Constants::TABLES`, creation order in
-`Constants::TABLE_CREATION_ORDER`) into the `wespa` DB, then
-`copy_database_to_production()` (`scripts/utils.pl`) drops/recreates
-`wespaprod` from `wespa` via `mysqldump | mysql`. The API serves reports from
-`wespaprod`.
+`Constants::TABLE_CREATION_ORDER`) into the staging DB (`AARDVARK_DB_NAME`).
+Promotion to production (`AARDVARK_PROD_DB_NAME`) is done outside the container
+by the host-side update wrapper (`mysqldump … | mysql …`), not by `migrate.pl`.
+The API serves reports read-only from production.
 
 `--incremental` mode: does NOT drop tables, does NOT re-read
 `inputs/duplicates.txt` into `player_alt_names`, does NOT re-insert lexicons;

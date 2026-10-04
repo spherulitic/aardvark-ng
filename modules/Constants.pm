@@ -5,8 +5,6 @@ package Constants;
 use warnings;
 use strict;
 
-use constant DEV_ENV_KEYWORD => 'dev';
-
 use constant INPUT_DIR           => 'inputs';
 use constant LOG_DIR             => 'logs';
 
@@ -18,11 +16,26 @@ use constant DEFAULT_FILE_REGEX             => '.tou';
 
 use constant DEFAULT_BACKUP_DIR             => "/app/backups";
 
-use constant PRODUCTION_DATABASE_NAME      => $ENV{AARDVARK_PROD_DB_NAME} // 'wespaprod';
-use constant DATABASE_NAME                 => $ENV{AARDVARK_DB_NAME} // 'wespa';
+use constant PRODUCTION_DATABASE_NAME      => $ENV{AARDVARK_PROD_DB_NAME} // 'wespa';
+use constant DATABASE_NAME                 => $ENV{AARDVARK_DB_NAME} // 'wespa_dev';
 use constant DATABASE_HOST_NAME            => $ENV{AARDVARK_DB_HOST} // '127.0.0.1';
+use constant DATABASE_PORT                 => $ENV{AARDVARK_DB_PORT} // 3306;
 use constant DATABASE_USER_NAME            => $ENV{AARDVARK_DB_USER} // 'wespa';
 use constant DATABASE_PASSWORD             => $ENV{AARDVARK_DB_PASSWORD} // 'xxx';
+use constant DATABASE_SSL_MODE             => $ENV{AARDVARK_DB_SSL_MODE} // '';
+use constant DATABASE_SSL_CA               => $ENV{AARDVARK_DB_SSL_CA} // '';
+
+# Refuse to run if the staging and production database names are the same.
+# A full run drops and rebuilds the staging database, so pointing both names
+# at the same schema would destroy production data.
+BEGIN
+{
+  if (DATABASE_NAME eq PRODUCTION_DATABASE_NAME)
+  {
+    die "FATAL: staging and production database names are identical ("
+      . DATABASE_NAME . "); refusing to run\n";
+  }
+}
 
 use constant TEXT_FILES_BACKUP_PREFIX => 'tournament_files';
 

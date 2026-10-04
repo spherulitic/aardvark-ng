@@ -13,6 +13,8 @@ use Data::Dumper;
 use lib "./modules";
 use Constants;
 
+require './scripts/utils.pl';
+
 my $merge_names_filename = Constants::INPUT_DIR . "/" . Constants::INPUT_MERGE_FILE;
 
 GetOptions (
@@ -20,14 +22,7 @@ GetOptions (
            );
 
 
-my $database_name = Constants::DATABASE_NAME;
-my $host_name     = Constants::DATABASE_HOST_NAME;
-my $user_name     = Constants::DATABASE_USER_NAME;
-my $password      = Constants::DATABASE_PASSWORD;
-
-my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                       $user_name, $password,
-                       {'RaiseError' => 1});
+my $dbh = connect_to_database();
 
 
 open(MERGE_NAMES, "<", $merge_names_filename) or die "Cannot open $merge_names_filename: $!";

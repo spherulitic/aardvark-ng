@@ -53,6 +53,21 @@ else
     echo "No wespa_biodata.csv found at $BIODATA_CSV, skipping photo update" | tee -a "$LOGFULLNAME"
 fi
 
-mysqldump -u $AARDVARK_DB_USER -p$AARDVARK_DB_PASSWORD $AARDVARK_DB_NAME > $DUMPFILE
+DB_HOST="${AARDVARK_DB_HOST:-127.0.0.1}"
+DB_PORT="${AARDVARK_DB_PORT:-3306}"
+
+SSL_ARGS=""
+if [ -n "$AARDVARK_DB_SSL_MODE" ] && [ "$AARDVARK_DB_SSL_MODE" != "DISABLED" ]; then
+    SSL_ARGS="--ssl"
+    if [ -n "$AARDVARK_DB_SSL_CA" ]; then
+        SSL_ARGS="$SSL_ARGS --ssl-ca=$AARDVARK_DB_SSL_CA"
+    fi
+    case "$AARDVARK_DB_SSL_MODE" in
+        VERIFY*) SSL_ARGS="$SSL_ARGS --ssl-verify-server-cert" ;;
+    esac
+fi
+
+MYSQL_PWD="$AARDVARK_DB_PASSWORD" mysqldump -h "$DB_HOST" -P "$DB_PORT" \
+    $SSL_ARGS -u "$AARDVARK_DB_USER" "$AARDVARK_DB_NAME" > "$DUMPFILE"
 
 echo "Processing Complete " && date | tee -a "$LOGFULLNAME"

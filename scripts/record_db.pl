@@ -17,9 +17,7 @@ unless (caller)
 
 sub record_database
 {
-  my $maybe_dev     = get_environment_name('');
-  my $database_name = get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
+  my $database_name = Constants::DATABASE_NAME;
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;
   
@@ -27,9 +25,7 @@ sub record_database
   my $players_tn    = Constants::PLAYERS_TABLE_NAME;
   my $working_dir   = Constants::DEFAULT_WORKING_DIR;
 
-  my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         $user_name, $password,
-                         {'RaiseError' => 1});
+  my $dbh = connect_to_database();
   
   my @t = localtime;
   $t[5] += 1900;
@@ -39,7 +35,9 @@ sub record_database
 
   my $dumpfile = 'mysqldump_' . $database_name . '_' . $tstamp;
 
-  my $dump_cmd = "mysqldump -h 127.0.0.1 --no-tablespaces -u $user_name --password='$password' $database_name $players_tn > $logs/$dumpfile";
+  my $cli_options = database_cli_options();
+  local $ENV{MYSQL_PWD} = $password;
+  my $dump_cmd = "mysqldump $cli_options --no-tablespaces -u $user_name $database_name $players_tn > $logs/$dumpfile";
 
   system $dump_cmd;
  
@@ -50,12 +48,7 @@ sub record_database
   print $fh $player_ids;
   close $fh;
 
-  if ($maybe_dev)
-  {
-    $maybe_dev = '_' . $maybe_dev;
-  }
-
-  open(my $fh_cur, '>', "$working_dir/player_ids$maybe_dev.txt");
+  open(my $fh_cur, '>', "$working_dir/player_ids.txt");
   print $fh_cur $player_ids;
   close $fh_cur;
 }

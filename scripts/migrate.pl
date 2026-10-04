@@ -44,8 +44,8 @@ my $tournament_results_tn = Constants::TOURNAMENT_RESULTS_TABLE_NAME;
 my $player_results_tn     = Constants::PLAYER_RESULTS_TABLE_NAME;
 my $lexicons_tn           = Constants::LEXICONS_TABLE_NAME;
 
-my $tou_data_directory     = get_environment_name(Constants::TOURNAMENT_DATA_DIR);
-my $working_directory      = get_environment_name(Constants::DEFAULT_WORKING_DIR);
+my $tou_data_directory     = Constants::TOURNAMENT_DATA_DIR;
+my $working_directory      = Constants::DEFAULT_WORKING_DIR;
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
@@ -139,8 +139,9 @@ sub main
   update_player_titles();
   $timer->mark("player titles updated");
 
-  copy_database_to_production();
-  $timer->mark("database copied to production");
+  # Promotion of the staging database to production is handled outside this
+  # script (see the host-side update wrapper); nothing to do here.
+  $timer->mark("build complete (promote handled externally)");
 
   $timer->report();
 }

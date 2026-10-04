@@ -7,20 +7,6 @@ use warnings;
 use lib './modules';
 use Constants;
 use DBI;
-use Cwd;
-
-sub copy_database_to_production
-{
-  my $production_database_name = get_environment_name(Constants::PRODUCTION_DATABASE_NAME);
-
-  my $database_name = get_environment_name(Constants::DATABASE_NAME);
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
-
-  system "echo 'DROP DATABASE IF EXISTS $production_database_name' | mysql -u $user_name --password='$password'";
-  system "echo 'CREATE DATABASE         $production_database_name' | mysql -u $user_name --password='$password'";
-  system "mysqldump -h 127.0.0.1 --no-tablespaces -u $user_name --password='$password' $database_name | mysql -h 127.0.0.1 -u $user_name --password='$password' $production_database_name";
-}
 
 sub uniq {
     my $array_ref = shift;
@@ -33,15 +19,50 @@ sub uniq {
 
 sub connect_to_database
 {
-  my $database_name = get_environment_name(Constants::DATABASE_NAME);
+  my $database_name = Constants::DATABASE_NAME;
   my $host_name     = Constants::DATABASE_HOST_NAME;
+  my $port          = Constants::DATABASE_PORT;
   my $user_name     = Constants::DATABASE_USER_NAME;
   my $password      = Constants::DATABASE_PASSWORD;
 
-  my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         $user_name, $password,
-                         {'RaiseError' => 1}); 
+  my %attributes = (RaiseError => 1, PrintError => 0);
+
+  my $ssl_mode = Constants::DATABASE_SSL_MODE;
+  my $ssl_ca   = Constants::DATABASE_SSL_CA;
+
+  if ($ssl_mode && $ssl_mode ne 'DISABLED')
+  {
+    $attributes{'mysql_ssl'} = 1;
+    $attributes{'mysql_ssl_ca_file'} = $ssl_ca if $ssl_ca;
+    $attributes{'mysql_ssl_verify_server_cert'} =
+      ($ssl_mode =~ /^VERIFY/) ? 1 : 0;
+  }
+
+  my $dbh = DBI->connect(
+    "DBI:mysql:database=$database_name;host=$host_name;port=$port",
+    $user_name, $password, \%attributes);
+
   return $dbh;
+}
+
+# Command-line connection options for the bundled MySQL client (used by
+# shelled-out mysqldump/mysql calls). Returns a string for interpolation.
+sub database_cli_options
+{
+  my @options = ('-h', Constants::DATABASE_HOST_NAME,
+                 '-P', Constants::DATABASE_PORT);
+
+  my $ssl_mode = Constants::DATABASE_SSL_MODE;
+  if ($ssl_mode && $ssl_mode ne 'DISABLED')
+  {
+    push @options, '--ssl';
+    push @options, '--ssl-ca=' . Constants::DATABASE_SSL_CA
+      if Constants::DATABASE_SSL_CA;
+    push @options, '--ssl-verify-server-cert'
+      if $ssl_mode =~ /^VERIFY/;
+  }
+
+  return join ' ', @options;
 }
 
 sub get_tournament_data_filenames
@@ -92,18 +113,6 @@ sub get_tournament_data_filenames
   return \@tournament_data_filenames;
 }
 
-
-sub get_environment_name
-{
-  my $name = shift;
-  my $keyword = Constants::DEV_ENV_KEYWORD;
-  my $dir = getcwd();
-  if ($dir =~ /$keyword/i)
-  {
-    return $name . $keyword;
-  }
-  return $name;
-}
 
 1;
 

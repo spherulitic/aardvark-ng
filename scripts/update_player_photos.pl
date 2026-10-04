@@ -25,6 +25,8 @@ use Text::CSV_XS;
 use lib './modules';
 use Constants;
 
+require './scripts/utils.pl';
+
 unless (caller)
 {
   main();
@@ -339,29 +341,3 @@ sub process_text_file
     $updated, $not_found, $multiple;
 }
 
-sub connect_to_database
-{
-  my $database_name = get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
-
-  my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         $user_name, $password,
-                         {'RaiseError' => 1});
-  return $dbh;
-}
-
-sub get_environment_name
-{
-  # Duplicate of the function from utils.pl to keep this script standalone
-  my $name = shift;
-
-  my $app_env = $ENV{'AARDVARK_APP_ENV'};
-
-  if ($app_env && $app_env eq 'dev')
-  {
-    return $name . '_dev';
-  }
-  return $name;
-}

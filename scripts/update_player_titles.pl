@@ -45,10 +45,6 @@ unless (caller)
 
 sub update_player_titles
 {
-  my $database_name = get_environment_name(Constants::DATABASE_NAME);
-  my $host_name     = Constants::DATABASE_HOST_NAME;
-  my $user_name     = Constants::DATABASE_USER_NAME;
-  my $password      = Constants::DATABASE_PASSWORD;
   my $players_tn    = Constants::PLAYERS_TABLE_NAME;
   my $alt_names_tn  = Constants::PLAYER_ALT_NAMES_TABLE_NAME;
 
@@ -59,9 +55,7 @@ sub update_player_titles
     die "ERROR: Titles file not found: $titles_file\n";
   }
 
-  my $dbh = DBI->connect("DBI:mysql:database=$database_name;host=$host_name",
-                         $user_name, $password,
-                         {'RaiseError' => 1});
+  my $dbh = connect_to_database();
 
   open my $fh, "<:encoding(utf8)", $titles_file or die "Cannot open $titles_file: $!";
 
