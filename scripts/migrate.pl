@@ -1262,7 +1262,7 @@ sub load_tournament_files
 
     my $game_and_player_results_hashref = {};
 
-    foreach my $key (keys %{$tou_game_data_hashref})
+    foreach my $key (sort keys %{$tou_game_data_hashref})
     {
       $key =~ /(.*)-(.*)/;
       my $division      = $1;
@@ -1596,7 +1596,7 @@ sub load_tournament_files
       die "SKIP: $filename";
     }
 
-    foreach my $key (keys %{$tournament_results})
+    foreach my $key (sort keys %{$tournament_results})
     {
       my $player_id        = $tournament_results->{$key}->{'player_id'};
       my $div_id           = $tournament_results->{$key}->{'division_id'};
@@ -1616,7 +1616,7 @@ sub load_tournament_files
       insert_hash_into_table($dbh, $tournament_results_tn, $tournament_results->{$key});
     }
    
-    foreach my $key (keys %$game_and_player_results_hashref)
+    foreach my $key (sort keys %$game_and_player_results_hashref)
     {
       my $gapr = $game_and_player_results_hashref->{$key};
 
@@ -1935,7 +1935,8 @@ sub rank_tournament_results
 
     my $div_arrayref = $divisions->{$div};
 
-    my $new_item = [$key, $tr->{'wins'}, $tr->{'spread'}, $tr->{'byes'}];
+    my $new_item = [$key, $tr->{'wins'}, $tr->{'spread'}, $tr->{'byes'},
+                    $tr->{'player_id'} // 0];
 
     if (!$div_arrayref)
     {
@@ -1955,7 +1956,8 @@ sub rank_tournament_results
     my @ranked_players = sort
                          { 
                            $b->[1] + $b->[3] <=> $a->[1] + $a->[3] ||
-                           $b->[2] <=> $a->[2]
+                           $b->[2] <=> $a->[2] ||
+                           $a->[4] <=> $b->[4]
                          } 
                          @div_array;
 
