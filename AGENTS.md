@@ -1,20 +1,20 @@
 # AGENTS.md
 
 Aardvark is the WESPA Scrabble rating system. It parses tournament files
-(`.tou` + `.STS`/`.STA`/`.ST4`) into a MySQL database and generates HTML.
+(`.tou` + `.STS`/`.STA`/`.ST4`) into a MySQL database. Reports are served by an
+API on top of the production database.
 
-## Two parallel codebases — use the `scripts/` one
+## Codebase layout
 
-- **Active pipeline (new):** `scripts/migrate.pl` and the helpers it `require`s
+- **Pipeline:** `scripts/migrate.pl` and the helpers it `require`s
   (`correct_and_verify.pl`, `utils.pl`, `drop_all_wespa_tables.pl`,
   `record_db.pl`, `update_current_players.pl`, `update_player_titles.pl`),
   plus `scripts/update_tournament_data.sh` (Dockerfile CMD entrypoint).
-- **Legacy harness (do not rely on):** `modules/`, `objects/`, `test/`, and the
-  `./aardvark` symlink → `modules/Executive.pm`. It references Readonly
-  variables (`$EXECUTIVE_KEY`, `$TEST_DIRECTORY`, `$REPORT_ITEM_*`, etc.) that
-  were removed from `modules/Constants.pm`, so it does not compile
-  (`perl -c` fails on missing package globals). Do not attempt
-  `./aardvark main` to test things.
+- `modules/Constants.pm` holds the shared schema and configuration constants.
+- The old Perl HTML-report harness (`modules/HTML.pm`, `Update.pm`,
+  `Executive.pm`, `Utils.pm`, `objects/`, `test/`, the `./aardvark` symlink,
+  `html_static/`, `css/`, `flags/`, `cgi-bin/`) has been removed — that
+  capability is OBE now that reports come from the API.
 
 ## Running
 
@@ -39,19 +39,19 @@ The `.tou` file format (game/score/bye/forfeit encoding) is documented in
 
 ## DB naming gotcha
 
-`get_environment_name()` (in both `scripts/utils.pl` and `modules/Utils.pm`)
-appends `dev` to the DB name if the current working directory path contains
-`dev` (`DEV_ENV_KEYWORD` in `Constants.pm`). Running from a path like
-`~/dev/aardvark-ng` silently targets `wespa_dev`/`wespadev`. The repo dir
-`/home/spherulitic/aardvark-ng` is safe; inside the container cwd is `/app`.
+`get_environment_name()` (in `scripts/utils.pl`) appends `dev` to the DB name
+if the current working directory path contains `dev` (`DEV_ENV_KEYWORD` in
+`Constants.pm`). Running from a path like `~/dev/aardvark-ng` silently targets
+`wespa_dev`/`wespadev`. The repo dir `/home/spherulitic/aardvark-ng` is safe;
+inside the container cwd is `/app`.
 
 ## Database flow
 
 `migrate.pl` builds tables (schema in `Constants::TABLES`, creation order in
 `Constants::TABLE_CREATION_ORDER`) into the `wespa` DB, then
 `copy_database_to_production()` (`scripts/utils.pl`) drops/recreates
-`wespaprod` from `wespa` via `mysqldump | mysql`. `cgi-bin/find_tournament.pl`
-serves the website from `wespaprod`.
+`wespaprod` from `wespa` via `mysqldump | mysql`. The API serves reports from
+`wespaprod`.
 
 `--incremental` mode: does NOT drop tables, does NOT re-read
 `inputs/duplicates.txt` into `player_alt_names`, does NOT re-insert lexicons;

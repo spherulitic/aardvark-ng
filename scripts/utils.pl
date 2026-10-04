@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# This script contains generic utilities for migration and webpage building
+# This script contains generic utilities for migration
 
 use strict;
 use warnings;
@@ -29,15 +29,6 @@ sub uniq {
         $seen{$item} = 1;
     }
     return [keys %seen];
-}
-
-sub create_html_id
-{
-  my $html_element = shift;
-  my $type         = shift;
-  my $id           = shift;
-
-  return (join "_", ($html_element, $type, $id));
 }
 
 sub connect_to_database
@@ -101,17 +92,6 @@ sub get_tournament_data_filenames
   return \@tournament_data_filenames;
 }
 
-
-sub make_link
-{
-  my $base_dir = shift;
-  my $dir      = shift;
-  my $filename = shift;
-  my $content  = shift;
-
-  my $link = "<a href='/$base_dir/$dir/$filename'>$content</a>";
-  return $link;
-}
 
 sub get_environment_name
 {

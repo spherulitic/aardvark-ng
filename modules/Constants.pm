@@ -9,44 +9,14 @@ use constant DEV_ENV_KEYWORD => 'dev';
 
 use constant INPUT_DIR           => 'inputs';
 use constant LOG_DIR             => 'logs';
-use constant MODULES_DIR         => 'modules';
-use constant SCRIPTS_DIR         => 'scripts';
-use constant HTML_DIR            => 'html';
-use constant HTML_STATIC_DIR     => 'html_static';
-use constant HTML_DATA_DIR       => 'html_data';
-use constant PLAYER_HTML_DIR     => 'players';
-use constant TOURNAMENT_HTML_DIR => 'tournaments';
-use constant RANKINGS_HTML_DIR   => 'rankings';
-use constant FULL_RANKINGS_NAME  => 'full_rankings';
-use constant CGIBIN_DIR          => 'cgi-bin';
-
-use constant PLAYER_SEARCH_DATA_FILENAME      => 'player_search_data.html';
-use constant COUNTRY_SEARCH_DATA_FILENAME     => 'country_search_data.html';
-use constant FRONT_PAGE_RATINGS_DATA_FILENAME => 'front_page_ratings_data.html';
-use constant TOURNAMENT_FORM_DATA_FILENAME    => 'tournament_form_data.html';
-use constant TOURNAMENT_CGI_FILENAME          => 'find_tournament.pl';
-use constant FRONT_PAGE_RATINGS_CUTOFF        => 10;
-
-use constant HTML_HEADER => "Content-type: text/html\n\n";
-
-use constant HTML_ID_PLAYER_TYPE       => 0;
-use constant HTML_ID_TOURNAMENT_TYPE   => 1;
-use constant HTML_ID_HEAD_TO_HEAD_TYPE => 2;
-use constant HTML_ID_BUTTON_TAG        => 'button';
-use constant HTML_ID_ENTRY_TAG         => 'entry';
-
-use constant HTML_PATH_TO_WORKING_DIR  => "../..";
 
 use constant TOURNAMENT_DATA_DIR            => '/app/tournament_data';
 use constant DEFAULT_WORKING_DIR            => "/app/working";
-use constant DEFAULT_SHORT_NAME_WORKING_DIR => "working";
 use constant DEFAULT_YEAR_REGEX             => '^\d\d\d\d$';
 use constant DEFAULT_COUNTRY_TRIGRAPH_REGEX => '^\w\w\w$';
 use constant DEFAULT_FILE_REGEX             => '.tou';
 
 use constant DEFAULT_BACKUP_DIR             => "/app/backups";
-
-use constant COUNTRY_FLAGS_DIR              => "flags";
 
 use constant PRODUCTION_DATABASE_NAME      => $ENV{AARDVARK_PROD_DB_NAME} // 'wespaprod';
 use constant DATABASE_NAME                 => $ENV{AARDVARK_DB_NAME} // 'wespa';
@@ -73,18 +43,12 @@ use constant LEXICONS_TABLE_NAME           => 'lexicons';
 use constant LOADED_TOURNAMENTS_TABLE_NAME => 'loaded_tournaments';
 
 use constant MASTER_RATINGS_LIST        => 'rating.dat';
-use constant NOT_IN_MASTER_RATINGS_LIST => 'not_in_ratings_list.log';
 
 use constant REMOVED_NAMES_FILE           => 'removed_names.log';
 use constant DUPLICATE_NAMES_FILE         => 'duplicate_names.log';
 use constant INCORRECT_NAME_MAPPINGS_FILE => 'incorrect_name_mappings.log';
 use constant INPUT_MERGE_FILE             => 'duplicates.txt';
 use constant DECEASED_PLAYERS             => 'removed_people.txt';
-
-use constant WINS_COLUMN_COLOR           => '#bbffbb';
-use constant LOSSES_COLUMN_COLOR         => '#ffdddd';
-use constant DRAWS_COLUMN_COLOR          => '#eeeeee';
-use constant BYES_COLUMN_COLOR           => '#eeeeee';
 
 use constant PROVISIONAL_GAMES_MAX      => 50;
 use constant CURRENT_GAMES_MIN          => 40;
@@ -93,9 +57,6 @@ use constant PHOTO_DIR                  => '/var/www/html/wordpress/aardvark/ico
 use constant DEFAULT_BYE_SCORE          => 1350;
 
 use constant ROUNDING_PLACE             => 2;
-
-use constant UPDATE_START_YEAR          => "2019";
-use constant UPDATE_SOURCE_DIR          => "/var/www/html/wordpress/aardvark";
 
 use constant TABLES =>
 {
@@ -554,7 +515,7 @@ use constant COUNTRY_TRIGRAPH_CONVERSION =>
   #
   # Comment the following lines to treat
   # each country of the United Kingdom
-  # distinctly in the HTML. Note that
+  # distinctly in the data. Note that
   # the codes for each country of the
   # United Kingdom are made up by the developers
   # and are not part of ISO 3166.

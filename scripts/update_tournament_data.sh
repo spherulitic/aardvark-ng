@@ -16,13 +16,11 @@ echo "Using mounted tournament data from /app/tournament_data" | tee -a "$LOGFUL
 python3 ./scripts/rename_sta_to_st4.py /app/tournament_data/ --execute 2>&1 | tee -a "$LOGFULLNAME"
 
 # Run Perl scripts
-#perl ./scripts/migrate.pl --html 2>&1 | tee -a "$LOGFULLNAME"
 if [ "$AARDVARK_INCREMENTAL" = "1" ]; then
     perl ./scripts/migrate.pl --incremental 2>&1 | tee -a "$LOGFULLNAME"
 else
     perl ./scripts/migrate.pl 2>&1 | tee -a "$LOGFULLNAME"
 fi
-##perl ./scripts/deploy.pl 2>&1 | tee -a "$LOGFULLNAME"
 
 # Update player photos from all available sources (lowest priority first)
 PHOTOS_FILE="/app/inputs/photos.txt"

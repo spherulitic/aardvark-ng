@@ -49,7 +49,6 @@ my $working_directory      = get_environment_name(Constants::DEFAULT_WORKING_DIR
 my $year_regex             = Constants::DEFAULT_YEAR_REGEX;
 my $country_trigraph_regex = Constants::DEFAULT_COUNTRY_TRIGRAPH_REGEX;
 my $file_regex             = Constants::DEFAULT_FILE_REGEX;
-my $create_html            = '';
 my $incremental            = '';
 my $help                   = '';
 
@@ -77,7 +76,6 @@ sub main
                'year:s'      => \$year_regex,
                'country:s'   => \$country_trigraph_regex,
                'file:s'      => \$file_regex,
-               'html'        => \$create_html,
                'incremental' => \$incremental,
                'help|?'      => \$help,
              ); 
@@ -126,7 +124,7 @@ sub main
   # print Dumper(\%alt_names_hash);
 
 
-  my $tournament_ids_to_create = load_tournament_files($dbh, $filenames_array_ref);
+  load_tournament_files($dbh, $filenames_array_ref);
   $timer->mark("tournament files processed (BIG ONE)");
 
 
@@ -417,8 +415,6 @@ sub load_tournament_files
   my @filenames_array = @{$filenames_array_ref};
 
   my $player_names_to_ids = {};
-
-  my @tournament_ids_to_convert_to_html = ();
 
   my %player_cache;
 
@@ -1473,8 +1469,8 @@ sub load_tournament_files
     }
     # Add to database top down so we can link up the foreign keys.
     # Tournaments are identified by their .tou file path so that the same
-    # tournament reloaded on a later run keeps the same id (the front end
-    # deep-links to /html/tournaments/<id>.html).
+    # tournament reloaded on a later run keeps the same id (the API
+    # exposes tournaments by id).
     my $tournament_id;
     my $event_id;
 
@@ -1553,8 +1549,6 @@ sub load_tournament_files
         }
       }
     }
-
-    push @tournament_ids_to_convert_to_html, $tournament_id;
 
     foreach my $div (@divisions)
     {
@@ -1780,7 +1774,7 @@ sub load_tournament_files
   "; 
   $dbh->do($update_provisional, {"RaiseError" => 1});
 
-  return \@tournament_ids_to_convert_to_html;
+  return;
 }
 
 sub get_player_photo
