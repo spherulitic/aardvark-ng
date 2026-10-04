@@ -8,8 +8,11 @@ RUN apt-get update && apt-get install -y \
     libdbd-mysql-perl \
     default-mysql-client \
     libtext-csv-xs-perl \
-    libdevel-timer-perl \
+    make \
     && rm -rf /var/lib/apt/lists/*
+
+# Devel::Timer is not packaged in Debian; install from CPAN
+RUN cpan -i Devel::Timer
 
 WORKDIR /app
 COPY . .
