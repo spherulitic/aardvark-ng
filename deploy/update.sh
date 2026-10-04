@@ -62,7 +62,7 @@ dump_checksum() {
   local db="$1"
   mysqldump --defaults-extra-file="$MYSQL_CNF" \
     --single-transaction --no-tablespaces --set-gtid-purged=OFF "$db" \
-    | perl -ne 'next if /^-- Dump completed on/; s/AUTO_INCREMENT=\d+/AUTO_INCREMENT=0/; print' \
+    | perl -ne 'next if /^-- (?:Dump completed on|Host:)/; s/AUTO_INCREMENT=\d+/AUTO_INCREMENT=0/; print' \
     | sha256sum | awk '{print $1}'
 }
 
@@ -97,6 +97,11 @@ cd "$REPO_DIR"
 log "pulling $REPO_DIR"
 git pull --ff-only >/dev/null 2>>"$RUN_LOG" || fail "git pull failed"
 log "HEAD: $(git rev-parse --short HEAD)"
+
+# 1.5 Rename .STA -> .ST4 on the host (rootless podman does not pass through
+#     the user's supplementary groups, so do this where permissions are right)
+log "renaming .STA -> .ST4"
+python3 "$REPO_DIR/scripts/rename_sta_to_st4.py" "$TOURNAMENT_DATA" --execute >>"$RUN_LOG" 2>&1 || log "WARN: rename step reported errors"
 
 # 2. Input freshness (warning only) ----------------------------------------
 DUP_FILE="/var/www/wespa/html/duplicates.txt"

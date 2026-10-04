@@ -25,8 +25,11 @@ def rename_files(base_dir, execute=False):
                 new_path = os.path.join(root, file[:-4] + '.ST4')
 
                 if execute:
-                    os.rename(old_path, new_path)
-                    print(f"Renamed: {old_path} -> {new_path}")
+                    try:
+                        os.rename(old_path, new_path)
+                        print(f"Renamed: {old_path} -> {new_path}")
+                    except OSError as e:
+                        print(f"WARNING: could not rename {old_path}: {e}")
                 else:
                     print(f"Will rename: {old_path} -> {new_path}")
 
