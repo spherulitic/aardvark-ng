@@ -67,7 +67,8 @@ if [ -n "$AARDVARK_DB_SSL_MODE" ] && [ "$AARDVARK_DB_SSL_MODE" != "DISABLED" ]; 
     esac
 fi
 
-MYSQL_PWD="$AARDVARK_DB_PASSWORD" mysqldump -h "$DB_HOST" -P "$DB_PORT" \
+MYSQL_PWD="$AARDVARK_DB_PASSWORD" mysqldump --no-tablespaces \
+    -h "$DB_HOST" -P "$DB_PORT" \
     $SSL_ARGS -u "$AARDVARK_DB_USER" "$AARDVARK_DB_NAME" > "$DUMPFILE"
 
 echo "Processing Complete " && date | tee -a "$LOGFULLNAME"

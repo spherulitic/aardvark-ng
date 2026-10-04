@@ -32,10 +32,8 @@ sub connect_to_database
 
   if ($ssl_mode && $ssl_mode ne 'DISABLED')
   {
-    $attributes{'mysql_ssl'} = 1;
+    $attributes{'mysql_ssl_mode'} = $ssl_mode;
     $attributes{'mysql_ssl_ca_file'} = $ssl_ca if $ssl_ca;
-    $attributes{'mysql_ssl_verify_server_cert'} =
-      ($ssl_mode =~ /^VERIFY/) ? 1 : 0;
   }
 
   my $dbh = DBI->connect(
