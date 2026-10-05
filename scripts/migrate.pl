@@ -53,6 +53,8 @@ my $file_regex             = Constants::DEFAULT_FILE_REGEX;
 my $incremental            = '';
 my $help                   = '';
 
+my $insert_batch_size      = 1000;
+
 my %deceased_players_hash = ();
 
 my %alt_names_hash = ();
@@ -1598,6 +1600,7 @@ sub load_tournament_files
       die "SKIP: $filename";
     }
 
+    my @tournament_results_rows;
     foreach my $key (sort keys %{$tournament_results})
     {
       my $player_id        = $tournament_results->{$key}->{'player_id'};
@@ -1615,25 +1618,39 @@ sub load_tournament_files
                        ["names to ids: ", Dumper($player_names_to_ids)],
                      ]);
       }
-      insert_hash_into_table($dbh, $tournament_results_tn, $tournament_results->{$key});
+      push @tournament_results_rows, $tournament_results->{$key};
     }
+    insert_rows_batched($dbh, $tournament_results_tn, \@tournament_results_rows);
    
+    my @games;
+    my @game_refs;
     foreach my $key (sort keys %$game_and_player_results_hashref)
     {
       my $gapr = $game_and_player_results_hashref->{$key};
 
       $gapr->{"game"}->{"division_id"} = $division_id_hash->{$gapr->{"game"}->{"division_id"}};
-      my $game_id = insert_hash_into_table($dbh, $games_tn, $gapr->{"game"});
+      push @games, $gapr->{"game"};
+      push @game_refs, $gapr;
+    }
+
+    my $game_ids = insert_rows_batched($dbh, $games_tn, \@games);
+
+    my @player_results_rows;
+    for (my $i = 0; $i < scalar @game_refs; $i++)
+    {
+      my $gapr    = $game_refs[$i];
+      my $game_id = $game_ids->[$i];
 
       $gapr->{"player1_result"}->{"game_id"} = $game_id;
       $gapr->{"player2_result"}->{"game_id"} = $game_id;
 
-      insert_hash_into_table($dbh, $player_results_tn, $gapr->{"player1_result"});
+      push @player_results_rows, $gapr->{"player1_result"};
       if (!$gapr->{"player2_result"}->{"is_bye"})
       {
-        insert_hash_into_table($dbh, $player_results_tn, $gapr->{"player2_result"});
+        push @player_results_rows, $gapr->{"player2_result"};
       }
     }
+    insert_rows_batched($dbh, $player_results_tn, \@player_results_rows);
 
 
     my $loaded_tournaments_table_name = Constants::LOADED_TOURNAMENTS_TABLE_NAME;
@@ -1986,15 +2003,88 @@ sub insert_hash_list_into_table
 
   my @list = @{$listref};
 
-  foreach my $item (@list)
+  my $ids = insert_rows_batched($dbh, $table, \@list);
+
+  if ($last_insert_id_key_field)
   {
-    my $id = insert_hash_into_table($dbh, $table, $item);
-    if ($last_insert_id_key_field)
+    for (my $i = 0; $i < scalar @list; $i++)
     {
-      $last_insert_id_hash->{$item->{$last_insert_id_key_field}} = $id;
+      $last_insert_id_hash->{$list[$i]->{$last_insert_id_key_field}} = $ids->[$i];
     }
   }
   return $last_insert_id_hash;
+}
+
+# Insert a list of hashes in the order given, batching multiple rows into a
+# single multi-row INSERT statement. Rows must share a compatible column set;
+# columns missing from a given row are inserted as NULL (equivalent to the
+# per-row code omitting undefined values, which lets MySQL apply the default).
+#
+# MySQL assigns consecutive auto-increment ids to the rows of a single
+# multi-row INSERT in order, and LAST_INSERT_ID() returns the first of them, so
+# each row's id is recovered as first_id + offset. Returns an arrayref of ids
+# in the same order as the input rows.
+sub insert_rows_batched
+{
+  my $dbh      = shift;
+  my $table    = shift;
+  my $listref  = shift;
+
+  my @rows = @{$listref};
+  my @ids  = ();
+
+  my $row_count = scalar @rows;
+  return \@ids if $row_count == 0;
+
+  for (my $start = 0; $start < $row_count; $start += $insert_batch_size)
+  {
+    my $end = $start + $insert_batch_size - 1;
+    $end = $row_count - 1 if $end >= $row_count;
+
+    my @chunk = @rows[$start .. $end];
+
+    my %column_set;
+    foreach my $row (@chunk)
+    {
+      foreach my $key (keys %{$row})
+      {
+        $column_set{$key} = 1 if defined $row->{$key};
+      }
+    }
+    my @columns = sort keys %column_set;
+
+    my @value_tuples;
+    foreach my $row (@chunk)
+    {
+      my @values;
+      foreach my $col (@columns)
+      {
+        if (defined $row->{$col})
+        {
+          push @values, "\"$row->{$col}\"";
+        }
+        else
+        {
+          push @values, "NULL";
+        }
+      }
+      push @value_tuples, "(" . join(",", @values) . ")";
+    }
+
+    my $columns_string = "(" . join(",", @columns) . ")";
+    my $values_string  = join(",", @value_tuples);
+
+    $dbh->do("INSERT INTO $table $columns_string VALUES $values_string;",
+             {"RaiseError" => 1});
+
+    my $first_id = $dbh->last_insert_id(undef, undef, undef, undef);
+    for (my $i = 0; $i < scalar @chunk; $i++)
+    {
+      push @ids, $first_id + $i;
+    }
+  }
+
+  return \@ids;
 }
 
 sub insert_hash_into_table
