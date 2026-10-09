@@ -72,6 +72,13 @@ routine `--full` run advances it rather than being blocked by it. The
 is a determinism test for unchanged inputs, not part of the routine flow. See
 README.md for details.
 
+After each successful promote, `deploy/update.sh` also regenerates the static
+player list served by the front end (`$PLAYERS_JSON_DIR/players.json`, default
+`/var/www/wespa/html/players.json`) via `scripts/emit_players_json.py`, keeping
+the previous file as `players.json.prev` and a gzip as `players.json.gz`. It is
+written atomically and validated (JSON parses, row count matches the DB) before
+the swap; this retires the per-page-load `players.php?idsonly=1` API call.
+
 ## Input data
 
 - Tournament files live at `/app/tournament_data/<year>/<country-trigraph>/<name>.tou`
