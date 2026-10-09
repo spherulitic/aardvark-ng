@@ -63,6 +63,15 @@ The API serves reports read-only from production.
 skips any `.tou` already recorded in the `loaded_tournaments` table. Any
 duplicates.txt/name-mapping change requires a full (non-incremental) run.
 
+Promotion on the production host is driven by `deploy/update.sh`, gated by a
+structural check (non-empty core tables, no orphans) and a drift check (no lost
+tournaments, no >5% loss of games vs production). `$SNAPSHOT_DIR/last_good.sha256`
+holds the normalized-dump checksum of the last successful **full** promote; a
+routine `--full` run advances it rather than being blocked by it. The
+`--require-baseline-match` flag (full only) asserts a byte-identical rebuild and
+is a determinism test for unchanged inputs, not part of the routine flow. See
+README.md for details.
+
 ## Input data
 
 - Tournament files live at `/app/tournament_data/<year>/<country-trigraph>/<name>.tou`
