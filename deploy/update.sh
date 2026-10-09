@@ -10,6 +10,10 @@
 # relative to the current production baseline will abort BEFORE promotion, so
 # production can never be overwritten by a failed build.
 #
+# After each successful promote it also writes the static player-data JSON that
+# the web front end serves (scripts/emit_players_json.py), keeping the old
+# generation as players.json.prev for rollback.
+#
 # Usage:
 #   deploy/update.sh [--full] [--no-promote] [--verify-only] [--require-baseline-match]
 #
@@ -40,7 +44,13 @@ SNAPSHOT_DIR="${AARDVARK_SNAPSHOT_DIR:-/srv/snapshots}"
 LOG_DIR="${AARDVARK_LOG_DIR:-/var/log/aardvark}"
 TOURNAMENT_DATA="${AARDVARK_TOURNAMENT_DATA:-/srv/aardvark}"
 FRESHNESS_DAYS="${AARDVARK_FRESHNESS_DAYS:-30}"
+PLAYERS_JSON_DIR="${AARDVARK_PLAYERS_JSON_DIR:-/var/www/wespa/html}"
 IMAGE="aardvark-ng:latest"
+
+PLAYERS_JSON="$PLAYERS_JSON_DIR/players.json"
+PLAYER_IDS_QUERY="SELECT id AS playerid, name, country, rating AS cswrating
+                    FROM players WHERE COALESCE(total_games,0) > 0 ORDER BY id"
+PLAYER_COUNT_QUERY="SELECT COUNT(*) FROM players WHERE COALESCE(total_games,0) > 0"
 
 LAST_GOOD="$SNAPSHOT_DIR/last_good.sha256"
 RUN_LOG="$LOG_DIR/update-$(date --iso-8601).log"
@@ -285,6 +295,36 @@ if [ "$MODE" = "full" ]; then
     log "last_good unchanged: $staging_sum"
   fi
 fi
+
+# 8b. Publish static player JSON (retires players.php?idsonly=1) -----------
+# The front end fetches this build artifact instead of hitting the API on every
+# page load. Because it is written by the promote it cannot go stale; the old
+# generation is kept as players.json.prev for a one-command rollback.
+log "publishing static player JSON"
+[ -d "$PLAYERS_JSON_DIR" ] || fail "player JSON dir $PLAYERS_JSON_DIR does not exist"
+
+expected="$(mysql --defaults-extra-file="$MYSQL_CNF" --batch --raw -N \
+  -e "$PLAYER_COUNT_QUERY" "$PROD_DB")" \
+  || fail "could not count players in $PROD_DB"
+
+mysql --defaults-extra-file="$MYSQL_CNF" --default-character-set=utf8mb4 \
+  --batch --raw -N -e "$PLAYER_IDS_QUERY" "$PROD_DB" \
+  | python3 "$REPO_DIR/scripts/emit_players_json.py" "$PLAYERS_JSON.tmp" "$expected" \
+  || fail "player JSON generation failed"
+
+if [ -f "$PLAYERS_JSON" ]; then
+  mv -f "$PLAYERS_JSON" "$PLAYERS_JSON.prev"
+fi
+mv -f "$PLAYERS_JSON.tmp" "$PLAYERS_JSON"
+
+if gzip -c "$PLAYERS_JSON" > "$PLAYERS_JSON.gz.tmp"; then
+  mv -f "$PLAYERS_JSON.gz.tmp" "$PLAYERS_JSON.gz"
+else
+  rm -f "$PLAYERS_JSON.gz.tmp"
+  log "WARN: gzip of $PLAYERS_JSON failed; serving uncompressed only"
+fi
+
+log "player JSON published: $PLAYERS_JSON ($expected players)"
 
 # 9. Retention -------------------------------------------------------------
 find "$SNAPSHOT_DIR" -name 'wespa_*.sql' -mtime +30 -delete 2>/dev/null || true

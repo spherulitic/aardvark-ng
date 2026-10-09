@@ -90,3 +90,21 @@ routine update flow.
 # rebuild without promoting, asserting the output is unchanged
 deploy/update.sh --full --no-promote --require-baseline-match
 ```
+
+### Static player data (`players.json`)
+
+After every successful promote, `deploy/update.sh` regenerates the static player
+list the web front end serves, replacing the per-page-load call to
+`players.php?idsonly=1`:
+
+- `$PLAYERS_JSON_DIR/players.json` (default `/var/www/wespa/html/players.json`)
+  — `{"players": [{"playerid", "name", "country", "cswrating"}, …]}` for every
+  player with at least one game, mirroring the API payload.
+- `players.json.prev` — the previous generation, for a one-command rollback.
+- `players.json.gz` — the gzip of the new file, served by nginx `gzip_static`.
+
+Generation is host-side via `scripts/emit_players_json.py`. The file is written
+to `players.json.tmp`, validated (parses as JSON and its row count matches the
+promoted database), then renamed into place atomically, so a truncated file is
+never served. Any failure aborts the run after the promote with a clear error
+rather than leaving a stale or malformed file.
