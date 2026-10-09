@@ -11,11 +11,19 @@
 # production can never be overwritten by a failed build.
 #
 # Usage:
-#   deploy/update.sh [--full] [--no-promote] [--verify-only]
+#   deploy/update.sh [--full] [--no-promote] [--verify-only] [--require-baseline-match]
 #
-#   --full          full rebuild (AARDVARK_INCREMENTAL=0); default is incremental
-#   --no-promote    build + verify only; do not snapshot or promote
-#   --verify-only   skip build/run; only run the verification gates on staging
+#   --full                    full rebuild (AARDVARK_INCREMENTAL=0); default is incremental
+#   --no-promote              build + verify only; do not snapshot or promote
+#   --verify-only             skip build/run; only run the verification gates on staging
+#   --require-baseline-match  (--full only) assert that the rebuilt schema's checksum
+#                             equals $SNAPSHOT_DIR/last_good.sha256. This is a
+#                             determinism test for rebuilds with unchanged inputs,
+#                             NOT a routine promotion gate.
+#
+# A routine --full run advances last_good.sha256 (the normalized-dump checksum of
+# the last successful full promote) instead of being blocked by it. It is gated
+# only by the structural and drift checks above.
 #
 # Config (secrets) live outside the repo:
 #   /etc/aardvark/aardvark.env   - AARDVARK_* env for the container
@@ -41,19 +49,26 @@ STAMP="$(date +%Y%m%d_%H%M%S)"
 MODE=incremental
 PROMOTE=1
 VERIFY_ONLY=0
+REQUIRE_BASELINE_MATCH=0
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --full)         MODE=full ;;
-    --no-promote)   PROMOTE=0 ;;
-    --verify-only)  VERIFY_ONLY=1 ;;
-    --incremental)  MODE=incremental ;;
+    --full)                    MODE=full ;;
+    --no-promote)              PROMOTE=0 ;;
+    --verify-only)             VERIFY_ONLY=1 ;;
+    --incremental)             MODE=incremental ;;
+    --require-baseline-match)  REQUIRE_BASELINE_MATCH=1 ;;
     *) echo "unknown option: $1" >&2; exit 2 ;;
   esac
   shift
 done
 
 if [ "$MODE" = "full" ]; then INCREMENTAL=0; else INCREMENTAL=1; fi
+
+if [ "$REQUIRE_BASELINE_MATCH" = "1" ]; then
+  [ "$MODE" = "full" ] || { echo "--require-baseline-match requires --full" >&2; exit 2; }
+  [ -f "$LAST_GOOD" ] || { echo "--require-baseline-match: no baseline at $LAST_GOOD" >&2; exit 2; }
+fi
 
 mkdir -p "$LOG_DIR"
 
@@ -91,6 +106,29 @@ sanity_check() {
 
 counts()  { sanity_check "$1" | awk '{print $1, $2, $3, $4, $5, $6}'; }
 orphans() { sanity_check "$1" | awk '{print $7, $8, $9}'; }
+
+# Explain a full-run baseline mismatch: staging vs the pre-build production
+# counts, plus tournament inputs newer than the recorded baseline timestamp.
+baseline_drift_summary() {
+  local baseline_ts="$1" prod="$2" staging="$3"
+  local pt pp pd pg ppr ptr t p d g pr tr
+  read -r pt pp pd pg ppr ptr <<< "$prod"
+  read -r t p d g pr tr <<< "$staging"
+  log "baseline drift summary (production -> staging):"
+  log "  tournaments        $pt -> $t"
+  log "  players            $pp -> $p"
+  log "  divisions          $pd -> $d"
+  log "  games              $pg -> $g"
+  log "  player_results     $ppr -> $pr"
+  log "  tournament_results $ptr -> $tr"
+  if [ -n "$baseline_ts" ] && [ -d "$TOURNAMENT_DATA" ]; then
+    log "  tournament inputs newer than baseline ($baseline_ts):"
+    find "$TOURNAMENT_DATA" \
+      \( -iname '*.tou' -o -iname '*.sts' -o -iname '*.sta' -o -iname '*.st4' \) \
+      -newermt "$baseline_ts" -printf '%TY-%Tm-%Td %TH:%TM %p\n' 2>/dev/null \
+      | sort | sed 's/^/    /' | tee -a "$RUN_LOG" || true
+  fi
+}
 
 # Structural gate: every core table must be non-empty and have no orphans.
 verify_struct() {
@@ -198,8 +236,16 @@ log "staging checksum: $staging_sum"
 
 if [ "$MODE" = "full" ] && [ -f "$LAST_GOOD" ]; then
   want="$(awk '{print $1}' "$LAST_GOOD")"
-  [ "$staging_sum" = "$want" ] || fail "staging checksum mismatch (got $staging_sum, want $want)"
-  log "full-run checksum matches last_good"
+  baseline_ts="$(awk '{print $2}' "$LAST_GOOD")"
+  if [ "$staging_sum" = "$want" ]; then
+    log "full-run checksum matches last_good"
+  else
+    baseline_drift_summary "$baseline_ts" "$PROD_BASE" "$t $p $d $g $pr $tr"
+    if [ "$REQUIRE_BASELINE_MATCH" = "1" ]; then
+      fail "staging checksum mismatch (got $staging_sum, want $want)"
+    fi
+    log "accepting baseline drift on full run; last_good advances after a successful promote"
+  fi
 fi
 
 if [ "$PROMOTE" = "0" ]; then
@@ -228,8 +274,16 @@ prod_sum="$(dump_checksum "$PROD_DB")"
 log "prod checksum matches staging"
 
 if [ "$MODE" = "full" ]; then
+  prev_sum=""
+  if [ -f "$LAST_GOOD" ]; then
+    prev_sum="$(awk '{print $1}' "$LAST_GOOD")"
+  fi
   printf '%s  %s\n' "$staging_sum" "$(date -Iseconds)" > "$LAST_GOOD"
-  log "bootstrapped/updated last_good: $staging_sum"
+  if [ -n "$prev_sum" ] && [ "$prev_sum" != "$staging_sum" ]; then
+    log "last_good advanced: $prev_sum -> $staging_sum"
+  else
+    log "last_good unchanged: $staging_sum"
+  fi
 fi
 
 # 9. Retention -------------------------------------------------------------
