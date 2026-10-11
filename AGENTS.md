@@ -79,6 +79,27 @@ the previous file as `players.json.prev` and a gzip as `players.json.gz`. It is
 written atomically and validated (JSON parses, row count matches the DB) before
 the swap; this retires the per-page-load `players.php?idsonly=1` API call.
 
+## Agent-triggered ingest
+
+An agent logged in as `kyubey` (no shell as `spherulitic`) starts the production
+wrapper through an allowlisted systemd template installed by
+`deploy/install-agent-ingest.sh` (root). `/etc/systemd/system/aardvark-ingest@.service`
+runs as `User=spherulitic` and execs `/usr/local/sbin/aardvark-ingest-run`, which
+maps `incremental|full|verify-only` to `deploy/update.sh --<mode>`. Members of the
+`aardvark-ingest` group may run only these:
+
+    sudo systemctl start aardvark-ingest@incremental
+    sudo systemctl start aardvark-ingest@full
+    sudo systemctl start aardvark-ingest@verify-only
+
+`deploy/update.sh` holds an exclusive `flock` on `$LOG_DIR/aardvark-update.lock`,
+so agent-triggered, the weekly `spherulitic` cron and manual runs cannot overlap
+(systemd also refuses a second concurrent start while the unit is active).
+Observe with `systemctl is-active aardvark-ingest@<mode>` and the world-readable
+`/var/log/aardvark/update-<date>.log`, which ends with `DONE` on success.
+`--no-promote` and `--require-baseline-match` are not reachable through the
+launcher.
+
 ## Input data
 
 - Tournament files live at `/app/tournament_data/<year>/<country-trigraph>/<name>.tou`

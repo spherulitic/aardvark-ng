@@ -1,0 +1,12 @@
+[Unit]
+Description=Aardvark ingest (%i)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=spherulitic
+Group=spherulitic
+Environment=XDG_RUNTIME_DIR=/run/user/%U
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
+ExecStart=/usr/local/sbin/aardvark-ingest-run %i
