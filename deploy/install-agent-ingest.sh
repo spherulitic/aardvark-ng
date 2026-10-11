@@ -12,6 +12,10 @@ install -o root -g root -m 0755 \
   "$REPO_DIR/deploy/systemd/aardvark-ingest@.service" \
   /etc/systemd/system/aardvark-ingest@.service
 
+install -o root -g root -m 0644 \
+  "$REPO_DIR/deploy/systemd/aardvark-ingest-weekly.timer" \
+  /etc/systemd/system/aardvark-ingest-weekly.timer
+
 install -o root -g root -m 0755 \
   "$REPO_DIR/deploy/aardvark-ingest-run" \
   /usr/local/sbin/aardvark-ingest-run
@@ -25,10 +29,11 @@ visudo -cf "$tmp"
 install -o root -g root -m 0440 "$tmp" /etc/sudoers.d/aardvark-ingest
 
 systemctl daemon-reload
+systemctl enable --now aardvark-ingest-weekly.timer
 
 for u in "$@"; do
   usermod -aG aardvark-ingest "$u"
   echo "added $u to aardvark-ingest"
 done
 
-echo "installed aardvark-ingest unit, launcher and sudoers"
+echo "installed aardvark-ingest unit, weekly timer, launcher and sudoers"

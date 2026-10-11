@@ -93,9 +93,13 @@ maps `incremental|full|verify-only` to `deploy/update.sh --<mode>`. Members of t
     sudo systemctl start aardvark-ingest@verify-only
 
 `deploy/update.sh` holds an exclusive `flock` on `$LOG_DIR/aardvark-update.lock`,
-so agent-triggered, the weekly `spherulitic` cron and manual runs cannot overlap
-(systemd also refuses a second concurrent start while the unit is active).
-Observe with `systemctl is-active aardvark-ingest@<mode>` and the world-readable
+so agent-triggered, the weekly timer and manual runs cannot overlap (systemd also
+refuses a second concurrent start while the unit is active). The weekly run is
+`aardvark-ingest-weekly.timer` (Tue 06:00 UTC), which fires the same
+`aardvark-ingest@incremental.service` agents trigger. The service sets
+`PAMName=login`, so pam_systemd provides the runtime dir, session bus and systemd
+cgroup manager that rootless podman needs. Observe with
+`systemctl is-active aardvark-ingest@<mode>` and the world-readable
 `/var/log/aardvark/update-<date>.log`, which ends with `DONE` on success.
 `--no-promote` and `--require-baseline-match` are not reachable through the
 launcher.
