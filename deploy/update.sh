@@ -88,6 +88,10 @@ get_env() { awk -F= -v k="$1" '$1==k {sub(/^[^=]*=/,""); print}' "$ENV_FILE"; }
 
 fail() { log "ERROR: $*"; exit 1; }
 
+LOCK_FILE="$LOG_DIR/aardvark-update.lock"
+exec 9>"$LOCK_FILE"
+flock -n 9 || fail "another update is already running (lock: $LOCK_FILE)"
+
 dump_checksum() {
   local db="$1"
   mysqldump --defaults-extra-file="$MYSQL_CNF" \

@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+case "${1:-}" in
+  incremental) exec /srv/aardvark-ng/deploy/update.sh --incremental ;;
+  full)        exec /srv/aardvark-ng/deploy/update.sh --full ;;
+  verify-only) exec /srv/aardvark-ng/deploy/update.sh --verify-only ;;
+  *) echo "unknown mode: ${1:-}" >&2; exit 2 ;;
+esac
