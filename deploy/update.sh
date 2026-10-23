@@ -45,6 +45,10 @@ LOG_DIR="${AARDVARK_LOG_DIR:-/var/log/aardvark}"
 TOURNAMENT_DATA="${AARDVARK_TOURNAMENT_DATA:-/srv/aardvark}"
 FRESHNESS_DAYS="${AARDVARK_FRESHNESS_DAYS:-30}"
 PLAYERS_JSON_DIR="${AARDVARK_PLAYERS_JSON_DIR:-/var/www/wespa/html}"
+# Control files (duplicates.txt, removed_people.txt) live in their own repo and are
+# the source of truth; the web-root copy is published from the checkout.
+DATA_REPO_DIR="${AARDVARK_DATA_REPO_DIR:-/srv/wespa-source}"
+DATA_REPO_URL="${AARDVARK_DATA_REPO_URL:-git@github.com:spherulitic/wespa-data.git}"
 IMAGE="aardvark-ng:latest"
 
 PLAYERS_JSON="$PLAYERS_JSON_DIR/players.json"
@@ -193,15 +197,65 @@ log "HEAD: $(git rev-parse --short HEAD)"
 log "renaming .STA -> .ST4"
 python3 "$REPO_DIR/scripts/rename_sta_to_st4.py" "$TOURNAMENT_DATA" --execute >>"$RUN_LOG" 2>&1 || log "WARN: rename step reported errors"
 
-# 2. Input freshness (warning only) ----------------------------------------
-DUP_FILE="/var/www/wespa/html/duplicates.txt"
-if [ -f "$DUP_FILE" ]; then
-  age_days=$(( ($(date +%s) - $(stat -c %Y "$DUP_FILE")) / 86400 ))
-  if [ "$age_days" -gt "$FRESHNESS_DAYS" ]; then
-    log "WARN: duplicates.txt is $age_days days old (> $FRESHNESS_DAYS)"
+# 2. Control files: sync from the repo, validate, publish --------------------
+# duplicates.txt and removed_people.txt are hand-edited and a mistake costs either a
+# wrong name on the site or a repeated 30-minute full import, so they live in
+# spherulitic/wespa-data with every change reviewable and revertable. The build reads
+# the checkout, never the published copy.
+log "syncing control files from $DATA_REPO_URL"
+if [ ! -d "$DATA_REPO_DIR/.git" ]; then
+  mkdir -p "$DATA_REPO_DIR" 2>/dev/null || true
+  [ -d "$DATA_REPO_DIR" ] || fail "cannot create $DATA_REPO_DIR — create it and chown it to $(id -un), or set AARDVARK_DATA_REPO_DIR"
+  git clone --quiet "$DATA_REPO_URL" "$DATA_REPO_DIR" >>"$RUN_LOG" 2>&1 \
+    || fail "clone of $DATA_REPO_URL failed (deploy key present? see README)"
+fi
+git -C "$DATA_REPO_DIR" remote set-url origin "$DATA_REPO_URL" >>"$RUN_LOG" 2>&1 || true
+git -C "$DATA_REPO_DIR" pull --ff-only --quiet >>"$RUN_LOG" 2>&1 \
+  || fail "data repo pull failed — checkout has diverged from origin, resolve by hand"
+DATA_HEAD="$(git -C "$DATA_REPO_DIR" rev-parse --short HEAD)"
+log "data HEAD: $DATA_HEAD"
+printf '%s %s\n' "$(date '+%F %T')" "$DATA_HEAD" >>"$LOG_DIR/data-head.txt"
+
+DUP_FILE="$DATA_REPO_DIR/duplicates.txt"
+REMOVED_FILE="$DATA_REPO_DIR/removed_people.txt"
+[ -f "$DUP_FILE" ] || fail "duplicates.txt missing from $DATA_REPO_DIR"
+[ -f "$REMOVED_FILE" ] || fail "removed_people.txt missing from $DATA_REPO_DIR"
+
+# A file that means two things (a name canonical on one line and an alternate on
+# another) must never reach the database: it splits profiles. Fail the build instead.
+if [ -f "$DATA_REPO_DIR/validate.py" ]; then
+  if ! python3 "$DATA_REPO_DIR/validate.py" --dir "$DATA_REPO_DIR" --quiet-warnings >>"$RUN_LOG" 2>&1; then
+    log "control-file validation FAILED:"
+    sed -n '/ERROR(S)/,$p' "$RUN_LOG" | tail -25
+    fail "not building from invalid control files (fix $DATA_REPO_DIR and push)"
   fi
+  log "control files validated"
 else
-  log "WARN: duplicates.txt not found at $DUP_FILE"
+  log "WARN: validate.py not found in $DATA_REPO_DIR — building without the conflict check"
+fi
+
+# Staleness is now "nobody has edited the file", not checkout age.
+dup_ct="$(git -C "$DATA_REPO_DIR" log -1 --format=%ct -- duplicates.txt 2>/dev/null || echo 0)"
+if [ "$dup_ct" -gt 0 ]; then
+  age_days=$(( ($(date +%s) - dup_ct) / 86400 ))
+  if [ "$age_days" -gt "$FRESHNESS_DAYS" ]; then
+    log "WARN: duplicates.txt last changed $age_days days ago (> $FRESHNESS_DAYS)"
+  fi
+fi
+
+# Publish the copy the website serves so the web root cannot drift from the repo.
+if [ "$DUP_FILE" != "$PLAYERS_JSON_DIR/duplicates.txt" ]; then
+  if [ -w "$PLAYERS_JSON_DIR" ]; then
+    if cmp -s "$DUP_FILE" "$PLAYERS_JSON_DIR/duplicates.txt"; then
+      log "published duplicates.txt already current"
+    else
+      install -m 664 "$DUP_FILE" "$PLAYERS_JSON_DIR/duplicates.txt" \
+        && log "published duplicates.txt -> $PLAYERS_JSON_DIR" \
+        || log "WARN: could not publish duplicates.txt to $PLAYERS_JSON_DIR"
+    fi
+  else
+    log "WARN: $PLAYERS_JSON_DIR not writable — web root copy of duplicates.txt NOT updated"
+  fi
 fi
 
 # Capture the current production baseline BEFORE the build, for drift checks.
@@ -222,8 +276,8 @@ podman run --rm --name aardvark-updater \
   -v "$CA_HOST":/certs/ca-certificate.crt:ro \
   -v "$LOG_DIR":/app/logs \
   -v /var/www/wespa/html/latest.txt:/app/inputs/latest.txt:ro \
-  -v /var/www/wespa/html/duplicates.txt:/app/inputs/duplicates.txt:ro \
-  -v /srv/wespa/removed_people.txt:/app/inputs/removed_people.txt:ro \
+  -v "$DUP_FILE":/app/inputs/duplicates.txt:ro \
+  -v "$REMOVED_FILE":/app/inputs/removed_people.txt:ro \
   --network host "$IMAGE" >>"$RUN_LOG" 2>&1
 RUN_RC=$?
 set -e
