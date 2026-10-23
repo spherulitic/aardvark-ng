@@ -189,9 +189,30 @@ fi
 cd "$REPO_DIR"
 
 # 1. Sync code -------------------------------------------------------------
-log "pulling $REPO_DIR"
-git pull --ff-only >/dev/null 2>>"$RUN_LOG" || fail "git pull failed"
-log "HEAD: $(git rev-parse --short HEAD)"
+# This script pulls the repository it lives in, and bash reads a script file
+# incrementally: code that changes under a running process can be executed at the
+# wrong offset or skipped entirely. That is not theoretical here — the control-file
+# block silently did not run on its first production outing because the pull landed
+# mid-execution.
+#
+# So: pull, and if HEAD moved, re-exec the updated script rather than continuing on
+# bytes that no longer match the file. AARDVARK_SELF_UPDATED stops the recursion.
+if [ "${AARDVARK_SELF_UPDATED:-0}" != "1" ]; then
+  log "pulling $REPO_DIR"
+  BEFORE_SHA="$(git rev-parse HEAD)"
+  git pull --ff-only >/dev/null 2>>"$RUN_LOG" || fail "git pull failed"
+  AFTER_SHA="$(git rev-parse HEAD)"
+  if [ "$BEFORE_SHA" != "$AFTER_SHA" ]; then
+    SELF="${BASH_SOURCE[0]}"
+    SELF="$(cd "$(dirname "$SELF")" && pwd)/$(basename "$SELF")"
+    log "code updated ${BEFORE_SHA:0:8} -> ${AFTER_SHA:0:8}: re-executing $SELF"
+    export AARDVARK_SELF_UPDATED=1
+    exec "$SELF" "$@"
+  fi
+  log "HEAD: ${AFTER_SHA:0:8} (unchanged)"
+else
+  log "HEAD: $(git rev-parse --short HEAD) (already self-updated this run)"
+fi
 
 # 1.5 Rename .STA -> .ST4 on the host (rootless podman does not pass through
 #     the user's supplementary groups, so do this where permissions are right)
