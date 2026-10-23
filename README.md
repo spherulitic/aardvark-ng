@@ -108,3 +108,49 @@ to `players.json.tmp`, validated (parses as JSON and its row count matches the
 promoted database), then renamed into place atomically, so a truncated file is
 never served. Any failure aborts the run after the promote with a clear error
 rather than leaving a stale or malformed file.
+
+## Control files (`duplicates.txt`, `removed_people.txt`)
+
+These two files steer player merging and exclusions. They are hand-edited by people, and a
+mistake in them either publishes a wrong name or forces a repeat of a ~30 minute full import.
+They therefore live in their own repository — **`spherulitic/wespa-data` (private)** — and
+`deploy/update.sh` builds from a checkout of it, never from the published copy:
+
+```
+/srv/wespa-source          checkout of spherulitic/wespa-data (AARDVARK_DATA_REPO_DIR)
+/var/www/wespa/html/duplicates.txt   published copy, written from the checkout each run
+```
+
+Each run, before the build:
+
+1. `git pull --ff-only` on the checkout — a diverged checkout aborts the run rather than
+   building from the wrong file.
+2. `validate.py` from that repo runs against the files. It re-implements what
+   `migrate.pl` / `remove_duplicate_names.pl` do and additionally rejects **mutual
+   references** (a name canonical on one line and an alternate on another), the defect that
+   split several Sri Lankan profiles into 2–3 records. **A validation failure now stops the
+   build** — expect a run to fail on bad input where it used to fail silently later.
+3. `duplicates.txt` is copied to `$PLAYERS_JSON_DIR` so the web-root copy cannot drift; if that
+   directory is not writable the run logs a warning and continues.
+4. Staleness is measured from the file's **last commit** (`git log -1 --format=%ct -- duplicates.txt`)
+   instead of the checkout's mtime, which is meaningless on a fresh clone.
+
+### Prerequisites (one-time, on the host)
+
+```bash
+# read-only deploy key for the private data repo
+ssh-keygen -t ed25519 -N '' -f ~/.ssh/wespa_data -C "aardvark ingest (read-only)"
+cat ~/.ssh/wespa_data.pub      # add under the repo's Settings -> Deploy keys (read access)
+
+# checkout location owned by the ingest user
+sudo mkdir -p /srv/wespa-source && sudo chown "$(id -un)" /srv/wespa-source
+```
+
+Override with `AARDVARK_DATA_REPO_DIR` / `AARDVARK_DATA_REPO_URL` if either differs. A missing
+deploy key fails the clone with an explicit message.
+
+### Rolling back a bad control-file change
+
+Revert in the data repo (`git revert <sha>`, or check out an earlier tag such as
+`pre-import-2026-10-23`); the next run picks it up. For the database itself, the pre-promote
+snapshot in `$SNAPSHOT_DIR` is unchanged by any of this.
