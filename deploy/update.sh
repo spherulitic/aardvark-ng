@@ -49,6 +49,7 @@ PLAYERS_JSON_DIR="${AARDVARK_PLAYERS_JSON_DIR:-/var/www/wespa/html}"
 # the source of truth; the web-root copy is published from the checkout.
 DATA_REPO_DIR="${AARDVARK_DATA_REPO_DIR:-/srv/wespa-source}"
 DATA_REPO_URL="${AARDVARK_DATA_REPO_URL:-git@github.com:spherulitic/wespa-data.git}"
+DATA_REPO_KEY="${AARDVARK_DATA_REPO_KEY:-$HOME/.ssh/wespa_data}"
 IMAGE="aardvark-ng:latest"
 
 PLAYERS_JSON="$PLAYERS_JSON_DIR/players.json"
@@ -203,6 +204,20 @@ python3 "$REPO_DIR/scripts/rename_sta_to_st4.py" "$TOURNAMENT_DATA" --execute >>
 # spherulitic/wespa-data with every change reviewable and revertable. The build reads
 # the checkout, never the published copy.
 log "syncing control files from $DATA_REPO_URL"
+# git needs a key it is allowed to use and a known_hosts entry before it will talk to
+# github at all — a fresh host fails with "Host key verification failed" long before the
+# deploy key is offered. accept-new records the host key on first contact and stays strict
+# afterwards; IdentitiesOnly stops ssh from trying every agent key first.
+case "$DATA_REPO_URL" in
+  git@*|ssh://*)
+    if [ -f "$DATA_REPO_KEY" ]; then
+      export GIT_SSH_COMMAND="ssh -i $DATA_REPO_KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+    else
+      log "WARN: $DATA_REPO_KEY not found — falling back to the default ssh identity"
+      export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new"
+    fi
+    ;;
+esac
 if [ ! -d "$DATA_REPO_DIR/.git" ]; then
   mkdir -p "$DATA_REPO_DIR" 2>/dev/null || true
   [ -d "$DATA_REPO_DIR" ] || fail "cannot create $DATA_REPO_DIR — create it and chown it to $(id -un), or set AARDVARK_DATA_REPO_DIR"

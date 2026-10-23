@@ -146,6 +146,11 @@ cat ~/.ssh/wespa_data.pub      # add under the repo's Settings -> Deploy keys (r
 sudo mkdir -p /srv/wespa-source && sudo chown "$(id -un)" /srv/wespa-source
 ```
 
+`update.sh` points git at that key itself (`AARDVARK_DATA_REPO_KEY`, default
+`~/.ssh/wespa_data`) with `IdentitiesOnly=yes` and `StrictHostKeyChecking=accept-new`, so no
+`~/.ssh/config` entry and no manual `ssh-keyscan` are needed — including on a fresh host, where
+ssh otherwise refuses with `Host key verification failed` before the deploy key is ever offered.
+
 Override with `AARDVARK_DATA_REPO_DIR` / `AARDVARK_DATA_REPO_URL` if either differs. A missing
 deploy key fails the clone with an explicit message.
 
